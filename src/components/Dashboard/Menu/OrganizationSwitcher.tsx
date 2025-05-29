@@ -139,7 +139,8 @@ export const OrganizationSwitcher = () => {
           <Flex
             justifyContent={'center'}
             alignItems={'center'}
-            border='var(--border)'
+            border='1px solid'
+            borderColor='table.border'
             w='22px'
             h='22px'
             borderRadius='xs'

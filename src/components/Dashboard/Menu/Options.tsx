@@ -2,7 +2,7 @@ import { Box, Flex, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LuBookOpen, LuHouse, LuLifeBuoy, LuPhone, LuSettings, LuUsers, LuVote } from 'react-icons/lu'
-import { Link as ReactRouterLink, matchPath, useLocation } from 'react-router-dom'
+import { matchPath, useLocation } from 'react-router-dom'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
 import { DashboardMenuItem, DashboardMenuItemButton } from './Item'
@@ -61,20 +61,15 @@ export const DashboardMenuOptions = () => {
           </Text>
         )}
         <UnorderedList display={'flex'} flexDirection={'column'} gap={1} listStyleType={"''"} ml={'0'}>
-          {menuItemsPlatform.map((item, index) => {
-            const isDisabled = !item.route
-            const as = isDisabled ? 'button' : ReactRouterLink
-
-            return (
-              <ListItem key={index}>
-                <DashboardMenuItemButton
-                  item={item}
-                  reduced={reduced}
-                  isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
-                />
-              </ListItem>
-            )
-          })}
+          {menuItemsPlatform.map((item, index) => (
+            <ListItem key={index}>
+              <DashboardMenuItemButton
+                item={item}
+                reduced={reduced}
+                isActive={Boolean(matchPath({ path: item.route || '', end: true }, location.pathname)) && true}
+              />
+            </ListItem>
+          ))}
         </UnorderedList>
       </Box>
       {!reduced && (

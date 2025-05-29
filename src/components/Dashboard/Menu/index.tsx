@@ -70,13 +70,17 @@ const DashboardMenuContent = () => {
         to={generatePath(Routes.processes.create)}
         w='full'
         minW={0}
-        leftIcon={<Icon as={LuPlus} boxSize={4} />}
         colorScheme='black'
         mt={'8px'}
         mb={'32px'}
         size={'xs'}
       >
-        {!reduced && <Trans i18nKey='new_voting'>New vote</Trans>}
+        <Icon as={LuPlus} boxSize={4} />
+        {!reduced && (
+          <Text as='span' ml={2}>
+            <Trans i18nKey='new_vote'>New vote</Trans>
+          </Text>
+        )}
       </Button>
 
       <DashboardMenuOptions />
