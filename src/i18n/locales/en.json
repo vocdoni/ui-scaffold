@@ -225,6 +225,7 @@
     }
   },
   "close": "Close",
+  "color_mode_switcher": "Color mode switcher",
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
@@ -258,6 +259,7 @@
   },
   "current": "Current",
   "current_plan": "Current Plan",
+  "dark": "Dark",
   "dark_mode": "Dark mode",
   "dashboard": {
     "actions": {
@@ -928,12 +930,12 @@
     "go_to_verify": "Verify Account",
     "invalid_link": "Invalid invite link received",
     "processing": "Processing your invitation...",
-    "subtitle": "Work together on projects",
+    "subtitle": "Send an invitation to join your organization. They'll receive an email with instructions.",
     "success": "Invitation sent successfully!",
     "success_description": "You can now sign in",
     "success_title": "Invitation accepted",
-    "title": "Invite people to your team",
-    "unexpected_error": "Error",
+    "title": "Add team member",
+    "unexpected_error": "",
     "user_invited": "Email sent to {{email}}"
   },
   "invite_people": "Invite People",
@@ -944,6 +946,7 @@
   },
   "languages": "Languages",
   "lastname": "Last name",
+  "light": "Light",
   "light_mode": "Light mode",
   "link": {
     "discord": "Link to Vocdoni's discord",
@@ -1010,11 +1013,12 @@
   },
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
+  "new_vote": "New vote",
   "new_voting": "New vote",
   "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "Don't have an account?",
   "open_in_explorer": "Open in explorer",
-  "or": "or continue with",
+  "or_continue_with": "or continue with",
   "org_type_selector": {
     "selector_label": "Organization Type"
   },
@@ -1427,6 +1431,7 @@
   },
   "support": "Support",
   "switch_organization": "Switch organization",
+  "system": "System",
   "team": {
     "actions": {
       "cancel_invitation": "Cancel Invitation",
@@ -1533,6 +1538,7 @@
       "text": "We chose Vocdoni because it guarantees secure, reliable, and transparent participation for all our members in our Annual General Meeting."
     }
   },
+  "theme": "Theme",
   "tier_upgrade": {
     "current_plan": "Your current <2>{{ plan, lowercase }}</2> is limited to selecting up to <6>{{ voters }} voters</6>.",
     "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
@@ -1603,6 +1609,7 @@
     },
     "title": "Our success stories"
   },
+  "user_menu": "User menu",
   "user_settings": "User settings",
   "verification_code": "Verification Code",
   "verification_code_placeholder": "Enter the verification code",
