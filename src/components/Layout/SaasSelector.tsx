@@ -4,7 +4,6 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
 import { LuEye, LuKey, LuUserRoundCog, LuUsers } from 'react-icons/lu'
-import { LanguagesSlice } from '~i18n/languages.mjs'
 import { useOrganizationTypes, useRoles } from '~src/queries/organization'
 
 export type SelectOptionType = {
@@ -122,51 +121,6 @@ export const MembershipSizeSelector = ({ defaultValue, ...props }: Omit<SelectCu
     <SelectCustom
       options={listSizes}
       label={t('membership_size.selector_label', { defaultValue: 'Membership Size' })}
-      {...props}
-    />
-  )
-}
-
-export const CustomizationTimeZoneSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
-  const { t } = useTranslation()
-
-  const timezones: SelectOptionType[] = [
-    { label: '(UTC-12:00) International Date Line West', value: 'Etc/GMT+12' },
-    { label: '(UTC-11:00) Coordinated Universal Time-11', value: 'Etc/GMT+11' },
-    { label: '(UTC-10:00) Hawaii', value: 'Pacific/Honolulu' },
-    { label: '(UTC-08:00) Pacific Time (US & Canada)', value: 'America/Los_Angeles' },
-    { label: '(UTC-07:00) Mountain Time (US & Canada)', value: 'America/Denver' },
-    { label: '(UTC-06:00) Central Time (US & Canada)', value: 'America/Chicago' },
-    { label: '(UTC-05:00) Eastern Time (US & Canada)', value: 'America/New_York' },
-    { label: '(UTC-03:00) Buenos Aires', value: 'America/Argentina/Buenos_Aires' },
-    { label: '(UTC+00:00) London, Lisbon, Dublin', value: 'Europe/London' },
-    { label: '(UTC+01:00) Central European Time', value: 'Europe/Berlin' },
-    { label: '(UTC+02:00) Eastern European Time', value: 'Europe/Istanbul' },
-    { label: '(UTC+03:00) Moscow, Saint Petersburg', value: 'Europe/Moscow' },
-    { label: '(UTC+05:30) Chennai, Kolkata, Mumbai, New Delhi', value: 'Asia/Kolkata' },
-    { label: '(UTC+08:00) Beijing, Singapore, Hong Kong', value: 'Asia/Shanghai' },
-    { label: '(UTC+09:00) Tokyo, Seoul', value: 'Asia/Tokyo' },
-    { label: '(UTC+10:00) Sydney, Melbourne, Brisbane', value: 'Australia/Sydney' },
-  ]
-
-  return (
-    <SelectCustom options={timezones} label={t('membership_size.timezone', { defaultValue: 'Timezone' })} {...props} />
-  )
-}
-
-export const CustomizationLanguageSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) => {
-  const { t } = useTranslation()
-
-  const languages: SelectOptionType[] = Object.entries(LanguagesSlice as { [key: string]: string }).map(
-    ([key, val]) => {
-      return { label: val, value: key }
-    }
-  )
-
-  return (
-    <SelectCustom
-      options={languages}
-      label={t('membership_size.language', { defaultValue: 'Default Language' })}
       {...props}
     />
   )
