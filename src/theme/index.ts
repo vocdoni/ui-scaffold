@@ -2,7 +2,6 @@ import { ColorMode, extendTheme } from '@chakra-ui/react'
 import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { theme as vtheme } from '@vocdoni/chakra-components'
 import { colors } from './colors'
-import { Accordion } from './components/accordion'
 import { Badge } from './components/badge'
 import { Button } from './components/button'
 import { Card } from './components/card'
@@ -15,6 +14,7 @@ import { Menu } from './components/menu'
 import { Modal } from './components/modal'
 import { Pagination } from './components/pagination'
 import { Popover } from './components/popover'
+import { Progress } from './components/progress'
 import { ElectionQuestions } from './components/Questions'
 import { Radio } from './components/radio'
 import { ElectionResults } from './components/results'
@@ -24,7 +24,6 @@ import { Table } from './components/table'
 import { Tabs } from './components/Tabs'
 import { Tag } from './components/tag'
 import { Text } from './components/text'
-import { Textarea } from './components/textarea'
 import { Tooltip } from './components/tooltip'
 import { editor } from './editor'
 import { radii } from './radius'
@@ -33,7 +32,6 @@ import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import '@fontsource/inter/index.css'
-import { Progress } from './components/progress'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -251,7 +249,6 @@ export const theme = extendTheme(vtheme, {
     }),
   },
   components: {
-    Accordion,
     Badge,
     Button,
     Card,
@@ -276,7 +273,6 @@ export const theme = extendTheme(vtheme, {
     Tabs,
     Tag,
     Text,
-    Textarea,
     Tooltip,
   },
   colors,

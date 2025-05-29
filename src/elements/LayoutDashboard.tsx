@@ -65,7 +65,7 @@ const LayoutDashboard: React.FC = () => {
                 onClick={isMobile ? onOpen : () => setReduced((prev) => !prev)}
               />
 
-              <Box borderRight={'var(--border)'} h={6} />
+              <Box borderRight='1px solid' borderRightColor='table.border' h={6} />
 
               <Breadcrumb breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />
 

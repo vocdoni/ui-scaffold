@@ -22,7 +22,7 @@ export const AccountEdit = () => {
         <Text size='sm' color='rgb(115, 115, 115)' mb={6}>
           {t('delete.dange_subtitle', { defaultValue: 'Permanently delete your account and all associated data' })}
         </Text>
-        <Box h='1px' borderBottom={'var(--border)'} mb={6}></Box>
+        <Box h='1px' borderBottom='1px solid' borderBottomColor='table.border' mb={6}></Box>
         <Text size={'lg'} fontWeight={'600'}>
           {t('delete.delete_title', { defaultValue: 'Delete Account' })}
         </Text>

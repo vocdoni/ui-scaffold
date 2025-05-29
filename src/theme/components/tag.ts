@@ -10,7 +10,7 @@ const baseStyle = definePartsStyle(() => ({
     justifyContent: 'center',
     borderRadius: 'sm',
     fontWeight: 'bold',
-    py: 0.5,
+    py: 1,
     px: 3,
   },
 }))

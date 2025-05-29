@@ -1,7 +1,7 @@
-import { defineStyleConfig } from '@chakra-ui/react'
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
 
 export const Link = defineStyleConfig({
-  baseStyle: {
+  baseStyle: defineStyle({
     color: 'gray.800',
     _dark: {
       color: 'gray.400',
@@ -13,17 +13,16 @@ export const Link = defineStyleConfig({
       textDecoration: 'none',
       color: 'gray.500',
     },
-  },
+  }),
   variants: {
-    breadcrumb: (props) => ({
+    breadcrumb: defineStyle({
       color: 'dashboard.breadcrumb',
       textDecoration: 'none',
-
       _hover: {
         color: 'black',
       },
     }),
-    icon: (props) => ({
+    icon: defineStyle({
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -33,7 +32,7 @@ export const Link = defineStyleConfig({
       border: '1px solid',
       cursor: 'pointer',
     }),
-    footer: (props) => ({
+    footer: defineStyle({
       textDecoration: 'none',
       color: 'process_create.footer_link',
 
