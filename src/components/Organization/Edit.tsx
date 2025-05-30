@@ -1,25 +1,10 @@
-import {
-  AspectRatio,
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  IconButton,
-  Image,
-  SimpleGrid,
-  Text,
-} from '@chakra-ui/react'
+import { Box, Button, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react'
 import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { Account } from '@vocdoni/sdk'
 import { useState } from 'react'
-import { useDropzone } from 'react-dropzone'
-import { FormProvider, SubmitHandler, useForm, useFormContext } from 'react-hook-form'
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { BiTrash } from 'react-icons/bi'
 import { CreateOrgParams } from '~components/Account/AccountTypes'
 import { useSaasAccount } from '~components/Account/useSaasAccount'
 import { ApiEndpoints } from '~components/Auth/api'
@@ -27,29 +12,12 @@ import { HSeparator } from '~components/Auth/SignIn'
 import { useAuth } from '~components/Auth/useAuth'
 import { DashboardBox } from '~components/Layout/Dashboard'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
-import { SelectOptionType } from '~components/Layout/SaasSelector'
-import { ImageUploader } from '~components/Layout/Uploader'
+import { AvatarUploader } from '~components/Layout/Uploader'
 import { QueryKeys } from '~src/queries/keys'
 import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
-import fallback from '/assets/default-avatar.png'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
-
-const useUploadFile = () => {
-  const { bearedFetch } = useAuth()
-  return useMutation({
-    mutationFn: async (file: File) => {
-      const formData = new FormData()
-      formData.append('file1', file)
-      const response = await bearedFetch<{ urls: string[] }>(ApiEndpoints.Storage, {
-        method: 'POST',
-        body: formData,
-      })
-      return response.urls[0]
-    },
-  })
-}
 
 const useOrganizationEdit = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch } = useAuth()
@@ -75,7 +43,6 @@ const EditOrganization = () => {
   const [isPending, setPending] = useState(false)
   const {
     updateAccount,
-    loading: { update: isUpdateLoading },
     errors: { update: updateError },
   } = useClient()
   const { organization } = useSaasAccount()
@@ -153,8 +120,8 @@ const EditOrganization = () => {
               })}
             </Text>
           </Box>
-          <Flex gap={6} flexDirection={{ base: 'column', lg: 'row' }}>
-            <CustomizeOrgForm />
+          <Flex gap={6} flexDirection={{ base: 'column', sm: 'row' }}>
+            <AvatarUploader w='fit-content' />
             <PublicOrgForm />
           </Flex>
           <Flex align='center' my={6}>
@@ -183,116 +150,6 @@ const EditOrganization = () => {
         </Flex>
       </FormProvider>
     </DashboardBox>
-  )
-}
-
-export type CustomOrgFormData = {
-  timeZoneSelect: SelectOptionType
-  languageSelect: SelectOptionType
-}
-
-const CustomizeOrgForm = () => {
-  const { t } = useTranslation()
-  const {
-    watch,
-    setValue,
-    setError,
-    clearErrors,
-    formState: { errors },
-  } = useFormContext<FormData>()
-  const { mutateAsync: uploadFile, isPending } = useUploadFile()
-
-  const avatar = watch('avatar')
-
-  // Common upload handler
-  const onUpload =
-    (field: keyof FormData) =>
-    async ([file]: File[]) => {
-      clearErrors(field)
-      try {
-        const url = await uploadFile(file)
-        setValue(field, url)
-      } catch (error) {
-        setError(field, {
-          message: error.message,
-        })
-        console.error(`Error uploading ${field}:`, error)
-      }
-    }
-
-  // Avatar upload handler
-  const onAvatarUpload = onUpload('avatar')
-
-  const allowed = ['PNG', 'JPG', 'JPEG']
-  const extensions = allowed.map((ext) => `.${ext.toLowerCase()}`)
-
-  const {
-    getRootProps: getAvatarRootProps,
-    getInputProps: getAvatarInputProps,
-    isDragActive: isAvatarDragActive,
-  } = useDropzone({
-    onDrop: onAvatarUpload,
-    multiple: false,
-    accept: {
-      'image/png': extensions,
-    },
-  })
-
-  return (
-    <Box flex='0 0 auto'>
-      <FormControl as={Box} isInvalid={!!errors?.avatar}>
-        <FormLabel fontSize='sm' fontWeight='500' mb={2}>
-          {t('avatar.label', {
-            defaultValue: 'Logo/Avatar',
-          })}
-        </FormLabel>
-        <Box position='relative' borderRadius='full' px={6}>
-          {avatar ? (
-            <Box position='relative'>
-              <AspectRatio ratio={1} w='full' borderRadius='full' overflow='hidden'>
-                <Image src={avatar} fallbackSrc={fallback} alt='Avatar preview' />
-              </AspectRatio>
-              <Flex
-                position='absolute'
-                top={0}
-                left={0}
-                w='full'
-                h='full'
-                align='center'
-                justify='center'
-                bg='blackAlpha.400'
-                opacity={0}
-                _hover={{ opacity: 1 }}
-                transition='opacity 0.2s'
-                borderRadius='full'
-              >
-                <IconButton
-                  icon={<BiTrash />}
-                  aria-label={t('remove_avatar', { defaultValue: 'Remove avatar' })}
-                  onClick={() => setValue('avatar', '')}
-                  size='sm'
-                  variant='ghost'
-                  color='white'
-                  bg='red.500'
-                  _hover={{ bg: 'red.600' }}
-                />
-              </Flex>
-            </Box>
-          ) : (
-            <Box mb={4}>
-              <ImageUploader
-                getRootProps={getAvatarRootProps}
-                getInputProps={getAvatarInputProps}
-                isDragActive={isAvatarDragActive}
-                isLoading={isPending}
-                formats={allowed}
-              />
-            </Box>
-          )}
-        </Box>
-        <FormErrorMessage>{errors?.avatar?.message?.toString()}</FormErrorMessage>
-      </FormControl>
-    </Box>
   )
 }
 
