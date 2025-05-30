@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { useOrganization } from '@vocdoni/react-providers'
+import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
 import {
   AccountData,
   ensure0x,
@@ -7,10 +7,45 @@ import {
   FetchElectionsParametersWithPagination,
   VocdoniSDKClient,
 } from '@vocdoni/sdk'
+import { useTranslation } from 'react-i18next'
+import { IconType } from 'react-icons'
 import { LuCalendar, LuFileSpreadsheet, LuUsers, LuVote } from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import { Routes } from '~routes'
 import { QueryKeys } from './keys'
+
+export enum SetupStepIds {
+  organizationDetails = 'organizationDetails',
+  memberbaseUpload = 'memberbaseUpload',
+  firstVoteCreation = 'firstVoteCreation',
+  expertCallBooking = 'expertCallBooking',
+}
+
+export enum CheckboxTypes {
+  route = 'route',
+  modal = 'modal',
+}
+
+export enum OrganizationMetaKeys {
+  completedSteps = 'completedSteps',
+  dashboardTutorial = 'isDashboardTutorialClosed',
+  sidebarTutorial = 'isSidebarTutorialClosed',
+}
+
+type SetupStepId = `${SetupStepIds}`
+
+type OrganizationMeta = {
+  [OrganizationMetaKeys.completedSteps]?: SetupStepId[]
+  [OrganizationMetaKeys.dashboardTutorial]?: boolean
+  [OrganizationMetaKeys.sidebarTutorial]?: boolean
+}
+
+type OrganizationMetaResponse = {
+  meta: OrganizationMeta
+}
+
+type OrganizationSteps = SetupStepId[]
 
 type PaginatedElectionsParams = Partial<Pick<FetchElectionsParametersWithPagination, 'limit'>> & {
   page?: number
@@ -18,10 +53,12 @@ type PaginatedElectionsParams = Partial<Pick<FetchElectionsParametersWithPaginat
 }
 
 type SetupChecklistItem = {
-  id: number
+  id: SetupStepId
   label: string
-  icon: any
-  completed: boolean
+  to?: string
+  icon: IconType
+  completed?: boolean
+  type?: CheckboxTypes
 }
 
 type Role = {
@@ -56,40 +93,172 @@ export const paginatedElectionsQuery = (
     }),
 })
 
-export const useSetupChecklist = () => {
-  const checklist: SetupChecklistItem[] = [
+export const useOrganizationMeta = () => {
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+  const queryClient = useQueryClient()
+
+  const query = useQuery<OrganizationMeta>({
+    queryKey: QueryKeys.organization.meta(organization?.address),
+    enabled: !!organization?.address,
+    queryFn: async () => {
+      const response = await bearedFetch<OrganizationMetaResponse>(
+        ApiEndpoints.OrganizationMeta.replace('{address}', enforceHexPrefix(organization.address))
+      )
+      return response.meta
+    },
+  })
+
+  const updateMeta = useMutation<void, Error, Partial<OrganizationMeta>>({
+    mutationFn: async (partialMeta: Partial<OrganizationMeta>) => {
+      const newMeta = {
+        ...query.data,
+        ...partialMeta,
+      }
+      await bearedFetch<OrganizationMetaResponse>(
+        ApiEndpoints.OrganizationMeta.replace('{address}', enforceHexPrefix(organization.address)),
+        {
+          method: 'PUT',
+          body: { meta: newMeta },
+        }
+      )
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: QueryKeys.organization.meta(organization?.address),
+      })
+    },
+  })
+
+  const deleteMeta = useMutation<void, Error, string[]>({
+    mutationFn: async (keys: string[]) => {
+      await bearedFetch(ApiEndpoints.OrganizationMeta.replace('{address}', enforceHexPrefix(organization.address)), {
+        method: 'DELETE',
+        body: {
+          keys,
+        },
+      })
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: QueryKeys.organization.meta(organization.address),
+      })
+    },
+  })
+
+  return {
+    meta: query.data,
+    metaIsLoading: query.isPending,
+    // Update meta
+    updateMeta: updateMeta.mutate,
+    updateMetaAsync: updateMeta.mutateAsync,
+    updateMetaIsLoading: updateMeta.isPending,
+    // Delete meta
+    deleteMeta: deleteMeta.mutate,
+    deleteMetaAsync: deleteMeta.mutateAsync,
+    deleteMetaIsLoading: deleteMeta.isPending,
+  }
+}
+
+export const useTutorials = () => {
+  const { meta, metaIsLoading, updateMeta, deleteMeta } = useOrganizationMeta()
+
+  const isSidebarTutorialClosed = meta?.[OrganizationMetaKeys.sidebarTutorial] ?? false
+  const isDashboardTutorialClosed = meta?.[OrganizationMetaKeys.dashboardTutorial] ?? false
+
+  const closeSidebarTutorial = () => updateMeta({ [OrganizationMetaKeys.sidebarTutorial]: true })
+
+  const closeDashboardTutorial = () => updateMeta({ [OrganizationMetaKeys.dashboardTutorial]: true })
+
+  const resetTutorials = () =>
+    deleteMeta([OrganizationMetaKeys.sidebarTutorial, OrganizationMetaKeys.dashboardTutorial])
+
+  return {
+    isLoading: metaIsLoading,
+    isSidebarTutorialClosed,
+    isDashboardTutorialClosed,
+    closeSidebarTutorial,
+    closeDashboardTutorial,
+    resetTutorials,
+  }
+}
+
+export const useOrganizationSetup = () => {
+  const { t } = useTranslation()
+  const { meta, updateMeta, updateMetaAsync } = useOrganizationMeta()
+  const completedSteps: OrganizationSteps = meta?.[OrganizationMetaKeys.completedSteps] || []
+
+  const hasStepDone = (stepId: SetupStepId): boolean => completedSteps.includes(stepId)
+
+  const setStepDone = (stepId: SetupStepId) => {
+    if (hasStepDone(stepId)) return
+    updateMeta({ completedSteps: [...new Set([...completedSteps, stepId])] })
+  }
+
+  const setStepDoneAsync = (stepId: SetupStepId) => {
+    if (hasStepDone(stepId)) return
+    updateMetaAsync({ completedSteps: [...new Set([...completedSteps, stepId])] })
+  }
+
+  const unsetStepDone = (stepId: SetupStepId) => {
+    const updated = completedSteps.filter((id) => id !== stepId)
+    updateMeta({ completedSteps: updated })
+  }
+
+  const unsetStepDoneAsync = async (stepId: SetupStepId) => {
+    const updated = completedSteps.filter((id) => id !== stepId)
+    await updateMetaAsync({ completedSteps: updated })
+  }
+
+  const rawChecklist: SetupChecklistItem[] = [
     {
-      id: 1,
-      label: 'Set up your organization details',
+      id: SetupStepIds.organizationDetails,
+      label: t('organization_setup.setup_steps.organization_details', {
+        defaultValue: 'Set up your organization details',
+      }),
+      to: Routes.dashboard.settings.organization,
+      type: CheckboxTypes.route,
       icon: LuUsers,
-      completed: true,
     },
     {
-      id: 2,
-      label: 'Upload your memberbase',
+      id: SetupStepIds.memberbaseUpload,
+      label: t('organization_setup.setup_steps.memberbase_upload', { defaultValue: 'Upload your memberbase' }),
+      to: '',
+      type: CheckboxTypes.route,
       icon: LuFileSpreadsheet,
-      completed: false,
     },
     {
-      id: 3,
-      label: 'Create your first vote',
+      id: SetupStepIds.firstVoteCreation,
+      label: t('organization_setup.setup_steps.first_vote_creation', { defaultValue: 'Create your first vote' }),
+      to: Routes.processes.create,
+      type: CheckboxTypes.route,
       icon: LuVote,
-      completed: false,
     },
     {
-      id: 4,
-      label: 'Book a free call with our experts',
+      id: SetupStepIds.expertCallBooking,
+      label: t('organization_setup.setup_steps.expert_call_booking', {
+        defaultValue: 'Book a free call with our experts',
+      }),
+      type: CheckboxTypes.modal,
       icon: LuCalendar,
-      completed: true,
     },
   ]
 
-  const completedCount = checklist.filter((item) => item.completed).length
-  const progress = checklist.length > 0 ? (completedCount / checklist.length) * 100 : 0
+  const checklist = rawChecklist.map((item) => ({ ...item, completed: hasStepDone(item.id) }))
+  const progress = checklist.length ? (checklist.filter((item) => item.completed).length / checklist.length) * 100 : 0
+  const allStepsDone = checklist.every((item) => item.completed)
+  const isStepsAccordionOpen = !allStepsDone
 
   return {
     checklist,
     progress,
+    completedSteps,
+    isStepsAccordionOpen,
+    hasStepDone,
+    setStepDone,
+    setStepDoneAsync,
+    unsetStepDone,
+    unsetStepDoneAsync,
   }
 }
 

@@ -1065,6 +1065,14 @@
     },
     "title": "{{organization}} Settings"
   },
+  "organization_setup": {
+    "setup_steps": {
+      "expert_call_booking": "Book a free call with our experts",
+      "first_vote_creation": "Create your first vote",
+      "memberbase_upload": "Upload your memberbase",
+      "organization_details": "Set up your organization details"
+    }
+  },
   "organizations": "Organizations ({{ numOrgs }})",
   "other_details": "other details",
   "overwrite": {
