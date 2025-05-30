@@ -97,10 +97,11 @@ export const useOrganizationMeta = () => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
   const queryClient = useQueryClient()
+  const hasOrganization = Boolean(organization?.address)
 
   const query = useQuery<OrganizationMeta>({
     queryKey: QueryKeys.organization.meta(organization?.address),
-    enabled: !!organization?.address,
+    enabled: hasOrganization,
     queryFn: async () => {
       const response = await bearedFetch<OrganizationMetaResponse>(
         ApiEndpoints.OrganizationMeta.replace('{address}', enforceHexPrefix(organization.address))
@@ -148,7 +149,8 @@ export const useOrganizationMeta = () => {
 
   return {
     meta: query.data,
-    metaIsLoading: query.isPending,
+    metaIsLoading: query.isLoading,
+    hasOrganization,
     // Update meta
     updateMeta: updateMeta.mutate,
     updateMetaAsync: updateMeta.mutateAsync,
@@ -161,10 +163,11 @@ export const useOrganizationMeta = () => {
 }
 
 export const useTutorials = () => {
-  const { meta, metaIsLoading, updateMeta, deleteMeta } = useOrganizationMeta()
+  const { meta, metaIsLoading, hasOrganization, updateMeta, deleteMeta } = useOrganizationMeta()
+  const shouldDefaultToClosed = !hasOrganization
 
-  const isSidebarTutorialClosed = meta?.[OrganizationMetaKeys.sidebarTutorial] ?? false
-  const isDashboardTutorialClosed = meta?.[OrganizationMetaKeys.dashboardTutorial] ?? false
+  const isSidebarTutorialClosed = meta?.[OrganizationMetaKeys.sidebarTutorial] ?? shouldDefaultToClosed
+  const isDashboardTutorialClosed = meta?.[OrganizationMetaKeys.dashboardTutorial] ?? shouldDefaultToClosed
 
   const closeSidebarTutorial = () => updateMeta({ [OrganizationMetaKeys.sidebarTutorial]: true })
 
@@ -185,7 +188,7 @@ export const useTutorials = () => {
 
 export const useOrganizationSetup = () => {
   const { t } = useTranslation()
-  const { meta, updateMeta, updateMetaAsync } = useOrganizationMeta()
+  const { meta, hasOrganization, updateMeta, updateMetaAsync } = useOrganizationMeta()
   const completedSteps: OrganizationSteps = meta?.[OrganizationMetaKeys.completedSteps] || []
 
   const hasStepDone = (stepId: SetupStepId): boolean => completedSteps.includes(stepId)
@@ -247,7 +250,7 @@ export const useOrganizationSetup = () => {
   const checklist = rawChecklist.map((item) => ({ ...item, completed: hasStepDone(item.id) }))
   const progress = checklist.length ? (checklist.filter((item) => item.completed).length / checklist.length) * 100 : 0
   const allStepsDone = checklist.every((item) => item.completed)
-  const isStepsAccordionOpen = !allStepsDone
+  const isStepsAccordionOpen = !allStepsDone && hasOrganization
 
   return {
     checklist,
