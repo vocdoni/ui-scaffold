@@ -38,7 +38,7 @@ export const DashboardMenuOptions = () => {
     {
       label: t('support'),
       icon: LuLifeBuoy,
-      route: '',
+      route: Routes.dashboard.settings.support,
     },
     {
       label: t('call_us', { defaultValue: 'Call us' }),

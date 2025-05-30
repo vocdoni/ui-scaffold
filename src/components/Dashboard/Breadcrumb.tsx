@@ -22,7 +22,7 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ breadcrumb, setBreadcrumb }) =>
     <Box as='nav'>
       <Flex gap={1.5} alignItems='center'>
         {/* Dashboard link - only linked when there's breadcrumb */}
-        <Box display={{ base: 'none', md: 'block' }}>
+        <Box display={{ base: breadcrumb.length === 0 ? 'block' : 'none', md: 'block' }}>
           {breadcrumb.length ? (
             <Link
               as={ReactRouterLink}
@@ -45,7 +45,10 @@ const Breadcrumb: React.FC<BreadcrumbProps> = ({ breadcrumb, setBreadcrumb }) =>
             {(index === 0 || index > 0) && (
               <Icon
                 as={LuChevronRight}
-                display={{ base: index === breadcrumb.length - 1 ? 'block' : 'none', md: 'block' }}
+                display={{
+                  base: 'none',
+                  md: 'block',
+                }}
                 boxSize={3}
               />
             )}

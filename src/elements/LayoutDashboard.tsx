@@ -49,7 +49,7 @@ const LayoutDashboard: React.FC = () => {
               bgColor='chakra.body.bg'
               top={0}
               pr={4}
-              pl={2}
+              pl={{ base: 4, md: 2 }}
               gap={4}
               display='flex'
               h={16}
@@ -70,7 +70,13 @@ const LayoutDashboard: React.FC = () => {
               <Breadcrumb breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />
 
               <Flex gap={2} ml='auto' alignItems='center'>
-                <BookerModalButton leftIcon={<Icon as={LuCircleHelp} />} colorScheme='gray' variant='solid' size='sm'>
+                <BookerModalButton
+                  leftIcon={<Icon as={LuCircleHelp} />}
+                  iconSpacing={{ base: 0, lg: 2 }}
+                  colorScheme='gray'
+                  variant='solid'
+                  size='sm'
+                >
                   <Text as='span' display={{ base: 'none', lg: 'flex' }} fontSize='sm'>
                     <Trans i18nKey='do_you_need_help'>Do you need help?</Trans>
                   </Text>
@@ -79,6 +85,7 @@ const LayoutDashboard: React.FC = () => {
                   as={ReactRouterLink}
                   to={generatePath(Routes.processes.create)}
                   leftIcon={<Icon as={LuPlus} />}
+                  iconSpacing={{ base: 0, lg: 2 }}
                   colorScheme='black'
                   size='sm'
                 >
