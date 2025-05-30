@@ -34,17 +34,10 @@ import InvertedAccordionIcon from '~components/Layout/InvertedAccordionIcon'
 import { usePlanTranslations } from '~components/Pricing/Plans'
 import { Routes } from '~routes'
 import { useProfile } from '~src/queries/account'
-import {
-  CheckboxTypes,
-  paginatedElectionsQuery,
-  useOrganizationMeta,
-  useOrganizationSetup,
-  useTutorials,
-} from '~src/queries/organization'
+import { CheckboxTypes, paginatedElectionsQuery, useOrganizationSetup, useTutorials } from '~src/queries/organization'
 
 const OrganizationDashboard = () => {
   const { t } = useTranslation()
-  const { deleteMeta } = useOrganizationMeta()
 
   return (
     <DashboardContents p={0}>
@@ -59,9 +52,6 @@ const OrganizationDashboard = () => {
       <Tutorial />
       <OrganizationProcesses />
       <Setup />
-      <Button onClick={() => deleteMeta(['completedSteps', 'isDashboardTutorialClosed', 'isSidebarTutorialClosed'])}>
-        Remove meta
-      </Button>
     </DashboardContents>
   )
 }
