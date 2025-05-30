@@ -47,6 +47,7 @@ import { StampsUnionTypes } from '~components/ProcessCreate/Census/Gitcoin/Stamp
 import { CensusGitcoinValues } from '~components/ProcessCreate/StepForm/CensusGitcoin'
 import { DefaultCensusSize } from '~constants'
 import { QueryKeys } from '~src/queries/keys'
+import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
 import { useCspAdmin } from '../Census/Csp/use-csp'
 import Preview from '../Confirm/Preview'
 import { CreationProgress, Steps } from '../CreationProgress'
@@ -69,6 +70,7 @@ export const Confirm = () => {
   const [step, setStep] = useState<Steps>()
   const { vocdoniAdminClient } = useCspAdmin()
   const qclient = useQueryClient()
+  const { setStepDoneAsync } = useOrganizationSetup()
 
   const methods = useForm({
     defaultValues: {
@@ -126,6 +128,8 @@ export const Confirm = () => {
             }
         }
       }
+
+      await setStepDoneAsync(SetupStepIds.firstVoteCreation)
 
       toast({
         title: t('form.process_create.success_title'),
