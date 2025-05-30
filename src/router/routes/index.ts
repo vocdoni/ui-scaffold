@@ -18,6 +18,11 @@ export const Routes = {
     process: '/admin/process/:id',
     processes: '/admin/processes/:page?/:status?',
     profile: '/admin/profile',
+    memberbase: {
+      base: '/admin/members',
+      members: '/admin/members/members',
+      groups: '/admin/members/groups',
+    },
     settings: {
       base: '/admin/settings',
       organization: '/admin/settings/organization',
