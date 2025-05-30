@@ -1,9 +1,8 @@
-import { Box, ChakraProvider, extendTheme, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
+import { Box, Flex, Icon, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionQuestions, ElectionTitle } from '@vocdoni/chakra-components'
 import { useTranslation } from 'react-i18next'
 import { IoMdCheckmark, IoMdClose, IoMdCreate } from 'react-icons/io'
 import { IoCheckmarkSharp } from 'react-icons/io5'
-import { confirmTheme } from '~theme/components/Confirm'
 import { useProcessCreationSteps } from '../Steps/use-steps'
 import Census from './Census'
 
@@ -88,9 +87,7 @@ const Preview = () => {
           {t('form.process_create.confirm.questions', { count: questions.length })}
         </Text>
         <Box flexBasis={{ base: '100%', md: '65%' }} flexShrink={0} flexGrow={0}>
-          <ChakraProvider theme={extendTheme(confirmTheme)}>
-            <ElectionQuestions />
-          </ChakraProvider>
+          <ElectionQuestions />
         </Box>
         <Link position='absolute' top={0} right={0} onClick={() => setActiveStep(1)}>
           <Icon
