@@ -1,11 +1,23 @@
-import { Box, Button, CloseButton, Drawer, DrawerContent, DrawerOverlay, Flex, Icon, Text } from '@chakra-ui/react'
-import { useContext, useState } from 'react'
+import {
+  Box,
+  Button,
+  CloseButton,
+  Drawer,
+  DrawerContent,
+  DrawerOverlay,
+  Flex,
+  Icon,
+  Progress,
+  Text,
+} from '@chakra-ui/react'
+import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuPlus } from 'react-icons/lu'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink } from 'react-router-dom'
 import { DashboardBox } from '~components/Layout/Dashboard'
 import { VocdoniLogo } from '~components/Layout/Logo'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { useTutorials } from '~src/queries/organization'
 import { Routes } from '~src/router/routes'
 import { BookerModalButton } from '../Booker'
 import { DashboardMenuOptions } from './Options'
@@ -47,11 +59,49 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
   )
 }
 
-// Common menu contents
-const DashboardMenuContent = () => {
+const SidebarTutorial = () => {
   const { t } = useTranslation()
   const { reduced } = useContext(DashboardLayoutContext)
-  const [closeScheduleACall, setCloseScheduleACall] = useState(false)
+  const { isSidebarTutorialClosed, isLoading, closeSidebarTutorial } = useTutorials()
+
+  if (isLoading) return <Progress isIndeterminate />
+
+  if (isSidebarTutorialClosed) return null
+
+  return (
+    <DashboardBox
+      position={'relative'}
+      flexDirection={'column'}
+      display={reduced ? 'none' : 'flex'}
+      gap={2}
+      p={4}
+      _dark={{ borderColor: 'black.600', bgColor: 'black.650' }}
+      _light={{ borderColor: 'gray.200', bgColor: 'white' }}
+    >
+      <CloseButton
+        onClick={() => closeSidebarTutorial()}
+        position={'absolute'}
+        top={1}
+        right={1}
+        colorScheme='gray'
+        size='sm'
+      />
+      <Text fontSize={'sm'} fontWeight={'bold'}>
+        {t('need_help.title', { defaultValue: 'First steps' })}
+      </Text>
+      <Text fontSize={'xs'} lineHeight={'16px'} color='dashboard.schedule_call.description'>
+        {t('need_help.description', {
+          defaultValue: 'Do you need some help with your first voting process? Watch this tutorial or schedule a call.',
+        })}
+      </Text>
+      <BookerModalButton variant='solid' colorScheme='gray' w='full' size={'sm'} fontSize={'12px'} />
+    </DashboardBox>
+  )
+}
+
+// Common menu contents
+const DashboardMenuContent = () => {
+  const { reduced } = useContext(DashboardLayoutContext)
 
   return (
     <>
@@ -86,36 +136,7 @@ const DashboardMenuContent = () => {
       <DashboardMenuOptions />
 
       <Box mt='auto'>
-        {!closeScheduleACall && (
-          <DashboardBox
-            position={'relative'}
-            flexDirection={'column'}
-            display={reduced ? 'none' : 'flex'}
-            gap={2}
-            p={4}
-            _dark={{ borderColor: 'black.600', bgColor: 'black.650' }}
-            _light={{ borderColor: 'gray.200', bgColor: 'white' }}
-          >
-            <CloseButton
-              onClick={() => setCloseScheduleACall(true)}
-              position={'absolute'}
-              top={1}
-              right={1}
-              colorScheme='gray'
-              size='sm'
-            />
-            <Text fontSize={'sm'} fontWeight={'bold'}>
-              {t('need_help.title', { defaultValue: 'First steps' })}
-            </Text>
-            <Text fontSize={'xs'} lineHeight={'16px'} color='dashboard.schedule_call.description'>
-              {t('need_help.description', {
-                defaultValue:
-                  'Do you need some help with your first voting process? Watch this tutorial or schedule a call.',
-              })}
-            </Text>
-            <BookerModalButton variant='solid' colorScheme='gray' w='full' size={'sm'} fontSize={'12px'} />
-          </DashboardBox>
-        )}
+        <SidebarTutorial />
         <UserProfile />
       </Box>
     </>
