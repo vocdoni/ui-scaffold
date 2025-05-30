@@ -30,6 +30,7 @@ import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import { SelectOptionType } from '~components/Layout/SaasSelector'
 import { ImageUploader } from '~components/Layout/Uploader'
 import { QueryKeys } from '~src/queries/keys'
+import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 import fallback from '/assets/default-avatar.png'
 
@@ -78,6 +79,7 @@ const EditOrganization = () => {
     errors: { update: updateError },
   } = useClient()
   const { organization } = useSaasAccount()
+  const { setStepDoneAsync } = useOrganizationSetup()
 
   const { mutateAsync, isError: isSaasError, error: saasError, isSuccess } = useOrganizationEdit()
 
@@ -118,6 +120,7 @@ const EditOrganization = () => {
       if (JSON.stringify(newAccount.generateMetadata()) !== JSON.stringify(organization?.account.generateMetadata())) {
         await updateAccount(newAccount)
       }
+      await setStepDoneAsync(SetupStepIds.organizationDetails)
     } catch (e) {
       console.error('Form submit failed:', e)
     } finally {
