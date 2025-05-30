@@ -34,10 +34,17 @@ import InvertedAccordionIcon from '~components/Layout/InvertedAccordionIcon'
 import { usePlanTranslations } from '~components/Pricing/Plans'
 import { Routes } from '~routes'
 import { useProfile } from '~src/queries/account'
-import { paginatedElectionsQuery, useSetupChecklist } from '~src/queries/organization'
+import {
+  CheckboxTypes,
+  paginatedElectionsQuery,
+  useOrganizationMeta,
+  useOrganizationSetup,
+  useTutorials,
+} from '~src/queries/organization'
 
 const OrganizationDashboard = () => {
   const { t } = useTranslation()
+  const { deleteMeta } = useOrganizationMeta()
 
   return (
     <DashboardContents p={0}>
@@ -52,6 +59,9 @@ const OrganizationDashboard = () => {
       <Tutorial />
       <OrganizationProcesses />
       <Setup />
+      <Button onClick={() => deleteMeta(['completedSteps', 'isDashboardTutorialClosed', 'isSidebarTutorialClosed'])}>
+        Remove meta
+      </Button>
     </DashboardContents>
   )
 }
@@ -61,11 +71,12 @@ const Tutorial = () => {
   const { data: profile, isLoading } = useProfile()
   const translations = usePlanTranslations()
   const { subscription, loading } = useSubscription()
-  const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true })
-
-  if (!isOpen) return null
-
+  const { isDashboardTutorialClosed, isLoading: isDashboardTutorialLoading, closeDashboardTutorial } = useTutorials()
   const plan = subscription ? translations[subscription.plan.id] : undefined
+
+  if (isDashboardTutorialLoading) return <Progress isIndeterminate />
+
+  if (isDashboardTutorialClosed) return null
 
   return (
     <DashboardBox p={6} mb={12} display='flex' gap={10} position='relative' flexDirection='row'>
@@ -78,7 +89,7 @@ const Tutorial = () => {
         position='absolute'
         top={2}
         right={2}
-        onClick={onClose}
+        onClick={closeDashboardTutorial}
       />
       <Box flex='1 1 60%'>
         <Text fontWeight='extrabold' mb={2} fontSize='2xl'>
@@ -147,9 +158,10 @@ const Tutorial = () => {
 const Setup = () => {
   const { t } = useTranslation()
   const { isOpen, onClose } = useDisclosure({ defaultIsOpen: true })
-  const { checklist, progress } = useSetupChecklist()
+  const { checklist, progress, isStepsAccordionOpen } = useOrganizationSetup()
 
   return (
+    isStepsAccordionOpen &&
     isOpen && (
       <Box
         position='fixed'
@@ -164,7 +176,7 @@ const Setup = () => {
         _light={{ borderColor: 'gray.200', bgColor: 'white' }}
         _dark={{ borderColor: 'black.700', bgColor: 'black.650' }}
       >
-        <Accordion allowToggle border='none'>
+        <Accordion defaultIndex={0} allowToggle border='none'>
           <AccordionItem border='none' alignItems='center'>
             <Flex px={4} py={3}>
               <Flex flex='1' align='center'>
@@ -215,14 +227,34 @@ const Setup = () => {
                 />
               </Flex>
               <Stack spacing={3} direction='column' p={3} pt={2}>
-                {checklist.map((checkbox, index) => (
-                  <Checkbox key={checkbox.id} colorScheme='gray' isChecked={checkbox.completed} size='sm' p={2}>
-                    <HStack ml={1} spacing={2} align='center'>
-                      <Icon as={checkbox.icon} boxSize={4} />
-                      <Text size='sm'>{checkbox.label}</Text>
-                    </HStack>
-                  </Checkbox>
-                ))}
+                {checklist.map((checkbox) => {
+                  const type = checkbox.type || CheckboxTypes.route
+                  if (type === CheckboxTypes.modal) {
+                    return (
+                      <Checkbox key={checkbox.id} colorScheme='gray' isChecked={checkbox.completed} size='sm' p={2}>
+                        <BookerModalButton variant='unstyled' ml={1} height='auto' display='flex' fontWeight='normal'>
+                          {checkbox.label}
+                        </BookerModalButton>
+                      </Checkbox>
+                    )
+                  }
+                  return (
+                    <Checkbox
+                      key={checkbox.id}
+                      as={ReactRouterLink}
+                      to={checkbox.to}
+                      colorScheme='gray'
+                      isChecked={checkbox.completed}
+                      size='sm'
+                      p={2}
+                    >
+                      <HStack ml={1} spacing={2} align='center'>
+                        <Icon as={checkbox.icon} boxSize={4} />
+                        <Text size='sm'>{checkbox.label}</Text>
+                      </HStack>
+                    </Checkbox>
+                  )
+                })}
               </Stack>
             </AccordionPanel>
           </AccordionItem>
