@@ -1,7 +1,57 @@
 import { cardAnatomy } from '@chakra-ui/anatomy'
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 
-const { defineMultiStyleConfig } = createMultiStyleConfigHelpers(cardAnatomy.keys)
+const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(cardAnatomy.keys)
+
+const pricingCard = definePartsStyle({
+  container: {
+    position: 'relative',
+    borderRadius: 'md',
+    bgColor: 'card.pricing.bd',
+    p: 4,
+  },
+  header: {
+    p: 0,
+    minH: 28,
+    '& > p:first-of-type': {
+      pt: 1.5,
+      fontWeight: 'extrabold',
+      mb: 1.5,
+      fontSize: 'lg',
+    },
+    '& > p:nth-of-type(2)': {
+      fontSize: 'sm',
+      lineHeight: 1.2,
+      // color: 'pricing_card.subtitle.light',
+    },
+  },
+  body: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'start',
+    p: 0,
+    '& > div > ul': {
+      m: 0,
+      maxW: 'fit-content',
+      fontSize: 'sm',
+      listStyleType: 'none',
+    },
+  },
+  footer: {
+    p: 0,
+    display: 'flex',
+    '& > button': {
+      mx: 'auto',
+      mt: 3,
+      mb: 2,
+      w: 'full',
+      borderRadius: 'md',
+      border: '1px',
+      borderColor: 'gray.300',
+      p: 4,
+    },
+  },
+})
 
 export const Card = defineMultiStyleConfig({
   variants: {
@@ -41,63 +91,7 @@ export const Card = defineMultiStyleConfig({
       },
     },
 
-    'pricing-card': {
-      container: {
-        position: 'relative',
-        borderRadius: 'md',
-        bgColor: 'pricing_card.bg.light',
-        _dark: {
-          bgColor: 'pricing_card.bg.dark',
-        },
-        p: 4,
-      },
-      header: {
-        p: 0,
-        minH: 28,
-        '& > p:first-of-type': {
-          pt: 1.5,
-          fontWeight: 'extrabold',
-          mb: 1.5,
-          fontSize: 'lg',
-        },
-        '& > p:nth-of-type(2)': {
-          fontSize: 'sm',
-          lineHeight: 1.2,
-          color: 'pricing_card.subtitle.light',
-
-          _dark: {
-            color: 'pricing_card.subtitle.dark',
-          },
-        },
-      },
-      body: {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'start',
-        p: 0,
-        '& > div > ul': {
-          m: 0,
-          maxW: 'fit-content',
-          fontSize: 'sm',
-          listStyleType: 'none',
-        },
-      },
-      footer: {
-        p: 0,
-        display: 'flex',
-        '& > button': {
-          mx: 'auto',
-          mt: 3,
-          mb: 2,
-          w: 'full',
-          borderRadius: 'md',
-          border: '1px',
-          borderColor: 'gray.300',
-          p: 4,
-        },
-      },
-    },
-
+    'pricing-card': pricingCard,
     'web3-addresses': {
       container: {
         flexDirection: 'column',

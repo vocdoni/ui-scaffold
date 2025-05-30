@@ -295,7 +295,7 @@ export const SubscriptionPlans = ({
             </Flex>
           )}
           {isLoading && <Progress isIndeterminate />}
-          <Flex wrap='wrap' gap={6}>
+          <Flex wrap='wrap' gap={6} flexDir={{ base: 'column', lg: 'row' }}>
             {cards.map((card, idx) => (
               <PricingCard
                 key={idx}

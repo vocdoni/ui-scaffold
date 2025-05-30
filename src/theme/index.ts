@@ -32,6 +32,7 @@ import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import '@fontsource/inter/index.css'
+import semanticColors from './semanticColors'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -49,73 +50,7 @@ export const theme = extendTheme(vtheme, {
     extrabold: 700,
   },
   semanticTokens: {
-    colors: {
-      chakra: {
-        body: {
-          bg: {
-            _dark: 'black.650',
-            _light: 'white',
-          },
-        },
-      },
-      auth: {
-        bg: {
-          _dark: 'black.550',
-          _light: 'gray.50',
-        },
-        card: {
-          bg: {
-            _dark: 'black',
-            _light: 'white',
-          },
-          border: 'gray.200',
-        },
-      },
-      input: {
-        placeholder: {
-          _light: 'gray.500',
-          _dark: 'gray.400',
-        },
-      },
-      table: {
-        border: {
-          _light: 'gray.200',
-          _dark: 'black.700',
-        },
-      },
-      tabs: {
-        tab: {
-          color: {
-            _light: 'gray.500',
-            _dark: 'gray.400',
-          },
-          active: {
-            color: {
-              _light: 'black',
-              _dark: 'white',
-            },
-            bg: {
-              _light: 'white',
-              _dark: 'black',
-            },
-          },
-        },
-        bg: {
-          _light: 'gray.100',
-          _dark: 'black.700',
-        },
-      },
-      texts: {
-        primary: {
-          _light: 'black',
-          _dark: 'white',
-        },
-        subtle: {
-          _light: 'gray.500',
-          _dark: 'gray.400',
-        },
-      },
-    },
+    colors: semanticColors,
   },
   styles: {
     global: (props) => ({

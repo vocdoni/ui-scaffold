@@ -332,11 +332,6 @@ export const colors = {
     footer_link: colorsBase.gray.dark,
   },
   pricing_card: {
-    bg: {
-      light: colorsBase.white.pure,
-      dark: colorsBase.blue.grayish,
-    },
-    border_dark: colorsBase.white.pure,
     body_text: colorsBase.black,
     most_popular_plan: {
       bg: colorsBase.black,

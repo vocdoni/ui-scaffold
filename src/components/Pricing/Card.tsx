@@ -36,7 +36,6 @@ const PricingCard = ({
   title,
   subtitle,
   price,
-  width,
   popular,
   features,
   isDisabled,
@@ -62,10 +61,11 @@ const PricingCard = ({
       flex={1}
       variant='pricing-card'
       align='stretch'
-      width={width}
-      border='1px'
-      bgColor={isCurrentPlan ? 'gray.100' : 'white'}
-      borderColor={popular ? 'pricing_card.most_popular_plan.border' : 'gray.200'}
+      border='1px solid'
+      bgColor={isCurrentPlan ? 'card.pricing.current.bg' : 'card.pricing.bg'}
+      borderColor={popular ? 'card.pricing.featured.border' : 'card.pricing.border'}
+      minW={{ base: '100%', lg: '300px' }}
+      maxW='350px'
     >
       <CardHeader>
         <Text>{title}</Text>
@@ -94,7 +94,7 @@ const PricingCard = ({
             ))}
           </UnorderedList>
           {!hidePlanActions && (
-            <Button onClick={handleViewFeatures} variant='transparent' m={0}>
+            <Button onClick={handleViewFeatures} variant='link' mt={3}>
               <Trans i18nKey='pricing_card.view_features'>View All features</Trans>
             </Button>
           )}
@@ -125,8 +125,8 @@ const PricingCard = ({
           py={1}
           px={3}
           borderRadius='full'
-          backgroundColor='pricing_card.most_popular_plan.bg'
-          color='pricing_card.most_popular_plan.color'
+          backgroundColor='card.pricing.featured.badge.bg'
+          color='card.pricing.featured.badge.color'
         >
           <Trans i18nKey='pricing_card.most_popular_plan'>Most popular plan</Trans>
         </Box>
