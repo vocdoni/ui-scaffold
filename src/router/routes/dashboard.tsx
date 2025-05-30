@@ -3,6 +3,9 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
+import { Groups } from '~components/Members/Groups'
+import { MembersTable } from '~components/Members/MembersTable'
+import Members from '~elements/dashboard/members'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
 import { paginatedElectionsQuery } from '~src/queries/organization'
@@ -105,6 +108,36 @@ export const useDashboardRoutes = () => {
                   return await queryClient.ensureQueryData(paginatedElectionsQuery(account, client, mergedParams))
                 },
                 errorElement: <Error />,
+              },
+              {
+                path: Routes.dashboard.memberbase.base,
+                element: (
+                  <SuspenseLoader>
+                    <Members />
+                  </SuspenseLoader>
+                ),
+                children: [
+                  {
+                    index: true,
+                    element: <Navigate to={Routes.dashboard.memberbase.members} replace />,
+                  },
+                  {
+                    path: Routes.dashboard.memberbase.members,
+                    element: (
+                      <SuspenseLoader>
+                        <MembersTable />
+                      </SuspenseLoader>
+                    ),
+                  },
+                  {
+                    path: Routes.dashboard.memberbase.groups,
+                    element: (
+                      <SuspenseLoader>
+                        <Groups />
+                      </SuspenseLoader>
+                    ),
+                  },
+                ],
               },
               {
                 path: Routes.dashboard.settings.base,
