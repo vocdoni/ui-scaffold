@@ -26,7 +26,7 @@ export const DashboardMenuOptions = () => {
     {
       label: t('memberbase'),
       icon: LuUsers,
-      route: '',
+      route: Routes.dashboard.memberbase.base,
     },
     {
       label: t('settings'),
