@@ -10,6 +10,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Progress,
+  SimpleGrid,
   Text,
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
@@ -295,7 +296,7 @@ export const SubscriptionPlans = ({
             </Flex>
           )}
           {isLoading && <Progress isIndeterminate />}
-          <Flex wrap='wrap' gap={6} flexDir={{ base: 'column', lg: 'row' }}>
+          <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} spacing={6}>
             {cards.map((card, idx) => (
               <PricingCard
                 key={idx}
@@ -305,7 +306,7 @@ export const SubscriptionPlans = ({
                 featuresRef={featuresRef}
               />
             ))}
-          </Flex>
+          </SimpleGrid>
         </Flex>
       </form>
     </FormProvider>

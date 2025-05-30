@@ -64,8 +64,6 @@ const PricingCard = ({
       border='1px solid'
       bgColor={isCurrentPlan ? 'card.pricing.current.bg' : 'card.pricing.bg'}
       borderColor={popular ? 'card.pricing.featured.border' : 'card.pricing.border'}
-      minW={{ base: '100%', lg: '300px' }}
-      maxW='350px'
     >
       <CardHeader>
         <Text>{title}</Text>
