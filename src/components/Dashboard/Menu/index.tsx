@@ -121,13 +121,14 @@ const DashboardMenuContent = () => {
         w='full'
         minW={0}
         colorScheme='black'
+        leftIcon={<Icon as={LuPlus} boxSize={4} />}
+        iconSpacing={reduced ? 0 : 2}
         mt={'8px'}
         mb={'32px'}
         size={'xs'}
       >
-        <Icon as={LuPlus} boxSize={4} />
         {!reduced && (
-          <Text as='span' ml={2}>
+          <Text as='span'>
             <Trans i18nKey='new_vote'>New vote</Trans>
           </Text>
         )}

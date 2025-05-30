@@ -1,12 +1,12 @@
 import { theme } from '@chakra-ui/react'
 import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
 
-const baseStyle = {
+const baseStyle = defineStyle({
   minW: 0,
   fontWeight: 'bold',
   borderRadius: 'sm',
   fontSize: 'sm',
-}
+})
 
 const listmenu = defineStyle(({ colorMode }) => ({
   display: 'flex',
