@@ -36,8 +36,8 @@ import semanticColors from './semanticColors'
 
 export const theme = extendTheme(vtheme, {
   config: {
-    initialColorMode: 'light',
-    useSystemColorMode: false,
+    initialColorMode: 'system',
+    useSystemColorMode: true,
   },
   fonts: {
     body: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif`,
