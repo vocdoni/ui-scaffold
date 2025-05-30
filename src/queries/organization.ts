@@ -300,18 +300,18 @@ export const useInviteMemberMutation = () => {
 
   return useMutation({
     mutationFn: async (body: InviteData) =>
-      await bearedFetch(ApiEndpoints.OrganizationMembers.replace('{address}', ensure0x(organization.address)), {
+      await bearedFetch(ApiEndpoints.OrganizationUsers.replace('{address}', ensure0x(organization.address)), {
         method: 'POST',
         body,
       }),
     onSuccess: () => {
       // Invalidate queries to refresh member and pending member lists
-      queryClient.invalidateQueries({ queryKey: QueryKeys.organization.members() })
+      queryClient.invalidateQueries({ queryKey: QueryKeys.organization.users() })
     },
   })
 }
 
-export const useRemoveMemberMutation = () => {
+export const useRemoveUserMutation = () => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
   const queryClient = useQueryClient()
@@ -319,7 +319,7 @@ export const useRemoveMemberMutation = () => {
   return useMutation({
     mutationFn: async (id: number) =>
       await bearedFetch(
-        ApiEndpoints.OrganizationMember.replace('{address}', ensure0x(organization.address)).replace(
+        ApiEndpoints.OrganizationUser.replace('{address}', ensure0x(organization.address)).replace(
           '{memberId}',
           String(id)
         ),
@@ -327,7 +327,7 @@ export const useRemoveMemberMutation = () => {
       ),
     onSuccess: () => {
       // Invalidate queries to refresh member and pending member lists
-      queryClient.invalidateQueries({ queryKey: QueryKeys.organization.members() })
+      queryClient.invalidateQueries({ queryKey: QueryKeys.organization.users() })
     },
   })
 }

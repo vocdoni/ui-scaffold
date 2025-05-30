@@ -21,7 +21,7 @@ import InputBasic from '~shared/Form/InputBasic'
 import { RoleSelector } from '~shared/Layout/SaasSelector'
 import { useInviteMemberMutation } from '~src/queries/organization'
 import { CallbackProvider, useCallbackContext } from '~utils/callback-provider'
-import { useAllTeamMembers } from './Team'
+import { useAllUsers } from './Team'
 
 type InviteFormProps = {
   onClose: () => void
@@ -94,11 +94,11 @@ export const InviteToTeamModal = (props: ButtonProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { permission } = useSubscription()
   const { t } = useTranslation()
-  const { members, isLoading } = useAllTeamMembers()
+  const { users, isLoading } = useAllUsers()
   const { openModal } = usePricingModal()
 
-  const memberships = permission(SubscriptionPermission.Members)
-  const canInvite = memberships > (members?.length || 0)
+  const memberships = permission(SubscriptionPermission.Users)
+  const canInvite = memberships > (users?.length || 0)
 
   return (
     <>
@@ -108,12 +108,12 @@ export const InviteToTeamModal = (props: ButtonProps) => {
             onOpen()
           } else {
             openModal('planUpgrade', {
-              feature: SubscriptionPermission.Members,
-              text: t('more_than_memberships', {
-                defaultValue: 'more than {count} memberships',
+              feature: SubscriptionPermission.Users,
+              text: t('more_than_users', {
+                defaultValue: 'more than {{ count }} users',
                 count: memberships,
               }),
-              value: members?.length + 1,
+              value: users?.length + 1,
             })
           }
         }}

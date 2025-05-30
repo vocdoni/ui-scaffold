@@ -14,7 +14,7 @@ export type FeaturesKeys =
 
 // Translation keys for the subscription features
 export const PlanFeaturesTranslationKeys = {
-  'organization.members': 'features.memberships',
+  'organization.users': 'features.users',
   'organization.subOrgs': 'features.sub_orgs',
   'organization.customURL': 'features.custom_url',
   'votingTypes.weighted': 'features.weighted',
@@ -36,13 +36,13 @@ export const PlanFeaturesTranslationKeys = {
 // Translation keys for the subscription features in the comparison table
 export const PlanTableFeaturesTranslationKeys = {
   ...PlanFeaturesTranslationKeys,
-  'organization.members': 'features.total_members',
+  'organization.users': 'features.total_users',
   'organization.subOrgs': 'features.total_orgs',
 }
 
 export const CategorizedFeatureKeys = {
   votingTypes: ['single', 'multiple', 'approval', 'weighted' /* 'cumulative', 'ranked' */],
-  organization: ['members', 'subOrgs', 'customURL'],
+  organization: ['users', 'subOrgs', 'customURL'],
   features: [
     'emailReminder',
     'smsNotification',
@@ -65,7 +65,7 @@ export const CategoryTitleKeys = {
  * Checks if the specified feature exists in the plan.
  *
  * @param plan  - The plan object to check.
- * @param featurePath  - Dot notation path to the feature (e.g., 'organization.members').
+ * @param featurePath  - Dot notation path to the feature (e.g., 'organization.users').
  * @returns boolean - `true` if the feature exists, `false` otherwise.
  */
 export const hasFeature = (plan: Plan, featurePath: string) => dotobject(plan, featurePath) !== 'undefined'
@@ -74,7 +74,7 @@ export const hasFeature = (plan: Plan, featurePath: string) => dotobject(plan, f
  * Checks if a given feature exists and meets the required condition in a plan.
  *
  * @param plan - The plan object to check.
- * @param featurePath - Dot notation path to the feature (e.g., 'organization.members').
+ * @param featurePath - Dot notation path to the feature (e.g., 'organization.users').
  * @param expectedValue - Expected value or comparison object.
  *                         - If a number, checks for >= comparison.
  *                         - If an object, supports { operator, value } (e.g., { operator: '>=', value: 10 }).
@@ -127,8 +127,8 @@ export const isFeatureAvailable = (
 // note this component does not need to (and should never) be included in the app
 const UnusedComponentButRequiredToNotLoseTranslations = () => {
   const { t } = useTranslation()
-  t('features.memberships', { defaultValue: 'Up to {{ count }} memberships' })
-  t('features.total_members', { defaultValue: 'Total available members' })
+  t('features.users', { defaultValue: 'Up to {{ count }} users' })
+  t('features.total_users', { defaultValue: 'Total available users' })
   t('features.sub_orgs', { defaultValue: 'Up to {{ count }} sub-organizations' })
   t('features.total_orgs', { defaultValue: 'Total available sub-organizations' })
   t('features.custom_url', { defaultValue: 'Custom URL' })

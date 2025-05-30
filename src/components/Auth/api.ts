@@ -1,14 +1,14 @@
 type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export enum ApiEndpoints {
-  InviteAccept = 'organizations/{address}/members/accept',
+  InviteAccept = 'organizations/{address}/users/accept',
   Login = 'auth/login',
   Me = 'users/me',
   Organization = 'organizations/{address}',
-  OrganizationMembers = 'organizations/{address}/members',
-  OrganizationMember = 'organizations/{address}/members/{memberId}',
-  OrganizationPendingMembers = 'organizations/{address}/members/pending',
-  OrganizationPendingMember = 'organizations/{address}/members/pending/{inviteId}',
+  OrganizationUsers = 'organizations/{address}/users',
+  OrganizationUser = 'organizations/{address}/users/{userId}',
+  OrganizationPendingUsers = 'organizations/{address}/users/pending',
+  OrganizationPendingUser = 'organizations/{address}/users/pending/{inviteId}',
   Organizations = 'organizations',
   OrganizationsRoles = 'organizations/roles',
   OrganizationsTypes = 'organizations/types',

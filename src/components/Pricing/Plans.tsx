@@ -36,7 +36,7 @@ export type Plan = {
   startingPrice: number
   default: boolean
   organization: {
-    members: number
+    users: number
     subOrgs: number
     censusSize: number
     maxProcesses: number

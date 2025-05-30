@@ -48,7 +48,7 @@ import QueryDataLayout from '~shared/Layout/QueryDataLayout'
 import { roleIcons } from '~shared/Layout/SaasSelector'
 import { useProfile } from '~src/queries/account'
 import { QueryKeys } from '~src/queries/keys'
-import { useRemoveMemberMutation, useRoles } from '~src/queries/organization'
+import { useRemoveUserMutation, useRoles } from '~src/queries/organization'
 import { InviteToTeamModal } from './Invite'
 
 // Define types
@@ -59,13 +59,13 @@ type UserInfo = {
   lastName: string
 }
 
-type ActiveMember = {
+type ActiveUser = {
   info: UserInfo
   role: string
   expiration?: string
 }
 
-type PendingMember = {
+type PendingUser = {
   id: string
   email: string
   role: string
@@ -73,18 +73,18 @@ type PendingMember = {
   info?: undefined
 }
 
-type Member = ActiveMember | PendingMember
+type User = ActiveUser | PendingUser
 
-const isActiveMember = (member: Member): member is ActiveMember => !!member.info
+const isActiveUser = (user: User): user is ActiveUser => !!user.info
 
-type MemberModalProps<T extends Member> = Omit<ModalProps, 'children' | 'isOpen' | 'onClose'> & {
+type UserModalProps<T extends User> = Omit<ModalProps, 'children' | 'isOpen' | 'onClose'> & {
   isOpen: boolean
   onClose: () => void
-  member: T
+  user: T
 }
 
-type ActiveMemberModalProps = MemberModalProps<ActiveMember>
-type PendingMemberModalProps = MemberModalProps<PendingMember>
+type ActiveUserModalProps = UserModalProps<ActiveUser>
+type PendingUserModalProps = UserModalProps<PendingUser>
 
 type UpdateRoleBody = {
   role: string
@@ -96,7 +96,7 @@ type UpdateRoleParams = {
 }
 
 type ChangeRoleFormProps = {
-  member: ActiveMember
+  user: ActiveUser
   onClose: () => void
 }
 
@@ -110,91 +110,86 @@ type RoleRadioGroupProps = {
   currentRole: string
 }
 
-type TeamMembersResponse = {
-  members: Member[]
+type UsersResponse = {
+  users: User[]
 }
 
-type PendingTeamMembersResponse = {
-  pending: PendingMember[]
+type PendingUsersResponse = {
+  pending: PendingUser[]
 }
 
-type MemberActionsProps = {
-  member: Member
+type UserActionsProps = {
+  user: User
 }
 
-type PendingInvitationActionsProps = {
-  member: PendingMember
+type PendingActionsProps = {
+  user: PendingUser
   closeMenu: () => void
   openCancelInvitation: () => void
 }
 
-type ActiveMemberActionsProps = {
+type ActiveUserActionsProps = {
   openChangeRole: () => void
-  openRemoveMember: () => void
+  openRemoveUser: () => void
 }
 
-type TeamMembersListProps = {
-  members: Member[]
+type UsersListProps = {
+  users: User[]
 }
 
-// Fetch hook for team members
-export const useTeamMembers = ({
+// Fetch hook for organization users
+export const useUsers = ({
   options,
 }: {
-  options?: Omit<UseQueryOptions<TeamMembersResponse>, 'queryKey' | 'queryFn'>
+  options?: Omit<UseQueryOptions<UsersResponse>, 'queryKey' | 'queryFn'>
 } = {}) => {
   const { bearedFetch } = useAuth()
   const { account } = useClient()
   return useQuery({
-    queryKey: QueryKeys.organization.members(enforceHexPrefix(account?.address)),
+    queryKey: QueryKeys.organization.users(enforceHexPrefix(account?.address)),
     queryFn: () =>
-      bearedFetch<TeamMembersResponse>(
-        ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(account?.address))
+      bearedFetch<UsersResponse>(
+        ApiEndpoints.OrganizationUsers.replace('{address}', enforceHexPrefix(account?.address))
       ),
     ...options,
-    select: (data) => data.members,
+    select: (data) => data.users,
   })
 }
 
-// Fetch hook for pending members
-export const usePendingTeamMembers = ({
+// Fetch hook for pending users
+export const usePendingUsers = ({
   options,
 }: {
-  options?: Omit<UseQueryOptions<PendingTeamMembersResponse>, 'queryKey' | 'queryFn'>
+  options?: Omit<UseQueryOptions<PendingUsersResponse>, 'queryKey' | 'queryFn'>
 } = {}) => {
   const { bearedFetch } = useAuth()
   const { account } = useClient()
   return useQuery({
-    queryKey: QueryKeys.organization.pendingMembers(enforceHexPrefix(account?.address)),
+    queryKey: QueryKeys.organization.pendingUsers(enforceHexPrefix(account?.address)),
     queryFn: () =>
-      bearedFetch<PendingTeamMembersResponse>(
-        ApiEndpoints.OrganizationPendingMembers.replace('{address}', enforceHexPrefix(account?.address))
+      bearedFetch<PendingUsersResponse>(
+        ApiEndpoints.OrganizationPendingUsers.replace('{address}', enforceHexPrefix(account?.address))
       ),
     ...options,
     select: (data) => data.pending,
   })
 }
 
-export const useAllTeamMembers = () => {
-  const {
-    data: membersData,
-    isLoading: membersLoading,
-    isError: membersError,
-    error: membersFetchError,
-  } = useTeamMembers()
+export const useAllUsers = () => {
+  const { data: usersData, isLoading: usersLoading, isError: isUsersError, error: usersError } = useUsers()
 
   const {
     data: pendingData,
     isLoading: pendingLoading,
     isError: pendingError,
     error: pendingFetchError,
-  } = usePendingTeamMembers()
+  } = usePendingUsers()
 
   return {
-    members: [...(membersData || []), ...(pendingData || [])],
-    isLoading: membersLoading || pendingLoading,
-    isError: membersError || pendingError,
-    error: membersFetchError || pendingFetchError,
+    users: [...(usersData || []), ...(pendingData || [])],
+    isLoading: usersLoading || pendingLoading,
+    isError: isUsersError || pendingError,
+    error: usersError || pendingFetchError,
   }
 }
 
@@ -206,10 +201,7 @@ const useUpdateRole = () => {
   return useMutation<void, Error, UpdateRoleParams>({
     mutationFn: async ({ id, body }) =>
       await bearedFetch<void>(
-        ApiEndpoints.OrganizationMember.replace('{address}', enforceHexPrefix(account?.address)).replace(
-          '{memberId}',
-          id
-        ),
+        ApiEndpoints.OrganizationUser.replace('{address}', enforceHexPrefix(account?.address)).replace('{userId}', id),
         {
           method: 'PUT',
           body,
@@ -217,7 +209,7 @@ const useUpdateRole = () => {
       ),
     onSuccess: () => {
       client.invalidateQueries({
-        queryKey: QueryKeys.organization.members(),
+        queryKey: QueryKeys.organization.users(),
       })
     },
   })
@@ -231,7 +223,7 @@ const useCancelInvitation = () => {
   return useMutation<void, Error, string>({
     mutationFn: async (id) =>
       await bearedFetch<void>(
-        ApiEndpoints.OrganizationPendingMember.replace('{address}', enforceHexPrefix(account?.address)).replace(
+        ApiEndpoints.OrganizationPendingUser.replace('{address}', enforceHexPrefix(account?.address)).replace(
           '{inviteId}',
           id
         ),
@@ -239,7 +231,7 @@ const useCancelInvitation = () => {
       ),
     onSuccess: () => {
       client.invalidateQueries({
-        queryKey: QueryKeys.organization.pendingMembers(),
+        queryKey: QueryKeys.organization.pendingUsers(),
       })
     },
   })
@@ -252,7 +244,7 @@ const useResendInvitationMutation = () => {
   return useMutation<void, Error, string>({
     mutationFn: async (id) =>
       await bearedFetch<void>(
-        ApiEndpoints.OrganizationPendingMember.replace('{address}', enforceHexPrefix(account?.address)).replace(
+        ApiEndpoints.OrganizationPendingUser.replace('{address}', enforceHexPrefix(account?.address)).replace(
           '{inviteId}',
           id
         ),
@@ -335,7 +327,7 @@ const RoleRadioGroup = ({ currentRole }: RoleRadioGroupProps) => {
   )
 }
 
-const ChangeRoleForm = ({ member, onClose }: ChangeRoleFormProps) => {
+const ChangeRoleForm = ({ user, onClose }: ChangeRoleFormProps) => {
   const toast = useToast()
   const { t } = useTranslation()
   const methods = useForm<UpdateRoleBody>()
@@ -343,7 +335,7 @@ const ChangeRoleForm = ({ member, onClose }: ChangeRoleFormProps) => {
 
   const onSubmit = (body: UpdateRoleBody) => {
     updateRole.mutate(
-      { id: member?.info.id.toString(), body },
+      { id: user?.info.id.toString(), body },
       {
         onSuccess: (): void => {
           toast({
@@ -367,8 +359,8 @@ const ChangeRoleForm = ({ member, onClose }: ChangeRoleFormProps) => {
     )
   }
 
-  const currentRole = member?.role
-  const fullName = `${member?.info?.firstName} ${member?.info?.lastName}`
+  const currentRole = user?.role
+  const fullName = `${user?.info?.firstName} ${user?.info?.lastName}`
 
   return (
     <FormProvider {...methods}>
@@ -381,7 +373,7 @@ const ChangeRoleForm = ({ member, onClose }: ChangeRoleFormProps) => {
             </HStack>
             <Flex direction='column'>
               <Text fontSize='sm' color='gray.500'>
-                {member?.info.email}
+                {user?.info.email}
               </Text>
             </Flex>
           </Box>
@@ -415,7 +407,7 @@ const ChangeRoleForm = ({ member, onClose }: ChangeRoleFormProps) => {
   )
 }
 
-const ChangeRoleModal = ({ isOpen, onClose, member, ...props }: ActiveMemberModalProps) => {
+const ChangeRoleModal = ({ isOpen, onClose, user, ...props }: ActiveUserModalProps) => {
   const { t } = useTranslation()
 
   return (
@@ -424,30 +416,28 @@ const ChangeRoleModal = ({ isOpen, onClose, member, ...props }: ActiveMemberModa
       <ModalContent py={4}>
         <ModalHeader>
           <Heading fontSize='md' fontWeight='extrabold'>
-            {t('role.update.title', { defaultValue: 'Change team member role' })}
+            {t('role.update.title', { defaultValue: 'Change user role' })}
           </Heading>
-          <Trans i18nKey='role.update.subtitle'>
-            Update the permissions for this team member by changing their role.
-          </Trans>
+          <Trans i18nKey='role.update.subtitle'>Update the permissions for this user by changing their role.</Trans>
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <ChangeRoleForm member={member} onClose={onClose} />
+          <ChangeRoleForm user={user} onClose={onClose} />
         </ModalBody>
       </ModalContent>
     </Modal>
   )
 }
 
-const RemoveMemberModal = ({ isOpen, onClose, member, ...props }: ActiveMemberModalProps) => {
+const RemoveUserModal = ({ isOpen, onClose, user, ...props }: ActiveUserModalProps) => {
   const { t } = useTranslation()
   const toast = useToast()
-  const removeMember = useRemoveMemberMutation()
+  const removeUser = useRemoveUserMutation()
 
-  const id = member.info?.id
+  const id = user.info?.id
 
-  const removeMemberHandler = () => {
-    removeMember.mutate(id, {
+  const removeUserHandler = () => {
+    removeUser.mutate(id, {
       onSuccess: () => {
         toast({
           title: t('team.remove_member.success', { defaultValue: 'Member removed successfully' }),
@@ -480,14 +470,14 @@ const RemoveMemberModal = ({ isOpen, onClose, member, ...props }: ActiveMemberMo
             {t('team.remove_member.confirmation', {
               defaultValue:
                 'This will remove {{name}} from your team. They will no longer have access to your organization.',
-              name: `${member.info.firstName} ${member.info.lastName}`,
+              name: `${user.info.firstName} ${user.info.lastName}`,
             })}
           </Text>
           <Flex justifyContent='flex-end' mt={4} gap={2}>
             <Button variant='outline' onClick={onClose}>
               {t('team.remove_member.cancel', { defaultValue: 'Cancel' })}
             </Button>
-            <Button isLoading={removeMember.isPending} colorScheme='red' onClick={removeMemberHandler}>
+            <Button isLoading={removeUser.isPending} colorScheme='red' onClick={removeUserHandler}>
               {t('team.remove_member.confirm', { defaultValue: 'Remove' })}
             </Button>
           </Flex>
@@ -497,13 +487,13 @@ const RemoveMemberModal = ({ isOpen, onClose, member, ...props }: ActiveMemberMo
   )
 }
 
-const CancelInvitationModal = ({ isOpen, onClose, member, ...props }: PendingMemberModalProps) => {
+const CancelInvitationModal = ({ isOpen, onClose, user, ...props }: PendingUserModalProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const cancelInvitation = useCancelInvitation()
 
   const cancelInvitationHandler = () => {
-    cancelInvitation.mutate(member.id, {
+    cancelInvitation.mutate(user.id, {
       onSuccess: () => {
         toast({
           title: t('team.actions.cancel_invitation_success', { defaultValue: 'Invitation cancelled successfully' }),
@@ -551,19 +541,19 @@ const CancelInvitationModal = ({ isOpen, onClose, member, ...props }: PendingMem
   )
 }
 
-const PendingInvitationActions = ({ member, closeMenu, openCancelInvitation }: PendingInvitationActionsProps) => {
+const PendingInvitationActions = ({ user, closeMenu, openCancelInvitation }: PendingActionsProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const resendInvitation = useResendInvitationMutation()
   const isLoading = resendInvitation.isPending
 
   const resendInvitationHandler = () => {
-    resendInvitation.mutate(member.id, {
+    resendInvitation.mutate(user.id, {
       onSuccess: () => {
         toast({
           title: t('team.actions.resend_invitation_success', {
             defaultValue: 'Invitation resent to {{email}} successfully',
-            email: member?.email,
+            email: user?.email,
           }),
           status: 'success',
           duration: 5000,
@@ -575,7 +565,7 @@ const PendingInvitationActions = ({ member, closeMenu, openCancelInvitation }: P
         toast({
           title: t('team.actions.resend_invitation_error', {
             defaultValue: 'Error resending invitation to {{email}}',
-            email: member?.email,
+            email: user?.email,
           }),
           description: error.message,
           status: 'error',
@@ -603,28 +593,28 @@ const PendingInvitationActions = ({ member, closeMenu, openCancelInvitation }: P
   )
 }
 
-const ActiveMemberActions = ({ openChangeRole, openRemoveMember }: ActiveMemberActionsProps) => {
+const ActiveUserActions = ({ openChangeRole, openRemoveUser }: ActiveUserActionsProps) => {
   const { t } = useTranslation()
 
   return (
     <>
       <MenuItem onClick={openChangeRole} fontSize='sm' icon={<Icon boxSize={4} as={LuUserCog} />}>
-        {t('team.actions.change_role', { defaultValue: 'Change Role' })}
+        {t('team.actions.change_role', { defaultValue: 'Change role' })}
       </MenuItem>
       <MenuDivider />
-      <MenuItem color='red.400' fontSize='sm' onClick={openRemoveMember}>
-        {t('team.actions.remove_member', { defaultValue: 'Remove Member' })}
+      <MenuItem color='red.400' fontSize='sm' onClick={openRemoveUser}>
+        {t('team.actions.remove_user', { defaultValue: 'Remove user' })}
       </MenuItem>
     </>
   )
 }
 
-const MemberActions = ({ member }: MemberActionsProps) => {
+const UserActions = ({ user }: UserActionsProps) => {
   const { t } = useTranslation()
   const { data: profile, isLoading } = useProfile()
   const { isOpen: isMenuOpen, onOpen: openMenu, onClose: closeMenu } = useDisclosure()
 
-  const isCurrentUser = String(member.info?.id) === String(profile?.id)
+  const isCurrentUser = String(user.info?.id) === String(profile?.id)
   if (isCurrentUser) return null
 
   // Disclosures para los modales
@@ -653,31 +643,27 @@ const MemberActions = ({ member }: MemberActionsProps) => {
         />
         <MenuList minW='unset'>
           <MenuGroup title={t('team.actions.title', { defaultValue: 'Actions' })}>
-            {isActiveMember(member) ? (
-              <ActiveMemberActions openChangeRole={roleModal.onOpen} openRemoveMember={removeModal.onOpen} />
+            {isActiveUser(user) ? (
+              <ActiveUserActions openChangeRole={roleModal.onOpen} openRemoveUser={removeModal.onOpen} />
             ) : (
-              <PendingInvitationActions
-                member={member}
-                openCancelInvitation={cancelModal.onOpen}
-                closeMenu={closeMenu}
-              />
+              <PendingInvitationActions user={user} openCancelInvitation={cancelModal.onOpen} closeMenu={closeMenu} />
             )}
           </MenuGroup>
         </MenuList>
       </Menu>
-      {isActiveMember(member) ? (
+      {isActiveUser(user) ? (
         <>
-          <ChangeRoleModal isOpen={roleModal.isOpen} onClose={roleModal.onClose} member={member} />
-          <RemoveMemberModal isOpen={removeModal.isOpen} onClose={removeModal.onClose} member={member} />
+          <ChangeRoleModal isOpen={roleModal.isOpen} onClose={roleModal.onClose} user={user} />
+          <RemoveUserModal isOpen={removeModal.isOpen} onClose={removeModal.onClose} user={user} />
         </>
       ) : (
-        <CancelInvitationModal isOpen={cancelModal.isOpen} onClose={cancelModal.onClose} member={member} />
+        <CancelInvitationModal isOpen={cancelModal.isOpen} onClose={cancelModal.onClose} user={user} />
       )}
     </>
   )
 }
 
-const TeamMembersEmpty = () => {
+const UsersEmpty = () => {
   const { t } = useTranslation()
 
   return (
@@ -700,18 +686,18 @@ const TeamMembersEmpty = () => {
   )
 }
 
-const TeamMembersList = ({ members }: TeamMembersListProps) => {
+const UsersList = ({ users }: UsersListProps) => {
   const { t } = useTranslation()
 
   return (
     <Flex direction='column'>
-      {members.map((member, i) => {
-        const isActive = isActiveMember(member)
+      {users.map((user, i) => {
+        const isActive = isActiveUser(user)
         const name = isActive
-          ? `${member.info.firstName} ${member.info.lastName}`
+          ? `${user.info.firstName} ${user.info.lastName}`
           : t('team.pending_invitation', { defaultValue: 'Invitation Pending' })
-        const email = isActive ? member.info.email : member.email
-        const avatarName = isActive && `${member.info.firstName} ${member.info.lastName}`
+        const email = isActive ? user.info.email : user.email
+        const avatarName = isActive && `${user.info.firstName} ${user.info.lastName}`
 
         return (
           <Flex alignItems='center' p={2} key={i}>
@@ -720,24 +706,24 @@ const TeamMembersList = ({ members }: TeamMembersListProps) => {
               <HStack align='center'>
                 <Text fontWeight='bold'>{name}</Text>
                 <Badge variant='subtle' textTransform='capitalize'>
-                  {member.role}
+                  {user.role}
                 </Badge>
               </HStack>
               <Flex direction='column'>
                 <Text fontSize='sm' color='gray.500'>
                   {email}
                 </Text>
-                {member.expiration && (
+                {user.expiration && (
                   <Text fontSize='xs' color='gray.500'>
                     {t('team.expires_in', {
                       defaultValue: 'Expires in {{time}}',
-                      time: formatDistanceToNow(new Date(member.expiration)),
+                      time: formatDistanceToNow(new Date(user.expiration)),
                     })}
                   </Text>
                 )}
               </Flex>
             </Box>
-            <MemberActions member={member} />
+            <UserActions user={user} />
           </Flex>
         )
       })}
@@ -745,14 +731,14 @@ const TeamMembersList = ({ members }: TeamMembersListProps) => {
   )
 }
 
-export const TeamMembers = () => {
-  const { members, isLoading, isError, error } = useAllTeamMembers()
+export const OrganizationUsers = () => {
+  const { users, isLoading, isError, error } = useAllUsers()
 
   if (isLoading) return <Progress isIndeterminate />
 
   return (
-    <QueryDataLayout isEmpty={!members || members.length === 0} isLoading={isLoading} isError={isError} error={error}>
-      {members.length === 1 ? <TeamMembersEmpty /> : <TeamMembersList members={members} />}
+    <QueryDataLayout isEmpty={!users || users.length === 0} isLoading={isLoading} isError={isError} error={error}>
+      {users.length === 1 ? <UsersEmpty /> : <UsersList users={users} />}
     </QueryDataLayout>
   )
 }

@@ -347,7 +347,6 @@
     "interruptible": "Interruptible",
     "live_results": "Resultados en directo",
     "live_streaming": "Live streaming",
-    "memberships": "Hasta {{ value }} membresías",
     "multiple": "Votación de opción múltiple",
     "overwrite": "Reemplazo de voto",
     "personalization": "Personalización",
@@ -360,8 +359,9 @@
     "single": "Votación de opción única",
     "sms_notification": "Notificaciones por SMS",
     "sub_orgs": "Hasta {{ value }} suborganizaciones",
-    "total_members": "Total de miembros disponibles",
     "total_orgs": "Total de suborganizaciones disponibles",
+    "total_users": "Total available users",
+    "users": "Up to {{ count }} users",
     "weighted": "Votación ponderada",
     "white_label": "Marca blanca"
   },
@@ -997,9 +997,9 @@
   "meta": {
     "helper": "Provide a clear title and description to help voters understand the vote"
   },
-  "more_than_memberships_one": "más de {{count}} miembros",
-  "more_than_memberships_many": "more than {count} memberships",
-  "more_than_memberships_other": "más de {{count}} miembros",
+  "more_than_users_one": "more than {{ count }} users",
+  "more_than_users_many": "more than {{ count }} users",
+  "more_than_users_other": "more than {{ count }} users",
   "name": "Nombre",
   "navbar": {
     "contact": "Contact Us",
@@ -1455,7 +1455,7 @@
       "cancel_invitation_error": "Error cancelling invitation",
       "cancel_invitation_success": "Invitation cancelled successfully",
       "change_role": "Change Role",
-      "remove_member": "Remove Member",
+      "remove_user": "Remove user",
       "resend_invitation": "Resend Invitation",
       "resend_invitation_error": "Error resending invitation",
       "resend_invitation_success": "Invitation resent successfully",

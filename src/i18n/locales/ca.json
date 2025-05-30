@@ -347,7 +347,6 @@
     "interruptible": "Interruptible",
     "live_results": "Resultats en directe",
     "live_streaming": "Streaming en directe",
-    "memberships": "Fins a {{ value }} membresies",
     "multiple": "Múltiples opcions",
     "overwrite": "Sobre-escriptura del vot",
     "personalization": "Personalització",
@@ -360,8 +359,9 @@
     "single": "Opció única",
     "sms_notification": "Notificacions per SMS",
     "sub_orgs": "Fins a {{ value }} suborganitzacions",
-    "total_members": "Membresies totals",
     "total_orgs": "Sub-organitzacions disponibles",
+    "total_users": "Total available users",
+    "users": "Up to {{ count }} users",
     "weighted": "Amb pes",
     "white_label": "Marca blanca"
   },
@@ -997,9 +997,9 @@
   "meta": {
     "helper": "Provide a clear title and description to help voters understand the vote"
   },
-  "more_than_memberships_one": "més d'{{count}} membre",
-  "more_than_memberships_many": "more than {count} memberships",
-  "more_than_memberships_other": "més de {{count}} membres",
+  "more_than_users_one": "more than {{ count }} users",
+  "more_than_users_many": "more than {{ count }} users",
+  "more_than_users_other": "more than {{ count }} users",
   "name": "Name",
   "navbar": {
     "contact": "Contact Us",
@@ -1455,7 +1455,7 @@
       "cancel_invitation_error": "Error cancelling invitation",
       "cancel_invitation_success": "Invitation cancelled successfully",
       "change_role": "Change Role",
-      "remove_member": "Remove Member",
+      "remove_user": "Remove user",
       "resend_invitation": "Resend Invitation",
       "resend_invitation_error": "Error resending invitation",
       "resend_invitation_success": "Invitation resent successfully",

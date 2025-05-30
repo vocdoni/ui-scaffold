@@ -29,7 +29,7 @@ export type SubscriptionType = {
     sentSMS: number
     sentEmails: number
     subOrgs: number
-    members: number
+    users: number
   }
   plan: Plan
 }
