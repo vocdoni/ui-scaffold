@@ -16,14 +16,22 @@ import {
 import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { LuCalendar } from 'react-icons/lu'
+import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
 
-const Booker = () => {
+export const Booker = () => {
   const { colorMode } = useColorMode()
+  const { setStepDone } = useOrganizationSetup()
 
   useEffect(() => {
     ;(async function () {
       const cal = await getCalApi({ namespace: '30min' })
       cal('ui', { hideEventTypeDetails: false, layout: 'month_view', theme: colorMode })
+      cal('on', {
+        action: 'bookingSuccessfulV2',
+        callback: () => {
+          setStepDone(SetupStepIds.expertCallBooking)
+        },
+      })
     })()
   }, [])
 
