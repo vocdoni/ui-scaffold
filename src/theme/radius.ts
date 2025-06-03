@@ -1,4 +1,4 @@
-export const radii = {
+const radii = {
   none: '0rem',
   xxs: '2px',
   xs: '4px',
@@ -11,3 +11,5 @@ export const radii = {
   '4xl': '24px',
   full: '9999px',
 }
+
+export default radii

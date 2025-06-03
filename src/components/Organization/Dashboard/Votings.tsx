@@ -1,10 +1,10 @@
 import { Flex } from '@chakra-ui/react'
 import { RoutedPaginationProvider, useOrganization } from '@vocdoni/react-providers'
 import { ElectionListWithPagination } from '@vocdoni/sdk'
-import { NoResultsFiltering } from '~components/Layout/NoResultsFiltering'
+import { NoResultsFiltering } from '~components/shared/Layout/NoResultsFiltering'
 import { Routes } from '~src/router/routes'
+import ProcessesTable from '../../Process/Dashboard/ProcessesTable'
 import NoElections from '../NoElections'
-import ProcessesTable from './ProcessesTable'
 
 type VotingsProps = {
   data: ElectionListWithPagination

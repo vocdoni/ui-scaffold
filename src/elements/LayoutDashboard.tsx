@@ -4,10 +4,10 @@ import React, { createContext, PropsWithChildren, useEffect, useState } from 're
 import { Trans } from 'react-i18next'
 import { LuCircleHelp, LuPanelLeft, LuPlus } from 'react-icons/lu'
 import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
-import { BookerModalButton } from '~components/Dashboard/Booker'
-import Breadcrumb, { BreadcrumbItem } from '~components/Dashboard/Breadcrumb'
-import DashboardMenu from '~components/Dashboard/Menu'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
+import { BookerModalButton } from '~components/shared/Dashboard/Booker'
+import Breadcrumb, { BreadcrumbItem } from '~components/shared/Dashboard/Breadcrumb'
+import DashboardMenu from '~components/shared/Dashboard/Menu'
 import { MaxWindowWidth } from '~constants'
 import { Routes } from '~routes'
 

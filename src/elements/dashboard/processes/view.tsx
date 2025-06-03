@@ -4,7 +4,7 @@ import { PublishedElection } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, useLoaderData, useNavigate, useOutletContext } from 'react-router-dom'
-import { ProcessView } from '~components/Dashboard/ProcessView'
+import { ProcessView } from '~components/Process/Dashboard/ProcessView'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
 

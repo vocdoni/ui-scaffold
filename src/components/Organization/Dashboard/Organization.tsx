@@ -1,6 +1,6 @@
-import { useSaasAccount } from '~components/Account/useSaasAccount'
-import QueryDataLayout from '~components/Layout/QueryDataLayout'
+import { useSaasAccount } from '~components/Account/SaasAccountProvider'
 import EditOrganization from '~components/Organization/Edit'
+import QueryDataLayout from '~components/shared/Layout/QueryDataLayout'
 
 const OrganizationEdit = () => {
   const { isLoading, isError, error } = useSaasAccount()

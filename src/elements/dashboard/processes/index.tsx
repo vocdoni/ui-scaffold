@@ -3,8 +3,8 @@ import { ElectionListWithPagination } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLoaderData, useOutletContext, useParams } from 'react-router-dom'
-import { DashboardContents } from '~components/Layout/Dashboard'
 import Votings from '~components/Organization/Dashboard/Votings'
+import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 
 const OrganizationVotings = () => {

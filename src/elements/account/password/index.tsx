@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
-import PasswordForgotForm from '~components/Auth/PasswordForgotForm'
+import PasswordForgotForm from '~components/Account/PasswordForgotForm'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 
 const PasswordForgot = () => {

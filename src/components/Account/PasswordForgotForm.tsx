@@ -4,8 +4,8 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
-import InputBasic from '../Layout/InputBasic'
-import { api, ApiEndpoints } from './api'
+import { api, ApiEndpoints } from '../Auth/api'
+import InputBasic from '../shared/Form/InputBasic'
 
 type ForgotPasswordFormValues = {
   email: string

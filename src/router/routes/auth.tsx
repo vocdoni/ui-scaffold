@@ -12,7 +12,7 @@ const SignUp = lazy(() => import('~components/Auth/SignUp'))
 const Verify = lazy(() => import('~elements/account/verify'))
 const PasswordForgot = lazy(() => import('~elements/account/password'))
 const PasswordReset = lazy(() => import('~elements/account/password/reset'))
-const CreateOrganization = lazy(() => import('~elements/account/createOrganization'))
+const CreateOrganization = lazy(() => import('~elements/account/create-organization'))
 
 const AuthElements = [
   {

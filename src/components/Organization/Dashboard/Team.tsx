@@ -1,9 +1,9 @@
 import { Flex, Heading, Icon, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { LuUserPlus } from 'react-icons/lu'
-import { DashboardBox } from '~components/Layout/Dashboard'
 import { InviteToTeamModal } from '~components/Organization/Invite'
 import { TeamMembers } from '~components/Organization/Team'
+import { DashboardBox } from '~components/shared/Dashboard/Contents'
 
 const OrganizationTeam = () => {
   const { t } = useTranslation()

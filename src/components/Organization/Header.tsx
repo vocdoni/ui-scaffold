@@ -4,7 +4,7 @@ import { useClient, useOrganization } from '@vocdoni/react-providers'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
-import { useReadMoreMarkdown } from '~components/Layout/use-read-more'
+import { useReadMoreMarkdown } from '~components/shared/Layout/use-read-more'
 import AddressBtn from './Address'
 import fallback from '/assets/default-avatar.png'
 

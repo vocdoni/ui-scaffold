@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOutletContext, useSearchParams } from 'react-router-dom'
-import PasswordResetForm from '~components/Auth/PasswordResetForm'
+import PasswordResetForm from '~components/Account/PasswordResetForm'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 
 const PasswordReset = () => {
