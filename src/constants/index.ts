@@ -33,6 +33,7 @@ export enum SubscriptionPermission {
   WeightedVoting = 'votingTypes.weighted',
   Anonymous = 'features.anonymous',
   Overwrite = 'features.overwrite',
+  PhoneSupport = 'features.phoneSupport',
   LiveResults = 'features.liveResults',
   Personalization = 'features.personalization',
   EmailReminder = 'features.emailReminder',
