@@ -40,7 +40,7 @@ const LayoutDashboard: React.FC = () => {
           {/* Sidebar for large screens */}
           <DashboardMenu isOpen={isOpen} onClose={onClose} />
 
-          <Flex flex='1 1 0' flexDirection='column'>
+          <Flex flex='1 1 0' flexDirection='column' minW={0}>
             {/* Top Menu */}
             <Box
               position='sticky'

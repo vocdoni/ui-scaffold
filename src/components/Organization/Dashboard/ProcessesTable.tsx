@@ -8,6 +8,7 @@ import {
   MenuItem,
   MenuList,
   Table,
+  TableContainer,
   Tag,
   Tbody,
   Td,
@@ -35,30 +36,32 @@ const ProcessesTable = ({ processes }: ProcessesListProps) => {
   const { t } = useTranslation()
 
   return (
-    <Box border='1px solid' borderColor='table.border' borderRadius='sm'>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>{t('process_list.title', { defaultValue: 'Title' })}</Th>
-            <Th>{t('process_list.start_date', { defaultValue: 'Start date' })}</Th>
-            <Th>{t('process_list.end_date', { defaultValue: 'End date' })}</Th>
-            <Th>{t('process_list.type', { defaultValue: 'Type' })}</Th>
-            <Th>{t('process_list.status', { defaultValue: 'Status' })}</Th>
-            <Th isNumeric>{t('process_list.recount', { defaultValue: 'Recount' })}</Th>
-            <Th>{t('process_list.results', { defaultValue: 'Results' })}</Th>
-            <Th>&nbsp;</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {processes &&
-            !!processes.length &&
-            processes?.map((election) => (
-              <ElectionProvider election={election} id={election.id} key={election.id}>
-                <ProcessRow />
-              </ElectionProvider>
-            ))}
-        </Tbody>
-      </Table>
+    <Box border='1px solid' borderColor='table.border' borderRadius='sm' w='full'>
+      <TableContainer>
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>{t('process_list.title', { defaultValue: 'Title' })}</Th>
+              <Th>{t('process_list.start_date', { defaultValue: 'Start date' })}</Th>
+              <Th>{t('process_list.end_date', { defaultValue: 'End date' })}</Th>
+              <Th>{t('process_list.type', { defaultValue: 'Type' })}</Th>
+              <Th>{t('process_list.status', { defaultValue: 'Status' })}</Th>
+              <Th isNumeric>{t('process_list.recount', { defaultValue: 'Recount' })}</Th>
+              <Th>{t('process_list.results', { defaultValue: 'Results' })}</Th>
+              <Th>&nbsp;</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {processes &&
+              !!processes.length &&
+              processes?.map((election) => (
+                <ElectionProvider election={election} id={election.id} key={election.id}>
+                  <ProcessRow />
+                </ElectionProvider>
+              ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
       <Box p={4}>
         <PaginatedTableFooter />
       </Box>
