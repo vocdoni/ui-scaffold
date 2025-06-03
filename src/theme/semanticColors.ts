@@ -76,6 +76,12 @@ const semanticColors = {
       },
     },
   },
+  dashboard: {
+    menu: {
+      default: '#fbfbfb',
+      _dark: '#18181b',
+    },
+  },
   input: {
     placeholder: {
       _light: 'gray.500',

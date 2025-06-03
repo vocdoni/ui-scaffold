@@ -31,8 +31,8 @@ const DashboardMenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => vo
       {/* Sidebar for large screens */}
       <Box
         borderRight='1px solid'
-        _light={{ bgColor: 'dashboard.menu.light', borderRightColor: 'gray.200' }}
-        _dark={{ bgColor: 'dashboard.menu.dark', borderRightColor: 'black.700' }}
+        borderRightColor='table.border'
+        bgColor='dashboard.menu'
         display={{ base: 'none', md: 'flex' }}
         flexDirection={'column'}
         position={'sticky'}
