@@ -1,9 +1,9 @@
 import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
-import { useCallback } from 'react'
-import { OrganizationData } from '~components/Account/AccountTypes'
+import { createContext, ReactNode, useCallback, useContext } from 'react'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import { OrganizationData } from '~components/Organization/AccountTypes'
 import { QueryKeys } from '~src/queries/keys'
 
 const useSaasOrganization = ({
@@ -20,6 +20,14 @@ const useSaasOrganization = ({
     enabled: !!account?.address,
     ...options,
   })
+}
+
+export const useSaasAccount = () => {
+  const context = useContext(SaasAccountContext)
+  if (!context) {
+    throw new Error('useSaasAccount must be used within an SaasAccountProvider')
+  }
+  return context
 }
 
 export const useSaasAccountProvider = (options?: Parameters<typeof useSaasOrganization>[0]) => {
@@ -49,4 +57,11 @@ export const useSaasAccountProvider = (options?: Parameters<typeof useSaasOrgani
   const error = saasError || sdkAccountError
 
   return { organization, refetchAccount, isLoading, isError, error }
+}
+
+export const SaasAccountContext = createContext<ReturnType<typeof useSaasAccountProvider> | undefined>(undefined)
+
+export const SaasAccountProvider = ({ children }: { children: ReactNode }) => {
+  const saasAcount = useSaasAccountProvider()
+  return <SaasAccountContext.Provider value={saasAcount}>{children}</SaasAccountContext.Provider>
 }

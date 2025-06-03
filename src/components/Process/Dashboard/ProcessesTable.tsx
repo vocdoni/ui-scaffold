@@ -22,7 +22,7 @@ import { ElectionStatus, ensure0x, InvalidElection, PublishedElection } from '@v
 import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsisVertical, LuExternalLink, LuInfo, LuSearch } from 'react-icons/lu'
 import { generatePath, Link as RouterLink } from 'react-router-dom'
-import PaginatedTableFooter from '~components/Layout/Pagination/PaginatedTableFooter'
+import PaginatedTableFooter from '~components/shared/Pagination/PaginatedTableFooter'
 import { useDateFns } from '~i18n/use-date-fns'
 import { Routes } from '~src/router/routes'
 

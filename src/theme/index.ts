@@ -2,38 +2,15 @@ import { ColorMode, extendTheme } from '@chakra-ui/react'
 import { darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { theme as vtheme } from '@vocdoni/chakra-components'
 import { colors } from './colors'
-import { Badge } from './components/badge'
-import { Button } from './components/button'
-import { Card } from './components/card'
-import { Checkbox, DetailedCheckbox } from './components/checkbox'
-import { Form } from './components/Form'
-import { ElectionTitle, Heading } from './components/heading'
-import { Input } from './components/input'
-import { Link } from './components/link'
-import { Menu } from './components/menu'
-import { Modal } from './components/modal'
-import { Pagination } from './components/pagination'
-import { Popover } from './components/popover'
-import { Progress } from './components/progress'
-import { ElectionQuestions } from './components/Questions'
-import { Radio } from './components/radio'
-import { ElectionResults } from './components/results'
-import { SpreadsheetAccess } from './components/SpreadsheetAccess'
-import { Stepper } from './components/stepper'
-import { Table } from './components/table'
-import { Tabs } from './components/Tabs'
-import { Tag } from './components/tag'
-import { Text } from './components/text'
-import { Tooltip } from './components/tooltip'
-import { editor } from './editor'
-import { radii } from './radius'
+import components from './components'
+import editor from './editor'
+import radii from './radius'
+import semanticTokens from './semantic'
 
 import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import '@fontsource/inter/index.css'
-import { Drawer } from './components/drawer'
-import semanticColors from './semanticColors'
 
 export const theme = extendTheme(vtheme, {
   config: {
@@ -50,9 +27,7 @@ export const theme = extendTheme(vtheme, {
     bolder: 600,
     extrabold: 700,
   },
-  semanticTokens: {
-    colors: semanticColors,
-  },
+  semanticTokens,
   styles: {
     global: (props) => ({
       ...editor,
@@ -184,34 +159,7 @@ export const theme = extendTheme(vtheme, {
       },
     }),
   },
-  components: {
-    Badge,
-    Button,
-    Card,
-    Checkbox,
-    DetailedCheckbox,
-    Drawer,
-    ElectionTitle,
-    ElectionQuestions,
-    ElectionResults,
-    Form,
-    Heading,
-    Input,
-    Link,
-    Menu,
-    Modal,
-    Pagination,
-    Popover,
-    Progress,
-    Radio,
-    Stepper,
-    SpreadsheetAccess,
-    Table,
-    Tabs,
-    Tag,
-    Text,
-    Tooltip,
-  },
+  components,
   colors,
   radii,
   sizes: {

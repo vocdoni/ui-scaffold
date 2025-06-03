@@ -1,3 +1,5 @@
+// NOTE: We should prioritize semantic colors over these defined here. Check semantic.ts
+
 export const colorsBase = {
   beige: '#D2CBB9',
   black: '#000000',

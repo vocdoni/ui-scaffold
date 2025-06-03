@@ -23,7 +23,7 @@ import typeItalic from '/shared/editor/type-italic.svg'
 import typeStrikethrough from '/shared/editor/type-strikethrough.svg'
 import typeUnderline from '/shared/editor/type-underline.svg'
 
-export const editor = {
+const editor = {
   'i.chevron-down': {
     bgImg: chevronDown,
   },
@@ -100,3 +100,5 @@ export const editor = {
     bgImg: justify,
   },
 }
+
+export default editor

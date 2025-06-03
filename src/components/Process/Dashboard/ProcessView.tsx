@@ -59,7 +59,7 @@ import {
   Sidebar,
   SidebarContents,
   SidebarProps,
-} from '~components/Layout/Dashboard'
+} from '~components/shared/Dashboard/Contents'
 import { Routes } from '~src/router/routes'
 
 export const ProcessView = () => {

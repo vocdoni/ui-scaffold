@@ -1,5 +1,5 @@
 /**
- * Semantic colors allow us to define colors based on their usage, specially the theme
+ * Semantic tokens allow us to define tokens, like colors, based on their usage
  * https://v2.chakra-ui.com/docs/styled-system/semantic-tokens
  */
 
@@ -27,7 +27,7 @@ const texts = {
   },
 }
 
-const semanticColors = {
+export const colors = {
   chakra,
   auth: {
     bg: {
@@ -123,4 +123,8 @@ const semanticColors = {
   texts,
 }
 
-export default semanticColors
+const semanticTokens = {
+  colors,
+}
+
+export default semanticTokens

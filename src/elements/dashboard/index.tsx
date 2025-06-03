@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useOutletContext } from 'react-router-dom'
-import { DashboardContents } from '~components/Layout/Dashboard'
 import OrganizationDashboard from '~components/Organization/Dashboard'
+import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 
 const Dashboard = () => {

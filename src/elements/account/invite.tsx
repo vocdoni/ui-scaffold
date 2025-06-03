@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-import AcceptInvitation from '~components/Account/AcceptInvitation'
+import AcceptInvitation from '~components/Organization/AcceptInvitation'
 
 const AcceptInvite = () => {
   const [searchParams] = useSearchParams()
