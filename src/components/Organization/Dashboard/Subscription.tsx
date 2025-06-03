@@ -8,7 +8,7 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { SubscriptionPlans } from '~components/Pricing/Plans'
-import { DashboardBox } from '~components/shared/Dashboard/Contents'
+import { DashboardBox } from '~shared/Dashboard/Contents'
 
 export const usePortalSession = () => {
   const { bearedFetch } = useAuth()

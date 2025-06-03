@@ -1,7 +1,7 @@
 import { Flex } from '@chakra-ui/react'
 import { RoutedPaginationProvider, useOrganization } from '@vocdoni/react-providers'
 import { ElectionListWithPagination } from '@vocdoni/sdk'
-import { NoResultsFiltering } from '~components/shared/Layout/NoResultsFiltering'
+import { NoResultsFiltering } from '~shared/Layout/NoResultsFiltering'
 import { Routes } from '~src/router/routes'
 import ProcessesTable from '../../Process/Dashboard/ProcessesTable'
 import NoElections from '../NoElections'

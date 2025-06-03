@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { To, useOutletContext } from 'react-router-dom'
 import { OrganizationCreate } from '~components/Organization/Create'
-import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { DashboardContents } from '~shared/Dashboard/Contents'
 import { Routes } from '~src/router/routes'
 
 const DashBoardCreateOrg = () => {

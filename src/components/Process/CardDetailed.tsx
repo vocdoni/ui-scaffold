@@ -4,8 +4,8 @@ import { ElectionProvider, enforceHexPrefix, useElection } from '@vocdoni/react-
 import { ElectionStatus, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { useReadMoreMarkdown } from '~components/shared/Layout/use-read-more'
 import { useDateFns } from '~i18n/use-date-fns'
+import { useReadMoreMarkdown } from '~shared/Layout/use-read-more'
 import { ActionsMenu } from './ActionsMenu'
 import { ProcessDateInline } from './Date'
 

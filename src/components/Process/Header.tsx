@@ -6,7 +6,7 @@ import { CensusType, ElectionStatus, InvalidElection, PublishedElection, Strateg
 import { ReactNode, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ShareModalButton } from '~components/Share'
-import { useReadMoreMarkdown } from '~components/shared/Layout/use-read-more'
+import { useReadMoreMarkdown } from '~shared/Layout/use-read-more'
 import { ActionsMenu } from './ActionsMenu'
 import { StampIcon } from './Census/StampIcon'
 import { CreatedBy } from './CreatedBy'

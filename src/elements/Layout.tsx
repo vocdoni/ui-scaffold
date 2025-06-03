@@ -1,7 +1,7 @@
 import { Box, Flex, HStack } from '@chakra-ui/react'
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
-import Footer from '~components/shared/Layout/Footer'
-import Navbar from '~components/shared/Navbar'
+import Footer from '~shared/Layout/Footer'
+import Navbar from '~shared/Navbar'
 
 const Layout = () => {
   const location = useLocation()

@@ -2,7 +2,7 @@ import { Box, Flex, Progress, Table, TableContainer, Tbody, Td, Text, Th, Thead,
 import { dotobject } from '@vocdoni/sdk'
 import { forwardRef } from 'react'
 import { Trans } from 'react-i18next'
-import { BooleanIcon } from '~components/shared/Layout/BooleanIcon'
+import { BooleanIcon } from '~shared/Layout/BooleanIcon'
 import { currency } from '~utils/numbers'
 import { CategorizedFeatureKeys, CategoryTitleKeys, PlanTableFeaturesTranslationKeys } from './Features'
 import { Plan, usePlans, usePlanTranslations } from './Plans'
