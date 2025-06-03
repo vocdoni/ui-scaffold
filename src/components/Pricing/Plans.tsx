@@ -296,7 +296,7 @@ export const SubscriptionPlans = ({
             </Flex>
           )}
           {isLoading && <Progress isIndeterminate />}
-          <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} spacing={6}>
+          <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} spacing={6}>
             {cards.map((card, idx) => (
               <PricingCard
                 key={idx}
