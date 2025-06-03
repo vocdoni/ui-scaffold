@@ -8,6 +8,7 @@ import { BookerModalButton } from '~components/Dashboard/Booker'
 import Breadcrumb, { BreadcrumbItem } from '~components/Dashboard/Breadcrumb'
 import DashboardMenu from '~components/Dashboard/Menu'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
+import { MaxWindowWidth } from '~constants'
 import { Routes } from '~routes'
 
 export type DashboardLayoutContext = {
@@ -35,7 +36,7 @@ const LayoutDashboard: React.FC = () => {
   return (
     <DashboardLayoutContext.Provider value={{ reduced }}>
       <DashboardLayoutProviders>
-        <Flex minH='100svh' w='full' _dark={{ bg: 'black.650' }}>
+        <Flex minH='100svh' w='full' _dark={{ bg: 'black.650' }} maxW={MaxWindowWidth} margin='0 auto'>
           {/* Sidebar for large screens */}
           <DashboardMenu isOpen={isOpen} onClose={onClose} />
 
