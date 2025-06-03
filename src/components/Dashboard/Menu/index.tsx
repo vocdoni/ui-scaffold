@@ -75,8 +75,8 @@ const SidebarTutorial = () => {
       display={reduced ? 'none' : 'flex'}
       gap={2}
       p={4}
-      _dark={{ borderColor: 'black.600', bgColor: 'black.650' }}
-      _light={{ borderColor: 'gray.200', bgColor: 'white' }}
+      bgColor='chakra.body.bg'
+      borderColor='table.border'
     >
       <CloseButton
         onClick={() => closeSidebarTutorial()}

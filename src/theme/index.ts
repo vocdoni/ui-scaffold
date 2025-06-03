@@ -32,6 +32,7 @@ import '@fontsource/inter/500.css'
 import '@fontsource/inter/600.css'
 import '@fontsource/inter/700.css'
 import '@fontsource/inter/index.css'
+import { Drawer } from './components/drawer'
 import semanticColors from './semanticColors'
 
 export const theme = extendTheme(vtheme, {
@@ -189,6 +190,7 @@ export const theme = extendTheme(vtheme, {
     Card,
     Checkbox,
     DetailedCheckbox,
+    Drawer,
     ElectionTitle,
     ElectionQuestions,
     ElectionResults,
