@@ -1,8 +1,8 @@
 import { Box, Flex, Link } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { VocdoniLogo } from '~components/shared/Layout/Logo'
 import { Routes } from '~routes'
+import { VocdoniLogo } from '~shared/Layout/Logo'
 
 const SaasFooter = () => {
   const { t } = useTranslation()

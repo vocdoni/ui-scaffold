@@ -17,9 +17,9 @@ import { useDropzone } from 'react-dropzone'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
-import { DetailedCheckbox } from '~components/shared/Form/DetailedCheckbox'
-import Uploader from '~components/shared/Layout/Uploader'
 import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
+import { DetailedCheckbox } from '~shared/Form/DetailedCheckbox'
+import Uploader from '~shared/Layout/Uploader'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
 export const CensusWeb3Addresses = () => {

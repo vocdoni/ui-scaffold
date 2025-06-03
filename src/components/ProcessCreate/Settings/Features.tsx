@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { BiCheckDouble } from 'react-icons/bi'
 import { useSubscription } from '~components/Auth/Subscription'
 import { usePricingModal } from '~components/Pricing/use-pricing-modal'
-import { DetailedCheckbox } from '~components/shared/Form/DetailedCheckbox'
+import { DetailedCheckbox } from '~shared/Form/DetailedCheckbox'
 
 const useProcessFeatures = () => {
   const { t } = useTranslation()

@@ -3,9 +3,9 @@ import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { useSaasAccount } from '~components/Account/SaasAccountProvider'
-import { DashboardContents } from '~components/shared/Dashboard/Contents'
-import QueryDataLayout from '~components/shared/Layout/QueryDataLayout'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { DashboardContents } from '~shared/Dashboard/Contents'
+import QueryDataLayout from '~shared/Layout/QueryDataLayout'
 import { Routes } from '~src/router/routes'
 
 type MenuItem = {

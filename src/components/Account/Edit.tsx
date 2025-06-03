@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { DashboardBox } from '~components/shared/Dashboard/Contents'
+import { DashboardBox } from '~shared/Dashboard/Contents'
 import { useProfile } from '~src/queries/account'
 import AccountForm from './Form'
 

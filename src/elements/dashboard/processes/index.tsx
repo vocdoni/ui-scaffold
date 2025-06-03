@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLoaderData, useOutletContext, useParams } from 'react-router-dom'
 import Votings from '~components/Organization/Dashboard/Votings'
-import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+import { DashboardContents } from '~shared/Dashboard/Contents'
 
 const OrganizationVotings = () => {
   const { t } = useTranslation()

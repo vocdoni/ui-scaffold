@@ -5,11 +5,11 @@ import { Trans } from 'react-i18next'
 import { LuCircleHelp, LuPanelLeft, LuPlus } from 'react-icons/lu'
 import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
-import { BookerModalButton } from '~components/shared/Dashboard/Booker'
-import Breadcrumb, { BreadcrumbItem } from '~components/shared/Dashboard/Breadcrumb'
-import DashboardMenu from '~components/shared/Dashboard/Menu'
 import { MaxWindowWidth } from '~constants'
 import { Routes } from '~routes'
+import { BookerModalButton } from '~shared/Dashboard/Booker'
+import Breadcrumb, { BreadcrumbItem } from '~shared/Dashboard/Breadcrumb'
+import DashboardMenu from '~shared/Dashboard/Menu'
 
 export type DashboardLayoutContext = {
   setBreadcrumb: (items: BreadcrumbItem[]) => void

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { LuUserPlus } from 'react-icons/lu'
 import { InviteToTeamModal } from '~components/Organization/Invite'
 import { TeamMembers } from '~components/Organization/Team'
-import { DashboardBox } from '~components/shared/Dashboard/Contents'
+import { DashboardBox } from '~shared/Dashboard/Contents'
 
 const OrganizationTeam = () => {
   const { t } = useTranslation()

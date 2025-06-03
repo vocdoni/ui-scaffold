@@ -29,10 +29,10 @@ import { LuArrowUpRight, LuCheck, LuPlus, LuUsers, LuVote, LuX } from 'react-ico
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
 import { usePlanTranslations } from '~components/Pricing/Plans'
-import { BookerModalButton } from '~components/shared/Dashboard/Booker'
-import { DashboardBox, DashboardContents } from '~components/shared/Dashboard/Contents'
-import InvertedAccordionIcon from '~components/shared/Layout/InvertedAccordionIcon'
 import { Routes } from '~routes'
+import { BookerModalButton } from '~shared/Dashboard/Booker'
+import { DashboardBox, DashboardContents } from '~shared/Dashboard/Contents'
+import InvertedAccordionIcon from '~shared/Layout/InvertedAccordionIcon'
 import { useProfile } from '~src/queries/account'
 import { CheckboxTypes, paginatedElectionsQuery, useOrganizationSetup, useTutorials } from '~src/queries/organization'
 
