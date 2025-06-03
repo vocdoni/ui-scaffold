@@ -3,9 +3,10 @@ import { DropzoneRootProps } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 import { RiFileExcel2Line } from 'react-icons/ri'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
+import { SpreadsheetManager } from './SpreadsheetManager'
 
 type CsvPreviewProps = {
-  manager?: CensusSpreadsheetManager
+  manager?: CensusSpreadsheetManager | SpreadsheetManager
   upload: DropzoneRootProps
 }
 
