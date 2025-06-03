@@ -21,6 +21,10 @@ const texts = {
     _light: 'gray.500',
     _dark: 'gray.400',
   },
+  dark: {
+    default: 'gray.600',
+    _dark: 'gray.500',
+  },
 }
 
 const semanticColors = {

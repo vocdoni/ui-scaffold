@@ -26,6 +26,7 @@ import { useAuth } from '~components/Auth/useAuth'
 import FormSubmitMessage from '~components/Layout/FormSubmitMessage'
 import InputBasic from '~components/Layout/InputBasic'
 import { IssueTypeSelector, SelectOptionType } from '~components/Layout/SaasSelector'
+import { SubscriptionPermission } from '~constants'
 import { Routes } from '~src/router/routes'
 import { maskValue } from '~utils/strings'
 
@@ -150,18 +151,18 @@ const SupportTicketForm = () => {
 
 const SubscriptionLockedContent = ({ children }: SubscriptionLockedContentProps) => {
   const { t } = useTranslation()
-  const { subscription, loading } = useSubscription()
+  const { loading, permission } = useSubscription()
 
   if (loading) return <Progress size='xs' isIndeterminate colorScheme='gray' />
 
-  const hasPhoneSupport = subscription?.plan.features.phoneSupport
+  const hasPhoneSupport = permission(SubscriptionPermission.PhoneSupport)
   const isLocked = !hasPhoneSupport
 
   return (
     <Box position='relative' borderWidth='1px' borderRadius='lg' overflow='hidden'>
       <Box
         pointerEvents={isLocked ? 'none' : 'auto'}
-        filter={isLocked ? 'blur(5px)' : ''}
+        filter={isLocked ? 'blur(10px)' : ''}
         transition='filter 0.2s ease'
         zIndex={0}
       >
@@ -185,12 +186,12 @@ const SubscriptionLockedContent = ({ children }: SubscriptionLockedContentProps)
           <Icon as={LuLock} boxSize={8} mb={4} />
           <Text fontWeight='bold' mb={2}>
             {t('organization_settings.phone_support.locked', {
-              defaultValue: 'Phone Support is available with an Unlimited plan',
+              defaultValue: 'Phone Support is available with a Custom plan',
             })}
           </Text>
           <Text fontSize='sm' color='gray.500' mb={4}>
             {t('organization_settings.phone_support.locked_description', {
-              defaultValue: 'Upgrade to our Unlimited plan to get priority phone support with dedicated agents.',
+              defaultValue: 'Upgrade to our Custom plan to get priority phone support with dedicated agents.',
             })}
           </Text>
           <Button
@@ -223,12 +224,12 @@ const PhoneSupportCard = ({ isLocked }) => {
       </Heading>
       <Text fontSize='sm' color='gray.500' mb={6}>
         {t('organization_settings.phone_support.description', {
-          defaultValue: 'Available for Unlimited plan subscribers only.',
+          defaultValue: 'Available for Custom plan subscribers only.',
         })}
       </Text>
 
       <Stack spacing={4} mb={6}>
-        <Flex p={4} borderRadius='md' bg='gray.100' align='flex-start'>
+        <Flex p={4} borderRadius='md' bg='dashboard.menu' align='flex-start'>
           <Box
             bg='gray.200'
             borderRadius='full'
@@ -261,7 +262,7 @@ const PhoneSupportCard = ({ isLocked }) => {
           </Box>
         </Flex>
 
-        <Flex p={4} borderRadius='md' bg='gray.100' align='flex-start'>
+        <Flex p={4} borderRadius='md' bg='dashboard.menu' align='flex-start'>
           <Box
             bg='gray.200'
             borderRadius='full'
@@ -282,10 +283,10 @@ const PhoneSupportCard = ({ isLocked }) => {
                 defaultValue: 'Your Organization ID',
               })}
             </Text>
-            <Text fontFamily='mono' color='gray.800'>
+            <Text fontFamily='mono' color='texts.subtle'>
               {maskValue(organization.address, isLocked)}
             </Text>
-            <Text fontSize='sm' color='gray.500'>
+            <Text fontSize='sm' color='texts.dark'>
               {t('organization_settings.phone_support.organization_id_description', {
                 defaultValue: 'Please provide this ID when contacting support',
               })}
@@ -296,7 +297,7 @@ const PhoneSupportCard = ({ isLocked }) => {
 
       <Flex align='center' mb={6}>
         <Icon as={LuInfo} boxSize={4} mr={2} />
-        <Text fontSize='sm' color='gray.600'>
+        <Text fontSize='sm' color='texts.dark'>
           {t('organization_settings.phone_support.info', {
             defaultValue: 'Please have your organization ID ready when calling.',
           })}

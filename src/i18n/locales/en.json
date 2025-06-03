@@ -966,9 +966,7 @@
   "logout": "Logout",
   "memberbase": "Memberbase",
   "membership_size": {
-    "language": "Default Language",
-    "selector_label": "Membership Size",
-    "timezone": "Timezone"
+    "selector_label": "Membership Size"
   },
   "menu": {
     "burger_aria_label": "user menu",
@@ -1042,10 +1040,10 @@
   },
   "organization_settings": {
     "phone_support": {
-      "description": "Available for Unlimited plan subscribers only.",
+      "description": "Available for Custom plan subscribers only.",
       "info": "Please have your organization ID ready when calling.",
-      "locked": "Phone Support is available with an Unlimited plan",
-      "locked_description": "Upgrade to our Unlimited plan to get priority phone support with dedicated agents.",
+      "locked": "Phone Support is available with a Custom plan",
+      "locked_description": "Upgrade to our Custom plan to get priority phone support with dedicated agents.",
       "organization_id": "Your Organization ID",
       "organization_id_description": "Please provide this ID when contacting support",
       "priority_support_line": "Priority Support Line",
