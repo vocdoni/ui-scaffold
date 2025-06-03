@@ -1,10 +1,26 @@
 import { Button, Flex, Heading, Progress, Text } from '@chakra-ui/react'
+import { useClient } from '@vocdoni/react-providers'
+import { ensure0x } from '@vocdoni/sdk'
 import { isBefore, isValid, parseISO } from 'date-fns'
 import { useTranslation } from 'react-i18next'
+import { useMutation } from 'wagmi'
+import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
+import { useAuth } from '~components/Auth/useAuth'
 import { DashboardBox } from '~components/Layout/Dashboard'
 import { SubscriptionPlans } from '~components/Pricing/Plans'
-import { usePortalSession } from '../Subscription'
+
+export const usePortalSession = () => {
+  const { bearedFetch } = useAuth()
+  const { account } = useClient()
+
+  return useMutation({
+    mutationFn: () =>
+      bearedFetch<{ portalURL: string }>(
+        ApiEndpoints.SubscriptionPortal.replace('{address}', ensure0x(account?.address))
+      ),
+  })
+}
 
 const SubscriptionPage = () => {
   const { t } = useTranslation()
