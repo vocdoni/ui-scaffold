@@ -16,10 +16,11 @@ import { useDropzone } from 'react-dropzone'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuFileSpreadsheet } from 'react-icons/lu'
-import Uploader from '~components/Layout/Uploader'
 import { CsvGenerator } from '~components/ProcessCreate/Census/Spreadsheet/generator'
 import { CsvPreview } from '~components/ProcessCreate/Census/Spreadsheet/Preview'
 import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/SpreadsheetManager'
+import Uploader from '~components/shared/Layout/Uploader'
+import { useMembersTable } from './MembersTableProvider'
 
 export const ParticipantsCsvManager = () => {
   const { t } = useTranslation()
@@ -30,6 +31,7 @@ export const ParticipantsCsvManager = () => {
     setError,
     formState: { errors },
   } = useFormContext()
+  const { columns } = useMembersTable()
   const manager: SpreadsheetManager | undefined = watch('spreadsheet')
 
   // File dropzone
@@ -56,48 +58,26 @@ export const ParticipantsCsvManager = () => {
     accept: SpreadsheetManager.AcceptedTypes.reduce((prev, curr) => ({ ...prev, [curr]: [] }), {}),
   })
   const upload = getRootProps()
-
-  const [columns, setColumns] = useState<string[]>(['firstname', 'lastname', 'email'])
-
-  const allColumns = [
-    {
-      label: t('form.participants.spreadsheet.template.firstname', { defaultValue: 'First Name' }),
-      value: 'firstname',
-    },
-    { label: t('form.participants.spreadsheet.template.lastname', { defaultValue: 'Last Name' }), value: 'lastname' },
-    { label: t('form.participants.spreadsheet.template.email', { defaultValue: 'Email' }), value: 'email' },
-    { label: t('form.participants.spreadsheet.template.phone', { defaultValue: 'Phone' }), value: 'phone' },
-    {
-      label: t('form.participants.spreadsheet.template.national_id', { defaultValue: 'National ID' }),
-      value: 'national_id',
-    },
-    {
-      label: t('form.participants.spreadsheet.template.member_id', { defaultValue: 'Member ID' }),
-      value: 'member_id',
-    },
-    {
-      label: t('form.participants.spreadsheet.template.birth_date', { defaultValue: 'Birth Date' }),
-      value: 'birth_date',
-    },
-  ]
-
-  const handleColumnChange = (value: string[]) => setColumns(value)
-
+  const [visibleColumns, setVisibleColumns] = useState<string[]>(['name', 'lastname', 'email'])
+  const handleColumnChange = (value: string[]) => setVisibleColumns(value)
   const template = useMemo(() => {
-    const header = allColumns.filter((col) => columns.includes(col.value)).map((col) => col.label)
-
+    const header = columns.filter((column) => visibleColumns.includes(column.id)).map((column) => column.label)
     return new CsvGenerator(header, [])
-  }, [columns])
+  }, [visibleColumns])
 
   return (
     <Flex flexDirection='column' gap={4}>
-      <Card variant='outline'>
+      <Card>
         <CardBody display='flex' flexDirection='column' gap={2}>
-          <Text>Select columns to include:</Text>
-          <CheckboxGroup value={columns} onChange={handleColumnChange}>
-            {allColumns.map((col) => (
-              <Checkbox key={col.value} value={col.value}>
-                {col.label}
+          <Text>
+            {t('form.participants.spreadsheet.download_template.included_columns', {
+              defaultValue: 'Select columns to include:',
+            })}
+          </Text>
+          <CheckboxGroup value={visibleColumns} onChange={handleColumnChange}>
+            {columns.map((column) => (
+              <Checkbox key={column.id} value={column.id}>
+                {column.label}
               </Checkbox>
             ))}
           </CheckboxGroup>
@@ -108,18 +88,20 @@ export const ParticipantsCsvManager = () => {
             type='button'
             variant='outline'
             leftIcon={<LuFileSpreadsheet />}
-            isDisabled={!columns.length}
+            isDisabled={!visibleColumns.length}
             w='100%'
-            {...(columns.length && {
+            {...(visibleColumns.length && {
               as: Link,
               href: template.url,
               download: 'memberbase-template.csv',
               type: 'button',
             })}
           >
-            {t('form.participants.spreadsheet.download_template_btn')}
+            {t('form.participants.spreadsheet.download_template_btn', {
+              defaultValue: 'Download Template',
+            })}
           </Button>
-          {!columns.length && (
+          {!visibleColumns.length && (
             <Text fontSize='sm' color='gray.500' mt={1}>
               {t('form.participants.spreadsheet.select_at_least_one_column', {
                 defaultValue: 'Select at least one column to download the template.',
