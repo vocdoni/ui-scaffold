@@ -1,10 +1,10 @@
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
-import Steps from '~components/ProcessCreate/Steps'
+import ProcessCreate from '~components/Process/Create'
 
-const ProcessCreate = () => (
+const ProcessCreatePage = () => (
   <PricingModalProvider>
-    <Steps />
+    <ProcessCreate />
   </PricingModalProvider>
 )
 
-export default ProcessCreate
+export default ProcessCreatePage

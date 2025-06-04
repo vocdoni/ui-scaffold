@@ -3,7 +3,7 @@ import { Button } from './button'
 import { Card } from './card'
 import { Checkbox, DetailedCheckbox } from './checkbox'
 import { Drawer } from './drawer'
-import { Form } from './form'
+import { Form, FormLabel } from './form'
 import { ElectionTitle, Heading } from './heading'
 import { Input } from './input'
 import { Link } from './link'
@@ -35,6 +35,7 @@ const components = {
   ElectionQuestions,
   ElectionResults,
   Form,
+  FormLabel,
   Heading,
   Input,
   Link,

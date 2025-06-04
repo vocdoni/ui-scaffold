@@ -21,6 +21,8 @@ export const DashboardContents = (props: BoxProps) => (
   <Flex flexDirection={'column'} maxW='1536px' w='full' mx='auto' p={6} {...props} />
 )
 
+export const DashboardSection = (props: BoxProps) => <Box bg='gray.50' p={4} borderRadius='sm' {...props} />
+
 export const Heading = forwardRef<HeadingProps, 'h2'>((props, ref) => (
   <CHeading size='sm' fontSize='2xl' fontWeight={600} display='flex' gap={2} alignItems='center' ref={ref} {...props} />
 ))
@@ -56,3 +58,10 @@ export const Sidebar = ({ show, ...props }: SidebarProps) => (
 )
 
 export const SidebarContents = (props: BoxProps) => <Box px={4} pb={4} {...props} />
+
+export const SidebarTitle = (props: HeadingProps) => (
+  <Heading as='h4' fontSize='lg' fontWeight='bold' variant='sidebar-title' {...props} />
+)
+export const SidebarSubtitle = (props: HeadingProps) => (
+  <Heading as='h5' fontSize='sm' variant='sidebar-subtitle' {...props} />
+)
