@@ -33,14 +33,15 @@ import {
 } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
-import { useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsis, LuEye, LuEyeOff, LuSearch, LuSettings, LuTrash2, LuUsers } from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { QueryKeys } from '~src/queries/keys'
+import { MemberManager } from '.'
+import { useMembersTable } from './MembersTableProvider'
 
-type Participant = {
+export type Participant = {
   [key: string]: string
 }
 
@@ -48,8 +49,7 @@ type OrganizationParticipantsResponse = {
   participants?: Participant[]
 }
 
-// Simula la query con fetch de participantes
-const useOrganizationParticipants = () => {
+export const useOrganizationParticipants = () => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
 
@@ -93,15 +93,20 @@ const MemberActions = ({ participant }) => {
   const { t } = useTranslation()
   const deleteMutation = useDeleteParticipants()
 
+  const handleDelete = () => {
+    deleteMutation.mutate([participant.id])
+  }
+
   return (
     <Menu placement='bottom-end'>
       <MenuButton as={IconButton} icon={<LuEllipsis />} variant='ghost' size='sm' />
       <MenuList minW='120px'>
-        <MenuItem onClick={() => console.log('Edit', participant)}>
-          {t('members_table.edit', { defaultValue: 'Edit' })}
-        </MenuItem>
+        <MemberManager
+          participant={participant}
+          control={<MenuItem>{t('members_table.edit', { defaultValue: 'Edit' })}</MenuItem>}
+        />
         <MenuDivider />
-        <MenuItem color='red.400' onClick={() => deleteMutation.mutate(participant.id)}>
+        <MenuItem color='red.400' onClick={handleDelete}>
           {t('members_table.delete', { defaultValue: 'Delete' })}
         </MenuItem>
       </MenuList>
@@ -109,9 +114,10 @@ const MemberActions = ({ participant }) => {
   )
 }
 
-const ColumnManager = ({ columns, setColumns }) => {
+const ColumnManager = () => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { columns, setColumns } = useMembersTable()
 
   return (
     <>
@@ -180,26 +186,26 @@ const MemberFilters = ({ globalFilter, setGlobalFilter }) => {
   )
 }
 
-const MemberBulkActions = ({ selectedIds }) => {
+const MemberBulkActions = ({ selectedParticipants }) => {
   const { t } = useTranslation()
   const deleteMutation = useDeleteParticipants()
 
   const createGroup = () => {
-    console.log('Creating group with IDs:', selectedIds)
+    console.log('Creating group with IDs:', selectedParticipants)
   }
 
   const handleBulkDelete = () => {
-    deleteMutation.mutate(selectedIds)
+    deleteMutation.mutate(selectedParticipants)
   }
 
   return (
     <Flex gap={4} align='center' minH='42px'>
-      {selectedIds.length > 0 ? (
+      {selectedParticipants.length > 0 ? (
         <>
           <Text fontSize='sm' color='text.subtle'>
             <Trans
               i18nKey='members_table.selected'
-              count={selectedIds.length}
+              count={selectedParticipants.length}
               components={{ strong: <Text as='span' fontSize='sm' fontWeight='extrabold' display='inline' /> }}
               defaults='Selected: <strong>{{count}} member</strong>'
             />
@@ -228,54 +234,39 @@ const MemberBulkActions = ({ selectedIds }) => {
   )
 }
 
-export const MembersTable = () => {
-  const { t } = useTranslation()
-  const { data = [], isLoading } = useOrganizationParticipants()
-  const [globalFilter, setGlobalFilter] = useState('')
-  const [selectedIds, setSelectedIds] = useState<string[]>([])
-  const [columns, setColumns] = useState([
-    { id: 'name', label: t('members_table.name', { defaultValue: 'First Name' }), visible: true },
-    { id: 'lastName', label: t('members_table.last_name', { defaultValue: 'Last Name' }), visible: true },
-    { id: 'email', label: t('members_table.email', { defaultValue: 'Email' }), visible: true },
-  ])
-
-  const filteredParticipants = useMemo(() => {
-    return data.filter((participant) =>
-      Object.values(participant).some((fieldValue) =>
-        String(fieldValue).toLowerCase().includes(globalFilter.toLowerCase())
-      )
-    )
-  }, [data, globalFilter])
-  const allVisibleSelected = filteredParticipants.every((p) => selectedIds.includes(p.id))
-
-  const toggleAll = (checked: boolean) => {
-    if (checked) {
-      const idsOnScreen = filteredParticipants.map((p) => p.id)
-      const unique = Array.from(new Set([...selectedIds, ...idsOnScreen]))
-      setSelectedIds(unique)
-    } else {
-      const idsOnScreen = filteredParticipants.map((p) => p.id)
-      setSelectedIds((prev) => prev.filter((id) => !idsOnScreen.includes(id)))
-    }
-  }
-  const toggleOne = (id: string, checked: boolean) => {
-    setSelectedIds((prev) => (checked ? [...prev, id] : prev.filter((selectedId) => selectedId !== id)))
-  }
+const MembersTable = () => {
+  const {
+    isLoading,
+    globalFilter,
+    setGlobalFilter,
+    selectedParticipants,
+    allVisibleSelected,
+    someSelected,
+    toggleOne,
+    toggleAll,
+    columns,
+    setColumns,
+    participants,
+  } = useMembersTable()
 
   if (isLoading) return <Progress isIndeterminate />
 
   return (
     <TableContainer border='1px' borderRadius='sm' borderColor='table.border'>
-      <Flex direction='column' p={4} gap={2}>
+      <Flex direction='column' px={4} pt={4} gap={2}>
         <MemberFilters globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
-        <MemberBulkActions selectedIds={selectedIds} />
+        <MemberBulkActions selectedParticipants={selectedParticipants} />
       </Flex>
 
       <Table>
         <Thead>
           <Tr>
             <Th width='50px'>
-              <Checkbox isChecked={allVisibleSelected} onChange={(e) => toggleAll(e.target.checked)} />
+              <Checkbox
+                isChecked={allVisibleSelected}
+                isIndeterminate={someSelected && !allVisibleSelected}
+                onChange={(e) => toggleAll(e.target.checked)}
+              />
             </Th>
             {columns
               .filter((column) => column.visible)
@@ -283,17 +274,17 @@ export const MembersTable = () => {
                 <Th key={column.id}>{column.label}</Th>
               ))}
             <Th width='50px'>
-              <ColumnManager columns={columns} setColumns={setColumns} />
+              <ColumnManager />
             </Th>
           </Tr>
         </Thead>
         <Tbody>
-          {filteredParticipants.map((participant) => (
+          {participants.map((participant) => (
             <Tr key={participant.id}>
               <Td>
                 <Checkbox
-                  isChecked={selectedIds.includes(participant.id)}
-                  onChange={(e) => toggleOne(participant.id, e.target.checked)}
+                  isChecked={selectedParticipants.some((selected) => selected.id === participant.id)}
+                  onChange={(e) => toggleOne(participant, e.target.checked)}
                 />
               </Td>
               {columns
@@ -319,3 +310,5 @@ export const MembersTable = () => {
     </TableContainer>
   )
 }
+
+export default MembersTable
