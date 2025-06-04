@@ -7,9 +7,9 @@ import editor from './editor'
 import radii from './radius'
 import semanticTokens from './semantic'
 
+import '@fontsource/inter/300.css'
+import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'
-import '@fontsource/inter/600.css'
-import '@fontsource/inter/700.css'
 import '@fontsource/inter/index.css'
 
 export const theme = extendTheme(vtheme, {
@@ -23,8 +23,9 @@ export const theme = extendTheme(vtheme, {
     mono: `'Menlo', monospace`,
   },
   fontWeights: {
-    bold: 500,
-    bolder: 600,
+    normal: 300,
+    bold: 400,
+    bolder: 500,
     extrabold: 700,
   },
   semanticTokens,
@@ -36,6 +37,9 @@ export const theme = extendTheme(vtheme, {
         '--box-shadow-dark-mode': '0 0 10px #101010',
         '--border': '1px solid rgb(228, 228, 231)',
         '--shadow-sm': '0 1px 2px 0 rgb(0 0 0/0.05)',
+      },
+      body: {
+        fontWeight: 'normal',
       },
 
       '.md-sizes': {

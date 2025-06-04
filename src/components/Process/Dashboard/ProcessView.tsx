@@ -96,7 +96,7 @@ export const ProcessView = () => {
         </HStack>
 
         <Box as='header'>
-          <ElectionTitle textAlign={'start'} fontWeight={'extrabold'} />
+          <ElectionTitle textAlign={'start'} fontWeight={'bold'} />
           <ElectionDescription color='gray.500' />
         </Box>
 

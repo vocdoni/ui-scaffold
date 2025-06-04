@@ -61,7 +61,7 @@ const AccountForm = ({ profile }: { profile: User }) => {
     <>
       {' '}
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Text size={'2xl'} fontWeight={'extrabold'} mb={1.5}>
+        <Text size={'2xl'} fontWeight='bold' mb={1.5}>
           {t('account.title', { defaultValue: 'Account Information' })}
         </Text>
         <Text size={'sm'} color={'rgb(115, 115, 115)'} mb={6}>

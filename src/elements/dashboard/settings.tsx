@@ -60,7 +60,7 @@ const Settings = () => {
 
   return (
     <DashboardContents>
-      <Heading size='md' fontWeight='extrabold'>
+      <Heading size='md'>
         {t('organization_settings.title', {
           defaultValue: '{{organization}} Settings',
           organization: organization.account.name.default,

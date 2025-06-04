@@ -60,7 +60,7 @@ export const DashboardMenuOptions = () => {
             {t('section.platform', { defaultValue: 'Platform' })}
           </Text>
         )}
-        <UnorderedList display={'flex'} flexDirection={'column'} gap={1} listStyleType={"''"} ml={'0'}>
+        <UnorderedList display={'flex'} flexDirection={'column'} listStyleType={"''"} ml={'0'}>
           {menuItemsPlatform.map((item, index) => (
             <ListItem key={index}>
               <DashboardMenuItemButton
@@ -78,7 +78,7 @@ export const DashboardMenuOptions = () => {
             {t('section.help', { defaultValue: 'Help' })}
           </Text>
 
-          <UnorderedList display={'flex'} flexDirection={'column'} gap={1} listStyleType={"''"} ml={0}>
+          <UnorderedList display={'flex'} flexDirection={'column'} listStyleType={"''"} ml={0}>
             {menuItemsHelp.map((item, index) => {
               return (
                 <ListItem key={index}>

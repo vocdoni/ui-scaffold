@@ -27,9 +27,7 @@ const RowsPerPageSelect = (props: SelectProps) => {
 
   return (
     <Box display='flex' alignItems='center' gap={2}>
-      <Text size='sm' fontWeight={500}>
-        {t('pagination.rows_per_page', 'Rows per page')}
-      </Text>
+      <Text size='sm'>{t('pagination.rows_per_page', 'Rows per page')}</Text>
       <Select
         value={value}
         onChange={(newValue) => {

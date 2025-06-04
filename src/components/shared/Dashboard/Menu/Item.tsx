@@ -27,12 +27,11 @@ export const DashboardMenuItemButton = forwardRef(
           if (isDisabled) e.preventDefault()
         }}
         variant='listmenu'
-        size='sm'
+        size='xs'
         colorScheme='gray'
         justifyContent='start'
         gap={4}
         p={2}
-        fontWeight={400}
         isDisabled={isDisabled}
         {...buttonProps}
       >
