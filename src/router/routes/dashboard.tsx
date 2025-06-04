@@ -3,9 +3,6 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
-import { Groups } from '~components/Members/Groups'
-import { MembersTable } from '~components/Members/MembersTable'
-import Members from '~elements/dashboard/members'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
 import { paginatedElectionsQuery } from '~src/queries/organization'
@@ -27,6 +24,9 @@ const OrganizationSupport = lazy(() => import('~components/Organization/Dashboar
 const OrganizationTeam = lazy(() => import('~components/Organization/Dashboard/Team'))
 const Profile = lazy(() => import('~elements/dashboard/profile'))
 const Settings = lazy(() => import('~elements/dashboard/settings'))
+const Members = lazy(() => import('~elements/dashboard/members'))
+const MembersTable = lazy(() => import('~components/Members/MembersTable'))
+const Groups = lazy(() => import('~components/Members/Groups'))
 
 // others
 const Dashboard = lazy(() => import('~elements/dashboard'))
@@ -116,6 +116,13 @@ export const useDashboardRoutes = () => {
                     <Members />
                   </SuspenseLoader>
                 ),
+                loader: async () => {
+                  const data = []
+                  // Preload the members table data
+
+                  return data
+                },
+                errorElement: <Error />,
                 children: [
                   {
                     index: true,
