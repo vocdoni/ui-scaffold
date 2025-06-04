@@ -40,21 +40,29 @@ const sizes = {
   lg: defineStyle({
     py: 7,
     px: 6,
+    h: '14',
+    minW: '14',
     fontSize: 'md',
   }),
   md: defineStyle({
     py: 6,
     px: 5,
+    h: '12',
+    minW: '12',
     fontSize: 'sm',
   }),
   sm: defineStyle({
     py: 5,
     px: 4,
+    h: '10',
+    minW: '10',
     fontSize: 'sm',
   }),
   xs: defineStyle({
     py: 4,
     px: 3,
+    h: '8',
+    minW: '8',
     fontSize: 'sm',
   }),
 }
