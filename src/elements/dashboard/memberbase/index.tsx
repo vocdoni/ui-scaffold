@@ -1,4 +1,4 @@
-import { MemberbaseTabs } from '~components/Members'
+import { MemberbaseTabs } from '~components/Memberbase'
 import { DashboardContents } from '~components/shared/Dashboard/Contents'
 
 const Memberbase = () => {
