@@ -58,7 +58,6 @@
   },
   "back": "Back",
   "billing_details": "Billing Details",
-  "blog": "Blog",
   "calculator": {
     "anonymous": "Anonymous",
     "buy_with_card": "Buy with Card",
@@ -392,6 +391,24 @@
       "min_users_address": "Please, provide at least one address",
       "password_min_length": "Min. 8 characters",
       "recipient_address_invalid": "Specified address does not seem to be valid"
+    },
+    "participants": {
+      "spreadsheet": {
+        "download_template": {
+          "included_columns": "Select columns to include:"
+        },
+        "download_template_btn": "Download Template",
+        "select_at_least_one_column": "Select at least one column to download the template.",
+        "template": {
+          "birth_date": "Birth Date",
+          "email": "Email",
+          "firstname": "First Name",
+          "lastname": "Last Name",
+          "member_id": "Member ID",
+          "national_id": "National ID",
+          "phone": "Phone"
+        }
+      }
     },
     "process_create": {
       "calendar": {
@@ -964,7 +981,70 @@
     "google": "Sign in with Google"
   },
   "logout": "Logout",
-  "memberbase": "Memberbase",
+  "memberbase": {
+    "add_member": {
+      "button": "Add Member",
+      "description": "Fill in the member details below.",
+      "title": "Add Member"
+    },
+    "download_template": {
+      "subtitle": "Download a CSV template with the required columns, then fill it with your member data for import.",
+      "title": "Download Import Template"
+    },
+    "edit_member": {
+      "description": "Edit the member details below.",
+      "title": "Edit Member"
+    },
+    "exporter": {
+      "button": "Export",
+      "cancel": "Cancel",
+      "columns": "Columns to Export",
+      "export_one": "Export {{count}} columns",
+      "export_other": "Export {{count}} columns",
+      "file_format": "File Format",
+      "subtitle_one": "Configure your export options. The export will include {{count}} members.",
+      "subtitle_other": "Configure your export options. The export will include {{count}} members.",
+      "title": "Export Members"
+    },
+    "form": {
+      "birthdate": "Birthdate",
+      "cancel": "Cancel",
+      "email": "Email",
+      "lastname": "Last Name",
+      "member_id": "Member ID",
+      "name": "First Name",
+      "national_id": "National ID",
+      "phone": "Phone",
+      "save": "Save Changes"
+    },
+    "groups": {
+      "title": "Groups"
+    },
+    "importer": {
+      "button": "Import",
+      "subtitle": "Download a template or import your own CSV, XLS, or XLSX file to add members.",
+      "title": "Import Members"
+    },
+    "members": {
+      "title": "Members"
+    },
+    "subtitle": "Manage your organization's members and create censuses",
+    "title": "Memberbase"
+  },
+  "members_table": {
+    "bulk_delete": "Delete",
+    "create_group": "Create a group",
+    "create_group_all": "Create a group with all members",
+    "delete": "Delete",
+    "edit": "Edit",
+    "manage_columns": "Manage Columns",
+    "manage_columns_description": "Customize which columns are displayed in the members table.",
+    "search": "Search members...",
+    "select_hint": "Select members to perform bulk actions",
+    "selected_one": "Selected: <strong>{{count}} member</strong>",
+    "selected_other": "Selected: <strong>{{count}} member</strong>",
+    "toggle_column": ""
+  },
   "membership_size": {
     "selector_label": "Membership Size"
   },
@@ -1367,7 +1447,6 @@
     "secret_until_end": "Awaiting results",
     "secret_until_end_tooltip": "Results are hidden and will only be available once voting ends"
   },
-  "rights": "© 2024 Vocdoni Association. All Rights Reserved.",
   "role": {
     "full_access": "(Full access)",
     "read_only": "(Read-only)",
@@ -1422,14 +1501,7 @@
   "start_time": "Start time",
   "subscribe": "Subscribe",
   "subscription": {
-    "change_plan_button": "Change",
-    "inactive_subscription_description": "Your subscription is currently inactive. Consider <2>contacting us</2> to reactivate it.",
-    "inactive_subscription_title": "Inactive Subscription",
-    "next_billing": "Next Billing",
-    "price": "Price",
-    "since": "Since",
-    "title": "Subscription Plan",
-    "your_subscription": "Your Subscription"
+    "title": "Subscription Plan"
   },
   "subscription_plan": {
     "subtitle": "Manage your subscription plan and billing cycle.",
@@ -1533,7 +1605,6 @@
     "title": "Terms and Conditions for Vocdoni Association"
   },
   "terms_and_conditions": "Terms and Conditions",
-  "terms_of_use": "Terms of Use",
   "testimonials": {
     "auth": {
       "position": "President",
