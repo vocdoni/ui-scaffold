@@ -2,7 +2,7 @@ import { Flex, Heading, Icon, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { LuUserPlus } from 'react-icons/lu'
 import { InviteToTeamModal } from '~components/Organization/Invite'
-import { TeamMembers } from '~components/Organization/Team'
+import { OrganizationUsers } from '~components/Organization/Team'
 import { DashboardBox } from '~shared/Dashboard/Contents'
 
 const OrganizationTeam = () => {
@@ -24,7 +24,7 @@ const OrganizationTeam = () => {
           {t('organization_settings.team.add_team_member', { defaultValue: 'Add team member' })}
         </InviteToTeamModal>
       </Flex>
-      <TeamMembers />
+      <OrganizationUsers />
     </DashboardBox>
   )
 }

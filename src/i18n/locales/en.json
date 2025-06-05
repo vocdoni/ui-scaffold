@@ -344,7 +344,6 @@
     "interruptible": "Interruptible",
     "live_results": "Live results",
     "live_streaming": "Live streaming",
-    "memberships": "Up to {{ count }} memberships",
     "multiple": "Multiple choice voting",
     "overwrite": "Vote overwrite",
     "personalization": "Personalization",
@@ -357,8 +356,9 @@
     "single": "Single choice voting",
     "sms_notification": "SMS notifications",
     "sub_orgs": "Up to {{ count }} sub-organizations",
-    "total_members": "Total available members",
     "total_orgs": "Total available sub-organizations",
+    "total_users": "Total available users",
+    "users": "Up to {{ count }} users",
     "weighted": "Weighted voting",
     "white_label": "White label"
   },
@@ -990,8 +990,8 @@
   "meta": {
     "helper": "Provide a clear title and description to help voters understand the vote"
   },
-  "more_than_memberships_one": "more than {{count}} membership",
-  "more_than_memberships_other": "more than {{count}} memberships",
+  "more_than_users_one": "more than {{ count }} users",
+  "more_than_users_other": "more than {{ count }} users",
   "name": "Name",
   "navbar": {
     "contact": "Contact Us",
@@ -1444,7 +1444,7 @@
       "cancel_invitation_error": "Error cancelling invitation",
       "cancel_invitation_success": "Invitation cancelled successfully",
       "change_role": "Change Role",
-      "remove_member": "Remove Member",
+      "remove_user": "Remove user",
       "resend_invitation": "Resend Invitation",
       "resend_invitation_error": "Error resending invitation",
       "resend_invitation_success": "Invitation resent to {{email}} successfully",
