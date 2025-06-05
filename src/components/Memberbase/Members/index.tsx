@@ -155,7 +155,7 @@ const MemberFilters = ({ globalFilter, setGlobalFilter }) => {
     <Flex gap={2}>
       <InputGroup maxW='300px'>
         <InputLeftElement pointerEvents='none'>
-          <Icon as={LuSearch} color='text.subtle' />
+          <Icon as={LuSearch} color='texts.subtle' />
         </InputLeftElement>
         <Input
           placeholder={t('members_table.search', { defaultValue: 'Search members...' })}
@@ -188,7 +188,7 @@ const MemberBulkActions = ({ selectedParticipants }) => {
     <Flex gap={4} align='center' minH='42px'>
       {selectedParticipants.length > 0 ? (
         <>
-          <Text fontSize='sm' color='text.subtle'>
+          <Text fontSize='sm' color='texts.subtle'>
             <Trans
               i18nKey='members_table.selected'
               count={selectedParticipants.length}
@@ -212,7 +212,7 @@ const MemberBulkActions = ({ selectedParticipants }) => {
           </Button>
         </>
       ) : (
-        <Text fontSize='sm' color='text.subtle'>
+        <Text fontSize='sm' color='texts.subtle'>
           <Trans i18nKey='members_table.select_hint' defaults='Select members to perform bulk actions' />
         </Text>
       )}

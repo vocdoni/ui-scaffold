@@ -24,7 +24,7 @@ export const MemberbaseTabs = () => {
               defaultValue: 'Memberbase',
             })}
           </Heading>
-          <Text mb={4} color='text.subtle'>
+          <Text mb={4} color='texts.subtle'>
             {t('memberbase.subtitle', {
               defaultValue: "Manage your organization's members and create censuses",
             })}
