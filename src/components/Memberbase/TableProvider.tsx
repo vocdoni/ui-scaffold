@@ -2,34 +2,42 @@ import { createContext, useContext, useMemo, useState } from 'react'
 
 const TableContext = createContext(undefined)
 
-export function TableProvider({ data = [], isLoading = false, columns: initialColumns, children }) {
-  const [globalFilter, setGlobalFilter] = useState('')
+export function TableProvider({ data = [], isLoading = false, initialColumns, children }) {
+  const [search, setSearch] = useState('')
   const [selectedRows, setSelectedRows] = useState([])
   const [columns, setColumns] = useState(initialColumns)
 
   const filteredData = useMemo(() => {
-    const lowerFilter = globalFilter.toLowerCase()
+    const lowerFilter = search.toLowerCase()
     return data.filter((item) => Object.values(item).some((value) => String(value).toLowerCase().includes(lowerFilter)))
-  }, [data, globalFilter])
+  }, [data, search])
 
-  const allVisibleSelected = filteredData.every((item) => selectedRows.some((selected) => selected.id === item.id))
-  const someSelected = filteredData.some((item) => selectedRows.some((selected) => selected.id === item.id))
+  const allVisibleSelected = filteredData.every((item) =>
+    selectedRows.some((selected) => selected === item.participantNo)
+  )
+  const someSelected = filteredData.some((item) => selectedRows.some((selected) => selected === item.participantNo))
 
   const toggleAll = (checked: boolean) => {
     if (checked) {
       const unique = [
         ...selectedRows,
-        ...filteredData.filter((item) => !selectedRows.some((selected) => selected.id === item.id)),
+        ...filteredData
+          .filter((item) => !selectedRows.some((selectedId) => selectedId === item.participantNo))
+          .map((item) => item.participantNo),
       ]
       setSelectedRows(unique)
     } else {
-      const filteredIds = filteredData.map((item) => item.id)
-      setSelectedRows((prev) => prev.filter((p) => !filteredIds.includes(p.id)))
+      const filteredIds = filteredData.map((item) => item.participantNo)
+      setSelectedRows((prev) => prev.filter((p) => !filteredIds.includes(p)))
     }
   }
 
-  const toggleOne = (item, checked: boolean) => {
-    setSelectedRows((prev) => (checked ? [...prev, item] : prev.filter((p) => p.id !== item.id)))
+  const toggleOne = (id, checked: boolean) => {
+    setSelectedRows((prev) => (checked ? [...prev, id] : prev.filter((p) => p !== id)))
+  }
+
+  const isSelected = (id) => {
+    return selectedRows.some((selected) => selected === id)
   }
 
   return (
@@ -38,12 +46,13 @@ export function TableProvider({ data = [], isLoading = false, columns: initialCo
         data,
         filteredData,
         isLoading,
-        globalFilter,
-        setGlobalFilter,
+        search,
+        setSearch,
         selectedRows,
         setSelectedRows,
         allVisibleSelected,
         someSelected,
+        isSelected,
         toggleAll,
         toggleOne,
         columns,
