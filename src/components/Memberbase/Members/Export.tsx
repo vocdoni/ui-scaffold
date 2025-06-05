@@ -128,23 +128,25 @@ export const ExportMembers = () => {
                         name='exportedColumns'
                         control={methods.control}
                         render={({ field }) =>
-                          columns.map((col) => (
-                            <Checkbox
-                              key={col.id}
-                              value={col.id}
-                              isChecked={field.value.includes(col.id)}
-                              onChange={(e) => {
-                                const isChecked = e.target.checked
-                                const value = col.id
-                                field.onChange(
-                                  isChecked ? [...field.value, value] : field.value.filter((v) => v !== value)
-                                )
-                              }}
-                              colorScheme='blue'
-                            >
-                              {col.label}
-                            </Checkbox>
-                          ))
+                          columns
+                            .filter((col) => col.visible)
+                            .map((col) => (
+                              <Checkbox
+                                key={col.id}
+                                value={col.id}
+                                isChecked={field.value.includes(col.id)}
+                                onChange={(e) => {
+                                  const isChecked = e.target.checked
+                                  const value = col.id
+                                  field.onChange(
+                                    isChecked ? [...field.value, value] : field.value.filter((v) => v !== value)
+                                  )
+                                }}
+                                colorScheme='black'
+                              >
+                                {col.label}
+                              </Checkbox>
+                            ))
                         }
                       />
                     </Stack>
