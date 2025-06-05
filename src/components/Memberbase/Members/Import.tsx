@@ -38,7 +38,7 @@ export const ImportMembers = () => {
 
   return (
     <>
-      <Button ref={btnRef} leftIcon={<Icon as={LuUpload} />} onClick={onOpen}>
+      <Button ref={btnRef} leftIcon={<Icon as={LuUpload} />} variant='outline' onClick={onOpen}>
         {t('memberbase.importer.button', { defaultValue: 'Import' })}
       </Button>
       <Drawer isOpen={isOpen} placement='right' onClose={onClose} finalFocusRef={btnRef} size='md'>
@@ -57,7 +57,7 @@ export const ImportMembers = () => {
             <Heading size='md' fontWeight='extrabold'>
               {t('memberbase.importer.title', { defaultValue: 'Import Members' })}
             </Heading>
-            <Text color='text.subtle' size='sm'>
+            <Text color='texts.subtle' size='sm'>
               {t('memberbase.importer.subtitle', {
                 defaultValue: 'Download a template or import your own CSV, XLS, or XLSX file to add members.',
               })}
@@ -68,7 +68,7 @@ export const ImportMembers = () => {
             <Heading size='md' fontWeight='extrabold'>
               {t('memberbase.download_template.title', { defaultValue: 'Download Import Template' })}
             </Heading>
-            <Text color='text.subtle' size='sm'>
+            <Text color='texts.subtle' size='sm'>
               {t('memberbase.download_template.subtitle', {
                 defaultValue:
                   'Download a CSV template with the required columns, then fill it with your member data for import.',

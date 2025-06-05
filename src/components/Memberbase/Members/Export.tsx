@@ -70,7 +70,7 @@ export const ExportMembers = () => {
 
   return (
     <>
-      <Button leftIcon={<Icon as={LuFileDown} />} onClick={onOpen}>
+      <Button leftIcon={<Icon as={LuFileDown} />} variant='outline' onClick={onOpen}>
         {t('memberbase.exporter.button', { defaultValue: 'Export' })}
       </Button>
 
@@ -81,7 +81,7 @@ export const ExportMembers = () => {
             <Heading size='md' fontWeight='extrabold'>
               {t('memberbase.exporter.title', { defaultValue: 'Export Members' })}
             </Heading>
-            <Text color='text.subtle' fontSize='sm'>
+            <Text color='texts.subtle' fontSize='sm'>
               {t('memberbase.exporter.subtitle', {
                 defaultValue: 'Configure your export options. The export will include {{count}} members.',
                 count: selectedRows.length,
