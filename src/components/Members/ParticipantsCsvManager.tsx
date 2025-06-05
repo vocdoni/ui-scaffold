@@ -20,7 +20,7 @@ import { CsvGenerator } from '~components/ProcessCreate/Census/Spreadsheet/gener
 import { CsvPreview } from '~components/ProcessCreate/Census/Spreadsheet/Preview'
 import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/SpreadsheetManager'
 import Uploader from '~components/shared/Layout/Uploader'
-import { useMembersTable } from './MembersTableProvider'
+import { useTable } from './TableProvider'
 
 export const ParticipantsCsvManager = () => {
   const { t } = useTranslation()
@@ -31,7 +31,7 @@ export const ParticipantsCsvManager = () => {
     setError,
     formState: { errors },
   } = useFormContext()
-  const { columns } = useMembersTable()
+  const { columns } = useTable()
   const manager: SpreadsheetManager | undefined = watch('spreadsheet')
 
   // File dropzone
