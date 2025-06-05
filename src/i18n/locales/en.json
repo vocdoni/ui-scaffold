@@ -985,7 +985,22 @@
     "add_member": {
       "button": "Add Member",
       "description": "Fill in the member details below.",
+      "error": "Error adding member.",
+      "success": "Member added successfully!",
       "title": "Add Member"
+    },
+    "delate_member": {
+      "subtitle_one": "Are you sure you want to delete {{count}} member? This action cannot be undone.",
+      "subtitle_other": "Are you sure you want to delete {{count}} members? This action cannot be undone."
+    },
+    "delete_member": {
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "error_one": "Error deleting member",
+      "error_other": "Error deleting members",
+      "success_one": "Member deleted successfully",
+      "success_other": "Members deleted successfully",
+      "title": "Delete Members"
     },
     "download_template": {
       "subtitle": "Download a CSV template with the required columns, then fill it with your member data for import.",
@@ -993,6 +1008,8 @@
     },
     "edit_member": {
       "description": "Edit the member details below.",
+      "error": "Error updating member.",
+      "success": "Member updated successfully!",
       "title": "Edit Member"
     },
     "exporter": {
@@ -1007,14 +1024,7 @@
       "title": "Export Members"
     },
     "form": {
-      "birthdate": "Birthdate",
       "cancel": "Cancel",
-      "email": "Email",
-      "lastname": "Last Name",
-      "member_id": "Member ID",
-      "name": "First Name",
-      "national_id": "National ID",
-      "phone": "Phone",
       "save": "Save Changes"
     },
     "groups": {
@@ -1039,6 +1049,8 @@
     "edit": "Edit",
     "manage_columns": "Manage Columns",
     "manage_columns_description": "Customize which columns are displayed in the members table.",
+    "no_filter_results": "No members matching these attributes",
+    "no_results": "No members found",
     "search": "Search members...",
     "select_hint": "Select members to perform bulk actions",
     "selected_one": "Selected: <strong>{{count}} member</strong>",
