@@ -1,4 +1,4 @@
-export const Groups = () => {
+export const GroupsBoard = () => {
   return (
     <div>
       <h1>Groups</h1>
@@ -7,4 +7,4 @@ export const Groups = () => {
   )
 }
 
-export default Groups
+export default GroupsBoard
