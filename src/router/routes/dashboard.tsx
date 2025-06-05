@@ -2,7 +2,7 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
-import { LoaderFunctionArgs, Navigate, Params, redirect } from 'react-router-dom'
+import { LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import Error from '~elements/Error'
@@ -120,11 +120,11 @@ export const useDashboardRoutes = () => {
                     <Memberbase />
                   </SuspenseLoader>
                 ),
-                // errorElement: <Error />,
+                errorElement: <Error />,
                 children: [
                   {
                     index: true,
-                    loader: () => redirect(Routes.dashboard.memberbase.members),
+                    element: <Navigate to={Routes.dashboard.memberbase.members} replace />,
                   },
                   {
                     path: Routes.dashboard.memberbase.members,
@@ -137,7 +137,7 @@ export const useDashboardRoutes = () => {
                       if (!account?.address) {
                         return {
                           participants: [],
-                          pagination: { page: 1, perPage: 50, total: 0 },
+                          pagination: { page: 1, perPage: 10, total: 0 },
                         }
                       }
 
