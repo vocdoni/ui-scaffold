@@ -10,11 +10,12 @@ import { CreateSidebar } from './Sidebar'
 export type Process = {
   title: string
   description: string
+  autoStart: boolean
   startDate: string
   startTime: string
   endDate: string
   endTime: string
-  questionType: 'single' | 'multiple' | 'ranked' | 'weighted'
+  questionType: 'single' | 'multiple'
   questions: {
     title: string
     description: string
@@ -22,6 +23,7 @@ export type Process = {
   }[]
   resultVisibility: 'live' | 'hidden'
   voterPrivacy: 'anonymous' | 'public'
+  voteOverwrite: boolean
   maxVoteOverwrites: number
   census: string
 }
@@ -33,6 +35,7 @@ export const ProcessCreate = () => {
     defaultValues: {
       title: '',
       description: '',
+      autoStart: true,
       startDate: '',
       startTime: '',
       endDate: '',
@@ -41,6 +44,7 @@ export const ProcessCreate = () => {
       questions: [{ options: [{ text: '' }, { text: '' }] }],
       resultVisibility: 'live',
       voterPrivacy: 'anonymous',
+      voteOverwrite: false,
       maxVoteOverwrites: 0,
       census: '',
     },

@@ -387,7 +387,6 @@
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "email_invalid": "Invalid email address",
       "field_is_required": "This field is required",
-      "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.",
       "min_address": "Please, provide at least one address",
       "min_users_address": "Please, provide at least one address",
       "password_min_length": "Min. 8 characters",

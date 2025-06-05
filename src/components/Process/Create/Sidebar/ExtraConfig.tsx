@@ -11,9 +11,10 @@ import {
 import { Select } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { useValidations } from '~utils/validation'
 
-interface SelectOption {
-  value: string
+type SelectOption<T = string> = {
+  value: T
   label: string
 }
 
@@ -25,8 +26,10 @@ export const ExtraConfig = () => {
     watch,
     setValue,
   } = useFormContext()
+  const { required, requiredBoolean } = useValidations()
 
   const maxVoteOverwrites = watch('maxVoteOverwrites')
+  const voteOverwrite = watch('voteOverwrite')
 
   const resultVisibilityOptions: SelectOption[] = [
     { value: 'live', label: t('process_create.result_visibility.live', 'Live results') },
@@ -38,9 +41,9 @@ export const ExtraConfig = () => {
     { value: 'public', label: t('process_create.voter_privacy.public', 'Public') },
   ]
 
-  const voteOverwriteOptions: SelectOption[] = [
-    { value: 'single', label: t('process_create.vote_overwrite.single', 'Allow only one vote') },
-    { value: 'multiple', label: t('process_create.vote_overwrite.multiple', 'Allow vote changes') },
+  const voteOverwriteOptions: SelectOption<boolean>[] = [
+    { value: false, label: t('process_create.vote_overwrite.single', 'Allow only one vote') },
+    { value: true, label: t('process_create.vote_overwrite.multiple', 'Allow vote changes') },
   ]
 
   return (
@@ -54,11 +57,11 @@ export const ExtraConfig = () => {
           <Controller
             control={control}
             name='resultVisibility'
-            rules={{ required: t('form.error.field_is_required', 'This field is required') }}
+            rules={{ required }}
             render={({ field }) => (
               <Select
                 value={resultVisibilityOptions.find((opt) => opt.value === field.value)}
-                onChange={(opt) => field.onChange(opt?.value)}
+                onChange={(opt) => field.onChange(opt.value)}
                 options={resultVisibilityOptions}
                 placeholder={t('process_create.result_visibility.live', 'Live results')}
               />
@@ -77,11 +80,11 @@ export const ExtraConfig = () => {
           <Controller
             control={control}
             name='voterPrivacy'
-            rules={{ required: t('form.error.field_is_required', 'This field is required') }}
+            rules={{ required }}
             render={({ field }) => (
               <Select
                 value={voterPrivacyOptions.find((opt) => opt.value === field.value)}
-                onChange={(opt) => field.onChange(opt?.value)}
+                onChange={(opt) => field.onChange(opt.value)}
                 options={voterPrivacyOptions}
                 placeholder={t('process_create.voter_privacy.anonymous', 'Anonymous')}
               />
@@ -100,15 +103,15 @@ export const ExtraConfig = () => {
           <Controller
             control={control}
             name='voteOverwrite'
-            rules={{ required: t('form.error.field_is_required', 'This field is required') }}
+            rules={{ validate: requiredBoolean }}
             render={({ field }) => (
               <Select
                 value={voteOverwriteOptions.find((opt) =>
-                  maxVoteOverwrites > 0 ? opt.value === 'multiple' : opt.value === 'single'
+                  (voteOverwrite ?? maxVoteOverwrites > 0) ? opt.value : !opt.value
                 )}
                 onChange={(opt) => {
-                  field.onChange(opt?.value || 'single')
-                  setValue('maxVoteOverwrites', opt?.value === 'single' ? 0 : 1)
+                  field.onChange(opt.value)
+                  setValue('maxVoteOverwrites', Number(opt.value))
                 }}
                 options={voteOverwriteOptions}
               />
@@ -122,7 +125,7 @@ export const ExtraConfig = () => {
               control={control}
               name='maxVoteOverwrites'
               rules={{
-                required: t('form.error.field_is_required', 'This field is required'),
+                required,
                 min: { value: 1, message: t('form.error.min_value', 'Minimum value is 1') },
               }}
               render={({ field }) => (
@@ -147,7 +150,7 @@ export const ExtraConfig = () => {
           <Controller
             control={control}
             name='census'
-            rules={{ required: t('form.error.field_is_required', 'This field is required') }}
+            rules={{ required }}
             render={({ field }) => (
               <Select
                 {...field}

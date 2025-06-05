@@ -390,7 +390,6 @@
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
       "email_invalid": "Invalid email address",
       "field_is_required": "Aquest camp és obligatori",
-      "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.",
       "min_address": "Si us plau, proporciona com a mínim una adreça",
       "min_users_address": "Si us plau, proporciona com a mínim una adreça",
       "password_min_length": "Min. 8 characters",
