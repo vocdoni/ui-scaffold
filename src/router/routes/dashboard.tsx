@@ -1,10 +1,13 @@
 // These aren't lazy loaded since they are main layouts and related components
 import { useQueryClient } from '@tanstack/react-query'
-import { useClient } from '@vocdoni/react-providers'
+import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
-import { LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
+import { LoaderFunctionArgs, Navigate, Params, redirect } from 'react-router-dom'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useAuth } from '~components/Auth/useAuth'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
+import { QueryKeys } from '~src/queries/keys'
 import { paginatedElectionsQuery } from '~src/queries/organization'
 import OrganizationProtectedRoute from '~src/router/OrganizationProtectedRoute'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
@@ -24,9 +27,9 @@ const OrganizationSupport = lazy(() => import('~components/Organization/Dashboar
 const OrganizationTeam = lazy(() => import('~components/Organization/Dashboard/Team'))
 const Profile = lazy(() => import('~elements/dashboard/profile'))
 const Settings = lazy(() => import('~elements/dashboard/settings'))
-const Members = lazy(() => import('~elements/dashboard/members'))
-const MembersTable = lazy(() => import('~components/Members/MembersTable'))
-const Groups = lazy(() => import('~components/Members/Groups'))
+const Memberbase = lazy(() => import('~elements/dashboard/memberbase'))
+const Members = lazy(() => import('~elements/dashboard/memberbase/members'))
+const Groups = lazy(() => import('~elements/dashboard/memberbase/groups'))
 
 // others
 const Dashboard = lazy(() => import('~elements/dashboard'))
@@ -34,6 +37,7 @@ const Dashboard = lazy(() => import('~elements/dashboard'))
 export const useDashboardRoutes = () => {
   const queryClient = useQueryClient()
   const { client, account } = useClient()
+  const { bearedFetch } = useAuth()
 
   return {
     element: (
@@ -113,28 +117,43 @@ export const useDashboardRoutes = () => {
                 path: Routes.dashboard.memberbase.base,
                 element: (
                   <SuspenseLoader>
-                    <Members />
+                    <Memberbase />
                   </SuspenseLoader>
                 ),
-                loader: async () => {
-                  const data = []
-                  // Preload the members table data
-
-                  return data
-                },
-                errorElement: <Error />,
+                // errorElement: <Error />,
                 children: [
                   {
                     index: true,
-                    element: <Navigate to={Routes.dashboard.memberbase.members} replace />,
+                    loader: () => redirect(Routes.dashboard.memberbase.members),
                   },
                   {
                     path: Routes.dashboard.memberbase.members,
                     element: (
                       <SuspenseLoader>
-                        <MembersTable />
+                        <Members />
                       </SuspenseLoader>
                     ),
+                    loader: async () => {
+                      if (!account?.address) {
+                        return {
+                          participants: [],
+                          pagination: { page: 1, perPage: 50, total: 0 },
+                        }
+                      }
+
+                      return queryClient.fetchQuery({
+                        queryKey: QueryKeys.organization.participants(account?.address),
+                        queryFn: async () => {
+                          const response = await bearedFetch(
+                            ApiEndpoints.OrganizationParticipants.replace(
+                              '{address}',
+                              enforceHexPrefix(account?.address)
+                            )
+                          )
+                          return response
+                        },
+                      })
+                    },
                   },
                   {
                     path: Routes.dashboard.memberbase.groups,
