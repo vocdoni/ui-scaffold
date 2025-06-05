@@ -18,7 +18,7 @@ export enum SubscriptionPermission {
   Name = 'name',
   StripeID = 'stripeID',
   Default = 'default',
-  Members = 'organization.members',
+  Users = 'organization.users',
   SubOrgs = 'organization.subOrgs',
   MaxCensus = 'organization.maxCensus',
   MaxProcesses = 'organization.maxProcesses',
