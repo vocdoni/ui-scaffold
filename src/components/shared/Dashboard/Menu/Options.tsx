@@ -24,7 +24,7 @@ export const DashboardMenuOptions = () => {
       route: Routes.dashboard.processes,
     },
     {
-      label: t('memberbase'),
+      label: t('memberbase.title', { defaultValue: 'Memberbase' }),
       icon: LuUsers,
       route: Routes.dashboard.memberbase.base,
     },

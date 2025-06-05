@@ -61,7 +61,6 @@
   },
   "back": "Enrere",
   "billing_details": "Billing Details",
-  "blog": "Blog",
   "calculator": {
     "anonymous": "Anònim",
     "buy_with_card": "Compra amb targeta",
@@ -395,6 +394,24 @@
       "min_users_address": "Si us plau, proporciona com a mínim una adreça",
       "password_min_length": "Min. 8 characters",
       "recipient_address_invalid": "L'adreça especificada no sembla vàlida"
+    },
+    "participants": {
+      "spreadsheet": {
+        "download_template": {
+          "included_columns": "Select columns to include:"
+        },
+        "download_template_btn": "Download Template",
+        "select_at_least_one_column": "Select at least one column to download the template.",
+        "template": {
+          "birth_date": "Birth Date",
+          "email": "Email",
+          "firstname": "First Name",
+          "lastname": "Last Name",
+          "member_id": "Member ID",
+          "national_id": "National ID",
+          "phone": "Phone"
+        }
+      }
     },
     "process_create": {
       "calendar": {
@@ -971,7 +988,73 @@
     "google": "Inicia sessió amb Google"
   },
   "logout": "Tanca la sessió",
-  "memberbase": "Base de membres",
+  "memberbase": {
+    "add_member": {
+      "button": "Add Member",
+      "description": "Fill in the member details below.",
+      "title": "Add Member"
+    },
+    "download_template": {
+      "subtitle": "Download a CSV template with the required columns, then fill it with your member data for import.",
+      "title": "Download Import Template"
+    },
+    "edit_member": {
+      "description": "Edit the member details below.",
+      "title": "Edit Member"
+    },
+    "exporter": {
+      "button": "Export",
+      "cancel": "Cancel",
+      "columns": "Columns to Export",
+      "export_one": "Export {{count}} columns",
+      "export_many": "Export {{count}} columns",
+      "export_other": "Export {{count}} columns",
+      "file_format": "File Format",
+      "subtitle_one": "Configure your export options. The export will include {{count}} members.",
+      "subtitle_many": "Configure your export options. The export will include {{count}} members.",
+      "subtitle_other": "Configure your export options. The export will include {{count}} members.",
+      "title": "Export Members"
+    },
+    "form": {
+      "birthdate": "Birthdate",
+      "cancel": "Cancel",
+      "email": "Email",
+      "lastname": "Last Name",
+      "member_id": "Member ID",
+      "name": "First Name",
+      "national_id": "National ID",
+      "phone": "Phone",
+      "save": "Save Changes"
+    },
+    "groups": {
+      "title": "Groups"
+    },
+    "importer": {
+      "button": "Import",
+      "subtitle": "Download a template or import your own CSV, XLS, or XLSX file to add members.",
+      "title": "Import Members"
+    },
+    "members": {
+      "title": "Members"
+    },
+    "subtitle": "Manage your organization's members and create censuses",
+    "title": "Memberbase"
+  },
+  "members_table": {
+    "bulk_delete": "Delete",
+    "create_group": "Create a group",
+    "create_group_all": "Create a group with all members",
+    "delete": "Delete",
+    "edit": "Edit",
+    "manage_columns": "Manage Columns",
+    "manage_columns_description": "Customize which columns are displayed in the members table.",
+    "search": "Search members...",
+    "select_hint": "Select members to perform bulk actions",
+    "selected_one": "Selected: <strong>{{count}} member</strong>",
+    "selected_many": "Selected: <strong>{{count}} member</strong>",
+    "selected_other": "Selected: <strong>{{count}} member</strong>",
+    "toggle_column": ""
+  },
   "membership_size": {
     "selector_label": "Membership size"
   },
@@ -1378,7 +1461,6 @@
     "secret_until_end": "Awaiting results",
     "secret_until_end_tooltip": "Results are hidden and will only be available once voting ends"
   },
-  "rights": "© 2024 Associació Vocdoni. Tots els drets reservats.",
   "role": {
     "full_access": "(Full access)",
     "read_only": "(Read-only)",
@@ -1433,14 +1515,7 @@
   "start_time": "Start time",
   "subscribe": "Subscribe",
   "subscription": {
-    "change_plan_button": "Change",
-    "inactive_subscription_description": "La teva suscripció és inactiva actualment. Considera <2>contactar-nos</2> per a reactivar-la.",
-    "inactive_subscription_title": "Inactive Subscription",
-    "next_billing": "Next Billing",
-    "price": "Price",
-    "since": "Since",
-    "title": "Subscription",
-    "your_subscription": "Your Subscription"
+    "title": "Subscription"
   },
   "subscription_plan": {
     "subtitle": "Manage your subscription plan and billing cycle.",
@@ -1544,7 +1619,6 @@
     "title": "Termes i Condicions de l'Associació Vocdoni"
   },
   "terms_and_conditions": "Terms and Conditions",
-  "terms_of_use": "Condicions d'ús",
   "testimonials": {
     "auth": {
       "position": "President",

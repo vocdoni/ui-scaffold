@@ -10,8 +10,8 @@ export const MemberbaseTabs = () => {
   const location = useLocation()
 
   const menuItems = [
-    { label: t('memberbase.members', { defaultValue: 'Members' }), route: Routes.dashboard.memberbase.members },
-    { label: t('memberbase.groups', { defaultValue: 'Groups' }), route: Routes.dashboard.memberbase.groups },
+    { label: t('memberbase.members.title', { defaultValue: 'Members' }), route: Routes.dashboard.memberbase.members },
+    { label: t('memberbase.groups.title', { defaultValue: 'Groups' }), route: Routes.dashboard.memberbase.groups },
   ]
   const currentTabIndex = menuItems.findIndex((item) => location.pathname.endsWith(item.route))
 
