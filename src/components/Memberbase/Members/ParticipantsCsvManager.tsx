@@ -20,7 +20,7 @@ import { CsvGenerator } from '~components/ProcessCreate/Census/Spreadsheet/gener
 import { CsvPreview } from '~components/ProcessCreate/Census/Spreadsheet/Preview'
 import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/SpreadsheetManager'
 import Uploader from '~components/shared/Layout/Uploader'
-import { useTable } from './TableProvider'
+import { useTable } from '../TableProvider'
 
 export const ParticipantsCsvManager = () => {
   const { t } = useTranslation()

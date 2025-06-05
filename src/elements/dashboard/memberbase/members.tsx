@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLoaderData, useOutletContext } from 'react-router-dom'
-import MembersTable, { Participant } from '~components/Memberbase/MembersTable'
+import MembersTable, { Participant } from '~components/Memberbase/Members'
 import { TableProvider } from '~components/Memberbase/TableProvider'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
