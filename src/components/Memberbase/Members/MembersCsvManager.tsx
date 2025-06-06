@@ -22,7 +22,7 @@ import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet
 import Uploader from '~components/shared/Layout/Uploader'
 import { useTable } from '../TableProvider'
 
-export const ParticipantsCsvManager = () => {
+export const MembersCsvManager = () => {
   const { t } = useTranslation()
   const {
     register,
@@ -70,7 +70,7 @@ export const ParticipantsCsvManager = () => {
       <Card>
         <CardBody display='flex' flexDirection='column' gap={2}>
           <Text>
-            {t('form.participants.spreadsheet.download_template.included_columns', {
+            {t('form.members.spreadsheet.download_template.included_columns', {
               defaultValue: 'Select columns to include:',
             })}
           </Text>
@@ -97,13 +97,13 @@ export const ParticipantsCsvManager = () => {
               type: 'button',
             })}
           >
-            {t('form.participants.spreadsheet.download_template_btn', {
+            {t('form.members.spreadsheet.download_template_btn', {
               defaultValue: 'Download Template',
             })}
           </Button>
           {!visibleColumns.length && (
             <Text fontSize='sm' color='gray.500' mt={1}>
-              {t('form.participants.spreadsheet.select_at_least_one_column', {
+              {t('form.members.spreadsheet.select_at_least_one_column', {
                 defaultValue: 'Select at least one column to download the template.',
               })}
             </Text>

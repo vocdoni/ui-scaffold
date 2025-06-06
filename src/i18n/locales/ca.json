@@ -395,7 +395,7 @@
       "password_min_length": "Min. 8 characters",
       "recipient_address_invalid": "L'adreça especificada no sembla vàlida"
     },
-    "participants": {
+    "members": {
       "spreadsheet": {
         "download_template": {
           "included_columns": "Select columns to include:"

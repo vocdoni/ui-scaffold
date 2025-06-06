@@ -120,7 +120,7 @@ export const useDashboardRoutes = () => {
                     <Memberbase />
                   </SuspenseLoader>
                 ),
-                errorElement: <Error />,
+                // errorElement: <Error />,
                 children: [
                   {
                     index: true,
@@ -136,19 +136,16 @@ export const useDashboardRoutes = () => {
                     loader: async () => {
                       if (!account?.address) {
                         return {
-                          participants: [],
+                          members: [],
                           pagination: { page: 1, perPage: 10, total: 0 },
                         }
                       }
 
                       return queryClient.fetchQuery({
-                        queryKey: QueryKeys.organization.participants(account?.address),
+                        queryKey: QueryKeys.organization.members(account?.address),
                         queryFn: async () => {
                           const response = await bearedFetch(
-                            ApiEndpoints.OrganizationParticipants.replace(
-                              '{address}',
-                              enforceHexPrefix(account?.address)
-                            )
+                            ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(account?.address))
                           )
                           return response
                         },

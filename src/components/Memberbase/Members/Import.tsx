@@ -17,7 +17,7 @@ import { useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuUpload, LuX } from 'react-icons/lu'
-import { ParticipantsCsvManager } from './ParticipantsCsvManager'
+import { MembersCsvManager } from './MembersCsvManager'
 
 export const ImportMembers = () => {
   const { t } = useTranslation()
@@ -76,7 +76,7 @@ export const ImportMembers = () => {
             </Text>
             <FormProvider {...methods}>
               <Box as='form' id='testing-this' onSubmit={methods.handleSubmit(onSubmit)}>
-                <ParticipantsCsvManager />
+                <MembersCsvManager />
               </Box>
               <Flex justify='flex-end' gap={2} mt={4}>
                 <Button type='button' variant='outline' colorScheme='black' onClick={onClose}>

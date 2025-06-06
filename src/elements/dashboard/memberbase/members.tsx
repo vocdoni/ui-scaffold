@@ -6,12 +6,12 @@ import { TableProvider } from '~components/Memberbase/TableProvider'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
 
-export type Participant = {
+export type Member = {
   [key: string]: string
 }
 
 type MembersLoaderData = {
-  participants: Participant[]
+  members: Member[]
   pagination: {
     page: number
     total: number
@@ -22,7 +22,7 @@ type MembersLoaderData = {
 const Members = () => {
   const { t } = useTranslation()
   const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
-  const { participants, pagination } = useLoaderData() as MembersLoaderData
+  const { members, pagination } = useLoaderData() as MembersLoaderData
 
   useEffect(() => {
     setBreadcrumb([
@@ -34,37 +34,37 @@ const Members = () => {
   const columns = useMemo(
     () => [
       {
-        label: t('form.participants.spreadsheet.template.firstname', { defaultValue: 'First Name' }),
+        label: t('form.members.spreadsheet.template.firstname', { defaultValue: 'First Name' }),
         id: 'name',
         visible: true,
       },
       {
-        label: t('form.participants.spreadsheet.template.lastname', { defaultValue: 'Last Name' }),
+        label: t('form.members.spreadsheet.template.lastname', { defaultValue: 'Last Name' }),
         id: 'lastname',
         visible: true,
       },
       {
-        label: t('form.participants.spreadsheet.template.email', { defaultValue: 'Email' }),
+        label: t('form.members.spreadsheet.template.email', { defaultValue: 'Email' }),
         id: 'email',
         visible: true,
       },
       {
-        label: t('form.participants.spreadsheet.template.phone', { defaultValue: 'Phone' }),
+        label: t('form.members.spreadsheet.template.phone', { defaultValue: 'Phone' }),
         id: 'phone',
         visible: true,
       },
       {
-        label: t('form.participants.spreadsheet.template.member_id', { defaultValue: 'Member ID' }),
-        id: 'participantNo',
+        label: t('form.members.spreadsheet.template.member_id', { defaultValue: 'Member ID' }),
+        id: 'memberID',
         visible: true,
       },
       {
-        label: t('form.participants.spreadsheet.template.national_id', { defaultValue: 'National ID' }),
+        label: t('form.members.spreadsheet.template.national_id', { defaultValue: 'National ID' }),
         id: 'national_id',
         visible: false,
       },
       {
-        label: t('form.participants.spreadsheet.template.birth_date', { defaultValue: 'Birth Date' }),
+        label: t('form.members.spreadsheet.template.birth_date', { defaultValue: 'Birth Date' }),
         id: 'birth_date',
         visible: false,
       },
@@ -73,7 +73,7 @@ const Members = () => {
   )
 
   return (
-    <TableProvider data={participants} initialColumns={columns}>
+    <TableProvider data={members} initialColumns={columns}>
       <MembersTable />
     </TableProvider>
   )

@@ -50,19 +50,19 @@ import { ExportMembers } from './Export'
 import { ImportMembers } from './Import'
 import { MemberManager } from './Manager'
 
-const useDeleteParticipants = () => {
+const useDeleteMembers = () => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
   const { revalidate } = useRevalidator()
 
   return useMutation<void, Error, string[]>({
-    mutationKey: [QueryKeys.organization.participants(organization?.address)],
-    mutationFn: async (participantIDs: string[]) =>
+    mutationKey: [QueryKeys.organization.members(organization?.address)],
+    mutationFn: async (memberIDs: string[]) =>
       await bearedFetch<void>(
-        ApiEndpoints.OrganizationParticipants.replace('{address}', enforceHexPrefix(organization.address)),
+        ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address)),
         {
           body: {
-            participantIDs,
+            memberIDs,
           },
           method: 'DELETE',
         }
@@ -73,7 +73,7 @@ const useDeleteParticipants = () => {
   })
 }
 
-const MemberActions = ({ participant, onDelete }) => {
+const MemberActions = ({ member, onDelete }) => {
   const { t } = useTranslation()
 
   return (
@@ -81,7 +81,7 @@ const MemberActions = ({ participant, onDelete }) => {
       <MenuButton as={IconButton} icon={<LuEllipsis />} variant='ghost' size='sm' />
       <MenuList minW='120px'>
         <MemberManager
-          participant={participant}
+          member={member}
           control={<MenuItem>{t('members_table.edit', { defaultValue: 'Edit' })}</MenuItem>}
         />
         <MenuDivider />
@@ -141,8 +141,13 @@ const ColumnManager = () => {
   )
 }
 
-const MemberFilters = ({ globalFilter, setGlobalFilter }) => {
+const MemberFilters = () => {
   const { t } = useTranslation()
+  const { search, setSearch } = useTable()
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value)
+  }
 
   return (
     <Flex gap={2}>
@@ -152,8 +157,8 @@ const MemberFilters = ({ globalFilter, setGlobalFilter }) => {
         </InputLeftElement>
         <Input
           placeholder={t('members_table.search', { defaultValue: 'Search members...' })}
-          value={globalFilter}
-          onChange={(e) => setGlobalFilter(e.target.value)}
+          value={search}
+          onChange={handleSearchChange}
         />
       </InputGroup>
       <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray'>
@@ -165,21 +170,22 @@ const MemberFilters = ({ globalFilter, setGlobalFilter }) => {
   )
 }
 
-const MemberBulkActions = ({ selectedParticipants, onDelete }) => {
+const MemberBulkActions = ({ onDelete }) => {
   const { t } = useTranslation()
+  const { selectedRows } = useTable()
 
   const createGroup = () => {
-    console.log('Creating group with IDs:', selectedParticipants)
+    console.log('Creating group with IDs:', selectedRows)
   }
 
   return (
     <Flex gap={4} align='center' minH='42px'>
-      {selectedParticipants.length > 0 ? (
+      {selectedRows.length > 0 ? (
         <>
           <Text fontSize='sm' color='texts.subtle'>
             <Trans
               i18nKey='members_table.selected'
-              count={selectedParticipants.length}
+              count={selectedRows.length}
               components={{ strong: <Text as='span' fontSize='sm' fontWeight='extrabold' display='inline' /> }}
               defaults='Selected: <strong>{{count}} member</strong>'
             />
@@ -205,7 +211,7 @@ const MemberBulkActions = ({ selectedParticipants, onDelete }) => {
 const DeleteMemberModal = ({ isOpen, onClose, ...props }) => {
   const { t } = useTranslation()
   const toast = useToast()
-  const deleteMutation = useDeleteParticipants()
+  const deleteMutation = useDeleteMembers()
   const { selectedRows, setSelectedRows } = useTable()
 
   const handleDelete = async () => {
@@ -275,8 +281,6 @@ const MembersTable = () => {
     filteredData,
     isLoading,
     search,
-    setSearch,
-    selectedRows,
     setSelectedRows,
     isSelected,
     allVisibleSelected,
@@ -287,9 +291,9 @@ const MembersTable = () => {
   } = useTable()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const openDeleteModal = (participant?) => {
-    if (participant) {
-      setSelectedRows((prev) => [...prev, participant])
+  const openDeleteModal = (member?) => {
+    if (member) {
+      setSelectedRows((prev) => [...prev, member.memberID])
     }
     onOpen()
   }
@@ -301,8 +305,8 @@ const MembersTable = () => {
       <TableContainer border='1px' borderRadius='sm' borderColor='table.border'>
         <Flex px={4} pt={4}>
           <Flex direction='column' flex={1} gap={2}>
-            <MemberFilters globalFilter={search} setGlobalFilter={setSearch} />
-            <MemberBulkActions selectedParticipants={selectedRows} onDelete={() => openDeleteModal()} />
+            <MemberFilters />
+            <MemberBulkActions onDelete={() => openDeleteModal()} />
           </Flex>
           <Flex gap={2}>
             <ImportMembers />
@@ -350,21 +354,21 @@ const MembersTable = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {filteredData.map((participant) => (
-                  <Tr key={participant.id}>
+                {filteredData.map((member) => (
+                  <Tr key={member.id}>
                     <Td>
                       <Checkbox
-                        isChecked={isSelected(participant.participantNo)}
-                        onChange={(e) => toggleOne(participant.participantNo, e.target.checked)}
+                        isChecked={isSelected(member.memberID)}
+                        onChange={(e) => toggleOne(member.memberID, e.target.checked)}
                       />
                     </Td>
                     {columns
                       .filter((column) => column.visible)
                       .map((column) => (
-                        <Td key={column.id}>{participant[column.id]}</Td>
+                        <Td key={column.id}>{member[column.id]}</Td>
                       ))}
                     <Td>
-                      <MemberActions participant={participant} onDelete={() => openDeleteModal(participant)} />
+                      <MemberActions member={member} onDelete={() => openDeleteModal(member)} />
                     </Td>
                   </Tr>
                 ))}

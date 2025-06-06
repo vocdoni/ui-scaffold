@@ -392,7 +392,7 @@
       "password_min_length": "Min. 8 characters",
       "recipient_address_invalid": "Specified address does not seem to be valid"
     },
-    "participants": {
+    "members": {
       "spreadsheet": {
         "download_template": {
           "included_columns": "Select columns to include:"
