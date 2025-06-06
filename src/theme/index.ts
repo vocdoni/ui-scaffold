@@ -22,12 +22,6 @@ export const theme = extendTheme(vtheme, {
     heading: `"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif`,
     mono: `'Menlo', monospace`,
   },
-  fontWeights: {
-    normal: 300,
-    bold: 400,
-    bolder: 500,
-    extrabold: 700,
-  },
   semanticTokens,
   styles: {
     global: (props) => ({

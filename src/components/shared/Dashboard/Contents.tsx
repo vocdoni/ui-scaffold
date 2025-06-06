@@ -24,7 +24,16 @@ export const DashboardContents = (props: BoxProps) => (
 export const DashboardSection = (props: BoxProps) => <Box bg='gray.50' p={4} borderRadius='sm' {...props} />
 
 export const Heading = forwardRef<HeadingProps, 'h2'>((props, ref) => (
-  <CHeading size='sm' fontSize='2xl' fontWeight={600} display='flex' gap={2} alignItems='center' ref={ref} {...props} />
+  <CHeading
+    size='sm'
+    fontSize='2xl'
+    fontWeight='bold'
+    display='flex'
+    gap={2}
+    alignItems='center'
+    ref={ref}
+    {...props}
+  />
 ))
 
 export type SidebarProps = BoxProps & {
