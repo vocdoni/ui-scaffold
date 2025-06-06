@@ -19,9 +19,9 @@ export const Routes = {
     processes: '/admin/processes/:page?/:status?',
     profile: '/admin/profile',
     memberbase: {
-      base: '/admin/members',
-      members: '/admin/members/members',
-      groups: '/admin/members/groups',
+      base: '/admin/memberbase',
+      members: '/admin/memberbase/members',
+      groups: '/admin/memberbase/groups',
     },
     settings: {
       base: '/admin/settings',

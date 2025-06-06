@@ -27,12 +27,12 @@ const fieldMap: Record<string, string> = {
   lastname: 'lastName',
   email: 'email',
   phone: 'phone',
-  participantNo: 'participantNo',
+  memberID: 'memberID',
   national_id: 'nationalId',
   birth_date: 'birthdate',
 }
 
-const requiredFields = ['name', 'lastName', 'email', 'participantNo', 'phone']
+const requiredFields = ['name', 'lastName', 'email', 'memberID', 'phone']
 
 const useAddMember = () => {
   const { bearedFetch } = useAuth()
@@ -40,10 +40,10 @@ const useAddMember = () => {
   const { revalidate } = useRevalidator()
 
   return useMutation<void, Error, Record<string, any>>({
-    mutationFn: async (participants) =>
+    mutationFn: async (members) =>
       await bearedFetch<void>(
-        ApiEndpoints.OrganizationParticipants.replace('{address}', enforceHexPrefix(organization.address)),
-        { body: { participants }, method: 'POST' }
+        ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address)),
+        { body: { members }, method: 'POST' }
       ),
     onSuccess: () => {
       revalidate()
@@ -51,7 +51,7 @@ const useAddMember = () => {
   })
 }
 
-export const MemberManager = ({ control, participant = null }) => {
+export const MemberManager = ({ control, member = null }) => {
   const { t } = useTranslation()
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -70,7 +70,7 @@ export const MemberManager = ({ control, participant = null }) => {
   }, [columns])
   const methods = useForm({ defaultValues })
 
-  const isEdit = Boolean(participant)
+  const isEdit = Boolean(member)
 
   const title = isEdit
     ? t('memberbase.edit_member.title', { defaultValue: 'Edit Member' })
@@ -89,16 +89,16 @@ export const MemberManager = ({ control, participant = null }) => {
     : t('memberbase.add_member.error', { defaultValue: 'Error adding member.' })
 
   useEffect(() => {
-    if (participant) {
-      methods.reset(participant)
+    if (member) {
+      methods.reset(member)
     }
-  }, [participant, methods])
+  }, [member, methods])
 
   const onSubmit = (data) => {
-    const { name, email, phone, password, participantNo, lastName, nationalId, birthdate } = data
+    const { name, email, phone, password, memberID, lastName, nationalId, birthdate } = data
 
     const member = {
-      participantNo,
+      memberID,
       name,
       email,
       phone,
