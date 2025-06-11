@@ -21,7 +21,14 @@ import { useTranslation } from 'react-i18next'
 import { LuFileDown, LuFileSpreadsheet } from 'react-icons/lu'
 import { useTable } from '../TableProvider'
 
-export const RadioCard = ({ label, value, isSelected, onSelect }) => {
+type RadioCardProps = {
+  label: string
+  value: string
+  isSelected: boolean
+  onSelect: (value: string) => void
+}
+
+export const RadioCard = ({ label, value, isSelected, onSelect }: RadioCardProps) => {
   return (
     <Button
       flex='1'
@@ -93,7 +100,6 @@ export const ExportMembers = () => {
           <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onExport)}>
               <ModalBody display='flex' flexDirection='column' gap={6}>
-                {/* File format */}
                 <Box>
                   <Text fontWeight='medium' mb={2}>
                     {t('memberbase.exporter.file_format', { defaultValue: 'File Format' })}
@@ -116,8 +122,6 @@ export const ExportMembers = () => {
                     )}
                   />
                 </Box>
-
-                {/* Columns */}
                 <Box>
                   <Text fontWeight='medium' mb={2}>
                     {t('memberbase.exporter.columns', { defaultValue: 'Columns to Export' })}
@@ -153,7 +157,6 @@ export const ExportMembers = () => {
                   </Box>
                 </Box>
               </ModalBody>
-
               <ModalFooter display='flex' justifyContent='flex-end' gap={2}>
                 <Button variant='outline' onClick={onClose}>
                   {t('memberbase.exporter.cancel', { defaultValue: 'Cancel' })}
