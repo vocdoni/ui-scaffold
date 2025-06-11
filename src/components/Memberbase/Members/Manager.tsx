@@ -11,43 +11,33 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
 import { cloneElement, useEffect, useMemo, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { useRevalidator } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import InputBasic from '~components/shared/Form/InputBasic'
+import { QueryKeys } from '~src/queries/keys'
 import { useTable } from '../TableProvider'
 
-const fieldMap: Record<string, string> = {
-  name: 'name',
-  lastname: 'lastName',
-  email: 'email',
-  phone: 'phone',
-  memberID: 'memberID',
-  national_id: 'nationalId',
-  birth_date: 'birthdate',
+type AddMemberResponse = {
+  jobID?: string
+  count: number
 }
 
-const requiredFields = ['name', 'lastName', 'email', 'memberID', 'phone']
-
-const useAddMember = () => {
+export const useAddMember = (isAsync = false) => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
-  const { revalidate } = useRevalidator()
 
-  return useMutation<void, Error, Record<string, any>>({
+  const baseUrl = ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address))
+  const fetchUrl = `${baseUrl}?async=${isAsync}`
+
+  return useMutation<AddMemberResponse, Error, Record<string, any>>({
+    mutationKey: QueryKeys.organization.members(organization?.address),
     mutationFn: async (members) =>
-      await bearedFetch<void>(
-        ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address)),
-        { body: { members }, method: 'POST' }
-      ),
-    onSuccess: () => {
-      revalidate()
-    },
+      await bearedFetch<AddMemberResponse>(fetchUrl, { body: { members }, method: 'POST' }),
   })
 }
 
@@ -58,16 +48,12 @@ export const MemberManager = ({ control, member = null }) => {
   const btnRef = useRef(null)
   const { columns } = useTable()
   const addMember = useAddMember()
-  const defaultValues = useMemo(() => {
-    const result: Record<string, string> = {}
-    columns.forEach((col) => {
-      const formKey = fieldMap[col.id]
-      if (formKey) {
-        result[formKey] = ''
-      }
-    })
-    return result
-  }, [columns])
+  const { organization } = useOrganization()
+  const queryClient = useQueryClient()
+  const defaultValues: Record<string, string> = useMemo(
+    () => Object.fromEntries(columns.map((col) => [col.id, ''])),
+    [columns]
+  )
   const methods = useForm({ defaultValues })
 
   const isEdit = Boolean(member)
@@ -119,6 +105,9 @@ export const MemberManager = ({ control, member = null }) => {
           isClosable: true,
         })
         methods.reset()
+        queryClient.invalidateQueries({
+          queryKey: QueryKeys.organization.members(organization.address),
+        })
         onClose()
       },
       onError: (error) => {
@@ -152,22 +141,16 @@ export const MemberManager = ({ control, member = null }) => {
           </DrawerHeader>
           <DrawerBody>
             <Flex as='form' id='member-form' onSubmit={methods.handleSubmit(onSubmit)} flexDirection='column' gap={4}>
-              {columns
-                .filter((col) => col.visible)
-                .map((col) => {
-                  const formValue = fieldMap[col.id]
-                  if (!formValue) return null
-
-                  return (
-                    <InputBasic
-                      key={formValue}
-                      formValue={formValue}
-                      label={col.label}
-                      type={formValue === 'birthdate' ? 'date' : 'text'}
-                      required={requiredFields.includes(formValue)}
-                    />
-                  )
-                })}
+              {columns.map((col) => {
+                return (
+                  <InputBasic
+                    key={col.id}
+                    formValue={col.id}
+                    label={col.label}
+                    type={col.id === 'birthdate' ? 'date' : 'text'}
+                  />
+                )
+              })}
             </Flex>
             <Flex justify='flex-end' gap={2} mt={4}>
               <Button variant='outline' colorScheme='black' onClick={handleClose}>
