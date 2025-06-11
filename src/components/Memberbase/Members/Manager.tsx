@@ -11,37 +11,24 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
+import { useQueryClient } from '@tanstack/react-query'
+import { useOrganization } from '@vocdoni/react-providers'
 import { cloneElement, useEffect, useMemo, useRef } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { ApiEndpoints } from '~components/Auth/api'
-import { useAuth } from '~components/Auth/useAuth'
 import InputBasic from '~components/shared/Form/InputBasic'
 import { QueryKeys } from '~src/queries/keys'
+import { Member, useAddMember } from '~src/queries/members'
 import { useTable } from '../TableProvider'
 
-type AddMemberResponse = {
-  jobID?: string
-  count: number
+type MemberFormData = Record<string, string>
+
+type MemberManagerProps = {
+  control: React.ReactElement
+  member?: Partial<Member> | null
 }
 
-export const useAddMember = (isAsync = false) => {
-  const { bearedFetch } = useAuth()
-  const { organization } = useOrganization()
-
-  const baseUrl = ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address))
-  const fetchUrl = `${baseUrl}?async=${isAsync}`
-
-  return useMutation<AddMemberResponse, Error, Record<string, any>>({
-    mutationKey: QueryKeys.organization.members(organization?.address),
-    mutationFn: async (members) =>
-      await bearedFetch<AddMemberResponse>(fetchUrl, { body: { members }, method: 'POST' }),
-  })
-}
-
-export const MemberManager = ({ control, member = null }) => {
+export const MemberManager = ({ control, member = null }: MemberManagerProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -50,10 +37,9 @@ export const MemberManager = ({ control, member = null }) => {
   const addMember = useAddMember()
   const { organization } = useOrganization()
   const queryClient = useQueryClient()
-  const defaultValues: Record<string, string> = useMemo(
-    () => Object.fromEntries(columns.map((col) => [col.id, ''])),
-    [columns]
-  )
+
+  const defaultValues: MemberFormData = useMemo(() => Object.fromEntries(columns.map((col) => [col.id, ''])), [columns])
+
   const methods = useForm({ defaultValues })
 
   const isEdit = Boolean(member)
@@ -80,23 +66,18 @@ export const MemberManager = ({ control, member = null }) => {
     }
   }, [member, methods])
 
-  const onSubmit = (data) => {
-    const { name, email, phone, password, memberID, lastName, nationalId, birthdate } = data
+  const onSubmit = (data: MemberFormData) => {
+    const { name, email, phone, password, memberID } = data
 
-    const member = {
+    const memberPayload: Member = {
       memberID,
       name,
       email,
       phone,
       password,
-      other: {
-        lastName,
-        nationalId,
-        birthdate,
-      },
     }
 
-    addMember.mutate([member], {
+    addMember.mutate([memberPayload], {
       onSuccess: () => {
         toast({
           title: successToastMessage,
@@ -141,16 +122,14 @@ export const MemberManager = ({ control, member = null }) => {
           </DrawerHeader>
           <DrawerBody>
             <Flex as='form' id='member-form' onSubmit={methods.handleSubmit(onSubmit)} flexDirection='column' gap={4}>
-              {columns.map((col) => {
-                return (
-                  <InputBasic
-                    key={col.id}
-                    formValue={col.id}
-                    label={col.label}
-                    type={col.id === 'birthdate' ? 'date' : 'text'}
-                  />
-                )
-              })}
+              {columns.map((col) => (
+                <InputBasic
+                  key={col.id}
+                  formValue={col.id}
+                  label={col.label}
+                  type={col.id === 'birthdate' ? 'date' : 'text'}
+                />
+              ))}
             </Flex>
             <Flex justify='flex-end' gap={2} mt={4}>
               <Button variant='outline' colorScheme='black' onClick={handleClose}>
