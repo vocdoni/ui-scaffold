@@ -23,8 +23,6 @@ const Members = () => {
     nextPage: null,
   }
 
-  console.log('Pagination:', pagination)
-
   useEffect(() => {
     setBreadcrumb([
       { title: t('memberbase.title', { defaultValue: 'Memberbase' }), route: Routes.dashboard.memberbase.base },

@@ -6,6 +6,7 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { useMembers } from '~components/Memberbase/Members/MembersProvider'
 import { QueryKeys } from './keys'
+import { SetupStepIds, useOrganizationSetup } from './organization'
 
 export type Member = {
   id?: string
@@ -68,6 +69,7 @@ export const usePaginatedMembers = () => {
 export const useAddMember = (isAsync: boolean = false) => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
+  const { setStepDone } = useOrganizationSetup()
 
   const baseUrl = ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address))
   const fetchUrl = `${baseUrl}?async=${isAsync}`
@@ -76,6 +78,9 @@ export const useAddMember = (isAsync: boolean = false) => {
     mutationKey: QueryKeys.organization.members(organization?.address),
     mutationFn: async (members) =>
       await bearedFetch<AddMemberResponse>(fetchUrl, { body: { members }, method: 'POST' }),
+    onSuccess: () => {
+      setStepDone(SetupStepIds.memberbaseUpload)
+    },
   })
 }
 

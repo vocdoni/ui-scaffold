@@ -10,6 +10,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { IconType } from 'react-icons'
 import { LuCalendar, LuFileSpreadsheet, LuUsers, LuVote } from 'react-icons/lu'
+import { generatePath } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { Routes } from '~routes'
@@ -226,7 +227,7 @@ export const useOrganizationSetup = () => {
     {
       id: SetupStepIds.memberbaseUpload,
       label: t('organization_setup.setup_steps.memberbase_upload', { defaultValue: 'Upload your memberbase' }),
-      to: '',
+      to: generatePath(Routes.dashboard.memberbase.members, { page: '1' }),
       type: CheckboxTypes.route,
       icon: LuFileSpreadsheet,
     },
