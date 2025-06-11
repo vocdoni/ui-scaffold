@@ -1,0 +1,122 @@
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
+import { PaginationResponse } from '@vocdoni/sdk'
+import { useParams, useSearchParams } from 'react-router-dom'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useAuth } from '~components/Auth/useAuth'
+import { useMembers } from '~components/Memberbase/Members/MembersProvider'
+import { QueryKeys } from './keys'
+
+export type Member = {
+  id?: string
+  memberID: string
+  name: string
+  email: string
+  password: string
+  phone: string
+}
+
+export type MembersResponse = {
+  members: Member[]
+  page: number
+  pages: number
+}
+
+type PaginatedMembers = {
+  members: Member[]
+} & PaginationResponse
+
+type AddMemberResponse = {
+  jobID?: string
+  count: number
+}
+
+export const usePaginatedMembers = () => {
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+  const params = useParams()
+  const [searchParams] = useSearchParams()
+
+  const page = Number(params.page ?? 1)
+  const limit = Number(searchParams.get('limit') ?? 10)
+
+  const baseUrl = ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization?.address))
+  const fetchUrl = `${baseUrl}?page=${page}&pageSize=${limit}`
+
+  return useQuery<MembersResponse, Error, PaginatedMembers>({
+    queryKey: QueryKeys.organization.members(organization?.address),
+    enabled: !!organization?.address,
+    queryFn: () => bearedFetch<MembersResponse>(fetchUrl),
+    select: (data) => {
+      const currentPage = data.page - 1
+      const lastPage = data.pages - 1
+
+      return {
+        members: data.members,
+        pagination: {
+          totalItems: data.members.length,
+          currentPage,
+          lastPage,
+          previousPage: currentPage > 0 ? currentPage - 1 : null,
+          nextPage: currentPage < lastPage ? currentPage + 1 : null,
+        },
+      }
+    },
+  })
+}
+
+export const useAddMember = (isAsync: boolean = false) => {
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+
+  const baseUrl = ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address))
+  const fetchUrl = `${baseUrl}?async=${isAsync}`
+
+  return useMutation<AddMemberResponse, Error, Record<string, any>>({
+    mutationKey: QueryKeys.organization.members(organization?.address),
+    mutationFn: async (members) =>
+      await bearedFetch<AddMemberResponse>(fetchUrl, { body: { members }, method: 'POST' }),
+  })
+}
+
+export const useDeleteMembers = () => {
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+
+  return useMutation<void, Error, string[]>({
+    mutationKey: QueryKeys.organization.members(organization?.address),
+    mutationFn: async (ids: string[]) =>
+      await bearedFetch<void>(
+        ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address)),
+        {
+          body: {
+            ids,
+          },
+          method: 'DELETE',
+        }
+      ),
+  })
+}
+
+export const useImportJobProgress = () => {
+  const { jobID } = useMembers()
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+
+  const url = ApiEndpoints.OrganizationMembersImport.replace(
+    '{address}',
+    enforceHexPrefix(organization.address)
+  ).replace('{jobID}', jobID)
+
+  return useQuery({
+    enabled: Boolean(jobID),
+    queryKey: ['importJobProgress', jobID],
+    queryFn: () => bearedFetch<{ progress: number; added: number; total: number }>(url),
+    refetchInterval: (query) => {
+      const data = query.state.data
+      if (!data || data.progress < 100) return 2000
+      return false
+    },
+    refetchOnWindowFocus: false,
+  })
+}
