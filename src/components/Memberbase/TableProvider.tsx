@@ -1,27 +1,45 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, ReactNode, useContext, useMemo, useState } from 'react'
+
+type TableColumn = {
+  id: string
+  label: string
+  visible: boolean
+}
+
+type TableProviderProps = {
+  data?: any[]
+  isLoading?: boolean
+  isFetching?: boolean
+  initialColumns: TableColumn[]
+  children: ReactNode
+}
 
 const TableContext = createContext(undefined)
 
-export function TableProvider({ data = [], isLoading = false, initialColumns, children }) {
+export function TableProvider({
+  data = [],
+  isLoading = false,
+  isFetching = false,
+  initialColumns,
+  children,
+}: TableProviderProps) {
   const [search, setSearch] = useState('')
-  const [selectedRows, setSelectedRows] = useState([])
-  const [columns, setColumns] = useState(initialColumns)
+  const [selectedRows, setSelectedRows] = useState<string[]>([])
+  const [columns, setColumns] = useState<TableColumn[]>(initialColumns)
 
   const filteredData = useMemo(() => {
     const lowerFilter = search.toLowerCase()
     return data.filter((item) => Object.values(item).some((value) => String(value).toLowerCase().includes(lowerFilter)))
   }, [data, search])
 
-  const allVisibleSelected = filteredData.every((item) => selectedRows.some((selected) => selected === item.id))
-  const someSelected = filteredData.some((item) => selectedRows.some((selected) => selected === item.id))
+  const allVisibleSelected = filteredData.every((item) => selectedRows.includes(item.id))
+  const someSelected = filteredData.some((item) => selectedRows.includes(item.id))
 
   const toggleAll = (checked: boolean) => {
     if (checked) {
       const unique = [
         ...selectedRows,
-        ...filteredData
-          .filter((item) => !selectedRows.some((selectedId) => selectedId === item.id))
-          .map((item) => item.id),
+        ...filteredData.filter((item) => !selectedRows.includes(item.id)).map((item) => item.id),
       ]
       setSelectedRows(unique)
     } else {
@@ -30,12 +48,12 @@ export function TableProvider({ data = [], isLoading = false, initialColumns, ch
     }
   }
 
-  const toggleOne = (id, checked: boolean) => {
+  const toggleOne = (id: string, checked: boolean) => {
     setSelectedRows((prev) => (checked ? [...prev, id] : prev.filter((p) => p !== id)))
   }
 
-  const isSelected = (id) => {
-    return selectedRows.some((selected) => selected === id)
+  const isSelected = (id: string) => {
+    return selectedRows.includes(id)
   }
 
   return (
@@ -44,6 +62,7 @@ export function TableProvider({ data = [], isLoading = false, initialColumns, ch
         data,
         filteredData,
         isLoading,
+        isFetching,
         search,
         setSearch,
         selectedRows,
