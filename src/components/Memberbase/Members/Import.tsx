@@ -22,22 +22,45 @@ import {
   Tr,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { chakraComponents, Select } from 'chakra-react-select'
+import { useRef, useState } from 'react'
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { LuCheck, LuUpload, LuX } from 'react-icons/lu'
-import { MembersCsvManager } from './MembersCsvManager'
-
-import { chakraComponents, Select } from 'chakra-react-select'
-import { useState } from 'react'
-import { LuTriangleAlert } from 'react-icons/lu'
+import { LuCheck, LuTriangleAlert, LuUpload, LuX } from 'react-icons/lu'
 import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/SpreadsheetManager'
+import { useAddMember } from '~src/queries/members'
 import { useTable } from '../TableProvider'
-import { useAddMember } from './Manager'
+import { MembersCsvManager } from './MembersCsvManager'
 import { useMembers } from './MembersProvider'
 
-type CsvPreviewProps = {
+type SpreadsheetRow = Record<string, string>
+type ColumnMapping = Record<string, string>
+type MappedRow = Record<string, string>
+
+type FieldsMapperProps = {
   manager?: SpreadsheetManager
+  columnMapping: ColumnMapping
+  setColumnMapping: React.Dispatch<React.SetStateAction<ColumnMapping>>
+}
+
+type ImportDataPreviewProps = {
+  columnMapping: ColumnMapping
+  setColumnMapping: React.Dispatch<React.SetStateAction<ColumnMapping>>
+}
+
+const mapSpreadsheetData = (data: SpreadsheetRow[], mapping: ColumnMapping): MappedRow[] => {
+  return data.map((row) => {
+    const mappedRow: MappedRow = {}
+
+    for (const targetKey in mapping) {
+      const sourceKey = mapping[targetKey]
+      if (row[sourceKey] !== undefined) {
+        mappedRow[targetKey] = row[sourceKey]
+      }
+    }
+
+    return mappedRow
+  })
 }
 
 const TemplateUploader = () => {
@@ -59,7 +82,7 @@ const TemplateUploader = () => {
   )
 }
 
-const FieldsMapper = ({ manager, columnMapping, setColumnMapping }) => {
+const FieldsMapper = ({ manager, columnMapping, setColumnMapping }: FieldsMapperProps) => {
   const { t } = useTranslation()
   const { columns } = useTable()
 
@@ -123,7 +146,9 @@ const FieldsMapper = ({ manager, columnMapping, setColumnMapping }) => {
                     value={
                       columnMapping[id] ? (headerOptions.find((opt) => opt.value === columnMapping[id]) ?? null) : null
                     }
-                    placeholder={t('memberbase.importer.field_mapper.placeholder', { defaultValue: 'Select column' })}
+                    placeholder={t('memberbase.importer.field_mapper.placeholder', {
+                      defaultValue: 'Select column',
+                    })}
                     components={{
                       Option: (props) => {
                         const { isSelected, children } = props
@@ -173,13 +198,18 @@ const FieldsMapper = ({ manager, columnMapping, setColumnMapping }) => {
   )
 }
 
-const ImportDataPreview = ({ columnMapping, setColumnMapping }) => {
+const ImportDataPreview = ({ columnMapping, setColumnMapping }: ImportDataPreviewProps) => {
   const { t } = useTranslation()
   const methods = useFormContext()
   const spreadsheet = useWatch({
     control: methods.control,
     name: 'spreadsheet',
   })
+
+  const resetImport = () => {
+    methods.reset()
+    setColumnMapping({})
+  }
 
   return (
     <Flex flexDirection='column' gap={4}>
@@ -194,7 +224,7 @@ const ImportDataPreview = ({ columnMapping, setColumnMapping }) => {
       </Text>
       <FieldsMapper manager={spreadsheet} columnMapping={columnMapping} setColumnMapping={setColumnMapping} />
       <Flex justify='space-between' gap={2} mt={4}>
-        <Button type='button' variant='outline' colorScheme='black' onClick={() => methods.reset()}>
+        <Button type='button' variant='outline' colorScheme='black' onClick={resetImport}>
           {t('memberbase.importer.reset', { defaultValue: 'Reset Import' })}
         </Button>
         <Button type='submit' colorScheme='black' form='import-members'>
@@ -208,47 +238,36 @@ const ImportDataPreview = ({ columnMapping, setColumnMapping }) => {
 export const ImportMembers = () => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = useRef()
+  const btnRef = useRef<HTMLButtonElement>(null)
   const methods = useForm({ defaultValues: { spreadsheet: null } })
   const spreadsheet = useWatch({
     control: methods.control,
     name: 'spreadsheet',
   })
-  const [columnMapping, setColumnMapping] = useState<Record<string, string>>({})
+  const [columnMapping, setColumnMapping] = useState<ColumnMapping>({})
   const addMembers = useAddMember(true)
   const { setJobID } = useMembers()
 
   const hasSpreadsheet = Boolean(spreadsheet?.filedata)
 
-  const mapSpreadsheetData = (data: Record<string, any>[], mapping: Record<string, string>): Record<string, any>[] => {
-    return data.map((row) => {
-      const mappedRow: Record<string, any> = {}
-
-      Object.entries(mapping).forEach(([targetKey, sourceKey]) => {
-        if (row[sourceKey] !== undefined) {
-          mappedRow[targetKey] = row[sourceKey]
-        }
-      })
-      return mappedRow
-    })
-  }
-
-  const onSubmit = async ({ spreadsheet }) => {
-    const parsedRows = spreadsheet.filedata.map((row: string[]) => {
-      return spreadsheet.heading.reduce((acc: Record<string, string>, key: string, index: number) => {
+  const onSubmit = async ({ spreadsheet }: { spreadsheet: any }) => {
+    const parsedRows: SpreadsheetRow[] = spreadsheet.filedata.map((row: string[]) => {
+      return spreadsheet.heading.reduce((acc: SpreadsheetRow, key: string, index: number) => {
         acc[key] = row[index]
         return acc
       }, {})
     })
 
     const finalData = mapSpreadsheetData(parsedRows, columnMapping)
+
     try {
       const data = await addMembers.mutateAsync(finalData)
       setJobID(data?.jobID)
       setColumnMapping({})
+      methods.reset()
       onClose()
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
