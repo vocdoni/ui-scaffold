@@ -17,7 +17,6 @@ import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuFileSpreadsheet } from 'react-icons/lu'
 import { CsvGenerator } from '~components/ProcessCreate/Census/Spreadsheet/generator'
-import { CsvPreview } from '~components/ProcessCreate/Census/Spreadsheet/Preview'
 import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/SpreadsheetManager'
 import Uploader from '~components/shared/Layout/Uploader'
 import { useTable } from '../TableProvider'
@@ -70,7 +69,7 @@ export const MembersCsvManager = () => {
       <Card>
         <CardBody display='flex' flexDirection='column' gap={2}>
           <Text>
-            {t('form.members.spreadsheet.download_template.included_columns', {
+            {t('memberbase.importer.included_columns', {
               defaultValue: 'Select columns to include:',
             })}
           </Text>
@@ -97,13 +96,13 @@ export const MembersCsvManager = () => {
               type: 'button',
             })}
           >
-            {t('form.members.spreadsheet.download_template_btn', {
+            {t('memberbase.importer.download_template_btn', {
               defaultValue: 'Download Template',
             })}
           </Button>
           {!visibleColumns.length && (
             <Text fontSize='sm' color='gray.500' mt={1}>
-              {t('form.members.spreadsheet.select_at_least_one_column', {
+              {t('memberbase.importer.select_at_least_one_column', {
                 defaultValue: 'Select at least one column to download the template.',
               })}
             </Text>
@@ -112,7 +111,9 @@ export const MembersCsvManager = () => {
       </Card>
 
       <FormControl
-        {...register('spreadsheet', { required: { value: true, message: t('form.error.field_is_required') } })}
+        {...register('spreadsheet', {
+          required: { value: true, message: t('memberbase.importer.error.field_is_required') },
+        })}
         {...upload}
         isInvalid={!!errors?.spreadsheet}
         display={manager?.data.length ? 'none' : 'block'}
@@ -122,7 +123,6 @@ export const MembersCsvManager = () => {
           {errors?.spreadsheet?.message?.toString()}
         </FormErrorMessage>
       </FormControl>
-      <CsvPreview manager={manager} upload={upload} />
     </Flex>
   )
 }
