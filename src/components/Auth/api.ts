@@ -16,6 +16,7 @@ export enum ApiEndpoints {
   OrganizationsSupport = 'organizations/{address}/ticket',
   OrganizationMeta = 'organizations/{address}/meta',
   OrganizationMembers = 'organizations/{address}/members',
+  OrganizationMembersImport = 'organizations/{address}/members/job/{jobID}',
   Password = 'users/password',
   PasswordRecovery = 'users/password/recovery',
   PasswordReset = 'users/password/reset',
