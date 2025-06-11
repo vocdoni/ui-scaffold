@@ -28,7 +28,9 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  ModalProps,
   Progress,
+  Spinner,
   Table,
   TableContainer,
   Tbody,
@@ -40,40 +42,35 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
+import { useQueryClient } from '@tanstack/react-query'
+import { useOrganization } from '@vocdoni/react-providers'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsis, LuEye, LuEyeOff, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers } from 'react-icons/lu'
-import { ApiEndpoints } from '~components/Auth/api'
-import { useAuth } from '~components/Auth/useAuth'
 import PaginatedTableFooter from '~components/shared/Pagination/PaginatedTableFooter'
 import { QueryKeys } from '~src/queries/keys'
+import { Member, useDeleteMembers, useImportJobProgress } from '~src/queries/members'
 import { useTable } from '../TableProvider'
 import { ExportMembers } from './Export'
 import { ImportMembers } from './Import'
 import { MemberManager } from './Manager'
 import { useMembers } from './MembersProvider'
 
-const useDeleteMembers = () => {
-  const { bearedFetch } = useAuth()
-  const { organization } = useOrganization()
-
-  return useMutation<void, Error, string[]>({
-    mutationKey: QueryKeys.organization.members(organization?.address),
-    mutationFn: async (ids: string[]) =>
-      await bearedFetch<void>(
-        ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address)),
-        {
-          body: {
-            ids,
-          },
-          method: 'DELETE',
-        }
-      ),
-  })
+type MemberActionsProps = {
+  member: Member
+  onDelete: () => void
 }
 
-const MemberActions = ({ member, onDelete }) => {
+type MemberBulkActionsProps = {
+  onDelete: () => void
+}
+
+type DeleteMemberModalProps = {
+  isOpen: boolean
+  onClose: () => void
+} & Omit<ModalProps, 'children'>
+
+const MemberActions = ({ member, onDelete }: MemberActionsProps) => {
   const { t } = useTranslation()
 
   return (
@@ -170,7 +167,7 @@ const MemberFilters = () => {
   )
 }
 
-const MemberBulkActions = ({ onDelete }) => {
+const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
   const { t } = useTranslation()
   const { selectedRows } = useTable()
 
@@ -208,7 +205,7 @@ const MemberBulkActions = ({ onDelete }) => {
   )
 }
 
-const DeleteMemberModal = ({ isOpen, onClose, ...props }) => {
+const DeleteMemberModal = ({ isOpen, onClose, ...props }: DeleteMemberModalProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const deleteMutation = useDeleteMembers()
@@ -282,41 +279,102 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }) => {
 const ImportProgress = () => {
   const { t } = useTranslation()
   const queryClient = useQueryClient()
-  const { jobID, setJobID, jobProgress } = useMembers()
+  const { organization } = useOrganization()
+  const { jobID, setJobID } = useMembers()
+  const { data, isError } = useImportJobProgress()
+
+  const closeAlert = () => {
+    setJobID(null)
+  }
+
+  useEffect(() => {
+    if (data?.progress === 100) {
+      queryClient.invalidateQueries({
+        queryKey: QueryKeys.organization.members(organization?.address),
+      })
+    }
+  }, [data?.progress])
 
   if (!jobID) return null
 
-  const { data, isError } = jobProgress({
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: QueryKeys.organization.members(),
-      })
-      setJobID(null)
-    },
-  })
+  if (isError) {
+    return (
+      <Alert
+        status='error'
+        borderRadius='md'
+        mb={3}
+        mt={4}
+        p={6}
+        as={Flex}
+        flexDirection='row'
+        justifyContent='space-between'
+      >
+        <Flex flexDirection='column' gap={2}>
+          <AlertTitle>{t('import_progress.error_title', { defaultValue: 'Import Error' })}</AlertTitle>
+          <AlertDescription>
+            {t('import_progress.error_description', {
+              defaultValue: 'An error occurred while importing your member data. Please try again later.',
+            })}
+          </AlertDescription>
+        </Flex>
+        <CloseButton alignSelf='flex-start' position='relative' onClick={closeAlert} />
+      </Alert>
+    )
+  }
 
-  console.log('Import progress data:', data, 'isError:', isError)
+  const isComplete = data?.progress === 100
 
   return (
-    <Alert status='info' borderRadius='md' mb={3} mt={4}>
-      <Box>
-        <AlertTitle>{t('import_progress.title', { defaultValue: 'Memberbase Import in Progress' })}</AlertTitle>
-        <AlertDescription>
-          <Progress size='md' value={data?.progress} borderRadius='md' isAnimated />
-          <Text>
-            {t('import_progress.description', {
-              defaultValue:
-                'Your member data is being imported. This may take a few minutes depending on the size of your file.',
-            })}
-          </Text>
-          <Text size='sm'>
-            {t('import_progress.note', {
-              defaultValue: 'You can safely close this page. An email will be sent to you upon completion.',
-            })}
-          </Text>
+    <Alert
+      status={isComplete ? 'success' : 'info'}
+      borderRadius='md'
+      mb={3}
+      mt={4}
+      p={6}
+      as={Flex}
+      flexDirection='row'
+      justifyContent='space-between'
+    >
+      <Flex flexDirection='column' gap={2} flex={1}>
+        <AlertTitle>
+          {isComplete
+            ? t('import_progress.success_title', { defaultValue: 'Import Completed Successfully' })
+            : t('import_progress.title', { defaultValue: 'Memberbase Import in Progress' })}
+        </AlertTitle>
+
+        <AlertDescription display='flex' flexDirection='column' gap={2}>
+          {isComplete ? (
+            <>
+              <Text>
+                {t('import_progress.success_description', {
+                  defaultValue: 'Your member data has been imported successfully.',
+                })}
+              </Text>
+              <Text fontSize='sm'>
+                {t('import_progress.success_note', {
+                  defaultValue: 'You may now start using your imported members.',
+                })}
+              </Text>
+            </>
+          ) : (
+            <>
+              <Progress size='md' value={data?.progress} borderRadius='md' isAnimated />
+              <Text>
+                {t('import_progress.description', {
+                  defaultValue:
+                    'Your member data is being imported. This may take a few minutes depending on the size of your file.',
+                })}
+              </Text>
+              <Text fontSize='sm'>
+                {t('import_progress.note', {
+                  defaultValue: 'You can safely close this page. An email will be sent to you upon completion.',
+                })}
+              </Text>
+            </>
+          )}
         </AlertDescription>
-      </Box>
-      <CloseButton alignSelf='flex-start' position='relative' onClick={() => setJobID(null)} />
+      </Flex>
+      <CloseButton alignSelf='flex-start' position='relative' onClick={closeAlert} />
     </Alert>
   )
 }
@@ -326,6 +384,7 @@ const MembersTable = () => {
   const {
     filteredData,
     isLoading,
+    isFetching,
     search,
     setSelectedRows,
     isSelected,
@@ -341,6 +400,9 @@ const MembersTable = () => {
     if (member) setSelectedRows((prev) => [...prev, member.id])
     onOpen()
   }
+
+  const isLoadingOrImporting = isLoading || isFetching
+  const isEmpty = filteredData.length === 0 && !isLoadingOrImporting
 
   return (
     <>
@@ -364,14 +426,20 @@ const MembersTable = () => {
           </Flex>
         </Flex>
 
-        {filteredData.length === 0 && !isLoading ? (
+        {isLoadingOrImporting ? (
+          <Flex justify='center' align='center' height='200px'>
+            <Spinner position='absolute' />
+          </Flex>
+        ) : isEmpty ? (
           <Flex justify='center' align='center' height='200px'>
             <Text color='texts.subtle' fontSize='sm'>
               {search
                 ? t('members_table.no_filter_results', {
                     defaultValue: 'No members matching these attributes',
                   })
-                : t('members_table.no_results', { defaultValue: 'No members found' })}
+                : t('members_table.no_results', {
+                    defaultValue: 'No members found',
+                  })}
             </Text>
           </Flex>
         ) : (
@@ -387,9 +455,9 @@ const MembersTable = () => {
                     />
                   </Th>
                   {columns
-                    .filter((column) => column.visible)
-                    .map((column) => (
-                      <Th key={column.id}>{column.label}</Th>
+                    .filter((col) => col.visible)
+                    .map((col) => (
+                      <Th key={col.id}>{col.label}</Th>
                     ))}
                   <Th width='50px'>
                     <ColumnManager />
@@ -397,39 +465,31 @@ const MembersTable = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {isLoading ? (
-                  <Tr>
-                    <Td colSpan={columns.length + 2}>
-                      <Progress isIndeterminate />
+                {filteredData.map((member) => (
+                  <Tr key={member.id}>
+                    <Td>
+                      <Checkbox
+                        isChecked={isSelected(member.id)}
+                        onChange={(e) => toggleOne(member.id, e.target.checked)}
+                      />
+                    </Td>
+                    {columns
+                      .filter((column) => column.visible)
+                      .map((column) => (
+                        <Td key={column.id}>{member[column.id]}</Td>
+                      ))}
+                    <Td>
+                      <MemberActions member={member} onDelete={() => openDeleteModal(member)} />
                     </Td>
                   </Tr>
-                ) : (
-                  filteredData.map((member) => (
-                    <Tr key={member.id}>
-                      <Td>
-                        <Checkbox
-                          isChecked={isSelected(member.id)}
-                          onChange={(e) => toggleOne(member.id, e.target.checked)}
-                        />
-                      </Td>
-                      {columns
-                        .filter((column) => column.visible)
-                        .map((column) => (
-                          <Td key={column.id}>{member[column.id]}</Td>
-                        ))}
-                      <Td>
-                        <MemberActions member={member} onDelete={() => openDeleteModal(member)} />
-                      </Td>
-                    </Tr>
-                  ))
-                )}
+                ))}
               </Tbody>
             </Table>
+            <Box p={4}>
+              <PaginatedTableFooter />
+            </Box>
           </>
         )}
-        <Box p={4}>
-          <PaginatedTableFooter />
-        </Box>
       </TableContainer>
       <DeleteMemberModal isOpen={isOpen} onClose={onClose} />
     </>
