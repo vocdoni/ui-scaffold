@@ -7,25 +7,233 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
+  HStack,
   Icon,
   IconButton,
+  Table,
+  Tbody,
+  Td,
   Text,
+  Th,
+  Thead,
+  Tr,
   useDisclosure,
 } from '@chakra-ui/react'
 import { useRef } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { LuUpload, LuX } from 'react-icons/lu'
+import { LuCheck, LuUpload, LuX } from 'react-icons/lu'
 import { MembersCsvManager } from './MembersCsvManager'
+
+import { chakraComponents, Select } from 'chakra-react-select'
+import { useState } from 'react'
+import { LuTriangleAlert } from 'react-icons/lu'
+import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/SpreadsheetManager'
+import { useTable } from '../TableProvider'
+import { useAddMember } from './Manager'
+import { useMembers } from './MembersProvider'
+
+type CsvPreviewProps = {
+  manager?: SpreadsheetManager
+}
+
+const TemplateUploader = () => {
+  const { t } = useTranslation()
+
+  return (
+    <>
+      <Heading size='md' fontWeight='extrabold'>
+        {t('memberbase.download_template.title', { defaultValue: 'Download Import Template' })}
+      </Heading>
+      <Text color='texts.subtle' size='sm'>
+        {t('memberbase.download_template.subtitle', {
+          defaultValue:
+            'Download a CSV template with the required columns, then fill it with your member data for import.',
+        })}
+      </Text>
+      <MembersCsvManager />
+    </>
+  )
+}
+
+const FieldsMapper = ({ manager, columnMapping, setColumnMapping }) => {
+  const { t } = useTranslation()
+  const { columns } = useTable()
+
+  if (!manager || !manager.data) return null
+
+  const headerOptions = [
+    {
+      label: t('memberbase.importer.field_mapper.empty', {
+        defaultValue: '-- Do not import --',
+      }),
+      value: '',
+    },
+    ...manager.header.map((field) => ({
+      label: field,
+      value: field,
+    })),
+  ]
+
+  const previewRows = manager.data.slice(0, 3)
+
+  const getCellValue = (row: string[], fieldId: string) => {
+    const columnName = columnMapping[fieldId]
+    const columnIndex = manager.header.indexOf(columnName)
+    return columnIndex !== -1 ? row[columnIndex] : '-'
+  }
+
+  return (
+    <HStack flexDirection='column' gap={4} w='full' alignItems='flex-start'>
+      <Box borderRadius='lg' borderColor='table.border' borderWidth='1px' p={4} w='full'>
+        <Flex borderRadius='lg' borderColor='table.border' borderWidth='1px' p={4} gap={3} mb={2}>
+          <Icon as={LuTriangleAlert} boxSize={4} color='texts.subtle' />
+          <HStack flexDirection='column' gap={0} alignItems='flex-start'>
+            <Heading size='sm' fontWeight='bold'>
+              {t('memberbase.importer.warning.title', { defaultValue: 'Warning' })}
+            </Heading>
+            <Text fontSize='sm' color='texts.subtle'>
+              {t('memberbase.importer.warning.subtitle', {
+                defaultValue: 'The information of columns that are not mapped will not be imported.',
+              })}
+            </Text>
+          </HStack>
+        </Flex>
+        <Flex flexDirection='column' gap={4}>
+          {columns.map(({ id, label }) => (
+            <FormControl key={id}>
+              <Flex gap={3} align='center'>
+                <FormLabel htmlFor={id} flex='1'>
+                  {label}
+                </FormLabel>
+                <Box flex='1'>
+                  <Select
+                    id={id}
+                    name={id}
+                    options={headerOptions}
+                    onChange={(selectedOption) =>
+                      setColumnMapping((prev) => ({
+                        ...prev,
+                        [id]: selectedOption?.value || '',
+                      }))
+                    }
+                    value={
+                      columnMapping[id] ? (headerOptions.find((opt) => opt.value === columnMapping[id]) ?? null) : null
+                    }
+                    placeholder={t('memberbase.importer.field_mapper.placeholder', { defaultValue: 'Select column' })}
+                    components={{
+                      Option: (props) => {
+                        const { isSelected, children } = props
+                        return (
+                          <chakraComponents.Option {...props}>
+                            <Flex align='center' gap={2}>
+                              {isSelected && <Icon as={LuCheck} boxSize={4} color='texts.subtle' />}
+                              {children}
+                            </Flex>
+                          </chakraComponents.Option>
+                        )
+                      },
+                    }}
+                  />
+                </Box>
+              </Flex>
+            </FormControl>
+          ))}
+        </Flex>
+      </Box>
+      <Heading size='md' fontWeight='extrabold'>
+        {t('memberbase.importer.data_preview', { defaultValue: 'Data Preview' })}
+      </Heading>
+      <Box borderColor='table.border' borderWidth='1px' borderRadius='lg' overflowX='auto' w='full'>
+        <Table>
+          <Thead>
+            <Tr>
+              {columns.map(({ id, label }) => (
+                <Th key={id} fontSize='sm' whiteSpace='nowrap'>
+                  {label}
+                </Th>
+              ))}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {previewRows.map((row, index) => (
+              <Tr key={index}>
+                {columns.map(({ id }) => (
+                  <Td key={id}>{getCellValue(row, id)}</Td>
+                ))}
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </Box>
+    </HStack>
+  )
+}
+
+const ImportDataPreview = ({ columnMapping, setColumnMapping }) => {
+  const { t } = useTranslation()
+  const methods = useFormContext()
+  const spreadsheet = useWatch({
+    control: methods.control,
+    name: 'spreadsheet',
+  })
+
+  return (
+    <Flex flexDirection='column' gap={4}>
+      <Heading size='md' fontWeight='extrabold'>
+        {t('memberbase.importer.map_columns.title', { defaultValue: 'Map Columns' })}
+      </Heading>
+      <Text color='texts.subtle' size='sm'>
+        {t('memberbase.importer.map_columns.subtitle', {
+          defaultValue:
+            'Map columns from your file to the corresponding fields in our system. Required fields are marked with an asterisk (*).',
+        })}
+      </Text>
+      <FieldsMapper manager={spreadsheet} columnMapping={columnMapping} setColumnMapping={setColumnMapping} />
+      <Flex justify='space-between' gap={2} mt={4}>
+        <Button type='button' variant='outline' colorScheme='black' onClick={() => methods.reset()}>
+          {t('memberbase.importer.reset', { defaultValue: 'Reset Import' })}
+        </Button>
+        <Button type='submit' colorScheme='black' form='import-members'>
+          {t('memberbase.importer.submit', { defaultValue: 'Import Data' })}
+        </Button>
+      </Flex>
+    </Flex>
+  )
+}
 
 export const ImportMembers = () => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
-  const methods = useForm()
+  const methods = useForm({ defaultValues: { spreadsheet: null } })
+  const spreadsheet = useWatch({
+    control: methods.control,
+    name: 'spreadsheet',
+  })
+  const [columnMapping, setColumnMapping] = useState<Record<string, string>>({})
+  const addMembers = useAddMember(true)
+  const { setJobID } = useMembers()
 
-  const onSubmit = ({ spreadsheet }) => {
+  const hasSpreadsheet = Boolean(spreadsheet?.filedata)
+
+  const mapSpreadsheetData = (data: Record<string, any>[], mapping: Record<string, string>): Record<string, any>[] => {
+    return data.map((row) => {
+      const mappedRow: Record<string, any> = {}
+
+      Object.entries(mapping).forEach(([targetKey, sourceKey]) => {
+        if (row[sourceKey] !== undefined) {
+          mappedRow[targetKey] = row[sourceKey]
+        }
+      })
+      return mappedRow
+    })
+  }
+
+  const onSubmit = async ({ spreadsheet }) => {
     const parsedRows = spreadsheet.filedata.map((row: string[]) => {
       return spreadsheet.heading.reduce((acc: Record<string, string>, key: string, index: number) => {
         acc[key] = row[index]
@@ -33,7 +241,15 @@ export const ImportMembers = () => {
       }, {})
     })
 
-    console.log(parsedRows)
+    const finalData = mapSpreadsheetData(parsedRows, columnMapping)
+    try {
+      const data = await addMembers.mutateAsync(finalData)
+      setJobID(data?.jobID)
+      setColumnMapping({})
+      onClose()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -63,30 +279,21 @@ export const ImportMembers = () => {
               })}
             </Text>
           </DrawerHeader>
-
           <DrawerBody display='flex' flexDirection='column' gap={2}>
-            <Heading size='md' fontWeight='extrabold'>
-              {t('memberbase.download_template.title', { defaultValue: 'Download Import Template' })}
-            </Heading>
-            <Text color='texts.subtle' size='sm'>
-              {t('memberbase.download_template.subtitle', {
-                defaultValue:
-                  'Download a CSV template with the required columns, then fill it with your member data for import.',
-              })}
-            </Text>
             <FormProvider {...methods}>
-              <Box as='form' id='testing-this' onSubmit={methods.handleSubmit(onSubmit)}>
-                <MembersCsvManager />
+              <Box as='form' id='import-members' onSubmit={methods.handleSubmit(onSubmit)}>
+                {!hasSpreadsheet ? (
+                  <TemplateUploader />
+                ) : (
+                  <ImportDataPreview columnMapping={columnMapping} setColumnMapping={setColumnMapping} />
+                )}
               </Box>
-              <Flex justify='flex-end' gap={2} mt={4}>
-                <Button type='button' variant='outline' colorScheme='black' onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button type='submit' colorScheme='black' form='testing-this'>
-                  Import
-                </Button>
-              </Flex>
             </FormProvider>
+            <Flex justify='flex-end' gap={2}>
+              <Button type='button' variant='outline' colorScheme='black' onClick={onClose}>
+                {t('memberbase.importer.cancel', { defaultValue: 'Cancel' })}
+              </Button>
+            </Flex>
           </DrawerBody>
         </DrawerContent>
       </Drawer>
