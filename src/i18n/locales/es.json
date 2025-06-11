@@ -397,18 +397,10 @@
     },
     "members": {
       "spreadsheet": {
-        "download_template": {
-          "included_columns": "Select columns to include:"
-        },
-        "download_template_btn": "Download Template",
-        "select_at_least_one_column": "Select at least one column to download the template.",
         "template": {
-          "birth_date": "Birth Date",
           "email": "Email",
           "firstname": "First Name",
-          "lastname": "Last Name",
           "member_id": "Member ID",
-          "national_id": "National ID",
           "phone": "Phone"
         }
       }
@@ -946,6 +938,16 @@
     "open_source_title": "Código Abierto",
     "title": "<p1>¿Estás</p1><p2>listo para una nueva Era en la gobernanza Web3?</p2>"
   },
+  "import_progress": {
+    "description": "Your member data is being imported. This may take a few minutes depending on the size of your file.",
+    "error_description": "An error occurred while importing your member data. Please try again later.",
+    "error_title": "Import Error",
+    "note": "You can safely close this page. An email will be sent to you upon completion.",
+    "success_description": "Your member data has been imported successfully.",
+    "success_note": "You may now start using your imported members.",
+    "success_title": "Import Completed Successfully",
+    "title": "Memberbase Import in Progress"
+  },
   "invite": {
     "account_not_verified": "Your account is not verified. Please verify your account to continue.",
     "create_account_subtitle": "You need an account first, in order to accept your invite",
@@ -1044,8 +1046,30 @@
     },
     "importer": {
       "button": "Import",
+      "cancel": "Cancel",
+      "data_preview": "Data Preview",
+      "download_template_btn": "Download Template",
+      "error": {
+        "field_is_required": ""
+      },
+      "field_mapper": {
+        "empty": "-- Do not import --",
+        "placeholder": "Select column"
+      },
+      "included_columns": "Select columns to include:",
+      "map_columns": {
+        "subtitle": "Map columns from your file to the corresponding fields in our system. Required fields are marked with an asterisk (*).",
+        "title": "Map Columns"
+      },
+      "reset": "Reset Import",
+      "select_at_least_one_column": "Select at least one column to download the template.",
+      "submit": "Import Data",
       "subtitle": "Download a template or import your own CSV, XLS, or XLSX file to add members.",
-      "title": "Import Members"
+      "title": "Import Members",
+      "warning": {
+        "subtitle": "The information of columns that are not mapped will not be imported.",
+        "title": "Warning"
+      }
     },
     "members": {
       "title": "Members"
