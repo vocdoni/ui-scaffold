@@ -1,13 +1,10 @@
 // These aren't lazy loaded since they are main layouts and related components
 import { useQueryClient } from '@tanstack/react-query'
-import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
+import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
 import { LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
-import { ApiEndpoints } from '~components/Auth/api'
-import { useAuth } from '~components/Auth/useAuth'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
-import { QueryKeys } from '~src/queries/keys'
 import { paginatedElectionsQuery } from '~src/queries/organization'
 import OrganizationProtectedRoute from '~src/router/OrganizationProtectedRoute'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
@@ -37,7 +34,6 @@ const Dashboard = lazy(() => import('~elements/dashboard'))
 export const useDashboardRoutes = () => {
   const queryClient = useQueryClient()
   const { client, account } = useClient()
-  const { bearedFetch } = useAuth()
 
   return {
     element: (
@@ -120,7 +116,7 @@ export const useDashboardRoutes = () => {
                     <Memberbase />
                   </SuspenseLoader>
                 ),
-                // errorElement: <Error />,
+                errorElement: <Error />,
                 children: [
                   {
                     index: true,
@@ -133,24 +129,6 @@ export const useDashboardRoutes = () => {
                         <Members />
                       </SuspenseLoader>
                     ),
-                    loader: async () => {
-                      if (!account?.address) {
-                        return {
-                          members: [],
-                          pagination: { page: 1, perPage: 10, total: 0 },
-                        }
-                      }
-
-                      return queryClient.fetchQuery({
-                        queryKey: QueryKeys.organization.members(account?.address),
-                        queryFn: async () => {
-                          const response = await bearedFetch(
-                            ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(account?.address))
-                          )
-                          return response
-                        },
-                      })
-                    },
                   },
                   {
                     path: Routes.dashboard.memberbase.groups,

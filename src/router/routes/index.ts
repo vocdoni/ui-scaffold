@@ -20,7 +20,7 @@ export const Routes = {
     profile: '/admin/profile',
     memberbase: {
       base: '/admin/memberbase',
-      members: '/admin/memberbase/members',
+      members: '/admin/memberbase/members/:page?',
       groups: '/admin/memberbase/groups',
     },
     settings: {
