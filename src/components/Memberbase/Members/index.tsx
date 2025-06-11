@@ -1,7 +1,11 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons'
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+  Box,
   Button,
   Checkbox,
+  CloseButton,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -9,7 +13,6 @@ import {
   DrawerOverlay,
   Flex,
   Heading,
-  HStack,
   Icon,
   IconButton,
   Input,
@@ -37,39 +40,36 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsis, LuEye, LuEyeOff, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers } from 'react-icons/lu'
-import { useRevalidator } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import PaginatedTableFooter from '~components/shared/Pagination/PaginatedTableFooter'
 import { QueryKeys } from '~src/queries/keys'
 import { useTable } from '../TableProvider'
 import { ExportMembers } from './Export'
 import { ImportMembers } from './Import'
 import { MemberManager } from './Manager'
+import { useMembers } from './MembersProvider'
 
 const useDeleteMembers = () => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
-  const { revalidate } = useRevalidator()
 
   return useMutation<void, Error, string[]>({
-    mutationKey: [QueryKeys.organization.members(organization?.address)],
-    mutationFn: async (memberIDs: string[]) =>
+    mutationKey: QueryKeys.organization.members(organization?.address),
+    mutationFn: async (ids: string[]) =>
       await bearedFetch<void>(
         ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address)),
         {
           body: {
-            memberIDs,
+            ids,
           },
           method: 'DELETE',
         }
       ),
-    onSuccess: () => {
-      revalidate()
-    },
   })
 }
 
@@ -213,6 +213,7 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }) => {
   const toast = useToast()
   const deleteMutation = useDeleteMembers()
   const { selectedRows, setSelectedRows } = useTable()
+  const queryClient = useQueryClient()
 
   const handleDelete = async () => {
     try {
@@ -227,6 +228,9 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }) => {
         status: 'success',
         duration: 3000,
         isClosable: true,
+      })
+      await queryClient.invalidateQueries({
+        queryKey: QueryKeys.organization.members(),
       })
       onClose()
     } catch (error) {
@@ -275,6 +279,48 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }) => {
   )
 }
 
+const ImportProgress = () => {
+  const { t } = useTranslation()
+  const queryClient = useQueryClient()
+  const { jobID, setJobID, jobProgress } = useMembers()
+
+  if (!jobID) return null
+
+  const { data, isError } = jobProgress({
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: QueryKeys.organization.members(),
+      })
+      setJobID(null)
+    },
+  })
+
+  console.log('Import progress data:', data, 'isError:', isError)
+
+  return (
+    <Alert status='info' borderRadius='md' mb={3} mt={4}>
+      <Box>
+        <AlertTitle>{t('import_progress.title', { defaultValue: 'Memberbase Import in Progress' })}</AlertTitle>
+        <AlertDescription>
+          <Progress size='md' value={data?.progress} borderRadius='md' isAnimated />
+          <Text>
+            {t('import_progress.description', {
+              defaultValue:
+                'Your member data is being imported. This may take a few minutes depending on the size of your file.',
+            })}
+          </Text>
+          <Text size='sm'>
+            {t('import_progress.note', {
+              defaultValue: 'You can safely close this page. An email will be sent to you upon completion.',
+            })}
+          </Text>
+        </AlertDescription>
+      </Box>
+      <CloseButton alignSelf='flex-start' position='relative' onClick={() => setJobID(null)} />
+    </Alert>
+  )
+}
+
 const MembersTable = () => {
   const { t } = useTranslation()
   const {
@@ -292,17 +338,14 @@ const MembersTable = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const openDeleteModal = (member?) => {
-    if (member) {
-      setSelectedRows((prev) => [...prev, member.memberID])
-    }
+    if (member) setSelectedRows((prev) => [...prev, member.id])
     onOpen()
   }
 
-  if (isLoading) return <Progress isIndeterminate />
-
   return (
     <>
-      <TableContainer border='1px' borderRadius='sm' borderColor='table.border'>
+      <ImportProgress />
+      <TableContainer border='1px' borderRadius='sm' borderColor='table.border' overflowX='visible' overflowY='visible'>
         <Flex px={4} pt={4}>
           <Flex direction='column' flex={1} gap={2}>
             <MemberFilters />
@@ -321,7 +364,7 @@ const MembersTable = () => {
           </Flex>
         </Flex>
 
-        {filteredData.length === 0 ? (
+        {filteredData.length === 0 && !isLoading ? (
           <Flex justify='center' align='center' height='200px'>
             <Text color='texts.subtle' fontSize='sm'>
               {search
@@ -354,36 +397,39 @@ const MembersTable = () => {
                 </Tr>
               </Thead>
               <Tbody>
-                {filteredData.map((member) => (
-                  <Tr key={member.id}>
-                    <Td>
-                      <Checkbox
-                        isChecked={isSelected(member.memberID)}
-                        onChange={(e) => toggleOne(member.memberID, e.target.checked)}
-                      />
-                    </Td>
-                    {columns
-                      .filter((column) => column.visible)
-                      .map((column) => (
-                        <Td key={column.id}>{member[column.id]}</Td>
-                      ))}
-                    <Td>
-                      <MemberActions member={member} onDelete={() => openDeleteModal(member)} />
+                {isLoading ? (
+                  <Tr>
+                    <Td colSpan={columns.length + 2}>
+                      <Progress isIndeterminate />
                     </Td>
                   </Tr>
-                ))}
+                ) : (
+                  filteredData.map((member) => (
+                    <Tr key={member.id}>
+                      <Td>
+                        <Checkbox
+                          isChecked={isSelected(member.id)}
+                          onChange={(e) => toggleOne(member.id, e.target.checked)}
+                        />
+                      </Td>
+                      {columns
+                        .filter((column) => column.visible)
+                        .map((column) => (
+                          <Td key={column.id}>{member[column.id]}</Td>
+                        ))}
+                      <Td>
+                        <MemberActions member={member} onDelete={() => openDeleteModal(member)} />
+                      </Td>
+                    </Tr>
+                  ))
+                )}
               </Tbody>
             </Table>
-
-            <Flex justify='space-between' p={4}>
-              <Text>Page 1</Text>
-              <HStack>
-                <IconButton aria-label='Previous' icon={<ChevronLeftIcon />} isDisabled />
-                <IconButton aria-label='Next' icon={<ChevronRightIcon />} isDisabled />
-              </HStack>
-            </Flex>
           </>
         )}
+        <Box p={4}>
+          <PaginatedTableFooter />
+        </Box>
       </TableContainer>
       <DeleteMemberModal isOpen={isOpen} onClose={onClose} />
     </>
