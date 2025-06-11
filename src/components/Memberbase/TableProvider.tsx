@@ -12,20 +12,20 @@ export function TableProvider({ data = [], isLoading = false, initialColumns, ch
     return data.filter((item) => Object.values(item).some((value) => String(value).toLowerCase().includes(lowerFilter)))
   }, [data, search])
 
-  const allVisibleSelected = filteredData.every((item) => selectedRows.some((selected) => selected === item.memberID))
-  const someSelected = filteredData.some((item) => selectedRows.some((selected) => selected === item.memberID))
+  const allVisibleSelected = filteredData.every((item) => selectedRows.some((selected) => selected === item.id))
+  const someSelected = filteredData.some((item) => selectedRows.some((selected) => selected === item.id))
 
   const toggleAll = (checked: boolean) => {
     if (checked) {
       const unique = [
         ...selectedRows,
         ...filteredData
-          .filter((item) => !selectedRows.some((selectedId) => selectedId === item.memberID))
-          .map((item) => item.memberID),
+          .filter((item) => !selectedRows.some((selectedId) => selectedId === item.id))
+          .map((item) => item.id),
       ]
       setSelectedRows(unique)
     } else {
-      const filteredIds = filteredData.map((item) => item.memberID)
+      const filteredIds = filteredData.map((item) => item.id)
       setSelectedRows((prev) => prev.filter((p) => !filteredIds.includes(p)))
     }
   }
