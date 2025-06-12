@@ -227,7 +227,7 @@ export const useOrganizationSetup = () => {
     {
       id: SetupStepIds.memberbaseUpload,
       label: t('organization_setup.setup_steps.memberbase_upload', { defaultValue: 'Upload your memberbase' }),
-      to: generatePath(Routes.dashboard.memberbase.members, { page: '1' }),
+      to: generatePath(Routes.dashboard.memberbase.members, { page: 1 }),
       type: CheckboxTypes.route,
       icon: LuFileSpreadsheet,
     },

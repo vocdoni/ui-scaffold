@@ -1,6 +1,6 @@
 import { Flex, Heading, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
+import { generatePath, Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { Routes } from '~routes'
 
 export const MemberbaseTabs = () => {
@@ -10,7 +10,10 @@ export const MemberbaseTabs = () => {
   const location = useLocation()
 
   const menuItems = [
-    { label: t('memberbase.members.title', { defaultValue: 'Members' }), route: Routes.dashboard.memberbase.members },
+    {
+      label: t('memberbase.members.title', { defaultValue: 'Members' }),
+      route: generatePath(Routes.dashboard.memberbase.members, { page: 1 }),
+    },
     { label: t('memberbase.groups.title', { defaultValue: 'Groups' }), route: Routes.dashboard.memberbase.groups },
   ]
   const currentTabIndex = menuItems.findIndex((item) => location.pathname.endsWith(item.route))
