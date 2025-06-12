@@ -27,11 +27,12 @@ import { useRef, useState } from 'react'
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuCheck, LuTriangleAlert, LuUpload, LuX } from 'react-icons/lu'
+import { useOutletContext } from 'react-router-dom'
 import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/SpreadsheetManager'
 import { useAddMembers } from '~src/queries/members'
+import { MemberbaseTabsContext } from '..'
 import { useTable } from '../TableProvider'
 import { MembersCsvManager } from './MembersCsvManager'
-import { useMembers } from './MembersProvider'
 
 type SpreadsheetRow = Record<string, string>
 type ColumnMapping = Record<string, string>
@@ -246,7 +247,7 @@ export const ImportMembers = () => {
   })
   const [columnMapping, setColumnMapping] = useState<ColumnMapping>({})
   const addMembers = useAddMembers(true)
-  const { setJobID } = useMembers()
+  const { setJobID } = useOutletContext<MemberbaseTabsContext>()
 
   const hasSpreadsheet = Boolean(spreadsheet?.filedata)
 
