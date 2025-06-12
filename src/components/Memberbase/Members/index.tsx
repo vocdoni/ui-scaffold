@@ -158,7 +158,7 @@ const MemberFilters = () => {
           onChange={handleSearchChange}
         />
       </InputGroup>
-      <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray'>
+      <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray' disabled={true}>
         {t('members_table.create_group_all', {
           defaultValue: 'Create a group with all members',
         })}
@@ -187,7 +187,14 @@ const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
               defaults='Selected: <strong>{{count}} member</strong>'
             />
           </Text>
-          <Button leftIcon={<Icon as={LuUsers} />} variant='outline' size='sm' colorScheme='gray' onClick={createGroup}>
+          <Button
+            leftIcon={<Icon as={LuUsers} />}
+            variant='outline'
+            size='sm'
+            colorScheme='gray'
+            disabled={true}
+            onClick={createGroup}
+          >
             {t('members_table.create_group', {
               defaultValue: 'Create a group',
             })}
