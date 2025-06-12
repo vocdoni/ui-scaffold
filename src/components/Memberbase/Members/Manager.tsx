@@ -60,11 +60,18 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
     ? t('memberbase.edit_member.error', { defaultValue: 'Error updating member.' })
     : t('memberbase.add_member.error', { defaultValue: 'Error adding member.' })
 
+  /**
+   * Syncs the form values with the selected member.
+   *
+   * When the `member` prop changes, this effect resets the form fields
+   * to match the new member's data. This ensures that when editing an existing
+   * member, the form is pre-filled with their current information.
+   */
   useEffect(() => {
     if (member) {
       methods.reset(member)
     }
-  }, [member, methods])
+  }, [member])
 
   const onSubmit = (data: MemberFormData) => {
     const { name, email, phone, password, memberID } = data
