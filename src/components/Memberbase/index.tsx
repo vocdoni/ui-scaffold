@@ -1,13 +1,21 @@
 import { Flex, Heading, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
+import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
 
+export type MemberbaseTabsContext = {
+  setJobID: (jobID: string | null) => void
+  jobID: string | null
+} & DashboardLayoutContext
+
 export const MemberbaseTabs = () => {
+  const [jobID, setJobID] = useState(null)
   const { t } = useTranslation()
-  const context = useOutletContext()
   const navigate = useNavigate()
   const location = useLocation()
+  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
   const menuItems = [
     {
@@ -47,7 +55,7 @@ export const MemberbaseTabs = () => {
             <Tab key={index}>{item.label}</Tab>
           ))}
         </TabList>
-        <Outlet context={context} />
+        <Outlet context={{ setBreadcrumb, setJobID, jobID }} />
       </Tabs>
     </>
   )

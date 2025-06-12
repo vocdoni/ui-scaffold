@@ -3,7 +3,6 @@ import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
 import MembersTable from '~components/Memberbase/Members'
-import { MembersProvider } from '~components/Memberbase/Members/MembersProvider'
 import { TableProvider } from '~components/Memberbase/TableProvider'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
@@ -59,9 +58,7 @@ const Members = () => {
   return (
     <TableProvider data={members} initialColumns={columns} isLoading={isLoading} isFetching={isFetching}>
       <RoutedPaginationProvider path={Routes.dashboard.memberbase.members} pagination={pagination}>
-        <MembersProvider>
-          <MembersTable />
-        </MembersProvider>
+        <MembersTable />
       </RoutedPaginationProvider>
     </TableProvider>
   )

@@ -1,10 +1,10 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
 import { PaginationResponse } from '@vocdoni/sdk'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useOutletContext, useParams, useSearchParams } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
-import { useMembers } from '~components/Memberbase/Members/MembersProvider'
+import { MemberbaseTabsContext } from '~components/Memberbase'
 import { QueryKeys } from './keys'
 import { SetupStepIds, useOrganizationSetup } from './organization'
 
@@ -105,7 +105,7 @@ export const useDeleteMembers = () => {
 }
 
 export const useImportJobProgress = () => {
-  const { jobID } = useMembers()
+  const { jobID } = useOutletContext<MemberbaseTabsContext>()
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
 

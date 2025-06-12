@@ -47,14 +47,15 @@ import { useOrganization } from '@vocdoni/react-providers'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsis, LuEye, LuEyeOff, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers } from 'react-icons/lu'
+import { useOutletContext } from 'react-router-dom'
 import PaginatedTableFooter from '~components/shared/Pagination/PaginatedTableFooter'
 import { QueryKeys } from '~src/queries/keys'
 import { Member, useDeleteMembers, useImportJobProgress } from '~src/queries/members'
+import { MemberbaseTabsContext } from '..'
 import { useTable } from '../TableProvider'
 import { ExportMembers } from './Export'
 import { ImportMembers } from './Import'
 import { MemberManager } from './Manager'
-import { useMembers } from './MembersProvider'
 
 type MemberActionsProps = {
   member: Member
@@ -290,7 +291,7 @@ const ImportProgress = () => {
   const { t } = useTranslation()
   const queryClient = useQueryClient()
   const { organization } = useOrganization()
-  const { jobID, setJobID } = useMembers()
+  const { jobID, setJobID } = useOutletContext<MemberbaseTabsContext>()
   const { data, isError } = useImportJobProgress()
 
   const closeAlert = () => {
