@@ -16,6 +16,8 @@ type TableProviderProps = {
 
 const TableContext = createContext(undefined)
 
+const STORAGE_KEY = 'table_columns_visibility'
+
 export function TableProvider({
   data = [],
   isLoading = false,
@@ -25,7 +27,31 @@ export function TableProvider({
 }: TableProviderProps) {
   const [search, setSearch] = useState('')
   const [selectedRows, setSelectedRows] = useState<string[]>([])
-  const [columns, setColumns] = useState<TableColumn[]>(initialColumns)
+  const [columns, setColumnsState] = useState<TableColumn[]>(() => {
+    try {
+      const savedVisibleColumns = localStorage.getItem(STORAGE_KEY)
+      if (savedVisibleColumns) {
+        const visibleIds = new Set<string>(JSON.parse(savedVisibleColumns))
+        return initialColumns.map((column) => ({
+          ...column,
+          visible: visibleIds.has(column.id),
+        }))
+      }
+    } catch (e) {
+      console.warn('Error reading column visibility from localStorage:', e)
+    }
+    return initialColumns
+  })
+
+  const setColumns = (updatedColumns: TableColumn[]) => {
+    const visibleIds = updatedColumns.filter((column) => column.visible).map((column) => column.id)
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(visibleIds))
+    } catch (e) {
+      console.warn('Error saving column visibility to localStorage:', e)
+    }
+    setColumnsState(updatedColumns)
+  }
 
   const filteredData = useMemo(() => {
     const lowerFilter = search.toLowerCase()
@@ -52,9 +78,7 @@ export function TableProvider({
     setSelectedRows((prev) => (checked ? [...prev, id] : prev.filter((p) => p !== id)))
   }
 
-  const isSelected = (id: string) => {
-    return selectedRows.includes(id)
-  }
+  const isSelected = (id: string) => selectedRows.includes(id)
 
   return (
     <TableContext.Provider
