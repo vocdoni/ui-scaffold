@@ -27,7 +27,7 @@ type PaginatedMembers = {
   members: Member[]
 } & PaginationResponse
 
-type AddMemberResponse = {
+type AddMembersResponse = {
   jobID?: string
   count: number
 }
@@ -47,6 +47,7 @@ export const usePaginatedMembers = () => {
   return useQuery<MembersResponse, Error, PaginatedMembers>({
     queryKey: QueryKeys.organization.members(organization?.address),
     enabled: !!organization?.address,
+    refetchOnWindowFocus: false,
     queryFn: () => bearedFetch<MembersResponse>(fetchUrl),
     select: (data) => {
       const currentPage = data.page - 1
@@ -66,7 +67,7 @@ export const usePaginatedMembers = () => {
   })
 }
 
-export const useAddMember = (isAsync: boolean = false) => {
+export const useAddMembers = (isAsync: boolean = false) => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
   const { setStepDone } = useOrganizationSetup()
@@ -74,10 +75,10 @@ export const useAddMember = (isAsync: boolean = false) => {
   const baseUrl = ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address))
   const fetchUrl = `${baseUrl}?async=${isAsync}`
 
-  return useMutation<AddMemberResponse, Error, Record<string, any>>({
+  return useMutation<AddMembersResponse, Error, Record<string, any>>({
     mutationKey: QueryKeys.organization.members(organization?.address),
     mutationFn: async (members) =>
-      await bearedFetch<AddMemberResponse>(fetchUrl, { body: { members }, method: 'POST' }),
+      await bearedFetch<AddMembersResponse>(fetchUrl, { body: { members }, method: 'POST' }),
     onSuccess: () => {
       setStepDone(SetupStepIds.memberbaseUpload)
     },
