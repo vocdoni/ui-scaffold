@@ -28,7 +28,7 @@ import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form
 import { useTranslation } from 'react-i18next'
 import { LuCheck, LuTriangleAlert, LuUpload, LuX } from 'react-icons/lu'
 import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/SpreadsheetManager'
-import { useAddMember } from '~src/queries/members'
+import { useAddMembers } from '~src/queries/members'
 import { useTable } from '../TableProvider'
 import { MembersCsvManager } from './MembersCsvManager'
 import { useMembers } from './MembersProvider'
@@ -245,7 +245,7 @@ export const ImportMembers = () => {
     name: 'spreadsheet',
   })
   const [columnMapping, setColumnMapping] = useState<ColumnMapping>({})
-  const addMembers = useAddMember(true)
+  const addMembers = useAddMembers(true)
   const { setJobID } = useMembers()
 
   const hasSpreadsheet = Boolean(spreadsheet?.filedata)

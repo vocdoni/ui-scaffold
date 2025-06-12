@@ -18,7 +18,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import InputBasic from '~components/shared/Form/InputBasic'
 import { QueryKeys } from '~src/queries/keys'
-import { Member, useAddMember } from '~src/queries/members'
+import { Member, useAddMembers } from '~src/queries/members'
 import { useTable } from '../TableProvider'
 
 type MemberFormData = Record<string, string>
@@ -34,7 +34,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef(null)
   const { columns } = useTable()
-  const addMember = useAddMember()
+  const addMember = useAddMembers()
   const { organization } = useOrganization()
   const queryClient = useQueryClient()
 
