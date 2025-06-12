@@ -77,7 +77,7 @@ export const ExportMembers = () => {
 
   return (
     <>
-      <Button leftIcon={<Icon as={LuFileDown} />} variant='outline' onClick={onOpen}>
+      <Button leftIcon={<Icon as={LuFileDown} />} variant='outline' onClick={onOpen} disabled={true}>
         {t('memberbase.exporter.button', { defaultValue: 'Export' })}
       </Button>
 
