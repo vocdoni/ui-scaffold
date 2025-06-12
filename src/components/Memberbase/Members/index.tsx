@@ -95,6 +95,11 @@ const ColumnManager = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { columns, setColumns } = useTable()
 
+  const toggleColumn = (columnId: string) => {
+    const updatedColumns = columns.map((col) => (col.id === columnId ? { ...col, visible: !col.visible } : col))
+    setColumns(updatedColumns)
+  }
+
   return (
     <>
       <IconButton
@@ -124,9 +129,7 @@ const ColumnManager = () => {
                   aria-label={t('members_table.toggle_column', {
                     defaultValue: `Toggle ${col.id} column`,
                   })}
-                  onClick={() =>
-                    setColumns((prev) => prev.map((c) => (c.id === col.id ? { ...c, visible: !c.visible } : c)))
-                  }
+                  onClick={toggleColumn.bind(null, col.id)}
                   variant='ghost'
                 />
               </Flex>
