@@ -2,7 +2,7 @@
 import { useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { lazy } from 'react'
-import { LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
+import { generatePath, LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
 import { paginatedElectionsQuery } from '~src/queries/organization'
@@ -120,7 +120,7 @@ export const useDashboardRoutes = () => {
                 children: [
                   {
                     index: true,
-                    element: <Navigate to={Routes.dashboard.memberbase.members} replace />,
+                    element: <Navigate to={generatePath(Routes.dashboard.memberbase.members, { page: 1 })} replace />,
                   },
                   {
                     path: Routes.dashboard.memberbase.members,
