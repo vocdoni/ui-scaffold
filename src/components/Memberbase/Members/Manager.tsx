@@ -7,6 +7,7 @@ import {
   DrawerOverlay,
   Flex,
   Heading,
+  Stack,
   Text,
   useDisclosure,
   useToast,
@@ -102,14 +103,16 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
   }, [member])
 
   const onSubmit = (data: MemberFormData) => {
-    const { name, email, phone, password, memberID } = data
+    const { memberID, name, surname, email, phone, nationalID, birthDate } = data
 
-    const memberPayload: Member = {
+    const memberPayload: Partial<Member> = {
       memberID,
       name,
+      surname,
       email,
       phone,
-      password,
+      nationalID,
+      birthDate,
     }
 
     addMember.mutate([memberPayload], {
