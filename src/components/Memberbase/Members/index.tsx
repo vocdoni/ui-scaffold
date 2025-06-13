@@ -72,6 +72,13 @@ type DeleteMemberModalProps = {
   onClose: () => void
 } & Omit<ModalProps, 'children'>
 
+const maskedFields = new Set<string>(['phone'])
+
+export const maskIfNeeded = (fieldId: string, value: string): string => {
+  if (!maskedFields.has(fieldId)) return value
+  return '*********'
+}
+
 const MemberActions = ({ member, onDelete }: MemberActionsProps) => {
   const { t } = useTranslation()
 
@@ -493,7 +500,7 @@ const MembersTable = () => {
                     {columns
                       .filter((column) => column.visible)
                       .map((column) => (
-                        <Td key={column.id}>{member[column.id]}</Td>
+                        <Td key={column.id}>{maskIfNeeded(column.id, member[column.id])}</Td>
                       ))}
                     <Td>
                       <MemberActions member={member} onDelete={() => openDeleteModal(member)} />
