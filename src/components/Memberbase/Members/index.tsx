@@ -31,6 +31,7 @@ import {
   ModalProps,
   Progress,
   Spinner,
+  Switch,
   Table,
   TableContainer,
   Tbody,
@@ -133,13 +134,13 @@ const ColumnManager = () => {
             {columns.map((col) => (
               <Flex key={col.id} justify='space-between' align='center' my={2}>
                 <Text>{col.label}</Text>
-                <IconButton
-                  icon={col.visible ? <LuEyeOff /> : <LuEye />}
+                <Switch
+                  colorScheme='black'
+                  isChecked={col.visible}
+                  onChange={toggleColumn.bind(null, col.id)}
                   aria-label={t('members_table.toggle_column', {
                     defaultValue: `Toggle ${col.id} column`,
                   })}
-                  onClick={toggleColumn.bind(null, col.id)}
-                  variant='ghost'
                 />
               </Flex>
             ))}
@@ -311,6 +312,11 @@ const ImportProgress = () => {
     setJobID(null)
   }
 
+  /**
+   * Refetches members when import progress reaches 100%.
+   *
+   * Ensures the members list is up-to-date after a successful import.
+   */
   useEffect(() => {
     if (data?.progress === 100) {
       queryClient.invalidateQueries({
@@ -405,6 +411,7 @@ const ImportProgress = () => {
 
 const MembersTable = () => {
   const { t } = useTranslation()
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const {
     filteredData,
     isLoading,
@@ -418,15 +425,13 @@ const MembersTable = () => {
     toggleOne,
     columns,
   } = useTable()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const isLoadingOrImporting = isLoading || isFetching
+  const isEmpty = filteredData.length === 0 && !isLoadingOrImporting
 
   const openDeleteModal = (member?) => {
     if (member) setSelectedRows((prev) => [...prev, member.id])
     onOpen()
   }
-
-  const isLoadingOrImporting = isLoading || isFetching
-  const isEmpty = filteredData.length === 0 && !isLoadingOrImporting
 
   return (
     <>

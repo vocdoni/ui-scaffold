@@ -17,6 +17,7 @@ import { Radio } from './radio'
 import { ElectionResults } from './results'
 import { SpreadsheetAccess } from './spreadsheetAccess'
 import { Stepper } from './stepper'
+import { Switch } from './switch'
 import { Table } from './table'
 import { Tabs } from './tabs'
 import { Tag } from './tag'
@@ -44,6 +45,7 @@ const components = {
   Progress,
   Radio,
   Stepper,
+  Switch,
   SpreadsheetAccess,
   Table,
   Tabs,
