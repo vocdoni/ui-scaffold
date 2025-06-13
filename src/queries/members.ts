@@ -32,20 +32,27 @@ type AddMembersResponse = {
   count: number
 }
 
+export const useUrlPagination = () => {
+  const params = useParams()
+  const [searchParams] = useSearchParams()
+  const page = Number(params.page ?? 1)
+  const limit = Number(searchParams.get('limit') ?? 10)
+  return {
+    page,
+    limit,
+  }
+}
+
 export const usePaginatedMembers = () => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
-  const params = useParams()
-  const [searchParams] = useSearchParams()
-
-  const page = Number(params.page ?? 1)
-  const limit = Number(searchParams.get('limit') ?? 10)
+  const { page, limit } = useUrlPagination()
 
   const baseUrl = ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization?.address))
   const fetchUrl = `${baseUrl}?page=${page}&pageSize=${limit}`
 
   return useQuery<MembersResponse, Error, PaginatedMembers>({
-    queryKey: QueryKeys.organization.members(organization?.address),
+    queryKey: [QueryKeys.organization.members(organization?.address), page, limit],
     enabled: !!organization?.address,
     refetchOnWindowFocus: false,
     queryFn: () => bearedFetch<MembersResponse>(fetchUrl),

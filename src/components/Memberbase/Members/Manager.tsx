@@ -18,7 +18,7 @@ import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import InputBasic from '~components/shared/Form/InputBasic'
 import { QueryKeys } from '~src/queries/keys'
-import { Member, useAddMembers } from '~src/queries/members'
+import { Member, useAddMembers, useUrlPagination } from '~src/queries/members'
 import { useTable } from '../TableProvider'
 
 type MemberFormData = Record<string, string>
@@ -37,6 +37,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
   const addMember = useAddMembers()
   const { organization } = useOrganization()
   const queryClient = useQueryClient()
+  const { page, limit } = useUrlPagination()
 
   const defaultValues: MemberFormData = useMemo(() => Object.fromEntries(columns.map((col) => [col.id, ''])), [columns])
 
@@ -94,7 +95,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
         })
         methods.reset()
         queryClient.invalidateQueries({
-          queryKey: QueryKeys.organization.members(organization.address),
+          queryKey: [QueryKeys.organization.members(organization.address), page, limit],
         })
         onClose()
       },
