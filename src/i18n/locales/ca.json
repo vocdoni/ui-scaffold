@@ -395,13 +395,23 @@
       "password_min_length": "Min. 8 characters",
       "recipient_address_invalid": "L'adreça especificada no sembla vàlida"
     },
+    "member": {
+      "error": {
+        "invalid_birth_date": "Birth date cannot be in the future",
+        "invalid_email": "Invalid email address",
+        "invalid_phone": "Invalid phone number"
+      }
+    },
     "members": {
       "spreadsheet": {
         "template": {
+          "birth_date": "Birth Date",
           "email": "Email",
           "firstname": "First Name",
           "member_id": "Member ID",
-          "phone": "Phone"
+          "national_id": "National ID",
+          "phone": "Phone",
+          "surname": "Last Name"
         }
       }
     },
@@ -1015,7 +1025,7 @@
       "title": "Delete Members"
     },
     "download_template": {
-      "subtitle": "Download a CSV template with the required columns, then fill it with your member data for import.",
+      "subtitle": "Download the template with your chosen columns, add your member data, and upload the file to set up your memberbase. Once it’s ready, you can start creating votes.",
       "title": "Download Import Template"
     },
     "edit_member": {
@@ -1043,6 +1053,10 @@
     },
     "groups": {
       "title": "Groups"
+    },
+    "import_file": {
+      "subtitle": "Import your CSV, XLS, or XLSX file containing member data. Ensure column headers match the template for accurate mapping.",
+      "title": "Import File"
     },
     "importer": {
       "button": "Import",
