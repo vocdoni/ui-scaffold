@@ -61,6 +61,33 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
     ? t('memberbase.edit_member.error', { defaultValue: 'Error updating member.' })
     : t('memberbase.add_member.error', { defaultValue: 'Error adding member.' })
 
+  const fieldValidations: Record<string, any> = {
+    email: {
+      pattern: {
+        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+        message: t('form.member.error.invalid_email', { defaultValue: 'Invalid email address' }),
+      },
+    },
+    phone: {
+      pattern: {
+        value: /^\+?[1-9]\d{7,14}$/,
+        message: t('form.member.error.invalid_phone', { defaultValue: 'Invalid phone number' }),
+      },
+    },
+    birthDate: {
+      validate: (value: string) => {
+        if (!value) return true
+        const selectedDate = new Date(value)
+        const now = new Date()
+
+        return (
+          selectedDate <= now ||
+          t('form.member.error.invalid_birth_date', { defaultValue: 'Birth date cannot be in the future' })
+        )
+      },
+    },
+  }
+
   /**
    * Syncs the form values with the selected member.
    *
@@ -129,16 +156,22 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
             </Text>
           </DrawerHeader>
           <DrawerBody>
-            <Flex as='form' id='member-form' onSubmit={methods.handleSubmit(onSubmit)} flexDirection='column' gap={4}>
-              {columns.map((col) => (
-                <InputBasic
-                  key={col.id}
-                  formValue={col.id}
-                  label={col.label}
-                  type={col.id === 'birthdate' ? 'date' : 'text'}
-                />
-              ))}
-            </Flex>
+            <Stack as='form' id='member-form' spacing={4} onSubmit={methods.handleSubmit(onSubmit)}>
+              {columns.map((col) => {
+                const isPhone = col.id === 'phone'
+                const isBirthdate = col.id === 'birthDate'
+
+                return (
+                  <InputBasic
+                    key={col.id}
+                    formValue={col.id}
+                    label={col.label}
+                    type={isBirthdate ? 'date' : isPhone ? 'tel' : 'text'}
+                    validation={fieldValidations[col.id] || {}}
+                  />
+                )
+              })}
+            </Stack>
             <Flex justify='flex-end' gap={2} mt={4}>
               <Button variant='outline' colorScheme='black' onClick={handleClose}>
                 {t('memberbase.form.cancel', { defaultValue: 'Cancel' })}
