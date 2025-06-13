@@ -46,11 +46,12 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuEllipsis, LuEye, LuEyeOff, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers } from 'react-icons/lu'
-import { useOutletContext } from 'react-router-dom'
+import { LuEllipsis, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers } from 'react-icons/lu'
+import { generatePath, useNavigate, useOutletContext } from 'react-router-dom'
 import PaginatedTableFooter from '~components/shared/Pagination/PaginatedTableFooter'
+import { Routes } from '~routes'
 import { QueryKeys } from '~src/queries/keys'
-import { Member, useDeleteMembers, useImportJobProgress } from '~src/queries/members'
+import { Member, useDeleteMembers, useImportJobProgress, useUrlPagination } from '~src/queries/members'
 import { MemberbaseTabsContext } from '..'
 import { useTable } from '../TableProvider'
 import { ExportMembers } from './Export'
@@ -219,9 +220,12 @@ const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
 const DeleteMemberModal = ({ isOpen, onClose, ...props }: DeleteMemberModalProps) => {
   const { t } = useTranslation()
   const toast = useToast()
+  const { organization } = useOrganization()
   const deleteMutation = useDeleteMembers()
   const { selectedRows, setSelectedRows } = useTable()
   const queryClient = useQueryClient()
+  const { page, limit } = useUrlPagination()
+  const navigate = useNavigate()
 
   const handleDelete = async () => {
     try {
@@ -237,10 +241,11 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }: DeleteMemberModalProps
         duration: 3000,
         isClosable: true,
       })
-      await queryClient.invalidateQueries({
-        queryKey: QueryKeys.organization.members(),
-      })
+      navigate(generatePath(Routes.dashboard.memberbase.members, { page: 1 }))
       onClose()
+      await queryClient.invalidateQueries({
+        queryKey: [QueryKeys.organization.members(organization?.address), page, limit],
+      })
     } catch (error) {
       toast({
         title: t('memberbase.delete_member.error', {
@@ -293,6 +298,7 @@ const ImportProgress = () => {
   const { organization } = useOrganization()
   const { jobID, setJobID } = useOutletContext<MemberbaseTabsContext>()
   const { data, isError } = useImportJobProgress()
+  const { page, limit } = useUrlPagination()
 
   const closeAlert = () => {
     setJobID(null)
@@ -301,7 +307,7 @@ const ImportProgress = () => {
   useEffect(() => {
     if (data?.progress === 100) {
       queryClient.invalidateQueries({
-        queryKey: QueryKeys.organization.members(organization?.address),
+        queryKey: [QueryKeys.organization.members(organization.address), page, limit],
       })
     }
   }, [data?.progress])
