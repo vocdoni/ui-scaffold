@@ -111,6 +111,14 @@ const FieldsMapper = ({ manager, columnMapping, setColumnMapping }: FieldsMapper
     return columnIndex !== -1 ? row[columnIndex] : '-'
   }
 
+  const getAvailableOptions = (fieldId: string) => {
+    const usedValues = Object.entries(columnMapping)
+      .filter(([key, value]) => key !== fieldId && value)
+      .map(([_, value]) => value)
+
+    return headerOptions.filter((opt) => !usedValues.includes(opt.value))
+  }
+
   return (
     <HStack flexDirection='column' gap={4} w='full' alignItems='flex-start'>
       <Box borderRadius='lg' borderColor='table.border' borderWidth='1px' p={4} w='full'>
@@ -138,7 +146,7 @@ const FieldsMapper = ({ manager, columnMapping, setColumnMapping }: FieldsMapper
                   <Select
                     id={id}
                     name={id}
-                    options={headerOptions}
+                    options={getAvailableOptions(id)}
                     onChange={(selectedOption) =>
                       setColumnMapping((prev) => ({
                         ...prev,
@@ -146,7 +154,9 @@ const FieldsMapper = ({ manager, columnMapping, setColumnMapping }: FieldsMapper
                       }))
                     }
                     value={
-                      columnMapping[id] ? (headerOptions.find((opt) => opt.value === columnMapping[id]) ?? null) : null
+                      columnMapping[id] === undefined
+                        ? null
+                        : (headerOptions.find((opt) => opt.value === columnMapping[id]) ?? null)
                     }
                     placeholder={t('memberbase.importer.field_mapper.placeholder', {
                       defaultValue: 'Select column',
