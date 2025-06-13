@@ -8,7 +8,9 @@ import {
   Flex,
   FormControl,
   FormErrorMessage,
+  Heading,
   Link,
+  Stack,
   Text,
 } from '@chakra-ui/react'
 import { useCallback, useMemo, useState } from 'react'
@@ -78,7 +80,7 @@ export const MembersCsvManager = () => {
     accept: SpreadsheetManager.AcceptedTypes.reduce((prev, curr) => ({ ...prev, [curr]: [] }), {}),
   })
   const upload = getRootProps()
-  const [visibleColumns, setVisibleColumns] = useState<string[]>(['name', 'lastname', 'email'])
+  const [visibleColumns, setVisibleColumns] = useState<string[]>(['name', 'surname', 'email'])
   const handleColumnChange = (value: string[]) => setVisibleColumns(value)
   const template = useMemo(() => {
     const header = columns.filter((column) => visibleColumns.includes(column.id)).map((column) => column.label)
@@ -143,10 +145,21 @@ export const MembersCsvManager = () => {
         isInvalid={!!errors?.spreadsheet}
         display={manager?.data.length ? 'none' : 'block'}
       >
-        <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />{' '}
-        <FormErrorMessage display='flex' justifyContent='center'>
-          {errors?.spreadsheet?.message?.toString()}
-        </FormErrorMessage>
+        <Stack gap={4}>
+          <Heading size='md' fontWeight='extrabold'>
+            {t('memberbase.import_file.title', { defaultValue: 'Import File' })}
+          </Heading>
+          <Text color='texts.subtle' size='sm'>
+            {t('memberbase.import_file.subtitle', {
+              defaultValue:
+                'Import your CSV, XLS, or XLSX file containing member data. Ensure column headers match the template for accurate mapping.',
+            })}
+          </Text>
+          <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
+          <FormErrorMessage display='flex' justifyContent='center'>
+            {errors?.spreadsheet?.message?.toString()}
+          </FormErrorMessage>
+        </Stack>
       </FormControl>
     </Flex>
   )

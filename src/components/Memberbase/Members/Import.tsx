@@ -13,6 +13,7 @@ import {
   HStack,
   Icon,
   IconButton,
+  Stack,
   Table,
   Tbody,
   Td,
@@ -68,18 +69,18 @@ const TemplateUploader = () => {
   const { t } = useTranslation()
 
   return (
-    <>
+    <Stack gap={4}>
       <Heading size='md' fontWeight='extrabold'>
         {t('memberbase.download_template.title', { defaultValue: 'Download Import Template' })}
       </Heading>
       <Text color='texts.subtle' size='sm'>
         {t('memberbase.download_template.subtitle', {
           defaultValue:
-            'Download a CSV template with the required columns, then fill it with your member data for import.',
+            'Download the template with your chosen columns, add your member data, and upload the file to set up your memberbase. Once it’s ready, you can start creating votes.',
         })}
       </Text>
       <MembersCsvManager />
-    </>
+    </Stack>
   )
 }
 
@@ -289,7 +290,7 @@ export const ImportMembers = () => {
             onClick={onClose}
             variant='transparent'
           />
-          <DrawerHeader display='flex' flexDirection='column' gap={2}>
+          <DrawerHeader display='flex' flexDirection='column' gap={4}>
             <Heading size='md' fontWeight='extrabold'>
               {t('memberbase.importer.title', { defaultValue: 'Import Members' })}
             </Heading>
@@ -299,7 +300,7 @@ export const ImportMembers = () => {
               })}
             </Text>
           </DrawerHeader>
-          <DrawerBody display='flex' flexDirection='column' gap={2}>
+          <DrawerBody display='flex' flexDirection='column' gap={4}>
             <FormProvider {...methods}>
               <Box as='form' id='import-members' onSubmit={methods.handleSubmit(onSubmit)}>
                 {!hasSpreadsheet ? (
@@ -309,7 +310,7 @@ export const ImportMembers = () => {
                 )}
               </Box>
             </FormProvider>
-            <Flex justify='flex-end' gap={2}>
+            <Flex justify='flex-end' gap={4}>
               <Button type='button' variant='outline' colorScheme='black' onClick={onClose}>
                 {t('memberbase.importer.cancel', { defaultValue: 'Cancel' })}
               </Button>
