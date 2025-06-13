@@ -7,6 +7,12 @@ import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import { Questions } from './MainContent/Questions'
 import { CreateSidebar } from './Sidebar'
 
+type Question = {
+  title: string
+  description: string
+  options: { text: string }[]
+}
+
 export type Process = {
   title: string
   description: string
@@ -16,11 +22,7 @@ export type Process = {
   endDate: string
   endTime: string
   questionType: 'single' | 'multiple'
-  questions: {
-    title: string
-    description: string
-    options: { text: string }[]
-  }[]
+  questions: Question[]
   resultVisibility: 'live' | 'hidden'
   voterPrivacy: 'anonymous' | 'public'
   voteOverwrite: boolean
