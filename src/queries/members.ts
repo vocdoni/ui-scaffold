@@ -12,9 +12,12 @@ export type Member = {
   id?: string
   memberID: string
   name: string
+  surname: string
   email: string
   password: string
   phone: string
+  nationalID: string
+  birthDate: string
 }
 
 export type MembersResponse = {
