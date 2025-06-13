@@ -21,6 +21,27 @@ import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet
 import Uploader from '~components/shared/Layout/Uploader'
 import { useTable } from '../TableProvider'
 
+const generateFakeValue = (columnId: string): string => {
+  switch (columnId) {
+    case 'name':
+      return 'John'
+    case 'surname':
+      return 'Doe'
+    case 'email':
+      return 'john@doe.com'
+    case 'phone':
+      return '+1234567890'
+    case 'memberID':
+      return '123456'
+    case 'nationalID':
+      return '987654321'
+    case 'birthDate':
+      return '1990-01-01'
+    default:
+      return ''
+  }
+}
+
 export const MembersCsvManager = () => {
   const { t } = useTranslation()
   const {
@@ -61,7 +82,11 @@ export const MembersCsvManager = () => {
   const handleColumnChange = (value: string[]) => setVisibleColumns(value)
   const template = useMemo(() => {
     const header = columns.filter((column) => visibleColumns.includes(column.id)).map((column) => column.label)
-    return new CsvGenerator(header, [])
+    const rows = columns
+      .filter((column) => visibleColumns.includes(column.id))
+      .map((column) => generateFakeValue(column.id))
+
+    return new CsvGenerator(header, [rows])
   }, [visibleColumns])
 
   return (
