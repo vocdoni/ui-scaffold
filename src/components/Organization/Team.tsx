@@ -44,6 +44,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsis, LuMail, LuPlus, LuRefreshCw, LuUserCog, LuUserPlus } from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import DeleteModal from '~components/shared/Modal/DeleteModal'
 import QueryDataLayout from '~shared/Layout/QueryDataLayout'
 import { roleIcons } from '~shared/Layout/SaasSelector'
 import { useProfile } from '~src/queries/account'
@@ -459,31 +460,25 @@ const RemoveUserModal = ({ isOpen, onClose, user, ...props }: ActiveUserModalPro
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick={false} {...props}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <Heading>{t('team.remove_member.title', { defaultValue: 'Are you sure?' })}</Heading>
-        </ModalHeader>
-        <ModalBody>
-          <Text>
-            {t('team.remove_member.confirmation', {
-              defaultValue:
-                'This will remove {{name}} from your team. They will no longer have access to your organization.',
-              name: `${user.info.firstName} ${user.info.lastName}`,
-            })}
-          </Text>
-          <Flex justifyContent='flex-end' mt={4} gap={2}>
-            <Button variant='outline' onClick={onClose}>
-              {t('team.remove_member.cancel', { defaultValue: 'Cancel' })}
-            </Button>
-            <Button isLoading={removeUser.isPending} colorScheme='red' onClick={removeUserHandler}>
-              {t('team.remove_member.confirm', { defaultValue: 'Remove' })}
-            </Button>
-          </Flex>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+    <DeleteModal
+      title={t('team.remove_member.title', { defaultValue: 'Are you sure?' })}
+      subtitle={t('team.remove_member.confirmation', {
+        defaultValue: 'This will remove {{name}} from your team. They will no longer have access to your organization.',
+        name: `${user.info.firstName} ${user.info.lastName}`,
+      })}
+      isOpen={isOpen}
+      onClose={onClose}
+      {...props}
+    >
+      <Flex justifyContent='flex-end' mt={4} gap={2}>
+        <Button variant='outline' onClick={onClose}>
+          {t('team.remove_member.cancel', { defaultValue: 'Cancel' })}
+        </Button>
+        <Button isLoading={removeUser.isPending} colorScheme='red' onClick={removeUserHandler}>
+          {t('team.remove_member.confirm', { defaultValue: 'Remove' })}
+        </Button>
+      </Flex>
+    </DeleteModal>
   )
 }
 
@@ -515,29 +510,23 @@ const CancelInvitationModal = ({ isOpen, onClose, user, ...props }: PendingUserM
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size='xl' closeOnOverlayClick {...props}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <Heading>{t('team.cancel_invitation.title', { defaultValue: 'Are you sure?' })}</Heading>
-        </ModalHeader>
-        <ModalBody>
-          <Text color='texts.subtle'>
-            {t('team.cancel_invitation.confirmation', {
-              defaultValue: 'This will cancel the invitation. The person will not be able to join your organization.',
-            })}
-          </Text>
-          <Flex justifyContent='flex-end' mt={4} gap={2}>
-            <Button variant='outline' onClick={onClose}>
-              {t('team.cancel_invitation.cancel', { defaultValue: 'Cancel' })}
-            </Button>
-            <Button isLoading={cancelInvitation.isPending} colorScheme='red' onClick={cancelInvitationHandler}>
-              {t('team.cancel_invitation.confirm', { defaultValue: 'Cancel invitation' })}
-            </Button>
-          </Flex>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+    <DeleteModal
+      title={t('team.cancel_invitation.title', { defaultValue: 'Are you sure?' })}
+      subtitle={t('team.cancel_invitation.confirmation', {
+        defaultValue: 'This will cancel the invitation. The person will not be able to join your organization.',
+      })}
+      isOpen={isOpen}
+      onClose={onClose}
+    >
+      <Flex justifyContent='flex-end' mt={4} gap={2}>
+        <Button variant='outline' onClick={onClose}>
+          {t('team.cancel_invitation.cancel', { defaultValue: 'Cancel' })}
+        </Button>
+        <Button isLoading={cancelInvitation.isPending} colorScheme='red' onClick={cancelInvitationHandler}>
+          {t('team.cancel_invitation.confirm', { defaultValue: 'Cancel invitation' })}
+        </Button>
+      </Flex>
+    </DeleteModal>
   )
 }
 
