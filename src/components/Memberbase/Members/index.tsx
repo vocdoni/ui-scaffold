@@ -23,17 +23,14 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
   ModalProps,
   Progress,
   Spinner,
   Switch,
   Table,
   TableContainer,
+  Tag,
+  TagLabel,
   Tbody,
   Td,
   Text,
@@ -42,15 +39,21 @@ import {
   Tr,
   useDisclosure,
   useToast,
+  Wrap,
+  WrapItem,
 } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
 import { useEffect } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuEllipsis, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers } from 'react-icons/lu'
+import { LuEllipsis, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers, LuX } from 'react-icons/lu'
 import { generatePath, useNavigate, useOutletContext } from 'react-router-dom'
-import PaginatedTableFooter from '~components/shared/Pagination/PaginatedTableFooter'
+import InputBasic from '~components/shared/Form/InputBasic'
+import DeleteModal from '~components/shared/Modal/DeleteModal'
+import RoutedPaginatedTableFooter from '~components/shared/Pagination/PaginatedTableFooter'
 import { Routes } from '~routes'
+import { useCreateGroup } from '~src/queries/groups'
 import { QueryKeys } from '~src/queries/keys'
 import { Member, useDeleteMembers, useImportJobProgress, useUrlPagination } from '~src/queries/members'
 import { MemberbaseTabsContext } from '..'
@@ -174,20 +177,162 @@ const MemberFilters = () => {
       </InputGroup>
       <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray' disabled={true}>
         {t('members_table.create_group_all', {
-          defaultValue: 'Create a group with all members',
+          defaultValue: 'Create Group (All)',
         })}
       </Button>
     </Flex>
   )
 }
 
+const CreateGroupButton = () => {
+  const { t } = useTranslation()
+  const toast = useToast()
+  const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false })
+  const { selectedRows } = useTable()
+  const navigate = useNavigate()
+  const createGroupMutation = useCreateGroup()
+  const methods = useForm({
+    defaultValues: {
+      title: '',
+      description: '',
+    },
+  })
+
+  const visible = selectedRows.slice(0, 5)
+  const remainingCount = selectedRows.length - visible.length
+
+  const createGroup = (data) => {
+    const memberIDs = selectedRows.map((row) => row.id)
+    const group = {
+      ...data,
+      memberIDs,
+    }
+    createGroupMutation.mutate(group, {
+      onSuccess: () => {
+        toast({
+          title: t('members_table.create_group_success', {
+            defaultValue: 'Group created successfully',
+          }),
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
+        onClose()
+        navigate(Routes.dashboard.memberbase.groups)
+      },
+      onError: (error: Error) => {
+        toast({
+          title: t('members_table.create_group_error', {
+            defaultValue: 'Error creating group',
+          }),
+          description: error.message,
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        })
+      },
+    })
+  }
+
+  return (
+    <>
+      <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray' onClick={onOpen}>
+        {t('members_table.create_group', {
+          defaultValue: 'Create group',
+        })}
+      </Button>
+      <Drawer isOpen={isOpen} placement='right' onClose={onClose} size='sm'>
+        <DrawerOverlay />
+        <DrawerContent>
+          <IconButton
+            aria-label='Close drawer'
+            icon={<Icon as={LuX} />}
+            position='absolute'
+            top='6px'
+            right='6px'
+            onClick={onClose}
+            variant='transparent'
+          />
+          <DrawerHeader display='flex' flexDirection='column' gap={2}>
+            <Heading size='md'>
+              {t('members_table.create_group_form_title', { defaultValue: 'Create New Group' })}
+            </Heading>
+            <Text fontSize='sm' color='texts.subtle'>
+              {t('members_table.create_group_form_description', {
+                defaultValue:
+                  'Create a new group from selected members. This will organize them for future voting processes.',
+              })}
+            </Text>
+          </DrawerHeader>
+          <FormProvider {...methods}>
+            <Box as='form' onSubmit={methods.handleSubmit(createGroup)}>
+              <DrawerBody p={4} display='flex' flexDirection='column' gap={4}>
+                <InputBasic
+                  formValue='title'
+                  label={t('members_table.group_name', { defaultValue: 'Group name' })}
+                  required
+                />
+                <InputBasic
+                  formValue='description'
+                  label={t('members_table.group_description', { defaultValue: 'Description (Optional)' })}
+                  placeholder={t('members_table.group_description_placeholder', {
+                    defaultValue: 'Enter a brief description of the group',
+                  })}
+                />
+                <Box>
+                  <Text mb={1}>{t('members_table.group_members', { defaultValue: 'Selected Members' })}</Text>
+                  <Box border='1px' borderColor='table.border' borderRadius='md' p={4}>
+                    <Text fontSize='sm' mb={2}>
+                      {t('members_table.group_members_count', {
+                        defaultValue: '{{count}} members selected',
+                        count: selectedRows.length,
+                      })}
+                    </Text>
+                    <Wrap>
+                      {visible.map((member) => (
+                        <WrapItem key={member.id}>
+                          <Tag borderRadius='sm' size='sm' variant='subtle' colorScheme='gray'>
+                            <TagLabel>
+                              {member.name} {member.surname}
+                            </TagLabel>
+                          </Tag>
+                        </WrapItem>
+                      ))}
+                      {remainingCount > 0 && (
+                        <WrapItem>
+                          <Tag borderRadius='sm' size='sm' variant='outline' colorScheme='black'>
+                            <TagLabel>
+                              {t('members_table.remaining_members', {
+                                defaultValue: '+{{count}} more',
+                                count: remainingCount,
+                              })}
+                            </TagLabel>
+                          </Tag>
+                        </WrapItem>
+                      )}
+                    </Wrap>
+                  </Box>
+                </Box>
+              </DrawerBody>
+              <Flex justifyContent='flex-end' p={4}>
+                <Button variant='outline' onClick={onClose}>
+                  {t('members_table.cancel', { defaultValue: 'Cancel' })}
+                </Button>
+                <Button colorScheme='black' ml={2} type='submit'>
+                  {t('members_table.create_group', { defaultValue: 'Create group' })}
+                </Button>
+              </Flex>
+            </Box>
+          </FormProvider>
+        </DrawerContent>
+      </Drawer>
+    </>
+  )
+}
+
 const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
   const { t } = useTranslation()
   const { selectedRows } = useTable()
-
-  const createGroup = () => {
-    console.log('Creating group with IDs:', selectedRows)
-  }
 
   return (
     <Flex gap={4} align='center' minH='42px'>
@@ -201,18 +346,7 @@ const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
               defaults='Selected: <strong>{{count}} member</strong>'
             />
           </Text>
-          <Button
-            leftIcon={<Icon as={LuUsers} />}
-            variant='outline'
-            size='sm'
-            colorScheme='gray'
-            disabled={true}
-            onClick={createGroup}
-          >
-            {t('members_table.create_group', {
-              defaultValue: 'Create a group',
-            })}
-          </Button>
+          <CreateGroupButton />
           <Button leftIcon={<Icon as={LuTrash2} />} size='sm' colorScheme='red' variant='outline' onClick={onDelete}>
             {t('members_table.bulk_delete', { defaultValue: 'Delete' })}
           </Button>
@@ -231,7 +365,7 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }: DeleteMemberModalProps
   const toast = useToast()
   const { organization } = useOrganization()
   const deleteMutation = useDeleteMembers()
-  const { selectedRows, setSelectedRows } = useTable()
+  const { selectedRows, resetSelectedRows } = useTable()
   const queryClient = useQueryClient()
   const { page, limit } = useUrlPagination()
   const navigate = useNavigate()
@@ -239,7 +373,7 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }: DeleteMemberModalProps
   const handleDelete = async () => {
     try {
       await deleteMutation.mutateAsync(selectedRows)
-      setSelectedRows([])
+      resetSelectedRows()
       toast({
         title: t('memberbase.delete_member.success', {
           defaultValue: 'Member deleted successfully',
@@ -271,33 +405,26 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }: DeleteMemberModalProps
   }
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size='lg' {...props}>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <Flex flexDirection='column' gap={2}>
-            <Heading fontSize='lg'>{t('memberbase.delete_member.title', { defaultValue: 'Delete Members' })}</Heading>
-            <Text fontSize='sm' size='sm' color='texts.subtle'>
-              {t('memberbase.delate_member.subtitle', {
-                defaultValue: 'Are you sure you want to delete {{count}} member? This action cannot be undone.',
-                defaultValue_other: 'Are you sure you want to delete {{count}} members? This action cannot be undone.',
-                count: selectedRows.length,
-              })}
-            </Text>
-          </Flex>
-        </ModalHeader>
-        <ModalBody>
-          <Flex justifyContent='flex-end' mt={4} gap={2}>
-            <Button variant='outline' onClick={onClose}>
-              {t('memberbase.delete_member.cancel', { defaultValue: 'Cancel' })}
-            </Button>
-            <Button isLoading={deleteMutation.isPending} colorScheme='red' onClick={handleDelete}>
-              {t('memberbase.delete_member.delete', { defaultValue: 'Delete' })}
-            </Button>
-          </Flex>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+    <DeleteModal
+      title={t('memberbase.delete_member.title', { defaultValue: 'Delete Members' })}
+      subtitle={t('memberbase.delate_member.subtitle', {
+        defaultValue: 'Are you sure you want to delete {{count}} member? This action cannot be undone.',
+        defaultValue_other: 'Are you sure you want to delete {{count}} members? This action cannot be undone.',
+        count: selectedRows.length,
+      })}
+      isOpen={isOpen}
+      onClose={onClose}
+      {...props}
+    >
+      <Flex justifyContent='flex-end' mt={4} gap={2}>
+        <Button variant='outline' onClick={onClose}>
+          {t('memberbase.delete_member.cancel', { defaultValue: 'Cancel' })}
+        </Button>
+        <Button isLoading={deleteMutation.isPending} colorScheme='red' onClick={handleDelete}>
+          {t('memberbase.delete_member.delete', { defaultValue: 'Delete' })}
+        </Button>
+      </Flex>
+    </DeleteModal>
   )
 }
 
@@ -418,7 +545,6 @@ const MembersTable = () => {
     isLoading,
     isFetching,
     search,
-    setSelectedRows,
     isSelected,
     allVisibleSelected,
     someSelected,
@@ -430,7 +556,7 @@ const MembersTable = () => {
   const isEmpty = filteredData.length === 0 && !isLoadingOrImporting
 
   const openDeleteModal = (member?) => {
-    if (member) setSelectedRows((prev) => [...prev, member.id])
+    if (member) toggleOne(member.id, true)
     onOpen()
   }
 
@@ -516,7 +642,7 @@ const MembersTable = () => {
               </Tbody>
             </Table>
             <Box p={4}>
-              <PaginatedTableFooter />
+              <RoutedPaginatedTableFooter />
             </Box>
           </>
         )}
