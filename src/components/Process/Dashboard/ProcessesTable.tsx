@@ -23,7 +23,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsisVertical, LuExternalLink, LuInfo, LuSearch } from 'react-icons/lu'
 import { generatePath, Link as RouterLink } from 'react-router-dom'
 import { useDateFns } from '~i18n/use-date-fns'
-import PaginatedTableFooter from '~shared/Pagination/PaginatedTableFooter'
+import RoutedPaginatedTableFooter from '~shared/Pagination/PaginatedTableFooter'
 import { Routes } from '~src/router/routes'
 
 type Election = PublishedElection | InvalidElection
@@ -63,7 +63,7 @@ const ProcessesTable = ({ processes }: ProcessesListProps) => {
         </Table>
       </TableContainer>
       <Box p={4}>
-        <PaginatedTableFooter />
+        <RoutedPaginatedTableFooter />
       </Box>
     </Box>
   )
