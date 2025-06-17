@@ -34,27 +34,22 @@ const Members = () => {
       {
         label: t('form.members.spreadsheet.template.firstname', { defaultValue: 'First Name' }),
         id: 'name',
-        visible: true,
       },
       {
         label: t('form.members.spreadsheet.template.surname', { defaultValue: 'Last Name' }),
         id: 'surname',
-        visible: true,
       },
       {
         label: t('form.members.spreadsheet.template.email', { defaultValue: 'Email' }),
         id: 'email',
-        visible: true,
       },
       {
         label: t('form.members.spreadsheet.template.phone', { defaultValue: 'Phone' }),
         id: 'phone',
-        visible: true,
       },
       {
         label: t('form.members.spreadsheet.template.member_id', { defaultValue: 'Member ID' }),
         id: 'memberID',
-        visible: true,
       },
       {
         label: t('form.members.spreadsheet.template.national_id', { defaultValue: 'National ID' }),
