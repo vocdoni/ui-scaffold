@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from 'react'
+import { createContext, ReactNode, useContext, useState } from 'react'
 
 type TableColumn = {
   id: string
@@ -31,7 +31,6 @@ export function TableProvider({
   initialColumns,
   children,
 }: TableProviderProps) {
-  const [search, setSearch] = useState('')
   const [selectedRows, setSelectedRows] = useState<SelectedRow[]>([])
   const [columns, setColumnsState] = useState<TableColumn[]>(() => {
     try {
@@ -61,22 +60,18 @@ export function TableProvider({
     setColumnsState(updatedColumns)
   }
 
-  const filteredData = useMemo(() => {
-    const lowerFilter = search.toLowerCase()
-    return data.filter((item) => Object.values(item).some((value) => String(value).toLowerCase().includes(lowerFilter)))
-  }, [data, search])
-
   const isSelected = (id: string) => selectedRows.some((row) => row.id === id)
+
+  const allVisibleSelected = data?.length && data.every((item) => selectedRows.includes(item.id))
+  const someSelected = data?.length && data.some((item) => selectedRows.includes(item.id))
 
   const toggleAll = (checked: boolean) => {
     if (checked) {
-      const newSelections = filteredData
-        .filter((item) => !isSelected(item.id))
-        .map((item) => ({ id: item.id, name: item.name, surname: item.surname }))
-      setSelectedRows((prev) => [...prev, ...newSelections])
+      const unique = [...selectedRows, ...data.filter((item) => !selectedRows.includes(item.id)).map((item) => item.id)]
+      setSelectedRows(unique)
     } else {
-      const filteredIds = new Set(filteredData.map((item) => item.id))
-      setSelectedRows((prev) => prev.filter((row) => !filteredIds.has(row.id)))
+      const filteredIds = data.map((item) => item.id)
+      setSelectedRows((prev) => prev.filter((p) => !filteredIds.includes(p)))
     }
   }
 
@@ -93,14 +88,10 @@ export function TableProvider({
 
   const resetSelectedRows = () => setSelectedRows([])
 
-  const allVisibleSelected = filteredData.every((item) => isSelected(item.id))
-  const someSelected = filteredData.some((item) => isSelected(item.id))
-
   return (
     <TableContext.Provider
       value={{
         data,
-        filteredData,
         isLoading,
         isFetching,
         selectedRows,

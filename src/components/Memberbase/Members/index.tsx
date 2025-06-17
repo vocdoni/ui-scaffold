@@ -25,7 +25,6 @@ import {
   MenuList,
   ModalProps,
   Progress,
-  Spinner,
   Switch,
   Table,
   TableContainer,
@@ -541,11 +540,9 @@ const MembersTable = () => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const {
-    filteredData,
+    data = [],
     isLoading,
     isFetching,
-    search,
-    setSelectedRows,
     isSelected,
     allVisibleSelected,
     someSelected,
@@ -554,9 +551,8 @@ const MembersTable = () => {
     columns,
   } = useTable()
   const { debouncedSearch } = useOutletContext<MemberbaseTabsContext>()
-
   const isLoadingOrImporting = isLoading || isFetching
-  const isEmpty = filteredData.length === 0 && !isLoadingOrImporting
+  const isEmpty = data.length === 0 && !isLoadingOrImporting
 
   const openDeleteModal = (member?) => {
     if (member) toggleOne(member.id, true)
@@ -584,71 +580,69 @@ const MembersTable = () => {
             />
           </Flex>
         </Flex>
-
-        {isLoadingOrImporting ? (
-          <Flex justify='center' align='center' height='200px'>
-            <Spinner position='absolute' />
-          </Flex>
-        ) : isEmpty ? (
-          <Flex justify='center' align='center' height='200px'>
-            <Text color='texts.subtle' fontSize='sm'>
-              {search
-                ? t('members_table.no_filter_results', {
-                    defaultValue: 'No members matching these attributes',
-                  })
-                : t('members_table.no_results', {
-                    defaultValue: 'No members found',
-                  })}
-            </Text>
-          </Flex>
-        ) : (
-          <>
-            <Table>
-              <Thead>
-                <Tr>
-                  <Th width='50px'>
-                    <Checkbox
-                      isChecked={allVisibleSelected}
-                      isIndeterminate={someSelected && !allVisibleSelected}
-                      onChange={(e) => toggleAll(e.target.checked)}
-                    />
-                  </Th>
-                  {columns
-                    .filter((col) => col.visible)
-                    .map((col) => (
-                      <Th key={col.id}>{col.label}</Th>
-                    ))}
-                  <Th width='50px'>
-                    <ColumnManager />
-                  </Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {filteredData.map((member) => (
-                  <Tr key={member.id}>
-                    <Td>
-                      <Checkbox
-                        isChecked={isSelected(member.id)}
-                        onChange={(e) => toggleOne(member.id, e.target.checked)}
-                      />
-                    </Td>
-                    {columns
-                      .filter((column) => column.visible)
-                      .map((column) => (
-                        <Td key={column.id}>{maskIfNeeded(column.id, member[column.id])}</Td>
-                      ))}
-                    <Td>
-                      <MemberActions member={member} onDelete={() => openDeleteModal(member)} />
-                    </Td>
-                  </Tr>
+        {isLoadingOrImporting && <Progress size='xs' isIndeterminate />}
+        <Table>
+          <Thead>
+            <Tr>
+              <Th width='50px'>
+                <Checkbox
+                  isChecked={allVisibleSelected}
+                  isIndeterminate={someSelected && !allVisibleSelected}
+                  onChange={(e) => toggleAll(e.target.checked)}
+                />
+              </Th>
+              {columns
+                .filter((col) => col.visible)
+                .map((col) => (
+                  <Th key={col.id}>{col.label}</Th>
                 ))}
-              </Tbody>
-            </Table>
-            <Box p={4}>
-              <RoutedPaginatedTableFooter />
-            </Box>
-          </>
-        )}
+              <Th width='50px'>
+                <ColumnManager />
+              </Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {isEmpty ? (
+              <Tr>
+                <Td colSpan={columns.filter((c) => c.visible).length + 2}>
+                  <Flex justify='center' align='center' height='150px'>
+                    <Text color='texts.subtle' fontSize='sm'>
+                      {debouncedSearch
+                        ? t('members_table.no_filter_results', {
+                            defaultValue: 'No members matching these attributes',
+                          })
+                        : t('members_table.no_results', {
+                            defaultValue: 'No members found',
+                          })}
+                    </Text>
+                  </Flex>
+                </Td>
+              </Tr>
+            ) : (
+              data.map((member) => (
+                <Tr key={member.id}>
+                  <Td>
+                    <Checkbox
+                      isChecked={isSelected(member.id)}
+                      onChange={(e) => toggleOne(member.id, e.target.checked)}
+                    />
+                  </Td>
+                  {columns
+                    .filter((column) => column.visible)
+                    .map((column) => (
+                      <Td key={column.id}>{maskIfNeeded(column.id, member[column.id])}</Td>
+                    ))}
+                  <Td>
+                    <MemberActions member={member} onDelete={() => openDeleteModal(member)} />
+                  </Td>
+                </Tr>
+              ))
+            )}
+          </Tbody>
+        </Table>
+        <Box p={4}>
+          <RoutedPaginatedTableFooter />
+        </Box>
       </TableContainer>
       <DeleteMemberModal isOpen={isOpen} onClose={onClose} />
     </>
