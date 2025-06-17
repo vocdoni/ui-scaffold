@@ -103,8 +103,6 @@ export function TableProvider({
         filteredData,
         isLoading,
         isFetching,
-        search,
-        setSearch,
         selectedRows,
         allVisibleSelected,
         someSelected,

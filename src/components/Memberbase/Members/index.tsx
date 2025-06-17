@@ -157,7 +157,7 @@ const ColumnManager = () => {
 
 const MemberFilters = () => {
   const { t } = useTranslation()
-  const { search, setSearch } = useTable()
+  const { search, setSearch } = useOutletContext<MemberbaseTabsContext>()
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value)
@@ -545,6 +545,7 @@ const MembersTable = () => {
     isLoading,
     isFetching,
     search,
+    setSelectedRows,
     isSelected,
     allVisibleSelected,
     someSelected,
@@ -552,6 +553,8 @@ const MembersTable = () => {
     toggleOne,
     columns,
   } = useTable()
+  const { debouncedSearch } = useOutletContext<MemberbaseTabsContext>()
+
   const isLoadingOrImporting = isLoading || isFetching
   const isEmpty = filteredData.length === 0 && !isLoadingOrImporting
 
