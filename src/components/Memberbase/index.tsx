@@ -1,5 +1,5 @@
 import { Flex, Heading, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
@@ -8,10 +8,31 @@ import { Routes } from '~routes'
 export type MemberbaseTabsContext = {
   setJobId: (jobId: string | null) => void
   jobId: string | null
+  search: string
+  setSearch: (search: string) => void
+  debouncedSearch: string
 } & DashboardLayoutContext
+
+const useDebouncedValue = (value, delay) => {
+  const [debounced, setDebounced] = useState(value)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebounced(value)
+    }, delay)
+
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [value, delay])
+
+  return debounced
+}
 
 export const MemberbaseTabs = () => {
   const [jobId, setJobId] = useState(null)
+  const [search, setSearch] = useState('')
+  const debouncedSearch = useDebouncedValue(search, 500)
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
@@ -55,7 +76,7 @@ export const MemberbaseTabs = () => {
             <Tab key={index}>{item.label}</Tab>
           ))}
         </TabList>
-        <Outlet context={{ setBreadcrumb, setJobId, jobId }} />
+        <Outlet context={{ setBreadcrumb, setJobId, jobId, search, setSearch, debouncedSearch }} />
       </Tabs>
     </>
   )

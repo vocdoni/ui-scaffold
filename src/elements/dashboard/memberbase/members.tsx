@@ -2,9 +2,9 @@ import { RoutedPaginationProvider } from '@vocdoni/react-providers'
 import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useOutletContext } from 'react-router-dom'
+import { MemberbaseTabsContext } from '~components/Memberbase'
 import MembersTable from '~components/Memberbase/Members'
 import { TableProvider } from '~components/Memberbase/TableProvider'
-import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
 import { usePaginatedMembers } from '~src/queries/members'
 
@@ -50,9 +50,9 @@ export const useMemberColumns = () => {
 
 const Members = () => {
   const { t } = useTranslation()
-  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
-  const { data, isLoading, isFetching } = usePaginatedMembers()
   const columns = useMemberColumns()
+  const { setBreadcrumb, debouncedSearch } = useOutletContext<MemberbaseTabsContext>()
+  const { data, isLoading, isFetching } = usePaginatedMembers(debouncedSearch)
 
   const members = data?.members || []
   const pagination = data?.pagination || {
