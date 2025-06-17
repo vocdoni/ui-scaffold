@@ -3,7 +3,7 @@ import { createContext, ReactNode, useContext, useMemo, useState } from 'react'
 type TableColumn = {
   id: string
   label: string
-  visible: boolean
+  visible?: boolean
 }
 
 type TableProviderProps = {
@@ -12,6 +12,12 @@ type TableProviderProps = {
   isFetching?: boolean
   initialColumns: TableColumn[]
   children: ReactNode
+}
+
+type SelectedRow = {
+  id: string
+  name: string
+  surname: string
 }
 
 const TableContext = createContext(undefined)
@@ -26,21 +32,23 @@ export function TableProvider({
   children,
 }: TableProviderProps) {
   const [search, setSearch] = useState('')
-  const [selectedRows, setSelectedRows] = useState<string[]>([])
+  const [selectedRows, setSelectedRows] = useState<SelectedRow[]>([])
   const [columns, setColumnsState] = useState<TableColumn[]>(() => {
     try {
       const savedVisibleColumns = localStorage.getItem(STORAGE_KEY)
-      if (savedVisibleColumns) {
-        const visibleIds = new Set<string>(JSON.parse(savedVisibleColumns))
-        return initialColumns.map((column) => ({
-          ...column,
-          visible: visibleIds.has(column.id),
-        }))
-      }
+      const visibleIds = savedVisibleColumns ? new Set<string>(JSON.parse(savedVisibleColumns)) : null
+
+      return initialColumns.map((column) => ({
+        ...column,
+        visible: visibleIds !== null ? visibleIds.has(column.id) : column.visible !== false, // si no está definido, se asume true
+      }))
     } catch (e) {
       console.warn('Error reading column visibility from localStorage:', e)
+      return initialColumns.map((column) => ({
+        ...column,
+        visible: column.visible !== false, // default a true si no viene
+      }))
     }
-    return initialColumns
   })
 
   const setColumns = (updatedColumns: TableColumn[]) => {
@@ -58,27 +66,35 @@ export function TableProvider({
     return data.filter((item) => Object.values(item).some((value) => String(value).toLowerCase().includes(lowerFilter)))
   }, [data, search])
 
-  const allVisibleSelected = filteredData.every((item) => selectedRows.includes(item.id))
-  const someSelected = filteredData.some((item) => selectedRows.includes(item.id))
+  const isSelected = (id: string) => selectedRows.some((row) => row.id === id)
 
   const toggleAll = (checked: boolean) => {
     if (checked) {
-      const unique = [
-        ...selectedRows,
-        ...filteredData.filter((item) => !selectedRows.includes(item.id)).map((item) => item.id),
-      ]
-      setSelectedRows(unique)
+      const newSelections = filteredData
+        .filter((item) => !isSelected(item.id))
+        .map((item) => ({ id: item.id, name: item.name, surname: item.surname }))
+      setSelectedRows((prev) => [...prev, ...newSelections])
     } else {
-      const filteredIds = filteredData.map((item) => item.id)
-      setSelectedRows((prev) => prev.filter((p) => !filteredIds.includes(p)))
+      const filteredIds = new Set(filteredData.map((item) => item.id))
+      setSelectedRows((prev) => prev.filter((row) => !filteredIds.has(row.id)))
     }
   }
 
   const toggleOne = (id: string, checked: boolean) => {
-    setSelectedRows((prev) => (checked ? [...prev, id] : prev.filter((p) => p !== id)))
+    if (checked) {
+      const item = data.find((i) => i.id === id)
+      if (item) {
+        setSelectedRows((prev) => [...prev, { id: item.id, name: item.name, surname: item.surname }])
+      }
+    } else {
+      setSelectedRows((prev) => prev.filter((row) => row.id !== id))
+    }
   }
 
-  const isSelected = (id: string) => selectedRows.includes(id)
+  const resetSelectedRows = () => setSelectedRows([])
+
+  const allVisibleSelected = filteredData.every((item) => isSelected(item.id))
+  const someSelected = filteredData.some((item) => isSelected(item.id))
 
   return (
     <TableContext.Provider
@@ -90,9 +106,9 @@ export function TableProvider({
         search,
         setSearch,
         selectedRows,
-        setSelectedRows,
         allVisibleSelected,
         someSelected,
+        resetSelectedRows,
         isSelected,
         toggleAll,
         toggleOne,
