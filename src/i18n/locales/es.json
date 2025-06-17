@@ -8,6 +8,7 @@
     "create_first_vote": "View all processes",
     "create_new_vote": "Create new vote",
     "manage_team": "Manage team",
+    "more": "More options",
     "save": "Save Changes",
     "save_changes": "Save Changes",
     "view_active_votes": "View active votes"
@@ -569,6 +570,42 @@
   },
   "google_oauth_error": "Google OAuth Error",
   "google_oauth_error_description": "Google OAuth error, please try again",
+  "group": {
+    "actions": {
+      "cancel": "Cancel",
+      "create_vote": "Create a Vote",
+      "delete": "Delete",
+      "delete_confirm_description": "Are you sure you want to delete <bold>{{title}}</bold>? This action cannot be undone and will permanently remove the group from your organization.",
+      "delete_confirm_title": "Delete Group",
+      "delete_error": "Error deleting group",
+      "delete_group": "Delete Group",
+      "delete_success": "Group deleted successfully",
+      "history": "History",
+      "view_members": "View Members"
+    },
+    "actions_description": "When a new vote is created, the system takes a snapshot of the group's members at that moment. Any changes to the member list afterward will not affect the created census.",
+    "actions_title": "Actions",
+    "create_vote": "Create a Vote",
+    "created_on": "Created {{date}}",
+    "delete_group": "Delete group",
+    "members_one": "{{count}} member",
+    "members_many": "{{count}} member",
+    "members_other": "{{count}} members"
+  },
+  "groups_board": {
+    "history": {
+      "close": "Close",
+      "description": "View the history of this group and its associated censuses",
+      "title": "{{ title }} History"
+    },
+    "info": {
+      "description": "Groups are collections of members within your memberbase that can be used to create censuses for voting processes.",
+      "extra": "When you initiate a vote, a census is created as a time-specific snapshot of the group. Any subsequent changes to the group will not affect existing censuses, but will be reflected in future voting processes.",
+      "title": "About Groups"
+    },
+    "load_more": "Load more",
+    "search": "Search groups..."
+  },
   "guides": "Guías",
   "home": {
     "benefits": {
@@ -1093,14 +1130,29 @@
   },
   "members_table": {
     "bulk_delete": "Delete",
-    "create_group": "Create a group",
-    "create_group_all": "Create a group with all members",
+    "cancel": "Cancel",
+    "create_group": "Create group",
+    "create_group_all": "Create Group (All)",
+    "create_group_error": "Error creating group",
+    "create_group_form_description": "Create a new group from selected members. This will organize them for future voting processes.",
+    "create_group_form_title": "Create New Group",
+    "create_group_success": "Group created successfully",
     "delete": "Delete",
     "edit": "Edit",
+    "group_description": "Description (Optional)",
+    "group_description_placeholder": "Enter a brief description of the group",
+    "group_members": "Selected Members",
+    "group_members_count_one": "{{count}} members selected",
+    "group_members_count_many": "{{count}} members selected",
+    "group_members_count_other": "{{count}} members selected",
+    "group_name": "Group name",
     "manage_columns": "Manage Columns",
     "manage_columns_description": "Customize which columns are displayed in the members table.",
     "no_filter_results": "No members matching these attributes",
     "no_results": "No members found",
+    "remaining_members_one": "+{{count}} more",
+    "remaining_members_many": "+{{count}} more",
+    "remaining_members_other": "+{{count}} more",
     "search": "Search members...",
     "select_hint": "Select members to perform bulk actions",
     "selected_one": "Selected: <strong>{{count}} member</strong>",
