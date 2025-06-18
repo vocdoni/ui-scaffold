@@ -154,19 +154,18 @@ const ProcessAside = () => {
           </Flex>
         )}
       </Card>
-      {(connected || isConnected) && (
-        <Box alignSelf='center' mb={{ base: 10, md: 0 }}>
-          {connected && <SpreadsheetAccess />}
-          {isConnected && election?.get('census.type') !== 'spreadsheet' && (
-            <Button
-              onClick={() => {
-                disconnect()
-                clear()
-              }}
-            >
-              {t('cc.spreadsheet.logout')}
-            </Button>
-          )}
+      { connected && (
+        <Box alignSelf='center' mb={{ base: 10, md: 0 }} mt={{ base: 10}}>
+          <Button
+            onClick={() => {
+              disconnect()
+              clear()
+              localStorage.clear()
+              location.reload(true)
+            }}
+          >
+            {t('cc.spreadsheet.logout')}
+          </Button>
         </Box>
       )}
     </>
