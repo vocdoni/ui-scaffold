@@ -40,13 +40,13 @@ export function TableProvider({
 
       return initialColumns.map((column) => ({
         ...column,
-        visible: visibleIds !== null ? visibleIds.has(column.id) : column.visible !== false, // si no está definido, se asume true
+        visible: visibleIds !== null ? visibleIds.has(column.id) : column.visible !== false,
       }))
     } catch (e) {
       console.warn('Error reading column visibility from localStorage:', e)
       return initialColumns.map((column) => ({
         ...column,
-        visible: column.visible !== false, // default a true si no viene
+        visible: column.visible !== false,
       }))
     }
   })
