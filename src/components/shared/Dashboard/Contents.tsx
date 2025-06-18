@@ -21,7 +21,9 @@ export const DashboardContents = (props: BoxProps) => (
   <Flex flexDirection={'column'} maxW='1536px' w='full' mx='auto' p={6} {...props} />
 )
 
-export const DashboardSection = (props: BoxProps) => <Box bg='gray.50' p={4} borderRadius='sm' {...props} />
+export const DashboardSection = (props: BoxProps) => (
+  <Box _light={{ bg: 'gray.50' }} _dark={{ bg: 'whiteAlpha.50' }} p={4} borderRadius='sm' {...props} />
+)
 
 export const Heading = forwardRef<HeadingProps, 'h2'>((props, ref) => (
   <CHeading

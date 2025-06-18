@@ -21,7 +21,7 @@ export type Process = {
   startTime: string
   endDate: string
   endTime: string
-  questionType: 'single' | 'multiple'
+  questionType: QuestionTypes
   questions: Question[]
   resultVisibility: 'live' | 'hidden'
   voterPrivacy: 'anonymous' | 'public'
@@ -29,6 +29,30 @@ export type Process = {
   maxVoteOverwrites: number
   census: string
 }
+
+export enum QuestionTypes {
+  Single = 'single',
+  Multiple = 'multiple',
+}
+
+export const DefaultQuestions = {
+  [QuestionTypes.Single]: [
+    {
+      title: '',
+      description: '',
+      options: [{ text: '' }, { text: '' }],
+    },
+  ],
+  [QuestionTypes.Multiple]: [
+    {
+      title: '',
+      description: '',
+      minSelections: 1,
+      maxSelections: 1,
+      options: [{ text: '' }, { text: '' }],
+    },
+  ],
+} as const
 
 export const ProcessCreate = () => {
   const { t } = useTranslation()
@@ -42,8 +66,11 @@ export const ProcessCreate = () => {
       startTime: '',
       endDate: '',
       endTime: '',
-      questionType: 'single',
-      questions: [{ options: [{ text: '' }, { text: '' }] }],
+      questionType: QuestionTypes.Single,
+      questions: DefaultQuestions[QuestionTypes.Single].map((q) => ({
+        ...q,
+        options: q.options.map((opt) => ({ ...opt })),
+      })),
       resultVisibility: 'live',
       voterPrivacy: 'anonymous',
       voteOverwrite: false,

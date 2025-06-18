@@ -3,15 +3,25 @@ import { useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans } from 'react-i18next'
 import { LuPlus } from 'react-icons/lu'
 import { DashboardSection } from '~components/shared/Dashboard/Contents'
+import { DefaultQuestions, QuestionTypes } from '../..'
 import { QuestionForm } from './QuestionForm'
 import { QuestionType } from './QuestionType'
 
 export const Questions = () => {
-  const { control } = useFormContext()
+  const { control, getValues } = useFormContext()
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'questions',
   })
+  const questionType = getValues('questionType')
+
+  const addQuestion = () => {
+    if (questionType === QuestionTypes.Single) {
+      append(DefaultQuestions[QuestionTypes.Single])
+      return
+    }
+    append(DefaultQuestions[QuestionTypes.Multiple])
+  }
 
   return (
     <VStack align='stretch' spacing={4}>
@@ -23,19 +33,11 @@ export const Questions = () => {
         <QuestionForm key={field.id} index={index} onRemove={() => remove(index)} />
       ))}
 
-      <Button
-        leftIcon={<Icon as={LuPlus} />}
-        variant='outline'
-        onClick={() =>
-          append({
-            title: '',
-            description: '',
-            options: [{ text: '' }],
-          })
-        }
-      >
-        <Trans i18nKey='process.create.question.add'>Add question</Trans>
-      </Button>
+      {(questionType === QuestionTypes.Single || (questionType === QuestionTypes.Multiple && fields.length < 1)) && (
+        <Button leftIcon={<Icon as={LuPlus} />} variant='outline' onClick={addQuestion}>
+          <Trans i18nKey='process.create.question.add'>Add question</Trans>
+        </Button>
+      )}
     </VStack>
   )
 }
