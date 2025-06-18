@@ -20,7 +20,7 @@ export interface PublishedCensus {
 
 export interface Participant {
   id: string
-  participantNo: string
+  memberID: string
   email?: string
   phone?: string
 }

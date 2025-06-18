@@ -1,16 +1,16 @@
 import {
-  Alert,
-  AlertDescription,
-  Button,
-  Checkbox,
-  FormControl,
-  FormHelperText,
-  FormLabel,
-  Input,
-  Link,
-  Stack,
-  Text,
-  VStack,
+    Alert,
+    AlertDescription,
+    Button,
+    Checkbox,
+    FormControl,
+    FormHelperText,
+    FormLabel,
+    Input,
+    Link,
+    Stack,
+    Text,
+    VStack,
 } from '@chakra-ui/react'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useForm } from 'react-hook-form'
@@ -31,7 +31,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
 
   const onSubmit = async (values: CSPStep0FormData) => {
     const form: CSPStep0RequestData = {
-      participantNo: values.participantNo,
+      memberID: values.memberID,
     }
 
     if (values.contact?.includes('@')) {
@@ -55,9 +55,9 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
     <VStack spacing={6} align='stretch' w='full'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={4}>
-          <FormControl isInvalid={!!errors.participantNo} isRequired>
+          <FormControl isInvalid={!!errors.memberID} isRequired>
             <FormLabel>DNI</FormLabel>
-            <Input {...register('participantNo', { required: true })} />
+            <Input {...register('memberID', { required: true })} />
           </FormControl>
 
           <FormControl isInvalid={!!errors.contact} isRequired>

@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query'
 import { PublishedElection } from '@vocdoni/sdk'
 
 export type CSPStep0FormData = {
-  participantNo: string
+  memberID: string
   contact?: string
   password?: string
 }
