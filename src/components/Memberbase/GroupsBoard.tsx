@@ -189,16 +189,11 @@ const GroupActions = ({ group, onMembersDrawerOpen, onDeleteModalOpen }: GroupAc
           <MenuItem icon={<Icon boxSize={4} as={LuVote} />} onClick={() => navigate(Routes.processes.create)}>
             {t('group.actions.create_vote', { defaultValue: 'Create a Vote' })}
           </MenuItem>
-          <MenuItem icon={<Icon boxSize={4} as={LuClock} />} onClick={onHistoryOpen}>
+          <MenuItem isDisabled icon={<Icon boxSize={4} as={LuClock} />} onClick={onHistoryOpen}>
             {t('group.actions.history', { defaultValue: 'History' })}
           </MenuItem>
           <MenuDivider />
-          <MenuItem
-            // isDisabled={true}
-            icon={<Icon boxSize={4} as={LuTrash} />}
-            color='red.500'
-            onClick={onDeleteModalOpen}
-          >
+          <MenuItem icon={<Icon boxSize={4} as={LuTrash} />} color='red.500' onClick={onDeleteModalOpen}>
             {t('group.actions.delete_group', { defaultValue: 'Delete Group' })}
           </MenuItem>
         </MenuList>
@@ -317,7 +312,6 @@ const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMemb
           </Flex>
           <Flex justify='flex-end'>
             <Button
-              // disabled={true}
               leftIcon={<Icon as={LuTrash} boxSize={4} />}
               onClick={openDeleteModal}
               colorScheme='red'
