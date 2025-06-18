@@ -588,11 +588,16 @@
     "create_vote": "Create a Vote",
     "created_on": "Created {{date}}",
     "delete_group": "Delete group",
+    "members": {
+      "email": "Email",
+      "name": "Name"
+    },
     "members_one": "{{count}} member",
     "members_many": "{{count}} member",
     "members_other": "{{count}} members"
   },
   "groups_board": {
+    "create_group": "Create a new group to get started.",
     "history": {
       "close": "Close",
       "description": "View the history of this group and its associated censuses",
@@ -604,6 +609,7 @@
       "title": "About Groups"
     },
     "load_more": "Load more",
+    "no_groups": "No groups found",
     "search": "Search groups..."
   },
   "guides": "Guies",
