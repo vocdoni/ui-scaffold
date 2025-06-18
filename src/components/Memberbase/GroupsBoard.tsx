@@ -71,6 +71,17 @@ type GroupCardProps = {
   group: Group
 }
 
+type GroupMembersProps = {
+  group: Group
+  isOpen: boolean
+}
+
+type DeleteGroupModalProps = {
+  group: Group
+  isOpen: boolean
+  onClose: () => void
+}
+
 const GroupsFilter = () => {
   const { t } = useTranslation()
   return (
@@ -199,8 +210,8 @@ const GroupActions = ({ group, onMembersDrawerOpen, onDeleteModalOpen }: GroupAc
 
 const GroupMembersTable = () => {
   const { t } = useTranslation()
-  const { filteredData, isLoading, columns } = useTable()
-  const isEmpty = filteredData.length === 0 && !isLoading
+  const { data, isLoading, columns } = useTable()
+  const isEmpty = data.length === 0 && !isLoading
 
   return (
     <>
@@ -219,21 +230,17 @@ const GroupMembersTable = () => {
             <Table>
               <Thead>
                 <Tr>
-                  {columns
-                    .filter((col) => col.visible)
-                    .map((col) => (
-                      <Th key={col.id}>{col.label}</Th>
-                    ))}
+                  {columns.map((col) => (
+                    <Th key={col.id}>{col.label}</Th>
+                  ))}
                 </Tr>
               </Thead>
               <Tbody>
-                {filteredData.map((member) => (
+                {data.map((member) => (
                   <Tr key={member.id}>
-                    {columns
-                      .filter((column) => column.visible)
-                      .map((column) => (
-                        <Td key={column.id}>{member[column.id]}</Td>
-                      ))}
+                    {columns.map((column) => (
+                      <Td key={column.id}>{member[column.id]}</Td>
+                    ))}
                   </Tr>
                 ))}
               </Tbody>
@@ -250,17 +257,7 @@ const GroupMembersTable = () => {
 
 const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMembersDrawerProps) => {
   const { t } = useTranslation()
-  const { data, isLoading } = useGroupMembers(group.id, isOpen)
   const navigate = useNavigate()
-
-  const members = data?.members || []
-  const pagination = data?.pagination || {
-    totalItems: 1,
-    currentPage: 0,
-    lastPage: 0,
-    previousPage: null,
-    nextPage: null,
-  }
 
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size='lg'>
@@ -337,10 +334,10 @@ const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMemb
   )
 }
 
-const GroupMembersDisplay = ({ group, isOpen }) => {
-  const { data } = useGroupMembers(group.id, 0, isOpen)
+const GroupMembersDisplay = ({ group, isOpen }: GroupMembersProps) => {
+  const { data, isLoading } = useGroupMembers(group.id, 0, isOpen)
 
-  if (!data) return null // o un loader
+  if (isLoading) return <Progress isIndeterminate />
 
   const pagination = data.pagination
 
@@ -351,11 +348,10 @@ const GroupMembersDisplay = ({ group, isOpen }) => {
   )
 }
 
-const GroupMembersWithPagination = ({ group, isOpen }) => {
+const GroupMembersWithPagination = ({ group, isOpen }: GroupMembersProps) => {
+  const { t } = useTranslation()
   const { page } = usePagination()
-
   const { data, isLoading } = useGroupMembers(group.id, page, isOpen)
-
   const members = data?.members ?? []
 
   return (
@@ -363,8 +359,8 @@ const GroupMembersWithPagination = ({ group, isOpen }) => {
       data={members}
       isLoading={isLoading}
       initialColumns={[
-        { id: 'name', label: 'Name' },
-        { id: 'email', label: 'Email' },
+        { id: 'name', label: t('group.members.name', { defaultValue: 'Name' }) },
+        { id: 'email', label: t('group.members.email', { defaultValue: 'Email' }) },
       ]}
     >
       <GroupMembersTable />
@@ -372,7 +368,7 @@ const GroupMembersWithPagination = ({ group, isOpen }) => {
   )
 }
 
-const DeleteGroupModal = ({ group, isOpen, onClose }) => {
+const DeleteGroupModal = ({ group, isOpen, onClose }: DeleteGroupModalProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const deleteGroupMutation = useDeleteGroup()
@@ -521,9 +517,9 @@ const GroupsBoard = () => {
   if (noGroups) {
     return (
       <Flex direction='column' align='center' justify='center' h='100%'>
-        <Text fontWeight='bold'>No groups found</Text>
+        <Text fontWeight='bold'>{t('groups_board.no_groups', { defaultValue: 'No groups found' })}</Text>
         <Text mt={2} color='texts.subtle'>
-          Create a new group to get started.
+          {t('groups_board.create_group', { defaultValue: 'Create a new group to get started.' })}
         </Text>
       </Flex>
     )
@@ -542,7 +538,6 @@ const GroupsBoard = () => {
           alignSelf='center'
           onClick={() => fetchNextPage()}
           isLoading={isFetchingNextPage}
-          loadingText='Loading...'
           colorScheme='black'
           variant='outline'
         >
