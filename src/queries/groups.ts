@@ -17,6 +17,8 @@ export type Group = {
 }
 
 export type GroupsResponse = {
+  currentPage: number
+  totalPages: number
   groups: Group[]
 }
 
@@ -36,9 +38,7 @@ export type GroupData = {
   memberIDs: string[]
 }
 
-const PAGE_SIZE = 6
-
-export const useGroups = () => {
+export const useGroups = (pageSize: number = 6) => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
 
@@ -46,16 +46,15 @@ export const useGroups = () => {
     queryKey: QueryKeys.organization.groups(organization?.address),
     enabled: !!organization?.address,
     refetchOnWindowFocus: false,
-    initialPageParam: 0,
-    queryFn: ({ pageParam = 0 }) =>
+    initialPageParam: 1,
+    queryFn: ({ pageParam = 1 }) =>
       bearedFetch<GroupsResponse>(
         ApiEndpoints.OrganizationGroups.replace('{address}', enforceHexPrefix(organization?.address)) +
-          `?page=${pageParam}&limit=${PAGE_SIZE}`
+          `?page=${pageParam}&pageSize=${pageSize}`
       ),
-    getNextPageParam: (lastPage, allPages) => {
-      const loadedItems = allPages.flatMap((p) => p.groups).length
-      const hasMore = lastPage.groups.length === PAGE_SIZE
-      return hasMore ? allPages.length : undefined
+    getNextPageParam: (lastPage) => {
+      if (lastPage.currentPage < lastPage.totalPages) return lastPage.currentPage + 1
+      return undefined
     },
     select: (data) => data.pages.flatMap((page) => page.groups),
   })
