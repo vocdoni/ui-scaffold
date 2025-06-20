@@ -1,19 +1,19 @@
 import {
-    Box,
-    Button,
-    FormControl,
-    FormLabel,
-    Heading,
-    Input,
-    Stack,
-    Table,
-    Tbody,
-    Td,
-    Text,
-    Th,
-    Thead,
-    Tr,
-    VStack,
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Stack,
+  Table,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+  VStack,
 } from '@chakra-ui/react'
 import { useOrganization } from '@vocdoni/react-providers'
 import { useState } from 'react'
@@ -70,7 +70,7 @@ const CensusParticipants = () => {
             <FormLabel>
               <Trans>memberID</Trans>
             </FormLabel>
-            <Input type='memberID' placeholder='Participant number' {...register('memberID')} />
+            <Input type='participantID' placeholder='Participant number' {...register('participantID')} />
           </FormControl>
           <FormControl>
             <FormLabel>
@@ -122,8 +122,8 @@ const CensusParticipants = () => {
               </Tr>
             ) : (
               participants.map((participant) => (
-                <Tr key={participant.memberID}>
-                  <Td>{participant.memberID}</Td>
+                <Tr key={participant.participantID}>
+                  <Td>{participant.participantID}</Td>
                   <Td>{participant.email || '-'}</Td>
                   <Td>{participant.phone || '-'}</Td>
                 </Tr>
