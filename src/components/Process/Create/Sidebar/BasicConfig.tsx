@@ -113,7 +113,13 @@ export const BasicConfig = () => {
           <FormLabel htmlFor='autoStart' mb='0'>
             <Trans i18nKey='process_create.auto_start'>Start immediately</Trans>
           </FormLabel>
-          <Switch id='autoStart' {...register('autoStart')} isChecked={autoStart} onChange={handleAutoStartChange} />
+          <Switch
+            id='autoStart'
+            {...register('autoStart')}
+            colorScheme='black'
+            isChecked={autoStart}
+            onChange={handleAutoStartChange}
+          />
         </FormControl>
 
         {!autoStart && (
