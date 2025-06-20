@@ -209,11 +209,31 @@ export const ProcessCreate = () => {
     console.log('Form data:', data)
   }
 
+  const onError = (errors) => {
+    const sidebarFieldKeys = [
+      'groupId',
+      'resultVisibility',
+      'voterPrivacy',
+      'voteOverwrite',
+      'maxVoteOverwrites',
+      'endDate',
+      'endTime',
+      'startDate',
+      'startTime',
+    ]
+
+    const hasSidebarErrors = sidebarFieldKeys.some((key) => key in errors)
+
+    if (hasSidebarErrors) {
+      setShowSidebar(true)
+    }
+  }
+
   return (
     <FormProvider {...methods}>
       <DashboardContents
         as='form'
-        onSubmit={methods.handleSubmit(onSubmit)}
+        onSubmit={methods.handleSubmit(onSubmit, onError)}
         display='flex'
         flexDirection='row'
         position='relative'
