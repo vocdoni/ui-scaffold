@@ -103,10 +103,10 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
   }, [member])
 
   const onSubmit = (data: MemberFormData) => {
-    const { memberID, name, surname, email, phone, nationalID, birthDate } = data
+    const { memberNumber, name, surname, email, phone, nationalID, birthDate } = data
 
     const memberPayload: Partial<Member> = {
-      memberID,
+      memberNumber,
       name,
       surname,
       email,
