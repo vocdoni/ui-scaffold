@@ -4,18 +4,92 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
   NumberInput,
   NumberInputField,
+  Spinner,
+  useDisclosure,
   VStack,
 } from '@chakra-ui/react'
-import { Select } from 'chakra-react-select'
+import { chakraComponents, Select } from 'chakra-react-select'
+import { useEffect, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { useGroups } from '~src/queries/groups'
 import { useValidations } from '~utils/validation'
 
 type SelectOption<T = string> = {
   value: T
   label: string
+}
+
+export const GroupSelect = () => {
+  const { t } = useTranslation()
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext()
+  const [hasFetchedScroll, setHasFetchedScroll] = useState(false)
+  const { data, fetchNextPage, hasNextPage, isFetching } = useGroups(6)
+
+  const CustomMenuList = (props) => {
+    return (
+      <chakraComponents.MenuList {...props}>
+        {props.children}
+        {hasNextPage && (
+          <Box py={2} textAlign='center'>
+            {isFetching ? <Spinner size='sm' /> : t('process_create.census.scroll_to_load', 'Scroll to load more...')}
+          </Box>
+        )}
+      </chakraComponents.MenuList>
+    )
+  }
+
+  // Reset hasFetchedScroll when fetching starts
+  useEffect(() => {
+    if (!isFetching) setHasFetchedScroll(false)
+  }, [isFetching])
+
+  return (
+    <FormControl isInvalid={!!errors.census}>
+      <FormLabel>
+        <Trans i18nKey='process_create.census.label'>Census creation</Trans>
+      </FormLabel>
+      <Controller
+        control={control}
+        name='group'
+        rules={{ required: t('form.error.required', 'This field is required') }}
+        render={({ field }) => {
+          const selected = data?.find((g) => g.id === field.value) ?? null
+          return (
+            <Select
+              options={data ?? []}
+              value={selected}
+              getOptionLabel={(option) => option.title}
+              getOptionValue={(option) => option.id}
+              placeholder={t('process_create.group.select', 'Select group')}
+              isLoading={isFetching}
+              onChange={(option) => field.onChange(option?.id ?? '')}
+              onMenuScrollToBottom={async () => {
+                if (hasNextPage && !hasFetchedScroll) {
+                  setHasFetchedScroll(true)
+                  await fetchNextPage()
+                }
+              }}
+              closeMenuOnSelect
+              maxMenuHeight={200}
+              components={{ MenuList: CustomMenuList }}
+            />
+          )
+        }}
+      />
+      <FormErrorMessage>{errors.census?.message?.toString()}</FormErrorMessage>
+    </FormControl>
+  )
 }
 
 export const ExtraConfig = () => {
@@ -30,6 +104,7 @@ export const ExtraConfig = () => {
 
   const maxVoteOverwrites = watch('maxVoteOverwrites')
   const voteOverwrite = watch('voteOverwrite')
+  const group = watch('group')
 
   const resultVisibilityOptions: SelectOption[] = [
     { value: 'live', label: t('process_create.result_visibility.live', 'Live results') },
@@ -142,32 +217,30 @@ export const ExtraConfig = () => {
       </Box>
 
       {/* Census creation */}
-      <Box>
-        <FormControl isInvalid={!!errors.census}>
-          <FormLabel>
-            <Trans i18nKey='process_create.census.label'>Census creation</Trans>
-          </FormLabel>
-          <Controller
-            control={control}
-            name='census'
-            rules={{ required }}
-            render={({ field }) => (
-              <Select
-                {...field}
-                placeholder={t('process_create.census.select', 'Select census')}
-                options={[]} // Will be populated with available census options
-                onChange={(option: SelectOption | null) => field.onChange(option?.value || '')}
-              />
-            )}
-          />
-          <FormErrorMessage>{errors.census?.message?.toString()}</FormErrorMessage>
-        </FormControl>
-      </Box>
+      <GroupSelect />
 
       {/* Voter Authentication */}
-      <Button isDisabled colorScheme='gray' w='full'>
+      <VoterAuthentication />
+    </VStack>
+  )
+}
+
+const VoterAuthentication = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { watch } = useFormContext()
+  const group = watch('group')
+  return (
+    <>
+      <Button isDisabled={!group} colorScheme='gray' w='full' onClick={onOpen}>
         <Trans i18nKey='process_create.voter_auth'>Configure Voter Authentication</Trans>
       </Button>
-    </VStack>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader></ModalHeader>
+          <ModalBody></ModalBody>
+        </ModalContent>
+      </Modal>
+    </>
   )
 }
