@@ -8,20 +8,14 @@ import { QuestionForm } from './QuestionForm'
 import { QuestionType } from './QuestionType'
 
 export const Questions = () => {
-  const { control, getValues } = useFormContext()
+  const { control, watch } = useFormContext()
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'questions',
   })
-  const questionType = getValues('questionType')
+  const questionType = watch('questionType')
 
-  const addQuestion = () => {
-    if (questionType === QuestionTypes.Single) {
-      append(DefaultQuestions[QuestionTypes.Single])
-      return
-    }
-    append(DefaultQuestions[QuestionTypes.Multiple])
-  }
+  const addQuestion = () => append(DefaultQuestions[questionType])
 
   return (
     <VStack align='stretch' spacing={4}>
@@ -33,7 +27,7 @@ export const Questions = () => {
         <QuestionForm key={field.id} index={index} onRemove={() => remove(index)} />
       ))}
 
-      {(questionType === QuestionTypes.Single || (questionType === QuestionTypes.Multiple && fields.length < 1)) && (
+      {questionType === QuestionTypes.Single && (
         <Button leftIcon={<Icon as={LuPlus} />} variant='outline' onClick={addQuestion}>
           <Trans i18nKey='process.create.question.add'>Add question</Trans>
         </Button>
