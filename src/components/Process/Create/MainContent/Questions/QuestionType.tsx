@@ -15,6 +15,7 @@ export const QuestionType = () => {
     control,
     formState: { errors },
     setValue,
+    getValues,
   } = useFormContext()
 
   return (
@@ -46,7 +47,13 @@ export const QuestionType = () => {
               onChange={(option) => {
                 const newType = option?.value as QuestionTypes
                 field.onChange(newType)
-                setValue('questions', DefaultQuestions[newType])
+                const oldQuestion = getValues('questions')[0]
+                setValue('questions', [
+                  {
+                    ...DefaultQuestions[newType],
+                    ...oldQuestion,
+                  },
+                ])
               }}
               options={options}
               placeholder={t('process.create.question_type.single', 'Single choice')}
