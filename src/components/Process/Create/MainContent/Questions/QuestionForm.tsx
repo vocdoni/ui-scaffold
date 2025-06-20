@@ -197,7 +197,6 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
         </HStack>
 
         {/* Selection limits */}
-        <SelectionLimits index={index} />
 
         {/* Options */}
         <VStack align='stretch' spacing={2}>
