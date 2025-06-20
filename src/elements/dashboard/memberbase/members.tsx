@@ -48,8 +48,8 @@ const Members = () => {
         id: 'phone',
       },
       {
-        label: t('form.members.spreadsheet.template.member_id', { defaultValue: 'Member ID' }),
-        id: 'memberID',
+        label: t('form.members.spreadsheet.template.member_number', { defaultValue: 'Member Number' }),
+        id: 'memberNumber',
       },
       {
         label: t('form.members.spreadsheet.template.national_id', { defaultValue: 'National ID' }),
