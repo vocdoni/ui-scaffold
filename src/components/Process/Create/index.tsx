@@ -53,24 +53,22 @@ export enum QuestionTypes {
   Multiple = 'multiple',
 }
 
-export const DefaultQuestions = {
-  [QuestionTypes.Single]: [
-    {
-      title: '',
-      description: '',
-      options: [{ text: '' }, { text: '' }],
-    },
-  ],
-  [QuestionTypes.Multiple]: [
-    {
-      title: '',
-      description: '',
-      minSelections: 1,
-      maxSelections: 1,
-      options: [{ text: '' }, { text: '' }],
-    },
-  ],
-} as const
+export type DefaultQuestionsType = Record<QuestionTypes, Question>
+
+export const DefaultQuestions: DefaultQuestionsType = {
+  [QuestionTypes.Single]: {
+    title: '',
+    description: '',
+    options: [{ text: '' }, { text: '' }],
+  },
+  [QuestionTypes.Multiple]: {
+    title: '',
+    description: '',
+    minSelections: 1,
+    maxSelections: 1,
+    options: [{ text: '' }, { text: '' }],
+  },
+}
 
 const defaultProcessValues: Process = {
   title: '',
@@ -81,10 +79,7 @@ const defaultProcessValues: Process = {
   endDate: '',
   endTime: '',
   questionType: QuestionTypes.Single,
-  questions: DefaultQuestions[QuestionTypes.Single].map((q) => ({
-    ...q,
-    options: q.options.map((opt) => ({ ...opt })),
-  })),
+  questions: [DefaultQuestions[QuestionTypes.Single]],
   resultVisibility: 'live',
   voterPrivacy: 'anonymous',
   voteOverwrite: false,
