@@ -55,13 +55,13 @@ export const GroupSelect = () => {
   }, [isFetching])
 
   return (
-    <FormControl isInvalid={!!errors.census}>
+    <FormControl isInvalid={!!errors.groupId}>
       <FormLabel>
         <Trans i18nKey='process_create.census.label'>Census creation</Trans>
       </FormLabel>
       <Controller
         control={control}
-        name='group'
+        name='groupId'
         rules={{ required: t('form.error.required', 'This field is required') }}
         render={({ field }) => {
           const selected = data?.find((g) => g.id === field.value) ?? null
@@ -87,7 +87,7 @@ export const GroupSelect = () => {
           )
         }}
       />
-      <FormErrorMessage>{errors.census?.message?.toString()}</FormErrorMessage>
+      <FormErrorMessage>{errors.groupId?.message?.toString()}</FormErrorMessage>
     </FormControl>
   )
 }
@@ -228,10 +228,10 @@ export const ExtraConfig = () => {
 const VoterAuthentication = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { watch } = useFormContext()
-  const group = watch('group')
+  const groupId = watch('groupId')
   return (
     <>
-      <Button isDisabled={!group} colorScheme='gray' w='full' onClick={onOpen}>
+      <Button isDisabled={!groupId} colorScheme='gray' w='full' onClick={onOpen}>
         <Trans i18nKey='process_create.voter_auth'>Configure Voter Authentication</Trans>
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>

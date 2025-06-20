@@ -45,7 +45,7 @@ export type Process = {
   voterPrivacy: 'anonymous' | 'public'
   voteOverwrite: boolean
   maxVoteOverwrites: number
-  group: string
+  groupId: string
 }
 
 export enum QuestionTypes {
@@ -80,11 +80,11 @@ const defaultProcessValues: Process = {
   endTime: '',
   questionType: QuestionTypes.Single,
   questions: [DefaultQuestions[QuestionTypes.Single]],
-  resultVisibility: 'live',
+  resultVisibility: 'hidden',
   voterPrivacy: 'anonymous',
   voteOverwrite: false,
   maxVoteOverwrites: 0,
-  group: '',
+  groupId: '',
 }
 
 const TemplateButtons = () => {
