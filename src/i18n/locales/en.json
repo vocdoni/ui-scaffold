@@ -406,7 +406,7 @@
           "birth_date": "Birth Date",
           "email": "Email",
           "firstname": "First Name",
-          "member_id": "Member ID",
+          "member_number": "Member Number",
           "national_id": "National ID",
           "phone": "Phone",
           "surname": "Last Name"

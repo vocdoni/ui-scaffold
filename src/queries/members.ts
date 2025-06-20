@@ -10,7 +10,7 @@ import { SetupStepIds, useOrganizationSetup } from './organization'
 
 export type Member = {
   id?: string
-  memberID: string
+  memberNumber: string
   name: string
   surname: string
   email: string
