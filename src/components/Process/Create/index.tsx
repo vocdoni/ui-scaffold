@@ -15,7 +15,7 @@ import {
 import { useEffect, useState } from 'react'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuSettings } from 'react-icons/lu'
+import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import { createPath, useBlocker, useLocation } from 'react-router-dom'
 import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
@@ -119,6 +119,8 @@ const TemplateButtons = () => {
       ],
     })
   }
+
+  if (methods.formState.isDirty) return null
 
   return (
     <>
@@ -255,6 +257,14 @@ export const ProcessCreate = () => {
               <Trans i18nKey='process.create.status.draft'>Draft</Trans>
             </Box>
             <ButtonGroup size='sm'>
+              {methods.formState.isDirty && (
+                <IconButton
+                  aria-label='Reset form'
+                  icon={<Icon as={LuRotateCcw} />}
+                  variant='outline'
+                  onClick={() => methods.reset(defaultProcessValues)}
+                />
+              )}
               <IconButton
                 aria-label={t('dashboard.actions.toggle_sidebar', {
                   defaultValue: 'Toggle sidebar',
