@@ -15,6 +15,7 @@ import { Progress } from './progress'
 import { ElectionQuestions } from './questions'
 import { Radio } from './radio'
 import { ElectionResults } from './results'
+import { SecurityLevelBox } from './securitylevelbox'
 import { SpreadsheetAccess } from './spreadsheetAccess'
 import { Stepper } from './stepper'
 import { Switch } from './switch'
@@ -52,6 +53,7 @@ const components = {
   Tag,
   Text,
   Tooltip,
+  SecurityLevelBox,
 }
 
 export default components
