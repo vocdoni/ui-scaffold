@@ -60,7 +60,7 @@ export const BasicConfig = () => {
 
     return (
       durationDays <= maxDurationDays ||
-      t('form.error.max_duration_exceeded', {
+      t('form.create_process.error.max_duration_exceeded', {
         defaultValue: 'Exceeds max duration.',
         days: maxDuration,
       })

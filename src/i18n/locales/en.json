@@ -226,6 +226,11 @@
   },
   "close": "Close",
   "color_mode_switcher": "Color mode switcher",
+  "common": {
+    "cancel": "Back",
+    "confirm": "Confirm",
+    "next": "Next"
+  },
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
@@ -382,15 +387,24 @@
       "website_placeholder": "https://example.com"
     },
     "choose_an_option": "Choose an option",
+    "create_process": {
+      "error": {
+        "max_duration_exceeded": "Exceeds max duration."
+      }
+    },
     "error": {
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "email_invalid": "Invalid email address",
       "field_is_required": "This field is required",
+      "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.",
+      "max_greater_than_min": "Max must be greater than or equal to Min",
       "min_address": "Please, provide at least one address",
       "min_users_address": "Please, provide at least one address",
+      "min_value": "Minimum value is 1",
       "password_min_length": "Min. 8 characters",
-      "recipient_address_invalid": "Specified address does not seem to be valid"
+      "recipient_address_invalid": "Specified address does not seem to be valid",
+      "required": "This field is required"
     },
     "member": {
       "error": {
@@ -1382,6 +1396,48 @@
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Web3 addresses"
     },
+    "create": {
+      "action": {
+        "publish": "Publish"
+      },
+      "description": {
+        "placeholder": "Add a description...",
+        "title": "Voting Process Title"
+      },
+      "leave_confirmation": {
+        "cancel": "Cancel",
+        "leave": "Leave without saving",
+        "message": "You have unsaved changes. Are you sure you want to leave?",
+        "reset": "Reset",
+        "reset_message": "This will reset the form. Do you want to continue?",
+        "title": "Unsaved Changes"
+      },
+      "question": {
+        "add": "Add question",
+        "description": {
+          "placeholder": "Add the description of the question here (optional)..."
+        },
+        "question_number": "Question {{index}} of {{total}}"
+      },
+      "question_type": {
+        "description": "This applies to all questions in this voting process",
+        "multiple": "Multiple choice",
+        "single": "Single choice",
+        "title": "Question Type"
+      },
+      "selectionLimits": {
+        "full": "Voters must select at least  <min />  and at most  <max />  options.",
+        "title": "Selection limits:"
+      },
+      "status": {
+        "draft": "Draft"
+      },
+      "template": {
+        "annual_general_meeting": "Annual General Meeting",
+        "election": "Election",
+        "title": "Get started with a template..."
+      }
+    },
     "created_by": "Created by",
     "date": {
       "ended": "Ended",
@@ -1434,6 +1490,35 @@
       "text": "<p>We've securely processed and stored your vote on our Blockchain. <verify>Verify your vote</verify>.</p>",
       "title": "Vote submitted!"
     },
+    "template": {
+      "annual_general_meeting": {
+        "description": "Set up your annual general meeting",
+        "q1": {
+          "description": "Do you approve the proposed budget for the next fiscal year?",
+          "option_1": "Yes",
+          "option_2": "No",
+          "title": "Approve the annual budget"
+        },
+        "q2": {
+          "description": "Choose the new members for the board of directors.",
+          "option_1": "Candidate A",
+          "option_2": "Candidate B",
+          "title": "Elect new board members"
+        },
+        "title": "Annual General Meeting"
+      },
+      "election": {
+        "description": "Set up your organization’s election process.",
+        "q1": {
+          "description": "Choose the best candidate to represent your interests.",
+          "option_1": "Candidate A",
+          "option_2": "Candidate B",
+          "option_3": "Candidate C",
+          "title": "Who should be the next president?"
+        },
+        "title": "Election Process"
+      }
+    },
     "total_census_size": "{{maxCensusSize}} allowed voters of {{censusSize}} total in census",
     "total_census_size_tooltip": "The maximum number of voters allowed is limited to {{maxCensusSize}} from a census of {{censusSize}} ({{percent}}% of the total). Only the first {{maxCensusSize}} voters can vote.",
     "voters": "Voters",
@@ -1451,6 +1536,7 @@
       "legal_disclaimer": "This voting system utilizes token-based voting power (public on-chain). As you selected the 'Anonymous voting' option, weights will be grouped into similar balances and rounded down. This sacrifices some accuracy but preserves anonymous identity by unlinking balances from wallets.",
       "legal_note": "Disclaimer: "
     },
+    "auto_start": "Start immediately",
     "census": {
       "crm_description": "If you already have your own CRM, we can integrate it so your community can vote using the same credentials.",
       "crm_title": "CRM Integration",
@@ -1460,6 +1546,7 @@
       "digital_certificate_title": "Digital Certificates",
       "email_description": "Voters will validate their email by authenticating through their Google Mail account (OAuth).",
       "email_title": "Via Email",
+      "label": "Census creation",
       "mandatory_max_census_size": "At least one voter needs to be selected",
       "others_description": "Do you need a specific solution? We can help with a custom integration tailored to your needs.",
       "others_title": "Others",
@@ -1475,6 +1562,13 @@
     },
     "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
     "creation_steps_title": "Progress",
+    "end_datetime": "End date and time",
+    "group": {
+      "select": "Select group"
+    },
+    "groups": {
+      "scroll_to_load": "Scroll to load more..."
+    },
     "modal_pro": {
       "description": "<p><bold>{{ reason, ucfirst }}</bold> is a Premium feature</p>",
       "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
@@ -1489,6 +1583,11 @@
       "success": "Email sent successfully",
       "title": "Contact Us"
     },
+    "option": {
+      "add": "Add option",
+      "placeholder": "Option {{number}}",
+      "remove": "Remove option"
+    },
     "preview": {
       "accuracy": "Anonymous Census Balance Accuracy: "
     },
@@ -1501,6 +1600,9 @@
         "description": "Voters rank the options, and points are assigned base on their rank. The option with the most points wins.",
         "title": "Ranked Choice"
       },
+      "description": {
+        "placeholder": "Add the description of the question here (optional)..."
+      },
       "multi_choice": {
         "description": "Voters choose a pre-defined number of options. The option with more voters win.",
         "title": "Multiple Choice"
@@ -1509,17 +1611,84 @@
         "description": "Voters can distribute a predefined number among all options/projects (representing the total available budget) as they wish.",
         "title": "Participatory Budgeting"
       },
+      "remove": "Remove question",
       "single_choice": {
         "description": "Voters choose one option. The option with the most votes wins.",
         "title": "Single Choice"
+      },
+      "title": {
+        "placeholder": "Add a title to the question"
       },
       "voting_type": {
         "description": "Select the voting type for this election. Contact us if you need other options.",
         "title": "Voting Types"
       }
     },
+    "result_visibility": {
+      "hidden": "Hidden until the end",
+      "live": "Live results",
+      "title": "Result visibility"
+    },
+    "start_datetime": "Start date and time",
     "title": "Title",
-    "title_placeholder": "Title of the voting process"
+    "title_placeholder": "Title of the voting process",
+    "vote_overwrite": {
+      "max_changes": "Maximum vote changes",
+      "multiple": "Allow vote changes",
+      "single": "Allow only one vote",
+      "title": "Vote overwrite"
+    },
+    "voter_auth": "Configure Voter Authentication",
+    "voter_auth_2fa_description": "Add an extra layer of security by requiring voters to verify their identity",
+    "voter_auth_2fa_email": "Email verification",
+    "voter_auth_2fa_email_description": "Voters will receive a verification code via email",
+    "voter_auth_2fa_enable": "Enable Two-Factor Authentication",
+    "voter_auth_2fa_method_title": "Select verification method",
+    "voter_auth_2fa_security_description": "Two-factor authentication significantly increases the security of your voting process by ensuring only authorized members can vote.",
+    "voter_auth_2fa_security_title": "Enhanced Security",
+    "voter_auth_2fa_sms": "SMS verification",
+    "voter_auth_2fa_sms_description": "Voters will receive a verification code via SMS",
+    "voter_auth_2fa_voter_choice": "Voter's choice",
+    "voter_auth_2fa_voter_choice_description": "Voters can choose their preferred verification method",
+    "voter_auth_description": "Set up how voters will authenticate to participate in this voting process.",
+    "voter_auth_email": "Via email verification",
+    "voter_auth_guarantees": "Authentication Guarantees",
+    "voter_auth_guarantees_mid_description_intro": "Your configuration provides mid-level authentication guarantees with 3 credentials.",
+    "voter_auth_guarantees_mid_list_1": "Enable two-factor authentication for strong guarantees",
+    "voter_auth_guarantees_mid_title": "Mid-Level Authentication Guarantees",
+    "voter_auth_guarantees_strong_description": "Your configuration provides strong authentication guarantees with two-factor verification.",
+    "voter_auth_guarantees_strong_title": "Strong Authentication Guarantees",
+    "voter_auth_guarantees_sub_mid": "Mid-level authentication guarantees with 3 credentials but no two-factor verification.",
+    "voter_auth_guarantees_sub_strong": "Strong authentication guarantees with two-factor verification enabled.",
+    "voter_auth_guarantees_sub_weak": "Basic authentication guarantees with 1 credential and no two-factor verification.",
+    "voter_auth_guarantees_weak_description_intro": "Your current configuration provides minimal authentication guarantees. We strongly recommend:",
+    "voter_auth_guarantees_weak_list_1": "Add more credentials (aim for 2) for better identity verification",
+    "voter_auth_guarantees_weak_list_2": "Enable two-factor authentication for an additional verification layer",
+    "voter_auth_guarantees_weak_title": "Weak Authentication Guarantees",
+    "voter_auth_security_level": "Good security",
+    "voter_auth_security_recommendation_1": "For better security, we recommend selecting at least 2 credentials.",
+    "voter_auth_security_recommendation_2_one": "You've selected {{ count }} credentials, which provides good security for your voters.",
+    "voter_auth_security_recommendation_2_other": "You've selected {{ count }} credentials, which provides good security for your voters.",
+    "voter_auth_security_recommendation_title": "Security recommendation",
+    "voter_auth_select_credentials": "Select required credentials for voter authentication",
+    "voter_auth_select_credentials_description": "Choose which fields from your memberbase voters must provide to authenticate. Select up to 3 fields for optimal security and user experience.",
+    "voter_auth_selected_credentials_count_one": "{{ count }}/3 credentials selected",
+    "voter_auth_selected_credentials_count_other": "{{ count }}/3 credentials selected",
+    "voter_auth_sms": "Via SMS verification",
+    "voter_auth_summary_2fa_enable": "Two-Factor Authentication",
+    "voter_auth_summary_2fa_enabled": "Enabled",
+    "voter_auth_summary_credentials": "Required Credentials",
+    "voter_auth_summary_title": "Authentication Configuration Summary",
+    "voter_auth_title": "Configure Voter Authentication",
+    "voter_auth_voters_choice": "Voter's choice",
+    "voter_privacy": {
+      "anonymous": "Anonymous",
+      "public": "Public",
+      "title": "Voter's privacy"
+    },
+    "voter_privacy_placeholder": {
+      "anonymous": "Anonymous"
+    }
   },
   "process_list": {
     "end_date": "End date",

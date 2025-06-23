@@ -22,7 +22,7 @@ export const QuestionType = () => {
     <FormControl isInvalid={!!errors.questionType} display='flex' alignItems='center' justifyContent='space-between'>
       <Box>
         <FormLabel mb={0} fontWeight='extrabold'>
-          <Trans i18nKey='process.create.question_type'>Question Type</Trans>
+          <Trans i18nKey='process.create.question_type.title'>Question Type</Trans>
         </FormLabel>
         <Text fontSize='xs' color='texts.subtle'>
           <Trans i18nKey='process.create.question_type.description'>

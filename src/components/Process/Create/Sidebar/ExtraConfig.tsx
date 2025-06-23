@@ -120,7 +120,7 @@ export const ExtraConfig = () => {
       <Box>
         <FormControl isInvalid={!!errors.resultVisibility}>
           <FormLabel>
-            <Trans i18nKey='process_create.result_visibility'>Result visibility</Trans>
+            <Trans i18nKey='process_create.result_visibility.title'>Result visibility</Trans>
           </FormLabel>
           <Controller
             control={control}
@@ -143,7 +143,7 @@ export const ExtraConfig = () => {
       <Box>
         <FormControl isInvalid={!!errors.voterPrivacy}>
           <FormLabel>
-            <Trans i18nKey='process_create.voter_privacy'>Voter's privacy</Trans>
+            <Trans i18nKey='process_create.voter_privacy.title'>Voter's privacy</Trans>
           </FormLabel>
           <Controller
             control={control}
@@ -154,7 +154,7 @@ export const ExtraConfig = () => {
                 value={voterPrivacyOptions.find((opt) => opt.value === field.value)}
                 onChange={(opt) => field.onChange(opt.value)}
                 options={voterPrivacyOptions}
-                placeholder={t('process_create.voter_privacy.anonymous', 'Anonymous')}
+                placeholder={t('process_create.voter_privacy_placeholder.anonymous', 'Anonymous')}
               />
             )}
           />
@@ -166,7 +166,7 @@ export const ExtraConfig = () => {
       <Box>
         <FormControl isInvalid={!!errors.voteOverwrite}>
           <FormLabel>
-            <Trans i18nKey='process_create.vote_overwrite'>Vote overwrite</Trans>
+            <Trans i18nKey='process_create.vote_overwrite.title'>Vote overwrite</Trans>
           </FormLabel>
           <Controller
             control={control}

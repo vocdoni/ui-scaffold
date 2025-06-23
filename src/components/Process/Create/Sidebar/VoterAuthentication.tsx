@@ -371,7 +371,11 @@ const SummaryTab = () => {
   const { subtext, alert } = getSecurityLevelMessages(level)
 
   const get2FAMethodLabel = (method: string) =>
-    method === 'sms' ? 'Via SMS verification' : method === 'voter_choice' ? "Voter's choice" : 'Via email verification'
+    method === 'sms'
+      ? t('process_create.voter_auth_sms', { defaultValue: 'Via SMS verification' })
+      : method === 'voter_choice'
+        ? t('process_create.voter_auth_voters_choice', { defaultValue: "Voter's choice" })
+        : t('process_create.voter_auth_email', { defaultValue: 'Via email verification' })
 
   return (
     <TabPanel>
@@ -403,13 +407,13 @@ const SummaryTab = () => {
                   2FA
                 </Badge>
                 <Text fontWeight='semibold'>
-                  {t('process_create.voter_auth_2fa_enable', { defaultValue: 'Two-Factor Authentication' })}
+                  {t('process_create.voter_auth_summary_2fa_enable', { defaultValue: 'Two-Factor Authentication' })}
                 </Text>
               </HStack>
               <Stack pl={6}>
                 <HStack>
                   <Icon as={LuCheck} color='green.500' />
-                  <Text>{t('process_create.voter_auth_2fa_enabled', { defaultValue: 'Enabled' })}</Text>
+                  <Text>{t('process_create.voter_auth_summary_2fa_enabled', { defaultValue: 'Enabled' })}</Text>
                 </HStack>
                 <HStack>
                   <Icon as={LuMail} />
