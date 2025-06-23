@@ -51,6 +51,13 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
     }
   }
 
+  const translatedErrors: Record<string, string> = {
+    'authentication required: participant not found in the census':
+      "Combinació de DNI i correu incorrecte. Revisa'ls o contacte amb congres@alhora.cat.",
+    unauthorized: 'No estàs autoritzat.',
+    'signature invalid': 'Signatura invàlida.',
+  }
+
   return (
     <VStack spacing={6} align='stretch' w='full'>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -69,9 +76,9 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
             </FormHelperText>
           </FormControl>
           {auth.isError && (
-            <Alert status='error'>
+            <Alert status='error' my='5px'>
               <AlertIcon />
-              <AlertDescription>{auth.error.message}</AlertDescription>
+              <AlertDescription>{translatedErrors[auth.error.message] || auth.error.message}</AlertDescription>
             </Alert>
           )}
 
