@@ -1,18 +1,11 @@
 import {
   Box,
-  Button,
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
   NumberInput,
   NumberInputField,
   Spinner,
-  useDisclosure,
   VStack,
 } from '@chakra-ui/react'
 import { chakraComponents, Select } from 'chakra-react-select'
@@ -21,6 +14,7 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useGroups } from '~src/queries/groups'
 import { useValidations } from '~utils/validation'
+import { VoterAuthentication } from './VoterAuthentication'
 
 type SelectOption<T = string> = {
   value: T
@@ -42,7 +36,7 @@ export const GroupSelect = () => {
         {props.children}
         {hasNextPage && (
           <Box py={2} textAlign='center'>
-            {isFetching ? <Spinner size='sm' /> : t('process_create.census.scroll_to_load', 'Scroll to load more...')}
+            {isFetching ? <Spinner size='sm' /> : t('process_create.groups.scroll_to_load', 'Scroll to load more...')}
           </Box>
         )}
       </chakraComponents.MenuList>
@@ -104,7 +98,6 @@ export const ExtraConfig = () => {
 
   const maxVoteOverwrites = watch('maxVoteOverwrites')
   const voteOverwrite = watch('voteOverwrite')
-  const group = watch('group')
 
   const resultVisibilityOptions: SelectOption[] = [
     { value: 'live', label: t('process_create.result_visibility.live', 'Live results') },
@@ -222,25 +215,5 @@ export const ExtraConfig = () => {
       {/* Voter Authentication */}
       <VoterAuthentication />
     </VStack>
-  )
-}
-
-const VoterAuthentication = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const { watch } = useFormContext()
-  const groupId = watch('groupId')
-  return (
-    <>
-      <Button isDisabled={!groupId} colorScheme='gray' w='full' onClick={onOpen}>
-        <Trans i18nKey='process_create.voter_auth'>Configure Voter Authentication</Trans>
-      </Button>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader></ModalHeader>
-          <ModalBody></ModalBody>
-        </ModalContent>
-      </Modal>
-    </>
   )
 }
