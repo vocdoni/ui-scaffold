@@ -33,8 +33,7 @@ const Footer = () => {
           mt={1}
           ml={{ xl: 10 }}
           w='full'
-        >
-        </Flex>
+        ></Flex>
       </Flex>
       <Flex
         width='full'

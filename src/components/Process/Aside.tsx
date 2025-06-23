@@ -154,8 +154,8 @@ const ProcessAside = () => {
           </Flex>
         )}
       </Card>
-      { connected && (
-        <Box alignSelf='center' mb={{ base: 10, md: 0 }} mt={{ base: 10}}>
+      {connected && (
+        <Box alignSelf='center' mb={{ base: 10, md: 0 }} mt={{ base: 10 }}>
           <Button
             onClick={() => {
               disconnect()

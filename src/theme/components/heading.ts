@@ -7,9 +7,10 @@ const sizes = {
     letterSpacing: '0%',
   }),
   sm: defineStyle({
-    fontSize: '30px',
-    lineHeight: '38px',
+    fontSize: '20px',
+    lineHeight: '24px',
     letterSpacing: '0%',
+    paddingTop: '24px',
   }),
   md: defineStyle({
     fontSize: '36px',

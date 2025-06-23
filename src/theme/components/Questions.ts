@@ -74,6 +74,42 @@ const baseStyle = definePartsStyle({
       '& > div:first-of-type': {
         display: 'none',
       },
+      counterReset: 'pregunta-counter',
+
+      //Title
+      '& .chakra-form-control > div:first-of-type': {
+        fontSize: '19px',
+        fontWeight: 900,
+        marginBottom: '5px',
+        paddingLeft: '2rem',
+        counterIncrement: 'pregunta-counter',
+        /*
+        '&::before': {
+          content: `"Títol: "`, // Your custom text
+        }
+        */
+        '&::before': {
+          content: '""counter(pregunta-counter)":"',
+          fontWeight: 'bold',
+          position: 'absolute',
+          top: 0,
+          left: '0rem',
+          fontSize: '20px',
+        },
+      },
+
+      //Description
+      '& .chakra-form-control > div:nth-of-type(2)': {
+        fontSize: '16px',
+        fontStyle: 'italic',
+        marginTop: '5px',
+        marginBottom: '25px',
+        paddingLeft: '2rem',
+
+        '&::before': {
+          content: `"Justificació de l’esmena: "`, // Your custom text
+        },
+      },
     },
   },
 

@@ -64,7 +64,8 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
             <FormLabel>Correu electrònic</FormLabel>
             <Input {...register('contact', { required: true })} />
             <FormHelperText>
-              <strong>Important:</strong> Ha de coincidir amb el que vas fer servir per registrar-te com a militant a Alhora.
+              <strong>Important:</strong> Ha de coincidir amb el que vas fer servir per registrar-te com a militant a
+              Alhora.
             </FormHelperText>
           </FormControl>
           {auth.isError && (
