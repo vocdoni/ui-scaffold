@@ -170,7 +170,7 @@
       "paused_start": "Comença {{ distance }}"
     },
     "spreadsheet": {
-      "access_button": "Identificar-se",
+      "access_button": "Identificar-se per votar",
       "anon_sik_helper": "Això garanteix que el teu vot sigui anònim",
       "anon_sik_label": "Defineix una contrasenya per al teu vot",
       "close": "Tanca",
@@ -178,14 +178,14 @@
       "modal_title": "Autenticació"
     },
     "statuses": {
-      "canceled": "Cancel·lada",
-      "ended": "Finalitzada",
+      "canceled": "Votació cancel·lada",
+      "ended": "Votació finalitzada",
       "invalid": "Invàlida",
-      "ongoing": "En curs",
-      "paused": "Pausada",
+      "ongoing": "Votació en curs",
+      "paused": "Votació pausada",
       "process_unknown": "Desconeguda",
       "results": "Resultats",
-      "upcoming": "Propera"
+      "upcoming": "Pròximament"
     },
     "validation": {
       "choices_count": "Has de seleccionar {{ count }} opcions",

@@ -98,7 +98,7 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
               />
             </HStack>
             {errors.code && <FormErrorMessage textAlign='center'>{errors.code.message}</FormErrorMessage>}
-            <FormHelperText>Si fas servir email, no oblidis revisar el correu brossa</FormHelperText>
+            <FormHelperText>Si no t’arriba, comprova la safata de correu brossa. Pot trigar uns minuts a arribar</FormHelperText>
           </FormControl>
           {auth.isError && (
             <Alert status='error'>

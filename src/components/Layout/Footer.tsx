@@ -34,46 +34,6 @@ const Footer = () => {
           ml={{ xl: 10 }}
           w='full'
         >
-          <Flex
-            flexDirection={{ base: 'column', sm2: 'row' }}
-            justifyContent='space-between'
-            gap={{ base: '0px', xl: '90px' }}
-            w='full'
-          >
-            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>
-              {t('footer.company')}
-            </Text>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io' target='_blank'>
-              Vocdoni
-            </Link>
-            <Link
-              fontWeight='bold'
-              variant='footer'
-              href='https://www.vocdoni.io/about'
-              whiteSpace='nowrap'
-              target='_blank'
-            >
-              {t('footer.about_us')}
-            </Link>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/contact' target='_blank'>
-              {t('footer.contact')}
-            </Link>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/api' target='_blank'>
-              SDK
-            </Link>
-            <Link
-              fontWeight='bold'
-              variant='footer'
-              href='https://developer.vocdoni.io'
-              whiteSpace='nowrap'
-              target='_blank'
-            >
-              {t('footer.developer_portal')}
-            </Link>
-            <Link fontWeight='bold' variant='footer' href='https://blog.vocdoni.io' target='_blank'>
-              Blog
-            </Link>
-          </Flex>
         </Flex>
       </Flex>
       <Flex

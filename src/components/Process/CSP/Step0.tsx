@@ -64,7 +64,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
             <FormLabel>Correu electrònic</FormLabel>
             <Input {...register('contact', { required: true })} />
             <FormHelperText>
-              <strong>Important:</strong> Ha de coincidir amb el registrat al Alhora.
+              <strong>Important:</strong> Ha de coincidir amb el que vas fer servir per registrar-te com a militant a Alhora.
             </FormHelperText>
           </FormControl>
           {auth.isError && (
@@ -94,7 +94,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
           </Text>
 
           <Button type='submit' variant='primary' borderRadius='full' w='full' isLoading={auth.isPending} mt={2}>
-            Rebre Codi
+            Rebre Codi al Correu
           </Button>
 
           <Text textAlign='center' fontSize='sm'>
