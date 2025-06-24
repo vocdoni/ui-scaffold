@@ -83,6 +83,7 @@ const baseStyle = definePartsStyle({
         marginBottom: '5px',
         paddingLeft: '2rem',
         counterIncrement: 'pregunta-counter',
+        whiteSpace: "pre-wrap",
         /*
         '&::before': {
           content: `"Títol: "`, // Your custom text
@@ -102,12 +103,13 @@ const baseStyle = definePartsStyle({
       '& .chakra-form-control > div:nth-of-type(2)': {
         fontSize: '16px',
         fontStyle: 'italic',
-        marginTop: '5px',
-        marginBottom: '25px',
+        marginTop: '10px',
+        marginBottom: '30px',
         paddingLeft: '2rem',
+        whiteSpace: "pre-wrap",
 
         '&::before': {
-          content: `"Justificació de l’esmena: "`, // Your custom text
+          content: `"Justificació: "`, // Your custom text
         },
       },
     },
