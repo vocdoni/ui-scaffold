@@ -83,7 +83,7 @@ const baseStyle = definePartsStyle({
         marginBottom: '5px',
         paddingLeft: '2rem',
         counterIncrement: 'pregunta-counter',
-        whiteSpace: "pre-wrap",
+        whiteSpace: 'pre-wrap',
         /*
         '&::before': {
           content: `"Títol: "`, // Your custom text
@@ -106,7 +106,7 @@ const baseStyle = definePartsStyle({
         marginTop: '10px',
         marginBottom: '30px',
         paddingLeft: '2rem',
-        whiteSpace: "pre-wrap",
+        whiteSpace: 'pre-wrap',
 
         '&::before': {
           content: `"Justificació: "`, // Your custom text

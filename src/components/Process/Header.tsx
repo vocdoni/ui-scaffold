@@ -117,10 +117,6 @@ const ProcessHeader = () => {
               <Text>{t('process.is_anonymous.description')}</Text>
             </Box>
           )}
-          <Box cursor='help'>
-            <Text fontWeight='bold'>{t('process.census')}</Text>
-            <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
-          </Box>
           {election?.meta?.census && (
             <>
               <Box>
