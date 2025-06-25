@@ -207,7 +207,7 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
               ) : (
                 <Checkbox isChecked={false} isReadOnly mt={2} />
               )}
-              <FormControl isInvalid={!!errors.questions?.[index]?.options?.[optionIndex]?.text} flex='1'>
+              <FormControl isInvalid={!!errors.questions?.[index]?.options?.[optionIndex]?.option} flex='1'>
                 <Input
                   placeholder={
                     placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex] ??
@@ -215,12 +215,12 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
                       number: optionIndex + 1,
                     })
                   }
-                  {...register(`questions.${index}.options.${optionIndex}.text`, {
+                  {...register(`questions.${index}.options.${optionIndex}.option`, {
                     required: t('form.error.required', 'This field is required'),
                   })}
                 />
                 <FormErrorMessage>
-                  {errors.questions?.[index]?.options?.[optionIndex]?.text?.message?.toString()}
+                  {errors.questions?.[index]?.options?.[optionIndex]?.option?.message?.toString()}
                 </FormErrorMessage>
               </FormControl>
               {fields.length > 2 && (
@@ -239,7 +239,7 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
             leftIcon={<Icon as={LuPlus} />}
             variant='ghost'
             size='sm'
-            onClick={() => append({ text: '' })}
+            onClick={() => append({ option: '' })}
             alignSelf='flex-start'
           >
             <Trans i18nKey='process_create.option.add'>Add option</Trans>

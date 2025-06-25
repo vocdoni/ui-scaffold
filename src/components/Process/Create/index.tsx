@@ -3,6 +3,8 @@ import {
   Button,
   ButtonGroup,
   Flex,
+  FormControl,
+  FormErrorMessage,
   HStack,
   Icon,
   IconButton,
@@ -10,15 +12,29 @@ import {
   Text,
   Textarea,
   useDisclosure,
+  useToast,
   VStack,
 } from '@chakra-ui/react'
+import { useClient } from '@vocdoni/react-providers'
+import {
+  ApprovalElection,
+  Election,
+  ElectionCreationSteps,
+  IElectionParameters,
+  IQuestion,
+  PlainCensus,
+  UnpublishedElection,
+} from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
-import { createPath, useBlocker, useLocation } from 'react-router-dom'
+import { createPath, generatePath, useBlocker, useLocation, useNavigate } from 'react-router-dom'
+import { Option } from '~components/ProcessCreate/StepForm/Questions'
 import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
+import { Routes } from '~routes'
+import { CensusMeta } from '../Census/CensusType'
 import { useProcessTemplates } from '../TemplateProvider'
 import { Questions } from './MainContent/Questions'
 import { CreateSidebar } from './Sidebar'
@@ -28,7 +44,7 @@ type Question = {
   description: string
   minSelections?: number
   maxSelections?: number
-  options: { text: string }[]
+  options: { option: string }[]
 }
 
 export type Process = {
@@ -64,14 +80,14 @@ export const DefaultQuestions: DefaultQuestionsType = {
   [QuestionTypes.Single]: {
     title: '',
     description: '',
-    options: [{ text: '' }, { text: '' }],
+    options: [{ option: '' }, { option: '' }],
   },
   [QuestionTypes.Multiple]: {
     title: '',
     description: '',
     minSelections: 1,
     maxSelections: 1,
-    options: [{ text: '' }, { text: '' }],
+    options: [{ option: '' }, { option: '' }],
   },
 }
 
@@ -101,9 +117,9 @@ const TemplateConfigs: Record<TemplateIds, TemplateConfig> = {
   [TemplateIds.AnnualGeneralMeeting]: {
     questionType: QuestionTypes.Single,
     questions: [
-      { title: '', description: '', options: [{ text: '' }, { text: '' }] },
-      { title: '', description: '', options: [{ text: '' }, { text: '' }] },
-      { title: '', description: '', options: [{ text: '' }, { text: '' }] },
+      { title: '', description: '', options: [{ option: '' }, { option: '' }] },
+      { title: '', description: '', options: [{ option: '' }, { option: '' }] },
+      { title: '', description: '', options: [{ option: '' }, { option: '' }] },
     ],
   },
   [TemplateIds.Election]: {
@@ -114,7 +130,7 @@ const TemplateConfigs: Record<TemplateIds, TemplateConfig> = {
         description: '',
         minSelections: 1,
         maxSelections: 3,
-        options: [{ text: '' }, { text: '' }, { text: '' }],
+        options: [{ option: '' }, { option: '' }, { option: '' }],
       },
     ],
   },
@@ -212,7 +228,7 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
   const isSamePath = currentPath === nextPath
 
   const onLeave = () => {
-    if (!blocker || !blocker.location) {
+    if (!blocker?.location) {
       onClose()
       return
     }
@@ -258,10 +274,13 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
 
 export const ProcessCreate = () => {
   const { t } = useTranslation()
+  const toast = useToast()
+  const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(true)
   const methods = useForm({ defaultValues: defaultProcessValues })
   const { activeTemplate, placeholders } = useProcessTemplates()
   const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
+  const { client } = useClient()
 
   const blocker = useBlocker(methods.formState.isDirty)
 
@@ -270,8 +289,99 @@ export const ProcessCreate = () => {
     if (blocker.state === 'blocked') openConfirmationModal()
   }, [blocker])
 
-  const onSubmit = (data: Process) => {
-    console.log('Form data:', data)
+  const electionFromForm = (form) => {
+    // max census size is calculated by the SDK when creating a process, but we need it to
+    // calculate the cost preview... so here we set it for all cases anyway
+    const maxCensusSize = 1
+
+    return {
+      ...form,
+      electionType: {
+        anonymous: Boolean(form.voterPrivacy === 'anonymous'),
+        secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
+      },
+      maxCensusSize,
+      // map questions back to IQuestion[]
+      questions: form.questions.map(
+        (question) =>
+          ({
+            title: { default: question.title },
+            description: { default: question.description },
+            choices: question.options.map((q: Option, i: number) => ({
+              title: { default: q.option },
+              value: i,
+            })),
+          }) as IQuestion
+      ),
+      startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`).getTime(),
+      endDate: new Date(`${form.endDate}T${form.endTime}`).getTime(),
+      voteType: {
+        maxVoteOverwrites: Number(form.maxVoteOverwrites),
+      },
+      temporarySecretIdentity: Boolean(form.voterPrivacy === 'anonymous'),
+      meta: {
+        generated: 'ui-scaffold',
+        app: 'vocdoni',
+        census: {
+          type: null,
+          fields: undefined,
+        } as CensusMeta,
+      },
+    }
+  }
+
+  const onSubmit = async (form: Process) => {
+    try {
+      const census = new PlainCensus()
+      const addresses = '0x9b1e78c120dbe9B919397852D0B3d4D851b1cd7e'
+      census.add(addresses)
+      const params: IElectionParameters = {
+        ...electionFromForm(form),
+        census,
+      }
+
+      let election: UnpublishedElection
+      switch (form.questionType) {
+        case 'multiple':
+          election = ApprovalElection.from(params)
+          break
+        case 'single':
+        default:
+          election = Election.from(params)
+      }
+
+      let electionId: string | null = null
+
+      for await (const step of client.createElectionSteps(election)) {
+        switch (step.key) {
+          case ElectionCreationSteps.DONE:
+            electionId = step.electionId
+        }
+      }
+
+      toast({
+        title: t('form.process_create.success_title'),
+        description: t('form.process_create.success_description'),
+        status: 'success',
+        duration: 4000,
+      })
+
+      methods.reset(defaultProcessValues)
+
+      navigate(
+        generatePath(Routes.processes.view, {
+          id: electionId,
+        })
+      )
+    } catch (error) {
+      console.error('Error creating election:', error)
+      toast({
+        title: t('form.process_create.error_title', { defaultValue: 'Error creating process' }),
+        description: error instanceof Error ? error.message : String(error),
+        status: 'error',
+        duration: 4000,
+      })
+    }
   }
 
   const onError = (errors) => {
@@ -345,19 +455,24 @@ export const ProcessCreate = () => {
           {/* Title and Description */}
           <VStack as='header' align='stretch' spacing={4}>
             <TemplateButtons />
-            <Input
-              px={0}
-              variant='unstyled'
-              placeholder={
-                placeholders[activeTemplate]?.title ??
-                t('process.create.description.title', {
-                  defaultValue: 'Voting Process Title',
-                })
-              }
-              fontSize='2xl'
-              fontWeight='bold'
-              {...methods.register('title')}
-            />
+            <FormControl isInvalid={!!methods.formState.errors.title}>
+              <Input
+                px={0}
+                variant='unstyled'
+                placeholder={
+                  placeholders[activeTemplate]?.title ??
+                  t('process.create.description.title', {
+                    defaultValue: 'Voting Process Title',
+                  })
+                }
+                fontSize='2xl'
+                fontWeight='bold'
+                {...methods.register('title', {
+                  required: t('form.error.required', 'This field is required'),
+                })}
+              />
+              <FormErrorMessage>{methods.formState.errors.title?.message?.toString()}</FormErrorMessage>
+            </FormControl>
             <Textarea
               variant='unstyled'
               placeholder={
