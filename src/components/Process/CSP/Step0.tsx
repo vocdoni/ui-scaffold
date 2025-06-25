@@ -34,11 +34,9 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
       participantID: values.participantID,
     }
 
-    if (values.contact?.includes('@')) {
-      form.email = values.contact
-    } else {
-      form.phone = values.contact
-    }
+    //Hack: Force DNI to uppercase
+    form.participantID = form.participantID.trim().toUpperCase()
+    form.email = values.contact
 
     try {
       const { authToken } = await auth.mutateAsync(form)
@@ -47,7 +45,17 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
       setAuthData((prev) => ({ ...prev, authToken }))
       setCurrentStep(1)
     } catch (error) {
-      console.error('CSP auth failed:', error)
+      //Hack: Second try, with DNI in lowercase
+      try {
+        form.participantID = form.participantID.trim().toLowerCase()
+        const { authToken } = await auth.mutateAsync(form)
+
+        // Store auth token in global context and proceed to the next step
+        setAuthData((prev) => ({ ...prev, authToken }))
+        setCurrentStep(1)
+      } catch (error) {
+        console.error('CSP auth failed:', error)
+      }
     }
   }
 
