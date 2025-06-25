@@ -12,7 +12,7 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
@@ -53,6 +53,11 @@ export enum QuestionTypes {
   Multiple = 'multiple',
 }
 
+enum TemplateIds {
+  AnnualGeneralMeeting = 'annual_general_meeting',
+  Election = 'election',
+}
+
 export type DefaultQuestionsType = Record<QuestionTypes, Question>
 
 export const DefaultQuestions: DefaultQuestionsType = {
@@ -87,54 +92,112 @@ const defaultProcessValues: Process = {
   groupId: '',
 }
 
+type TemplateConfig = {
+  questions: Process['questions']
+  questionType: QuestionTypes
+}
+
+const TemplateConfigs: Record<TemplateIds, TemplateConfig> = {
+  [TemplateIds.AnnualGeneralMeeting]: {
+    questionType: QuestionTypes.Single,
+    questions: [
+      { title: '', description: '', options: [{ text: '' }, { text: '' }] },
+      { title: '', description: '', options: [{ text: '' }, { text: '' }] },
+      { title: '', description: '', options: [{ text: '' }, { text: '' }] },
+    ],
+  },
+  [TemplateIds.Election]: {
+    questionType: QuestionTypes.Multiple,
+    questions: [
+      {
+        title: '',
+        description: '',
+        minSelections: 1,
+        maxSelections: 3,
+        options: [{ text: '' }, { text: '' }, { text: '' }],
+      },
+    ],
+  },
+}
+
 const TemplateButtons = () => {
   const { t } = useTranslation()
   const methods = useFormContext<Process>()
   const { setActiveTemplate } = useProcessTemplates()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const pendingTemplateRef = useRef<TemplateIds | null>(null)
 
-  const annualGeneralMeetingTemplate = () => {
-    setActiveTemplate('annual_general_meeting')
+  const applyTemplate = (templateId: TemplateIds) => {
+    const config = TemplateConfigs[templateId]
+    setActiveTemplate(templateId)
     methods.reset({
       autoStart: true,
-      questionType: QuestionTypes.Single,
-      questions: [
-        { options: [{ text: '' }, { text: '' }] },
-        { options: [{ text: '' }, { text: '' }] },
-        { options: [{ text: '' }, { text: '' }] },
-      ],
+      questionType: config.questionType,
+      questions: config.questions,
     })
   }
 
-  const electionTemplate = () => {
-    setActiveTemplate('election')
-    methods.reset({
-      autoStart: true,
-      questionType: QuestionTypes.Multiple,
-      questions: [
-        {
-          minSelections: 1,
-          maxSelections: 3,
-          options: [{ text: '' }, { text: '' }, { text: '' }],
-        },
-      ],
-    })
+  const handleTemplateClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const template = e.currentTarget.dataset.template as TemplateIds
+    if (!template) return
+
+    if (!methods.formState.isDirty) {
+      applyTemplate(template)
+    } else {
+      pendingTemplateRef.current = template
+      onOpen()
+    }
   }
 
-  if (methods.formState.isDirty) return null
+  const handleConfirm = () => {
+    if (pendingTemplateRef.current) {
+      applyTemplate(pendingTemplateRef.current)
+      pendingTemplateRef.current = null
+    }
+    onClose()
+  }
+
+  const handleCancel = () => {
+    pendingTemplateRef.current = null
+    onClose()
+  }
 
   return (
     <>
       <Text fontSize='sm' color='texts.subtle'>
         {t('process.create.template.title', { defaultValue: 'Get started with a template...' })}
       </Text>
-      <HStack spacing={2} alignItems='center'>
-        <Button variant='outline' size='sm' onClick={annualGeneralMeetingTemplate}>
+      <HStack spacing={2}>
+        <Button
+          variant='outline'
+          size='sm'
+          data-template={TemplateIds.AnnualGeneralMeeting}
+          onClick={handleTemplateClick}
+        >
           {t('process.create.template.annual_general_meeting', 'Annual General Meeting')}
         </Button>
-        <Button variant='outline' size='sm' onClick={electionTemplate}>
+        <Button variant='outline' size='sm' data-template={TemplateIds.Election} onClick={handleTemplateClick}>
           {t('process.create.template.election', 'Election')}
         </Button>
       </HStack>
+
+      <DeleteModal
+        title={t('process.create.leave_confirmation.title', 'Unsaved Changes')}
+        subtitle={t('process.create.leave_confirmation.message', {
+          defaultValue: 'You have unsaved changes. Are you sure you want to leave?',
+        })}
+        isOpen={isOpen}
+        onClose={handleCancel}
+      >
+        <Flex justifyContent='flex-end' mt={4} gap={2}>
+          <Button variant='outline' onClick={handleCancel}>
+            {t('process.create.leave_confirmation.cancel', 'Cancel')}
+          </Button>
+          <Button colorScheme='red' onClick={handleConfirm}>
+            {t('process.create.leave_confirmation.reset', 'Reset')}
+          </Button>
+        </Flex>
+      </DeleteModal>
     </>
   )
 }
