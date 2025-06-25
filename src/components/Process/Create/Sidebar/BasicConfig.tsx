@@ -20,7 +20,7 @@ import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import { SubscriptionPermission } from '~constants'
 import { useDateFns } from '~i18n/use-date-fns'
 
-const DateFormatHtml = 'yyyy-MM-dd HH:mm'
+const DateFormatHtml = 'yyyy-MM-dd'
 
 export const BasicConfig = () => {
   const { t } = useTranslation()
@@ -41,7 +41,8 @@ export const BasicConfig = () => {
   const [min, setMin] = useState<Date>(new Date())
 
   const autoStart = watch('autoStart')
-  const watchedStartDate = watch('startDate')
+  const startDate = watch('startDate')
+  const startTime = watch('startTime')
   const endDate = watch('endDate')
   const today = new Date().toISOString().split('T')[0]
 
@@ -53,7 +54,7 @@ export const BasicConfig = () => {
   const validateDuration = (value: string) => {
     if (!value || !maxDuration) return true
 
-    const start = watchedStartDate && !autoStart ? new Date(watchedStartDate) : new Date()
+    const start = startDate && !autoStart ? new Date(startDate) : new Date()
     const end = new Date(value)
     const durationDays = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
     const maxDurationDays = parseInt(maxDuration)
@@ -67,6 +68,19 @@ export const BasicConfig = () => {
     )
   }
 
+  const validateEndDateAfterStart = (value: string) => {
+    if (!value || !startDate || autoStart) return true
+    const start = startDate && !autoStart ? new Date(startDate) : new Date()
+    const end = new Date(value)
+
+    return (
+      end >= start ||
+      t('form.create_process.error.end_date_greater_than_start', {
+        defaultValue: 'End date must be greater than start date.',
+      })
+    )
+  }
+
   const startDateRegister = register('startDate', {
     onChange: (e) => setMin(new Date(e.target.value)),
     required: {
@@ -76,11 +90,8 @@ export const BasicConfig = () => {
   })
 
   const endDateRegister = register('endDate', {
-    required: {
-      value: true,
-      message: t('form.error.field_is_required'),
-    },
-    validate: validateDuration,
+    required,
+    validate: { validateDuration, validateEndDateAfterStart },
   })
 
   const showPicker = (ref: MutableRefObject<HTMLInputElement | null | undefined>) => {
@@ -90,19 +101,21 @@ export const BasicConfig = () => {
   useEffect(() => {
     if (!endDate || !maxDuration) return
 
-    const start = watchedStartDate && !autoStart ? new Date(watchedStartDate) : new Date()
+    const start = startDate && !autoStart ? new Date(startDate) : new Date()
     const end = new Date(endDate)
     const maxDurationDays = parseInt(maxDuration)
     const durationDays = (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24)
 
     setDurationExceeded(durationDays > maxDurationDays)
-  }, [watchedStartDate, endDate, autoStart, maxDuration])
+  }, [startDate, endDate, autoStart, maxDuration])
 
   const handleAutoStartChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue('autoStart', e.target.checked)
     if (e.target.checked) {
-      clearErrors('startDate')
-      clearErrors('startTime')
+      setValue('startDate', '')
+      setValue('startTime', '')
+      setMin(new Date())
+      clearErrors(['startDate', 'startTime'])
     }
   }
 
@@ -158,34 +171,48 @@ export const BasicConfig = () => {
 
       {/* End date and time */}
       <Box>
-        <FormLabel htmlFor='endDate'>
-          <Trans i18nKey='process_create.end_datetime'>End date and time</Trans>
-        </FormLabel>
-        <HStack>
-          <FormControl isInvalid={!!errors.endDate} mb={2}>
-            <Input
-              id='endDate'
-              {...endDateRegister}
-              ref={(e) => {
-                endDateRegister.ref(e)
-                endDateRef.current = e
-              }}
-              type='date'
-              min={format(min, DateFormatHtml)}
-              onFocus={() => showPicker(endDateRef)}
-            />
-            <FormErrorMessage>{errors.endDate?.message?.toString()}</FormErrorMessage>
-          </FormControl>
-          <FormControl isInvalid={!!errors.endTime} mb={2}>
-            <Input
-              type='time'
-              {...register('endTime', {
-                required: t('form.error.field_is_required', 'This field is required'),
-              })}
-            />
-            <FormErrorMessage>{errors.endTime?.message?.toString()}</FormErrorMessage>
-          </FormControl>
-        </HStack>
+        <FormControl isInvalid={!!errors.endDate || !!errors.endTime} mb={2}>
+          <FormLabel htmlFor='endDate'>
+            <Trans i18nKey='process_create.end_datetime'>End date and time</Trans>
+          </FormLabel>
+          <HStack spacing={4} align='start'>
+            <Box flex='1'>
+              <Input
+                id='endDate'
+                {...endDateRegister}
+                ref={(e) => {
+                  endDateRegister.ref(e)
+                  endDateRef.current = e
+                }}
+                type='date'
+                min={format(min, DateFormatHtml)}
+                onFocus={() => showPicker(endDateRef)}
+              />
+            </Box>
+            <Box flex='1'>
+              <Input
+                type='time'
+                {...register('endTime', {
+                  required,
+                  validate: (value: string) => {
+                    if (!value || !endDate) return true
+                    const end = new Date(`${endDate}T${value}`)
+                    const start = startDate && !autoStart ? new Date(`${startDate}T${startTime}`) : new Date()
+                    return (
+                      end >= start ||
+                      t('form.create_process.error.end_time_greater_than_start', {
+                        defaultValue: 'End time must be greater than start time.',
+                      })
+                    )
+                  },
+                })}
+              />
+            </Box>
+          </HStack>
+          <FormErrorMessage>
+            {errors.endDate?.message?.toString() || errors.endTime?.message?.toString()}
+          </FormErrorMessage>
+        </FormControl>
       </Box>
 
       {durationExceeded && (
