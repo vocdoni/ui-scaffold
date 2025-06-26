@@ -319,7 +319,7 @@ export const ProcessCreate = () => {
   const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(true)
   const methods = useForm({ defaultValues: defaultProcessValues })
-  const { activeTemplate, placeholders } = useProcessTemplates()
+  const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
   const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
   const { client } = useClient()
 
@@ -330,6 +330,9 @@ export const ProcessCreate = () => {
     if (blocker.state === 'blocked') openConfirmationModal()
   }, [blocker])
 
+  const resetForm = () => {
+    setActiveTemplate(null)
+    methods.reset(defaultProcessValues)
   }
 
   const onSubmit = async (form: Process) => {
@@ -437,7 +440,7 @@ export const ProcessCreate = () => {
                   aria-label='Reset form'
                   icon={<Icon as={LuRotateCcw} />}
                   variant='outline'
-                  onClick={() => methods.reset(defaultProcessValues)}
+                  onClick={resetForm}
                 />
               )}
               <IconButton
