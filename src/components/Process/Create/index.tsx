@@ -136,6 +136,47 @@ const TemplateConfigs: Record<TemplateIds, TemplateConfig> = {
   },
 }
 
+const electionFromForm = (form) => {
+  // max census size is calculated by the SDK when creating a process, but we need it to
+  // calculate the cost preview... so here we set it for all cases anyway
+  const maxCensusSize = 1
+
+  return {
+    ...form,
+    electionType: {
+      anonymous: Boolean(form.voterPrivacy === 'anonymous'),
+      secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
+    },
+    maxCensusSize,
+    // map questions back to IQuestion[]
+    questions: form.questions.map(
+      (question) =>
+        ({
+          title: { default: question.title },
+          description: { default: question.description },
+          choices: question.options.map((q: Option, i: number) => ({
+            title: { default: q.option },
+            value: i,
+          })),
+        }) as IQuestion
+    ),
+    startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`).getTime(),
+    endDate: new Date(`${form.endDate}T${form.endTime}`).getTime(),
+    voteType: {
+      maxVoteOverwrites: Number(form.maxVoteOverwrites),
+    },
+    temporarySecretIdentity: Boolean(form.voterPrivacy === 'anonymous'),
+    meta: {
+      generated: 'ui-scaffold',
+      app: 'vocdoni',
+      census: {
+        type: null,
+        fields: undefined,
+      } as CensusMeta,
+    },
+  }
+}
+
 const TemplateButtons = () => {
   const { t } = useTranslation()
   const methods = useFormContext<Process>()
@@ -289,45 +330,6 @@ export const ProcessCreate = () => {
     if (blocker.state === 'blocked') openConfirmationModal()
   }, [blocker])
 
-  const electionFromForm = (form) => {
-    // max census size is calculated by the SDK when creating a process, but we need it to
-    // calculate the cost preview... so here we set it for all cases anyway
-    const maxCensusSize = 1
-
-    return {
-      ...form,
-      electionType: {
-        anonymous: Boolean(form.voterPrivacy === 'anonymous'),
-        secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
-      },
-      maxCensusSize,
-      // map questions back to IQuestion[]
-      questions: form.questions.map(
-        (question) =>
-          ({
-            title: { default: question.title },
-            description: { default: question.description },
-            choices: question.options.map((q: Option, i: number) => ({
-              title: { default: q.option },
-              value: i,
-            })),
-          }) as IQuestion
-      ),
-      startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`).getTime(),
-      endDate: new Date(`${form.endDate}T${form.endTime}`).getTime(),
-      voteType: {
-        maxVoteOverwrites: Number(form.maxVoteOverwrites),
-      },
-      temporarySecretIdentity: Boolean(form.voterPrivacy === 'anonymous'),
-      meta: {
-        generated: 'ui-scaffold',
-        app: 'vocdoni',
-        census: {
-          type: null,
-          fields: undefined,
-        } as CensusMeta,
-      },
-    }
   }
 
   const onSubmit = async (form: Process) => {
