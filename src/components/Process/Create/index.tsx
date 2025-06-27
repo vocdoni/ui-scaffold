@@ -240,19 +240,19 @@ const TemplateButtons = () => {
       </HStack>
 
       <DeleteModal
-        title={t('process.create.leave_confirmation.title', 'Unsaved Changes')}
-        subtitle={t('process.create.leave_confirmation.message', {
-          defaultValue: 'You have unsaved changes. Are you sure you want to leave?',
+        title={t('process.create.change_template.title', 'Change Template')}
+        subtitle={t('process.create.change_template.message', {
+          defaultValue: 'You have unsaved changes. Are you sure you want to switch templates?',
         })}
         isOpen={isOpen}
         onClose={handleCancel}
       >
         <Flex justifyContent='flex-end' mt={4} gap={2}>
           <Button variant='outline' onClick={handleCancel}>
-            {t('process.create.leave_confirmation.cancel', 'Cancel')}
+            {t('process.create.change_template.cancel', 'Cancel')}
           </Button>
           <Button colorScheme='red' onClick={handleConfirm}>
-            {t('process.create.leave_confirmation.reset', 'Reset')}
+            {t('process.create.change_template.change', 'Change Template')}
           </Button>
         </Flex>
       </DeleteModal>
@@ -314,6 +314,30 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
   )
 }
 
+const ResetFormModal = ({ isOpen, onClose, onReset }) => {
+  const { t } = useTranslation()
+
+  return (
+    <DeleteModal
+      title={t('process.create.reset_form.title', { defaultValue: 'Reset Form' })}
+      subtitle={t('process.create.reset_form.message', {
+        defaultValue: 'Are you sure you want to reset the form? This action cannot be undone.',
+      })}
+      isOpen={isOpen}
+      onClose={onClose}
+    >
+      <Flex justifyContent='flex-end' mt={4} gap={2}>
+        <Button variant='outline' onClick={onClose}>
+          {t('process.create.reset_form.cancel', { defaultValue: 'Cancel' })}
+        </Button>
+        <Button colorScheme='red' onClick={onReset}>
+          {t('process.create.reset_form.reset', { defaultValue: 'Reset Form' })}
+        </Button>
+      </Flex>
+    </DeleteModal>
+  )
+}
+
 export const ProcessCreate = () => {
   const { t } = useTranslation()
   const toast = useToast()
@@ -322,6 +346,7 @@ export const ProcessCreate = () => {
   const methods = useForm({ defaultValues: defaultProcessValues })
   const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
   const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
+  const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
   const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
   const blocker = useBlocker(methods.formState.isDirty)
   const { client } = useClient()
@@ -334,6 +359,7 @@ export const ProcessCreate = () => {
   const resetForm = () => {
     setActiveTemplate(null)
     methods.reset(defaultProcessValues)
+    onResetFormModalClose()
   }
 
   const onSubmit = async (form: Process) => {
@@ -448,7 +474,7 @@ export const ProcessCreate = () => {
                   aria-label='Reset form'
                   icon={<Icon as={LuRotateCcw} />}
                   variant='outline'
-                  onClick={resetForm}
+                  onClick={onResetFormModalOpen}
                 />
               )}
               <IconButton
@@ -478,6 +504,7 @@ export const ProcessCreate = () => {
                     defaultValue: 'Voting Process Title',
                   })
                 }
+                _placeholder={{ fontSize: '2xl' }}
                 fontSize='2xl'
                 fontWeight='bold'
                 {...methods.register('title', {
@@ -504,6 +531,7 @@ export const ProcessCreate = () => {
         <CreateSidebar show={showSidebar} onClose={() => setShowSidebar(false)} />
       </DashboardContents>
       <LeaveConfirmationModal blocker={blocker} isOpen={isOpen} onClose={onClose} />
+      <ResetFormModal isOpen={isResetFormModalOpen} onClose={onResetFormModalClose} onReset={resetForm} />
     </FormProvider>
   )
 }

@@ -392,6 +392,8 @@
     "choose_an_option": "Elige una opción",
     "create_process": {
       "error": {
+        "end_date_greater_than_start": "End date must be greater than start date.",
+        "end_time_greater_than_start": "End time must be greater than start time.",
         "max_duration_exceeded": "Exceeds max duration."
       }
     },
@@ -492,6 +494,7 @@
       },
       "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
       "creating_process": "Creando Proceso de Votación...",
+      "error_title": "Error creating process",
       "meta": {
         "description_label": "Descripción",
         "description_placeholder": "Descripción (opcional)"
@@ -1418,6 +1421,12 @@
       "action": {
         "publish": "Publish"
       },
+      "change_template": {
+        "cancel": "Cancel",
+        "change": "Change Template",
+        "message": "You have unsaved changes. Are you sure you want to switch templates?",
+        "title": "Change Template"
+      },
       "description": {
         "placeholder": "Add a description...",
         "title": "Voting Process Title"
@@ -1432,6 +1441,12 @@
       },
       "question": {
         "add": "Add question",
+        "delete": {
+          "cancel_button": "Cancel",
+          "delete_button": "Delete",
+          "description": "Are you sure you want to delete this question?",
+          "title": "Delete Question"
+        },
         "description": {
           "placeholder": "Add the description of the question here (optional)..."
         },
@@ -1442,6 +1457,12 @@
         "multiple": "Multiple choice",
         "single": "Single choice",
         "title": "Question Type"
+      },
+      "reset_form": {
+        "cancel": "Cancel",
+        "message": "Are you sure you want to reset the form? This action cannot be undone.",
+        "reset": "Reset Form",
+        "title": "Reset Form"
       },
       "selectionLimits": {
         "full": "Voters must select at least  <min />  and at most  <max />  options.",
@@ -1729,6 +1750,12 @@
     "title": "Perfil"
   },
   "questions_and_results": "Questions and results",
+  "rainbow": {
+    "group": {
+      "recovery": ""
+    },
+    "recovery": ""
+  },
   "remove_avatar": "Eliminar avatar",
   "reset_password_button": "Restablecer la contraseña",
   "result_visibility": "Results visibility",
