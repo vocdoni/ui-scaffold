@@ -11,6 +11,7 @@ import {
   Input,
   Text,
   Textarea,
+  useBreakpointValue,
   useDisclosure,
   useToast,
   VStack,
@@ -430,7 +431,14 @@ export const ProcessCreate = () => {
           paddingBottom={4}
         >
           {/* Top bar with draft status and sidebar toggle */}
-          <HStack justifyContent='space-between'>
+          <HStack
+            position='sticky'
+            top='64px'
+            p={2}
+            bg='chakra.body.bg'
+            zIndex='contents'
+            justifyContent='space-between'
+          >
             <Box px={3} py={1} borderRadius='full' bg='gray.100' _dark={{ bg: 'whiteAlpha.200' }} fontSize='sm'>
               <Trans i18nKey='process.create.status.draft'>Draft</Trans>
             </Box>
