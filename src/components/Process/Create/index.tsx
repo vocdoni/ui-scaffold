@@ -321,9 +321,9 @@ export const ProcessCreate = () => {
   const methods = useForm({ defaultValues: defaultProcessValues })
   const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
   const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
-  const { client } = useClient()
-
+  const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
   const blocker = useBlocker(methods.formState.isDirty)
+  const { client } = useClient()
 
   // Trigger confirmation modal when form is dirty and user tries to navigate away
   useEffect(() => {
@@ -421,7 +421,7 @@ export const ProcessCreate = () => {
         {/* Main content area */}
         <Box
           flex={1}
-          marginRight={showSidebar ? '350px' : 0}
+          marginRight={showSidebar ? sidebarMargin : 0}
           transition='margin-right 0.3s'
           display='flex'
           flexDirection='column'
@@ -493,7 +493,7 @@ export const ProcessCreate = () => {
           <Questions />
         </Box>
 
-        <CreateSidebar show={showSidebar} />
+        <CreateSidebar show={showSidebar} onClose={() => setShowSidebar(false)} />
       </DashboardContents>
       <LeaveConfirmationModal blocker={blocker} isOpen={isOpen} onClose={onClose} />
     </FormProvider>
