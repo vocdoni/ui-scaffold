@@ -137,34 +137,37 @@ export const BasicConfig = () => {
 
         {!autoStart && (
           <>
-            <FormLabel htmlFor='startDate'>
-              <Trans i18nKey='process_create.start_datetime'>Start date and time</Trans>
-            </FormLabel>
-            <HStack>
-              <FormControl isInvalid={!!errors.startDate} mb={2}>
-                <Input
-                  id='startDate'
-                  {...startDateRegister}
-                  ref={(e) => {
-                    startDateRegister.ref(e)
-                    startDateRef.current = e
-                  }}
-                  type='date'
-                  min={today}
-                  onFocus={() => showPicker(startDateRef)}
-                />
-                <FormErrorMessage>{errors.startDate?.message?.toString()}</FormErrorMessage>
-              </FormControl>
-              <FormControl isInvalid={!!errors.startTime} mb={2}>
-                <Input
-                  type='time'
-                  {...register('startTime', {
-                    required,
-                  })}
-                />
-                <FormErrorMessage>{errors.startTime?.message?.toString()}</FormErrorMessage>
-              </FormControl>
-            </HStack>
+            <FormControl isInvalid={!!errors.startDate || !!errors.startTime} mb={2}>
+              <FormLabel htmlFor='startDate'>
+                <Trans i18nKey='process_create.start_datetime'>Start date and time</Trans>
+              </FormLabel>
+              <HStack>
+                <Box flex='1'>
+                  <Input
+                    id='startDate'
+                    {...startDateRegister}
+                    ref={(e) => {
+                      startDateRegister.ref(e)
+                      startDateRef.current = e
+                    }}
+                    type='date'
+                    min={today}
+                    onFocus={() => showPicker(startDateRef)}
+                  />
+                </Box>
+                <Box flex='1'>
+                  <Input
+                    type='time'
+                    {...register('startTime', {
+                      required,
+                    })}
+                  />
+                </Box>
+              </HStack>
+              <FormErrorMessage>
+                {errors.startDate?.message?.toString() || errors.startTime?.message?.toString()}
+              </FormErrorMessage>
+            </FormControl>
           </>
         )}
       </Box>
