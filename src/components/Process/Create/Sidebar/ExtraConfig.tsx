@@ -187,7 +187,7 @@ export const ExtraConfig = () => {
           />
           <FormErrorMessage>{errors.voteOverwrite?.message?.toString()}</FormErrorMessage>
         </FormControl>
-        {maxVoteOverwrites > 0 && (
+        {voteOverwrite && (
           <FormControl isInvalid={!!errors.maxVoteOverwrites} mt={2}>
             <Controller
               control={control}
