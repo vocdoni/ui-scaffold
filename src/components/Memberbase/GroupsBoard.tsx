@@ -329,14 +329,15 @@ const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMemb
 }
 
 const GroupMembersDisplay = ({ group, isOpen }: GroupMembersProps) => {
-  const { data, isLoading } = useGroupMembers(group.id, 0, isOpen)
+  const initialPage = 1
+  const { data, isLoading } = useGroupMembers(group.id, initialPage, isOpen)
 
   if (isLoading) return <Progress isIndeterminate />
 
   const pagination = data.pagination
 
   return (
-    <PaginationProvider pagination={pagination}>
+    <PaginationProvider initialPage={initialPage} pagination={pagination}>
       <GroupMembersWithPagination group={group} isOpen={isOpen} />
     </PaginationProvider>
   )
