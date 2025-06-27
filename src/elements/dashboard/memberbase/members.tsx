@@ -67,7 +67,7 @@ const Members = () => {
 
   return (
     <TableProvider data={members} initialColumns={columns} isLoading={isLoading} isFetching={isFetching}>
-      <RoutedPaginationProvider path={Routes.dashboard.memberbase.members} pagination={pagination}>
+      <RoutedPaginationProvider path={Routes.dashboard.memberbase.members} initialPage={1} pagination={pagination}>
         <MembersTable />
       </RoutedPaginationProvider>
     </TableProvider>

@@ -60,8 +60,8 @@ export const usePaginatedMembers = () => {
     refetchOnWindowFocus: false,
     queryFn: () => bearedFetch<MembersResponse>(fetchUrl),
     select: (data) => {
-      const currentPage = data.page - 1
-      const lastPage = data.pages - 1
+      const currentPage = data.page
+      const lastPage = data.pages
 
       return {
         members: data.members,
@@ -69,7 +69,7 @@ export const usePaginatedMembers = () => {
           totalItems: data.members.length,
           currentPage,
           lastPage,
-          previousPage: currentPage > 0 ? currentPage - 1 : null,
+          previousPage: currentPage > 1 ? currentPage - 1 : null,
           nextPage: currentPage < lastPage ? currentPage + 1 : null,
         },
       }
