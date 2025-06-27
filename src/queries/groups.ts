@@ -113,15 +113,15 @@ export const useGroupMembers = (groupId: string, page, isOpen: boolean = false) 
     '{address}',
     enforceHexPrefix(organization?.address)
   ).replace('{groupId}', groupId)
-  const fetchUrl = `${baseUrl}?page=${page + 1}`
+  const fetchUrl = `${baseUrl}?page=${page}`
 
   return useQuery<GroupMembers, Error, GroupMembersQueryData>({
     enabled: !!organization?.address && !!groupId && isOpen,
-    queryKey: [QueryKeys.organization.groups(organization?.address), groupId, page + 1],
+    queryKey: [QueryKeys.organization.groups(organization?.address), groupId, page],
     queryFn: () => bearedFetch<GroupMembers>(fetchUrl),
     select: (data) => {
-      const currentPage = data.currentPage - 1
-      const lastPage = data.totalPages - 1
+      const currentPage = data.currentPage
+      const lastPage = data.totalPages
 
       return {
         members: data.members,
@@ -129,7 +129,7 @@ export const useGroupMembers = (groupId: string, page, isOpen: boolean = false) 
           totalItems: data.members.length,
           currentPage,
           lastPage,
-          previousPage: currentPage > 0 ? currentPage - 1 : null,
+          previousPage: currentPage > 1 ? currentPage - 1 : null,
           nextPage: currentPage < lastPage ? currentPage + 1 : null,
         },
       }
