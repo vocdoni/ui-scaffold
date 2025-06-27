@@ -40,7 +40,7 @@ import {
 import { PaginationProvider, usePagination } from '@vocdoni/react-providers'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCalendar, LuClock, LuEllipsis, LuEye, LuSearch, LuTrash, LuUsers, LuVote, LuX } from 'react-icons/lu'
-import { useNavigate } from 'react-router-dom'
+import { generatePath, useNavigate } from 'react-router-dom'
 import { DashboardBox } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
 import { PaginatedTableFooter } from '~components/shared/Pagination/PaginatedTableFooter'
@@ -80,6 +80,15 @@ type DeleteGroupModalProps = {
   group: Group
   isOpen: boolean
   onClose: () => void
+}
+
+export const useNavigateToVote = () => {
+  const navigate = useNavigate()
+
+  return (groupId: string) => {
+    const votePath = generatePath(Routes.processes.create, { groupId })
+    navigate(votePath)
+  }
 }
 
 const GroupsFilter = () => {
@@ -169,7 +178,7 @@ const HistoryDrawer = ({ group, isOpen, onClose }: HistoryDrawerProps) => {
 
 const GroupActions = ({ group, onMembersDrawerOpen, onDeleteModalOpen }: GroupActionsProps) => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const navigateToVote = useNavigateToVote()
   const { isOpen: isHistoryOpen, onOpen: onHistoryOpen, onClose: onHistoryClose } = useDisclosure()
 
   return (
@@ -186,7 +195,7 @@ const GroupActions = ({ group, onMembersDrawerOpen, onDeleteModalOpen }: GroupAc
           <MenuItem icon={<Icon boxSize={4} as={LuEye} />} onClick={onMembersDrawerOpen}>
             {t('group.actions.view_members', { defaultValue: 'View Members' })}
           </MenuItem>
-          <MenuItem icon={<Icon boxSize={4} as={LuVote} />} onClick={() => navigate(Routes.processes.create)}>
+          <MenuItem icon={<Icon boxSize={4} as={LuVote} />} onClick={() => navigateToVote(group.id)}>
             {t('group.actions.create_vote', { defaultValue: 'Create a Vote' })}
           </MenuItem>
           <MenuItem isDisabled icon={<Icon boxSize={4} as={LuClock} />} onClick={onHistoryOpen}>
@@ -252,7 +261,7 @@ const GroupMembersTable = () => {
 
 const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMembersDrawerProps) => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const navigateToVote = useNavigateToVote()
 
   return (
     <Drawer isOpen={isOpen} onClose={onClose} size='lg'>
@@ -305,7 +314,7 @@ const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMemb
               variant='outline'
               leftIcon={<Icon as={LuVote} boxSize={4} />}
               size='xs'
-              onClick={() => navigate(Routes.processes.create, { state: { groupId: group.id } })}
+              onClick={() => navigateToVote(group.id)}
             >
               {t('group.create_vote', { defaultValue: 'Create a Vote' })}
             </Button>
@@ -419,7 +428,7 @@ const DeleteGroupModal = ({ group, isOpen, onClose }: DeleteGroupModalProps) => 
 
 const GroupCard = ({ group }: GroupCardProps) => {
   const { t } = useTranslation()
-  const navigate = useNavigate()
+  const navigateToVote = useNavigateToVote()
   const { isOpen: isMembersDrawerOpen, onOpen: onMembersDrawerOpen, onClose: onMembersDrawerClose } = useDisclosure()
   const { isOpen: isDeleteModalOpen, onOpen: onDeleteModalOpen, onClose: onDeleteModalClose } = useDisclosure()
 
@@ -478,7 +487,7 @@ const GroupCard = ({ group }: GroupCardProps) => {
             w='full'
             size='xs'
             leftIcon={<Icon boxSize={4} as={LuVote} />}
-            onClick={() => navigate(Routes.processes.create)}
+            onClick={() => navigateToVote(group.id)}
           >
             <Text size='xs'>{t('group.create_vote', { defaultValue: 'Create a Vote' })}</Text>
           </Button>

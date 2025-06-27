@@ -26,11 +26,11 @@ import {
   PlainCensus,
   UnpublishedElection,
 } from '@vocdoni/sdk'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
-import { createPath, generatePath, useBlocker, useLocation, useNavigate } from 'react-router-dom'
+import { createPath, generatePath, useBlocker, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Option } from '~components/ProcessCreate/StepForm/Questions'
 import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
@@ -137,6 +137,32 @@ const TemplateConfigs: Record<TemplateIds, TemplateConfig> = {
   },
 }
 
+export const useSafeReset = (externalReset?) => {
+  const { groupId } = useParams()
+  let contextReset
+
+  try {
+    contextReset = useFormContext().reset
+  } catch (err) {
+    // If useFormContext fails, it means we are not in a FormProvider context so we use the external reset
+  }
+
+  return useCallback(
+    (overrides: Partial<Process> = {}) => {
+      const resetFn = externalReset ?? contextReset
+
+      if (!resetFn) return
+
+      resetFn({
+        ...defaultProcessValues,
+        ...overrides,
+        groupId: groupId ?? '',
+      })
+    },
+    [externalReset, contextReset, groupId]
+  )
+}
+
 const electionFromForm = (form) => {
   // max census size is calculated by the SDK when creating a process, but we need it to
   // calculate the cost preview... so here we set it for all cases anyway
@@ -181,14 +207,15 @@ const electionFromForm = (form) => {
 const TemplateButtons = () => {
   const { t } = useTranslation()
   const methods = useFormContext<Process>()
-  const { setActiveTemplate } = useProcessTemplates()
+  const { activeTemplate, setActiveTemplate } = useProcessTemplates()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const reset = useSafeReset()
   const pendingTemplateRef = useRef<TemplateIds | null>(null)
 
   const applyTemplate = (templateId: TemplateIds) => {
     const config = TemplateConfigs[templateId]
     setActiveTemplate(templateId)
-    methods.reset({
+    reset({
       autoStart: true,
       questionType: config.questionType,
       questions: config.questions,
@@ -198,6 +225,11 @@ const TemplateButtons = () => {
   const handleTemplateClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const template = e.currentTarget.dataset.template as TemplateIds
     if (!template) return
+
+    if (activeTemplate === template) {
+      onClose()
+      return
+    }
 
     if (!methods.formState.isDirty) {
       applyTemplate(template)
@@ -262,7 +294,7 @@ const TemplateButtons = () => {
 
 const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => {
   const { t } = useTranslation()
-  const methods = useFormContext()
+  const reset = useSafeReset()
   const location = useLocation()
 
   const currentPath = createPath(location)
@@ -276,7 +308,7 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
     }
 
     if (isSamePath) {
-      methods.reset(defaultProcessValues)
+      reset()
       onClose()
       return
     }
@@ -341,9 +373,16 @@ const ResetFormModal = ({ isOpen, onClose, onReset }) => {
 export const ProcessCreate = () => {
   const { t } = useTranslation()
   const toast = useToast()
+  const { groupId } = useParams()
   const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(true)
-  const methods = useForm({ defaultValues: defaultProcessValues })
+  const methods = useForm({
+    defaultValues: {
+      ...defaultProcessValues,
+      groupId,
+    },
+  })
+  const reset = useSafeReset(methods.reset)
   const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
   const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
   const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
@@ -358,7 +397,7 @@ export const ProcessCreate = () => {
 
   const resetForm = () => {
     setActiveTemplate(null)
-    methods.reset(defaultProcessValues)
+    reset()
     onResetFormModalClose()
   }
 

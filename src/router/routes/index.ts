@@ -36,7 +36,7 @@ export const Routes = {
   organization: '/organization/:address',
   privacy: '/privacy',
   processes: {
-    create: '/admin/processes/create',
+    create: '/admin/processes/create/:groupId?',
     view: '/processes/:id',
   },
   stripe: {
