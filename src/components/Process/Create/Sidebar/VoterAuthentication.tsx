@@ -495,6 +495,13 @@ export const VoterAuthentication = () => {
       <Button isDisabled={!groupId} colorScheme='gray' w='full' onClick={onOpen}>
         <Trans i18nKey='process_create.voter_auth'>Configure Voter Authentication</Trans>
       </Button>
+      {!groupId && (
+        <Text color='texts.subtle' size='xs'>
+          {t('process_create.voter_auth_no_group_description', {
+            defaultValue: 'Please select a group first to configure authentication.',
+          })}
+        </Text>
+      )}
       <Modal isOpen={isOpen} onClose={onClose} size='xl'>
         <ModalOverlay />
         <ModalContent>
