@@ -14,7 +14,7 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { useGroups } from '~src/queries/groups'
 import { useValidations } from '~utils/validation'
-import { VoterAuthentication } from './VoterAuthentication'
+import { CensusTypes } from './CensusCreation'
 
 type SelectOption<T = string> = {
   value: T
@@ -24,9 +24,11 @@ type SelectOption<T = string> = {
 export const GroupSelect = () => {
   const { t } = useTranslation()
   const {
+    watch,
     control,
     formState: { errors },
   } = useFormContext()
+  const censusType = watch('censusType')
   const [hasFetchedScroll, setHasFetchedScroll] = useState(false)
   const { data, fetchNextPage, hasNextPage, isFetching } = useGroups(6)
 
@@ -56,7 +58,12 @@ export const GroupSelect = () => {
       <Controller
         control={control}
         name='groupId'
-        rules={{ required: t('form.error.required', 'This field is required') }}
+        rules={{
+          required: {
+            value: censusType === CensusTypes.Memberbase,
+            message: t('form.error.required', 'This field is required'),
+          },
+        }}
         render={({ field }) => {
           const selected = data?.find((g) => g.id === field.value) ?? null
           return (
@@ -208,12 +215,6 @@ export const ExtraConfig = () => {
           </FormControl>
         )}
       </Box>
-
-      {/* Census creation */}
-      <GroupSelect />
-
-      {/* Voter Authentication */}
-      <VoterAuthentication />
     </VStack>
   )
 }

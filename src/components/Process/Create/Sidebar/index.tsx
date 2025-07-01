@@ -8,6 +8,7 @@ import {
   SidebarTitle,
 } from '~components/shared/Dashboard/Contents'
 import { BasicConfig } from './BasicConfig'
+import CensusCreation from './CensusCreation'
 import { ExtraConfig } from './ExtraConfig'
 
 type CreateSidebarProps = {
@@ -43,6 +44,10 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
           Extra Configuration
         </SidebarSubtitle>
         <ExtraConfig />
+        <SidebarSubtitle borderTop='1px solid' borderColor='table.border' mt={4}>
+          Census Creation
+        </SidebarSubtitle>
+        <CensusCreation />
       </SidebarContents>
     </Sidebar>
   )
