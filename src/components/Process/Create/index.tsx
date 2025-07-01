@@ -31,6 +31,8 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import { createPath, generatePath, useBlocker, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { CensusSpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/CensusSpreadsheetManager'
+import { Web3Address } from '~components/ProcessCreate/StepForm/CensusWeb3'
 import { Option } from '~components/ProcessCreate/StepForm/Questions'
 import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
@@ -39,6 +41,7 @@ import { CensusMeta } from '../Census/CensusType'
 import { useProcessTemplates } from '../TemplateProvider'
 import { Questions } from './MainContent/Questions'
 import { CreateSidebar } from './Sidebar'
+import { CensusTypes } from './Sidebar/CensusCreation'
 
 type Question = {
   title: string
@@ -63,6 +66,9 @@ export type Process = {
   voteOverwrite: boolean
   maxVoteOverwrites: number
   groupId: string
+  censusType: CensusTypes
+  addresses?: Web3Address[]
+  spreadsheet?: CensusSpreadsheetManager | undefined
 }
 
 export enum QuestionTypes {
@@ -107,6 +113,9 @@ const defaultProcessValues: Process = {
   voteOverwrite: false,
   maxVoteOverwrites: 0,
   groupId: '',
+  censusType: CensusTypes.Memberbase,
+  addresses: [],
+  spreadsheet: undefined,
 }
 
 type TemplateConfig = {
@@ -174,7 +183,7 @@ const electionFromForm = (form) => {
       anonymous: Boolean(form.voterPrivacy === 'anonymous'),
       secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
     },
-    maxCensusSize,
+    maxCensusSize: form.spreadsheet?.data.length ?? form.addresses.length ?? maxCensusSize,
     // map questions back to IQuestion[]
     questions: form.questions.map(
       (question) =>
@@ -192,13 +201,13 @@ const electionFromForm = (form) => {
     voteType: {
       maxVoteOverwrites: Number(form.maxVoteOverwrites),
     },
-    temporarySecretIdentity: Boolean(form.voterPrivacy === 'anonymous'),
+    temporarySecretIdentity: form.censusType === CensusTypes.Spreadsheet && Boolean(form.voterPrivacy === 'anonymous'),
     meta: {
       generated: 'ui-scaffold',
       app: 'vocdoni',
       census: {
-        type: null,
-        fields: undefined,
+        type: form.censusType,
+        fields: form.spreadsheet?.header ?? undefined,
       } as CensusMeta,
     },
   }
@@ -388,7 +397,7 @@ export const ProcessCreate = () => {
   const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
   const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
   const blocker = useBlocker(methods.formState.isDirty)
-  const { client } = useClient()
+  const { client, account } = useClient()
 
   // Trigger confirmation modal when form is dirty and user tries to navigate away
   useEffect(() => {
@@ -401,11 +410,37 @@ export const ProcessCreate = () => {
     onResetFormModalClose()
   }
 
-  const onSubmit = async (form: Process) => {
+  const getCensus = async (form: Process, salt: string) => {
+    if (form.censusType === 'spreadsheet') {
+      form.addresses = (await form.spreadsheet?.generateWallets(salt)) as Web3Address[]
+    }
+    let census = null
+    switch (form.censusType) {
+      case CensusTypes.Memberbase:
+        census = new PlainCensus()
+        const addresses = '0x9b1e78c120dbe9B919397852D0B3d4D851b1cd7e'
+        census.add(addresses)
+
+        return census
+      case CensusTypes.Spreadsheet:
+      case CensusTypes.Web3:
+        census = new PlainCensus()
+        if (form.addresses && form.addresses.length > 0) {
+          form.addresses.forEach(({ address }) => {
+            if (address) census.add(address)
+          })
+        }
+
+        return census
+      default:
+        throw new Error(`census type ${form.censusType} is not allowed`)
+    }
+  }
+
+  const onSubmit = async (form) => {
     try {
-      const census = new PlainCensus()
-      const addresses = '0x9b1e78c120dbe9B919397852D0B3d4D851b1cd7e'
-      census.add(addresses)
+      const salt = await client.electionService.getElectionSalt(account!.address, account!.electionIndex)
+      const census = await getCensus(form, salt)
       const params: IElectionParameters = {
         ...electionFromForm(form),
         census,
@@ -440,7 +475,7 @@ export const ProcessCreate = () => {
       methods.reset(defaultProcessValues)
 
       navigate(
-        generatePath(Routes.processes.view, {
+        generatePath(Routes.dashboard.process, {
           id: electionId,
         })
       )
