@@ -12,7 +12,7 @@ const viteconfig = ({ mode }) => {
 
   let vocdoniEnvironment = process.env.VOCDONI_ENVIRONMENT
   if (!vocdoniEnvironment) {
-    vocdoniEnvironment = 'stg'
+    vocdoniEnvironment = 'dev'
   }
 
   const outDir = process.env.BUILD_PATH
