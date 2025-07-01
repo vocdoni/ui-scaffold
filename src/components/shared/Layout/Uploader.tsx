@@ -17,7 +17,6 @@ import { DropzoneInputProps, DropzoneRootProps, useDropzone } from 'react-dropzo
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { BiTrash } from 'react-icons/bi'
-import { FiUploadCloud } from 'react-icons/fi'
 import { LuUpload } from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
@@ -154,40 +153,32 @@ const Uploader = ({ getRootProps, getInputProps, isDragActive, isLoading, format
       alignItems='center'
       gap={5}
       p={10}
-      border='1px solid'
-      borderColor={isDragActive ? 'input.drag_and_drop.border_active' : 'input.drag_and_drop.border'}
+      border='1px dashed'
+      borderColor={isDragActive ? 'input.drag_and_drop.border_active' : 'table.border'}
       cursor='pointer'
       borderRadius={12}
       {...getRootProps()}
     >
       <input {...getInputProps()} />
-      <Flex
-        justifyContent='center'
-        alignItems='center'
-        border='1px solid'
-        borderColor='input.drag_and_drop.border'
-        borderRadius='lg'
-        p={2}
-      >
-        <Icon as={FiUploadCloud} boxSize={10} />
+      <Flex justifyContent='center' alignItems='center' p={2}>
+        <Icon color='texts.subtle' as={LuUpload} boxSize={10} />
       </Flex>
       <Box>
         {isDragActive ? (
-          <Text textAlign='center'>{t('uploader.drop_here')}</Text>
+          <Text textAlign='center'>{t('uploader.drop_here', { defaultValue: 'Drop the file here' })}</Text>
         ) : isLoading ? (
           <Spinner />
         ) : (
-          <Trans
-            i18nKey='uploader.click_or_drag_and_drop'
-            components={{
-              click: <Text as='span' textAlign='center' color='input.drag_and_drop.text' />,
-              drag: <Text as='span' textAlign='center' />,
-              formats: <Text textAlign='center' fontSize='sm' />,
-            }}
-            values={{
-              formats,
-            }}
-          />
+          <Flex direction='column' align='center' textAlign='center'>
+            <Trans
+              i18nKey='uploader.click_or_drag_and_drop'
+              components={{
+                click: <Text as='span' color='input.drag_and_drop.text' />,
+                formats: <Text as='span' fontSize='sm' color='texts.subtle' />,
+              }}
+              values={{ formats }}
+            />
+          </Flex>
         )}
       </Box>
     </Flex>

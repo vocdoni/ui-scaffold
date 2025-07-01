@@ -1,0 +1,152 @@
+import {
+  Box,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from '@chakra-ui/react'
+import { chakraComponents, Select } from 'chakra-react-select'
+import { useEffect, useState } from 'react'
+import { Controller, useFormContext } from 'react-hook-form'
+import { Trans, useTranslation } from 'react-i18next'
+import { CensusCsvManager } from '~components/ProcessCreate/Census/Spreadsheet'
+import { CensusWeb3Addresses } from '~components/ProcessCreate/Census/Web3'
+import { useGroups } from '~src/queries/groups'
+import { VoterAuthentication } from './VoterAuthentication'
+
+export enum CensusTypes {
+  Memberbase = 'memberbase',
+  Spreadsheet = 'spreadsheet',
+  Web3 = 'web3',
+}
+
+export const censusTabs = [CensusTypes.Memberbase, CensusTypes.Spreadsheet, CensusTypes.Web3] as const
+
+export const GroupSelect = () => {
+  const { t } = useTranslation()
+  const {
+    watch,
+    control,
+    formState: { errors },
+  } = useFormContext()
+  const censusType = watch('censusType')
+  const [hasFetchedScroll, setHasFetchedScroll] = useState(false)
+  const { data, fetchNextPage, hasNextPage, isFetching } = useGroups(6)
+
+  const CustomMenuList = (props) => {
+    return (
+      <chakraComponents.MenuList {...props}>
+        {props.children}
+        {hasNextPage && (
+          <Box py={2} textAlign='center'>
+            {isFetching ? <Spinner size='sm' /> : t('process_create.groups.scroll_to_load', 'Scroll to load more...')}
+          </Box>
+        )}
+      </chakraComponents.MenuList>
+    )
+  }
+
+  // Reset hasFetchedScroll when fetching starts
+  useEffect(() => {
+    if (!isFetching) setHasFetchedScroll(false)
+  }, [isFetching])
+
+  return (
+    <FormControl isInvalid={!!errors.groupId}>
+      <FormLabel>
+        <Trans i18nKey='process_create.census.memberbase.label'>Select a group of members to create the census</Trans>
+      </FormLabel>
+      <Controller
+        control={control}
+        name='groupId'
+        rules={{
+          required: {
+            value: censusType === CensusTypes.Memberbase,
+            message: t('form.error.required', 'This field is required'),
+          },
+        }}
+        render={({ field }) => {
+          const selected = data?.find((g) => g.id === field.value) ?? null
+          return (
+            <Select
+              options={data ?? []}
+              value={selected}
+              getOptionLabel={(option) => option.title}
+              getOptionValue={(option) => option.id}
+              placeholder={t('process_create.group.select', 'Select group')}
+              isLoading={isFetching}
+              onChange={(option) => field.onChange(option?.id ?? '')}
+              onMenuScrollToBottom={async () => {
+                if (hasNextPage && !hasFetchedScroll) {
+                  setHasFetchedScroll(true)
+                  await fetchNextPage()
+                }
+              }}
+              closeMenuOnSelect
+              maxMenuHeight={200}
+              components={{ MenuList: CustomMenuList }}
+            />
+          )
+        }}
+      />
+      <FormErrorMessage>{errors.groupId?.message?.toString()}</FormErrorMessage>
+    </FormControl>
+  )
+}
+
+const CensusCreation = () => {
+  const { setValue, watch } = useFormContext()
+  const censusType = watch('censusType')
+
+  const currentIndex = censusTabs.indexOf(censusType)
+
+  const handleTabChange = (index: number) => {
+    const nextType = censusTabs[index]
+    const prevType = watch('censusType')
+
+    if (nextType === prevType) return
+
+    switch (prevType) {
+      case CensusTypes.Memberbase:
+        setValue('groupId', '')
+        break
+      case CensusTypes.Web3:
+        setValue('addresses', [])
+        break
+      case CensusTypes.Spreadsheet:
+        setValue('spreadsheet', undefined)
+        break
+    }
+
+    setValue('censusType', nextType)
+  }
+
+  return (
+    <Tabs index={currentIndex} onChange={handleTabChange} isFitted>
+      <TabList w='full'>
+        <Tab>Memberbase</Tab>
+        <Tab>Spreadsheet</Tab>
+        <Tab>Web3</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel px={0} display='flex' flexDirection='column' gap={4}>
+          <GroupSelect />
+          <VoterAuthentication />
+        </TabPanel>
+        <TabPanel px={0} display='flex' flexDirection='column' gap={4}>
+          <CensusCsvManager />
+        </TabPanel>
+        <TabPanel px={0} display='flex' flexDirection='column' gap={4}>
+          <CensusWeb3Addresses />
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
+  )
+}
+
+export default CensusCreation

@@ -1,6 +1,7 @@
 import { connectorsForWallets, Wallet } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
-import { saasOAuthWallet } from '@vocdoni/rainbowkit-wallets'
+import { coinbaseWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
+import { oAuthWallet, privateKeyWallet, saasOAuthWallet } from '@vocdoni/rainbowkit-wallets'
 import { configureChains, createConfig } from 'wagmi'
 import {
   arbitrum,
@@ -22,28 +23,33 @@ import {
   zora,
 } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
+import i18n from '~i18n'
 
-export const usedChains = [
-  mainnet,
-  arbitrum,
-  avalanche,
-  base,
-  bsc,
-  eos,
-  fantom,
-  gnosis,
-  goerli,
-  hardhat,
-  localhost,
-  optimism,
-  polygon,
-  polygonMumbai,
-  polygonZkEvm,
-  zkSync,
-  zora,
-]
+export const { chains, publicClient } = configureChains(
+  [
+    mainnet,
+    arbitrum,
+    avalanche,
+    base,
+    bsc,
+    eos,
+    fantom,
+    gnosis,
+    goerli,
+    hardhat,
+    localhost,
+    optimism,
+    polygon,
+    polygonMumbai,
+    polygonZkEvm,
+    zkSync,
+    zora,
+  ],
+  [publicProvider()]
+)
 
-export const { chains, publicClient } = configureChains(usedChains, [publicProvider()])
+const appName = 'Vocdoni UI Scaffold'
+const projectId = '641a1f59121ad0b519cca3a699877a08'
 
 type WalletGroup = {
   groupName: string
@@ -63,12 +69,65 @@ export const googleWallet = saasOAuthWallet({
 })
 
 const featuredConnectors = () => {
-  const web2: WalletGroup = {
-    groupName: 'Social',
-    wallets: [googleWallet],
+  const web3: WalletGroup = {
+    groupName: 'Popular',
+    wallets: [
+      metaMaskWallet({ chains, projectId }),
+      rainbowWallet({ projectId, chains }),
+      coinbaseWallet({ chains, appName }),
+      walletConnectWallet({ chains, projectId }),
+    ],
   }
 
-  return [web2]
+  const web2: WalletGroup = {
+    groupName: 'Social',
+    wallets: [
+      oAuthWallet({
+        id: 'github',
+        chains,
+        name: 'Github',
+        iconUrl: 'https://authjs.dev/img/providers/github-dark.svg',
+        options: {
+          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
+          oAuthServiceProvider: 'github',
+        },
+      }) as unknown as Wallet,
+      oAuthWallet({
+        id: 'google',
+        chains,
+        name: 'Google',
+        iconUrl: 'https://authjs.dev/img/providers/google.svg',
+        options: {
+          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
+          oAuthServiceProvider: 'google',
+        },
+      }) as unknown as Wallet,
+      oAuthWallet({
+        id: 'facebook',
+        chains,
+        name: 'Facebook',
+        iconUrl: 'https://authjs.dev/img/providers/facebook.svg',
+        options: {
+          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
+          oAuthServiceProvider: 'facebook',
+        },
+      }),
+      googleWallet,
+    ],
+  }
+
+  const recovery: WalletGroup = {
+    groupName: i18n.t('rainbow.group.recovery'),
+    wallets: [
+      privateKeyWallet({
+        name: i18n.t('rainbow.recovery'),
+        iconUrl: 'https://www.svgrepo.com/show/525392/key-minimalistic-square-3.svg',
+        chains,
+      }),
+    ],
+  }
+
+  return [web2, web3, recovery]
 }
 
 const connectors = connectorsForWallets(featuredConnectors())

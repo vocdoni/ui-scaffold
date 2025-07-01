@@ -5,7 +5,6 @@ import {
   Button,
   Flex,
   forwardRef,
-  HeadingProps,
   HStack,
   Icon,
   IconButton,
@@ -59,6 +58,8 @@ import {
   Sidebar,
   SidebarContents,
   SidebarProps,
+  SidebarSubtitle,
+  SidebarTitle,
 } from '~shared/Dashboard/Contents'
 import { Routes } from '~src/router/routes'
 
@@ -95,7 +96,7 @@ export const ProcessView = () => {
         </HStack>
 
         <Box as='header'>
-          <ElectionTitle textAlign={'start'} fontWeight={'extrabold'} />
+          <ElectionTitle textAlign={'start'} fontWeight={'bold'} />
           <ElectionDescription color='gray.500' />
         </Box>
 
@@ -397,8 +398,4 @@ const SettingsField = ({ subtext, icon, text }: { subtext?: string; icon: typeof
   </Box>
 )
 
-const SidebarTitle = (props: HeadingProps) => (
-  <Heading as='h4' fontSize='lg' fontWeight='bold' variant='sidebar-title' {...props} />
-)
-const SidebarSubtitle = (props: HeadingProps) => <Heading as='h5' fontSize='sm' variant='sidebar-subtitle' {...props} />
 const ControlIcon = forwardRef<IconProps, 'svg'>((props, ref) => <Icon mr={3} boxSize={4} ref={ref} {...props} />)

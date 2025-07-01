@@ -8,28 +8,10 @@ import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
 import { usePaginatedMembers } from '~src/queries/members'
 
-const Members = () => {
+export const useMemberColumns = () => {
   const { t } = useTranslation()
-  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
-  const { data, isLoading, isFetching } = usePaginatedMembers()
 
-  const members = data?.members || []
-  const pagination = data?.pagination || {
-    totalItems: 0,
-    currentPage: 0,
-    lastPage: 0,
-    previousPage: null,
-    nextPage: null,
-  }
-
-  useEffect(() => {
-    setBreadcrumb([
-      { title: t('memberbase.title', { defaultValue: 'Memberbase' }), route: Routes.dashboard.memberbase.base },
-      { title: t('memberbase.members.title', { defaultValue: 'Members' }) },
-    ])
-  }, [setBreadcrumb])
-
-  const columns = useMemo(
+  return useMemo(
     () => [
       {
         label: t('form.members.spreadsheet.template.firstname', { defaultValue: 'First Name' }),
@@ -64,6 +46,29 @@ const Members = () => {
     ],
     [t]
   )
+}
+
+const Members = () => {
+  const { t } = useTranslation()
+  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
+  const { data, isLoading, isFetching } = usePaginatedMembers()
+  const columns = useMemberColumns()
+
+  const members = data?.members || []
+  const pagination = data?.pagination || {
+    totalItems: 0,
+    currentPage: 0,
+    lastPage: 0,
+    previousPage: null,
+    nextPage: null,
+  }
+
+  useEffect(() => {
+    setBreadcrumb([
+      { title: t('memberbase.title', { defaultValue: 'Memberbase' }), route: Routes.dashboard.memberbase.base },
+      { title: t('memberbase.members.title', { defaultValue: 'Members' }) },
+    ])
+  }, [setBreadcrumb])
 
   return (
     <TableProvider data={members} initialColumns={columns} isLoading={isLoading} isFetching={isFetching}>

@@ -76,7 +76,7 @@ const PricingCard = ({
               i18nKey='pricing_card.from'
               values={{ price }}
               components={{
-                price: <Text size='2xl' fontWeight='extrabold' />,
+                price: <Text size='2xl' fontWeight='bold' />,
                 time: <Text size='sm' color='gray.500' />,
               }}
             >

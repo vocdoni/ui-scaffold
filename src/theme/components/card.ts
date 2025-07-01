@@ -15,7 +15,7 @@ const pricingCard = definePartsStyle({
     minH: 28,
     '& > p:first-of-type': {
       pt: 1.5,
-      fontWeight: 'extrabold',
+      fontWeight: 'bold',
       mb: 1.5,
       fontSize: 'lg',
     },

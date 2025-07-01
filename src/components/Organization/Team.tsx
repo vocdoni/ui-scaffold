@@ -416,10 +416,10 @@ const ChangeRoleModal = ({ isOpen, onClose, user, ...props }: ActiveUserModalPro
       <ModalOverlay />
       <ModalContent py={4}>
         <ModalHeader>
-          <Heading fontSize='md' fontWeight='extrabold'>
-            {t('role.update.title', { defaultValue: 'Change user role' })}
-          </Heading>
-          <Trans i18nKey='role.update.subtitle'>Update the permissions for this user by changing their role.</Trans>
+          <Heading fontSize='md'>{t('role.update.title', { defaultValue: 'Change team member role' })}</Heading>
+          <Trans i18nKey='role.update.subtitle'>
+            Update the permissions for this team member by changing their role.
+          </Trans>
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
@@ -659,7 +659,7 @@ const UsersEmpty = () => {
     <Flex alignItems='center' direction='column' p={10} gap={6}>
       <Flex alignItems='center' direction='column'>
         <Icon as={LuUserPlus} boxSize={20} color='gray.500' />
-        <Text fontSize='lg' fontWeight='extrabold'>
+        <Text fontSize='lg' fontWeight='bold'>
           {t('team.only_one_member.title', { defaultValue: "You're the only team member of this organization" })}
         </Text>
         <Text color='gray.500'>

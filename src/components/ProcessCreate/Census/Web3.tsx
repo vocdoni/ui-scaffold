@@ -1,26 +1,31 @@
-import { DeleteIcon } from '@chakra-ui/icons'
 import {
+  AbsoluteCenter,
   Box,
   Button,
-  Card,
+  Divider,
   Flex,
   FormControl,
   FormErrorMessage,
+  Icon,
   IconButton,
   Input,
+  InputGroup,
+  InputRightElement,
   Text,
-  useBreakpointValue,
 } from '@chakra-ui/react'
 import { enforceHexPrefix, errorToString, useClient } from '@vocdoni/react-providers'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { BiCheckDouble } from 'react-icons/bi'
-import { addressTextOverflow, fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
-import { DetailedCheckbox } from '~shared/Form/DetailedCheckbox'
+import { LuCheck, LuPlus, LuTrash2, LuWallet } from 'react-icons/lu'
+import { CensusTypes } from '~components/Process/Create/Sidebar/CensusCreation'
+import { DashboardSection, SidebarSubtitle } from '~components/shared/Dashboard/Contents'
+import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import Uploader from '~shared/Layout/Uploader'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
+
+const isValidAddress = (value: string) => /^(0x)?[0-9a-f]{40}$/i.test(value)
 
 export const CensusWeb3Addresses = () => {
   const { t } = useTranslation()
@@ -32,60 +37,22 @@ export const CensusWeb3Addresses = () => {
     formState: { errors },
     watch,
     setValue,
-    trigger,
-    resetField,
-    setError,
-    control,
   } = useFormContext()
 
-  const { fields, remove } = useFieldArray({
+  const { fields, remove, append } = useFieldArray({
     name: 'addresses',
   })
 
   const addresses = watch('addresses')
-  const newAddress = watch('newAddress')
   const weighted: boolean = watch('weightedVote')
-
-  const [initialized, setInitialized] = useState(!!addresses.length)
-
-  const value = useBreakpointValue({
-    base: 6,
-    sm: 8,
-    md: null,
-  })
+  const censusType = watch('censusType')
 
   useEffect(() => {
-    if (account?.address && !initialized && addresses.length === 0) {
+    if (account?.address && addresses.length === 0) {
       setValue('addresses', [{ address: enforceHexPrefix(account.address) }])
-      setInitialized(true)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [account?.address, addresses, initialized])
-
-  const handleAddAddress = async () => {
-    // Trigger form validation
-    await trigger()
-
-    const duplicateAddress = addresses.find((add: any) => add.address === newAddress)
-    if (duplicateAddress) {
-      return setError('newAddress', { type: 'custom', message: t('form.error.address_already_in_use') })
-    }
-
-    const pattern = /^(0x)?[0-9a-f]{40}$/i
-    if (!pattern.test(newAddress)) {
-      return setError('newAddress', { type: 'custom', message: t('form.error.address_pattern') })
-    }
-
-    if (!newAddress) {
-      return setError('newAddress', { type: 'custom', message: t('form.error.field_is_required') })
-    }
-
-    if (!errors.newAddress) {
-      const naddresses = [...addresses, { address: newAddress }]
-      setValue('addresses', naddresses)
-      resetField('newAddress')
-    }
-  }
+  }, [account?.address, addresses, censusType])
 
   // File dropzone
   const onDrop = async ([file]: File[]) => {
@@ -117,125 +84,95 @@ export const CensusWeb3Addresses = () => {
   })
 
   return (
-    <>
-      <Flex
-        flexDirection={{ base: 'column', xl: 'row' }}
-        gap={10}
-        textAlign='center'
-        alignItems={{ base: 'center', xl: 'start' }}
-      >
-        <Box flex={{ lg: '0 0 620px' }}>
-          <FormControl
-            isInvalid={isInvalidFieldMap(errors, 'newAddress')}
-            display='flex'
-            justifyContent='center'
-            alignItems='center'
-            gap={2}
-            flexDirection={{ base: 'column', lg: 'row' }}
-          >
-            <Box w='100%'>
-              <Input
-                {...register('newAddress')}
-                onKeyDown={(e) => {
-                  // avoid submitting form on enter
-                  if (e.key === 'Enter') {
-                    e.preventDefault()
-                    e.stopPropagation()
-                    handleAddAddress()
-                  }
-                }}
-                aria-label={t('form.process_create.census.add_new_address')}
-                placeholder={'0x000...000'}
-              />
-              <FormErrorMessage>{fieldMapErrorMessage(errors, 'newAddress')}</FormErrorMessage>
-            </Box>
-            <Button variant='outline' type='button' ml='none' onClick={handleAddAddress}>
-              {t('form.process_create.census.add_button')}
-            </Button>
-          </FormControl>
-
-          <Card variant='web3-addresses'>
-            {fields.map((address, index) => (
-              <Flex
-                key={address.id}
-                justifyContent='space-between'
-                alignItems='center'
-                gap={2}
-                mx='auto'
-                borderBottom='1px solid'
-                borderColor='process_create.wallet_addresses_border'
-                w='full'
-                p={5}
-                flexDirection={{ base: 'column', sm: 'row' }}
-              >
-                <Flex direction={'row'} gap={2} justifyContent='start' alignItems='center'>
-                  <Text fontWeight='bold'>{index + 1}</Text>
-                  <Text>{addressTextOverflow((address as any).address, value)}</Text>
-                </Flex>
-                <Flex direction={'row'} gap={2} justifyContent='start' alignItems='center'>
-                  {weighted && (
-                    <FormControl display='flex' alignItems='center'>
-                      <Input
-                        {...register(`addresses.${index}.weight` as const)}
-                        type='number'
-                        min={0}
-                        defaultValue={1}
-                        size='sm'
-                        w={20}
-                        ml={3}
-                        maxH='2px'
-                        p={3}
-                      />
-                    </FormControl>
-                  )}
-                  {weighted && (
-                    <Text fontWeight='bold' fontSize='xs' m='0 !important' ml={3} right={0} p={0}>
-                      {t('form.process_create.census.weight')}
-                    </Text>
-                  )}
-                  <IconButton
-                    size='xs'
-                    variant='transparent'
-                    type='button'
-                    icon={<DeleteIcon />}
-                    aria-label={t('form.process_create.census.delete_web3_address', {
-                      values: { index: index },
-                    })}
-                    onClick={() => remove(index)}
-                    ml='auto'
-                  />
-                </Flex>
-              </Flex>
-            ))}
-          </Card>
-          <Text>{t('form.process_create.web3.your_wallet_is_added')}</Text>
-          <Flex gap={1} justifyContent='center'>
-            <Trans
-              i18nKey='form.process_create.web3.census_members'
-              components={{
-                span: <Text as='span' fontWeight='bold' variant='process-create-subtitle-sm' />,
-                text: <Text variant='process-create-subtitle-sm' />,
-              }}
-              count={fields.length}
-            />
-          </Flex>
-        </Box>
-        <Flex flexDirection='column' alignItems='start' gap={6}>
-          <DetailedCheckbox
-            onChange={(event: ChangeEvent<HTMLInputElement>) => setValue('weightedVote', event.target.checked)}
-            name={'weightedVote'}
-            isChecked={weighted}
-            variant={'detailed'}
-            icon={<BiCheckDouble />}
-            title={t('form.process_create.weighted')}
-            description={t('form.process_create.spreadsheet.requirements.list_three')}
-          />
-          <FormControl isInvalid={!!fileErr}>
-            <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
-            <FormErrorMessage>{fileErr}</FormErrorMessage>
-          </FormControl>
+    <Flex gap={2} direction='column'>
+      <Text color='texts.subtle' fontSize='xs'>
+        Add wallet addresses that will be eligible to vote. You can add them individually or upload a CSV file.
+      </Text>
+      <SidebarSubtitle>Wallet Addresses</SidebarSubtitle>
+      <DashboardSection p={4} mb={4}>
+        <Flex gap={2} alignItems='center'>
+          <Icon as={LuWallet} />
+          <Text fontWeight='extrabold' fontSize='sm'>
+            Census Summary
+          </Text>
         </Flex>
+        <Text color='texts.subtle' fontSize='xs'>
+          <Trans
+            i18nKey='form.process_create.web3.census_summary'
+            components={{ b: <Text as='span' fontWeight='extrabold' display='inline' fontSize='xs' /> }}
+            defaults='<b>{{count}}</b> wallet address will be eligible to vote'
+            values={{ count: fields.length }}
+          />
+        </Text>
+      </DashboardSection>
+      <Flex gap={2} direction='column'>
+        {fields.map((_, index) => {
+          const addressValue = watch(`addresses.${index}.address`)
+          return (
+            <Flex gap={2}>
+              <FormControl isInvalid={isInvalidFieldMap(errors, `addresses.${index}.address`)}>
+                <InputGroup>
+                  <Input
+                    {...register(`addresses.${index}.address`, {
+                      required: { value: censusType === CensusTypes.Web3, message: t('form.error.field_is_required') },
+                      validate: {
+                        pattern: (value) => /^(0x)?[0-9a-f]{40}$/i.test(value) || t('form.error.address_pattern'),
+                        duplicate: (value) => {
+                          const normalized = value.toLowerCase()
+                          const others = addresses
+                            .map((address, i) => i !== index && address.address?.toLowerCase())
+                            .filter(Boolean)
+                          return !others.includes(normalized) || t('form.error.address_already_in_use')
+                        },
+                      },
+                    })}
+                    placeholder='0x000...000'
+                  />
+                  {isValidAddress(addressValue) && (
+                    <InputRightElement pointerEvents='none'>
+                      <Icon as={LuCheck} color='green.400' />
+                    </InputRightElement>
+                  )}
+                </InputGroup>
+                <FormErrorMessage>{fieldMapErrorMessage(errors, `addresses.${index}.address`)}</FormErrorMessage>
+              </FormControl>
+              <IconButton
+                disabled={fields.length <= 1}
+                variant='outline'
+                icon={<Icon as={LuTrash2} />}
+                aria-label='Remove address'
+                onClick={() => {
+                  remove(index)
+                }}
+              />
+            </Flex>
+          )
+        })}
       </Flex>
-    </>
+      <Button
+        variant='outline'
+        leftIcon={<Icon as={LuPlus} />}
+        type='button'
+        ml='none'
+        onClick={() => {
+          append({ address: '' })
+        }}
+      >
+        {t('form.process_create.census.add_button')}
+      </Button>
+      <Box position='relative' py={4}>
+        <Divider />
+        <AbsoluteCenter bg='chakra.body.bg' px={2} color='texts.subtle' fontSize='xs'>
+          OR UPLOAD CSV
+        </AbsoluteCenter>
+      </Box>
+      <FormControl isInvalid={!!fileErr}>
+        <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />
+        <FormErrorMessage>{fileErr}</FormErrorMessage>
+      </FormControl>
+      <Text color='texts.subtle' fontSize='xs'>
+        CSV should contain wallet addresses in the first column.
+      </Text>
+    </Flex>
   )
 }

@@ -42,7 +42,7 @@ export const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => 
           w='full'
           display='flex'
           justifyContent={closeOnSelect ? 'center' : 'start'}
-          fontWeight={k === i18n.language ? 'extrabold' : ''}
+          fontWeight={k === i18n.language ? 'bold' : ''}
           borderRadius='none'
         >
           {k.toUpperCase()}
@@ -166,7 +166,7 @@ export const LanguagesListAccordion = () => {
                 i18n.changeLanguage(k)
               }}
               display='flex'
-              fontWeight={k === i18n.language ? 'extrabold' : ''}
+              fontWeight={k === i18n.language ? 'bold' : ''}
               p={0}
               m={0}
               h={'fit-content'}
