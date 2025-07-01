@@ -559,7 +559,7 @@ export const ProcessCreate = () => {
                 variant='outline'
                 onClick={() => setShowSidebar((prev) => !prev)}
               />
-              <Button type='submit' colorScheme='black' alignSelf='flex-end'>
+              <Button type='submit' colorScheme='black' alignSelf='flex-end' isLoading={methods.formState.isSubmitting}>
                 <Trans i18nKey='process.create.action.publish'>Publish</Trans>
               </Button>
             </ButtonGroup>
