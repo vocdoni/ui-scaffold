@@ -1,24 +1,9 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  Icon,
-  Link,
-  ListItem,
-  Text,
-  UnorderedList,
-} from '@chakra-ui/react'
-import { ChangeEvent, useCallback, useMemo } from 'react'
+import { FormControl, FormErrorMessage, Link, Text } from '@chakra-ui/react'
+import { useCallback, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
-import { BiCheckDouble, BiDownload } from 'react-icons/bi'
-import { PiWarningCircleLight } from 'react-icons/pi'
-import { DetailedCheckbox } from '~shared/Form/DetailedCheckbox'
+import { Trans, useTranslation } from 'react-i18next'
+import { CensusTypes } from '~components/Process/Create/Sidebar/CensusCreation'
 import Uploader from '~shared/Layout/Uploader'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { CsvGenerator } from './generator'
@@ -36,6 +21,7 @@ export const CensusCsvManager = () => {
   } = useFormContext()
   const weighted: boolean = watch('weightedVote')
   const manager: CensusSpreadsheetManager | undefined = watch('spreadsheet')
+  const censusType = watch('censusType')
 
   // File dropzone
   const onDrop = useCallback(
@@ -88,66 +74,17 @@ export const CensusCsvManager = () => {
 
   return (
     <>
-      <Flex
-        gap={6}
-        flexDirection={{ base: 'column', lg: 'row' }}
-        mb={6}
-        alignItems={{ base: 'start', lg: 'stretch' }}
-        justifyContent='center'
-      >
-        <Flex flexDirection='column' gap={6} flex='1 1 60%'>
-          <Flex alignItems='center' gap={1}>
-            <Icon as={PiWarningCircleLight} />
-            <Text mt={0.5}>{t('form.process_create.spreadsheet.requirements.title')}</Text>
-          </Flex>
-          <UnorderedList>
-            <ListItem mb={2}>
-              <Text variant='process-create-subtitle-sm'>
-                {t('form.process_create.spreadsheet.requirements.list_one')}
-              </Text>
-            </ListItem>
-            <ListItem>
-              <Text variant='process-create-subtitle-sm'>
-                {t('form.process_create.spreadsheet.requirements.list_two')}
-              </Text>
-            </ListItem>
-          </UnorderedList>
-          <FormControl>
-            <DetailedCheckbox
-              onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                if (!manager) {
-                  return setValue('weightedVote', event.target.checked)
-                }
-                if (window.confirm(t('form.process_create.confirm_spreadsheet_removal'))) {
-                  setValue('spreadsheet', undefined)
-                  setValue('weightedVote', event.target.checked)
-                }
-              }}
-              isChecked={weighted}
-              name={'weightedVote'}
-              variant={'detailed'}
-              icon={<BiCheckDouble />}
-              title={t('form.process_create.weighted')}
-              description={t('form.process_create.spreadsheet.requirements.list_three')}
-            />
-          </FormControl>
-        </Flex>
-        <Card variant='download-spreadsheet'>
-          <CardBody>
-            <Text>{t('form.process_create.spreadsheet.download_template_description')}</Text>
-          </CardBody>
-          <CardFooter>
-            <Link download={'census-template.csv'} href={template.url}>
-              <Button variant={'outline'} leftIcon={<BiDownload />}>
-                {t('form.process_create.spreadsheet.download_template_btn')}
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
-      </Flex>
+      <Text color='texts.subtle' size='xs'>
+        {t('form.process_create.spreadsheet.upload_description', {
+          defaultValue:
+            'Upload a CSV file with the participants. Each column will be used as a credential that the voter will have to use to authenticate. The first row will be the titles of that credential.',
+        })}
+      </Text>
 
       <FormControl
-        {...register('spreadsheet', { required: { value: true, message: t('form.error.field_is_required') } })}
+        {...register('spreadsheet', {
+          required: { value: censusType === CensusTypes.Spreadsheet, message: t('form.error.field_is_required') },
+        })}
         {...upload}
         isInvalid={!!errors?.spreadsheet}
         display={manager?.data.length ? 'none' : 'block'}
@@ -157,6 +94,15 @@ export const CensusCsvManager = () => {
           {errors?.spreadsheet?.message?.toString()}
         </FormErrorMessage>
       </FormControl>
+      <Text size='xs' color='texts.subtle'>
+        <Trans
+          i18nKey='form.process_create.spreadsheet.download_template'
+          components={{
+            a: <Link href={template.url} download='template.csv' />,
+          }}
+          defaults="You don't have a CSV file? <a>Download template.csv</a>, fill it and upload it."
+        />
+      </Text>
       <CsvPreview manager={manager} upload={upload} />
     </>
   )
