@@ -398,11 +398,21 @@ export const ProcessCreate = () => {
   const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
   const blocker = useBlocker(methods.formState.isDirty)
   const { client, account } = useClient()
+  const { isSubmitting, isSubmitSuccessful } = methods.formState
 
   // Trigger confirmation modal when form is dirty and user tries to navigate away
   useEffect(() => {
-    if (blocker.state === 'blocked') openConfirmationModal()
-  }, [blocker])
+    const isBlocked = blocker.state === 'blocked'
+
+    if (!isBlocked) return
+
+    if (isSubmitting || isSubmitSuccessful) {
+      blocker.proceed()
+      return
+    }
+
+    openConfirmationModal()
+  }, [blocker.state, isSubmitting, isSubmitSuccessful])
 
   const resetForm = () => {
     setActiveTemplate(null)
