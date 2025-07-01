@@ -41,7 +41,7 @@ const OrganizationDashboard = () => {
 
   return (
     <DashboardContents p={0}>
-      <Heading size='lg' fontWeight='extrabold' mb={1}>
+      <Heading size='lg' mb={1}>
         {t('dashboard_empty_processes.title', { defaultValue: 'Welcome to Vocdoni Coop' })}
       </Heading>
       <Text color='gray.500' mb={6}>
@@ -82,7 +82,7 @@ const Tutorial = () => {
         onClick={closeDashboardTutorial}
       />
       <Box flex='1 1 60%'>
-        <Text fontWeight='extrabold' mb={2} fontSize='2xl'>
+        <Text fontWeight='bold' mb={2} fontSize='2xl'>
           <Trans
             i18nKey='dashboard_empty_processes.hello'
             defaultValue='👋 Hello {{name}}!'
@@ -262,7 +262,7 @@ const OrganizationProcesses = () => {
     <Flex flexDirection={{ base: 'column', md: 'row' }} gap={4}>
       <DashboardBox p={6} minH='324px' flex='1 1 66%' display='flex' flexDirection='column'>
         <Box mb={4}>
-          <Text fontWeight='extrabold' mb={1.5} fontSize='2xl'>
+          <Text fontWeight='bold' mb={1.5} fontSize='2xl'>
             {t('dashboard_empty_processes.recent_voting_title', { defaultValue: 'Recent Voting Processes' })}
           </Text>
           <Text color='gray.500' fontSize='sm'>
@@ -408,7 +408,7 @@ const QuickActions = () => {
   const { t } = useTranslation()
   return (
     <DashboardBox p={6} flex='1 1 33%' justifyContent='normal' gap={0}>
-      <Text fontWeight='extrabold' mb={1.5} size='2xl'>
+      <Text fontWeight='bold' mb={1.5} size='2xl'>
         {t('dashboard_empty_processes.quick_actions', {
           defaultValue: 'Quick Actions',
         })}

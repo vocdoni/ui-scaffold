@@ -66,7 +66,7 @@ const LayoutAuth = () => {
             {(title || subtitle) && (
               <Box mb={6}>
                 {title && (
-                  <Heading size='lg' fontWeight='extrabold' mb={1} letterSpacing={'-0.6px'}>
+                  <Heading size='lg' mb={1} letterSpacing={'-0.6px'}>
                     {title}
                   </Heading>
                 )}

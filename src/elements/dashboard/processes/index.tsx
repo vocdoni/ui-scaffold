@@ -24,7 +24,7 @@ const OrganizationVotings = () => {
 
   return (
     <DashboardContents display='flex' flexDirection='column'>
-      <Heading fontSize='2xl' fontWeight='extrabold' textTransform='capitalize'>
+      <Heading fontSize='2xl' textTransform='capitalize'>
         {t('voting_processes')}
       </Heading>
       <Text mb={6}>{t('voting_processes_description')}</Text>

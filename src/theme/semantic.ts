@@ -125,6 +125,10 @@ export const colors = {
 
 const semanticTokens = {
   colors,
+  fontWeights: {
+    normal: 300,
+    bold: 400,
+  },
 }
 
 export default semanticTokens

@@ -11,9 +11,7 @@ const OrganizationTeam = () => {
     <DashboardBox>
       <Flex>
         <Flex flex={1} direction='column'>
-          <Heading size='md' fontWeight='extrabold'>
-            {t('organization_settings.team.title', { defaultValue: 'Team Members' })}
-          </Heading>
+          <Heading size='md'>{t('organization_settings.team.title', { defaultValue: 'Team Members' })}</Heading>
           <Text color='gray.500' size='sm'>
             {t('organization_settings.team.subtitle', {
               defaultValue: "Manage your organization's team members and their permissions.",

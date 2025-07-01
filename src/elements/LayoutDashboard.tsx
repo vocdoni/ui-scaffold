@@ -45,8 +45,7 @@ const LayoutDashboard: React.FC = () => {
             <Box
               position='sticky'
               borderBottom='1px solid'
-              _dark={{ borderBottomColor: 'black.700' }}
-              _light={{ borderBottomColor: 'gray.200' }}
+              borderColor='table.border'
               bgColor='chakra.body.bg'
               top={0}
               pr={4}

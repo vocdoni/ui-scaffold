@@ -13,6 +13,7 @@ const listmenu = defineStyle(({ colorMode }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   fontWeight: 'normal',
+  borderRadius: 'sm',
 
   _active: {
     fontWeight: 'bold',

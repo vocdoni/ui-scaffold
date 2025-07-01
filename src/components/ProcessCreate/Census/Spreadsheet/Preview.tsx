@@ -1,7 +1,7 @@
-import { Badge, Box, Button, Flex, FormControl, FormLabel, Icon, Input, Text } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, Button, Flex, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { DropzoneRootProps } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
-import { RiFileExcel2Line } from 'react-icons/ri'
+import { LuCheck } from 'react-icons/lu'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import { SpreadsheetManager } from './SpreadsheetManager'
 
@@ -16,45 +16,22 @@ export const CsvPreview = ({ manager, upload }: CsvPreviewProps) => {
   if (!manager || !manager?.data) return null
 
   return (
-    <Box borderRadius='lg' bgColor='process_create.spreadsheet.preview_bg'>
-      <Flex
-        alignItems='center'
-        flexDirection={{ base: 'column', xl: 'row' }}
-        justifyContent='space-between'
-        gap={3}
-        mb={5}
-      >
-        <Flex gap={2} flexDirection={{ base: 'column', xl: 'row' }} alignItems='center'>
-          <Icon as={RiFileExcel2Line} boxSize={14} color='process_create.spreadsheet.file' />
-          <Box>
-            <Text fontSize='lg' isTruncated>
-              {manager.file.name}
-            </Text>
-            <Text color='process_create.spreadsheet.total_rows_text'>
-              {t('form.process_create.spreadsheet_total_rows', { count: manager.data.length })}
-            </Text>
-          </Box>
+    <Alert status='success' variant='subtle' flexDirection='column' borderRadius='md'>
+      <AlertDescription display='flex' flexDirection='column' gap={3}>
+        <Flex>
+          <AlertIcon as={LuCheck} boxSize={4} />
+          <Text size='sm'>File uploaded successfully</Text>
         </Flex>
+        <Text size='sm'>The user will be asked to authenticate with:</Text>
+        <UnorderedList>
+          {manager.header.map((field) => (
+            <ListItem textTransform='capitalize'>{field}</ListItem>
+          ))}
+        </UnorderedList>
         <Button colorScheme='primary' variant='transparent' border='1px solid' flexShrink={0} {...upload}>
           {t('form.process_create.spreadsheet.preview.upload_new_list')}
         </Button>
-      </Flex>
-
-      <Box bgColor='process_create.spreadsheet.preview_bg_interior' p={5} borderRadius='lg'>
-        <Badge>{t('form.process_create.spreadsheet.preview.title')}</Badge>
-        <Text my={3}>{t('form.process_create.spreadsheet.preview.description')}</Text>
-
-        <Flex flexDirection='column' gap={3} w={{ base: '70%', md: '50%' }} mx='auto'>
-          {manager.header.map((field) => (
-            <FormControl key={field}>
-              <FormLabel mb={0} textTransform='capitalize'>
-                {field}
-              </FormLabel>
-              <Input disabled />
-            </FormControl>
-          ))}
-        </Flex>
-      </Box>
-    </Box>
+      </AlertDescription>
+    </Alert>
   )
 }

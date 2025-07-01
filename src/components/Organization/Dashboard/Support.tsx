@@ -51,9 +51,7 @@ const OrganizationSupport = () => {
 
   return (
     <Box>
-      <Heading size='md' fontWeight='extrabold'>
-        {t('organization_settings.support.title', { defaultValue: 'Support' })}
-      </Heading>
+      <Heading size='md'>{t('organization_settings.support.title', { defaultValue: 'Support' })}</Heading>
       <Text mb={8} color='gray.500'>
         {t('organization_settings.support.description', {
           defaultValue: 'Get help and support for your organization.',
@@ -251,7 +249,7 @@ const PhoneSupportCard = ({ isLocked }) => {
                 defaultValue: 'Priority Support Line',
               })}
             </Text>
-            <Text fontSize='lg' fontWeight='extrabold'>
+            <Text fontSize='lg' fontWeight='bold'>
               {maskValue(prioritySupportPhone, isLocked)}
             </Text>
             <Text fontSize='sm' color='gray.500'>

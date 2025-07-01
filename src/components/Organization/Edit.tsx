@@ -102,9 +102,7 @@ const EditOrganization = () => {
     <DashboardBox p={6}>
       <FormProvider {...methods}>
         <Flex as='form' id='process-create-form' onSubmit={handleSubmit(onSubmit)} flexDirection='column'>
-          <Heading size='md' fontWeight='extrabold'>
-            {t('create_org.organization_details', { defaultValue: 'Organization Details' })}
-          </Heading>
+          <Heading size='md'>{t('create_org.organization_details', { defaultValue: 'Organization Details' })}</Heading>
           <Text mb={6} color='gray.500' size='sm'>
             {t('create_org.organization_details_description', {
               defaultValue: "Manage your organization's profile and configuration settings.",

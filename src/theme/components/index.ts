@@ -3,7 +3,7 @@ import { Button } from './button'
 import { Card } from './card'
 import { Checkbox, DetailedCheckbox } from './checkbox'
 import { Drawer } from './drawer'
-import { Form } from './form'
+import { FormLabel } from './form'
 import { ElectionTitle, Heading } from './heading'
 import { Input } from './input'
 import { Link } from './link'
@@ -15,6 +15,7 @@ import { Progress } from './progress'
 import { ElectionQuestions } from './questions'
 import { Radio } from './radio'
 import { ElectionResults } from './results'
+import { SecurityLevelBox } from './securitylevelbox'
 import { SpreadsheetAccess } from './spreadsheetAccess'
 import { Stepper } from './stepper'
 import { Switch } from './switch'
@@ -34,7 +35,7 @@ const components = {
   ElectionTitle,
   ElectionQuestions,
   ElectionResults,
-  Form,
+  FormLabel,
   Heading,
   Input,
   Link,
@@ -52,6 +53,7 @@ const components = {
   Tag,
   Text,
   Tooltip,
+  SecurityLevelBox,
 }
 
 export default components

@@ -1,9 +1,4 @@
 import { defineStyle, defineStyleConfig } from '@chakra-ui/react'
-import type { StyleFunctionProps } from '@chakra-ui/styled-system'
-
-const baseStyle = (options: StyleFunctionProps) => {
-  return { letterSpacing: '0%' }
-}
 
 const sizes = {
   xs: defineStyle({
@@ -34,7 +29,6 @@ const sizes = {
 }
 
 export const Text = defineStyleConfig({
-  baseStyle,
   sizes,
   defaultProps: {
     size: 'md',
