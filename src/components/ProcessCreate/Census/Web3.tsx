@@ -114,7 +114,7 @@ export const CensusWeb3Addresses = () => {
         {fields.map((_, index) => {
           const addressValue = watch(`addresses.${index}.address`)
           return (
-            <Flex gap={2}>
+            <Flex gap={2} key={index}>
               <FormControl isInvalid={isInvalidFieldMap(errors, `addresses.${index}.address`)}>
                 <InputGroup>
                   <Input
