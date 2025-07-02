@@ -100,6 +100,7 @@ export const GroupSelect = () => {
 }
 
 const CensusCreation = () => {
+  const { t } = useTranslation()
   const { setValue, watch } = useFormContext()
   const censusType = watch('censusType')
 
@@ -129,9 +130,9 @@ const CensusCreation = () => {
   return (
     <Tabs index={currentIndex} onChange={handleTabChange} isFitted>
       <TabList w='full'>
-        <Tab>Memberbase</Tab>
-        <Tab>Spreadsheet</Tab>
-        <Tab>Web3</Tab>
+        <Tab>{t('process_create.census.group.label', { defaultValue: 'Group' })}</Tab>
+        <Tab>{t('process_create.census.spreadsheet.label', { defaultValue: 'Spreadsheet' })}</Tab>
+        <Tab>{t('process_create.census.web3.label', { defaultValue: 'Web3' })}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel px={0} display='flex' flexDirection='column' gap={4}>

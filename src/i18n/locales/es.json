@@ -440,8 +440,6 @@
       },
       "census": {
         "add_button": "Añadir",
-        "add_new_address": "Añade una nueva dirección",
-        "delete_web3_address": "Eliminar direccion con índice {{ index }}",
         "gitcoin_description": "Construye un censo resistente a Sybil (resistente a la falsificación de identidad) con Gitcoin Passport y sus sellos de verificación para una seguridad mejorada",
         "gitcoin_passport_score": "Puntuación de Gitcoin Pasaport",
         "gitcoin_stamps": "Stamps",
@@ -455,6 +453,7 @@
         "max_census_slider_tooltip": "{{ voters }} votantes ({{ percent }}% del total)",
         "network": "Red",
         "network_placeholder": "Selecciona una red",
+        "remove_address": "Remove address",
         "social_description": "Cree un censo de votantes elegibles que proporcione una lista de usuarios de Github.",
         "social_title": "Censo de Github",
         "spreadsheet_description": "Datos personalizados, como nombres de usuario y contraseñas, o información personal de los votantes, pueden utilizarse para la autenticación mediante un formulario.",
@@ -464,7 +463,6 @@
         "tokens_placeholder": "Busca o pega la dirección del token",
         "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
         "wallet_address_title": "Direcciones de monedero",
-        "weight": "(Peso)",
         "weighted_voting_description": "Cuando se activa, tu poder de voto se alinea con tu puntuación GPS. Si se desactiva, el voto de cada usuario tiene el mismo peso, establecido en 1 punto.",
         "weighted_voting_title": "Peso del Voto Basado en GPS"
       },
@@ -492,7 +490,6 @@
         "title_election": "Título",
         "vote_overwrite": "Sobrescribir voto"
       },
-      "confirm_spreadsheet_removal": "Seguro? Piensa que al hacerlo se eliminará el fichero que has cargado.",
       "creating_process": "Creando Proceso de Votación...",
       "error_title": "Error creating process",
       "meta": {
@@ -519,38 +516,32 @@
       "question_title": "Título",
       "running_checks": "Ejecutando comprobaciones requeridas, por favor espera...",
       "spreadsheet": {
+        "download_template": "You don't have a CSV file? <a>Download template.csv</a>, fill it and upload it.",
         "download_template_btn": "Descargar plantilla",
         "download_template_description": "Descarga la plantilla original para completar su lista de votantes ",
         "preview": {
-          "description": "Los miembros deberan cumplir este formulario para acceder a la votación",
-          "title": "Vista previa del formulario",
+          "success_description": "The user will be asked to authenticate with:",
+          "success_title": "File uploaded successfully",
           "upload_new_list": "Subir una nueva lista de votantes"
-        },
-        "requirements": {
-          "list_one": "La primera fila se usará como el nombre de los campos que los votantes deberán rellenar.",
-          "list_two": "Los campos no distinguen entre mayúsculas y minúsculas, los espacios en blanco se ignoraran y los signos diacriticos se transformaran en letras simples.",
-          "list_three": "Si se selecciona 'Voto ponderado', la 1a columna debe ser un entero con el peso de voto del votante.",
-          "title": "Requisitos"
         },
         "template": {
           "email": "Email",
           "firstname": "Nombre",
           "lastname": "Apellidos",
           "weight": "Peso"
-        }
+        },
+        "upload_description": "Upload a CSV file with the participants. Each column will be used as a credential that the voter will have to use to authenticate. The first row will be the titles of that credential."
       },
-      "spreadsheet_total_rows_one": "El censo tiene un solo registro",
-      "spreadsheet_total_rows_many": "",
-      "spreadsheet_total_rows_other": "El censo tiene {{ count }} registros",
       "success_description": "Redirigiéndote a la página del proceso de votación...",
       "success_title": "Proceso de votación creado con éxito",
       "web3": {
-        "census_members_one": "<span>1 miembro</span> <text> en el censo</text>",
-        "census_members_many": "",
-        "census_members_other": "<span>{{ count }} miembros</span> <text> en el censo</text>",
-        "your_wallet_is_added": "Tu dirección de billetera se ha añadido automáticamente al censo. Puedes eliminarla si lo deseas."
-      },
-      "weighted": "Voto ponderado"
+        "census_description": "Add wallet addresses that will be eligible to vote. You can add them individually or upload a CSV file.",
+        "census_summary_description": "<b>{{count}}</b> wallet address will be eligible to vote",
+        "census_summary_title": "Census Summary",
+        "csv_format": "CSV file should contain wallet addresses in the first column.",
+        "upload_csv": "OR UPLOAD CSV",
+        "wallet_addresses": "Wallet Addresses"
+      }
     },
     "process_create_saas": {
       "steps": {
@@ -1586,15 +1577,27 @@
       "digital_certificate_title": "Certificado Digital",
       "email_description": "Los votantes validarán su correo electrónico autenticándose en su cuenta de Google Mail (OAuth).",
       "email_title": "Por Correo Electrónico",
+      "group": {
+        "label": "Group"
+      },
       "label": "Census creation",
       "mandatory_max_census_size": "Al menos un votante debe ser seleccionado",
+      "memberbase": {
+        "label": "Select a group of members to create the census"
+      },
       "others_description": "¿Necesitas una solución específica? Podemos ayudarte con una integración personalizada que se adapte a tus necesidades.",
       "others_title": "Otros",
       "phone_description": "Los votantes tendrán que validar su teléfono móvil, ingresando su número y el código de verificación que recibirán.",
       "phone_title": "Por Número de Teléfono",
+      "spreadsheet": {
+        "label": "Spreadsheet"
+      },
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
-      "total_tokens_other": "{{ count }} tokens"
+      "total_tokens_other": "{{ count }} tokens",
+      "web3": {
+        "label": "Web3"
+      }
     },
     "creation_steps": {
       "census_created": "Creación del censo",
@@ -1706,6 +1709,7 @@
     "voter_auth_guarantees_weak_list_1": "Add more credentials (aim for 2) for better identity verification",
     "voter_auth_guarantees_weak_list_2": "Enable two-factor authentication for an additional verification layer",
     "voter_auth_guarantees_weak_title": "Weak Authentication Guarantees",
+    "voter_auth_no_group_description": "Please select a group first to configure authentication.",
     "voter_auth_security_level": "Good security",
     "voter_auth_security_recommendation_1": "For better security, we recommend selecting at least 2 credentials.",
     "voter_auth_security_recommendation_2_one": "You've selected {{ count }} credentials, which provides good security for your voters.",

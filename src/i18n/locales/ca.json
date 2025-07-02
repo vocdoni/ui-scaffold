@@ -440,8 +440,6 @@
       },
       "census": {
         "add_button": "Afegir",
-        "add_new_address": "Afageix una nova adreça",
-        "delete_web3_address": "Eliminar adreça amb index {{ index }}",
         "gitcoin_description": "Construeix un cens resistents a Sybil (resistent a la falsificació d'identitat) amb Gitcoin Passport i els seus segells de verificació per a una seguretat reforçada",
         "gitcoin_passport_score": "Puntuació del Gitcoin Passport",
         "gitcoin_stamps": "Stamps",
@@ -455,6 +453,7 @@
         "max_census_slider_tooltip": "{{ voters }} votants({{ percent }}% votants elegibles)",
         "network": "Xarxa",
         "network_placeholder": "Selecciona una xarxa",
+        "remove_address": "Remove address",
         "social_description": "Creeu un cens d'electors elegibles proporcionant una llista d'usuaris de Github.",
         "social_title": "Cens de Github",
         "spreadsheet_description": "Dades personalitzades, com ara noms d'usuari i contrasenyes, o informació personal dels votants, es poden utilitzar per a l'autenticació amb un formulari.",
@@ -464,7 +463,6 @@
         "tokens_placeholder": "Cerca o enganxa la direcció del token",
         "wallet_address_description": "Identifica els teus votants per les seves adreces de cartera.",
         "wallet_address_title": "Adreces de cartera",
-        "weight": "(Pes)",
         "weighted_voting_description": "Quan s'activa, el teu poder de vot s'alinea amb la teva puntuació GPS. Si es desactiva, el vot de cada usuari té el mateix pes, establert en 1 punt.",
         "weighted_voting_title": "Pes del Vot Basat en GPS"
       },
@@ -492,7 +490,6 @@
         "title_election": "Títol",
         "vote_overwrite": "Sobreescriure vot"
       },
-      "confirm_spreadsheet_removal": "Estàs segur que vols canviar-ho? Fent-ho s'esborrarà el fitxer que has carregat actualment.",
       "creating_process": "Creant Procés de Votació...",
       "error_title": "Error creating process",
       "meta": {
@@ -519,38 +516,32 @@
       "question_title": "Títol",
       "running_checks": "Executant les comprovacions necessàries, espera...",
       "spreadsheet": {
+        "download_template": "You don't have a CSV file? <a>Download template.csv</a>, fill it and upload it.",
         "download_template_btn": "Descarregar plantilla",
         "download_template_description": "Descarrega la plantilla original per completar la teva llista de votants",
         "preview": {
-          "description": "Els membres hauran de completar aquest formulari per accedir a la votació",
-          "title": "Vista prèvia del formulari",
+          "success_description": "The user will be asked to authenticate with:",
+          "success_title": "File uploaded successfully",
           "upload_new_list": "Pujar una nova llista de votants"
-        },
-        "requirements": {
-          "list_one": "La primera fila s'utilitzarà com el nom dels camps que els votants hauran de omplir.",
-          "list_two": "Els camps no distingeixen entre majúscules i minúscules, els espais en blanc s'ignoraran i els signes diacrítics es transformaran en lletres simples.",
-          "list_three": "Si es selecciona 'Vot ponderat', la primera columna ha de ser un enter amb el pes del vot del votant.",
-          "title": "Requisits"
         },
         "template": {
           "email": "Email",
           "firstname": "Nom",
           "lastname": "Cognoms",
           "weight": "Pes"
-        }
+        },
+        "upload_description": "Upload a CSV file with the participants. Each column will be used as a credential that the voter will have to use to authenticate. The first row will be the titles of that credential."
       },
-      "spreadsheet_total_rows_one": "El cens té un sol registre",
-      "spreadsheet_total_rows_many": "",
-      "spreadsheet_total_rows_other": "El cens té {{ count }} registres",
       "success_description": "Redirigint-te a la pàgina del procés de votació...",
       "success_title": "Procés de votació creat amb èxit",
       "web3": {
-        "census_members_one": "<span>1 membre</span> <text>al cens</text>",
-        "census_members_many": "",
-        "census_members_other": "<span>{{ count }} membres</span> <text>al cens</text>",
-        "your_wallet_is_added": "La teva adreça de cartera s'ha afegit automàticament al cens. La pots eliminar si ho desitges."
-      },
-      "weighted": "Vot ponderat"
+        "census_description": "Add wallet addresses that will be eligible to vote. You can add them individually or upload a CSV file.",
+        "census_summary_description": "<b>{{count}}</b> wallet address will be eligible to vote",
+        "census_summary_title": "Census Summary",
+        "csv_format": "CSV file should contain wallet addresses in the first column.",
+        "upload_csv": "OR UPLOAD CSV",
+        "wallet_addresses": "Wallet Addresses"
+      }
     },
     "process_create_saas": {
       "steps": {
@@ -1586,15 +1577,27 @@
       "digital_certificate_title": "Certificat Digital",
       "email_description": "Els votants validaran el seu correu electrònic autenticant-se en el seu compte de Google Mail (OAuth).",
       "email_title": "Per Correu Electrònic",
+      "group": {
+        "label": "Group"
+      },
       "label": "Census creation",
       "mandatory_max_census_size": "Com a mínim un votant ha de ser seleccionat",
+      "memberbase": {
+        "label": "Select a group of members to create the census"
+      },
       "others_description": "Necessites una solució específica? Podem ajudar amb una integració personalitzada que s'adapti a les teves necessitats.",
       "others_title": "Altres",
       "phone_description": "Els votants hauran de validar el seu telèfon mòbil, introduint el seu número i el codi de verificació que rebran.",
       "phone_title": "Per Número de Telèfon",
+      "spreadsheet": {
+        "label": "Spreadsheet"
+      },
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
-      "total_tokens_other": "{{ count }} tokens"
+      "total_tokens_other": "{{ count }} tokens",
+      "web3": {
+        "label": "Web3"
+      }
     },
     "creation_steps": {
       "census_created": "Creació del cens",
@@ -1706,6 +1709,7 @@
     "voter_auth_guarantees_weak_list_1": "Add more credentials (aim for 2) for better identity verification",
     "voter_auth_guarantees_weak_list_2": "Enable two-factor authentication for an additional verification layer",
     "voter_auth_guarantees_weak_title": "Weak Authentication Guarantees",
+    "voter_auth_no_group_description": "Please select a group first to configure authentication.",
     "voter_auth_security_level": "Good security",
     "voter_auth_security_recommendation_1": "For better security, we recommend selecting at least 2 credentials.",
     "voter_auth_security_recommendation_2_one": "You've selected {{ count }} credentials, which provides good security for your voters.",

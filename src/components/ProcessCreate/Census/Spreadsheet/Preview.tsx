@@ -20,9 +20,17 @@ export const CsvPreview = ({ manager, upload }: CsvPreviewProps) => {
       <AlertDescription display='flex' flexDirection='column' gap={3}>
         <Flex>
           <AlertIcon as={LuCheck} boxSize={4} />
-          <Text size='sm'>File uploaded successfully</Text>
+          <Text size='sm'>
+            {t('form.process_create.spreadsheet.preview.success_title', {
+              defaultValue: 'File uploaded successfully',
+            })}
+          </Text>
         </Flex>
-        <Text size='sm'>The user will be asked to authenticate with:</Text>
+        <Text size='sm'>
+          {t('form.process_create.spreadsheet.preview.success_description', {
+            defaultValue: 'The user will be asked to authenticate with:',
+          })}
+        </Text>
         <UnorderedList>
           {manager.header.map((field) => (
             <ListItem textTransform='capitalize'>{field}</ListItem>
