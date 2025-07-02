@@ -86,19 +86,24 @@ export const CensusWeb3Addresses = () => {
   return (
     <Flex gap={2} direction='column'>
       <Text color='texts.subtle' fontSize='xs'>
-        Add wallet addresses that will be eligible to vote. You can add them individually or upload a CSV file.
+        {t('form.process_create.web3.census_description', {
+          defaultValue:
+            'Add wallet addresses that will be eligible to vote. You can add them individually or upload a CSV file.',
+        })}
       </Text>
-      <SidebarSubtitle>Wallet Addresses</SidebarSubtitle>
+      <SidebarSubtitle>
+        {t('form.process_create.web3.wallet_addresses', { defaultValue: 'Wallet Addresses' })}
+      </SidebarSubtitle>
       <DashboardSection p={4} mb={4}>
         <Flex gap={2} alignItems='center'>
           <Icon as={LuWallet} />
           <Text fontWeight='extrabold' fontSize='sm'>
-            Census Summary
+            {t('form.process_create.web3.census_summary_title', { defaultValue: 'Census Summary' })}
           </Text>
         </Flex>
         <Text color='texts.subtle' fontSize='xs'>
           <Trans
-            i18nKey='form.process_create.web3.census_summary'
+            i18nKey='form.process_create.web3.census_summary_description'
             components={{ b: <Text as='span' fontWeight='extrabold' display='inline' fontSize='xs' /> }}
             defaults='<b>{{count}}</b> wallet address will be eligible to vote'
             values={{ count: fields.length }}
@@ -140,7 +145,9 @@ export const CensusWeb3Addresses = () => {
                 disabled={fields.length <= 1}
                 variant='outline'
                 icon={<Icon as={LuTrash2} />}
-                aria-label='Remove address'
+                aria-label={t('form.process_create.census.remove_address', {
+                  defaultValue: 'Remove address',
+                })}
                 onClick={() => {
                   remove(index)
                 }}
@@ -163,7 +170,9 @@ export const CensusWeb3Addresses = () => {
       <Box position='relative' py={4}>
         <Divider />
         <AbsoluteCenter bg='chakra.body.bg' px={2} color='texts.subtle' fontSize='xs'>
-          OR UPLOAD CSV
+          {t('form.process_create.web3.upload_csv', {
+            defaultValue: 'OR UPLOAD CSV',
+          })}
         </AbsoluteCenter>
       </Box>
       <FormControl isInvalid={!!fileErr}>
@@ -171,7 +180,9 @@ export const CensusWeb3Addresses = () => {
         <FormErrorMessage>{fileErr}</FormErrorMessage>
       </FormControl>
       <Text color='texts.subtle' fontSize='xs'>
-        CSV should contain wallet addresses in the first column.
+        {t('form.process_create.web3.csv_format', {
+          defaultValue: 'CSV file should contain wallet addresses in the first column.',
+        })}
       </Text>
     </Flex>
   )
