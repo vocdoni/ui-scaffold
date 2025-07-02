@@ -4,12 +4,18 @@ import { usePagination, useRoutedPagination } from '@vocdoni/react-providers'
 import { Trans } from 'react-i18next'
 import RowsPerPageSelect from './RowsPerPageSelect'
 
+const getCurrentPage = (currentPage, lastPage) => {
+  return Math.min(currentPage, lastPage)
+}
+
 const RoutedPaginatedTableFooter = () => {
   const { pagination, initialPage } = useRoutedPagination()
 
   if (!pagination) return null
 
-  const page = initialPage === 0 ? pagination.currentPage + 1 : pagination.currentPage
+  const currentPage = getCurrentPage(pagination.currentPage, pagination.lastPage)
+
+  const page = initialPage === 0 ? currentPage + 1 : currentPage
   const total = initialPage === 0 ? pagination.lastPage + 1 : pagination.lastPage
 
   return (
@@ -35,7 +41,9 @@ export const PaginatedTableFooter = () => {
 
   if (!pagination) return null
 
-  const page = initialPage === 0 ? pagination.currentPage + 1 : pagination.currentPage
+  const currentPage = getCurrentPage(pagination.currentPage, pagination.lastPage)
+
+  const page = initialPage === 0 ? currentPage + 1 : currentPage
   const total = initialPage === 0 ? pagination.lastPage + 1 : pagination.lastPage
 
   return (
