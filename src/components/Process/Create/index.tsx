@@ -452,7 +452,7 @@ export const ProcessCreate = () => {
       if (!account.address) {
         throw new Error('No account address found.')
       }
-      if (!account.electionIndex) {
+      if (isNaN(account.electionIndex)) {
         throw new Error('No election index found for the account.')
       }
       const salt = await client.electionService.getElectionSalt(account.address, account.electionIndex)
