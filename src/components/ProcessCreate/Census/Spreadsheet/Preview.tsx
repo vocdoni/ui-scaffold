@@ -32,8 +32,10 @@ export const CsvPreview = ({ manager, upload }: CsvPreviewProps) => {
           })}
         </Text>
         <UnorderedList>
-          {manager.header.map((field) => (
-            <ListItem textTransform='capitalize'>{field}</ListItem>
+          {manager.header.map((field, index) => (
+            <ListItem key={index} textTransform='capitalize'>
+              {field}
+            </ListItem>
           ))}
         </UnorderedList>
         <Button colorScheme='primary' variant='transparent' border='1px solid' flexShrink={0} {...upload}>
