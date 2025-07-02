@@ -9,7 +9,9 @@ export const RoutesProvider = () => {
   const dashboard = useDashboardRoutes()
   const createOrganizationRoute = useCreateOrganizationRoutes()
 
-  const router = createBrowserRouter([root, auth, dashboard, createOrganizationRoute])
+  const router = createBrowserRouter([root, auth, dashboard, createOrganizationRoute], {
+    basename: import.meta.env.BASE_URL,
+  })
 
   return <RouterProvider router={router} />
 }
