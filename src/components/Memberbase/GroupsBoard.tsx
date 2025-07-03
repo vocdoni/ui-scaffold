@@ -556,7 +556,6 @@ const Groups = () => {
   return (
     <Flex direction='column' gap={4}>
       <GroupsInfo />
-      <GroupsFilter />
       <GroupsBoard />
     </Flex>
   )
