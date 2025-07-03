@@ -100,6 +100,7 @@ export const useDeleteGroup = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: QueryKeys.organization.groups(organization.address),
+        exact: false,
       })
     },
   })
@@ -117,7 +118,7 @@ export const useGroupMembers = (groupId: string, page, isOpen: boolean = false) 
 
   return useQuery<GroupMembers, Error, GroupMembersQueryData>({
     enabled: !!organization?.address && !!groupId && isOpen,
-    queryKey: [QueryKeys.organization.groups(organization?.address), groupId, page],
+    queryKey: [...QueryKeys.organization.groups(organization?.address), groupId, page],
     queryFn: () => bearedFetch<GroupMembers>(fetchUrl),
     select: (data) => {
       const currentPage = data.currentPage

@@ -125,7 +125,8 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
         })
         methods.reset()
         queryClient.invalidateQueries({
-          queryKey: [QueryKeys.organization.members(organization.address), page, limit],
+          queryKey: QueryKeys.organization.members(organization.address),
+          exact: false,
         })
         onClose()
       },
