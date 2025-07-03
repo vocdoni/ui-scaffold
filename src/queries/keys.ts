@@ -11,6 +11,8 @@ export const QueryKeys = {
     subscription: (address?: string) => ['organizations', 'subscription', address].filter(Boolean),
     meta: (address?: string) => ['organizations', 'meta', address].filter(Boolean),
     members: (address?: string) => ['organizations', 'members', address].filter(Boolean),
+    membersImportProgress: (address?: string, jobID?: string) =>
+      ['organizations', 'members', address, 'importJobProgress', jobID].filter(Boolean),
     groups: (address?: string) => ['organizations', 'groups', address].filter(Boolean),
   },
   plans: ['plans'],

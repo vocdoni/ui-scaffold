@@ -126,7 +126,7 @@ export const useImportJobProgress = () => {
 
   return useQuery({
     enabled: Boolean(jobId),
-    queryKey: ['importJobProgress', jobId],
+    queryKey: QueryKeys.organization.membersImportProgress(organization.address, jobId),
     queryFn: () => bearedFetch<{ progress: number; added: number; total: number }>(url),
     refetchInterval: (query) => {
       const data = query.state.data
