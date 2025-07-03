@@ -62,16 +62,18 @@ export function TableProvider({
 
   const isSelected = (id: string) => selectedRows.some((row) => row.id === id)
 
-  const allVisibleSelected = data?.length && data.every((item) => selectedRows.includes(item.id))
-  const someSelected = data?.length && data.some((item) => selectedRows.includes(item.id))
+  const allVisibleSelected = data.length && data.every((item) => isSelected(item.id))
+  const someSelected = selectedRows.length && !allVisibleSelected
 
   const toggleAll = (checked: boolean) => {
     if (checked) {
-      const unique = [...selectedRows, ...data.filter((item) => !selectedRows.includes(item.id)).map((item) => item.id)]
-      setSelectedRows(unique)
+      const newSelections = data
+        .filter((item) => !isSelected(item.id))
+        .map(({ id, name, surname }) => ({ id, name, surname }))
+      setSelectedRows((prev) => [...prev, ...newSelections])
     } else {
-      const filteredIds = data.map((item) => item.id)
-      setSelectedRows((prev) => prev.filter((p) => !filteredIds.includes(p)))
+      const visibleIds = new Set(data.map((item) => item.id))
+      setSelectedRows((prev) => prev.filter((row) => !visibleIds.has(row.id)))
     }
   }
 
