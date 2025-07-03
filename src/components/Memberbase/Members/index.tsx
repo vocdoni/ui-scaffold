@@ -43,7 +43,7 @@ import {
 } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsis, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers, LuX } from 'react-icons/lu'
@@ -80,6 +80,10 @@ type DeleteMemberModalProps = {
   onClose: () => void
   mode: DeleteModes
 } & Omit<ModalProps, 'children'>
+
+type CreateGroupButtonProps = {
+  members?: Member[]
+}
 
 const maskedFields = new Set<string>(['phone'])
 
@@ -181,16 +185,17 @@ const MemberFilters = ({ onDelete }) => {
           onChange={handleSearchChange}
         />
       </InputGroup>
-      <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray' disabled={true}>
-        {t('members_table.create_group_all', {
-          defaultValue: 'Create Group (All)',
+      <CreateGroupButton members={data?.members ?? []} />
+      <Button leftIcon={<Icon as={LuTrash2} />} variant='outline' colorScheme='red' onClick={onDelete}>
+        {t('members_table.delete_all', {
+          defaultValue: 'Delete (All)',
         })}
       </Button>
     </Flex>
   )
 }
 
-const CreateGroupButton = () => {
+const CreateGroupButton = ({ members }: CreateGroupButtonProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false })
@@ -204,11 +209,12 @@ const CreateGroupButton = () => {
     },
   })
 
-  const visible = selectedRows.slice(0, 5)
-  const remainingCount = selectedRows.length - visible.length
+  const selectedMembers = members ?? selectedRows
+  const visible = selectedMembers.slice(0, 5)
+  const remainingCount = selectedMembers.length - visible.length
 
   const createGroup = (data) => {
-    const memberIDs = selectedRows.map((row) => row.id)
+    const memberIDs = selectedMembers.map((row) => row.id)
     const group = {
       ...data,
       memberIDs,
@@ -243,9 +249,7 @@ const CreateGroupButton = () => {
   return (
     <>
       <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray' onClick={onOpen}>
-        {t('members_table.create_group', {
-          defaultValue: 'Create group',
-        })}
+        {t('members_table.create_group', { defaultValue: 'Create group' })}
       </Button>
       <Drawer isOpen={isOpen} placement='right' onClose={onClose} size='sm'>
         <DrawerOverlay />
@@ -291,7 +295,7 @@ const CreateGroupButton = () => {
                     <Text fontSize='sm' mb={2}>
                       {t('members_table.group_members_count', {
                         defaultValue: '{{count}} members selected',
-                        count: selectedRows.length,
+                        count: selectedMembers.length,
                       })}
                     </Text>
                     <Wrap>
@@ -324,7 +328,7 @@ const CreateGroupButton = () => {
                 <Button variant='outline' onClick={onClose}>
                   {t('members_table.cancel', { defaultValue: 'Cancel' })}
                 </Button>
-                <Button colorScheme='black' ml={2} type='submit'>
+                <Button disabled={!selectedMembers.length} colorScheme='black' ml={2} type='submit'>
                   {t('members_table.create_group', { defaultValue: 'Create group' })}
                 </Button>
               </Flex>
@@ -456,7 +460,6 @@ const ImportProgress = () => {
   const { organization } = useOrganization()
   const { jobId, setJobId } = useOutletContext<MemberbaseTabsContext>()
   const { data, isError } = useImportJobProgress()
-  const { page, limit } = useUrlPagination()
 
   const closeAlert = () => {
     setJobId(null)
@@ -470,7 +473,8 @@ const ImportProgress = () => {
   useEffect(() => {
     if (data?.progress === 100) {
       queryClient.invalidateQueries({
-        queryKey: [QueryKeys.organization.members(organization.address), page, limit],
+        queryKey: QueryKeys.organization.members(organization.address),
+        exact: false,
       })
     }
   }, [data?.progress])
