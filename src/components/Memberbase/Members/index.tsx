@@ -54,12 +54,17 @@ import RoutedPaginatedTableFooter from '~components/shared/Pagination/PaginatedT
 import { Routes } from '~routes'
 import { useCreateGroup } from '~src/queries/groups'
 import { QueryKeys } from '~src/queries/keys'
-import { Member, useDeleteMembers, useImportJobProgress, useUrlPagination } from '~src/queries/members'
+import { Member, useDeleteMembers, useImportJobProgress, usePaginatedMembers } from '~src/queries/members'
 import { MemberbaseTabsContext } from '..'
 import { useTable } from '../TableProvider'
 import { ExportMembers } from './Export'
 import { ImportMembers } from './Import'
 import { MemberManager } from './Manager'
+
+enum DeleteModes {
+  SELECTED = 'selected',
+  ALL = 'all',
+}
 
 type MemberActionsProps = {
   member: Member
@@ -73,6 +78,7 @@ type MemberBulkActionsProps = {
 type DeleteMemberModalProps = {
   isOpen: boolean
   onClose: () => void
+  mode: DeleteModes
 } & Omit<ModalProps, 'children'>
 
 const maskedFields = new Set<string>(['phone'])
@@ -154,9 +160,10 @@ const ColumnManager = () => {
   )
 }
 
-const MemberFilters = () => {
+const MemberFilters = ({ onDelete }) => {
   const { t } = useTranslation()
   const { search, setSearch } = useOutletContext<MemberbaseTabsContext>()
+  const { data } = usePaginatedMembers({ showAll: true })
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value)
@@ -359,25 +366,29 @@ const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
   )
 }
 
-const DeleteMemberModal = ({ isOpen, onClose, ...props }: DeleteMemberModalProps) => {
+const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModalProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const { organization } = useOrganization()
   const deleteMutation = useDeleteMembers()
+  const { data: allMembersData, isFetching: isFetchingAll } = usePaginatedMembers({ showAll: true })
   const { selectedRows, resetSelectedRows } = useTable()
   const queryClient = useQueryClient()
-  const { page, limit } = useUrlPagination()
   const navigate = useNavigate()
+  const memberIds =
+    mode === DeleteModes.SELECTED
+      ? selectedRows.map((selectedRow) => selectedRow.id)
+      : (allMembersData?.members ?? []).map((member) => member.id)
 
   const handleDelete = async () => {
     try {
-      await deleteMutation.mutateAsync(selectedRows)
-      resetSelectedRows()
+      await deleteMutation.mutateAsync(memberIds)
+      if (mode === DeleteModes.SELECTED) resetSelectedRows()
       toast({
         title: t('memberbase.delete_member.success', {
           defaultValue: 'Member deleted successfully',
           defaultValue_other: 'Members deleted successfully',
-          count: selectedRows.length,
+          count: memberIds.length,
         }),
         status: 'success',
         duration: 3000,
@@ -386,14 +397,15 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }: DeleteMemberModalProps
       navigate(generatePath(Routes.dashboard.memberbase.members, { page: 1 }))
       onClose()
       await queryClient.invalidateQueries({
-        queryKey: [QueryKeys.organization.members(organization?.address), page, limit],
+        queryKey: QueryKeys.organization.members(organization?.address),
+        exact: false,
       })
     } catch (error) {
       toast({
         title: t('memberbase.delete_member.error', {
           defaultValue: 'Error deleting member',
           defaultValue_other: 'Error deleting members',
-          count: selectedRows.length,
+          count: memberIds.length,
         }),
         description: error.message,
         status: 'error',
@@ -406,11 +418,17 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }: DeleteMemberModalProps
   return (
     <DeleteModal
       title={t('memberbase.delete_member.title', { defaultValue: 'Delete Members' })}
-      subtitle={t('memberbase.delate_member.subtitle', {
-        defaultValue: 'Are you sure you want to delete {{count}} member? This action cannot be undone.',
-        defaultValue_other: 'Are you sure you want to delete {{count}} members? This action cannot be undone.',
-        count: selectedRows.length,
-      })}
+      subtitle={
+        isFetchingAll
+          ? t('memberbase.delete_member.loading', {
+              defaultValue: 'Loading members to delete...',
+            })
+          : t('memberbase.delete_member.subtitle', {
+              defaultValue: 'Are you sure you want to delete {{count}} member? This action cannot be undone.',
+              defaultValue_other: 'Are you sure you want to delete {{count}} members? This action cannot be undone.',
+              count: memberIds.length,
+            })
+      }
       isOpen={isOpen}
       onClose={onClose}
       {...props}
@@ -419,7 +437,12 @@ const DeleteMemberModal = ({ isOpen, onClose, ...props }: DeleteMemberModalProps
         <Button variant='outline' onClick={onClose}>
           {t('memberbase.delete_member.cancel', { defaultValue: 'Cancel' })}
         </Button>
-        <Button isLoading={deleteMutation.isPending} colorScheme='red' onClick={handleDelete}>
+        <Button
+          isLoading={deleteMutation.isPending || isFetchingAll}
+          colorScheme='red'
+          onClick={handleDelete}
+          disabled={isFetchingAll || memberIds.length === 0}
+        >
           {t('memberbase.delete_member.delete', { defaultValue: 'Delete' })}
         </Button>
       </Flex>
@@ -538,6 +561,7 @@ const ImportProgress = () => {
 
 const MembersTable = () => {
   const { t } = useTranslation()
+  const [deleteMode, setDeleteMode] = useState<DeleteModes>(DeleteModes.SELECTED)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const {
     data = [],
@@ -554,8 +578,14 @@ const MembersTable = () => {
   const isLoadingOrImporting = isLoading || isFetching
   const isEmpty = data.length === 0 && !isLoadingOrImporting
 
-  const openDeleteModal = (member?) => {
+  const openDeleteSelected = (member?) => {
+    setDeleteMode(DeleteModes.SELECTED)
     if (member) toggleOne(member.id, true)
+    onOpen()
+  }
+
+  const openDeleteAll = () => {
+    setDeleteMode(DeleteModes.ALL)
     onOpen()
   }
 
@@ -565,8 +595,8 @@ const MembersTable = () => {
       <TableContainer border='1px' borderRadius='sm' borderColor='table.border' overflowX='visible' overflowY='visible'>
         <Flex px={4} pt={4}>
           <Flex direction='column' flex={1} gap={2}>
-            <MemberFilters />
-            <MemberBulkActions onDelete={() => openDeleteModal()} />
+            <MemberFilters onDelete={openDeleteAll} />
+            <MemberBulkActions onDelete={openDeleteSelected} />
           </Flex>
           <Flex gap={2}>
             <ImportMembers />
@@ -633,7 +663,7 @@ const MembersTable = () => {
                       <Td key={column.id}>{maskIfNeeded(column.id, member[column.id])}</Td>
                     ))}
                   <Td>
-                    <MemberActions member={member} onDelete={() => openDeleteModal(member)} />
+                    <MemberActions member={member} onDelete={() => openDeleteSelected(member)} />
                   </Td>
                 </Tr>
               ))
@@ -644,7 +674,7 @@ const MembersTable = () => {
           <RoutedPaginatedTableFooter />
         </Box>
       </TableContainer>
-      <DeleteMemberModal isOpen={isOpen} onClose={onClose} />
+      <DeleteMemberModal isOpen={isOpen} onClose={onClose} mode={deleteMode} />
     </>
   )
 }
