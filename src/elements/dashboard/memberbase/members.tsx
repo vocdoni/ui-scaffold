@@ -52,7 +52,7 @@ const Members = () => {
   const { t } = useTranslation()
   const columns = useMemberColumns()
   const { setBreadcrumb, debouncedSearch } = useOutletContext<MemberbaseTabsContext>()
-  const { data, isLoading, isFetching } = usePaginatedMembers(debouncedSearch)
+  const { data, isLoading, isFetching } = usePaginatedMembers({ search: debouncedSearch })
 
   const members = data?.members || []
   const pagination = data?.pagination || {
