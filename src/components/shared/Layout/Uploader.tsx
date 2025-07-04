@@ -29,6 +29,13 @@ export type UploaderProps = {
   formats?: string[]
 }
 
+type ImageUploaderProps = {
+  name: string
+  shape?: 'circle' | 'square'
+  w?: string
+  h?: string
+}
+
 const useUploadFile = () => {
   const { bearedFetch } = useAuth()
   return useMutation({
@@ -135,6 +142,75 @@ export const AvatarUploader = (props: FormControlProps) => {
         )}
       </Box>
       <FormErrorMessage>{errors?.avatar?.message?.toString()}</FormErrorMessage>
+    </FormControl>
+  )
+}
+
+export const ImageUploader = ({ name, shape = 'square', w = 'full', h = '150px' }: ImageUploaderProps) => {
+  const {
+    watch,
+    setValue,
+    setError,
+    clearErrors,
+    formState: { errors },
+  } = useFormContext()
+  const { mutateAsync: uploadFile, isPending } = useUploadFile()
+
+  const value = watch(name)
+
+  const onUpload = async (files: File[]) => {
+    clearErrors(name)
+    try {
+      const url = await uploadFile(files[0])
+      setValue(name, url)
+    } catch (error) {
+      setError(name, { message: error.message })
+      console.error(error)
+    }
+  }
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop: onUpload,
+    multiple: false,
+    accept: {
+      'image/png': ['.png', '.jpg', '.jpeg'],
+    },
+  })
+
+  const borderRadius = shape === 'circle' ? 'full' : 'none'
+
+  return (
+    <FormControl isInvalid={!!errors?.[name]}>
+      <Flex direction='column' gap={2} align='center'>
+        {value ? (
+          <Box
+            w={w}
+            h={h}
+            bg='gray.700'
+            bgImage={`url(${value})`}
+            bgSize='cover'
+            bgPos='center'
+            borderRadius={borderRadius}
+            position='relative'
+          />
+        ) : (
+          <Flex
+            {...getRootProps()}
+            w={w}
+            h={h}
+            bg='gray.800'
+            justify='center'
+            align='center'
+            cursor='pointer'
+            borderRadius={borderRadius}
+            borderColor={isDragActive ? 'green.400' : 'gray.600'}
+          >
+            <input {...getInputProps()} />
+            {isPending ? <Spinner /> : <Icon as={LuUpload} boxSize={6} color='gray.400' />}
+          </Flex>
+        )}
+      </Flex>
+      <FormErrorMessage>{errors?.[name]?.message?.toString()}</FormErrorMessage>
     </FormControl>
   )
 }
