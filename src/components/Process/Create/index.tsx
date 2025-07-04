@@ -48,7 +48,7 @@ type Question = {
   description: string
   minSelections?: number
   maxSelections?: number
-  options: { option: string }[]
+  options: { option: string; description?: string; budget?: number; image?: string }[]
 }
 
 export type Process = {
@@ -74,6 +74,7 @@ export type Process = {
 export enum QuestionTypes {
   Single = 'single',
   Multiple = 'multiple',
+  ParticipatoryBudgeting = 'participatory_budgeting',
 }
 
 enum TemplateIds {
@@ -95,6 +96,11 @@ export const DefaultQuestions: DefaultQuestionsType = {
     minSelections: 1,
     maxSelections: 1,
     options: [{ option: '' }, { option: '' }],
+  },
+  [QuestionTypes.ParticipatoryBudgeting]: {
+    title: '',
+    description: '',
+    options: [{ option: '', description: '', budget: 0 }],
   },
 }
 

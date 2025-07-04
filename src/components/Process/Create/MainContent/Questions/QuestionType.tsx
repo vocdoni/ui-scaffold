@@ -38,6 +38,10 @@ export const QuestionType = () => {
           const options: SelectOption[] = [
             { value: QuestionTypes.Single, label: t('process.create.question_type.single', 'Single choice') },
             { value: QuestionTypes.Multiple, label: t('process.create.question_type.multiple', 'Multiple choice') },
+            {
+              value: QuestionTypes.ParticipatoryBudgeting,
+              label: t('process.create.question_type.participatory_budgeting', 'Participatory budgeting'),
+            },
           ]
           const selectedOption = options.find((opt) => opt.value === field.value)
 

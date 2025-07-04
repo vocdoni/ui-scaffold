@@ -2,13 +2,16 @@ import {
   Box,
   Button,
   Checkbox,
+  Flex,
   FormControl,
   FormErrorMessage,
+  FormLabel,
   HStack,
   Icon,
   IconButton,
   Input,
   Radio,
+  SimpleGrid,
   Text,
   Textarea,
   VStack,
@@ -17,9 +20,10 @@ import { Select } from 'chakra-react-select'
 import { useEffect } from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuPlus, LuX } from 'react-icons/lu'
+import { LuPlus, LuTrash2, LuX } from 'react-icons/lu'
 import { useProcessTemplates } from '~components/Process/TemplateProvider'
 import { DashboardBox, DashboardSection } from '~components/shared/Dashboard/Contents'
+import { ImageUploader } from '~components/shared/Layout/Uploader'
 import { QuestionTypes } from '../..'
 
 interface QuestionFormProps {
@@ -128,7 +132,11 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
     setValue,
     watch,
   } = useFormContext()
-  const { fields, append, remove } = useFieldArray({
+  const {
+    fields: questionOptions,
+    append,
+    remove,
+  } = useFieldArray({
     name: `questions.${index}.options`,
   })
   const min = watch(`questions.${index}.minSelections`)
@@ -141,6 +149,99 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
       setValue(`questions.${index}.maxSelections`, min)
     }
   }, [min, max, index, setValue])
+
+  if (questionType === QuestionTypes.ParticipatoryBudgeting) {
+    return (
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
+        {questionOptions.map((field, optionIndex) => (
+          <DashboardBox key={field.id} position='relative' p={0}>
+            {/* Trash button */}
+            {questionOptions.length > 2 && (
+              <IconButton
+                icon={<Icon as={LuTrash2} />}
+                aria-label='Remove option'
+                size='sm'
+                colorScheme='red'
+                onClick={() => remove(optionIndex)}
+                position='absolute'
+                top={2}
+                right={2}
+                zIndex='contents'
+              />
+            )}
+
+            <VStack align='stretch' spacing={4}>
+              {/* Image uploader */}
+              <ImageUploader name={`questions.${index}.options.${optionIndex}.image`} />
+              {/* Content box */}
+              <Box p={4}>
+                {/* Title */}
+                <FormControl isInvalid={!!errors.questions?.[index]?.options?.[optionIndex]?.option}>
+                  <Input
+                    px={0}
+                    variant='unstyled'
+                    placeholder='Project title'
+                    fontWeight='bold'
+                    fontSize='md'
+                    {...register(`questions.${index}.options.${optionIndex}.option`, {
+                      required: 'This field is required',
+                    })}
+                  />
+                  <FormErrorMessage>
+                    {errors.questions?.[index]?.options?.[optionIndex]?.option?.message?.toString()}
+                  </FormErrorMessage>
+                </FormControl>
+
+                {/* Description */}
+                <Textarea
+                  variant='unstyled'
+                  placeholder='Project description'
+                  resize='none'
+                  minH='60px'
+                  {...register(`questions.${index}.options.${optionIndex}.description`)}
+                />
+
+                {/* Budget */}
+                <FormControl isInvalid={!!errors.questions?.[index]?.options?.[optionIndex]?.budget}>
+                  <Flex align='center' gap={2}>
+                    <FormLabel>{t('process_create.option.budget.label', 'Budget for this option:')}</FormLabel>
+                    <Input
+                      type='number'
+                      w='80px'
+                      textAlign='right'
+                      {...register(`questions.${index}.options.${optionIndex}.budget`, {
+                        valueAsNumber: true,
+                        required: 'This field is required',
+                      })}
+                      placeholder='0'
+                    />
+                    <Text fontSize='sm'>€</Text>
+                  </Flex>
+                  <FormErrorMessage>
+                    {errors.questions?.[index]?.options?.[optionIndex]?.budget?.message?.toString()}
+                  </FormErrorMessage>
+                </FormControl>
+              </Box>
+            </VStack>
+          </DashboardBox>
+        ))}
+
+        {/* Add new option card */}
+        <DashboardBox
+          onClick={() => append({ option: '', description: '', budget: null })}
+          borderStyle='dashed'
+          cursor='pointer'
+          minH='350px'
+          _hover={{ bg: 'gray.800' }}
+        >
+          <VStack justify='center' align='center' height='100%'>
+            <Icon as={LuPlus} boxSize={6} />
+            <Text>Add a new option</Text>
+          </VStack>
+        </DashboardBox>
+      </SimpleGrid>
+    )
+  }
 
   return (
     <DashboardBox>
@@ -200,7 +301,7 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
 
         {/* Options */}
         <VStack align='stretch' spacing={2}>
-          {fields.map((field, optionIndex) => (
+          {questionOptions.map((field, optionIndex) => (
             <HStack key={field.id} align='start'>
               {questionType === QuestionTypes.Single ? (
                 <Radio isChecked={false} isReadOnly mt={2} />
@@ -223,7 +324,7 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
                   {errors.questions?.[index]?.options?.[optionIndex]?.option?.message?.toString()}
                 </FormErrorMessage>
               </FormControl>
-              {fields.length > 2 && (
+              {questionOptions.length > 2 && (
                 <IconButton
                   icon={<Icon as={LuX} />}
                   aria-label={t('process_create.option.remove', 'Remove option')}
