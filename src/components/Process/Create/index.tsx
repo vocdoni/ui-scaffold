@@ -80,6 +80,7 @@ export enum QuestionTypes {
 enum TemplateIds {
   AnnualGeneralMeeting = 'annual_general_meeting',
   Election = 'election',
+  ParticipatoryBudgeting = 'participatory_budgeting',
 }
 
 export type DefaultQuestionsType = Record<QuestionTypes, Question>
@@ -100,7 +101,10 @@ export const DefaultQuestions: DefaultQuestionsType = {
   [QuestionTypes.ParticipatoryBudgeting]: {
     title: '',
     description: '',
-    options: [{ option: '', description: '', budget: 0 }],
+    options: [
+      { option: '', description: '', budget: null },
+      { option: '', description: '', budget: null },
+    ],
   },
 }
 
@@ -147,6 +151,20 @@ const TemplateConfigs: Record<TemplateIds, TemplateConfig> = {
         minSelections: 1,
         maxSelections: 3,
         options: [{ option: '' }, { option: '' }, { option: '' }],
+      },
+    ],
+  },
+  [TemplateIds.ParticipatoryBudgeting]: {
+    questionType: QuestionTypes.ParticipatoryBudgeting,
+    questions: [
+      {
+        title: '',
+        description: '',
+        options: [
+          { option: '', description: '', budget: null },
+          { option: '', description: '', budget: null },
+          { option: '', description: '', budget: null },
+        ],
       },
     ],
   },
@@ -283,6 +301,14 @@ const TemplateButtons = () => {
         </Button>
         <Button variant='outline' size='sm' data-template={TemplateIds.Election} onClick={handleTemplateClick}>
           {t('process.create.template.election', 'Election')}
+        </Button>
+        <Button
+          variant='outline'
+          size='sm'
+          data-template={TemplateIds.ParticipatoryBudgeting}
+          onClick={handleTemplateClick}
+        >
+          {t('process.create.template.participatory_budgeting', 'Participatory Budgeting')}
         </Button>
       </HStack>
 
@@ -470,10 +496,11 @@ export const ProcessCreate = () => {
 
       let election: UnpublishedElection
       switch (form.questionType) {
-        case 'multiple':
+        case QuestionTypes.ParticipatoryBudgeting:
+        case QuestionTypes.Multiple:
           election = ApprovalElection.from(params)
           break
-        case 'single':
+        case QuestionTypes.Single:
         default:
           election = Election.from(params)
       }

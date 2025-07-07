@@ -24,8 +24,8 @@ export const TemplateProvider = ({ children }) => {
             defaultValue: 'Do you approve the proposed budget for the next fiscal year?',
           }),
           options: [
-            t('process.template.annual_general_meeting.q1.option_1', { defaultValue: 'Yes' }),
-            t('process.template.annual_general_meeting.q1.option_2', { defaultValue: 'No' }),
+            { option: t('process.template.annual_general_meeting.q1.option_1', { defaultValue: 'Yes' }) },
+            { option: t('process.template.annual_general_meeting.q1.option_2', { defaultValue: 'No' }) },
           ],
         },
         {
@@ -36,8 +36,8 @@ export const TemplateProvider = ({ children }) => {
             defaultValue: 'Choose the new members for the board of directors.',
           }),
           options: [
-            t('process.template.annual_general_meeting.q2.option_1', { defaultValue: 'Candidate A' }),
-            t('process.template.annual_general_meeting.q2.option_2', { defaultValue: 'Candidate B' }),
+            { option: t('process.template.annual_general_meeting.q2.option_1', { defaultValue: 'Candidate A' }) },
+            { option: t('process.template.annual_general_meeting.q2.option_2', { defaultValue: 'Candidate B' }) },
           ],
         },
         {
@@ -66,9 +66,44 @@ export const TemplateProvider = ({ children }) => {
             defaultValue: 'Choose the best candidate to represent your interests.',
           }),
           options: [
-            t('process.template.election.q1.option_1', { defaultValue: 'Candidate A' }),
-            t('process.template.election.q1.option_2', { defaultValue: 'Candidate B' }),
-            t('process.template.election.q1.option_3', { defaultValue: 'Candidate C' }),
+            { option: t('process.template.election.q1.option_1', { defaultValue: 'Candidate A' }) },
+            { option: t('process.template.election.q1.option_2', { defaultValue: 'Candidate B' }) },
+            { option: t('process.template.election.q1.option_3', { defaultValue: 'Candidate C' }) },
+          ],
+        },
+      ],
+    },
+    participatory_budgeting: {
+      title: t('process.template.participatory_budgeting.title', {
+        defaultValue: 'Participatory Budgeting Cards',
+      }),
+      description: t('process.template.participatory_budgeting.description', {
+        defaultValue: 'Template for community decision-making on budget allocation with project cards.',
+      }),
+      questions: [
+        {
+          options: [
+            {
+              option: t('process.template.participatory_budgeting.q1.option_1', { defaultValue: 'Project A' }),
+              description: t('process.template.participatory_budgeting.q1.option_1_desc', {
+                defaultValue: 'Description of Project A',
+              }),
+              budget: 1000,
+            },
+            {
+              option: t('process.template.participatory_budgeting.q1.option_1', { defaultValue: 'Project B' }),
+              description: t('process.template.participatory_budgeting.q1.option_2_desc', {
+                defaultValue: 'Description of Project B',
+              }),
+              budget: 2000,
+            },
+            {
+              option: t('process.template.participatory_budgeting.q1.option_1', { defaultValue: 'Project C' }),
+              description: t('process.template.participatory_budgeting.q1.option_3_desc', {
+                defaultValue: 'Description of Project C',
+              }),
+              budget: 1500,
+            },
           ],
         },
       ],
