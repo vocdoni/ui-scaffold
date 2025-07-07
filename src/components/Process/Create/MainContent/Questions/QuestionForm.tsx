@@ -180,11 +180,14 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
                   <Input
                     px={0}
                     variant='unstyled'
-                    placeholder='Project title'
+                    placeholder={
+                      placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.option ??
+                      t('process_create.participatory_budgeting.option.option.placeholder', 'Project Title')
+                    }
                     fontWeight='bold'
                     fontSize='md'
                     {...register(`questions.${index}.options.${optionIndex}.option`, {
-                      required: 'This field is required',
+                      required: t('form.error.required', 'This field is required'),
                     })}
                   />
                   <FormErrorMessage>
@@ -195,7 +198,10 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
                 {/* Description */}
                 <Textarea
                   variant='unstyled'
-                  placeholder='Project description'
+                  placeholder={
+                    placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.description ??
+                    t('process_create.participatory_budgeting.option..description.placeholder', 'Project description')
+                  }
                   resize='none'
                   minH='60px'
                   {...register(`questions.${index}.options.${optionIndex}.description`)}
@@ -211,9 +217,12 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
                       textAlign='right'
                       {...register(`questions.${index}.options.${optionIndex}.budget`, {
                         valueAsNumber: true,
-                        required: 'This field is required',
+                        required: t('form.error.required', 'This field is required'),
                       })}
-                      placeholder='0'
+                      placeholder={
+                        placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.budget ??
+                        t('process_create.participatory_budgeting.option.budget.placeholder', '0')
+                      }
                     />
                     <Text fontSize='sm'>€</Text>
                   </Flex>
@@ -236,7 +245,7 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
         >
           <VStack justify='center' align='center' height='100%'>
             <Icon as={LuPlus} boxSize={6} />
-            <Text>Add a new option</Text>
+            <Text>{t('process_create.new_option', { defaultValue: 'Add a new option' })}</Text>
           </VStack>
         </DashboardBox>
       </SimpleGrid>
@@ -311,7 +320,7 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
               <FormControl isInvalid={!!errors.questions?.[index]?.options?.[optionIndex]?.option} flex='1'>
                 <Input
                   placeholder={
-                    placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex] ??
+                    placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.option ??
                     t('process_create.option.placeholder', 'Option {{number}}', {
                       number: optionIndex + 1,
                     })
