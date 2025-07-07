@@ -46,6 +46,7 @@ export const useProfile = (
   return useQuery<User>({
     ...options,
     queryKey: QueryKeys.profile,
+    refetchOnWindowFocus: false,
     queryFn: () => bearedFetch<User>(ApiEndpoints.Me),
   })
 }

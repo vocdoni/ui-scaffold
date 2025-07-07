@@ -103,6 +103,7 @@ export const useOrganizationMeta = () => {
   const query = useQuery<OrganizationMeta>({
     queryKey: QueryKeys.organization.meta(organization?.address),
     enabled: hasOrganization,
+    refetchOnWindowFocus: false,
     queryFn: async () => {
       const response = await bearedFetch<OrganizationMetaResponse>(
         ApiEndpoints.OrganizationMeta.replace('{address}', enforceHexPrefix(organization.address))
