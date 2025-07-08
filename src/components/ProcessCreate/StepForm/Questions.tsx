@@ -8,6 +8,8 @@ import { StepsFormValues, useProcessCreationSteps } from '../Steps/use-steps'
 
 export interface Option {
   option: string
+  description?: string
+  image?: string
 }
 
 export interface Question {

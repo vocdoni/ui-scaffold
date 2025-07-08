@@ -217,6 +217,12 @@ const electionFromForm = (form) => {
           choices: question.options.map((q: Option, i: number) => ({
             title: { default: q.option },
             value: i,
+            meta: {
+              description: q.description,
+              image: {
+                default: q.image,
+              },
+            },
           })),
         }) as IQuestion
     ),
