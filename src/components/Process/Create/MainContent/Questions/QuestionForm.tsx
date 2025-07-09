@@ -2,10 +2,8 @@ import {
   Box,
   Button,
   Checkbox,
-  Flex,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   HStack,
   Icon,
   IconButton,
@@ -21,6 +19,7 @@ import { useEffect } from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuPlus, LuTrash2, LuX } from 'react-icons/lu'
+import Editor from '~components/Editor'
 import { useProcessTemplates } from '~components/Process/TemplateProvider'
 import { DashboardBox, DashboardSection } from '~components/shared/Dashboard/Contents'
 import { ImageUploader } from '~components/shared/Layout/Uploader'
@@ -153,87 +152,64 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
   if (questionType === QuestionTypes.ParticipatoryBudgeting) {
     return (
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
-        {questionOptions.map((field, optionIndex) => (
-          <DashboardBox key={field.id} position='relative' p={0}>
-            {/* Trash button */}
-            {questionOptions.length > 2 && (
-              <IconButton
-                icon={<Icon as={LuTrash2} />}
-                aria-label='Remove option'
-                size='sm'
-                colorScheme='red'
-                onClick={() => remove(optionIndex)}
-                position='absolute'
-                top={2}
-                right={2}
-                zIndex='contents'
-              />
-            )}
+        {questionOptions.map((field, optionIndex) => {
+          const description = watch(`questions.${index}.options.${optionIndex}.description`)
 
-            <VStack align='stretch' spacing={4}>
-              {/* Image uploader */}
-              <ImageUploader name={`questions.${index}.options.${optionIndex}.image`} />
-              {/* Content box */}
-              <Box p={4}>
-                {/* Title */}
-                <FormControl isInvalid={!!errors.questions?.[index]?.options?.[optionIndex]?.option}>
-                  <Input
-                    px={0}
-                    variant='unstyled'
-                    placeholder={
-                      placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.option ??
-                      t('process_create.participatory_budgeting.option.option.placeholder', 'Project Title')
-                    }
-                    fontWeight='bold'
-                    fontSize='md'
-                    {...register(`questions.${index}.options.${optionIndex}.option`, {
-                      required: t('form.error.required', 'This field is required'),
-                    })}
-                  />
-                  <FormErrorMessage>
-                    {errors.questions?.[index]?.options?.[optionIndex]?.option?.message?.toString()}
-                  </FormErrorMessage>
-                </FormControl>
-
-                {/* Description */}
-                <Textarea
-                  variant='unstyled'
-                  placeholder={
-                    placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.description ??
-                    t('process_create.participatory_budgeting.option..description.placeholder', 'Project description')
-                  }
-                  resize='none'
-                  minH='60px'
-                  {...register(`questions.${index}.options.${optionIndex}.description`)}
+          return (
+            <DashboardBox key={field.id} position='relative' p={0}>
+              {/* Trash button */}
+              {questionOptions.length > 2 && (
+                <IconButton
+                  icon={<Icon as={LuTrash2} />}
+                  aria-label='Remove option'
+                  size='sm'
+                  colorScheme='red'
+                  onClick={() => remove(optionIndex)}
+                  position='absolute'
+                  top={2}
+                  right={2}
+                  zIndex='contents'
                 />
+              )}
 
-                {/* Budget */}
-                <FormControl isInvalid={!!errors.questions?.[index]?.options?.[optionIndex]?.budget}>
-                  <Flex align='center' gap={2}>
-                    <FormLabel>{t('process_create.option.budget.label', 'Budget for this option:')}</FormLabel>
+              <VStack align='stretch' spacing={4}>
+                {/* Image uploader */}
+                <ImageUploader name={`questions.${index}.options.${optionIndex}.image`} />
+                {/* Content box */}
+                <Box p={4}>
+                  {/* Title */}
+                  <FormControl isInvalid={!!errors.questions?.[index]?.options?.[optionIndex]?.option}>
                     <Input
-                      type='number'
-                      w='80px'
-                      textAlign='right'
-                      {...register(`questions.${index}.options.${optionIndex}.budget`, {
-                        valueAsNumber: true,
+                      px={0}
+                      variant='unstyled'
+                      placeholder={
+                        placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.option ??
+                        t('process_create.participatory_budgeting.option.option.placeholder', 'Project Title')
+                      }
+                      fontWeight='bold'
+                      fontSize='md'
+                      {...register(`questions.${index}.options.${optionIndex}.option`, {
                         required: t('form.error.required', 'This field is required'),
                       })}
-                      placeholder={
-                        placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.budget ??
-                        t('process_create.participatory_budgeting.option.budget.placeholder', '0')
-                      }
                     />
-                    <Text fontSize='sm'>€</Text>
-                  </Flex>
-                  <FormErrorMessage>
-                    {errors.questions?.[index]?.options?.[optionIndex]?.budget?.message?.toString()}
-                  </FormErrorMessage>
-                </FormControl>
-              </Box>
-            </VStack>
-          </DashboardBox>
-        ))}
+                    <FormErrorMessage>
+                      {errors.questions?.[index]?.options?.[optionIndex]?.option?.message?.toString()}
+                    </FormErrorMessage>
+                  </FormControl>
+                  {/* Description */}
+                  <Editor
+                    onChange={(text: string) => setValue(`questions.${index}.options.${optionIndex}.description`, text)}
+                    placeholder={
+                      placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.description ??
+                      t('process_create.participatory_budgeting.option..description.placeholder', 'Project description')
+                    }
+                    defaultValue={description}
+                  />
+                </Box>
+              </VStack>
+            </DashboardBox>
+          )
+        })}
 
         {/* Add new option card */}
         <DashboardBox

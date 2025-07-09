@@ -1,12 +1,15 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-import './index.css'
-
+import {
+  Box,
+  Card,
+  HStack,
+  Icon,
+  IconButton,
+  Input,
+  Link,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@chakra-ui/react'
 import { $createLinkNode, $isAutoLinkNode, $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { $findMatchingParent, mergeRegister } from '@lexical/utils'
@@ -26,10 +29,48 @@ import {
 import * as React from 'react'
 import { Dispatch, useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { LuCheck, LuPencil, LuTrash2, LuX } from 'react-icons/lu'
+import { getSelectedNode } from './FloatingTextFormatToolbarPlugin'
 
-import { getSelectedNode } from '../../utils/getSelectedNode'
-import { setFloatingElemPositionForLinkEditor } from '../../utils/setFloatingElemPositionForLinkEditor'
-import { sanitizeUrl } from '../../utils/url'
+const VERTICAL_GAP = 10
+const HORIZONTAL_OFFSET = 5
+
+export function setFloatingElemPositionForLinkEditor(
+  targetRect: DOMRect | null,
+  floatingElem: HTMLElement,
+  anchorElem: HTMLElement,
+  verticalGap: number = VERTICAL_GAP,
+  horizontalOffset: number = HORIZONTAL_OFFSET
+): void {
+  const scrollerElem = anchorElem.parentElement
+
+  if (targetRect === null || !scrollerElem) {
+    floatingElem.style.opacity = '0'
+    floatingElem.style.transform = 'translate(-10000px, -10000px)'
+    return
+  }
+
+  const floatingElemRect = floatingElem.getBoundingClientRect()
+  const anchorElementRect = anchorElem.getBoundingClientRect()
+  const editorScrollerRect = scrollerElem.getBoundingClientRect()
+
+  let top = targetRect.top - verticalGap
+  let left = targetRect.left - horizontalOffset
+
+  if (top < editorScrollerRect.top) {
+    top += floatingElemRect.height + targetRect.height + verticalGap * 2
+  }
+
+  if (left + floatingElemRect.width > editorScrollerRect.right) {
+    left = editorScrollerRect.right - floatingElemRect.width - horizontalOffset
+  }
+
+  top -= anchorElementRect.top
+  left -= anchorElementRect.left
+
+  floatingElem.style.opacity = '1'
+  floatingElem.style.transform = `translate(-2px, ${top}px)`
+}
 
 function FloatingLinkEditor({
   editor,
@@ -92,7 +133,7 @@ function FloatingLinkEditor({
         setFloatingElemPositionForLinkEditor(domRect, editorElem, anchorElem)
       }
       setLastSelection(selection)
-    } else if (!activeElement || activeElement.className !== 'link-input') {
+    } else if (!activeElement) {
       if (rootElement !== null) {
         setFloatingElemPositionForLinkEditor(null, editorElem, anchorElem)
       }
@@ -183,7 +224,7 @@ function FloatingLinkEditor({
   const handleLinkSubmission = () => {
     if (lastSelection !== null) {
       if (linkUrl !== '') {
-        editor.dispatchCommand(TOGGLE_LINK_COMMAND, sanitizeUrl(editedLinkUrl))
+        editor.dispatchCommand(TOGGLE_LINK_COMMAND, editedLinkUrl)
         editor.update(() => {
           const selection = $getSelection()
           if ($isRangeSelection(selection)) {
@@ -204,68 +245,127 @@ function FloatingLinkEditor({
     }
   }
 
-  return (
-    <div ref={editorRef} className='link-editor'>
-      {!isLink ? null : isLinkEditMode ? (
-        <>
-          <input
-            ref={inputRef}
-            className='link-input'
-            value={editedLinkUrl}
-            onChange={(event) => {
-              setEditedLinkUrl(event.target.value)
-            }}
-            onKeyDown={(event) => {
-              monitorInputInteraction(event)
-            }}
-          />
-          <div>
-            <div
-              className='link-cancel'
-              role='button'
-              tabIndex={0}
-              onMouseDown={(event) => event.preventDefault()}
-              onClick={() => {
-                setIsLinkEditMode(false)
-              }}
-            />
+  if (!isLink) {
+    return null
+  }
 
-            <div
-              className='link-confirm'
-              role='button'
-              tabIndex={0}
-              onMouseDown={(event) => event.preventDefault()}
-              onClick={handleLinkSubmission}
-            />
-          </div>
-        </>
+  return (
+    <Card ref={editorRef} position='absolute' top={0} left={0} p={1}>
+      {isLinkEditMode ? (
+        <HStack spacing={2}>
+          <Input
+            ref={inputRef}
+            flex={1}
+            value={editedLinkUrl}
+            onChange={(e) => setEditedLinkUrl(e.target.value)}
+            onKeyDown={monitorInputInteraction}
+            placeholder='Enter link URL'
+            size='sm'
+          />
+          <IconButton
+            icon={<Icon as={LuX} />}
+            aria-label='Cancel'
+            size='xs'
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => setIsLinkEditMode(false)}
+          />
+          <IconButton
+            icon={<Icon as={LuCheck} />}
+            aria-label='Confirm'
+            size='xs'
+            colorScheme='black'
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={handleLinkSubmission}
+          />
+        </HStack>
       ) : (
-        <div className='link-view'>
-          <a href={sanitizeUrl(linkUrl)} target='_blank' rel='noopener noreferrer'>
+        <HStack spacing={2}>
+          <Link flex={1} href={linkUrl} isExternal fontSize='sm'>
             {linkUrl}
-          </a>
-          <div
-            className='link-edit'
-            role='button'
-            tabIndex={0}
-            onMouseDown={(event) => event.preventDefault()}
+          </Link>
+          <IconButton
+            icon={<Icon as={LuPencil} />}
+            aria-label='Edit link'
+            size='xs'
+            onMouseDown={(e) => e.preventDefault()}
             onClick={() => {
               setEditedLinkUrl(linkUrl)
               setIsLinkEditMode(true)
             }}
           />
-          <div
-            className='link-trash'
-            role='button'
-            tabIndex={0}
-            onMouseDown={(event) => event.preventDefault()}
-            onClick={() => {
-              editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
-            }}
+          <IconButton
+            icon={<Icon as={LuTrash2} />}
+            aria-label='Remove link'
+            size='xs'
+            colorScheme='red'
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)}
           />
-        </div>
+        </HStack>
       )}
-    </div>
+    </Card>
+  )
+
+  return (
+    <Popover isOpen={isLink} placement='bottom-start' closeOnBlur={true}>
+      <PopoverTrigger>
+        <Box ref={editorRef} />
+      </PopoverTrigger>
+      <PopoverContent>
+        {isLinkEditMode ? (
+          <HStack spacing={2}>
+            <Input
+              ref={inputRef}
+              flex={1}
+              value={editedLinkUrl}
+              onChange={(e) => setEditedLinkUrl(e.target.value)}
+              onKeyDown={monitorInputInteraction}
+              placeholder='Enter link URL'
+              size='sm'
+            />
+            <IconButton
+              icon={<Icon as={LuX} />}
+              aria-label='Cancel'
+              size='xs'
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => setIsLinkEditMode(false)}
+            />
+            <IconButton
+              icon={<Icon as={LuCheck} />}
+              aria-label='Confirm'
+              size='xs'
+              colorScheme='black'
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={handleLinkSubmission}
+            />
+          </HStack>
+        ) : (
+          <HStack spacing={2}>
+            <Link flex={1} href={linkUrl} isExternal fontSize='sm'>
+              {linkUrl}
+            </Link>
+            <IconButton
+              icon={<Icon as={LuPencil} />}
+              aria-label='Edit link'
+              size='xs'
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => {
+                setEditedLinkUrl(linkUrl)
+                setIsLinkEditMode(true)
+              }}
+            />
+            <IconButton
+              icon={<Icon as={LuTrash2} />}
+              aria-label='Remove link'
+              size='xs'
+              colorScheme='red'
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)}
+            />
+          </HStack>
+        )}
+      </PopoverContent>
+    </Popover>
   )
 }
 

@@ -2,7 +2,6 @@ import { DeleteIcon } from '@chakra-ui/icons'
 import { Box, Flex, FormControl, FormErrorMessage, IconButton, Input, Text } from '@chakra-ui/react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import Editor from '~components/Editor/Editor'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import Options from './Options'
 
@@ -59,11 +58,6 @@ export const Question = ({ index, isMultiQuestion, remove }: Props) => {
           />
         )}
       </Flex>
-      <Editor
-        onChange={(text: string) => setValue(`questions.${index}.description`, text)}
-        placeholder={t('form.process_create.question.description_placeholder').toString()}
-        defaultValue={description}
-      />
 
       <Options fields={fields} removeOption={removeOption} appendOption={appendOption} index={index} />
 

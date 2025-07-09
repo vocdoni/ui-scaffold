@@ -1,16 +1,9 @@
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-import './index.css'
-
+import { Card, HStack, Icon, IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { $isCodeHighlightNode } from '@lexical/code'
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link'
+import { INSERT_ORDERED_LIST_COMMAND, INSERT_UNORDERED_LIST_COMMAND, REMOVE_LIST_COMMAND } from '@lexical/list'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
+import { $isAtNodeEnd } from '@lexical/selection'
 import { mergeRegister } from '@lexical/utils'
 import {
   $getSelection,
@@ -18,20 +11,92 @@ import {
   $isRangeSelection,
   $isTextNode,
   COMMAND_PRIORITY_LOW,
-  createCommand,
+  ElementNode,
   FORMAT_TEXT_COMMAND,
-  LexicalCommand,
   LexicalEditor,
+  RangeSelection,
   SELECTION_CHANGE_COMMAND,
+  TextNode,
 } from 'lexical'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { Dispatch, useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { LuBold, LuItalic, LuLink, LuList, LuListOrdered, LuStrikethrough, LuText, LuUnderline } from 'react-icons/lu'
 
-import { getDOMRangeRect } from '../../utils/getDOMRangeRect'
-import { getSelectedNode } from '../../utils/getSelectedNode'
-import { setFloatingElemPosition } from '../../utils/setFloatingElemPosition'
+export function getSelectedNode(selection: RangeSelection): TextNode | ElementNode {
+  const anchor = selection.anchor
+  const focus = selection.focus
+  const anchorNode = selection.anchor.getNode()
+  const focusNode = selection.focus.getNode()
+  if (anchorNode === focusNode) {
+    return anchorNode
+  }
+  const isBackward = selection.isBackward()
+  if (isBackward) {
+    return $isAtNodeEnd(focus) ? anchorNode : focusNode
+  } else {
+    return $isAtNodeEnd(anchor) ? anchorNode : focusNode
+  }
+}
 
-const INSERT_INLINE_COMMAND: LexicalCommand<void> = createCommand('INSERT_INLINE_COMMAND')
+export function getDOMRangeRect(nativeSelection: Selection, rootElement: HTMLElement): DOMRect {
+  const domRange = nativeSelection.getRangeAt(0)
+
+  let rect
+
+  if (nativeSelection.anchorNode === rootElement) {
+    let inner = rootElement
+    while (inner.firstElementChild != null) {
+      inner = inner.firstElementChild as HTMLElement
+    }
+    rect = inner.getBoundingClientRect()
+  } else {
+    rect = domRange.getBoundingClientRect()
+  }
+
+  return rect
+}
+
+const VERTICAL_GAP = 10
+const HORIZONTAL_OFFSET = 5
+
+export function setFloatingElemPosition(
+  targetRect: DOMRect | null,
+  floatingElem: HTMLElement,
+  anchorElem: HTMLElement,
+  isLink: boolean = false,
+  verticalGap: number = VERTICAL_GAP,
+  horizontalOffset: number = HORIZONTAL_OFFSET
+): void {
+  const scrollerElem = anchorElem.parentElement
+
+  if (targetRect === null || !scrollerElem) {
+    floatingElem.style.opacity = '0'
+    floatingElem.style.transform = 'translate(-10000px, -10000px)'
+    return
+  }
+
+  const floatingElemRect = floatingElem.getBoundingClientRect()
+  const anchorElementRect = anchorElem.getBoundingClientRect()
+  const editorScrollerRect = scrollerElem.getBoundingClientRect()
+
+  let top = targetRect.top - floatingElemRect.height - verticalGap
+  let left = targetRect.left - horizontalOffset
+
+  if (top < editorScrollerRect.top) {
+    // adjusted height for link element if the element is at top
+    top += floatingElemRect.height + targetRect.height + verticalGap * (isLink ? 9 : 2)
+  }
+
+  if (left + floatingElemRect.width > editorScrollerRect.right) {
+    left = editorScrollerRect.right - floatingElemRect.width - horizontalOffset
+  }
+
+  top -= anchorElementRect.top
+  left -= anchorElementRect.left
+
+  floatingElem.style.opacity = '1'
+  floatingElem.style.transform = `translate(-2px, ${top}px)`
+}
 
 function TextFormatFloatingToolbar({
   editor,
@@ -39,28 +104,30 @@ function TextFormatFloatingToolbar({
   isLink,
   isBold,
   isItalic,
+  isUnderline,
   isStrikethrough,
+  setIsLinkEditMode,
 }: {
   editor: LexicalEditor
   anchorElem: HTMLElement
   isBold: boolean
   isItalic: boolean
+  isUnderline: boolean
   isLink: boolean
   isStrikethrough: boolean
+  setIsLinkEditMode: Dispatch<boolean>
 }): JSX.Element {
+  const [textType, setTextType] = useState<'text' | 'list' | 'ordered-list'>('text')
   const popupCharStylesEditorRef = useRef<HTMLDivElement | null>(null)
 
   const insertLink = useCallback(() => {
     if (!isLink) {
       editor.dispatchCommand(TOGGLE_LINK_COMMAND, 'https://')
+      setIsLinkEditMode(true)
     } else {
       editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
     }
   }, [editor, isLink])
-
-  const insertComment = () => {
-    editor.dispatchCommand(INSERT_INLINE_COMMAND, undefined)
-  }
 
   function mouseMoveListener(e: MouseEvent) {
     if (popupCharStylesEditorRef?.current && (e.buttons === 1 || e.buttons === 3)) {
@@ -165,58 +232,109 @@ function TextFormatFloatingToolbar({
   }, [editor, updateTextFormatFloatingToolbar])
 
   return (
-    <div ref={popupCharStylesEditorRef} className='floating-text-format-popup'>
+    <Card ref={popupCharStylesEditorRef} position='absolute' top={0} left={0} p={1} zIndex='contents'>
       {editor.isEditable() && (
-        <>
-          <button
-            type='button'
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')
-            }}
-            className={'popup-item spaced ' + (isBold ? 'active' : '')}
-            aria-label='Format text as bold'
-          >
-            <i className='format bold' />
-          </button>
-          <button
-            type='button'
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')
-            }}
-            className={'popup-item spaced ' + (isItalic ? 'active' : '')}
-            aria-label='Format text as italics'
-          >
-            <i className='format italic' />
-          </button>
-          <button
-            type='button'
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough')
-            }}
-            className={'popup-item spaced ' + (isStrikethrough ? 'active' : '')}
-            aria-label='Format text with a strikethrough'
-          >
-            <i className='format strikethrough' />
-          </button>
-          <button
-            type='button'
+        <HStack>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              icon={
+                textType === 'text' ? (
+                  <Icon as={LuText} />
+                ) : textType === 'list' ? (
+                  <Icon as={LuList} />
+                ) : (
+                  <Icon as={LuListOrdered} />
+                )
+              }
+              aria-label='Paragraph'
+              variant='ghost'
+              colorScheme='black'
+              size='sm'
+            />
+            <MenuList>
+              <MenuItem
+                onClick={() => {
+                  setTextType('text')
+                  editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined)
+                }}
+              >
+                <Icon as={LuText} />
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  setTextType('list')
+                  editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined)
+                }}
+              >
+                <Icon as={LuList} />
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  setTextType('ordered-list')
+                  editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined)
+                }}
+              >
+                <Icon as={LuListOrdered} />
+              </MenuItem>
+            </MenuList>
+          </Menu>
+          <IconButton
+            icon={<Icon as={LuBold} />}
+            aria-label='Bold'
+            variant={isBold ? 'solid' : 'ghost'}
+            colorScheme='black'
+            size='sm'
+            onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')}
+          />
+          <IconButton
+            icon={<Icon as={LuItalic} />}
+            aria-label='Italic'
+            variant={isItalic ? 'solid' : 'ghost'}
+            colorScheme='black'
+            size='sm'
+            onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')}
+          />
+          <IconButton
+            icon={<Icon as={LuUnderline} />}
+            aria-label='Underline'
+            variant={isUnderline ? 'solid' : 'ghost'}
+            colorScheme='black'
+            size='sm'
+            onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline')}
+          />
+          <IconButton
+            icon={<Icon as={LuStrikethrough} />}
+            aria-label='Strikethrough'
+            variant={isStrikethrough ? 'solid' : 'ghost'}
+            colorScheme='black'
+            size='sm'
+            onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough')}
+          />
+          <IconButton
+            icon={<Icon as={LuLink} />}
+            aria-label='Link'
+            variant={isLink ? 'solid' : 'ghost'}
+            colorScheme='black'
+            size='sm'
             onClick={insertLink}
-            className={'popup-item spaced ' + (isLink ? 'active' : '')}
-            aria-label='Insert link'
-          >
-            <i className='format link' />
-          </button>
-        </>
+          />
+        </HStack>
       )}
-    </div>
+    </Card>
   )
 }
 
-function useFloatingTextFormatToolbar(editor: LexicalEditor, anchorElem: HTMLElement): JSX.Element | null {
+function useFloatingTextFormatToolbar(
+  editor: LexicalEditor,
+  anchorElem: HTMLElement,
+  setIsLinkEditMode: Dispatch<boolean>
+): JSX.Element | null {
   const [isText, setIsText] = useState(false)
   const [isLink, setIsLink] = useState(false)
   const [isBold, setIsBold] = useState(false)
   const [isItalic, setIsItalic] = useState(false)
+  const [isUnderline, setIsUnderline] = useState(false)
   const [isStrikethrough, setIsStrikethrough] = useState(false)
   const [isSubscript, setIsSubscript] = useState(false)
   const [isSuperscript, setIsSuperscript] = useState(false)
@@ -249,6 +367,7 @@ function useFloatingTextFormatToolbar(editor: LexicalEditor, anchorElem: HTMLEle
       // Update text format
       setIsBold(selection.hasFormat('bold'))
       setIsItalic(selection.hasFormat('italic'))
+      setIsUnderline(selection.hasFormat('underline'))
       setIsStrikethrough(selection.hasFormat('strikethrough'))
       setIsSubscript(selection.hasFormat('subscript'))
       setIsSuperscript(selection.hasFormat('superscript'))
@@ -307,7 +426,9 @@ function useFloatingTextFormatToolbar(editor: LexicalEditor, anchorElem: HTMLEle
       isLink={isLink}
       isBold={isBold}
       isItalic={isItalic}
+      isUnderline={isUnderline}
       isStrikethrough={isStrikethrough}
+      setIsLinkEditMode={setIsLinkEditMode}
     />,
     anchorElem
   )
@@ -315,9 +436,11 @@ function useFloatingTextFormatToolbar(editor: LexicalEditor, anchorElem: HTMLEle
 
 export default function FloatingTextFormatToolbarPlugin({
   anchorElem = document.body,
+  setIsLinkEditMode,
 }: {
   anchorElem?: HTMLElement
+  setIsLinkEditMode: Dispatch<boolean>
 }): JSX.Element | null {
   const [editor] = useLexicalComposerContext()
-  return useFloatingTextFormatToolbar(editor, anchorElem)
+  return useFloatingTextFormatToolbar(editor, anchorElem, setIsLinkEditMode)
 }
