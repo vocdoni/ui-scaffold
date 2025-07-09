@@ -35,7 +35,7 @@ const generateFakeValue = (columnId: string): string => {
       return '+1234567890'
     case 'memberID':
       return '123456'
-    case 'nationalID':
+    case 'nationalId':
       return '987654321'
     case 'birthDate':
       return '1990-01-01'

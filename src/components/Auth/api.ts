@@ -16,7 +16,7 @@ export enum ApiEndpoints {
   OrganizationsSupport = 'organizations/{address}/ticket',
   OrganizationMeta = 'organizations/{address}/meta',
   OrganizationMembers = 'organizations/{address}/members',
-  OrganizationMembersImport = 'organizations/{address}/members/job/{jobID}',
+  OrganizationMembersImport = 'organizations/{address}/members/job/{jobId}',
   OrganizationGroups = 'organizations/{address}/groups',
   OrganizationGroup = 'organizations/{address}/groups/{groupId}',
   OrganizationGroupMembers = 'organizations/{address}/groups/{groupId}/members',

@@ -6,12 +6,12 @@ import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
 
 export type MemberbaseTabsContext = {
-  setJobID: (jobID: string | null) => void
-  jobID: string | null
+  setJobId: (jobId: string | null) => void
+  jobId: string | null
 } & DashboardLayoutContext
 
 export const MemberbaseTabs = () => {
-  const [jobID, setJobID] = useState(null)
+  const [jobId, setJobId] = useState(null)
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
@@ -55,7 +55,7 @@ export const MemberbaseTabs = () => {
             <Tab key={index}>{item.label}</Tab>
           ))}
         </TabList>
-        <Outlet context={{ setBreadcrumb, setJobID, jobID }} />
+        <Outlet context={{ setBreadcrumb, setJobId, jobId }} />
       </Tabs>
     </>
   )

@@ -12,7 +12,7 @@ export type Group = {
   description: string
   createdAt: string
   updatedAt: string
-  censusIDs: string[]
+  censusIds: string[]
   membersCount: number
 }
 

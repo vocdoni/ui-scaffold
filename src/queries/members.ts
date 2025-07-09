@@ -16,7 +16,7 @@ export type Member = {
   email: string
   password: string
   phone: string
-  nationalID: string
+  nationalId: string
   birthDate: string
 }
 
@@ -31,7 +31,7 @@ type PaginatedMembers = {
 } & PaginationResponse
 
 type AddMembersResponse = {
-  jobID?: string
+  jobId?: string
   count: number
 }
 
@@ -115,18 +115,18 @@ export const useDeleteMembers = () => {
 }
 
 export const useImportJobProgress = () => {
-  const { jobID } = useOutletContext<MemberbaseTabsContext>()
+  const { jobId } = useOutletContext<MemberbaseTabsContext>()
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
 
   const url = ApiEndpoints.OrganizationMembersImport.replace(
     '{address}',
     enforceHexPrefix(organization.address)
-  ).replace('{jobID}', jobID)
+  ).replace('{jobId}', jobId)
 
   return useQuery({
-    enabled: Boolean(jobID),
-    queryKey: ['importJobProgress', jobID],
+    enabled: Boolean(jobId),
+    queryKey: ['importJobProgress', jobId],
     queryFn: () => bearedFetch<{ progress: number; added: number; total: number }>(url),
     refetchInterval: (query) => {
       const data = query.state.data
