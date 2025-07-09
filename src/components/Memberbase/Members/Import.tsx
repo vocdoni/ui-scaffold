@@ -258,7 +258,7 @@ export const ImportMembers = () => {
   })
   const [columnMapping, setColumnMapping] = useState<ColumnMapping>({})
   const addMembers = useAddMembers(true)
-  const { setJobID } = useOutletContext<MemberbaseTabsContext>()
+  const { setJobId } = useOutletContext<MemberbaseTabsContext>()
 
   const hasSpreadsheet = Boolean(spreadsheet?.filedata)
 
@@ -274,7 +274,7 @@ export const ImportMembers = () => {
 
     try {
       const data = await addMembers.mutateAsync(finalData)
-      setJobID(data?.jobID)
+      setJobId(data?.jobId)
       setColumnMapping({})
       methods.reset()
       onClose()

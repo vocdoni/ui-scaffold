@@ -432,12 +432,12 @@ const ImportProgress = () => {
   const { t } = useTranslation()
   const queryClient = useQueryClient()
   const { organization } = useOrganization()
-  const { jobID, setJobID } = useOutletContext<MemberbaseTabsContext>()
+  const { jobId, setJobId } = useOutletContext<MemberbaseTabsContext>()
   const { data, isError } = useImportJobProgress()
   const { page, limit } = useUrlPagination()
 
   const closeAlert = () => {
-    setJobID(null)
+    setJobId(null)
   }
 
   /**
@@ -453,7 +453,7 @@ const ImportProgress = () => {
     }
   }, [data?.progress])
 
-  if (!jobID) return null
+  if (!jobId) return null
 
   if (isError) {
     return (

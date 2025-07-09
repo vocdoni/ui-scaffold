@@ -35,7 +35,7 @@ export const useMemberColumns = () => {
       },
       {
         label: t('form.members.spreadsheet.template.national_id', { defaultValue: 'National ID' }),
-        id: 'nationalID',
+        id: 'nationalId',
         visible: false,
       },
       {

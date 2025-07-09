@@ -16,7 +16,7 @@ export const MaxWindowWidth = '2560px'
 
 export enum SubscriptionPermission {
   Name = 'name',
-  StripeID = 'stripeID',
+  StripeId = 'stripeId',
   Default = 'default',
   Users = 'organization.users',
   SubOrgs = 'organization.subOrgs',

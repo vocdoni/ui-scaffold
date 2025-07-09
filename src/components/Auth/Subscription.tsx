@@ -16,7 +16,7 @@ type PermissionsContextType = {
 
 export type SubscriptionType = {
   subscriptionDetails: {
-    planID: number
+    planId: number
     startDate: string
     endDate: string
     lastPaymentDate: string
