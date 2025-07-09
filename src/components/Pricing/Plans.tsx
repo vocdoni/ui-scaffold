@@ -32,7 +32,7 @@ import { usePricingModal } from './use-pricing-modal'
 export type Plan = {
   id: number
   name: string
-  stripeID: string
+  stripeId: string
   startingPrice: number
   default: boolean
   organization: {

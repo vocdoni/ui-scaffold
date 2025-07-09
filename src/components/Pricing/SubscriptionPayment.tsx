@@ -39,7 +39,7 @@ type ModalProps = {
 
 type CheckoutResponse = {
   clientSecret: string
-  sessionID: string
+  sessionId: string
 }
 
 const useUpdateSubscription = () => {
