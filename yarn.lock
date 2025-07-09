@@ -348,12 +348,12 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
-"@babel/runtime@^7.12.0", "@babel/runtime@^7.12.5", "@babel/runtime@^7.18.3", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.12.0", "@babel/runtime@^7.18.3", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.7":
   version "7.27.3"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.27.3.tgz#10491113799fb8d77e1d9273384d5d68deeea8f6"
   integrity sha512-7EYtGezsdiDMyY80+65EzwiGmcJqpmcZCojSXaRgdrBaGtWTgDZKq69cPIVped6MkIM78cTQ2GOiEYjwOlG4xw==
 
-"@babel/runtime@^7.15.4":
+"@babel/runtime@^7.12.5", "@babel/runtime@^7.15.4":
   version "7.27.6"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.27.6.tgz#ec4070a04d76bae8ddbb10770ba55714a417b7c6"
   integrity sha512-vbavdySgbTTrmFE+EsiqUTzlOr5bzlnJtUv9PynGCAKvfQqjIXbvFdumPM/GxMDfyuGMJaJAU6TO4zc1Jf1i8Q==
@@ -4194,7 +4194,7 @@ circom_runtime@0.1.25:
   dependencies:
     ffjavascript "0.3.0"
 
-"circomlibjs@github:vocdoni/circomlibjs#f/browser":
+circomlibjs@vocdoni/circomlibjs#f/browser:
   version "0.2.2"
   resolved "https://codeload.github.com/vocdoni/circomlibjs/tar.gz/bc351ea49a39e3a16421962f1e704f3742a343dd"
   dependencies:
@@ -7903,9 +7903,9 @@ pretty-format@^29.0.0, pretty-format@^29.7.0:
     react-is "^18.0.0"
 
 prismjs@^1.27.0:
-  version "1.29.0"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.29.0.tgz#f113555a8fa9b57c35e637bba27509dcf802dd12"
-  integrity sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==
+  version "1.30.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.30.0.tgz#d9709969d9d4e16403f6f348c63553b19f0975a9"
+  integrity sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==
 
 proc-log@^4.1.0, proc-log@^4.2.0:
   version "4.2.0"
@@ -8600,7 +8600,7 @@ snake-case@^3.0.4:
     dot-case "^3.0.4"
     tslib "^2.0.3"
 
-"snarkjs@github:vocdoni/snarkjs#f/browser":
+snarkjs@vocdoni/snarkjs#f/browser:
   version "0.7.0"
   resolved "https://codeload.github.com/vocdoni/snarkjs/tar.gz/5ba4333d0b6df8098219bca9b1f288a30d066d0e"
   dependencies:

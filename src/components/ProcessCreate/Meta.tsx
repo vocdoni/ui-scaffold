@@ -1,7 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import Editor from '~components/Editor/Editor'
 import InputBasic from '~shared/Form/InputBasic'
 
 const CreateProcessMeta = () => {
@@ -42,12 +41,6 @@ const CreateProcessMeta = () => {
           <Text fontWeight='bold' mb={2}>
             {t('form.process_create.meta.description_label')}
           </Text>
-          <Editor
-            onChange={(text: string) => setValue('description', text)}
-            placeholder={t('form.process_create.meta.description_placeholder').toString()}
-            maxLength={maxLengthDescription}
-            defaultValue={description}
-          />
         </Flex>
       </Flex>
     </>
