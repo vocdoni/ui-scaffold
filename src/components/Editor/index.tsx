@@ -17,9 +17,8 @@ import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import { useState } from 'react'
 
-// import './index.css'
-
 import { FloatingLinkEditorPlugin, FloatingTextFormatToolbarPlugin } from './plugins'
+import OnChangeMarkdown from './plugins/OnChangeMarkdown'
 
 type EditorProps = {
   isDisabled?: boolean
@@ -84,7 +83,7 @@ const Editor = (props: EditorProps) => {
           }
           aria-placeholder={props.placeholder}
           placeholder={
-            <Text position='absolute' top='2' color='texts.subtle' pointerEvents='none'>
+            <Text position='absolute' top='2' color='texts.dark' pointerEvents='none'>
               {props.placeholder}
             </Text>
           }
@@ -94,6 +93,7 @@ const Editor = (props: EditorProps) => {
       <HistoryPlugin />
       <ListPlugin />
       <LinkPlugin />
+      <OnChangeMarkdown onChange={props.onChange} transformers={TRANSFORMERS} />
       {props.maxLength && props.maxLength > 0 && <CharacterLimitPlugin maxLength={props.maxLength} charset='UTF-8' />}
       {floatingAnchorElem && (
         <>

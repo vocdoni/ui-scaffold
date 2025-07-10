@@ -11,7 +11,6 @@ import {
   Radio,
   SimpleGrid,
   Text,
-  Textarea,
   VStack,
 } from '@chakra-ui/react'
 import { Select } from 'chakra-react-select'
@@ -142,6 +141,7 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
   const max = watch(`questions.${index}.maxSelections`)
   const questionType = watch('questionType')
   const questions = watch('questions')
+  const questionDescription = watch(`questions.${index}.description`)
 
   useEffect(() => {
     if (min && max && max < min) {
@@ -153,7 +153,7 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
     return (
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
         {questionOptions.map((field, optionIndex) => {
-          const description = watch(`questions.${index}.options.${optionIndex}.description`)
+          const optionDescription = watch(`questions.${index}.options.${optionIndex}.description`)
 
           return (
             <DashboardBox key={field.id} position='relative' p={0}>
@@ -203,7 +203,7 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
                       placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.description ??
                       t('process_create.participatory_budgeting.option..description.placeholder', 'Project description')
                     }
-                    defaultValue={description}
+                    defaultValue={optionDescription}
                   />
                 </Box>
               </VStack>
@@ -257,8 +257,8 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
               />
               <FormErrorMessage>{errors.questions?.[index]?.title?.message?.toString()}</FormErrorMessage>
             </FormControl>
-            <Textarea
-              variant='unstyled'
+            <Editor
+              onChange={(text: string) => setValue(`questions.${index}.description`, text)}
               placeholder={
                 placeholders[activeTemplate]?.questions?.[index]?.description ??
                 t(
@@ -266,9 +266,7 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
                   'Add the description of the question here (optional)...'
                 )
               }
-              resize='none'
-              minH='60px'
-              {...register(`questions.${index}.description`)}
+              defaultValue={questionDescription}
             />
           </VStack>
           {questions.length > 1 && (

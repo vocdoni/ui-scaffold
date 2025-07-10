@@ -10,7 +10,6 @@ import {
   IconButton,
   Input,
   Text,
-  Textarea,
   useBreakpointValue,
   useDisclosure,
   useToast,
@@ -31,6 +30,7 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import { createPath, generatePath, useBlocker, useLocation, useNavigate, useParams } from 'react-router-dom'
+import Editor from '~components/Editor'
 import { CensusSpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/CensusSpreadsheetManager'
 import { Web3Address } from '~components/ProcessCreate/StepForm/CensusWeb3'
 import { Option } from '~components/ProcessCreate/StepForm/Questions'
@@ -437,6 +437,7 @@ export const ProcessCreate = () => {
   const blocker = useBlocker(methods.formState.isDirty)
   const { client, account } = useClient()
   const { isSubmitting, isSubmitSuccessful } = methods.formState
+  const description = methods.watch('description')
 
   // Trigger confirmation modal when form is dirty and user tries to navigate away
   useEffect(() => {
@@ -642,15 +643,13 @@ export const ProcessCreate = () => {
               />
               <FormErrorMessage>{methods.formState.errors.title?.message?.toString()}</FormErrorMessage>
             </FormControl>
-            <Textarea
-              variant='unstyled'
+            <Editor
+              onChange={(text: string) => methods.setValue('description', text)}
               placeholder={
                 placeholders[activeTemplate]?.description ??
                 t('process.create.description.placeholder', 'Add a description...')
               }
-              resize='none'
-              minH='100px'
-              {...methods.register('description')}
+              defaultValue={description}
             />
           </VStack>
 
