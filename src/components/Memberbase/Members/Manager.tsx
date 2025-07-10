@@ -6,7 +6,12 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
+  FormControl,
+  FormErrorMessage,
+  FormHelperText,
+  FormLabel,
   Heading,
+  Input,
   Stack,
   Text,
   useDisclosure,
@@ -14,12 +19,11 @@ import {
 } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
-import { cloneElement, useEffect, useMemo, useRef } from 'react'
+import { cloneElement, useEffect, useMemo, useRef, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import InputBasic from '~components/shared/Form/InputBasic'
 import { QueryKeys } from '~src/queries/keys'
-import { Member, useAddMembers, useUrlPagination } from '~src/queries/members'
+import { Member, useAddMembers } from '~src/queries/members'
 import { useTable } from '../TableProvider'
 
 type MemberFormData = Record<string, string>
@@ -38,7 +42,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
   const addMember = useAddMembers()
   const { organization } = useOrganization()
   const queryClient = useQueryClient()
-  const { page, limit } = useUrlPagination()
+  const [hadPhone, setHadPhone] = useState(false)
 
   const defaultValues: MemberFormData = useMemo(() => Object.fromEntries(columns.map((col) => [col.id, ''])), [columns])
 
@@ -98,14 +102,20 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
    */
   useEffect(() => {
     if (member) {
-      methods.reset(member)
+      const cleanMember = { ...member }
+      if (member.phone) {
+        cleanMember.phone = ''
+        setHadPhone(true)
+      }
+      methods.reset(cleanMember)
     }
   }, [member])
 
   const onSubmit = (data: MemberFormData) => {
-    const { memberNumber, name, surname, email, phone, nationalId, birthDate } = data
+    const { id, memberNumber, name, surname, email, phone, nationalId, birthDate } = data
 
     const memberPayload: Partial<Member> = {
+      id,
       memberNumber,
       name,
       surname,
@@ -166,13 +176,26 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
                 const isBirthdate = col.id === 'birthDate'
 
                 return (
-                  <InputBasic
-                    key={col.id}
-                    formValue={col.id}
-                    label={col.label}
-                    type={isBirthdate ? 'date' : isPhone ? 'tel' : 'text'}
-                    validation={fieldValidations[col.id] || {}}
-                  />
+                  <FormControl isInvalid={!!methods.formState.errors[col.id]}>
+                    <FormLabel>{col.label}</FormLabel>
+                    <Input
+                      {...methods.register(col.id, {
+                        ...(fieldValidations[col.id] || {}),
+                      })}
+                      type={isBirthdate ? 'date' : isPhone ? 'tel' : 'text'}
+                      required={false} // we don't want HTML5 validation
+                    />
+                    {isPhone && hadPhone && (
+                      <FormHelperText>
+                        {t('memberbase.form.phone_warning', {
+                          defaultValue: 'Phone number hidden. Any changes here will overwrite it.',
+                        })}
+                      </FormHelperText>
+                    )}
+                    <FormErrorMessage mt={2}>
+                      {methods.formState.errors[col.id]?.message?.toString() || 'Error performing the operation'}
+                    </FormErrorMessage>
+                  </FormControl>
                 )
               })}
             </Stack>
