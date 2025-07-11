@@ -250,7 +250,7 @@ function FloatingLinkEditor({
   }
 
   return (
-    <Card ref={editorRef} position='absolute' top={0} left={0} p={1}>
+    <Card ref={editorRef} position='absolute' top={0} left={0} p={1} zIndex='contents'>
       {isLinkEditMode ? (
         <HStack spacing={2}>
           <Input

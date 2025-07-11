@@ -42,6 +42,7 @@ const theme = {
     ol: 'lexical-ol',
     listitem: 'lexical-li',
   },
+  link: 'lexical-link',
 }
 
 const Editor = (props: EditorProps) => {
