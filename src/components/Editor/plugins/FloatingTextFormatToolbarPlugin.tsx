@@ -6,6 +6,7 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import { $isAtNodeEnd } from '@lexical/selection'
 import { mergeRegister } from '@lexical/utils'
 import {
+  $createParagraphNode,
   $getSelection,
   $isParagraphNode,
   $isRangeSelection,
@@ -235,50 +236,6 @@ function TextFormatFloatingToolbar({
     <Card ref={popupCharStylesEditorRef} position='absolute' top={0} left={0} p={1} zIndex='contents'>
       {editor.isEditable() && (
         <HStack>
-          <Menu>
-            <MenuButton
-              as={IconButton}
-              icon={
-                textType === 'text' ? (
-                  <Icon as={LuText} />
-                ) : textType === 'list' ? (
-                  <Icon as={LuList} />
-                ) : (
-                  <Icon as={LuListOrdered} />
-                )
-              }
-              aria-label='Paragraph'
-              variant='ghost'
-              colorScheme='black'
-              size='sm'
-            />
-            <MenuList>
-              <MenuItem
-                onClick={() => {
-                  setTextType('text')
-                  editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined)
-                }}
-              >
-                <Icon as={LuText} />
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setTextType('list')
-                  editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined)
-                }}
-              >
-                <Icon as={LuList} />
-              </MenuItem>
-              <MenuItem
-                onClick={() => {
-                  setTextType('ordered-list')
-                  editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined)
-                }}
-              >
-                <Icon as={LuListOrdered} />
-              </MenuItem>
-            </MenuList>
-          </Menu>
           <IconButton
             icon={<Icon as={LuBold} />}
             aria-label='Bold'
@@ -319,6 +276,65 @@ function TextFormatFloatingToolbar({
             size='sm'
             onClick={insertLink}
           />
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              icon={
+                textType === 'text' ? (
+                  <Icon as={LuText} />
+                ) : textType === 'list' ? (
+                  <Icon as={LuList} />
+                ) : (
+                  <Icon as={LuListOrdered} />
+                )
+              }
+              aria-label='Paragraph'
+              variant='ghost'
+              colorScheme='black'
+              size='sm'
+            />
+            <MenuList minW='unset'>
+              <MenuItem
+                onClick={() => {
+                  setTextType('text')
+                  editor.dispatchCommand(REMOVE_LIST_COMMAND, undefined)
+                }}
+              >
+                <Icon as={LuText} />
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  setTextType('list')
+                  editor.update(() => {
+                    const selection = $getSelection()
+
+                    if (!$isRangeSelection(selection)) return
+
+                    let node = selection.anchor.getNode()
+
+                    if (!$isParagraphNode(node) && !$isTextNode(node)) {
+                      const paragraph = $createParagraphNode()
+                      node.replace(paragraph)
+                      paragraph.select()
+                      node = paragraph
+                    }
+
+                    editor.dispatchCommand(INSERT_UNORDERED_LIST_COMMAND, undefined)
+                  })
+                }}
+              >
+                <Icon as={LuList} />
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  setTextType('ordered-list')
+                  editor.dispatchCommand(INSERT_ORDERED_LIST_COMMAND, undefined)
+                }}
+              >
+                <Icon as={LuListOrdered} />
+              </MenuItem>
+            </MenuList>
+          </Menu>
         </HStack>
       )}
     </Card>

@@ -14,6 +14,15 @@ const editor = {
   '.lexical-underline.lexical-strikethrough': {
     textDecoration: 'underline line-through',
   },
+  '.lexical-ul': {
+    paddingLeft: '20px',
+  },
+  '.lexical-ol': {
+    paddingLeft: '20px',
+  },
+  '.lexical-li': {
+    marginBottom: '10px',
+  },
 }
 
 export default editor

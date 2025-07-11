@@ -37,6 +37,11 @@ const theme = {
     underline: 'lexical-underline',
     strikethrough: 'lexical-strikethrough',
   },
+  list: {
+    ul: 'lexical-ul',
+    ol: 'lexical-ol',
+    listitem: 'lexical-li',
+  },
 }
 
 const Editor = (props: EditorProps) => {
