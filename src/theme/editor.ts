@@ -1,6 +1,6 @@
 const editor = {
   '.lexical-bold': {
-    fontWeight: 'bold',
+    fontWeight: 'extrabold',
   },
   '.lexical-italic': {
     fontStyle: 'italic',
@@ -22,6 +22,19 @@ const editor = {
   },
   '.lexical-li': {
     marginBottom: '10px',
+  },
+  '.lexical-link': {
+    color: 'gray.800',
+    _dark: {
+      color: 'gray.400',
+      _hover: {
+        color: 'gray.200',
+      },
+    },
+    _hover: {
+      textDecoration: 'underline',
+      color: 'gray.500',
+    },
   },
 }
 
