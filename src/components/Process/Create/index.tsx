@@ -9,12 +9,14 @@ import {
   Icon,
   IconButton,
   Input,
+  Spacer,
   Text,
   useBreakpointValue,
   useDisclosure,
   useToast,
   VStack,
 } from '@chakra-ui/react'
+import { useLocalStorage } from '@uidotdev/usehooks'
 import { useClient } from '@vocdoni/react-providers'
 import {
   AccountData,
@@ -217,6 +219,46 @@ export const useSafeReset = (externalReset?) => {
   )
 }
 
+export const useFormDraftSaver = (isDirty: boolean, getValues: () => any, storeFormDraft: (value: any) => void) => {
+  const saveDraft = () => {
+    if (!isDirty) return
+    storeFormDraft(getValues())
+  }
+
+  // Save when the user accidentally closes the tab, navigates away, or refreshes the page
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (!isDirty) return
+      e.preventDefault()
+      e.returnValue = ''
+      saveDraft()
+    }
+
+    window.addEventListener('beforeunload', handleBeforeUnload)
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload)
+    }
+  }, [isDirty])
+
+  // Save on focus out on every field
+  useEffect(() => {
+    const handleFocusOut = () => saveDraft()
+
+    window.addEventListener('focusout', handleFocusOut)
+
+    return () => {
+      window.removeEventListener('focusout', handleFocusOut)
+    }
+  }, [isDirty])
+
+  // Save every 30 seconds if the form is dirty
+  useEffect(() => {
+    const interval = setInterval(() => saveDraft(), 30000)
+
+    return () => clearInterval(interval)
+  }, [isDirty])
+}
+
 const electionFromForm = (form) => {
   // max census size is calculated by the SDK when creating a process, but we need it to
   // calculate the cost preview... so here we set it for all cases anyway
@@ -403,6 +445,8 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
   const { t } = useTranslation()
   const reset = useSafeReset()
   const location = useLocation()
+  const { getValues } = useFormContext()
+  const [_, storeFormDraft] = useLocalStorage('form-draft', null)
 
   const currentPath = createPath(location)
   const nextPath = blocker?.location ? createPath(blocker.location) : null
@@ -413,7 +457,7 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
     onClose()
   }
 
-  const onLeave = () => {
+  const handleLeave = (options: { saveDraft?: boolean } = {}) => {
     if (!blocker?.location) {
       blocker.reset()
       onClose()
@@ -421,10 +465,23 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
     }
 
     if (isSamePath) {
-      reset()
+      if (!options.saveDraft) reset()
+      if (options.saveDraft) {
+        const form = getValues()
+        storeFormDraft(form)
+      } else {
+        storeFormDraft(null)
+      }
       blocker.reset()
       onClose()
       return
+    }
+
+    if (options.saveDraft) {
+      const form = getValues()
+      storeFormDraft(form)
+    } else {
+      storeFormDraft(null)
     }
 
     if (blocker.state === 'blocked') {
@@ -432,6 +489,8 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
     } else {
       blocker.reset()
     }
+
+    onClose()
   }
 
   return (
@@ -454,10 +513,14 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
         <Button variant='outline' onClick={onCloseHandler}>
           {t('process.create.leave_confirmation.cancel', { defaultValue: 'Cancel' })}
         </Button>
-        <Button colorScheme='red' onClick={onLeave}>
+        <Spacer />
+        <Button colorScheme='red' onClick={() => handleLeave({ saveDraft: false })}>
           {isSamePath
             ? t('process.create.leave_confirmation.reset', { defaultValue: 'Reset' })
             : t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
+        </Button>
+        <Button colorScheme='black' onClick={() => handleLeave({ saveDraft: true })}>
+          {t('process.create.leave_confirmation.leave_and_save', { defaultValue: 'Leave and save' })}
         </Button>
       </Flex>
     </DeleteModal>
@@ -491,29 +554,40 @@ const ResetFormModal = ({ isOpen, onClose, onReset }) => {
 export const ProcessCreate = () => {
   const { t } = useTranslation()
   const toast = useToast()
+  const [formDraft, storeFormDraft] = useLocalStorage('form-draft', null)
   const { groupId } = useParams()
   const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(true)
   const methods = useForm({
-    defaultValues: {
-      ...defaultProcessValues,
-      groupId,
-    },
+    defaultValues: formDraft
+      ? { ...formDraft, groupId: formDraft.groupId ? formDraft.groupId : groupId }
+      : {
+          ...defaultProcessValues,
+          groupId,
+        },
   })
   const reset = useSafeReset(methods.reset)
   const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
   const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
   const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
   const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
-  const blocker = useBlocker(methods.formState.isDirty)
-  const { client } = useClient()
+  const { client, account, fetchAccount } = useClient()
+  const { isSubmitting, isSubmitSuccessful, isDirty } = methods.formState
+  const blocker = useBlocker(isDirty)
   const { setStepDoneAsync } = useOrganizationSetup()
-  const { isSubmitting, isSubmitSuccessful } = methods.formState
   const description = methods.watch('description')
 
   // Trigger confirmation modal when form is dirty and user tries to navigate away
+  useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
+
+  // Trigger confirmation modal when form is dirty and user tries to navigate away
   useEffect(() => {
-    if (blocker.state !== 'blocked') return
+    const isBlocked = blocker.state === 'blocked'
+    const currentPath = createPath(location)
+    const nextPath = blocker?.location ? createPath(blocker.location) : null
+    const isSamePath = currentPath === nextPath
+
+    if (!isBlocked) return
 
     if (isSubmitting || isSubmitSuccessful) {
       blocker.proceed()
@@ -586,6 +660,7 @@ export const ProcessCreate = () => {
 
       methods.reset(defaultProcessValues)
 
+      storeFormDraft(null)
       navigate(generatePath(Routes.dashboard.process, { id: electionId }))
     } catch (error) {
       console.error('Error creating election:', error)
@@ -638,17 +713,13 @@ export const ProcessCreate = () => {
           paddingBottom={4}
         >
           {/* Top bar with draft status and sidebar toggle */}
-          <HStack
-            position='sticky'
-            top='64px'
-            p={2}
-            bg='chakra.body.bg'
-            zIndex='contents'
-            justifyContent='space-between'
-          >
-            <Box px={3} py={1} borderRadius='full' bg='gray.100' _dark={{ bg: 'whiteAlpha.200' }} fontSize='sm'>
-              <Trans i18nKey='process.create.status.draft'>Draft</Trans>
-            </Box>
+          <HStack position='sticky' top='64px' p={2} bg='chakra.body.bg' zIndex='contents'>
+            {formDraft && (
+              <Box px={3} py={1} borderRadius='full' bg='gray.100' _dark={{ bg: 'whiteAlpha.200' }} fontSize='sm'>
+                <Trans i18nKey='process.create.status.draft'>Draft</Trans>
+              </Box>
+            )}
+            <Spacer />
             <ButtonGroup size='sm'>
               {methods.formState.isDirty && (
                 <IconButton
