@@ -1,4 +1,6 @@
 import { Button, Flex, HStack, Icon, IconButton, Text, useDisclosure } from '@chakra-ui/react'
+import { useCopyToClipboard } from '@uidotdev/usehooks'
+import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCheck, LuCopy } from 'react-icons/lu'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
@@ -10,6 +12,18 @@ export const AccountEdit = () => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { data: profile } = useProfile()
+  const [_, copyToClipboard] = useCopyToClipboard()
+  const [showCheck, setShowCheck] = useState(false)
+
+  const handleCopy = () => {
+    copyToClipboard('support@vocdoni.org')
+    setShowCheck(true)
+
+    setTimeout(() => {
+      setShowCheck(false)
+    }, 2000) // 2 segundos, ajusta si quieres
+  }
+
   return (
     <Flex flexDirection='column' gap={6}>
       <DashboardBox px={6} pb={6} pt={4}>
