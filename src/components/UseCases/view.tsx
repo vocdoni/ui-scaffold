@@ -2,8 +2,8 @@ import { Box, Button } from '@chakra-ui/react'
 import { ArrowLeft } from '@untitled-ui/icons-react'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import Markdown from 'react-markdown'
 import { generatePath, Link as ReactRouterLink, useLoaderData, useNavigate, useParams } from 'react-router-dom'
+import Editor from '~components/Editor'
 import { Routes } from '~routes'
 
 const UseCase = () => {
@@ -32,9 +32,7 @@ const UseCase = () => {
       >
         Use Cases
       </Button>
-      <Box className='md-sizes'>
-        <Markdown>{String(md)}</Markdown>
-      </Box>
+      <Editor isDisabled defaultValue={String(md)} />
     </Box>
   )
 }
