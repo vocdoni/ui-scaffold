@@ -2,7 +2,7 @@ import { Box, chakra, Input, Text } from '@chakra-ui/react'
 import { CodeHighlightNode, CodeNode } from '@lexical/code'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
 import { ListItemNode, ListNode } from '@lexical/list'
-import { $convertFromMarkdownString, TRANSFORMERS } from '@lexical/markdown'
+import { $convertFromMarkdownString, TRANSFORMERS as DEFAULT_TRANSFORMERS } from '@lexical/markdown'
 import { OverflowNode } from '@lexical/overflow'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
@@ -17,16 +17,20 @@ import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import { useState } from 'react'
 
+import { IMAGE, ImageNode } from './ImageNode'
 import { FloatingLinkEditorPlugin, FloatingTextFormatToolbarPlugin } from './plugins'
 import OnChangeMarkdown from './plugins/OnChangeMarkdown'
+import ReadOnlyPlugin from './plugins/ReadOnlyPlugin'
 
 type EditorProps = {
   isDisabled?: boolean
   maxLength?: number
-  onChange: (value: string) => void
+  onChange?: (value: string) => void
   placeholder?: string
   defaultValue?: string
 }
+
+const TRANSFORMERS = [IMAGE, ...DEFAULT_TRANSFORMERS]
 
 const ChakraContentEditable = chakra(ContentEditable)
 
@@ -43,6 +47,16 @@ const theme = {
     listitem: 'lexical-li',
   },
   link: 'lexical-link',
+  quote: 'lexical-quote',
+  heading: {
+    h1: 'lexical-h1',
+    h2: 'lexical-h2',
+    h3: 'lexical-h3',
+    h4: 'lexical-h4',
+    h5: 'lexical-h5',
+  },
+  image: 'lexical-image',
+  paragraph: 'lexical-paragraph',
 }
 
 const Editor = (props: EditorProps) => {
@@ -69,6 +83,7 @@ const Editor = (props: EditorProps) => {
       AutoLinkNode,
       LinkNode,
       OverflowNode,
+      ImageNode,
     ],
   }
 
@@ -99,6 +114,7 @@ const Editor = (props: EditorProps) => {
       <HistoryPlugin />
       <ListPlugin />
       <LinkPlugin />
+      <ReadOnlyPlugin isDisabled={props.isDisabled} />
       <OnChangeMarkdown onChange={props.onChange} transformers={TRANSFORMERS} />
       {props.maxLength && props.maxLength > 0 && <CharacterLimitPlugin maxLength={props.maxLength} charset='UTF-8' />}
       {floatingAnchorElem && (
