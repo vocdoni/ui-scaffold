@@ -653,8 +653,7 @@ export const ProcessCreate = () => {
                     defaultValue: 'Voting Process Title',
                   })
                 }
-                _placeholder={{ fontSize: '2xl' }}
-                fontSize='2xl'
+                size='2xl'
                 fontWeight='bold'
                 {...methods.register('title', {
                   required: t('form.error.required', 'This field is required'),

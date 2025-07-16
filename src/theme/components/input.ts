@@ -5,10 +5,19 @@ const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpe
 
 const baseStyle = definePartsStyle({
   field: {
-    fontSize: '14px',
+    fontSize: 'md',
     _placeholder: {
       color: 'input.placeholder',
-      fontSize: '14px',
+      fontSize: 'md',
+    },
+  },
+})
+
+const xxl = definePartsStyle({
+  field: {
+    fontSize: '2xl',
+    _placeholder: {
+      fontSize: '2xl',
     },
   },
 })
@@ -34,5 +43,6 @@ export const Input = defineMultiStyleConfig({
   sizes: {
     sm,
     md,
+    '2xl': xxl,
   },
 })
