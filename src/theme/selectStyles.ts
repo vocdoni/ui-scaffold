@@ -1,6 +1,13 @@
 import { ChakraStylesConfig } from 'chakra-react-select'
 
 export const selectStyles: ChakraStylesConfig = {
+  placeholder: (base) => ({
+    ...base,
+    color: 'input.placeholder',
+  }),
+}
+
+export const languagesListSelectStyles: ChakraStylesConfig = {
   dropdownIndicator: (base) => ({
     ...base,
     m: 0,
@@ -19,8 +26,8 @@ export const selectStyles: ChakraStylesConfig = {
     p: 1,
     borderRadius: 'sm',
   }),
-  placeholder: (base) => ({
-    ...base,
+  placeholder: (base, state) => ({
+    ...selectStyles.placeholder?.(base, state),
     py: 2,
     px: 3,
   }),

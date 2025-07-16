@@ -22,7 +22,6 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { Select } from 'chakra-react-select'
 import { useEffect } from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -30,6 +29,7 @@ import { LuGripVertical, LuPlus, LuTrash2, LuX } from 'react-icons/lu'
 import Editor from '~components/Editor'
 import { useProcessTemplates } from '~components/Process/TemplateProvider'
 import { DashboardBox, DashboardSection } from '~components/shared/Dashboard/Contents'
+import { Select } from '~components/shared/Form/Select'
 import { ImageUploader } from '~components/shared/Layout/Uploader'
 import { QuestionTypes } from '../..'
 

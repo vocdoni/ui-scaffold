@@ -1,7 +1,7 @@
 import { Box, FormControl, FormErrorMessage, FormLabel, Text } from '@chakra-ui/react'
-import { Select } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { Select } from '~components/shared/Form/Select'
 import { DefaultQuestions, QuestionTypes } from '../..'
 
 interface SelectOption {
@@ -46,7 +46,7 @@ export const QuestionType = () => {
           const selectedOption = options.find((opt) => opt.value === field.value)
 
           return (
-            <Select<SelectOption>
+            <Select
               value={selectedOption}
               onChange={(option) => {
                 const newType = option?.value as QuestionTypes

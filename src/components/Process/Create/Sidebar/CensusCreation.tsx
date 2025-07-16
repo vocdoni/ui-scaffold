@@ -11,13 +11,14 @@ import {
   TabPanels,
   Tabs,
 } from '@chakra-ui/react'
-import { chakraComponents, Select } from 'chakra-react-select'
+import { chakraComponents } from 'chakra-react-select'
 import { useEffect, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { CensusCsvManager } from '~components/Process/Census/Spreadsheet'
 import { CensusWeb3Addresses } from '~components/Process/Census/Web3'
+import { Select } from '~components/shared/Form/Select'
 import { useGroups } from '~src/queries/groups'
 import { Routes } from '~src/router/routes'
 import { VoterAuthentication } from './VoterAuthentication'

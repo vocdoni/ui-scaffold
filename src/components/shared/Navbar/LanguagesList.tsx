@@ -17,13 +17,13 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react'
-import { Select } from 'chakra-react-select'
 import { Trans, useTranslation } from 'react-i18next'
 import { FaGlobeAmericas } from 'react-icons/fa'
 import { LuCheck } from 'react-icons/lu'
 import i18n from '~i18n'
 import { LanguagesSlice } from '~i18n/languages.mjs'
-import { selectStyles } from '~theme/selectStyles'
+import { languagesListSelectStyles } from '~theme/selectStyles'
+import { Select } from '../Form/Select'
 
 export const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => {
   const { i18n } = useTranslation()
@@ -129,7 +129,7 @@ export const LanguageListDashboard = ({ ...props }) => {
         placeholder={t('form.choose_an_option', { defaultValue: 'Choose an option' })}
         menuPlacement='top'
         formatOptionLabel={LanguageOptionLabel}
-        chakraStyles={selectStyles}
+        chakraStyles={languagesListSelectStyles}
       />
     </FormControl>
   )
