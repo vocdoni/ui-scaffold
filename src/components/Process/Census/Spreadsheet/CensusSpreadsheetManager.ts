@@ -1,7 +1,7 @@
 import { walletFromRow } from '@vocdoni/react-providers'
+import { ErrorType, SpreadsheetManager } from '../../../shared/Spreadsheet/SpreadsheetManager'
 import ErrorRowLength from './errors/ErrorRowLength'
 import ErrorWeightType from './errors/ErrorWeightType'
-import { ErrorType, SpreadsheetManager } from './SpreadsheetManager'
 
 const WeightColPosition = 1
 

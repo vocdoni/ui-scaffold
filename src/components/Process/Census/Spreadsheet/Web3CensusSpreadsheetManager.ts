@@ -1,6 +1,6 @@
+import { ErrorType } from '../../../shared/Spreadsheet/SpreadsheetManager'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 import ErrorCellData from './errors/ErrorCellData'
-import { ErrorType } from './SpreadsheetManager'
 
 export class Web3CensusSpreadsheetManager extends CensusSpreadsheetManager {
   constructor(file: File, weighted: boolean = false) {

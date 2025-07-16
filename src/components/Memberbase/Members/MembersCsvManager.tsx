@@ -18,9 +18,9 @@ import { useDropzone } from 'react-dropzone'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuFileSpreadsheet } from 'react-icons/lu'
-import { CsvGenerator } from '~components/ProcessCreate/Census/Spreadsheet/generator'
-import { SpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/SpreadsheetManager'
 import Uploader from '~components/shared/Layout/Uploader'
+import { CsvGenerator } from '~components/shared/Spreadsheet/generator'
+import { SpreadsheetManager } from '~components/shared/Spreadsheet/SpreadsheetManager'
 import { useTable } from '../TableProvider'
 
 const generateFakeValue = (columnId: string): string => {
