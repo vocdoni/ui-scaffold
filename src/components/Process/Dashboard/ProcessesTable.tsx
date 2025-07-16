@@ -78,7 +78,16 @@ const ProcessRow = () => {
 
   return (
     <Tr position='relative'>
-      <Td>{election.title.default}</Td>
+      <Td>
+        <Link
+          as={RouterLink}
+          to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
+          _hover={{ textDecoration: 'underline' }}
+          fontWeight='medium'
+        >
+          {election.title.default}
+        </Link>
+      </Td>
       <Td>{format(election.startDate, t('organization.date_format'))}</Td>
       <Td>{format(election.endDate, t('organization.date_format'))}</Td>
       <Td>

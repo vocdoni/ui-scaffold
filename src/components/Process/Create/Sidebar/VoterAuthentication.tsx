@@ -169,7 +169,7 @@ const CredentialSelectionTab = () => {
         <Text fontSize='sm' color='texts.subtle'>
           {t('process_create.voter_auth_select_credentials_description', {
             defaultValue:
-              'Choose which fields from your memberbase voters must provide to authenticate. Select up to 3 fields for optimal security and user experience.',
+              'Choose the fields voters must provide to authenticate. Select up to 3 for the best balance of security and ease of use. If you plan to use only email or phone for 2FA, skip this step and click Next to set it up',
           })}
         </Text>
         <Flex direction='column' gap={2}>

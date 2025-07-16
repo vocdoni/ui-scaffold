@@ -3,6 +3,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Link,
   Spinner,
   Tab,
   TabList,
@@ -14,9 +15,11 @@ import { chakraComponents, Select } from 'chakra-react-select'
 import { useEffect, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { CensusCsvManager } from '~components/Process/Census/Spreadsheet'
 import { CensusWeb3Addresses } from '~components/Process/Census/Web3'
 import { useGroups } from '~src/queries/groups'
+import { Routes } from '~src/router/routes'
 import { VoterAuthentication } from './VoterAuthentication'
 
 export enum CensusTypes {
@@ -60,6 +63,20 @@ export const GroupSelect = () => {
     <FormControl isInvalid={!!errors.groupId}>
       <FormLabel>
         <Trans i18nKey='process_create.census.memberbase.label'>Select a group of members to create the census</Trans>
+        {(!data || data.length === 0) && (
+          <>
+            . If you don't have any yet, create one first{' '}
+            <Link
+              as={ReactRouterLink}
+              to={Routes.dashboard.memberbase.base}
+              color='blue.500'
+              _hover={{ textDecoration: 'underline' }}
+            >
+              here
+            </Link>
+            .
+          </>
+        )}
       </FormLabel>
       <Controller
         control={control}
@@ -99,12 +116,19 @@ export const GroupSelect = () => {
   )
 }
 
-const CensusCreation = () => {
+const CensusCreation = ({ showExtraMethods }: { showExtraMethods: boolean }) => {
   const { t } = useTranslation()
   const { setValue, watch } = useFormContext()
   const censusType = watch('censusType')
 
   const currentIndex = censusTabs.indexOf(censusType)
+
+  // Set default census type to Memberbase (Group) if not set
+  useEffect(() => {
+    if (!censusType) {
+      setValue('censusType', CensusTypes.Memberbase)
+    }
+  }, [censusType, setValue])
 
   const handleTabChange = (index: number) => {
     const nextType = censusTabs[index]
@@ -127,6 +151,17 @@ const CensusCreation = () => {
     setValue('censusType', nextType)
   }
 
+  // If extra methods are not enabled, show only the Group selection
+  if (!showExtraMethods) {
+    return (
+      <Box display='flex' flexDirection='column' gap={4}>
+        <GroupSelect />
+        <VoterAuthentication />
+      </Box>
+    )
+  }
+
+  // If extra methods are enabled, show the full tab system
   return (
     <Tabs index={currentIndex} onChange={handleTabChange} isFitted>
       <TabList w='full'>
