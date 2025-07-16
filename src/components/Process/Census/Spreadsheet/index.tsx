@@ -5,9 +5,9 @@ import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { CensusTypes } from '~components/Process/Create/Sidebar/CensusCreation'
 import Uploader from '~shared/Layout/Uploader'
+import { CsvGenerator } from '../../../shared/Spreadsheet/generator'
+import { CsvPreview } from '../../../shared/Spreadsheet/Preview'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
-import { CsvGenerator } from './generator'
-import { CsvPreview } from './Preview'
 
 export const CensusCsvManager = () => {
   const { t } = useTranslation()

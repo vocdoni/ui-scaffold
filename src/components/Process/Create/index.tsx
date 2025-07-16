@@ -31,9 +31,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import { createPath, generatePath, useBlocker, useLocation, useNavigate, useParams } from 'react-router-dom'
 import Editor from '~components/Editor'
-import { CensusSpreadsheetManager } from '~components/ProcessCreate/Census/Spreadsheet/CensusSpreadsheetManager'
-import { Web3Address } from '~components/ProcessCreate/StepForm/CensusWeb3'
-import { Option } from '~components/ProcessCreate/StepForm/Questions'
+import { CensusSpreadsheetManager } from '~components/Process/Census/Spreadsheet/CensusSpreadsheetManager'
+import { Web3Address } from '~components/Process/Census/Web3'
 import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
 import { Routes } from '~routes'
@@ -43,12 +42,18 @@ import { Questions } from './MainContent/Questions'
 import { CreateSidebar } from './Sidebar'
 import { CensusTypes } from './Sidebar/CensusCreation'
 
+export interface Option {
+  option: string
+  description?: string
+  image?: string
+}
+
 type Question = {
   title: string
   description: string
   minSelections?: number
   maxSelections?: number
-  options: { option: string; description?: string; budget?: number; image?: string }[]
+  options: Option[]
 }
 
 export type Process = {
@@ -102,8 +107,8 @@ export const DefaultQuestions: DefaultQuestionsType = {
     title: '',
     description: '',
     options: [
-      { option: '', description: '', budget: null },
-      { option: '', description: '', budget: null },
+      { option: '', description: '' },
+      { option: '', description: '' },
     ],
   },
 }
@@ -161,9 +166,9 @@ const TemplateConfigs: Record<TemplateIds, TemplateConfig> = {
         title: '',
         description: '',
         options: [
-          { option: '', description: '', budget: null },
-          { option: '', description: '', budget: null },
-          { option: '', description: '', budget: null },
+          { option: '', description: '' },
+          { option: '', description: '' },
+          { option: '', description: '' },
         ],
       },
     ],

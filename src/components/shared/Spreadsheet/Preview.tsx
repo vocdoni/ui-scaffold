@@ -2,7 +2,7 @@ import { Alert, AlertDescription, AlertIcon, Button, Flex, ListItem, Text, Unord
 import { DropzoneRootProps } from 'react-dropzone'
 import { useTranslation } from 'react-i18next'
 import { LuCheck } from 'react-icons/lu'
-import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
+import { CensusSpreadsheetManager } from '../../Process/Census/Spreadsheet/CensusSpreadsheetManager'
 import { SpreadsheetManager } from './SpreadsheetManager'
 
 type CsvPreviewProps = {

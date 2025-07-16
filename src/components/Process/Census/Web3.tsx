@@ -25,6 +25,11 @@ import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import Uploader from '~shared/Layout/Uploader'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
+export interface Web3Address {
+  address: string
+  weight: number
+}
+
 const isValidAddress = (value: string) => /^(0x)?[0-9a-f]{40}$/i.test(value)
 
 export const CensusWeb3Addresses = () => {
