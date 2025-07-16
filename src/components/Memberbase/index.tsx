@@ -11,32 +11,30 @@ export type MemberbaseTabsContext = {
   search: string
   setSearch: (search: string) => void
   debouncedSearch: string
+  submitSearch: () => void
 } & DashboardLayoutContext
-
-const useDebouncedValue = (value, delay) => {
-  const [debounced, setDebounced] = useState(value)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebounced(value)
-    }, delay)
-
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [value, delay])
-
-  return debounced
-}
 
 export const MemberbaseTabs = () => {
   const [jobId, setJobId] = useState(null)
   const [search, setSearch] = useState('')
-  const debouncedSearch = useDebouncedValue(search, 500)
+  const [debouncedSearch, setDebouncedSearch] = useState(search)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search)
+    }, 5000)
+
+    return () => clearTimeout(timer)
+  }, [search])
+
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
   const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
+
+  const submitSearch = () => {
+    setDebouncedSearch(search)
+  }
 
   const menuItems = [
     {
@@ -76,7 +74,7 @@ export const MemberbaseTabs = () => {
             <Tab key={index}>{item.label}</Tab>
           ))}
         </TabList>
-        <Outlet context={{ setBreadcrumb, setJobId, jobId, search, setSearch, debouncedSearch }} />
+        <Outlet context={{ setBreadcrumb, setJobId, jobId, search, setSearch, debouncedSearch, submitSearch }} />
       </Tabs>
     </>
   )

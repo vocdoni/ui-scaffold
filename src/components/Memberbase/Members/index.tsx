@@ -17,7 +17,7 @@ import {
   IconButton,
   Input,
   InputGroup,
-  InputLeftElement,
+  InputRightElement,
   Menu,
   MenuButton,
   MenuDivider,
@@ -166,24 +166,25 @@ const ColumnManager = () => {
 
 const MemberFilters = ({ onDelete }) => {
   const { t } = useTranslation()
-  const { search, setSearch } = useOutletContext<MemberbaseTabsContext>()
+  const { search, setSearch, submitSearch } = useOutletContext<MemberbaseTabsContext>()
   const { data } = usePaginatedMembers({ showAll: true })
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value)
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    submitSearch()
+  }
+
   return (
     <Flex gap={2}>
-      <InputGroup maxW='300px'>
-        <InputLeftElement pointerEvents='none'>
-          <Icon as={LuSearch} color='texts.subtle' />
-        </InputLeftElement>
-        <Input
-          placeholder={t('members_table.search', { defaultValue: 'Search members...' })}
-          value={search}
-          onChange={handleSearchChange}
-        />
+      <InputGroup maxW='300px' as='form' onSubmit={handleSubmit}>
+        <Input placeholder='Search members...' value={search} onChange={handleSearchChange} />
+        <InputRightElement>
+          <IconButton aria-label='search' type='submit' icon={<Icon as={LuSearch} />} />
+        </InputRightElement>
       </InputGroup>
       <CreateGroupButton members={data?.members ?? []} />
       <Button leftIcon={<Icon as={LuTrash2} />} variant='outline' colorScheme='red' onClick={onDelete}>
