@@ -1698,7 +1698,7 @@
     "voter_auth_security_recommendation_2_other": "You've selected {{ count }} credentials, which provides good security for your voters.",
     "voter_auth_security_recommendation_title": "Security recommendation",
     "voter_auth_select_credentials": "Select required credentials for voter authentication",
-    "voter_auth_select_credentials_description": "Choose which fields from your memberbase voters must provide to authenticate. Select up to 3 fields for optimal security and user experience.",
+    "voter_auth_select_credentials_description": "Choose the fields voters must provide to authenticate. Select up to 3 for the best balance of security and ease of use. If you plan to use only email or phone for 2FA, skip this step and click Next to set it up",
     "voter_auth_selected_credentials_count_one": "{{ count }}/3 credentials selected",
     "voter_auth_selected_credentials_count_other": "{{ count }}/3 credentials selected",
     "voter_auth_sms": "Via SMS verification",

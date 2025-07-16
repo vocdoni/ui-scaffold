@@ -359,7 +359,15 @@ const Processes = () => {
           <ElectionProvider election={election} id={election.id} key={election.id}>
             <Flex align='center'>
               <Box>
-                <ElectionTitle mb={0} fontSize='md' textAlign='left' fontWeight='500' isTruncated />
+                <Link
+                  as={ReactRouterLink}
+                  to={generatePath(Routes.dashboard.process, { id: election.id })}
+                  _hover={{ textDecoration: 'underline' }}
+                  fontWeight='500'
+                  display='block'
+                >
+                  <ElectionTitle mb={0} fontSize='md' textAlign='left' fontWeight='500' isTruncated />
+                </Link>
                 <Text fontSize='sm' color='gray.500'>
                   {t('election.ends_on', {
                     defaultValue: 'Ends on {{date}}',

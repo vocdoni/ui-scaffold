@@ -124,7 +124,7 @@ const defaultProcessValues: Process = {
   questionType: QuestionTypes.Single,
   questions: [DefaultQuestions[QuestionTypes.Single]],
   resultVisibility: 'hidden',
-  voterPrivacy: 'anonymous',
+  voterPrivacy: 'public',
   voteOverwrite: false,
   maxVoteOverwrites: 0,
   groupId: '',

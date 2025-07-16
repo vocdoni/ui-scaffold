@@ -13,11 +13,21 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
+import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
+import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 import { Select } from 'chakra-react-select'
 import { useEffect } from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuPlus, LuTrash2, LuX } from 'react-icons/lu'
+import { LuGripVertical, LuPlus, LuTrash2, LuX } from 'react-icons/lu'
 import Editor from '~components/Editor'
 import { useProcessTemplates } from '~components/Process/TemplateProvider'
 import { DashboardBox, DashboardSection } from '~components/shared/Dashboard/Contents'
@@ -27,6 +37,7 @@ import { QuestionTypes } from '../..'
 interface QuestionFormProps {
   index: number
   onRemove: () => void
+  questionId: string
 }
 
 const SelectionLimits = ({ index }) => {
@@ -121,7 +132,84 @@ const SelectionLimits = ({ index }) => {
   )
 }
 
-export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
+// SortableOption component for individual options
+const SortableOption = ({
+  field,
+  optionIndex,
+  questionIndex,
+  questionType,
+  fieldsLength,
+  onRemove,
+  placeholders,
+  activeTemplate,
+  register,
+  errors,
+  t,
+}) => {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: field.id })
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  }
+
+  return (
+    <div ref={setNodeRef} style={style}>
+      <HStack align='start'>
+        {/* Drag handle for options */}
+        {fieldsLength > 2 && (
+          <Box
+            {...attributes}
+            {...listeners}
+            cursor={isDragging ? 'grabbing' : 'grab'}
+            display='flex'
+            alignItems='center'
+            pt={2}
+            color='gray.400'
+            _hover={{ color: 'gray.600' }}
+          >
+            <Icon as={LuGripVertical} size='sm' />
+          </Box>
+        )}
+
+        {questionType === QuestionTypes.Single ? (
+          <Radio isChecked={false} isReadOnly mt={2} />
+        ) : (
+          <Checkbox isChecked={false} isReadOnly mt={2} />
+        )}
+        <FormControl isInvalid={!!errors.questions?.[questionIndex]?.options?.[optionIndex]?.option} flex='1'>
+          <Input
+            placeholder={
+              placeholders[activeTemplate]?.questions?.[questionIndex].options?.[optionIndex] ??
+              t('process_create.option.placeholder', 'Option {{number}}', {
+                number: optionIndex + 1,
+              })
+            }
+            {...register(`questions.${questionIndex}.options.${optionIndex}.option`, {
+              required: t('form.error.required', 'This field is required'),
+            })}
+          />
+          <FormErrorMessage>
+            {errors.questions?.[questionIndex]?.options?.[optionIndex]?.option?.message?.toString()}
+          </FormErrorMessage>
+        </FormControl>
+        {fieldsLength > 2 && (
+          <IconButton
+            icon={<Icon as={LuX} />}
+            aria-label={t('process_create.option.remove', 'Remove option')}
+            onClick={onRemove}
+            size='sm'
+            variant='ghost'
+            mt={1}
+          />
+        )}
+      </HStack>
+    </div>
+  )
+}
+
+export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps) => {
   const { t } = useTranslation()
   const { activeTemplate, placeholders } = useProcessTemplates()
   const {
@@ -129,11 +217,13 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
     formState: { errors },
     setValue,
     watch,
+    getValues,
   } = useFormContext()
   const {
     fields: questionOptions,
     append,
     remove,
+    move,
   } = useFieldArray({
     name: `questions.${index}.options`,
   })
@@ -142,6 +232,21 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
   const questionType = watch('questionType')
   const questions = watch('questions')
   const questionDescription = watch(`questions.${index}.description`)
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  )
+
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: questionId })
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  }
 
   useEffect(() => {
     if (min && max && max < min) {
@@ -229,10 +334,26 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
   }
 
   return (
-    <DashboardBox>
-      <Box>
+    <div ref={setNodeRef} style={style}>
+      <DashboardBox>
         {/* Question title and description */}
         <HStack align='stretch' spacing={4}>
+          {/* Drag handle */}
+          {questions.length > 1 && (
+            <Box
+              {...attributes}
+              {...listeners}
+              cursor={isDragging ? 'grabbing' : 'grab'}
+              display='flex'
+              alignItems='flex-start'
+              pt={2}
+              color='gray.400'
+              _hover={{ color: 'gray.600' }}
+            >
+              <Icon as={LuGripVertical} />
+            </Box>
+          )}
+
           <VStack flex='1' align='stretch' spacing={2} mb={6}>
             <Text fontSize='sm' color='texts.subtle'>
               {t('process.create.question.question_number', {
@@ -283,53 +404,64 @@ export const QuestionForm = ({ index, onRemove }: QuestionFormProps) => {
         {/* Selection limits */}
 
         {/* Options */}
-        <VStack align='stretch' spacing={2}>
-          {questionOptions.map((field, optionIndex) => (
-            <HStack key={field.id} align='start'>
-              {questionType === QuestionTypes.Single ? (
-                <Radio isChecked={false} isReadOnly mt={2} />
-              ) : (
-                <Checkbox isChecked={false} isReadOnly mt={2} />
-              )}
-              <FormControl isInvalid={!!errors.questions?.[index]?.options?.[optionIndex]?.option} flex='1'>
-                <Input
-                  placeholder={
-                    placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.option ??
-                    t('process_create.option.placeholder', 'Option {{number}}', {
-                      number: optionIndex + 1,
-                    })
-                  }
-                  {...register(`questions.${index}.options.${optionIndex}.option`, {
-                    required: t('form.error.required', 'This field is required'),
-                  })}
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={(event) => {
+            const { active, over } = event
+
+            if (over && active.id !== over.id) {
+              const oldIndex = questionOptions.findIndex((field) => field.id === active.id)
+              const newIndex = questionOptions.findIndex((field) => field.id === over.id)
+
+              if (oldIndex !== -1 && newIndex !== -1) {
+                // Get current form values for this question's options
+                const currentOptions = getValues(`questions.${index}.options`)
+
+                // Reorder the array
+                const reorderedOptions = arrayMove(currentOptions, oldIndex, newIndex)
+
+                // Update the form with reordered options
+                setValue(`questions.${index}.options`, reorderedOptions)
+
+                // Move the field array items
+                move(oldIndex, newIndex)
+              }
+            }
+          }}
+          modifiers={[restrictToVerticalAxis]}
+        >
+          <SortableContext items={questionOptions.map((field) => field.id)} strategy={verticalListSortingStrategy}>
+            <VStack align='stretch' spacing={2}>
+              {questionOptions.map((field, optionIndex) => (
+                <SortableOption
+                  key={field.id}
+                  field={field}
+                  optionIndex={optionIndex}
+                  questionIndex={index}
+                  questionType={questionType}
+                  fieldsLength={questionOptions.length}
+                  onRemove={() => remove(optionIndex)}
+                  placeholders={placeholders}
+                  activeTemplate={activeTemplate}
+                  register={register}
+                  errors={errors}
+                  t={t}
                 />
-                <FormErrorMessage>
-                  {errors.questions?.[index]?.options?.[optionIndex]?.option?.message?.toString()}
-                </FormErrorMessage>
-              </FormControl>
-              {questionOptions.length > 2 && (
-                <IconButton
-                  icon={<Icon as={LuX} />}
-                  aria-label={t('process_create.option.remove', 'Remove option')}
-                  onClick={() => remove(optionIndex)}
-                  size='sm'
-                  variant='ghost'
-                  mt={1}
-                />
-              )}
-            </HStack>
-          ))}
-          <Button
-            leftIcon={<Icon as={LuPlus} />}
-            variant='ghost'
-            size='sm'
-            onClick={() => append({ option: '' })}
-            alignSelf='flex-start'
-          >
-            <Trans i18nKey='process_create.option.add'>Add option</Trans>
-          </Button>
-        </VStack>
-      </Box>
-    </DashboardBox>
+              ))}
+              <Button
+                leftIcon={<Icon as={LuPlus} />}
+                variant='ghost'
+                size='sm'
+                onClick={() => append({ option: '' })}
+                alignSelf='flex-start'
+              >
+                <Trans i18nKey='process_create.option.add'>Add option</Trans>
+              </Button>
+            </VStack>
+          </SortableContext>
+        </DndContext>
+      </DashboardBox>
+    </div>
   )
 }
