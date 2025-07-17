@@ -176,7 +176,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
                 const isBirthdate = col.id === 'birthDate'
 
                 return (
-                  <FormControl isInvalid={!!methods.formState.errors[col.id]}>
+                  <FormControl key={col.id} isInvalid={!!methods.formState.errors[col.id]}>
                     <FormLabel>{col.label}</FormLabel>
                     <Input
                       {...methods.register(col.id, {

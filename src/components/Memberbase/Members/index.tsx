@@ -18,6 +18,7 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  ListItem,
   Menu,
   MenuButton,
   MenuDivider,
@@ -36,6 +37,7 @@ import {
   Th,
   Thead,
   Tr,
+  UnorderedList,
   useDisclosure,
   useToast,
   Wrap,
@@ -461,57 +463,126 @@ const ImportProgress = () => {
   const { organization } = useOrganization()
   const { jobId, setJobId } = useOutletContext<MemberbaseTabsContext>()
   const { data, isError } = useImportJobProgress()
-
-  const closeAlert = () => {
-    setJobId(null)
-  }
+  const isComplete = data?.progress === 100
+  const hasErrors = data?.errors?.length > 0
 
   /**
    * Refetches members when import progress reaches 100%.
-   *
    * Ensures the members list is up-to-date after a successful import.
    */
   useEffect(() => {
-    if (data?.progress === 100) {
+    if (isComplete) {
       queryClient.invalidateQueries({
         queryKey: QueryKeys.organization.members(organization.address),
         exact: false,
       })
     }
-  }, [data?.progress])
+  }, [data?.progress, queryClient, organization.address])
 
-  if (!jobId) return null
+  const closeAlert = () => setJobId(null)
 
-  if (isError) {
-    return (
-      <Alert
-        status='error'
-        borderRadius='md'
-        mb={3}
-        mt={4}
-        p={6}
-        as={Flex}
-        flexDirection='row'
-        justifyContent='space-between'
-      >
-        <Flex flexDirection='column' gap={2}>
-          <AlertTitle>{t('import_progress.error_title', { defaultValue: 'Import Error' })}</AlertTitle>
-          <AlertDescription>
+  const getStatus = () => {
+    if (isComplete && hasErrors) return 'warning'
+    if (isComplete) return 'success'
+    if (hasErrors || isError) return 'error'
+    return 'info'
+  }
+
+  const getTitle = () => {
+    if (isComplete && hasErrors)
+      return t('import_progress.completed_with_errors', { defaultValue: 'Import Completed with Errors' })
+    if (isComplete) return t('import_progress.success_title', { defaultValue: 'Import Completed Successfully' })
+    if (hasErrors || isError) return t('import_progress.error_title', { defaultValue: 'Import Error' })
+
+    return t('import_progress.title', { defaultValue: 'Memberbase Import in Progress' })
+  }
+
+  const getDescription = () => {
+    if (isComplete && hasErrors) {
+      return (
+        <>
+          <Text>
+            {t('import_progress.completed_with_errors_description', {
+              defaultValue:
+                'Your member data has been imported, but some errors occurred. Please review the details below.',
+            })}
+          </Text>
+          <UnorderedList mt={2}>
+            {data.errors.map((error, index) => (
+              <ListItem key={index}>{error}</ListItem>
+            ))}
+          </UnorderedList>
+        </>
+      )
+    }
+
+    if (isComplete) {
+      return (
+        <>
+          <Text>
+            {t('import_progress.success_description', {
+              defaultValue: 'Your member data has been imported successfully.',
+            })}
+          </Text>
+          <Text fontSize='sm'>
+            {t('import_progress.success_note', {
+              defaultValue: 'You may now start using your imported members.',
+            })}
+          </Text>
+        </>
+      )
+    }
+
+    if (isError) {
+      return (
+        <Text>
+          {t('import_progress.error_description', {
+            defaultValue: 'An error occurred while fetching the import progress. Please try again later.',
+          })}
+        </Text>
+      )
+    }
+
+    if (hasErrors) {
+      return (
+        <>
+          <Text>
             {t('import_progress.error_description', {
               defaultValue: 'An error occurred while importing your member data. Please try again later.',
             })}
-          </AlertDescription>
-        </Flex>
-        <CloseButton alignSelf='flex-start' position='relative' onClick={closeAlert} />
-      </Alert>
+          </Text>
+          <UnorderedList mt={2}>
+            {data.errors.map((error, index) => (
+              <ListItem key={index}>{error}</ListItem>
+            ))}
+          </UnorderedList>
+        </>
+      )
+    }
+
+    return (
+      <>
+        <Progress size='md' value={data?.progress} borderRadius='md' isAnimated />
+        <Text>
+          {t('import_progress.description', {
+            defaultValue:
+              'Your member data is being imported. This may take a few minutes depending on the size of your file.',
+          })}
+        </Text>
+        <Text fontSize='sm'>
+          {t('import_progress.note', {
+            defaultValue: 'You can safely close this page. An email will be sent to you upon completion.',
+          })}
+        </Text>
+      </>
     )
   }
 
-  const isComplete = data?.progress === 100
+  if (!jobId) return null
 
   return (
     <Alert
-      status={isComplete ? 'success' : 'info'}
+      status={getStatus()}
       borderRadius='md'
       mb={3}
       mt={4}
@@ -521,44 +592,12 @@ const ImportProgress = () => {
       justifyContent='space-between'
     >
       <Flex flexDirection='column' gap={2} flex={1}>
-        <AlertTitle>
-          {isComplete
-            ? t('import_progress.success_title', { defaultValue: 'Import Completed Successfully' })
-            : t('import_progress.title', { defaultValue: 'Memberbase Import in Progress' })}
-        </AlertTitle>
-
+        <AlertTitle>{getTitle()}</AlertTitle>
         <AlertDescription display='flex' flexDirection='column' gap={2}>
-          {isComplete ? (
-            <>
-              <Text>
-                {t('import_progress.success_description', {
-                  defaultValue: 'Your member data has been imported successfully.',
-                })}
-              </Text>
-              <Text fontSize='sm'>
-                {t('import_progress.success_note', {
-                  defaultValue: 'You may now start using your imported members.',
-                })}
-              </Text>
-            </>
-          ) : (
-            <>
-              <Progress size='md' value={data?.progress} borderRadius='md' isAnimated />
-              <Text>
-                {t('import_progress.description', {
-                  defaultValue:
-                    'Your member data is being imported. This may take a few minutes depending on the size of your file.',
-                })}
-              </Text>
-              <Text fontSize='sm'>
-                {t('import_progress.note', {
-                  defaultValue: 'You can safely close this page. An email will be sent to you upon completion.',
-                })}
-              </Text>
-            </>
-          )}
+          {getDescription()}
         </AlertDescription>
       </Flex>
+
       <CloseButton alignSelf='flex-start' position='relative' onClick={closeAlert} />
     </Alert>
   )
