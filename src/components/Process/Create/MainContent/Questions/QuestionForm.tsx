@@ -46,6 +46,7 @@ const SelectionLimits = ({ index }) => {
   const fields = watch(`questions.${index}.options`)
   const min = watch(`questions.${index}.minSelections`)
   const max = watch(`questions.${index}.maxSelections`)
+  const options = [{ value: 0, label: '0' }, ...fields.map((_, i) => ({ value: i + 1, label: `${i + 1}` }))]
 
   // Ensure max is not less than min
   useEffect(() => {
@@ -73,7 +74,6 @@ const SelectionLimits = ({ index }) => {
                   control={control}
                   rules={{ required: true }}
                   render={({ field, fieldState }) => {
-                    const options = fields.map((_, i) => ({ value: i + 1, label: `${i + 1}` }))
                     const selectedOption = options.find((opt) => opt.value === field.value)
 
                     return (
@@ -102,17 +102,17 @@ const SelectionLimits = ({ index }) => {
                       value >= min || t('form.error.max_greater_than_min', 'Max must be greater than or equal to Min'),
                   }}
                   render={({ field, fieldState }) => {
-                    const options = fields
-                      .map((_, i) => ({ value: i + 1, label: `${i + 1}` }))
-                      .filter((opt) => !min || opt.value >= min)
-                    const selectedOption = options.find((opt) => opt.value === field.value) ?? options[0]
+                    console.log('options', options)
+                    const maxOptions = options.filter((opt) => !min || opt.value >= min)
+                    console.log('maxOptions', maxOptions)
+                    const selectedOption = maxOptions.find((opt) => opt.value === field.value) ?? maxOptions[0]
 
                     return (
                       <Box display='inline-block'>
                         <Select
                           {...field}
                           value={selectedOption}
-                          options={options}
+                          options={maxOptions}
                           isInvalid={!!fieldState.invalid}
                           isClearable={false}
                           onChange={(option) => field.onChange(option?.value)}
@@ -401,6 +401,7 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
         </HStack>
 
         {/* Selection limits */}
+        {questionType === QuestionTypes.Multiple && <SelectionLimits index={index} />}
 
         {/* Options */}
         <DndContext

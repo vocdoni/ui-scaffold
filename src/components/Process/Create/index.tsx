@@ -23,7 +23,9 @@ import {
   Election,
   ElectionCreationSteps,
   IElectionParameters,
+  IMultiChoiceElectionParameters,
   IQuestion,
+  MultiChoiceElection,
   PlainCensus,
   UnpublishedElection,
 } from '@vocdoni/sdk'
@@ -69,6 +71,8 @@ export type Process = {
   endTime: string
   questionType: QuestionTypes
   questions: Question[]
+  maxNumberOfChoices: number
+  minNumberOfChoices: number
   resultVisibility: 'live' | 'hidden'
   voterPrivacy: 'anonymous' | 'public'
   groupId: string
@@ -80,16 +84,28 @@ export type Process = {
 export enum QuestionTypes {
   Single = 'single',
   Multiple = 'multiple',
+  Approval = 'approval',
   ParticipatoryBudgeting = 'participatory_budgeting',
 }
 
-enum TemplateIds {
+export enum SelectorTypes {
+  ParticipatoryBudgeting = QuestionTypes.ParticipatoryBudgeting,
+  Multiple = QuestionTypes.Multiple,
+  Single = QuestionTypes.Single,
+}
+
+export enum TemplateTypes {
   AnnualGeneralMeeting = 'annual_general_meeting',
   Election = 'election',
   ParticipatoryBudgeting = 'participatory_budgeting',
 }
 
-export type DefaultQuestionsType = Record<QuestionTypes, Question>
+export type DefaultQuestionsType = Record<SelectorTypes, Question>
+
+export type TemplateConfig = {
+  questions: Process['questions']
+  questionType: QuestionTypes
+}
 
 export const isAccountData = (account: AccountData | ArchivedAccountData): account is AccountData => {
   return 'electionIndex' in account
@@ -104,8 +120,8 @@ export const DefaultQuestions: DefaultQuestionsType = {
   [QuestionTypes.Multiple]: {
     title: '',
     description: '',
-    minSelections: 1,
-    maxSelections: 1,
+    minSelections: 0,
+    maxSelections: 0,
     options: [{ option: '' }, { option: '' }],
   },
   [QuestionTypes.ParticipatoryBudgeting]: {
@@ -128,6 +144,8 @@ const defaultProcessValues: Process = {
   endTime: '',
   questionType: QuestionTypes.Single,
   questions: [DefaultQuestions[QuestionTypes.Single]],
+  maxNumberOfChoices: 0,
+  minNumberOfChoices: 0,
   resultVisibility: 'hidden',
   voterPrivacy: 'public',
   groupId: '',
@@ -136,13 +154,8 @@ const defaultProcessValues: Process = {
   spreadsheet: undefined,
 }
 
-type TemplateConfig = {
-  questions: Process['questions']
-  questionType: QuestionTypes
-}
-
-const TemplateConfigs: Record<TemplateIds, TemplateConfig> = {
-  [TemplateIds.AnnualGeneralMeeting]: {
+const TemplateConfigs: Record<TemplateTypes, TemplateConfig> = {
+  [TemplateTypes.AnnualGeneralMeeting]: {
     questionType: QuestionTypes.Single,
     questions: [
       { title: '', description: '', options: [{ option: '' }, { option: '' }] },
@@ -150,7 +163,7 @@ const TemplateConfigs: Record<TemplateIds, TemplateConfig> = {
       { title: '', description: '', options: [{ option: '' }, { option: '' }] },
     ],
   },
-  [TemplateIds.Election]: {
+  [TemplateTypes.Election]: {
     questionType: QuestionTypes.Multiple,
     questions: [
       {
@@ -162,7 +175,7 @@ const TemplateConfigs: Record<TemplateIds, TemplateConfig> = {
       },
     ],
   },
-  [TemplateIds.ParticipatoryBudgeting]: {
+  [TemplateTypes.ParticipatoryBudgeting]: {
     questionType: QuestionTypes.ParticipatoryBudgeting,
     questions: [
       {
@@ -215,8 +228,9 @@ const electionFromForm = (form) => {
       anonymous: Boolean(form.voterPrivacy === 'anonymous'),
       secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
     },
-    maxCensusSize: form.spreadsheet?.data.length ?? form.addresses.length ?? maxCensusSize,
-    // map questions back to IQuestion[]
+    maxNumberOfChoices: form.questions[0]?.maxSelections ?? null,
+    minNumberOfChoices: form.questions[0]?.minSelections ?? null,
+    maxCensusSize: form.spreadsheet?.data?.length ?? form.addresses?.length ?? maxCensusSize,
     questions: form.questions.map(
       (question) =>
         ({
@@ -227,9 +241,7 @@ const electionFromForm = (form) => {
             value: i,
             meta: {
               description: q.description,
-              image: {
-                default: q.image,
-              },
+              image: { default: q.image },
             },
           })),
         }) as IQuestion
@@ -251,15 +263,56 @@ const electionFromForm = (form) => {
   }
 }
 
+const getCensus = async (form: Process, salt: string) => {
+  if (form.censusType === 'spreadsheet') {
+    form.addresses = (await form.spreadsheet?.generateWallets(salt)) as Web3Address[]
+  }
+  let census = null
+  switch (form.censusType) {
+    case CensusTypes.Memberbase:
+      census = new PlainCensus()
+      const addresses = '0x9b1e78c120dbe9B919397852D0B3d4D851b1cd7e'
+      census.add(addresses)
+
+      return census
+    case CensusTypes.Spreadsheet:
+    case CensusTypes.Web3:
+      census = new PlainCensus()
+      if (form.addresses && form.addresses.length > 0) {
+        form.addresses.forEach(({ address }) => {
+          if (address) census.add(address)
+        })
+      }
+
+      return census
+    default:
+      throw new Error(`census type ${form.censusType} is not allowed`)
+  }
+}
+
+const getQuestionType = (form: Process): QuestionTypes => {
+  const question = form.questions[0]
+  const totalChoices = question.options.length
+  const { maxNumberOfChoices, minNumberOfChoices, questionType } = form
+
+  const isApproval =
+    (maxNumberOfChoices === totalChoices && minNumberOfChoices === 0) ||
+    (maxNumberOfChoices === 0 && minNumberOfChoices === 0)
+
+  if (isApproval) return QuestionTypes.Approval
+
+  return questionType
+}
+
 const TemplateButtons = () => {
   const { t } = useTranslation()
   const methods = useFormContext<Process>()
   const { activeTemplate, setActiveTemplate } = useProcessTemplates()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const reset = useSafeReset()
-  const pendingTemplateRef = useRef<TemplateIds | null>(null)
+  const pendingTemplateRef = useRef<TemplateTypes | null>(null)
 
-  const applyTemplate = (templateId: TemplateIds) => {
+  const applyTemplate = (templateId: TemplateTypes) => {
     const config = TemplateConfigs[templateId]
     setActiveTemplate(templateId)
     reset({
@@ -270,7 +323,7 @@ const TemplateButtons = () => {
   }
 
   const handleTemplateClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const template = e.currentTarget.dataset.template as TemplateIds
+    const template = e.currentTarget.dataset.template as TemplateTypes
     if (!template) return
 
     if (activeTemplate === template) {
@@ -308,18 +361,18 @@ const TemplateButtons = () => {
         <Button
           variant='outline'
           size='sm'
-          data-template={TemplateIds.AnnualGeneralMeeting}
+          data-template={TemplateTypes.AnnualGeneralMeeting}
           onClick={handleTemplateClick}
         >
           {t('process.create.template.annual_general_meeting', 'Annual General Meeting')}
         </Button>
-        <Button variant='outline' size='sm' data-template={TemplateIds.Election} onClick={handleTemplateClick}>
+        <Button variant='outline' size='sm' data-template={TemplateTypes.Election} onClick={handleTemplateClick}>
           {t('process.create.template.election', 'Election')}
         </Button>
         <Button
           variant='outline'
           size='sm'
-          data-template={TemplateIds.ParticipatoryBudgeting}
+          data-template={TemplateTypes.ParticipatoryBudgeting}
           onClick={handleTemplateClick}
         >
           {t('process.create.template.participatory_budgeting', 'Participatory Budgeting')}
@@ -477,33 +530,6 @@ export const ProcessCreate = () => {
     onResetFormModalClose()
   }
 
-  const getCensus = async (form: Process, salt: string) => {
-    if (form.censusType === 'spreadsheet') {
-      form.addresses = (await form.spreadsheet?.generateWallets(salt)) as Web3Address[]
-    }
-    let census = null
-    switch (form.censusType) {
-      case CensusTypes.Memberbase:
-        census = new PlainCensus()
-        const addresses = '0x9b1e78c120dbe9B919397852D0B3d4D851b1cd7e'
-        census.add(addresses)
-
-        return census
-      case CensusTypes.Spreadsheet:
-      case CensusTypes.Web3:
-        census = new PlainCensus()
-        if (form.addresses && form.addresses.length > 0) {
-          form.addresses.forEach(({ address }) => {
-            if (address) census.add(address)
-          })
-        }
-
-        return census
-      default:
-        throw new Error(`census type ${form.censusType} is not allowed`)
-    }
-  }
-
   const onSubmit = async (form) => {
     try {
       const account = await client.fetchAccountInfo()
@@ -515,28 +541,38 @@ export const ProcessCreate = () => {
       }
       const salt = await client.electionService.getElectionSalt(account.address, account.electionIndex)
       const census = await getCensus(form, salt)
-      const params: IElectionParameters = {
+      const params = {
         ...electionFromForm(form),
         census,
       }
 
+      const questionType = getQuestionType(form)
+
       let election: UnpublishedElection
-      switch (form.questionType) {
+
+      switch (questionType) {
         case QuestionTypes.ParticipatoryBudgeting:
         case QuestionTypes.Multiple:
-          election = ApprovalElection.from(params)
+          console.log('Creating multi-choice election')
+          election = MultiChoiceElection.from(params as IMultiChoiceElectionParameters)
+          break
+        case QuestionTypes.Approval:
+          console.log('Creating approval election')
+          election = ApprovalElection.from(params as IElectionParameters)
           break
         case QuestionTypes.Single:
         default:
-          election = Election.from(params)
+          console.log('Creating single-choice election')
+          election = Election.from(params as IElectionParameters)
+          break
       }
 
       let electionId: string | null = null
 
       for await (const step of client.createElectionSteps(election)) {
-        switch (step.key) {
-          case ElectionCreationSteps.DONE:
-            electionId = step.electionId
+        if (step.key === ElectionCreationSteps.DONE) {
+          electionId = step.electionId
+          break
         }
       }
 
@@ -551,13 +587,10 @@ export const ProcessCreate = () => {
 
       methods.reset(defaultProcessValues)
 
-      navigate(
-        generatePath(Routes.dashboard.process, {
-          id: electionId,
-        })
-      )
+      navigate(generatePath(Routes.dashboard.process, { id: electionId }))
     } catch (error) {
       console.error('Error creating election:', error)
+
       toast({
         title: t('form.process_create.error_title', { defaultValue: 'Error creating process' }),
         description: error instanceof Error ? error.message : String(error),
