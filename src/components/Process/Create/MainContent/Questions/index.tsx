@@ -9,7 +9,7 @@ import {
   useSensors,
 } from '@dnd-kit/core'
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuPlus } from 'react-icons/lu'
@@ -74,16 +74,6 @@ export const Questions = () => {
       const newIndex = fields.findIndex((field) => field.id === over.id)
 
       if (oldIndex !== -1 && newIndex !== -1) {
-        // Get current form values
-        const currentQuestions = getValues('questions')
-
-        // Reorder the array
-        const reorderedQuestions = arrayMove(currentQuestions, oldIndex, newIndex)
-
-        // Update the form with reordered questions
-        setValue('questions', reorderedQuestions)
-
-        // Move the field array items
         move(oldIndex, newIndex)
       }
     }

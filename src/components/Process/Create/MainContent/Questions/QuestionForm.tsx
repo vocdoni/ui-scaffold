@@ -16,7 +16,6 @@ import {
 import { closestCenter, DndContext, KeyboardSensor, PointerSensor, useSensor, useSensors } from '@dnd-kit/core'
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import {
-  arrayMove,
   SortableContext,
   sortableKeyboardCoordinates,
   useSortable,
@@ -415,15 +414,6 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
               const newIndex = questionOptions.findIndex((field) => field.id === over.id)
 
               if (oldIndex !== -1 && newIndex !== -1) {
-                // Get current form values for this question's options
-                const currentOptions = getValues(`questions.${index}.options`)
-
-                // Reorder the array
-                const reorderedOptions = arrayMove(currentOptions, oldIndex, newIndex)
-
-                // Update the form with reordered options
-                setValue(`questions.${index}.options`, reorderedOptions)
-
                 // Move the field array items
                 move(oldIndex, newIndex)
               }
