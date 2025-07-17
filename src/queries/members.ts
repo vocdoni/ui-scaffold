@@ -40,6 +40,13 @@ type PaginatedMembersProps = {
   showAll?: boolean
 }
 
+type JobResponse = {
+  progress: number
+  added: number
+  total: number
+  errors?: string[]
+}
+
 export const useUrlPagination = () => {
   const params = useParams()
   const [searchParams] = useSearchParams()
@@ -135,9 +142,11 @@ export const useImportJobProgress = () => {
   return useQuery({
     enabled: Boolean(jobId),
     queryKey: QueryKeys.organization.membersImportProgress(organization.address, jobId),
-    queryFn: () => bearedFetch<{ progress: number; added: number; total: number }>(url),
+    queryFn: () => bearedFetch<JobResponse>(url),
+    retry: false,
     refetchInterval: (query) => {
-      const data = query.state.data
+      const { data, status } = query.state
+      if (status === 'error') return false
       if (!data || data.progress < 100) return 2000
       return false
     },

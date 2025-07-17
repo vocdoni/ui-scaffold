@@ -6,36 +6,24 @@ import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
 
 export type MemberbaseTabsContext = {
-  setJobId: (jobId: string | null) => void
-  jobId: string | null
+  setJobId: (jobId: JobId) => void
+  jobId: JobId
   search: string
   setSearch: (search: string) => void
   debouncedSearch: string
   submitSearch: () => void
 } & DashboardLayoutContext
 
+export type JobId = string | null
+
 export const MemberbaseTabs = () => {
-  const [jobId, setJobId] = useState(null)
-  const [search, setSearch] = useState('')
-  const [debouncedSearch, setDebouncedSearch] = useState(search)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setDebouncedSearch(search)
-    }, 5000)
-
-    return () => clearTimeout(timer)
-  }, [search])
-
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
   const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
-
-  const submitSearch = () => {
-    setDebouncedSearch(search)
-  }
-
+  const [jobId, setJobIdState] = useState<JobId>(() => localStorage.getItem('memberbaseImportJobId'))
+  const [search, setSearch] = useState('')
+  const [debouncedSearch, setDebouncedSearch] = useState(search)
   const menuItems = [
     {
       label: t('memberbase.members.title', { defaultValue: 'Members' }),
@@ -44,6 +32,27 @@ export const MemberbaseTabs = () => {
     { label: t('memberbase.groups.title', { defaultValue: 'Groups' }), route: Routes.dashboard.memberbase.groups },
   ]
   const currentTabIndex = menuItems.findIndex((item) => location.pathname.endsWith(item.route))
+
+  const submitSearch = () => {
+    setDebouncedSearch(search)
+  }
+
+  const setJobId = (newJobId: string | null) => {
+    if (newJobId) {
+      localStorage.setItem('memberbaseImportJobId', newJobId)
+    } else {
+      localStorage.removeItem('memberbaseImportJobId')
+    }
+    setJobIdState(newJobId)
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(search)
+    }, 5000)
+
+    return () => clearTimeout(timer)
+  }, [search])
 
   return (
     <>
