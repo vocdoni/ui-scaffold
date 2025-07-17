@@ -44,10 +44,10 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
   return (
     <Sidebar {...props}>
       <SidebarContents borderBottom='1px solid' borderColor='table.border'>
-        <SidebarTitle>Settings</SidebarTitle>
+        <SidebarTitle>{t('settings')}</SidebarTitle>
         {isMobile && (
           <IconButton
-            aria-label='Close sidebar'
+            aria-label={t('close_sidebar')}
             icon={<Icon as={LuX} />}
             variant='ghost'
             size='sm'
@@ -61,11 +61,11 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
       </SidebarContents>
 
       <SidebarContents flex='1' overflowY='auto'>
-        <SidebarSubtitle>Basic Configuration</SidebarSubtitle>
+        <SidebarSubtitle>{t('basic_configuration')}</SidebarSubtitle>
         <BasicConfig />
 
         <SidebarSubtitle borderTop='1px solid' borderColor='table.border' mt={4}>
-          Extra Configuration
+          {t('extra_configuration')}
         </SidebarSubtitle>
         <ExtraConfig />
 
@@ -77,7 +77,7 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
           justifyContent='space-between'
           alignItems='center'
         >
-          <SidebarSubtitle m={0}>Census Creation</SidebarSubtitle>
+          <SidebarSubtitle m={0}>{t('census_creation')}</SidebarSubtitle>
           <IconButton
             aria-label={t('process_create.census.settings', 'Census settings')}
             icon={<Icon as={LuSettings} />}

@@ -65,14 +65,14 @@ export const GroupSelect = () => {
         <Trans i18nKey='process_create.census.memberbase.label'>Select a group of members to create the census</Trans>
         {(!data || data.length === 0) && (
           <>
-            . If you don't have any yet, create one first{' '}
+            {t('no_groups_create_first')}{' '}
             <Link
               as={ReactRouterLink}
               to={Routes.dashboard.memberbase.base}
               color='blue.500'
               _hover={{ textDecoration: 'underline' }}
             >
-              here
+              {t('here')}
             </Link>
             .
           </>

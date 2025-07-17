@@ -1,7 +1,7 @@
 {
   "account": {
     "subtitle": "Update your account details and personal information",
-    "title": "Account Information"
+    "title": "Account information"
   },
   "actions": {
     "cancel": "Cancel",
@@ -9,8 +9,8 @@
     "create_new_vote": "Create new vote",
     "manage_team": "Manage team",
     "more": "More options",
-    "save": "Save Changes",
-    "save_changes": "Save Changes",
+    "save": "Save changes",
+    "save_changes": "Save changes",
     "view_active_votes": "View active votes"
   },
   "active": "Active",
@@ -49,25 +49,31 @@
     "votes_other": "<span>{{ count }}</span> <text>voters</text>",
     "votes_weight_one": "<span>1</span> <text>vote</text>",
     "votes_weight_other": "<span>{{ count }}</span> <text>votes</text>",
-    "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
+    "voting_anonymous_advice": "Processing anonymous vote. This may take several minutes; don't close the window."
   },
   "auth": {
     "go_home": "Home"
   },
   "avatar": {
-    "label": "Organization Avatar"
+    "label": "Organization avatar"
   },
   "back": "Back",
-  "billing_details": "Billing Details",
+  "billing_details": "Billing details",
+  "basic_configuration": "Basic configuration",
+  "census_creation": "Census creation",
+  "close_sidebar": "Close sidebar",
+  "extra_configuration": "Extra configuration",
+  "here": "here",
+  "no_groups_create_first": ". If you don't have any yet, create one first",
   "calculator": {
     "anonymous": "Anonymous",
-    "buy_with_card": "Buy with Card",
-    "buy_with_crypto": "Buy with Crypto",
+    "buy_with_card": "Buy with card",
+    "buy_with_crypto": "Buy with crypto",
     "calculate_cost": "Calculate cost",
-    "census_size": "Census Size (voters)",
+    "census_size": "Census size (voters)",
     "coming_soon": "Coming soon",
     "contact": "If you have any question, check our <faqsLink>FAQ</faqsLink> or <customLink>contact</customLink> our support team",
-    "contact_us": "Contact Us",
+    "contact_us": "Contact us",
     "description": "<p>Vocdoni uses its own public voting blockchain (Vochain) to ensure maximum security, verifiability and censorship resistance. Users need tokens to create elections, and final cost depends on census size and duration.</p>",
     "discount": "Discount",
     "duration": "Duration (days)",
@@ -83,12 +89,12 @@
     "one_time": "One-time",
     "package": "Package",
     "packages": "Packages",
-    "price_per_token": "Price per Token:",
+    "price_per_token": "Price per token:",
     "recurring": "Recurring",
     "recurring_description": "<p>Do you need a recurring amount of tokens or do you plan to create multiple elections?</p><p>Do you need secure digital voting for your software?</p><p>We offer atractive integrations and services agreement options for this kind of needs.</p><p>Don't hesitate and contact us and our expert team will assist you and tailor a specific plan for you!</p>",
     "title": "How Vocdoni works?",
     "total": "Total",
-    "total_cost": "Total Cost:",
+    "total_cost": "Total cost:",
     "vat": "(without VAT)",
     "vote_overwrite": "Vote overwrite",
     "voting_process_cost": "Voting process cost:"
@@ -106,12 +112,12 @@
   "cancel": "Cancel",
   "cc": {
     "actions": {
-      "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",
-      "cancel_description": "Canceling \"{{ election.title.default }}\"...\nAttention: this action is irreversible and will cancel all the previous votes on it",
+    "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (this action cannot be undone)",
+    "cancel_description": "Canceling \"{{ election.title.default }}\"...\nThis action cannot be undone and will cancel all the previous votes on it",
       "continue": "Resume the process immediately, in case it has been paused",
       "continue_description": "Resuming \"{{ election.title.default }}\" voting process...",
-      "end": "End the process immediately, preventing new votes to be submitted, and shows the voting results (caution: it cannot be reverted)",
-      "end_description": "Ending \"{{ election.title.default }}\" voting process...\nAttention: this action is irreversible and voters will no longer be able to vote.",
+      "end": "End the process immediately, preventing new votes to be submitted, and shows the voting results (this action cannot be undone)",
+      "end_description": "Ending \"{{ election.title.default }}\" voting process...\nThis action cannot be undone and voters will no longer be able to vote.",
       "error_title": "There was some error while executing the transaction",
       "pause": "Pause the voting process temporarily, until resumed manually. While the process is paused, voters cannot submit votes.",
       "pause_description": "Pausing \"{{ election.title.default }}\" voting process...",
@@ -120,25 +126,25 @@
     "confirm": {
       "cancel": "Cancel",
       "cancel_button": "Cancel",
-      "confirm": "Confirm Vote",
+      "confirm": "Confirm vote",
       "title": "Confirm"
     },
-    "empty": "Apparently this process has no questions",
+    "empty": "This voting process has no questions",
     "errors": {
-      "wrong_data_description": "The specified data is not correct",
-      "wrong_data_title": "Wrong data"
+      "wrong_data_description": "The data you entered is invalid",
+      "wrong_data_title": "Invalid data"
     },
     "loading": "Loading...",
     "pagination": {
       "total_results": "Showing a total of {{ count }} results"
     },
     "question_types": {
-      "approval_title": "Approval Voting",
+      "approval_title": "Approval voting",
       "approval_tooltip": "Approval voting lets you vote for as many options as you like. The one with the most votes wins. It's a simple way to show your support for all the choices you approve of.",
       "multichoice_cannot_abstain": "Too many options selected",
       "multichoice_desc": "Select up to {{maxcount}} options",
       "multichoice_desc_abstain": " (or abstain)",
-      "multichoice_title": "Multichoice Voting {{ weighted }}",
+      "multichoice_title": "Multichoice voting {{ weighted }}",
       "multichoice_tooltip": "Multichoice voting lets you vote for up to {{maxcount}} options (defined by the voting organizer). The one with the most votes wins.",
       "singlechoice_title": "Single Choice {{ weighted }}",
       "weighted_voting": "Weighted Voting"
@@ -204,18 +210,18 @@
     "token_title": "Token based census",
     "wallet_address_title": "Wallet addresses"
   },
-  "census_details": "Census Details",
+    "census_details": "Census details",
   "census_size": "Census size",
   "change_password": {
     "subtitle": "Enter your current password and a new password to update your credentials.",
-    "title": "Change Password"
+    "title": "Change password"
   },
   "claim": {
     "loading_description": "<h3>Wallet Authentication (Metamask, Rainbow, Coinbase):</h3><p>To receive your tokens, please sign the request when prompted.</p><strong>Important:</strong><p>If you leave this page without signing, you will not receive your paid tokens.</p><line/><h3>Social Account Authentication (Google, Github, Facebook):</h3><p>Please wait while we process your request.</p>",
-    "purchase_success": "<title>We appreciate your business!</title><p>If you have any questions, please email <mailto>orders@vocdoni.org</mailto></p>",
+    "purchase_success": "<title>Thank you for your purchase!</title><p>If you have any questions, please email <mailto>orders@vocdoni.org</mailto></p>",
     "signature_aborted": "<p>You aborted the action.</p><strong>Important:</strong><p>If you leave this page without signing, you will not receive your paid tokens.</p>",
     "signature_aborted_sign": "Sign",
-    "success_faucetPackage_title": "Faucet Package was successfully obtained",
+    "success_faucetPackage_title": "Token package obtained successfully",
     "toast": {
       "error_title": "Error",
       "loading_description": "Please wait while tokens are being claimed",
@@ -231,7 +237,7 @@
     "confirm": "Confirm",
     "next": "Next"
   },
-  "confirm_password": "Confirm Password",
+  "confirm_password": "Confirm password",
   "confirm_password_placeholder": "Confirm your new password",
   "contact_us": "Contact us",
   "control_panel": "Control panel",
@@ -247,14 +253,14 @@
     "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
     "communication": "I want to receive communications and be contacted to tailor my governance experience.",
     "create_button": "Create your organization",
-    "organization_details": "Organization Details",
+    "organization_details": "Organization details",
     "organization_details_description": "Manage your organization's profile and configuration settings.",
-    "private_org": "Other Details",
+    "private_org": "Additional details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
-    "public_info": "Public Profile",
+    "public_info": "Public profile",
     "public_info_description": "This information is shown in various places including the voting pages.",
-    "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
-    "title": "Tell us about your organization"
+    "subtitle": "Reduce costs and save time with secure, private, GDPR-compliant voting",
+    "title": "Set up your organization"
   },
   "csp_census": {
     "github": {
@@ -263,7 +269,7 @@
     }
   },
   "current": "Current",
-  "current_plan": "Current Plan",
+    "current_plan": "Current plan",
   "dark": "Dark",
   "dark_mode": "Dark mode",
   "dashboard": {
@@ -286,15 +292,15 @@
     "how_first_vote": "How to create your first vote",
     "no_organization": "No organization found",
     "no_subscription": "No subscription available. Please create an organization to activate your plan.",
-    "quick_actions": "Quick Actions",
+    "quick_actions": "Quick actions",
     "recent_voting_description": "Your organization's latest voting activities",
-    "recent_voting_title": "Recent Voting Processes",
+    "recent_voting_title": "Recent voting processes",
     "subtitle": "Here's an overview of your organization's voting activities",
     "title": "Here's an overview of your organization's voting activities"
   },
   "description": "Description",
   "do_it_later": "Do it later",
-  "do_you_need_help": "Do you need help?",
+  "do_you_need_help": "Need help?",
   "edit_saas_profile": {
     "edited_successfully": "Updated successfully"
   },
@@ -1038,19 +1044,19 @@
     "title": "Live results"
   },
   "loading": "Loading...",
-  "login": {
-    "facebook": "Sign in with Facebook",
-    "github": "Sign in with Github",
-    "google": "Sign in with Google"
-  },
+    "login": {
+      "facebook": "Sign in with Facebook",
+      "github": "Sign in with Github",
+      "google": "Sign in with Google"
+    },
   "logout": "Logout",
   "memberbase": {
     "add_member": {
-      "button": "Add Member",
+      "button": "Add member",
       "description": "Fill in the member details below.",
       "error": "Error adding member.",
       "success": "Member added successfully!",
-      "title": "Add Member"
+      "title": "Add member"
     },
     "delate_member": {
       "subtitle_one": "Are you sure you want to delete {{count}} member? This action cannot be undone.",
@@ -1063,7 +1069,7 @@
       "error_other": "Error deleting members",
       "success_one": "Member deleted successfully",
       "success_other": "Members deleted successfully",
-      "title": "Delete Members"
+      "title": "Delete members"
     },
     "download_template": {
       "subtitle": "Download the template with your chosen columns, add your member data, and upload the file to set up your memberbase. Once it’s ready, you can start creating votes.",
@@ -1073,7 +1079,7 @@
       "description": "Edit the member details below.",
       "error": "Error updating member.",
       "success": "Member updated successfully!",
-      "title": "Edit Member"
+      "title": "Edit member"
     },
     "exporter": {
       "button": "Export",
@@ -1088,7 +1094,7 @@
     },
     "form": {
       "cancel": "Cancel",
-      "save": "Save Changes"
+      "save": "Save changes"
     },
     "groups": {
       "title": "Groups"
@@ -1188,9 +1194,9 @@
   "more_than_users_other": "more than {{ count }} users",
   "name": "Name",
   "navbar": {
-    "contact": "Contact Us",
+    "contact": "Contact us",
     "pricing": "Pricing",
-    "usecases": "Use Cases"
+    "usecases": "Use cases"
   },
   "need_help": {
     "description": "Do you need some help with your first voting process? Watch this tutorial or schedule a call.",
@@ -1203,7 +1209,7 @@
     "onboarding": "If your organization is already on Vocdoni, ask its administrator to invite you.",
     "title": "Create your organization"
   },
-  "new_password": "New Password",
+  "new_password": "New password",
   "new_password_placeholder": "Enter your new password",
   "new_vote": "New vote",
   "new_voting": "New vote",
@@ -1232,31 +1238,31 @@
       "read_more": "Expand title"
     }
   },
-  "organization_settings": {
-    "phone_support": {
-      "description": "Available for Custom plan subscribers only.",
-      "info": "Please have your organization ID ready when calling.",
-      "locked": "Phone Support is available with a Custom plan",
-      "locked_description": "Upgrade to our Custom plan to get priority phone support with dedicated agents.",
-      "organization_id": "Your Organization ID",
-      "organization_id_description": "Please provide this ID when contacting support",
-      "priority_support_line": "Priority Support Line",
-      "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
-      "title": "Phone Support",
-      "unlock": "Unlock Phone Support"
+    "organization_settings": {
+      "phone_support": {
+        "description": "Available for Custom plan subscribers only.",
+        "info": "Please have your organization ID ready when calling.",
+        "locked": "Phone support is available with a Custom plan",
+        "locked_description": "Upgrade to our Custom plan to get priority phone support with dedicated agents.",
+        "organization_id": "Your organization ID",
+        "organization_id_description": "Please provide this ID when contacting support",
+        "priority_support_line": "Priority support line",
+        "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
+        "title": "Phone support",
+        "unlock": "Unlock phone support"
+      },
+      "subtitle": "Manage your organization, team members and your subscription plan",
+      "support": {
+        "description": "Get help and support for your organization.",
+        "title": "Support"
+      },
+      "team": {
+        "add_team_member": "Add team member",
+        "subtitle": "Manage your organization's team members and their permissions.",
+        "title": "Team members"
+      },
+      "title": "{{organization}} settings"
     },
-    "subtitle": "Manage your organization, team members and your subscription plan",
-    "support": {
-      "description": "Get help and support for your organization.",
-      "title": "Support"
-    },
-    "team": {
-      "add_team_member": "Add team member",
-      "subtitle": "Manage your organization's team members and their permissions.",
-      "title": "Team Members"
-    },
-    "title": "{{organization}} Settings"
-  },
   "organization_setup": {
     "setup_steps": {
       "expert_call_booking": "Book a free call with our experts",
@@ -1277,7 +1283,7 @@
   },
   "password": "Password",
   "password_placeholder": "Min 8 characters",
-  "password_placeholder_confirm": "Confirm Password",
+  "password_placeholder_confirm": "Confirm password",
   "password_reset": {
     "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
     "title": "Password reset"
@@ -1304,9 +1310,9 @@
     "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
   },
   "plan_upgrade": {
-    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "dont_limit_yourself": "Unlock full potential. Join 725+ organizations using <2>Vocdoni</2>.",
     "feature_available_in": "Feature available in:",
-    "feature_unavailable": "Oops ... your <2>{{ plan, lowercase }} plan</2> doesn't support {{feature}}.",
+    "feature_unavailable": "Your <2>{{ plan }} plan</2> doesn't include {{feature}}.",
     "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
   },
   "preferences": "Preferences",
@@ -1404,7 +1410,7 @@
       },
       "description": {
         "placeholder": "Add a description...",
-        "title": "Voting Process Title"
+        "title": "Voting process title"
       },
       "leave_confirmation": {
         "cancel": "Cancel",
@@ -1807,11 +1813,11 @@
   "start_time": "Start time",
   "subscribe": "Subscribe",
   "subscription": {
-    "title": "Subscription Plan"
+    "title": "Subscription plan"
   },
   "subscription_plan": {
     "subtitle": "Manage your subscription plan and billing cycle.",
-    "title": "Subscription Plan"
+    "title": "Subscription plan"
   },
   "support": "Support",
   "switch_organization": "Switch organization",
@@ -2016,8 +2022,8 @@
     "verifying_title": "Verifying {{ email }}"
   },
   "view_in_explorer": "View in explorer",
-  "view_plans_and_pricing": "View Plans & Pricing",
-  "view_pricing_plans": "View Pricing Plans",
+  "view_plans_and_pricing": "View plans & pricing",
+  "view_pricing_plans": "View pricing plans",
   "vocdoni logo": "Vocdoni logo",
   "vote_information": "Vote information",
   "vote_overwrite": "Vote overwrite",
