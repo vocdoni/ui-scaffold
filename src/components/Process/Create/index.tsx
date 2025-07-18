@@ -355,9 +355,10 @@ const TemplateButtons = () => {
 
   const applyTemplate = (templateId: TemplateTypes) => {
     const config = TemplateConfigs[templateId]
+    const previousFormValues = methods.getValues()
     setActiveTemplate(templateId)
     reset({
-      autoStart: true,
+      ...previousFormValues,
       questionType: config.questionType,
       questions: config.questions,
     })
