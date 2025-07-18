@@ -178,7 +178,7 @@ const SortableOption = ({
         <FormControl isInvalid={!!errors.questions?.[questionIndex]?.options?.[optionIndex]?.option} flex='1'>
           <Input
             placeholder={
-              placeholders[activeTemplate]?.questions?.[questionIndex].options?.[optionIndex] ??
+              placeholders[activeTemplate]?.questions?.[questionIndex]?.options?.[optionIndex]?.option ??
               t('process_create.option.placeholder', 'Option {{number}}', {
                 number: optionIndex + 1,
               })
