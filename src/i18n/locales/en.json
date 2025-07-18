@@ -112,8 +112,8 @@
   "cancel": "Cancel",
   "cc": {
     "actions": {
-    "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (this action cannot be undone)",
-    "cancel_description": "Canceling \"{{ election.title.default }}\"...\nThis action cannot be undone and will cancel all the previous votes on it",
+      "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (this action cannot be undone)",
+      "cancel_description": "Canceling \"{{ election.title.default }}\"...\nThis action cannot be undone and will cancel all the previous votes on it",
       "continue": "Resume the process immediately, in case it has been paused",
       "continue_description": "Resuming \"{{ election.title.default }}\" voting process...",
       "end": "End the process immediately, preventing new votes to be submitted, and shows the voting results (this action cannot be undone)",
@@ -210,7 +210,7 @@
     "token_title": "Token based census",
     "wallet_address_title": "Wallet addresses"
   },
-    "census_details": "Census details",
+  "census_details": "Census details",
   "census_size": "Census size",
   "change_password": {
     "subtitle": "Enter your current password and a new password to update your credentials.",
@@ -269,7 +269,7 @@
     }
   },
   "current": "Current",
-    "current_plan": "Current plan",
+  "current_plan": "Current plan",
   "dark": "Dark",
   "dark_mode": "Dark mode",
   "dashboard": {
@@ -1044,11 +1044,11 @@
     "title": "Live results"
   },
   "loading": "Loading...",
-    "login": {
-      "facebook": "Sign in with Facebook",
-      "github": "Sign in with Github",
-      "google": "Sign in with Google"
-    },
+  "login": {
+    "facebook": "Sign in with Facebook",
+    "github": "Sign in with Github",
+    "google": "Sign in with Google"
+  },
   "logout": "Logout",
   "memberbase": {
     "add_member": {
@@ -1238,31 +1238,31 @@
       "read_more": "Expand title"
     }
   },
-    "organization_settings": {
-      "phone_support": {
-        "description": "Available for Custom plan subscribers only.",
-        "info": "Please have your organization ID ready when calling.",
-        "locked": "Phone support is available with a Custom plan",
-        "locked_description": "Upgrade to our Custom plan to get priority phone support with dedicated agents.",
-        "organization_id": "Your organization ID",
-        "organization_id_description": "Please provide this ID when contacting support",
-        "priority_support_line": "Priority support line",
-        "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
-        "title": "Phone support",
-        "unlock": "Unlock phone support"
-      },
-      "subtitle": "Manage your organization, team members and your subscription plan",
-      "support": {
-        "description": "Get help and support for your organization.",
-        "title": "Support"
-      },
-      "team": {
-        "add_team_member": "Add team member",
-        "subtitle": "Manage your organization's team members and their permissions.",
-        "title": "Team members"
-      },
-      "title": "{{organization}} settings"
+  "organization_settings": {
+    "phone_support": {
+      "description": "Available for Custom plan subscribers only.",
+      "info": "Please have your organization ID ready when calling.",
+      "locked": "Phone support is available with a Custom plan",
+      "locked_description": "Upgrade to our Custom plan to get priority phone support with dedicated agents.",
+      "organization_id": "Your organization ID",
+      "organization_id_description": "Please provide this ID when contacting support",
+      "priority_support_line": "Priority support line",
+      "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
+      "title": "Phone support",
+      "unlock": "Unlock phone support"
     },
+    "subtitle": "Manage your organization, team members and your subscription plan",
+    "support": {
+      "description": "Get help and support for your organization.",
+      "title": "Support"
+    },
+    "team": {
+      "add_team_member": "Add team member",
+      "subtitle": "Manage your organization's team members and their permissions.",
+      "title": "Team members"
+    },
+    "title": "{{organization}} settings"
+  },
   "organization_setup": {
     "setup_steps": {
       "expert_call_booking": "Book a free call with our experts",

@@ -1,21 +1,21 @@
 {
   "account": {
-    "subtitle": "Update your account details and personal information",
-    "title": "Account Information"
+    "subtitle": "Actualitza els detalls del compte i la informació personal",
+    "title": "Informació del compte"
   },
   "actions": {
-    "cancel": "Cancel",
-    "create_first_vote": "View all processes",
-    "create_new_vote": "Create new vote",
-    "manage_team": "Manage team",
-    "more": "More options",
-    "save": "Guarda els canvis",
-    "save_changes": "Save Changes",
-    "view_active_votes": "View active votes"
+    "cancel": "Cancel·la",
+    "create_first_vote": "Visualitza tots els processos",
+    "create_new_vote": "Crea una votació nova",
+    "manage_team": "Gestiona l'equip",
+    "more": "Més opcions",
+    "save": "Desa els canvis",
+    "save_changes": "Desa els canvis",
+    "view_active_votes": "Visualitza les votacions actives"
   },
   "active": "Actiu",
-  "add_new_org": "Afegir una nova organització",
-  "additional_actions": "Additional actions",
+  "add_new_org": "Afegeix una organització nova",
+  "additional_actions": "Accions addicionals",
   "all": "Tots",
   "already_member": "Ja tens un compte?",
   "alt": {
@@ -36,7 +36,7 @@
     "description": "Els votants romandran anònims",
     "title": "Anònim"
   },
-  "anonymous_voting": "Anonymous voting",
+  "anonymous_voting": "Votació anònima",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -44,7 +44,7 @@
     "overwrite_votes_left_one": "Pots corregir el teu vot una vegada.",
     "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
-    "submitting": "Enviant",
+    "submitting": "S'està enviant",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
     "votes_one": "<span>1</span> <text>votant</text>",
     "votes_many": "",
@@ -52,16 +52,17 @@
     "votes_weight_one": "<span>1</span> <text>vot</text>",
     "votes_weight_many": "",
     "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
-    "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra."
+    "voting_anonymous_advice": "S'està processant el vot anònim. Això pot trigar uns minuts; no tanquis la finestra."
   },
   "auth": {
-    "go_home": "Home"
+    "go_home": "Inici"
   },
   "avatar": {
     "label": "Avatar de l'organització"
   },
   "back": "Enrere",
-  "billing_details": "Billing Details",
+  "basic_configuration": "Configuració bàsica",
+  "billing_details": "Detalls de facturació",
   "calculator": {
     "anonymous": "Anònim",
     "buy_with_card": "Compra amb targeta",
@@ -97,16 +98,16 @@
     "voting_process_cost": "Cost del procés de votació:"
   },
   "calendar": {
-    "define_active_period": "Define the active period for receiving votes",
-    "end_date": "End date",
-    "end_date_description": "Define the exact date and time of completion",
-    "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
-    "start_date": "Start date",
-    "subtitle": "Specify the active period for receiving votes",
-    "title": "Calendar"
+    "define_active_period": "Defineix el període actiu per rebre vots",
+    "end_date": "Data de finalització",
+    "end_date_description": "Defineix la data i hora exactes de finalització",
+    "max_duration_exceeded": "La durada seleccionada supera la durada màxima permesa de {{maxDuration}} dies per al teu pla. Redueix la durada de la votació o <4>actualitza el teu pla</4>.",
+    "start_date": "Data d'inici",
+    "subtitle": "Especifica el període actiu per rebre vots",
+    "title": "Calendari"
   },
   "call_us": "Truca'ns",
-  "cancel": "Cancel",
+  "cancel": "Cancel·la",
   "cc": {
     "actions": {
       "cancel": "Cancel·la immediatament el procés de votació, sense permetre nous vots i sense comptabilitzar resultats (precaució: no es pot desfer)",
@@ -131,20 +132,20 @@
       "wrong_data_description": "Les dades especificades no són correctes",
       "wrong_data_title": "Dades incorrectes"
     },
-    "loading": "Loading...",
+    "loading": "S'està carregant...",
     "pagination": {
-      "total_results": "Showing a total of {{ count }} results"
+      "total_results": "Es mostren un total de {{ count }} resultats"
     },
     "question_types": {
-      "approval_title": "Approval Voting",
-      "approval_tooltip": "Approval voting lets you vote for as many options as you like. The one with the most votes wins. It's a simple way to show your support for all the choices you approve of.",
-      "multichoice_cannot_abstain": "Too many options selected",
-      "multichoice_desc": "Select up to {{maxcount}} options",
-      "multichoice_desc_abstain": " (or abstain)",
-      "multichoice_title": "Multichoice Voting {{ weighted }}",
-      "multichoice_tooltip": "Multichoice voting lets you vote for up to {{maxcount}} options (defined by the voting organizer). The one with the most votes wins.",
-      "singlechoice_title": "Single Choice {{ weighted }}",
-      "weighted_voting": "Weighted Voting"
+      "approval_title": "Votació per aprovació",
+      "approval_tooltip": "La votació per aprovació et permet votar per tantes opcions com vulguis. La que tingui més vots guanya. És una manera senzilla de mostrar el teu suport a totes les opcions que aproves.",
+      "multichoice_cannot_abstain": "S'han seleccionat massa opcions",
+      "multichoice_desc": "Selecciona fins a {{maxcount}} opcions",
+      "multichoice_desc_abstain": " (o absté't)",
+      "multichoice_title": "Votació múltiple {{ weighted }}",
+      "multichoice_tooltip": "La votació múltiple et permet votar fins a {{maxcount}} opcions (definides per l'organitzador de la votació). La que tingui més vots guanya.",
+      "singlechoice_title": "Opció única {{ weighted }}",
+      "weighted_voting": "Votació ponderada"
     },
     "results": {
       "date_format": "PPpp",
@@ -207,11 +208,11 @@
     "token_title": "Cens basat en tokens",
     "wallet_address_title": "Adreces de cartera"
   },
-  "census_details": "Census Details",
-  "census_size": "Census size",
+  "census_details": "Detalls del cens",
+  "census_size": "Mida del cens",
   "change_password": {
-    "subtitle": "Enter your current password and a new password to update your credentials.",
-    "title": "Change Password"
+    "subtitle": "Introdueix la contrasenya actual i una contrasenya nova per actualitzar les credencials.",
+    "title": "Canvia la contrasenya"
   },
   "claim": {
     "loading_description": "<h3>Autenticació de cartera (Metamask, Rainbow, Coinbase):</h3><p>Per rebre els teus tokens, si us plau, signa la sol·licitud quan se't demani.</p><strong>Important:</strong><p>Si surts d'aquesta pàgina sense signar, no rebràs els tokens que has pagat.</p><strong>Autenticació de compte social (Google, Github, Facebook):</strong><p>Si us plau, espera mentre processem la teva sol·licitud.</p>",
@@ -228,35 +229,35 @@
     }
   },
   "close": "Tanca",
-  "color_mode_switcher": "Color mode switcher",
+  "color_mode_switcher": "Commutador de mode de color",
   "common": {
-    "cancel": "Back",
-    "confirm": "Confirm",
-    "next": "Next"
+    "cancel": "Enrere",
+    "confirm": "Confirma",
+    "next": "Següent"
   },
-  "confirm_password": "Confirm Password",
-  "confirm_password_placeholder": "Confirm your new password",
-  "contact_us": "Contact us",
-  "control_panel": "Control panel",
+  "confirm_password": "Confirma la contrasenya",
+  "confirm_password_placeholder": "Confirma la contrasenya nova",
+  "contact_us": "Contacta'ns",
+  "control_panel": "Tauler de control",
   "copy": {
     "address": "Copia l'adreça",
     "copied_title": "Copiat!",
-    "copy": "Copy"
+    "copy": "Copia"
   },
   "country_selector": {
-    "selector_label": "Country"
+    "selector_label": "País"
   },
   "create_org": {
-    "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
+    "already_profile": "Si la teva organització ja té un perfil, <2>accedeix al tauler</2> i contacta amb l'administrador perquè et convidi",
     "communication": "Vull rebre comunicacions i ser contactat per adaptar la meva experiència de governança.",
-    "create_button": "Create your organization",
-    "organization_details": "Organization Details",
-    "organization_details_description": "Manage your organization's profile and configuration settings.",
+    "create_button": "Crea la teva organització",
+    "organization_details": "Detalls de l'organització",
+    "organization_details_description": "Gestiona el perfil i la configuració de la teva organització.",
     "private_org": "Detalls privats de l'organització",
     "private_org_description": "Ajuda'ns a adaptar la teva experiència amb informació sobre la teva organització. No compartirem aquesta informació.",
     "public_info": "Perfil públic",
     "public_info_description": "Aquesta informació es mostra en diversos llocs, incloses les pàgines de votació.",
-    "subtitle": "This information helps us customize your experience",
+    "subtitle": "Aquesta informació ens ajuda a personalitzar la teva experiència",
     "title": "Crea la teva organització"
   },
   "csp_census": {
@@ -266,12 +267,12 @@
     }
   },
   "current": "Actual",
-  "current_plan": "Current Plan",
-  "dark": "Dark",
+  "current_plan": "Pla actual",
+  "dark": "Fosc",
   "dark_mode": "Mode fosc",
   "dashboard": {
     "actions": {
-      "toggle_sidebar": "Toggle sidebar"
+      "toggle_sidebar": "Commuta la barra lateral"
     },
     "process_view": {
       "date_format": "MMMM do, y",
@@ -279,36 +280,36 @@
     }
   },
   "dashboard_empty_processes": {
-    "common_tasks_actions": "Common tasks and actions",
-    "create_first_organization": "Create your first organization",
-    "create_first_vote": "Create your first vote",
-    "empty": "No voting processes found",
-    "error_loading_processes": "Error loading voting processes",
-    "hello": "👋 Hello {{name}}!",
+    "common_tasks_actions": "Tasques i accions habituals",
+    "create_first_organization": "Crea la teva primera organització",
+    "create_first_vote": "Crea la teva primera votació",
+    "empty": "No s'han trobat processos de votació",
+    "error_loading_processes": "Error en carregar els processos de votació",
+    "hello": "👋 Hola {{name}}!",
     "hello_description": "",
-    "how_first_vote": "How to create your first vote",
-    "no_organization": "No organization found",
-    "no_subscription": "No subscription available. Please create an organization to activate your plan.",
-    "quick_actions": "Quick Actions",
-    "recent_voting_description": "Your organization's latest voting activities",
-    "recent_voting_title": "Recent Voting Processes",
-    "subtitle": "Here's an overview of your organization's voting activities",
-    "title": "Here's an overview of your organization's voting activities"
+    "how_first_vote": "Com crear la teva primera votació",
+    "no_organization": "No s'ha trobat cap organització",
+    "no_subscription": "No hi ha cap subscripció disponible. Crea una organització per activar el teu pla.",
+    "quick_actions": "Accions ràpides",
+    "recent_voting_description": "Les últimes activitats de votació de la teva organització",
+    "recent_voting_title": "Processos de votació recents",
+    "subtitle": "Aquí tens una visió general de les activitats de votació de la teva organització",
+    "title": "Aquí tens una visió general de les activitats de votació de la teva organització"
   },
-  "description": "Description",
-  "do_it_later": "Do it later",
-  "do_you_need_help": "Do you need help?",
+  "description": "Descripció",
+  "do_it_later": "Fer-ho més tard",
+  "do_you_need_help": "Necessites ajuda?",
   "edit_saas_profile": {
     "edited_successfully": "Actualitzat correctament"
   },
   "election": {
-    "ends_on": "Ends on {{date}}",
-    "total_votes": "{{totalVotes}} votes"
+    "ends_on": "Finalitza el {{date}}",
+    "total_votes": "{{totalVotes}} vots"
   },
   "email": "Correu electrònic",
   "email_placeholder": "nom@email.com",
-  "end_date": "End date",
-  "end_time": "End time",
+  "end_date": "Data de finalització",
+  "end_time": "Hora de finalització",
   "error": {
     "go_back": "Torna enrere",
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
@@ -344,7 +345,7 @@
   },
   "features": {
     "anonymous": "Votacions anònimes",
-    "anonymous_voting": "Anonymous voting",
+    "anonymous_voting": "Votació anònima",
     "approval": "Per aprovació",
     "cumulative": "Votació acumulativa",
     "custom_url": "Adreça URL personalitzada",
@@ -365,8 +366,8 @@
     "sms_notification": "Notificacions per SMS",
     "sub_orgs": "Fins a {{ value }} suborganitzacions",
     "total_orgs": "Sub-organitzacions disponibles",
-    "total_users": "Total available users",
-    "users": "Up to {{ count }} users",
+    "total_users": "Total d'usuaris disponibles",
+    "users": "Fins a {{ count }} usuaris",
     "weighted": "Amb pes",
     "white_label": "Marca blanca"
   },
@@ -375,7 +376,7 @@
     "about_us": "Sobre Nosaltres",
     "company": "Empresa",
     "contact": "Contacte",
-    "developer_portal": "Developer Portal",
+    "developer_portal": "Portal de desenvolupadors",
     "footer_subtitle": "El Protocol de Votació Global",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>"
   },
@@ -385,49 +386,49 @@
   "form": {
     "account_create": {
       "description_placeholder": "Descripció (opcional)",
-      "title": "Organization Name",
+      "title": "Nom de l'organització",
       "title_placeholder": "El nom de l'organització",
       "website_placeholder": "https://example.com"
     },
     "choose_an_option": "Tria una opció",
     "create_process": {
       "error": {
-        "end_date_greater_than_start": "End date must be greater than start date.",
-        "end_time_greater_than_start": "End time must be greater than start time.",
-        "max_duration_exceeded": "Exceeds max duration."
+        "end_date_greater_than_start": "La data de finalització ha de ser posterior a la data d'inici.",
+        "end_time_greater_than_start": "L'hora de finalització ha de ser posterior a l'hora d'inici.",
+        "max_duration_exceeded": "Supera la durada màxima."
       }
     },
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
-      "email_invalid": "Invalid email address",
+      "email_invalid": "Adreça de correu electrònic no vàlida",
       "field_is_required": "Aquest camp és obligatori",
-      "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.",
-      "max_greater_than_min": "Max must be greater than or equal to Min",
+      "max_duration_exceeded": "La durada seleccionada supera la durada màxima permesa de {{days}} dies per al teu pla.",
+      "max_greater_than_min": "El màxim ha de ser superior o igual al mínim",
       "min_address": "Si us plau, proporciona com a mínim una adreça",
       "min_users_address": "Si us plau, proporciona com a mínim una adreça",
-      "min_value": "Minimum value is 1",
-      "password_min_length": "Min. 8 characters",
+      "min_value": "El valor mínim és 1",
+      "password_min_length": "Mín. 8 caràcters",
       "recipient_address_invalid": "L'adreça especificada no sembla vàlida",
-      "required": "This field is required"
+      "required": "Aquest camp és obligatori"
     },
     "member": {
       "error": {
-        "invalid_birth_date": "Birth date cannot be in the future",
-        "invalid_email": "Invalid email address",
-        "invalid_phone": "Invalid phone number"
+        "invalid_birth_date": "La data de naixement no pot ser en el futur",
+        "invalid_email": "Adreça de correu electrònic no vàlida",
+        "invalid_phone": "Número de telèfon no vàlid"
       }
     },
     "members": {
       "spreadsheet": {
         "template": {
-          "birth_date": "Birth Date",
-          "email": "Email",
-          "firstname": "First Name",
-          "member_number": "Member Number",
-          "national_id": "National ID",
-          "phone": "Phone",
-          "surname": "Last Name"
+          "birth_date": "Data de naixement",
+          "email": "Correu electrònic",
+          "firstname": "Nom",
+          "member_number": "Número de membre",
+          "national_id": "DNI",
+          "phone": "Telèfon",
+          "surname": "Cognoms"
         }
       }
     },
@@ -453,7 +454,7 @@
         "max_census_slider_tooltip": "{{ voters }} votants({{ percent }}% votants elegibles)",
         "network": "Xarxa",
         "network_placeholder": "Selecciona una xarxa",
-        "remove_address": "Remove address",
+        "remove_address": "Elimina l'adreça",
         "social_description": "Creeu un cens d'electors elegibles proporcionant una llista d'usuaris de Github.",
         "social_title": "Cens de Github",
         "spreadsheet_description": "Dades personalitzades, com ara noms d'usuari i contrasenyes, o informació personal dels votants, es poden utilitzar per a l'autenticació amb un formulari.",
@@ -516,55 +517,55 @@
       "question_title": "Títol",
       "running_checks": "Executant les comprovacions necessàries, espera...",
       "spreadsheet": {
-        "download_template": "You don't have a CSV file? <a>Download template.csv</a>, fill it and upload it.",
+        "download_template": "No tens un fitxer CSV? <a>Descarrega template.csv</a>, omple'l i puja'l.",
         "download_template_btn": "Descarregar plantilla",
         "download_template_description": "Descarrega la plantilla original per completar la teva llista de votants",
         "preview": {
-          "success_description": "The user will be asked to authenticate with:",
-          "success_title": "File uploaded successfully",
+          "success_description": "Es demanarà a l'usuari que s'autentiqui amb:",
+          "success_title": "Fitxer pujat correctament",
           "upload_new_list": "Pujar una nova llista de votants"
         },
         "template": {
-          "email": "Email",
+          "email": "Correu electrònic",
           "firstname": "Nom",
           "lastname": "Cognoms",
           "weight": "Pes"
         },
-        "upload_description": "Upload a CSV file with the participants. Each column will be used as a credential that the voter will have to use to authenticate. The first row will be the titles of that credential."
+        "upload_description": "Puja un fitxer CSV amb els participants. Cada columna s'utilitzarà com a credencial que el votant haurà d'utilitzar per autenticar-se. La primera fila seran els títols d'aquesta credencial."
       },
       "success_description": "Redirigint-te a la pàgina del procés de votació...",
       "success_title": "Procés de votació creat amb èxit",
       "web3": {
-        "census_description": "Add wallet addresses that will be eligible to vote. You can add them individually or upload a CSV file.",
-        "census_summary_description": "<b>{{count}}</b> wallet address will be eligible to vote",
-        "census_summary_title": "Census Summary",
-        "csv_format": "CSV file should contain wallet addresses in the first column.",
-        "upload_csv": "OR UPLOAD CSV",
-        "wallet_addresses": "Wallet Addresses"
+        "census_description": "Afegeix adreces de cartera que seran elegibles per votar. Pots afegir-les individualment o pujar un fitxer CSV.",
+        "census_summary_description": "<b>{{count}}</b> adreça de cartera serà elegible per votar",
+        "census_summary_title": "Resum del cens",
+        "csv_format": "El fitxer CSV ha de contenir adreces de cartera a la primera columna.",
+        "upload_csv": "O PUJA CSV",
+        "wallet_addresses": "Adreces de cartera"
       }
     },
     "process_create_saas": {
       "steps": {
-        "census_title": "Census",
-        "confirm_title": "Confirm",
-        "features_title": "Features",
-        "info_title": "Information",
-        "questions_title": "Questions"
+        "census_title": "Cens",
+        "confirm_title": "Confirma",
+        "features_title": "Funcionalitats",
+        "info_title": "Informació",
+        "questions_title": "Preguntes"
       }
     },
     "select_language": "Idioma",
     "support": {
-      "billing_issue": "Billing issue",
-      "description": "Description",
-      "description_placeholder": "Describe your issue in detail",
-      "open_ticket": "Open a Support Ticket",
-      "selector_label": "Type of Issue",
-      "submit_ticket": "Submit Ticket",
-      "subtitle": "Submit a ticket and our support team will get back to you as soon as possible.",
-      "technical_issue": "Technical issue",
-      "title": "Title",
-      "title_placeholder": "Briefly describe your issue",
-      "voting_issue": "Voting issue"
+      "billing_issue": "Problema de facturació",
+      "description": "Descripció",
+      "description_placeholder": "Descriu el teu problema en detall",
+      "open_ticket": "Obre un tiquet de suport",
+      "selector_label": "Tipus de problema",
+      "submit_ticket": "Envia el tiquet",
+      "subtitle": "Envia un tiquet i el nostre equip de suport es posarà en contacte amb tu tan aviat com sigui possible.",
+      "technical_issue": "Problema tècnic",
+      "title": "Títol",
+      "title_placeholder": "Descriu breument el teu problema",
+      "voting_issue": "Problema de votació"
     }
   },
   "form_error": {
@@ -575,49 +576,49 @@
     "more_effective": "25: Més efectiu",
     "most_effective": "30: Molt efectiu"
   },
-  "google_oauth_error": "Google OAuth Error",
-  "google_oauth_error_description": "Google OAuth error, please try again",
+  "google_oauth_error": "Error d'OAuth de Google",
+  "google_oauth_error_description": "Error d'OAuth de Google, torna-ho a provar",
   "group": {
     "actions": {
-      "cancel": "Cancel",
-      "create_vote": "Create a Vote",
-      "delete": "Delete",
-      "delete_confirm_description": "Are you sure you want to delete <bold>{{title}}</bold>? This action cannot be undone and will permanently remove the group from your organization.",
-      "delete_confirm_title": "Delete Group",
-      "delete_error": "Error deleting group",
-      "delete_group": "Delete Group",
-      "delete_success": "Group deleted successfully",
-      "history": "History",
-      "view_members": "View Members"
+      "cancel": "Cancel·la",
+      "create_vote": "Crea una votació",
+      "delete": "Elimina",
+      "delete_confirm_description": "Estàs segur que vols eliminar <bold>{{title}}</bold>? Aquesta acció no es pot desfer i eliminarà permanentment el grup de la teva organització.",
+      "delete_confirm_title": "Elimina el grup",
+      "delete_error": "Error en eliminar el grup",
+      "delete_group": "Elimina el grup",
+      "delete_success": "Grup eliminat correctament",
+      "history": "Historial",
+      "view_members": "Visualitza els membres"
     },
-    "actions_description": "When a new vote is created, the system takes a snapshot of the group's members at that moment. Any changes to the member list afterward will not affect the created census.",
-    "actions_title": "Actions",
-    "create_vote": "Create a Vote",
-    "created_on": "Created {{date}}",
-    "delete_group": "Delete group",
+    "actions_description": "Quan es crea una votació nova, el sistema fa una instantània dels membres del grup en aquell moment. Qualsevol canvi a la llista de membres posteriorment no afectarà el cens creat.",
+    "actions_title": "Accions",
+    "create_vote": "Crea una votació",
+    "created_on": "Creat el {{date}}",
+    "delete_group": "Elimina el grup",
     "members": {
-      "email": "Email",
-      "name": "Name"
+      "email": "Correu electrònic",
+      "name": "Nom"
     },
-    "members_one": "{{count}} member",
-    "members_many": "{{count}} member",
-    "members_other": "{{count}} members"
+    "members_one": "{{count}} membre",
+    "members_many": "{{count}} membre",
+    "members_other": "{{count}} membres"
   },
   "groups_board": {
-    "create_group": "Create a new group to get started.",
+    "create_group": "Crea un grup nou per començar.",
     "history": {
-      "close": "Close",
-      "description": "View the history of this group and its associated censuses",
-      "title": "{{ title }} History"
+      "close": "Tanca",
+      "description": "Visualitza l'historial d'aquest grup i els seus censos associats",
+      "title": "Historial de {{ title }}"
     },
     "info": {
-      "description": "Groups are collections of members within your memberbase that can be used to create censuses for voting processes.",
-      "extra": "When you initiate a vote, a census is created as a time-specific snapshot of the group. Any subsequent changes to the group will not affect existing censuses, but will be reflected in future voting processes.",
-      "title": "About Groups"
+      "description": "Els grups són col·leccions de membres dins de la teva base de membres que es poden utilitzar per crear censos per a processos de votació.",
+      "extra": "Quan inicies una votació, es crea un cens com una instantània específica en el temps del grup. Qualsevol canvi posterior al grup no afectarà els censos existents, però es reflectirà en futurs processos de votació.",
+      "title": "Sobre els grups"
     },
-    "load_more": "Load more",
-    "no_groups": "No groups found",
-    "search": "Search groups..."
+    "load_more": "Carrega'n més",
+    "no_groups": "No s'han trobat grups",
+    "search": "Cerca grups..."
   },
   "guides": "Guies",
   "home": {
@@ -999,30 +1000,30 @@
     "title": "<p1>Esteu</p1><p2>preparats per a una nova era en la governança Web3?</p2>"
   },
   "import_progress": {
-    "description": "Your member data is being imported. This may take a few minutes depending on the size of your file.",
-    "error_description": "An error occurred while importing your member data. Please try again later.",
-    "error_title": "Import Error",
-    "note": "You can safely close this page. An email will be sent to you upon completion.",
-    "success_description": "Your member data has been imported successfully.",
-    "success_note": "You may now start using your imported members.",
-    "success_title": "Import Completed Successfully",
-    "title": "Memberbase Import in Progress"
+    "description": "S'estan important les dades dels membres. Això pot trigar uns minuts segons la mida del fitxer.",
+    "error_description": "S'ha produït un error en importar les dades dels membres. Torna-ho a provar més tard.",
+    "error_title": "Error d'importació",
+    "note": "Pots tancar aquesta pàgina sense problemes. Rebràs un correu electrònic quan s'hagi completat.",
+    "success_description": "Les dades dels membres s'han importat correctament.",
+    "success_note": "Ja pots començar a utilitzar els membres importats.",
+    "success_title": "Importació completada correctament",
+    "title": "Importació de la base de membres en curs"
   },
   "invite": {
-    "account_not_verified": "Your account is not verified. Please verify your account to continue.",
-    "create_account_subtitle": "You need an account first, in order to accept your invite",
-    "create_account_title": "Create your account",
+    "account_not_verified": "El teu compte no està verificat. Verifica el compte per continuar.",
+    "create_account_subtitle": "Necessites un compte primer per acceptar la invitació",
+    "create_account_title": "Crea el teu compte",
     "error": "Error",
-    "go_to_verify": "Verify Account",
-    "invalid_link": "Invalid invite link received",
-    "processing": "Processing your invitation...",
-    "subtitle": "Send an invitation to join your organization. They'll receive an email with instructions.",
-    "success": "Invitation sent successfully!",
-    "success_description": "You can now sign in",
-    "success_title": "Invitation accepted",
-    "title": "Add team member",
+    "go_to_verify": "Verifica el compte",
+    "invalid_link": "S'ha rebut un enllaç d'invitació no vàlid",
+    "processing": "S'està processant la teva invitació...",
+    "subtitle": "Envia una invitació per unir-se a la teva organització. Rebran un correu electrònic amb instruccions.",
+    "success": "Invitació enviada correctament!",
+    "success_description": "Ja pots iniciar sessió",
+    "success_title": "Invitació acceptada",
+    "title": "Afegeix membre de l'equip",
     "unexpected_error": "",
-    "user_invited": "Email sent to {{email}}"
+    "user_invited": "Correu electrònic enviat a {{email}}"
   },
   "invite_people": "Convidar Membres",
   "language": {
@@ -1030,9 +1031,9 @@
     "english": "English",
     "spanish": "Castellano"
   },
-  "languages": "Languages",
-  "lastname": "Last name",
-  "light": "Light",
+  "languages": "Idiomes",
+  "lastname": "Cognom",
+  "light": "Clar",
   "light_mode": "Mode clar",
   "link": {
     "discord": "Enllaç al Discord de Vocdoni",
@@ -1052,129 +1053,129 @@
   "logout": "Tanca la sessió",
   "memberbase": {
     "add_member": {
-      "button": "Add Member",
-      "description": "Fill in the member details below.",
-      "error": "Error adding member.",
-      "success": "Member added successfully!",
-      "title": "Add Member"
+      "button": "Afegeix membre",
+      "description": "Omple els detalls del membre a continuació.",
+      "error": "Error en afegir el membre.",
+      "success": "Membre afegit correctament!",
+      "title": "Afegeix membre"
     },
     "delate_member": {
-      "subtitle_one": "Are you sure you want to delete {{count}} member? This action cannot be undone.",
-      "subtitle_many": "Are you sure you want to delete {{count}} member? This action cannot be undone.",
-      "subtitle_other": "Are you sure you want to delete {{count}} members? This action cannot be undone."
+      "subtitle_one": "Estàs segur que vols eliminar {{count}} membre? Aquesta acció no es pot desfer.",
+      "subtitle_many": "Estàs segur que vols eliminar {{count}} membre? Aquesta acció no es pot desfer.",
+      "subtitle_other": "Estàs segur que vols eliminar {{count}} membres? Aquesta acció no es pot desfer."
     },
     "delete_member": {
-      "cancel": "Cancel",
-      "delete": "Delete",
-      "error_one": "Error deleting member",
-      "error_many": "Error deleting member",
-      "error_other": "Error deleting members",
-      "success_one": "Member deleted successfully",
-      "success_many": "Member deleted successfully",
-      "success_other": "Members deleted successfully",
-      "title": "Delete Members"
+      "cancel": "Cancel·la",
+      "delete": "Elimina",
+      "error_one": "Error en eliminar el membre",
+      "error_many": "Error en eliminar el membre",
+      "error_other": "Error en eliminar els membres",
+      "success_one": "Membre eliminat correctament",
+      "success_many": "Membre eliminat correctament",
+      "success_other": "Membres eliminats correctament",
+      "title": "Elimina membres"
     },
     "download_template": {
-      "subtitle": "Download the template with your chosen columns, add your member data, and upload the file to set up your memberbase. Once it’s ready, you can start creating votes.",
-      "title": "Download Import Template"
+      "subtitle": "Descarrega la plantilla amb les columnes seleccionades, afegeix les dades dels membres i puja el fitxer per configurar la teva base de membres. Un cop estigui llesta, podràs començar a crear votacions.",
+      "title": "Descarrega la plantilla d'importació"
     },
     "edit_member": {
-      "description": "Edit the member details below.",
-      "error": "Error updating member.",
-      "success": "Member updated successfully!",
-      "title": "Edit Member"
+      "description": "Edita els detalls del membre a continuació.",
+      "error": "Error en actualitzar el membre.",
+      "success": "Membre actualitzat correctament!",
+      "title": "Edita el membre"
     },
     "exporter": {
-      "button": "Export",
-      "cancel": "Cancel",
-      "columns": "Columns to Export",
-      "export_one": "Export {{count}} columns",
-      "export_many": "Export {{count}} columns",
-      "export_other": "Export {{count}} columns",
-      "file_format": "File Format",
-      "subtitle_one": "Configure your export options. The export will include {{count}} members.",
-      "subtitle_many": "Configure your export options. The export will include {{count}} members.",
-      "subtitle_other": "Configure your export options. The export will include {{count}} members.",
-      "title": "Export Members"
+      "button": "Exporta",
+      "cancel": "Cancel·la",
+      "columns": "Columnes a exportar",
+      "export_one": "Exporta {{count}} columna",
+      "export_many": "Exporta {{count}} columnes",
+      "export_other": "Exporta {{count}} columnes",
+      "file_format": "Format del fitxer",
+      "subtitle_one": "Configura les opcions d'exportació. L'exportació inclourà {{count}} membre.",
+      "subtitle_many": "Configura les opcions d'exportació. L'exportació inclourà {{count}} membres.",
+      "subtitle_other": "Configura les opcions d'exportació. L'exportació inclourà {{count}} membres.",
+      "title": "Exporta membres"
     },
     "form": {
-      "cancel": "Cancel",
-      "save": "Save Changes"
+      "cancel": "Cancel·la",
+      "save": "Desa els canvis"
     },
     "groups": {
-      "title": "Groups"
+      "title": "Grups"
     },
     "import_file": {
-      "subtitle": "Import your CSV, XLS, or XLSX file containing member data. Ensure column headers match the template for accurate mapping.",
-      "title": "Import File"
+      "subtitle": "Importa el teu fitxer CSV, XLS o XLSX amb les dades dels membres. Assegura't que les capçaleres de les columnes coincideixin amb la plantilla per a un mapatge precís.",
+      "title": "Importa fitxer"
     },
     "importer": {
-      "button": "Import",
-      "cancel": "Cancel",
-      "data_preview": "Data Preview",
-      "download_template_btn": "Download Template",
+      "button": "Importa",
+      "cancel": "Cancel·la",
+      "data_preview": "Vista prèvia de les dades",
+      "download_template_btn": "Descarrega la plantilla",
       "error": {
-        "field_is_required": ""
+        "field_is_required": "Aquest camp és obligatori"
       },
       "field_mapper": {
-        "empty": "-- Do not import --",
-        "placeholder": "Select column"
+        "empty": "-- No importar --",
+        "placeholder": "Selecciona la columna"
       },
-      "included_columns": "Select columns to include:",
+      "included_columns": "Selecciona les columnes a incloure:",
       "map_columns": {
-        "subtitle": "Map columns from your file to the corresponding fields in our system. Required fields are marked with an asterisk (*).",
-        "title": "Map Columns"
+        "subtitle": "Mapeja les columnes del teu fitxer als camps corresponents del nostre sistema. Els camps obligatoris estan marcats amb un asterisc (*).",
+        "title": "Mapeja les columnes"
       },
-      "reset": "Reset Import",
-      "select_at_least_one_column": "Select at least one column to download the template.",
-      "submit": "Import Data",
-      "subtitle": "Download a template or import your own CSV, XLS, or XLSX file to add members.",
-      "title": "Import Members",
+      "reset": "Reinicia la importació",
+      "select_at_least_one_column": "Selecciona com a mínim una columna per descarregar la plantilla.",
+      "submit": "Importa les dades",
+      "subtitle": "Descarrega una plantilla o importa el teu propi fitxer CSV, XLS o XLSX per afegir membres.",
+      "title": "Importa membres",
       "warning": {
-        "subtitle": "The information of columns that are not mapped will not be imported.",
-        "title": "Warning"
+        "subtitle": "La informació de les columnes que no estiguin mapejades no s'importarà.",
+        "title": "Avís"
       }
     },
     "members": {
-      "title": "Members"
+      "title": "Membres"
     },
-    "subtitle": "Manage your organization's members and create censuses",
-    "title": "Memberbase"
+    "subtitle": "Gestiona els membres de la teva organització i crea censos",
+    "title": "Base de membres"
   },
   "members_table": {
-    "bulk_delete": "Delete",
-    "cancel": "Cancel",
-    "create_group": "Create group",
-    "create_group_all": "Create Group (All)",
-    "create_group_error": "Error creating group",
-    "create_group_form_description": "Create a new group from selected members. This will organize them for future voting processes.",
-    "create_group_form_title": "Create New Group",
-    "create_group_success": "Group created successfully",
-    "delete": "Delete",
-    "edit": "Edit",
-    "group_description": "Description (Optional)",
-    "group_description_placeholder": "Enter a brief description of the group",
-    "group_members": "Selected Members",
-    "group_members_count_one": "{{count}} members selected",
-    "group_members_count_many": "{{count}} members selected",
-    "group_members_count_other": "{{count}} members selected",
-    "group_name": "Group name",
-    "manage_columns": "Manage Columns",
-    "manage_columns_description": "Customize which columns are displayed in the members table.",
-    "no_filter_results": "No members matching these attributes",
-    "no_results": "No members found",
-    "remaining_members_one": "+{{count}} more",
-    "remaining_members_many": "+{{count}} more",
-    "remaining_members_other": "+{{count}} more",
-    "search": "Search members...",
-    "select_hint": "Select members to perform bulk actions",
-    "selected_one": "Selected: <strong>{{count}} member</strong>",
-    "selected_many": "Selected: <strong>{{count}} member</strong>",
-    "selected_other": "Selected: <strong>{{count}} member</strong>",
-    "toggle_column": ""
+    "bulk_delete": "Elimina",
+    "cancel": "Cancel·la",
+    "create_group": "Crea un grup",
+    "create_group_all": "Crea un grup (Tots)",
+    "create_group_error": "Error en crear el grup",
+    "create_group_form_description": "Crea un grup nou a partir dels membres seleccionats. Això els organitzarà per a futurs processos de votació.",
+    "create_group_form_title": "Crea un grup nou",
+    "create_group_success": "Grup creat correctament",
+    "delete": "Elimina",
+    "edit": "Edita",
+    "group_description": "Descripció (opcional)",
+    "group_description_placeholder": "Introdueix una breu descripció del grup",
+    "group_members": "Membres seleccionats",
+    "group_members_count_one": "{{count}} membre seleccionat",
+    "group_members_count_many": "{{count}} membres seleccionats",
+    "group_members_count_other": "{{count}} membres seleccionats",
+    "group_name": "Nom del grup",
+    "manage_columns": "Gestiona les columnes",
+    "manage_columns_description": "Personalitza quines columnes es mostren a la taula de membres.",
+    "no_filter_results": "No hi ha membres que coincideixin amb aquests atributs",
+    "no_results": "No s'han trobat membres",
+    "remaining_members_one": "+{{count}} més",
+    "remaining_members_many": "+{{count}} més",
+    "remaining_members_other": "+{{count}} més",
+    "search": "Cerca membres...",
+    "select_hint": "Selecciona membres per realitzar accions en bloc",
+    "selected_one": "Seleccionat: <strong>{{count}} membre</strong>",
+    "selected_many": "Seleccionats: <strong>{{count}} membres</strong>",
+    "selected_other": "Seleccionats: <strong>{{count}} membres</strong>",
+    "toggle_column": "Commuta columna"
   },
   "membership_size": {
-    "selector_label": "Membership size"
+    "selector_label": "Mida de la membresia"
   },
   "menu": {
     "burger_aria_label": "menú d'usuari",
@@ -1182,7 +1183,7 @@
     "copy_aria_label": "copiar adreça",
     "create": "Crear Procés",
     "create_process": "Nou procés",
-    "dashboard": "Dashboard",
+    "dashboard": "Tauler",
     "documentation": "Documentació",
     "get_more": "Obtenir-ne més",
     "languages": "Idiomes",
@@ -1196,16 +1197,16 @@
     "wallet": "Cartera"
   },
   "meta": {
-    "helper": "Provide a clear title and description to help voters understand the vote"
+    "helper": "Proporciona un títol i una descripció clars per ajudar els votants a entendre la votació"
   },
-  "more_than_users_one": "more than {{ count }} users",
-  "more_than_users_many": "more than {{ count }} users",
-  "more_than_users_other": "more than {{ count }} users",
-  "name": "Name",
+  "more_than_users_one": "més de {{ count }} usuari",
+  "more_than_users_many": "més de {{ count }} usuaris",
+  "more_than_users_other": "més de {{ count }} usuaris",
+  "name": "Nom",
   "navbar": {
-    "contact": "Contact Us",
-    "pricing": "Pricing",
-    "usecases": "Use Cases"
+    "contact": "Contacta'ns",
+    "pricing": "Preus",
+    "usecases": "Casos d'ús"
   },
   "need_help": {
     "description": "Necessites ajuda amb el teu primer procés de votació? Mira aquest tutorial o programa una trucada.",
@@ -1215,24 +1216,24 @@
     "create_organization_btn": "Crear Organització",
     "description1": "Abans de començar a crear el vostre procés de votació, <span>heu de crear una organització</span>, és gratuït. Amb una organització, podreu crear una àmplia gamma d'eleccions i donar veu als membres de la vostra comunitat.",
     "description2": "Com a <span>paquet de benvinguda</span>, rebràs {{ faucetAmount }} tokens gratuïts per començar a utilitzar la nostra plataforma.",
-    "onboarding": "If your organization is already on Vocdoni, ask its administrator to invite you.",
+    "onboarding": "Si la teva organització ja està a Vocdoni, demana a l'administrador que et convidi.",
     "title": "Nova Organització"
   },
-  "new_password": "New Password",
-  "new_password_placeholder": "Enter your new password",
-  "new_vote": "New vote",
+  "new_password": "Contrasenya nova",
+  "new_password_placeholder": "Introdueix la contrasenya nova",
+  "new_vote": "Votació nova",
   "new_voting": "Nova votació",
-  "no_results_filtering": "Your current search filter returns no results",
+  "no_results_filtering": "El filtre de cerca actual no retorna cap resultat",
   "not_registred_yet": "No tens un compte?",
   "open_in_explorer": "Obre a l'explorador",
-  "or_continue_with": "or continue with",
+  "or_continue_with": "o continua amb",
   "org_type_selector": {
-    "selector_label": "Select Organization Type"
+    "selector_label": "Selecciona el tipus d'organització"
   },
   "organization": {
     "avatar_alt": "Imatge d'avatar de l'organització {{ name }}",
     "create_org": "Crear Organitzaciò",
-    "dashboard": "Dashboard",
+    "dashboard": "Tauler",
     "date_format": "d MMM y",
     "elections": "Votacions",
     "elections_list_empty": {
@@ -1241,7 +1242,7 @@
       "not_owner": "Aquesta organització encara no té votacions.",
       "title": "Crea la teva primera elecció"
     },
-    "no_organization_title": "You don't belong to any organization yet!",
+    "no_organization_title": "Encara no pertanys a cap organització!",
     "organization": "Detalls de l'organització",
     "title": {
       "read_more": "Expandir títol"
@@ -1249,74 +1250,74 @@
   },
   "organization_settings": {
     "phone_support": {
-      "description": "Available for Custom plan subscribers only.",
-      "info": "Please have your organization ID ready when calling.",
-      "locked": "Phone Support is available with a Custom plan",
-      "locked_description": "Upgrade to our Custom plan to get priority phone support with dedicated agents.",
-      "organization_id": "Your Organization ID",
-      "organization_id_description": "Please provide this ID when contacting support",
-      "priority_support_line": "Priority Support Line",
-      "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
-      "title": "Phone Support",
-      "unlock": "Unlock Phone Support"
+      "description": "Disponible només per a subscriptors del pla Personalitzat.",
+      "info": "Tingues a mà l'ID de la teva organització quan truquis.",
+      "locked": "El suport telefònic està disponible amb un pla Personalitzat",
+      "locked_description": "Actualitza al nostre pla Personalitzat per obtenir suport telefònic prioritari amb agents dedicats.",
+      "organization_id": "ID de la teva organització",
+      "organization_id_description": "Proporciona aquest ID quan contactis amb el suport",
+      "priority_support_line": "Línia de suport prioritari",
+      "priority_support_line_description": "Disponible de dilluns a divendres, 9:00–18:00 CET",
+      "title": "Suport telefònic",
+      "unlock": "Desbloqueja el suport telefònic"
     },
-    "subtitle": "Manage your organization, team members and your subscription plan",
+    "subtitle": "Gestiona la teva organització, els membres de l'equip i el teu pla de subscripció",
     "support": {
-      "description": "Get help and support for your organization.",
-      "title": "Support"
+      "description": "Obtén ajuda i suport per a la teva organització.",
+      "title": "Suport"
     },
     "team": {
-      "add_team_member": "Add team member",
-      "subtitle": "Manage your organization's team members and their permissions.",
-      "title": "Team Members"
+      "add_team_member": "Afegeix membre de l'equip",
+      "subtitle": "Gestiona els membres de l'equip de la teva organització i els seus permisos.",
+      "title": "Membres de l'equip"
     },
-    "title": "{{organization}} Settings"
+    "title": "Configuració de {{organization}}"
   },
   "organization_setup": {
     "setup_steps": {
-      "expert_call_booking": "Book a free call with our experts",
-      "first_vote_creation": "Create your first vote",
-      "memberbase_upload": "Upload your memberbase",
-      "organization_details": "Set up your organization details"
+      "expert_call_booking": "Reserva una trucada gratuïta amb els nostres experts",
+      "first_vote_creation": "Crea la teva primera votació",
+      "memberbase_upload": "Puja la teva base de membres",
+      "organization_details": "Configura els detalls de la teva organització"
     }
   },
-  "organizations": "Organizations ({{ numOrgs }})",
+  "organizations": "Organitzacions ({{ numOrgs }})",
   "other_details": "Altres detalls",
   "overwrite": {
-    "description": "Voters will be able to overwrite their vote once",
-    "title": "Vote overwrite"
+    "description": "Els votants podran sobreescriure el seu vot una vegada",
+    "title": "Sobreescriptura del vot"
   },
   "pagination": {
-    "page_out_of": "Page {{page}} of {{total}}",
-    "rows_per_page": "Rows per page"
+    "page_out_of": "Pàgina {{page}} de {{total}}",
+    "rows_per_page": "Files per pàgina"
   },
   "password": "Contrasenya",
-  "password_placeholder": "Min 8 characters",
+  "password_placeholder": "Mín. 8 caràcters",
   "password_placeholder_confirm": "Confirma la Contrasenya",
   "password_reset": {
-    "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
-    "title": "Password reset"
+    "subtitle": "Si el teu correu electrònic correspon a un compte existent, rebràs un correu electrònic amb un codi per restablir la contrasenya.",
+    "title": "Restabliment de contrasenya"
   },
   "password_update": {
     "actions": {
-      "save": "Save Password"
+      "save": "Desa la contrasenya"
     },
-    "error": "Failed to update password",
+    "error": "Error en actualitzar la contrasenya",
     "new": {
-      "label": "New Password",
-      "minLength": "Password must be at least 8 characters",
-      "required": "Password is required"
+      "label": "Contrasenya nova",
+      "minLength": "La contrasenya ha de tenir com a mínim 8 caràcters",
+      "required": "La contrasenya és obligatòria"
     },
     "old": {
-      "label": "Current Password",
-      "required": "Current password is required"
+      "label": "Contrasenya actual",
+      "required": "La contrasenya actual és obligatòria"
     },
-    "success": "Password updated successfully"
+    "success": "Contrasenya actualitzada correctament"
   },
   "passwords_do_not_match": "Les contrasenyes no coincideixen",
   "plan": {
-    "details": "You're currently on the {{ title }} plan, {{ subtitle }}",
-    "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
+    "details": "Actualment tens el pla {{ title }}, {{ subtitle }}",
+    "encouragement": "Endavant, explora la plataforma, crea la teva primera votació i descobreix com de fàcil pot ser la governança digital segura! Però si necessites ajuda, programa una trucada amb els nostres experts!"
   },
   "plan_upgrade": {
     "dont_limit_yourself": "No et limitis. Uneix-te a la família de 725 organitzacions que confien en <2>Vocdoni</2>.",
@@ -1325,17 +1326,17 @@
     "satisfaction_rate": "Satisfacció del 97%, per només 9€/mes."
   },
   "preferences": "Preferències",
-  "preview": "Preview",
+  "preview": "Vista prèvia",
   "pricing": {
     "advanced_analytitcs": "Informes i anàlisis avançades",
-    "all_features": "All features & voting types",
+    "all_features": "Totes les funcionalitats i tipus de votació",
     "basic_analytics": "Informes i anàlisis bàsiques",
     "compare_features": "Compara totes les funcionalitats",
     "core_voting": "Funcions bàsiques de votació",
-    "custom_subtitle": "Large organizations enterprises, and institutions requiring extensive customization and support.",
+    "custom_subtitle": "Grans organitzacions, empreses i institucions que requereixen personalització i suport extensius.",
     "custom_title": "Personalitzat",
     "date_format": "dd/mm/yy",
-    "dedicated_manager": "Dedicated account manager",
+    "dedicated_manager": "Gestor de compte dedicat",
     "error": "Error",
     "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
     "essential_title": "Essencial",
@@ -1344,8 +1345,8 @@
     "gpdr_compilance": "Compliment del GDPR",
     "help": "Necessites ajuda?",
     "members_size": "{{ from }}-{{ to }} membres",
-    "membership_size": "Select your membership size:",
-    "membership_size_title": "How many voters do you need*?",
+    "membership_size": "Selecciona la mida de la teva membresia:",
+    "membership_size_title": "Quants votants necessites*?",
     "premium_subtitle": "Un volum més gran que requereix funcions més avançades.",
     "premium_title": "Premium",
     "priority_support": "Suport prioritari per tiquets",
@@ -1353,19 +1354,19 @@
     "unlimited_yearly_processes": "Processos anuals il·limitats",
     "up_to_admins": "Fins a {{ admin }} admin. i {{ org }} organitzacions",
     "upgrade_title": "Actualitza el teu pla",
-    "white_label": "White label solution",
+    "white_label": "Solució de marca blanca",
     "yearly_processes_one": "{{ count }} procés anual",
-    "yearly_processes_many": "{{ count }} yearly voting process",
+    "yearly_processes_many": "{{ count }} procés de votació anual",
     "yearly_processes_other": "{{ count }} processos anuals",
     "your_plan": "Actualment estàs subscrit al pla <plan>{{ plan }}</plan>. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el <plan>{{ billing, format }}</plan>, pagaràs íntegrament pel nou pla seleccionat."
   },
   "pricing_card": {
-    "comparison_table_from": "From {{price}}/year",
+    "comparison_table_from": "Des de {{price}}/any",
     "from": "Des de {{price}}/any",
     "most_popular_plan": "Recomanat",
-    "view_features": "View all features"
+    "view_features": "Veure totes les funcionalitats"
   },
-  "privacy_policy": "Privacy Policy",
+  "privacy_policy": "Política de privacitat",
   "privacyPolicy": {
     "description": "Aquest document descriu les pràctiques de privacitat de l'Associació Vocdoni (\"Vocdoni\") pel que fa a l'ús dels seus llocs web i serveis.",
     "section1": {
@@ -1410,62 +1411,62 @@
     },
     "create": {
       "action": {
-        "publish": "Publish"
+        "publish": "Publica"
       },
       "change_template": {
-        "cancel": "Cancel",
-        "change": "Change Template",
-        "message": "You have unsaved changes. Are you sure you want to switch templates?",
-        "title": "Change Template"
+        "cancel": "Cancel·la",
+        "change": "Canvia la plantilla",
+        "message": "Tens canvis sense desar. Estàs segur que vols canviar de plantilla?",
+        "title": "Canvia la plantilla"
       },
       "description": {
-        "placeholder": "Add a description...",
-        "title": "Voting Process Title"
+        "placeholder": "Afegeix una descripció...",
+        "title": "Títol del procés de votació"
       },
       "leave_confirmation": {
-        "cancel": "Cancel",
-        "leave": "Leave without saving",
-        "message": "You have unsaved changes. Are you sure you want to leave?",
-        "reset": "Reset",
-        "reset_message": "This will reset the form. Do you want to continue?",
-        "title": "Unsaved Changes"
+        "cancel": "Cancel·la",
+        "leave": "Sortir sense desar",
+        "message": "Tens canvis sense desar. Estàs segur que vols sortir?",
+        "reset": "Reinicia",
+        "reset_message": "Això reiniciarà el formulari. Vols continuar?",
+        "title": "Canvis sense desar"
       },
       "question": {
-        "add": "Add question",
+        "add": "Afegeix pregunta",
         "delete": {
-          "cancel_button": "Cancel",
-          "delete_button": "Delete",
-          "description": "Are you sure you want to delete this question?",
-          "title": "Delete Question"
+          "cancel_button": "Cancel·la",
+          "delete_button": "Elimina",
+          "description": "Estàs segur que vols eliminar aquesta pregunta?",
+          "title": "Elimina la pregunta"
         },
         "description": {
-          "placeholder": "Add the description of the question here (optional)..."
+          "placeholder": "Afegeix la descripció de la pregunta aquí (opcional)..."
         },
-        "question_number": "Question {{index}} of {{total}}"
+        "question_number": "Pregunta {{index}} de {{total}}"
       },
       "question_type": {
-        "description": "This applies to all questions in this voting process",
-        "multiple": "Multiple choice",
-        "single": "Single choice",
-        "title": "Question Type"
+        "description": "Això s'aplica a totes les preguntes d'aquest procés de votació",
+        "multiple": "Elecció múltiple",
+        "single": "Elecció única",
+        "title": "Tipus de pregunta"
       },
       "reset_form": {
-        "cancel": "Cancel",
-        "message": "Are you sure you want to reset the form? This action cannot be undone.",
-        "reset": "Reset Form",
-        "title": "Reset Form"
+        "cancel": "Cancel·la",
+        "message": "Estàs segur que vols reiniciar el formulari? Aquesta acció no es pot desfer.",
+        "reset": "Reinicia el formulari",
+        "title": "Reinicia el formulari"
       },
       "selectionLimits": {
-        "full": "Voters must select at least  <min />  and at most  <max />  options.",
-        "title": "Selection limits:"
+        "full": "Els votants han de seleccionar com a mínim <min /> i com a màxim <max /> opcions.",
+        "title": "Límits de selecció:"
       },
       "status": {
-        "draft": "Draft"
+        "draft": "Esborrany"
       },
       "template": {
-        "annual_general_meeting": "Annual General Meeting",
-        "election": "Election",
-        "title": "Get started with a template..."
+        "annual_general_meeting": "Assemblea General Anual",
+        "election": "Elecció",
+        "title": "Comença amb una plantilla..."
       }
     },
     "created_by": "Creat per",
@@ -1523,31 +1524,31 @@
     },
     "template": {
       "annual_general_meeting": {
-        "description": "Set up your annual general meeting",
+        "description": "Configura la teva assemblea general anual",
         "q1": {
-          "description": "Do you approve the proposed budget for the next fiscal year?",
-          "option_1": "Yes",
+          "description": "Aproves el pressupost proposat per al proper exercici fiscal?",
+          "option_1": "Sí",
           "option_2": "No",
-          "title": "Approve the annual budget"
+          "title": "Aprovar el pressupost anual"
         },
         "q2": {
-          "description": "Choose the new members for the board of directors.",
-          "option_1": "Candidate A",
-          "option_2": "Candidate B",
-          "title": "Elect new board members"
+          "description": "Tria els nous membres de la junta directiva.",
+          "option_1": "Candidat A",
+          "option_2": "Candidat B",
+          "title": "Elegir nous membres de la junta"
         },
-        "title": "Annual General Meeting"
+        "title": "Assemblea General Anual"
       },
       "election": {
-        "description": "Set up your organization’s election process.",
+        "description": "Configura el procés electoral de la teva organització.",
         "q1": {
-          "description": "Choose the best candidate to represent your interests.",
-          "option_1": "Candidate A",
-          "option_2": "Candidate B",
-          "option_3": "Candidate C",
-          "title": "Who should be the next president?"
+          "description": "Tria el millor candidat per representar els teus interessos.",
+          "option_1": "Candidat A",
+          "option_2": "Candidat B",
+          "option_3": "Candidat C",
+          "title": "Qui hauria de ser el proper president?"
         },
-        "title": "Election Process"
+        "title": "Procés electoral"
       }
     },
     "total_census_size": "{{maxCensusSize}} electors permesos de {{censusSize}} totals en el cens",
@@ -1557,7 +1558,7 @@
   },
   "process_actions": {
     "cancel": "Cancel·la",
-    "continue": "Continue",
+    "continue": "Continua",
     "end": "Finalitza el procés",
     "pause": "Pausa",
     "start": "Inicia/Continua"
@@ -1567,7 +1568,7 @@
       "legal_disclaimer": "Aquest sistema de votació utilitza el poder de votació basat en tokens (públic a la cadena de blocs). Com heu seleccionat l'opció de 'Votació anònima', els pesos s'agruparan en saldos similars i s'arrodoniran cap avall. Això sacrifica una mica de precisió, però preserva la identitat anònima desvinculant els saldos de les carteres.",
       "legal_note": "Avís legal: "
     },
-    "auto_start": "Start immediately",
+    "auto_start": "Comença immediatament",
     "census": {
       "crm_description": "Si ja tens el teu propi CRM, el podem integrar per permetre que la teva comunitat voti amb les mateixes credencials.",
       "crm_title": "Integració CRM",
@@ -1578,19 +1579,19 @@
       "email_description": "Els votants validaran el seu correu electrònic autenticant-se en el seu compte de Google Mail (OAuth).",
       "email_title": "Per Correu Electrònic",
       "group": {
-        "label": "Group"
+        "label": "Grup"
       },
-      "label": "Census creation",
+      "label": "Creació del cens",
       "mandatory_max_census_size": "Com a mínim un votant ha de ser seleccionat",
       "memberbase": {
-        "label": "Select a group of members to create the census"
+        "label": "Selecciona un grup de membres per crear el cens"
       },
       "others_description": "Necessites una solució específica? Podem ajudar amb una integració personalitzada que s'adapti a les teves necessitats.",
       "others_title": "Altres",
       "phone_description": "Els votants hauran de validar el seu telèfon mòbil, introduint el seu número i el codi de verificació que rebran.",
       "phone_title": "Per Número de Telèfon",
       "spreadsheet": {
-        "label": "Spreadsheet"
+        "label": "Full de càlcul"
       },
       "total_tokens_one": "1 token",
       "total_tokens_many": "",
@@ -1606,12 +1607,12 @@
     },
     "creation_steps_description": "Necessites signar les transaccions per crear el procés de votació a la cadena de blocs de Vocdoni. No tanquis aquesta finestra.",
     "creation_steps_title": "Progrés",
-    "end_datetime": "End date and time",
+    "end_datetime": "Data i hora de finalització",
     "group": {
-      "select": "Select group"
+      "select": "Selecciona el grup"
     },
     "groups": {
-      "scroll_to_load": "Scroll to load more..."
+      "scroll_to_load": "Desplaça't per carregar-ne més..."
     },
     "modal_pro": {
       "description": "<p><bold>{{ reason, ucfirst}}</bold> és una funcionalitat Premium</p>",
@@ -1628,9 +1629,9 @@
       "title": "Contacta'ns"
     },
     "option": {
-      "add": "Add option",
-      "placeholder": "Option {{number}}",
-      "remove": "Remove option"
+      "add": "Afegeix opció",
+      "placeholder": "Opció {{number}}",
+      "remove": "Elimina opció"
     },
     "preview": {
       "accuracy": "Precisió dels Saldos de Cens Anònims: "
@@ -1669,18 +1670,18 @@
       }
     },
     "result_visibility": {
-      "hidden": "Hidden until the end",
-      "live": "Live results",
-      "title": "Result visibility"
+      "hidden": "Ocult fins al final",
+      "live": "Resultats en directe",
+      "title": "Visibilitat dels resultats"
     },
-    "start_datetime": "Start date and time",
-    "title": "Title",
-    "title_placeholder": "Title of the voting process",
+    "start_datetime": "Data i hora d'inici",
+    "title": "Títol",
+    "title_placeholder": "Títol del procés de votació",
     "vote_overwrite": {
-      "max_changes": "Maximum vote changes",
-      "multiple": "Allow vote changes",
-      "single": "Allow only one vote",
-      "title": "Vote overwrite"
+      "max_changes": "Canvis màxims de vot",
+      "multiple": "Permet canvis de vot",
+      "single": "Permet només un vot",
+      "title": "Sobreescriptura del vot"
     },
     "voter_auth": "Configure Voter Authentication",
     "voter_auth_2fa_description": "Add an extra layer of security by requiring voters to verify their identity",
