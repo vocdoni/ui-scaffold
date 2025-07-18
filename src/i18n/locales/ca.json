@@ -38,15 +38,15 @@
     "is_not_in_census": "No estàs en el cens",
     "not_connected": "No estàs connectat",
     "overwrite_votes_left_one": "Pots corregir el teu vot una vegada.",
-    "overwrite_votes_left_many": "",
+    "overwrite_votes_left_many": "Pots corregir el teu vot {{ count }} vegades.",
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
     "submitting": "S'està enviant",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
     "votes_one": "<span>1</span> <text>votant</text>",
-    "votes_many": "",
+    "votes_many": "<span>{{ count }}</span> <text>votants</text>",
     "votes_other": "<span>{{ count }}</span> <text>votants</text>",
     "votes_weight_one": "<span>1</span> <text>vot</text>",
-    "votes_weight_many": "",
+    "votes_weight_many": "<span>{{ count }}</span> <text>vots</text>",
     "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
     "voting_anonymous_advice": "S'està processant el vot anònim. Això pot trigar uns minuts; no tanquis la finestra."
   },
@@ -259,7 +259,7 @@
     "empty": "No s'han trobat processos de votació",
     "error_loading_processes": "Error en carregar els processos de votació",
     "hello": "👋 Hola {{name}}!",
-    "hello_description": "",
+    "hello_description": "Benvingut a la teva organització",
     "how_first_vote": "Com crear la teva primera votació",
     "no_organization": "No s'ha trobat cap organització",
     "no_subscription": "No hi ha cap subscripció disponible. Crea una organització per activar el teu pla.",
@@ -408,7 +408,7 @@
         "add_button": "Afegir",
         "remove_address": "Elimina l'adreça"
       },
-      "error_title": "Error creating process",
+      "error_title": "Error en crear el procés",
       "spreadsheet": {
         "download_template": "No tens un fitxer CSV? <a>Descarrega template.csv</a>, omple'l i puja'l.",
         "download_template_btn": "Descarregar plantilla",
@@ -462,7 +462,7 @@
     }
   },
   "form_error": {
-    "passwords_must_match": ""
+    "passwords_must_match": "Les contrasenyes han de coincidir"
   },
   "google_oauth_error": "Error d'OAuth de Google",
   "google_oauth_error_description": "Error d'OAuth de Google, torna-ho a provar",
@@ -911,7 +911,7 @@
     "success_description": "Ja pots iniciar sessió",
     "success_title": "Invitació acceptada",
     "title": "Afegeix membre de l'equip",
-    "unexpected_error": "",
+    "unexpected_error": "S'ha produït un error inesperat",
     "user_invited": "Correu electrònic enviat a {{email}}"
   },
   "invite_people": "Convidar Membres",
@@ -1367,7 +1367,7 @@
     "is_invalid": "Aquest procés té dades no vàlides i per tant no pot carregar-se",
     "no_description": "No hi ha cap descripció proporcionada",
     "people_in_census_one": "Un votant",
-    "people_in_census_many": "",
+    "people_in_census_many": "{{ count }} votants",
     "people_in_census_other": "{{ count }} votants",
     "questions": "Preguntes",
     "results": "Resultats",
@@ -1454,9 +1454,9 @@
     "auto_start": "Comença immediatament",
     "census": {
       "extra_methods": {
-        "disable_description": "Do you want to disable extra census methods? This will hide the Spreadsheet and Web3 options and show only the Group method.",
-        "enable_description": "Do you want to enable extra census methods? This will show additional options like Spreadsheet and Web3 census creation.",
-        "modal_title": "Extra census methods"
+        "disable_description": "Vols desactivar els mètodes addicionals de cens? Això ocultarà les opcions de Full de càlcul i Web3 i mostrarà només el mètode de Grup.",
+        "enable_description": "Vols habilitar els mètodes addicionals de cens? Això mostrarà opcions addicionals com la creació de cens per Full de càlcul i Web3.",
+        "modal_title": "Mètodes addicionals de cens"
       },
       "group": {
         "label": "Grup"
@@ -1465,7 +1465,7 @@
       "memberbase": {
         "label": "Selecciona un grup de membres per crear el cens"
       },
-      "settings": "Census settings",
+      "settings": "Configuració del cens",
       "spreadsheet": {
         "label": "Full de càlcul"
       },
@@ -1480,7 +1480,7 @@
     "groups": {
       "scroll_to_load": "Desplaça't per carregar-ne més..."
     },
-    "new_option": "Add a new option",
+    "new_option": "Afegeix una nova opció",
     "option": {
       "add": "Afegeix opció",
       "placeholder": "Opció {{number}}",
@@ -1489,20 +1489,20 @@
     "participatory_budgeting": {
       "option": {
         "description": {
-          "placeholder": "Project description"
+          "placeholder": "Descripció del projecte"
         },
         "option": {
-          "placeholder": "Project Title"
+          "placeholder": "Títol del projecte"
         }
       }
     },
     "question": {
       "description": {
-        "placeholder": "Add the description of the question here (optional)..."
+        "placeholder": "Afegeix la descripció de la pregunta aquí (opcional)..."
       },
-      "remove": "Remove question",
+      "remove": "Elimina la pregunta",
       "title": {
-        "placeholder": "Add a title to the question"
+        "placeholder": "Afegeix un títol a la pregunta"
       }
     },
     "result_visibility": {
@@ -1517,56 +1517,56 @@
       "single": "Permet només un vot",
       "title": "Sobreescriptura del vot"
     },
-    "voter_auth": "Configure Voter Authentication",
-    "voter_auth_2fa_description": "Add an extra layer of security by requiring voters to verify their identity",
-    "voter_auth_2fa_email": "Email verification",
-    "voter_auth_2fa_email_description": "Voters will receive a verification code via email",
-    "voter_auth_2fa_enable": "Enable Two-Factor Authentication",
-    "voter_auth_2fa_method_title": "Select verification method",
-    "voter_auth_2fa_security_description": "Two-factor authentication significantly increases the security of your voting process by ensuring only authorized members can vote.",
-    "voter_auth_2fa_security_title": "Enhanced Security",
-    "voter_auth_2fa_sms": "SMS verification",
-    "voter_auth_2fa_sms_description": "Voters will receive a verification code via SMS",
-    "voter_auth_2fa_voter_choice": "Voter's choice",
-    "voter_auth_2fa_voter_choice_description": "Voters can choose their preferred verification method",
-    "voter_auth_description": "Set up how voters will authenticate to participate in this voting process.",
-    "voter_auth_email": "Via email verification",
-    "voter_auth_guarantees": "Authentication Guarantees",
-    "voter_auth_guarantees_mid_description_intro": "Your configuration provides mid-level authentication guarantees with 3 credentials.",
-    "voter_auth_guarantees_mid_list_1": "Enable two-factor authentication for strong guarantees",
-    "voter_auth_guarantees_mid_title": "Mid-Level Authentication Guarantees",
-    "voter_auth_guarantees_strong_description": "Your configuration provides strong authentication guarantees with two-factor verification.",
-    "voter_auth_guarantees_strong_title": "Strong Authentication Guarantees",
-    "voter_auth_guarantees_sub_mid": "Mid-level authentication guarantees with 3 credentials but no two-factor verification.",
-    "voter_auth_guarantees_sub_strong": "Strong authentication guarantees with two-factor verification enabled.",
-    "voter_auth_guarantees_sub_weak": "Basic authentication guarantees with 1 credential and no two-factor verification.",
-    "voter_auth_guarantees_weak_description_intro": "Your current configuration provides minimal authentication guarantees. We strongly recommend:",
-    "voter_auth_guarantees_weak_list_1": "Add more credentials (aim for 2) for better identity verification",
-    "voter_auth_guarantees_weak_list_2": "Enable two-factor authentication for an additional verification layer",
-    "voter_auth_guarantees_weak_title": "Weak Authentication Guarantees",
-    "voter_auth_no_group_description": "Please select a group first to configure authentication.",
-    "voter_auth_security_level": "Good security",
-    "voter_auth_security_recommendation_1": "For better security, we recommend selecting at least 2 credentials.",
-    "voter_auth_security_recommendation_2_one": "You've selected {{ count }} credentials, which provides good security for your voters.",
-    "voter_auth_security_recommendation_2_many": "You've selected {{ count }} credentials, which provides good security for your voters.",
-    "voter_auth_security_recommendation_2_other": "You've selected {{ count }} credentials, which provides good security for your voters.",
-    "voter_auth_security_recommendation_title": "Security recommendation",
-    "voter_auth_select_credentials": "Select required credentials for voter authentication",
-    "voter_auth_select_credentials_description": "Choose the fields voters must provide to authenticate. Select up to 3 for the best balance of security and ease of use. If you plan to use only email or phone for 2FA, skip this step and click Next to set it up",
-    "voter_auth_selected_credentials_count_one": "{{ count }}/3 credentials selected",
-    "voter_auth_selected_credentials_count_many": "{{ count }}/3 credentials selected",
-    "voter_auth_selected_credentials_count_other": "{{ count }}/3 credentials selected",
-    "voter_auth_sms": "Via SMS verification",
-    "voter_auth_summary_2fa_enable": "Two-Factor Authentication",
-    "voter_auth_summary_2fa_enabled": "Enabled",
-    "voter_auth_summary_credentials": "Required Credentials",
-    "voter_auth_summary_title": "Authentication Configuration Summary",
-    "voter_auth_title": "Configure Voter Authentication",
-    "voter_auth_voters_choice": "Voter's choice",
+    "voter_auth": "Configura l'autenticació dels votants",
+    "voter_auth_2fa_description": "Afegeix una capa extra de seguretat requerint que els votants verifiquin la seva identitat",
+    "voter_auth_2fa_email": "Verificació per correu electrònic",
+    "voter_auth_2fa_email_description": "Els votants rebran un codi de verificació per correu electrònic",
+    "voter_auth_2fa_enable": "Habilita l'autenticació de doble factor",
+    "voter_auth_2fa_method_title": "Selecciona el mètode de verificació",
+    "voter_auth_2fa_security_description": "L'autenticació de doble factor augmenta significativament la seguretat del teu procés de votació assegurant que només els membres autoritzats poden votar.",
+    "voter_auth_2fa_security_title": "Seguretat millorada",
+    "voter_auth_2fa_sms": "Verificació per SMS",
+    "voter_auth_2fa_sms_description": "Els votants rebran un codi de verificació per SMS",
+    "voter_auth_2fa_voter_choice": "Elecció del votant",
+    "voter_auth_2fa_voter_choice_description": "Els votants poden triar el seu mètode de verificació preferit",
+    "voter_auth_description": "Configura com els votants s'autenticaran per participar en aquest procés de votació.",
+    "voter_auth_email": "Mitjançant verificació per correu electrònic",
+    "voter_auth_guarantees": "Garanties d'autenticació",
+    "voter_auth_guarantees_mid_description_intro": "La teva configuració proporciona garanties d'autenticació de nivell mitjà amb 3 credencials.",
+    "voter_auth_guarantees_mid_list_1": "Habilita l'autenticació de doble factor per a garanties fortes",
+    "voter_auth_guarantees_mid_title": "Garanties d'autenticació de nivell mitjà",
+    "voter_auth_guarantees_strong_description": "La teva configuració proporciona garanties d'autenticació fortes amb verificació de doble factor.",
+    "voter_auth_guarantees_strong_title": "Garanties d'autenticació fortes",
+    "voter_auth_guarantees_sub_mid": "Garanties d'autenticació de nivell mitjà amb 3 credencials però sense verificació de doble factor.",
+    "voter_auth_guarantees_sub_strong": "Garanties d'autenticació fortes amb verificació de doble factor habilitada.",
+    "voter_auth_guarantees_sub_weak": "Garanties d'autenticació bàsiques amb 1 credencial i sense verificació de doble factor.",
+    "voter_auth_guarantees_weak_description_intro": "La teva configuració actual proporciona garanties d'autenticació mínimes. Recomanem fortament:",
+    "voter_auth_guarantees_weak_list_1": "Afegeix més credencials (objectiu de 2) per a una millor verificació d'identitat",
+    "voter_auth_guarantees_weak_list_2": "Habilita l'autenticació de doble factor per a una capa addicional de verificació",
+    "voter_auth_guarantees_weak_title": "Garanties d'autenticació febles",
+    "voter_auth_no_group_description": "Siusplau, selecciona primer un grup per configurar l'autenticació.",
+    "voter_auth_security_level": "Bona seguretat",
+    "voter_auth_security_recommendation_1": "Per a una millor seguretat, recomanem seleccionar almenys 2 credencials.",
+    "voter_auth_security_recommendation_2_one": "Has seleccionat {{ count }} credencial, que proporciona una bona seguretat per als teus votants.",
+    "voter_auth_security_recommendation_2_many": "Has seleccionat {{ count }} credencials, que proporcionen una bona seguretat per als teus votants.",
+    "voter_auth_security_recommendation_2_other": "Has seleccionat {{ count }} credencials, que proporcionen una bona seguretat per als teus votants.",
+    "voter_auth_security_recommendation_title": "Recomanació de seguretat",
+    "voter_auth_select_credentials": "Selecciona les credencials necessàries per a l'autenticació dels votants",
+    "voter_auth_select_credentials_description": "Tria els camps que els votants han de proporcionar per autenticar-se. Selecciona fins a 3 per obtenir el millor equilibri entre seguretat i facilitat d'ús. Si planeges usar només correu electrònic o telèfon per a 2FA, omet aquest pas i fes clic a Següent per configurar-ho",
+    "voter_auth_selected_credentials_count_one": "{{ count }}/3 credencials seleccionades",
+    "voter_auth_selected_credentials_count_many": "{{ count }}/3 credencials seleccionades",
+    "voter_auth_selected_credentials_count_other": "{{ count }}/3 credencials seleccionades",
+    "voter_auth_sms": "Mitjançant verificació per SMS",
+    "voter_auth_summary_2fa_enable": "Autenticació de doble factor",
+    "voter_auth_summary_2fa_enabled": "Habilitat",
+    "voter_auth_summary_credentials": "Credencials necessàries",
+    "voter_auth_summary_title": "Resum de la configuració d'autenticació",
+    "voter_auth_title": "Configura l'autenticació dels votants",
+    "voter_auth_voters_choice": "Elecció del votant",
     "voter_privacy": {
-      "anonymous": "Anonymous",
-      "public": "Public",
-      "title": "Voter's privacy"
+      "anonymous": "Anònim",
+      "public": "Públic",
+      "title": "Privacitat del votant"
     },
     "voter_privacy_placeholder": {
       "anonymous": "Anonymous"
@@ -1588,16 +1588,16 @@
     "success": "Profile updated successfully",
     "title": "Profile"
   },
-  "questions_and_results": "Questions and results",
+  "questions_and_results": "Preguntes i resultats",
   "rainbow": {
     "group": {
       "recovery": ""
     },
     "recovery": ""
   },
-  "remove_avatar": "Remove avatar",
-  "reset_password_button": "Reset Password",
-  "result_visibility": "Results visibility",
+  "remove_avatar": "Elimina l'avatar",
+  "reset_password_button": "Restableix la contrasenya",
+  "result_visibility": "Visibilitat dels resultats",
   "results_state": {
     "enabled": "Habilitat",
     "hidden_until_end": "Ocult fins al final",
@@ -1609,20 +1609,20 @@
     "secret_until_end_tooltip": "Els resultats estan ocults i només estaran disponibles un cop acabi la votació"
   },
   "role": {
-    "full_access": "(Full access)",
-    "read_only": "(Read-only)",
-    "read_permission": "Read-only access",
+    "full_access": "(Accés complet)",
+    "read_only": "(Només lectura)",
+    "read_permission": "Accés només de lectura",
     "update": {
-      "cancel": "Cancel",
-      "current_role": "Current Role",
-      "error": "Error updating role",
-      "new_role": "New role",
-      "save": "Update role",
-      "subtitle": "Update the permissions for this team member by changing their role.",
-      "success": "Role updated successfully",
-      "title": "Change team member role"
+      "cancel": "Cancel·la",
+      "current_role": "Rol actual",
+      "error": "Error en actualitzar el rol",
+      "new_role": "Nou rol",
+      "save": "Actualitza el rol",
+      "subtitle": "Actualitza els permisos d'aquest membre de l'equip canviant el seu rol.",
+      "success": "Rol actualitzat correctament",
+      "title": "Canvia el rol del membre de l'equip"
     },
-    "write_permission": "Can create and edit content"
+    "write_permission": "Pot crear i editar contingut"
   },
   "role_selector": {
     "selector_label": "Role"
@@ -1631,13 +1631,13 @@
     "help": "Ajuda",
     "platform": "Plataforma"
   },
-  "send_invitation": "Send invitation",
-  "session_expired": "Session expired",
-  "session_expired_description": "Session may have been expired and it could not be refreshed, please login again",
+  "send_invitation": "Envia la invitació",
+  "session_expired": "Sessió expirada",
+  "session_expired_description": "La sessió pot haver expirat i no s'ha pogut renovar, siusplau inicia sessió de nou",
   "settings": "Configuració",
   "setup": {
-    "progress": "Your progress",
-    "title": "Complete your setup"
+    "progress": "El teu progrés",
+    "title": "Completa la teva configuració"
   },
   "share": {
     "copy": "Copia",
@@ -1665,7 +1665,7 @@
     "title": "Subscription"
   },
   "subscription_plan": {
-    "subtitle": "Manage your subscription plan and billing cycle.",
+    "subtitle": "Gestiona el teu pla de subscripció i el cicle de facturació.",
     "title": "Subscription Plan"
   },
   "support": "Suport",
@@ -1673,36 +1673,36 @@
   "system": "Sistema",
   "team": {
     "actions": {
-      "cancel_invitation": "Cancel Invitation",
-      "cancel_invitation_error": "Error cancelling invitation",
-      "cancel_invitation_success": "Invitation cancelled successfully",
-      "change_role": "Change Role",
-      "remove_user": "Remove user",
-      "resend_invitation": "Resend Invitation",
-      "resend_invitation_error": "Error resending invitation",
-      "resend_invitation_success": "Invitation resent successfully",
-      "title": "Actions"
+      "cancel_invitation": "Cancel·la la invitació",
+      "cancel_invitation_error": "Error en cancel·lar la invitació",
+      "cancel_invitation_success": "Invitació cancel·lada correctament",
+      "change_role": "Canvia el rol",
+      "remove_user": "Elimina l'usuari",
+      "resend_invitation": "Reenvia la invitació",
+      "resend_invitation_error": "Error en reenviar la invitació",
+      "resend_invitation_success": "Invitació reenviada correctament",
+      "title": "Accions"
     },
     "cancel_invitation": {
-      "cancel": "Cancel",
-      "confirm": "Cancel invitation",
-      "confirmation": "This will cancel the invitation. The person will not be able to join your organization.",
-      "title": "Are you sure?"
+      "cancel": "Cancel·la",
+      "confirm": "Cancel·la la invitació",
+      "confirmation": "Això cancel·larà la invitació. La persona no podrà unir-se a la teva organització.",
+      "title": "Estàs segur?"
     },
-    "expires_in": "Expires in {{time}}",
+    "expires_in": "Expira en {{time}}",
     "only_one_member": {
-      "add_team_member": "Add team member",
-      "subtitle": "Add team members to collaborate on your organization",
-      "title": "You're the only team member of this organization"
+      "add_team_member": "Afegeix membre de l'equip",
+      "subtitle": "Afegeix membres de l'equip per col·laborar en la teva organització",
+      "title": "Ets l'únic membre de l'equip d'aquesta organització"
     },
-    "pending_invitation": "Invitation Pending",
+    "pending_invitation": "Invitació pendent",
     "remove_member": {
-      "cancel": "Cancel",
-      "confirm": "Remove",
-      "confirmation": "This will remove {{name}} from your team. They will no longer have access to your organization.",
-      "error": "Error removing member",
-      "success": "Member removed successfully",
-      "title": "Are you sure?"
+      "cancel": "Cancel·la",
+      "confirm": "Elimina",
+      "confirmation": "Això eliminarà {{name}} del teu equip. Ja no tindrà accés a la teva organització.",
+      "error": "Error en eliminar el membre",
+      "success": "Membre eliminat correctament",
+      "title": "Estàs segur?"
     },
     "title": "Equip"
   },
@@ -1772,13 +1772,13 @@
     },
     "ceec": {
       "position": "CEO",
-      "text": "We chose Vocdoni because it guarantees secure, reliable, and transparent participation for all our members in our Annual General Meeting."
+      "text": "Vam triar Vocdoni perquè garanteix una participació segura, fiable i transparent per a tots els nostres membres en la nostra Assemblea General Anual."
     }
   },
   "theme": "Theme",
   "tier_upgrade": {
     "current_plan": "El teu pla <2>{{ plan, lowercase }}</2> està limitat a seleccionar fins a <6>{{ voters }} votants</6>.",
-    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
+    "dont_limit_yourself": "No et limitis. Uneix-te a la família de 725 organitzacions que confien en <2>Vocdoni</2>.",
     "plan": {
       "basic": "Basic",
       "custom": "Custom",
@@ -1793,13 +1793,13 @@
     },
     "satisfaction_rate": "97% satisfaction rate, starting at 9€/month."
   },
-  "total_votes": "Total votes",
-  "total_votes_submitted": "Total Votes Submitted",
-  "turnout": "Turnout",
+  "total_votes": "Vots totals",
+  "total_votes_submitted": "Total de vots enviats",
+  "turnout": "Participació",
   "uploader": {
     "click_or_drag_and_drop": "<click>Fes clic per pujar</click><formats>(Formats permesos: {{ formats, list }})</formats>",
-    "click_or_drag_and_drop_image": "Upload Image",
-    "drop_here": ""
+    "click_or_drag_and_drop_image": "Puja la imatge",
+    "drop_here": "Deixa'l aquí"
   },
   "use_read_more": {
     "read_less": "Llegeix menys",
@@ -1821,7 +1821,7 @@
       "eyebrow": "Col·legis professionals",
       "title": "Organitzacions comunitàries"
     },
-    "description": "Vocdoni helped a wide range of organizations and institutions improve their participatory processes, voting and elections with out cutting-edge software. Know more about our success stories and understand how we can help you, we adapt to all verticals",
+    "description": "Vocdoni ha ajudat una àmplia gamma d'organitzacions i institucions a millorar els seus processos participatius, votacions i eleccions amb el nostre programari d'avantguarda. Coneix més sobre les nostres històries d'èxit i entendre com podem ajudar-te, ens adaptem a tots els sectors",
     "eyebrow": "Use Cases",
     "integrators": {
       "description": "Integrar programari de vot digital amb Vocdoni",
@@ -1843,44 +1843,44 @@
       "eyebrow": "Enginyeria de programari",
       "title": "Clubs esportius"
     },
-    "title": "Our success stories"
+    "title": "Les nostres històries d'èxit"
   },
-  "user_menu": "User menu",
+  "user_menu": "Menú d'usuari",
   "user_settings": "Configuració de l'usuari",
-  "verification_code": "Verification Code",
-  "verification_code_placeholder": "Enter the verification code",
-  "verification_code_resent": "Verification code resent!",
+  "verification_code": "Codi de verificació",
+  "verification_code_placeholder": "Introdueix el codi de verificació",
+  "verification_code_resent": "Codi de verificació reenviat!",
   "verify": {
-    "account_created_succesfully": "Account created successfully!",
-    "email_sent": "Email sent successfully",
-    "enter_code": "Enter the code below to activate your account",
-    "enter_verification_code": "We've sent you a verification email. Please follow the instructions to activate your account.",
-    "invalid_verification": "Invalid verification request",
-    "missing_email": "No email address provided for verification",
-    "resend_confirmation_mail": "Resend Email",
-    "sent_to_email": "Email sent to {{email}}",
-    "verification_email_is_sent": "A verification email has been sent to:",
-    "verify_code": "Verify",
-    "verify_your_email": "Verify your email"
+    "account_created_succesfully": "Compte creat correctament!",
+    "email_sent": "Correu electrònic enviat correctament",
+    "enter_code": "Introdueix el codi següent per activar el teu compte",
+    "enter_verification_code": "T'hem enviat un correu electrònic de verificació. Siusplau, segueix les instruccions per activar el teu compte.",
+    "invalid_verification": "Sol·licitud de verificació invàlida",
+    "missing_email": "No s'ha proporcionat cap adreça de correu electrònic per a la verificació",
+    "resend_confirmation_mail": "Reenvia el correu electrònic",
+    "sent_to_email": "Correu electrònic enviat a {{email}}",
+    "verification_email_is_sent": "S'ha enviat un correu electrònic de verificació a:",
+    "verify_code": "Verifica",
+    "verify_your_email": "Verifica el teu correu electrònic"
   },
   "verify_mail": {
-    "error_subtitle": "The code you entered is incorrect. Please try again",
-    "verifying_subtitle": "Await while we verify your email address. You will be redirect on success.",
-    "verifying_title": "Verifying {{ email }}"
+    "error_subtitle": "El codi que has introduït és incorrecte. Siusplau, torna-ho a provar",
+    "verifying_subtitle": "Espera mentre verifiquem la teva adreça de correu electrònic. Seràs redirigit en cas d'èxit.",
+    "verifying_title": "Verificant {{ email }}"
   },
-  "view_in_explorer": "View in explorer",
+  "view_in_explorer": "Visualitza a l'explorador",
   "view_plans_and_pricing": "Veure Plans i Preus",
-  "view_pricing_plans": "View Pricing Plans",
+  "view_pricing_plans": "Visualitza els plans de preus",
   "vocdoni logo": "",
-  "vote_information": "Vote information",
-  "vote_overwrite": "Vote overwrite",
+  "vote_information": "Informació del vot",
+  "vote_overwrite": "Sobreescriptura del vot",
   "voting_link": {
-    "description": "Share this link with your voters to participate in the voting process",
-    "title": "Voting Link"
+    "description": "Comparteix aquest enllaç amb els teus votants perquè participin en el procés de votació",
+    "title": "Enllaç de votació"
   },
   "voting_processes": "Processos de votació",
   "voting_processes_description": "Gestiona i supervisa els teus processos de votació",
-  "voting_settings": "Voting settings",
-  "voting_status": "Voting status",
-  "website": "Website"
+  "voting_settings": "Configuració de votació",
+  "voting_status": "Estat de la votació",
+  "website": "Lloc web"
 }
