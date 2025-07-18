@@ -560,12 +560,10 @@ export const ProcessCreate = () => {
   const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(true)
   const methods = useForm({
-    defaultValues: formDraft
-      ? { ...formDraft, groupId: formDraft.groupId ? formDraft.groupId : groupId }
-      : {
-          ...defaultProcessValues,
-          groupId,
-        },
+    defaultValues: {
+      ...defaultProcessValues,
+      groupId,
+    },
   })
   const reset = useSafeReset(methods.reset)
   const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
@@ -580,6 +578,15 @@ export const ProcessCreate = () => {
 
   // Trigger confirmation modal when form is dirty and user tries to navigate away
   useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
+
+  // Apply form draft if it exists
+  useEffect(() => {
+    if (formDraft) {
+      Object.entries(formDraft).forEach(([key, value]) => {
+        methods.setValue(key as keyof Process, value as Process[keyof Process], { shouldDirty: true })
+      })
+    }
+  }, [])
 
   // Trigger confirmation modal when form is dirty and user tries to navigate away
   useEffect(() => {
