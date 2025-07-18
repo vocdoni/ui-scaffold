@@ -583,9 +583,6 @@ export const ProcessCreate = () => {
   // Trigger confirmation modal when form is dirty and user tries to navigate away
   useEffect(() => {
     const isBlocked = blocker.state === 'blocked'
-    const currentPath = createPath(location)
-    const nextPath = blocker?.location ? createPath(blocker.location) : null
-    const isSamePath = currentPath === nextPath
 
     if (!isBlocked) return
 
