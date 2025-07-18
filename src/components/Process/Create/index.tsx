@@ -36,6 +36,7 @@ import { Web3Address } from '~components/Process/Census/Web3'
 import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
 import { Routes } from '~routes'
+import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
 import { CensusMeta } from '../Census/CensusType'
 import { useProcessTemplates } from '../TemplateProvider'
 import { Questions } from './MainContent/Questions'
@@ -441,6 +442,7 @@ export const ProcessCreate = () => {
   const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
   const blocker = useBlocker(methods.formState.isDirty)
   const { client, account } = useClient()
+  const { setStepDoneAsync } = useOrganizationSetup()
   const { isSubmitting, isSubmitSuccessful } = methods.formState
   const description = methods.watch('description')
 
@@ -525,6 +527,8 @@ export const ProcessCreate = () => {
             electionId = step.electionId
         }
       }
+
+      await setStepDoneAsync(SetupStepIds.firstVoteCreation)
 
       toast({
         title: t('form.process_create.success_title'),

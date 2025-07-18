@@ -16,6 +16,7 @@ const useSaasOrganization = ({
 
   return useQuery({
     queryKey: QueryKeys.organization.info(account?.address),
+    refetchOnWindowFocus: false,
     queryFn: () => bearedFetch<OrganizationData>(ApiEndpoints.Organization.replace('{address}', account?.address)),
     enabled: !!account?.address,
     ...options,
