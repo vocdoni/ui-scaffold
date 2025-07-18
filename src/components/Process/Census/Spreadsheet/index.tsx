@@ -87,7 +87,7 @@ export const CensusCsvManager = () => {
         })}
         {...upload}
         isInvalid={!!errors?.spreadsheet}
-        display={manager?.data.length ? 'none' : 'block'}
+        display={manager?.data?.length ? 'none' : 'block'}
       >
         <Uploader getInputProps={getInputProps} getRootProps={getRootProps} isDragActive={isDragActive} />{' '}
         <FormErrorMessage display='flex' justifyContent='center'>
