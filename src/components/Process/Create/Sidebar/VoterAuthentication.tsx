@@ -38,10 +38,14 @@ import {
   useStyleConfig,
   VStack,
 } from '@chakra-ui/react'
+import { useMutation } from '@tanstack/react-query'
+import { useOrganization } from '@vocdoni/react-providers'
 import { useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCheck, LuInfo, LuLock, LuMail, LuShield } from 'react-icons/lu'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useAuth } from '~components/Auth/useAuth'
 import { useMemberColumns } from '~elements/dashboard/memberbase/members'
 
 enum SecurityLevels {
@@ -59,6 +63,51 @@ type SecurityLevelMessages = {
     description: JSX.Element
     status: AlertStatus
   }
+}
+
+type CreateCensusArgs = {
+  orgAddress: string
+  groupId: string
+  authFields: string[]
+  twoFaFields?: string[]
+}
+
+const useCreateCensus = () => {
+  const { bearedFetch } = useAuth()
+
+  return useMutation({
+    mutationFn: async (body: CreateCensusArgs) => {
+      return await bearedFetch<{ ID: string }>(ApiEndpoints.OrganizationCensuses, {
+        method: 'POST',
+        body,
+      })
+    },
+  })
+}
+
+const useUpdateCensus = () => {
+  const { bearedFetch } = useAuth()
+
+  return useMutation({
+    mutationFn: async ({ censusId, updatedCensus }: { censusId: string; updatedCensus: CreateCensusArgs }) => {
+      return await bearedFetch<{ ID: string }>(ApiEndpoints.OrganizationCensusPublish.replace('{censusId}', censusId), {
+        method: 'PUT',
+        body: updatedCensus,
+      })
+    },
+  })
+}
+
+const usePublishCensus = () => {
+  const { bearedFetch } = useAuth()
+
+  return useMutation({
+    mutationFn: async (censusId: string) => {
+      return await bearedFetch<{ ID: string }>(ApiEndpoints.OrganizationCensusPublish.replace('{censusId}', censusId), {
+        method: 'POST',
+      })
+    },
+  })
 }
 
 const getSecurityLevelMessages = (level: SecurityLevel): SecurityLevelMessages => {
@@ -451,6 +500,7 @@ const SummaryTab = () => {
 export const VoterAuthentication = () => {
   const { t } = useTranslation()
   const mainForm = useFormContext()
+  const { organization } = useOrganization()
   const groupId = mainForm.watch('groupId')
 
   const methods = useForm({ defaultValues: { credentials: [], use2FA: false, use2FAMethod: 'email' } })
@@ -460,28 +510,51 @@ export const VoterAuthentication = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [activeTabIndex, setActiveTabIndex] = useState(0)
+  const [censusId, setCensusId] = useState<string | null>(null)
+  const createCensusMutation = useCreateCensus()
+  const updateCensusMutation = useUpdateCensus()
+  const publishCensusMutation = usePublishCensus()
 
-  const goToTab = (nextIndex: number) => {
+  const goToTab = async (nextIndex: number) => {
     if (activeTabIndex === 0 && nextIndex === 1) {
-      console.log('POSTing credentials:', credentials)
+      const { ID: createdCensusId } = await createCensusMutation.mutateAsync({
+        groupId,
+        authFields: credentials,
+        orgAddress: organization?.address,
+      })
+      setCensusId(createdCensusId)
     }
 
     if (activeTabIndex === 1 && nextIndex === 2) {
-      console.log('Reviewing 2FA and credentials:', getValues())
+      const censusData = getValues()
+      if (censusData.use2FA) {
+        const twoFaFields =
+          censusData.use2FAMethod === "voter's choice" ? ['email', 'phone'] : [censusData.use2FAMethod]
+        const updatedCensus = {
+          orgAddress: organization?.address,
+          groupId,
+          authFields: censusData.credentials,
+          twoFaFields,
+        }
+        const { ID: updatedCensusId } = await updateCensusMutation.mutateAsync({ censusId, updatedCensus })
+        setCensusId(updatedCensusId)
+      }
     }
 
     setActiveTabIndex(nextIndex)
+  }
+
+  const onSubmit = () => {
+    publishCensusMutation.mutateAsync(censusId)
+    onClose()
+    goToTab(0)
   }
 
   const handleNext = () => {
     if (activeTabIndex < 2) {
       goToTab(activeTabIndex + 1)
     } else {
-      handleSubmit((data) => {
-        console.log('Final submission:', data)
-        onClose()
-        goToTab(0)
-      })()
+      handleSubmit(onSubmit)()
     }
   }
 
