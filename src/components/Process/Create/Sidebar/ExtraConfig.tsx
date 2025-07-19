@@ -8,6 +8,32 @@ import { useGroups } from '~src/queries/groups'
 import { useValidations } from '~utils/validation'
 import { CensusTypes } from './CensusCreation'
 
+// Utility function to extract YouTube video ID from URL
+const getYouTubeVideoId = (url: string): string | null => {
+  if (!url) return null
+
+  const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+  const match = url.match(regex)
+  return match ? match[1] : null
+}
+
+// YouTube preview component
+const YouTubePreview = ({ videoId }: { videoId: string }) => {
+  return (
+    <AspectRatio ratio={16 / 9} maxH='120px' mt={2}>
+      <Box
+        as='iframe'
+        src={`https://www.youtube.com/embed/${videoId}`}
+        allowFullScreen
+        borderRadius='md'
+        border='1px solid'
+        borderColor='gray.200'
+        _dark={{ borderColor: 'gray.600' }}
+      />
+    </AspectRatio>
+  )
+}
+
 type SelectOption<T = string> = {
   value: T
   label: string
@@ -89,9 +115,12 @@ export const ExtraConfig = () => {
   const { t } = useTranslation()
   const {
     control,
+    watch,
     formState: { errors },
   } = useFormContext()
   const { required } = useValidations()
+
+  const youtubeUrl = watch('youtubeUrl')
 
   const resultVisibilityOptions: SelectOption[] = [
     { value: 'live', label: t('process_create.result_visibility.live', 'Live results') },
@@ -148,6 +177,34 @@ export const ExtraConfig = () => {
             )}
           />
           <FormErrorMessage>{errors.voterPrivacy?.message?.toString()}</FormErrorMessage>
+        </FormControl>
+      </Box>
+
+      {/* Live streaming video URL */}
+      <Box>
+        <FormControl isInvalid={!!errors.youtubeUrl}>
+          <FormLabel>
+            <Trans i18nKey='process_create.youtube.title'>Live streaming video</Trans>
+          </FormLabel>
+          <Controller
+            control={control}
+            name='youtubeUrl'
+            rules={{
+              pattern: {
+                value: /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/).+$/,
+                message: t('form.error.invalid_youtube_url', 'Please enter a valid YouTube URL'),
+              },
+            }}
+            render={({ field }) => (
+              <Input {...field} type='url' placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ' />
+            )}
+          />
+          <FormErrorMessage>{errors.youtubeUrl?.message?.toString()}</FormErrorMessage>
+          {/* YouTube Preview */}
+          {(() => {
+            const videoId = getYouTubeVideoId(youtubeUrl)
+            return videoId ? <YouTubePreview videoId={videoId} /> : null
+          })()}
         </FormControl>
       </Box>
     </VStack>
