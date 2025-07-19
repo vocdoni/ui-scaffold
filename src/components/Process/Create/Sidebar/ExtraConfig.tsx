@@ -3,18 +3,74 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  NumberInput,
-  NumberInputField,
+  HStack,
+  Icon,
+  IconButton,
   Spinner,
+  Text,
   VStack,
 } from '@chakra-ui/react'
 import { chakraComponents, Select } from 'chakra-react-select'
 import { useEffect, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { LuMinus, LuPlus } from 'react-icons/lu'
 import { useGroups } from '~src/queries/groups'
 import { useValidations } from '~utils/validation'
 import { CensusTypes } from './CensusCreation'
+
+const VoteChangesStepper = ({ value, onChange, isDisabled }) => {
+  const handleDecrement = () => {
+    const newValue = Math.max(1, (value || 1) - 1)
+    onChange(newValue)
+  }
+
+  const handleIncrement = () => {
+    const newValue = Math.min(10, (value || 1) + 1)
+    onChange(newValue)
+  }
+
+  return (
+    <HStack spacing={0} border='1px' borderColor='gray.200' borderRadius='md' overflow='hidden' w='full'>
+      <IconButton
+        icon={<Icon as={LuMinus} />}
+        size='md'
+        isDisabled={isDisabled || (value || 1) <= 1}
+        onClick={handleDecrement}
+        variant='ghost'
+        borderRadius='none'
+        aria-label='Decrease vote changes'
+        flex='1'
+        minW='48px'
+      />
+      <Text
+        flex='2'
+        textAlign='center'
+        py={3}
+        px={4}
+        borderLeft='1px'
+        borderRight='1px'
+        borderColor='gray.200'
+        bg='gray.50'
+        fontWeight='medium'
+        fontSize='md'
+      >
+        {value || 1}
+      </Text>
+      <IconButton
+        icon={<Icon as={LuPlus} />}
+        size='md'
+        isDisabled={isDisabled || (value || 1) >= 10}
+        onClick={handleIncrement}
+        variant='ghost'
+        borderRadius='none'
+        aria-label='Increase vote changes'
+        flex='1'
+        minW='48px'
+      />
+    </HStack>
+  )
+}
 
 type SelectOption<T = string> = {
   value: T
@@ -202,15 +258,20 @@ export const ExtraConfig = () => {
               rules={{
                 required,
                 min: { value: 1, message: t('form.error.min_value', 'Minimum value is 1') },
+                max: { value: 10, message: t('form.error.max_value', 'Maximum value is 10') },
               }}
               render={({ field }) => (
-                <NumberInput min={1} {...field}>
-                  <NumberInputField
-                    placeholder={t('process_create.vote_overwrite.max_changes', 'Maximum vote changes')}
-                  />
-                </NumberInput>
+                <VoteChangesStepper
+                  value={field.value || 1}
+                  onChange={(newValue) => field.onChange(newValue)}
+                  isDisabled={false}
+                />
               )}
             />
+            <Text fontSize='sm' color='gray.600' mt={2}>
+              This is the number of times a voter can change their vote before the voting process ends. Only the last
+              one will count.
+            </Text>
             <FormErrorMessage>{errors.maxVoteOverwrites?.message?.toString()}</FormErrorMessage>
           </FormControl>
         )}
