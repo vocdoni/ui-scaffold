@@ -173,9 +173,9 @@ const SortableOption = ({
         )}
 
         {questionType === QuestionTypes.Single ? (
-          <Radio isChecked={false} isReadOnly mt={2} />
+          <Radio isChecked={false} isReadOnly inputProps={{ tabIndex: -1 }} mt={2} />
         ) : (
-          <Checkbox isChecked={false} isReadOnly mt={2} />
+          <Checkbox isChecked={false} isReadOnly tabIndex={-1} mt={2} />
         )}
         <FormControl isInvalid={!!errors.questions?.[questionIndex]?.options?.[optionIndex]?.option} flex='1'>
           <Input
