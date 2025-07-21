@@ -1,11 +1,7 @@
 import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
   Box,
   Button,
   Checkbox,
-  CloseButton,
   Drawer,
   DrawerBody,
   DrawerContent,
@@ -18,7 +14,6 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  ListItem,
   Menu,
   MenuButton,
   MenuDivider,
@@ -37,7 +32,6 @@ import {
   Th,
   Thead,
   Tr,
-  UnorderedList,
   useDisclosure,
   useToast,
   Wrap,
@@ -45,7 +39,7 @@ import {
 } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsis, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers, LuX } from 'react-icons/lu'
@@ -373,6 +367,66 @@ const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
   )
 }
 
+const MembersList = ({ openDeleteSelected }) => {
+  const { data = [], isLoading, isFetching } = useTable()
+  const isLoadingOrImporting = isLoading || isFetching
+  const isEmpty = data.length === 0 && !isLoadingOrImporting
+  return (
+    <Tbody>
+      {isEmpty ? (
+        <EmptyMembers />
+      ) : (
+        data.map((member) => (
+          <MemberTableItem key={member.id} member={member} openDeleteSelected={() => openDeleteSelected(member)} />
+        ))
+      )}
+    </Tbody>
+  )
+}
+
+const EmptyMembers = () => {
+  const { t } = useTranslation()
+  const { columns } = useTable()
+  const { debouncedSearch } = useOutletContext<MemberbaseTabsContext>()
+  return (
+    <Tr>
+      <Td colSpan={columns.filter((c) => c.visible).length + 2}>
+        <Flex justify='center' align='center' height='150px'>
+          <Text color='texts.subtle' fontSize='sm'>
+            {debouncedSearch
+              ? t('members_table.no_filter_results', {
+                  defaultValue: 'No members matching these attributes',
+                })
+              : t('members_table.no_results', {
+                  defaultValue: 'No members found',
+                })}
+          </Text>
+        </Flex>
+      </Td>
+    </Tr>
+  )
+}
+
+const MemberTableItem = ({ member, openDeleteSelected }) => {
+  const { isSelected, toggleOne, columns } = useTable()
+
+  return (
+    <Tr>
+      <Td>
+        <Checkbox isChecked={isSelected(member.id)} onChange={(e) => toggleOne(member.id, e.target.checked)} />
+      </Td>
+      {columns
+        .filter((column) => column.visible)
+        .map((column) => (
+          <Td key={column.id}>{maskIfNeeded(column.id, member[column.id])}</Td>
+        ))}
+      <Td>
+        <MemberActions member={member} onDelete={() => openDeleteSelected(member)} />
+      </Td>
+    </Tr>
+  )
+}
+
 const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModalProps) => {
   const { t } = useTranslation()
   const toast = useToast()
@@ -461,20 +515,8 @@ const MembersTable = () => {
   const { t } = useTranslation()
   const [deleteMode, setDeleteMode] = useState<DeleteModes>(DeleteModes.SELECTED)
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const {
-    data = [],
-    isLoading,
-    isFetching,
-    isSelected,
-    allVisibleSelected,
-    someSelected,
-    toggleAll,
-    toggleOne,
-    columns,
-  } = useTable()
-  const { debouncedSearch } = useOutletContext<MemberbaseTabsContext>()
+  const { isLoading, isFetching, allVisibleSelected, someSelected, toggleAll, toggleOne, columns } = useTable()
   const isLoadingOrImporting = isLoading || isFetching
-  const isEmpty = data.length === 0 && !isLoadingOrImporting
 
   const openDeleteSelected = (member?) => {
     setDeleteMode(DeleteModes.SELECTED)
@@ -529,44 +571,7 @@ const MembersTable = () => {
               </Th>
             </Tr>
           </Thead>
-          <Tbody>
-            {isEmpty ? (
-              <Tr>
-                <Td colSpan={columns.filter((c) => c.visible).length + 2}>
-                  <Flex justify='center' align='center' height='150px'>
-                    <Text color='texts.subtle' fontSize='sm'>
-                      {debouncedSearch
-                        ? t('members_table.no_filter_results', {
-                            defaultValue: 'No members matching these attributes',
-                          })
-                        : t('members_table.no_results', {
-                            defaultValue: 'No members found',
-                          })}
-                    </Text>
-                  </Flex>
-                </Td>
-              </Tr>
-            ) : (
-              data.map((member) => (
-                <Tr key={member.id}>
-                  <Td>
-                    <Checkbox
-                      isChecked={isSelected(member.id)}
-                      onChange={(e) => toggleOne(member.id, e.target.checked)}
-                    />
-                  </Td>
-                  {columns
-                    .filter((column) => column.visible)
-                    .map((column) => (
-                      <Td key={column.id}>{maskIfNeeded(column.id, member[column.id])}</Td>
-                    ))}
-                  <Td>
-                    <MemberActions member={member} onDelete={() => openDeleteSelected(member)} />
-                  </Td>
-                </Tr>
-              ))
-            )}
-          </Tbody>
+          <MembersList openDeleteSelected={openDeleteSelected} />
         </Table>
         <Box p={4}>
           <RoutedPaginatedTableFooter />
