@@ -8,7 +8,6 @@ import {
   Button,
   Checkbox,
   Flex,
-  Heading,
   HStack,
   Icon,
   IconButton,
@@ -31,7 +30,7 @@ import { useSubscription } from '~components/Auth/Subscription'
 import { usePlanTranslations } from '~components/Pricing/Plans'
 import { Routes } from '~routes'
 import { BookerModalButton } from '~shared/Dashboard/Booker'
-import { DashboardBox, DashboardContents } from '~shared/Dashboard/Contents'
+import { DashboardBox, Heading, SubHeading } from '~shared/Dashboard/Contents'
 import InvertedAccordionIcon from '~shared/Layout/InvertedAccordionIcon'
 import { useProfile } from '~src/queries/account'
 import { CheckboxTypes, paginatedElectionsQuery, useOrganizationSetup, useTutorials } from '~src/queries/organization'
@@ -40,19 +39,17 @@ const OrganizationDashboard = () => {
   const { t } = useTranslation()
 
   return (
-    <DashboardContents p={0}>
-      <Heading size='lg' mb={1}>
-        {t('dashboard_empty_processes.title', { defaultValue: 'Welcome to Vocdoni Coop' })}
-      </Heading>
-      <Text color='gray.500' mb={6}>
+    <>
+      <Heading>{t('dashboard_empty_processes.title', { defaultValue: 'Welcome to Vocdoni Coop' })}</Heading>
+      <SubHeading>
         {t('dashboard_empty_processes.subtitle', {
           defaultValue: "Here's an overview of your organization's voting activities",
         })}
-      </Text>
+      </SubHeading>
       <Tutorial />
       <OrganizationProcesses />
       <Setup />
-    </DashboardContents>
+    </>
   )
 }
 
