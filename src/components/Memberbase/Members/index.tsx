@@ -56,11 +56,11 @@ import RoutedPaginatedTableFooter from '~components/shared/Pagination/PaginatedT
 import { Routes } from '~routes'
 import { useCreateGroup } from '~src/queries/groups'
 import { QueryKeys } from '~src/queries/keys'
-import { Member, useDeleteMembers, useImportJobProgress, usePaginatedMembers } from '~src/queries/members'
+import { Member, useDeleteMembers, usePaginatedMembers } from '~src/queries/members'
 import { MemberbaseTabsContext } from '..'
 import { useTable } from '../TableProvider'
 import { ExportMembers } from './Export'
-import { ImportMembers } from './Import'
+import { ImportMembers, ImportProgress } from './Import'
 import { MemberManager } from './Manager'
 
 enum DeleteModes {
@@ -454,152 +454,6 @@ const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModa
         </Button>
       </Flex>
     </DeleteModal>
-  )
-}
-
-const ImportProgress = () => {
-  const { t } = useTranslation()
-  const queryClient = useQueryClient()
-  const { organization } = useOrganization()
-  const { jobId, setJobId } = useOutletContext<MemberbaseTabsContext>()
-  const { data, isError } = useImportJobProgress()
-  const isComplete = data?.progress === 100
-  const hasErrors = data?.errors?.length > 0
-
-  /**
-   * Refetches members when import progress reaches 100%.
-   * Ensures the members list is up-to-date after a successful import.
-   */
-  useEffect(() => {
-    if (isComplete) {
-      queryClient.invalidateQueries({
-        queryKey: QueryKeys.organization.members(organization.address),
-        exact: false,
-      })
-    }
-  }, [data?.progress, queryClient, organization.address])
-
-  const closeAlert = () => setJobId(null)
-
-  const getStatus = () => {
-    if (isComplete && hasErrors) return 'warning'
-    if (isComplete) return 'success'
-    if (hasErrors || isError) return 'error'
-    return 'info'
-  }
-
-  const getTitle = () => {
-    if (isComplete && hasErrors)
-      return t('import_progress.completed_with_errors', { defaultValue: 'Import Completed with Errors' })
-    if (isComplete) return t('import_progress.success_title', { defaultValue: 'Import Completed Successfully' })
-    if (hasErrors || isError) return t('import_progress.error_title', { defaultValue: 'Import Error' })
-
-    return t('import_progress.title', { defaultValue: 'Memberbase Import in Progress' })
-  }
-
-  const getDescription = () => {
-    if (isComplete && hasErrors) {
-      return (
-        <>
-          <Text>
-            {t('import_progress.completed_with_errors_description', {
-              defaultValue:
-                'Your member data has been imported, but some errors occurred. Please review the details below.',
-            })}
-          </Text>
-          <UnorderedList mt={2}>
-            {data.errors.map((error, index) => (
-              <ListItem key={index}>{error}</ListItem>
-            ))}
-          </UnorderedList>
-        </>
-      )
-    }
-
-    if (isComplete) {
-      return (
-        <>
-          <Text>
-            {t('import_progress.success_description', {
-              defaultValue: 'Your member data has been imported successfully.',
-            })}
-          </Text>
-          <Text fontSize='sm'>
-            {t('import_progress.success_note', {
-              defaultValue: 'You may now start using your imported members.',
-            })}
-          </Text>
-        </>
-      )
-    }
-
-    if (isError) {
-      return (
-        <Text>
-          {t('import_progress.error_description', {
-            defaultValue: 'An error occurred while fetching the import progress. Please try again later.',
-          })}
-        </Text>
-      )
-    }
-
-    if (hasErrors) {
-      return (
-        <>
-          <Text>
-            {t('import_progress.error_description', {
-              defaultValue: 'An error occurred while importing your member data. Please try again later.',
-            })}
-          </Text>
-          <UnorderedList mt={2}>
-            {data.errors.map((error, index) => (
-              <ListItem key={index}>{error}</ListItem>
-            ))}
-          </UnorderedList>
-        </>
-      )
-    }
-
-    return (
-      <>
-        <Progress size='md' value={data?.progress} borderRadius='md' isAnimated />
-        <Text>
-          {t('import_progress.description', {
-            defaultValue:
-              'Your member data is being imported. This may take a few minutes depending on the size of your file.',
-          })}
-        </Text>
-        <Text fontSize='sm'>
-          {t('import_progress.note', {
-            defaultValue: 'You can safely close this page. An email will be sent to you upon completion.',
-          })}
-        </Text>
-      </>
-    )
-  }
-
-  if (!jobId) return null
-
-  return (
-    <Alert
-      status={getStatus()}
-      borderRadius='md'
-      mb={3}
-      mt={4}
-      p={6}
-      as={Flex}
-      flexDirection='row'
-      justifyContent='space-between'
-    >
-      <Flex flexDirection='column' gap={2} flex={1}>
-        <AlertTitle>{getTitle()}</AlertTitle>
-        <AlertDescription display='flex' flexDirection='column' gap={2}>
-          {getDescription()}
-        </AlertDescription>
-      </Flex>
-
-      <CloseButton alignSelf='flex-start' position='relative' onClick={closeAlert} />
-    </Alert>
   )
 }
 
