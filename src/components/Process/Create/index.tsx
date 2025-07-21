@@ -354,19 +354,30 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
   const nextPath = blocker?.location ? createPath(blocker.location) : null
   const isSamePath = currentPath === nextPath
 
+  const onCloseHandler = () => {
+    blocker.reset()
+    onClose()
+  }
+
   const onLeave = () => {
     if (!blocker?.location) {
+      blocker.reset()
       onClose()
       return
     }
 
     if (isSamePath) {
       reset()
+      blocker.reset()
       onClose()
       return
     }
 
-    blocker.proceed()
+    if (blocker.state === 'blocked') {
+      blocker.proceed()
+    } else {
+      blocker.reset()
+    }
   }
 
   return (
@@ -386,7 +397,7 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
       {...modalProps}
     >
       <Flex justifyContent='flex-end' mt={4} gap={2}>
-        <Button variant='outline' onClick={onClose}>
+        <Button variant='outline' onClick={onCloseHandler}>
           {t('process.create.leave_confirmation.cancel', { defaultValue: 'Cancel' })}
         </Button>
         <Button colorScheme='red' onClick={onLeave}>
@@ -441,16 +452,21 @@ export const ProcessCreate = () => {
   const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
   const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
   const blocker = useBlocker(methods.formState.isDirty)
-  const { client, account } = useClient()
+  const { client, account, fetchAccount } = useClient()
   const { setStepDoneAsync } = useOrganizationSetup()
   const { isSubmitting, isSubmitSuccessful } = methods.formState
   const description = methods.watch('description')
 
+  // IMPORTANT: We need to ensure the electionIndex is updated before creating an election.
+  useEffect(() => {
+    ;(async () => {
+      await fetchAccount()
+    })()
+  }, [])
+
   // Trigger confirmation modal when form is dirty and user tries to navigate away
   useEffect(() => {
-    const isBlocked = blocker.state === 'blocked'
-
-    if (!isBlocked) return
+    if (blocker.state !== 'blocked') return
 
     if (isSubmitting || isSubmitSuccessful) {
       blocker.proceed()
