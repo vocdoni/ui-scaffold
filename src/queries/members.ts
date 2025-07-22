@@ -72,7 +72,6 @@ export const usePaginatedMembers = ({ search = '', showAll = false }: PaginatedM
   return useQuery<MembersResponse, Error, PaginatedMembers>({
     queryKey: [...QueryKeys.organization.members(organization?.address), effectivePage, effectiveLimit, search],
     enabled: !!organization?.address,
-    refetchOnWindowFocus: false,
     queryFn: () => bearedFetch<MembersResponse>(fetchUrl),
     select: (data) => {
       const currentPage = data.page
