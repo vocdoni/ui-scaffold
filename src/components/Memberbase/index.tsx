@@ -49,7 +49,7 @@ export const MemberbaseTabs = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(search)
-    }, 5000)
+    }, 500)
 
     return () => clearTimeout(timer)
   }, [search])
