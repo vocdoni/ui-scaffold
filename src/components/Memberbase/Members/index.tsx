@@ -179,7 +179,7 @@ const MemberFilters = ({ onDelete }) => {
       <InputGroup maxW='300px' as='form' onSubmit={handleSubmit}>
         <Input placeholder='Search members...' value={search} onChange={handleSearchChange} />
         <InputRightElement>
-          <IconButton aria-label='search' type='submit' icon={<Icon as={LuSearch} />} />
+          <IconButton size='xs' aria-label='search' type='submit' icon={<Icon as={LuSearch} />} />
         </InputRightElement>
       </InputGroup>
       <CreateGroupButton members={data?.members ?? []} />
