@@ -317,11 +317,11 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
 
         {/* Add new option card */}
         <DashboardBox
-          onClick={() => append({ option: '', description: '', budget: null })}
+          onClick={() => append({ option: '', description: '' })}
           borderStyle='dashed'
           cursor='pointer'
           minH='350px'
-          _hover={{ bg: 'gray.800' }}
+          _hover={{ bg: 'gray.100', _dark: { bg: 'gray.800' } }}
         >
           <VStack justify='center' align='center' height='100%'>
             <Icon as={LuPlus} boxSize={6} />
