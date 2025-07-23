@@ -32,10 +32,6 @@
       "ticanoia": "TIC Anoia logo"
     }
   },
-  "anonymous": {
-    "description": "Voters will remain anonymous",
-    "title": "Anonymous"
-  },
   "anonymous_voting": "Anonymous voting",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
@@ -94,12 +90,7 @@
     "voting_process_cost": "Voting process cost:"
   },
   "calendar": {
-    "define_active_period": "Define the active period for receiving votes",
-    "end_date": "End date",
-    "end_date_description": "Define the exact date and time of completion",
     "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
-    "start_date": "Start date",
-    "subtitle": "Specify the active period for receiving votes",
     "title": "Calendar"
   },
   "call_us": "Call us",
@@ -189,22 +180,6 @@
       "voted_title": "Your vote was successfully cast!"
     }
   },
-  "census": {
-    "chain_required": "You need to select a network",
-    "description": "Choose how to authenticate and verify voters.",
-    "gitcoin_description": "With this census only voters with a Gitcoin Passport will be able to vote, providing a sybil-attack resistance method. You can define the general score (GPS) and different stamps that the voter must have.",
-    "gitcoin_read_more": "<a>Read more about Gitcoin's Scorer & Thresholds</a>",
-    "gitcoin_title": "Gitcoin Passport",
-    "request_custom_token": "'Request Custom Tokens'",
-    "social_address_title": "Github users",
-    "spreadsheet_title": "Custom data",
-    "title": "Census",
-    "token_description": "Configure the census by choosing a token from any available network. You can <link1>request a token</link1> if you need so.",
-    "token_required": "You need to select a token",
-    "token_title": "Token based census",
-    "wallet_address_title": "Wallet addresses"
-  },
-  "census_details": "Census Details",
   "census_size": "Census size",
   "change_password": {
     "subtitle": "Enter your current password and a new password to update your credentials.",
@@ -229,6 +204,8 @@
   "common": {
     "cancel": "Back",
     "confirm": "Confirm",
+    "disable": "Disable",
+    "enable": "Enable",
     "next": "Next"
   },
   "confirm_password": "Confirm Password",
@@ -255,12 +232,6 @@
     "public_info_description": "This information is shown in various places including the voting pages.",
     "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
     "title": "Tell us about your organization"
-  },
-  "csp_census": {
-    "github": {
-      "error_fetching_users": "Error fetching users",
-      "selected_users": "Selected users:"
-    }
   },
   "current": "Current",
   "current_plan": "Current Plan",
@@ -399,11 +370,7 @@
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
       "email_invalid": "Invalid email address",
       "field_is_required": "This field is required",
-      "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.",
       "max_greater_than_min": "Max must be greater than or equal to Min",
-      "min_address": "Please, provide at least one address",
-      "min_users_address": "Please, provide at least one address",
-      "min_value": "Minimum value is 1",
       "password_min_length": "Min. 8 characters",
       "recipient_address_invalid": "Specified address does not seem to be valid",
       "required": "This field is required"
@@ -429,87 +396,11 @@
       }
     },
     "process_create": {
-      "calendar": {
-        "date_format": "PPPPpppp",
-        "end_date_description": "This voting will start at {{ date.begin, format }} and end at {{ date.end, format }}, lasting approx. {{ date, duration }}",
-        "now": "Now",
-        "start_on_a_date": "Start on a date"
-      },
       "census": {
         "add_button": "Add",
-        "gitcoin_description": "Build a sybil-resistant census with Gitcoin Passport and its verification stamps for enhanced security",
-        "gitcoin_passport_score": "Gitcoin Passport Score",
-        "gitcoin_stamps": "Stamps",
-        "gitcoin_strategy_description_AND": "Voters users must own all selected stamps and have an equal or higher GPS",
-        "gitcoin_strategy_description_OR": "Voters must own at least one stamp and have an equal or higher GPS",
-        "gitcoin_title": "Gitcoin Passport",
-        "holders": "{{ holders }} holders",
-        "max_census_resum": "You have a pool of {{ uniTokenHolders }} {{ symbol }} potential voters. To reduce the cost of the voting process, you can opt to limit the total number of participants in the voting process (right now {{ holders }}, {{ percent }}% of the total potential voters). This will not affect specific voters nor will reduce the census; it will simply reduce the maximum number of votes that can be cast.",
-        "max_census_slider_arialabel": "Maximum participation expected slider selector",
-        "max_census_slider_label": "Max. participation expected:",
-        "max_census_slider_tooltip": "{{ voters }} voters ({{ percent }}% of the total)",
-        "network": "Network",
-        "network_placeholder": "Select a network",
-        "remove_address": "Remove address",
-        "social_description": "Create a census of eligible voters providing a list of Github users.",
-        "social_title": "Github Census",
-        "spreadsheet_description": "Utilize information such as usernames, passwords, or voter personal details for authentication through a form.",
-        "spreadsheet_title": "Custom data",
-        "token_base_description": "Use ERC20, NFTs and POAPs from different EVM networks to create a census of eligible holders.",
-        "token_base_title": "Token based",
-        "tokens_placeholder": "Search or paste token address",
-        "wallet_address_description": "Create a census of eligible voters providing a list of wallet addresses.",
-        "wallet_address_title": "Wallet addresses",
-        "weighted_voting_description": "When activated, your voting power aligns with your GPS score. If deactivated, each user's vote carries equal weight, set at 1 point.",
-        "weighted_voting_title": "GPS-Based Voting Weight"
+        "remove_address": "Remove address"
       },
-      "confirm": {
-        "anonymous": "Anonymous voting active",
-        "census": "Census",
-        "census_preview_is_shortened": "(preview list is limited to {{ limit }} results)",
-        "census_total_people_one": "A single person will be elegible for voting in this process",
-        "census_total_people_other": "{{ count }} people will be elegible for voting in this process",
-        "configuration": "Configuration",
-        "confirmation": "Confirmation",
-        "confirmation_valid_info": "I confirm that all information provided is accurate",
-        "create_button": "Create",
-        "dates": "Schedule",
-        "description": "On this page, you can verify and edit your information if needed. Additionally, you can review the voting process cost and buy more credits if necessary.",
-        "description_election": "Description",
-        "edit": "Edit",
-        "election_info": "Set up your voting process",
-        "live_results": "Live results",
-        "questions_one": "Question",
-        "questions_other": "Questions",
-        "title": "Preview",
-        "title_election": "Title",
-        "vote_overwrite": "Vote overwrite"
-      },
-      "creating_process": "Creating Voting Process...",
       "error_title": "Error creating process",
-      "meta": {
-        "description_label": "Description",
-        "description_placeholder": "Provide more details about your voting process."
-      },
-      "next_step": "Next",
-      "previous_step": "Previous",
-      "question": {
-        "add_new_option": "Add option",
-        "add_question": "Add question",
-        "approval_description": "With approval voting only one question with multiple choices can be added. The choice with most votes will win.",
-        "approval_title": "Add a question",
-        "delete_option": "Delete option number {{ option }} in question {{ question }}",
-        "description": "Enter each question along with the possible choices for your voters. Remember, you're free to include numerous questions, each with distinct options.",
-        "description_placeholder": "Write here a description of the question (optional)",
-        "option_placeholder": "Option",
-        "question_delete": "Delete question {{ num }}",
-        "title": "Add Questions",
-        "title_placeholder": "The title of your question"
-      },
-      "question_identifier": "Question {{ num }}",
-      "question_placeholder": "Question {{ num }} title",
-      "question_title": "Title",
-      "running_checks": "Running required checks, please wait...",
       "spreadsheet": {
         "download_template": "You don't have a CSV file? <a>Download template.csv</a>, fill it and upload it.",
         "download_template_btn": "Download template",
@@ -564,11 +455,6 @@
   },
   "form_error": {
     "passwords_must_match": ""
-  },
-  "gitcoin": {
-    "effective": "20: Effective",
-    "more_effective": "25: More Effective",
-    "most_effective": "30: Most Effective"
   },
   "google_oauth_error": "Google OAuth Error",
   "google_oauth_error_description": "Google OAuth error, please try again",
@@ -993,6 +879,8 @@
     "title": "<p1>are you</p1><p2>Ready for a new Era of Web3 governance?</p2>"
   },
   "import_progress": {
+    "completed_with_errors": "Import Completed with Errors",
+    "completed_with_errors_description": "Your member data has been imported, but some errors occurred. Please review the details below.",
     "description": "Your member data is being imported. This may take a few minutes depending on the size of your file.",
     "error_description": "An error occurred while importing your member data. Please try again later.",
     "error_title": "Import Error",
@@ -1033,10 +921,6 @@
     "github": "Link to Vocdoni's github",
     "twitter": "Link to Vocdoni's twitter"
   },
-  "live_results": {
-    "description": "Vote contents will be publicly available till the end of the voting",
-    "title": "Live results"
-  },
   "loading": "Loading...",
   "login": {
     "facebook": "Sign in with Facebook",
@@ -1052,15 +936,14 @@
       "success": "Member added successfully!",
       "title": "Add Member"
     },
-    "delate_member": {
-      "subtitle_one": "Are you sure you want to delete {{count}} member? This action cannot be undone.",
-      "subtitle_other": "Are you sure you want to delete {{count}} members? This action cannot be undone."
-    },
     "delete_member": {
       "cancel": "Cancel",
       "delete": "Delete",
       "error_one": "Error deleting member",
       "error_other": "Error deleting members",
+      "loading": "Loading members to delete...",
+      "subtitle_one": "Are you sure you want to delete {{count}} member? This action cannot be undone.",
+      "subtitle_other": "Are you sure you want to delete {{count}} members? This action cannot be undone.",
       "success_one": "Member deleted successfully",
       "success_other": "Members deleted successfully",
       "title": "Delete Members"
@@ -1088,6 +971,7 @@
     },
     "form": {
       "cancel": "Cancel",
+      "phone_warning": "Phone number hidden. Any changes here will overwrite it.",
       "save": "Save Changes"
     },
     "groups": {
@@ -1140,6 +1024,7 @@
     "create_group_form_title": "Create New Group",
     "create_group_success": "Group created successfully",
     "delete": "Delete",
+    "delete_all": "Delete (All)",
     "edit": "Edit",
     "group_description": "Description (Optional)",
     "group_description_placeholder": "Enter a brief description of the group",
@@ -1153,7 +1038,6 @@
     "no_results": "No members found",
     "remaining_members_one": "+{{count}} more",
     "remaining_members_other": "+{{count}} more",
-    "search": "Search members...",
     "select_hint": "Select members to perform bulk actions",
     "selected_one": "Selected: <strong>{{count}} member</strong>",
     "selected_other": "Selected: <strong>{{count}} member</strong>",
@@ -1181,9 +1065,6 @@
     "terms": "Terms",
     "wallet": "Wallet"
   },
-  "meta": {
-    "helper": "Provide a clear title and description to help voters understand the vote"
-  },
   "more_than_users_one": "more than {{ count }} users",
   "more_than_users_other": "more than {{ count }} users",
   "name": "Name",
@@ -1197,11 +1078,8 @@
     "title": "First steps"
   },
   "new_organization": {
-    "create_organization_btn": "Create Organization",
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
-    "description2": "You will have the chance to claim tokens later from the faucet to create proposals and engage with your community.",
-    "onboarding": "If your organization is already on Vocdoni, ask its administrator to invite you.",
-    "title": "Create your organization"
+    "onboarding": "If your organization is already on Vocdoni, ask its administrator to invite you."
   },
   "new_password": "New Password",
   "new_password_placeholder": "Enter your new password",
@@ -1267,10 +1145,6 @@
   },
   "organizations": "Organizations ({{ numOrgs }})",
   "other_details": "other details",
-  "overwrite": {
-    "description": "Voters will be able to overwrite their vote once",
-    "title": "Vote overwrite"
-  },
   "pagination": {
     "page_out_of": "Page {{page}} of {{total}}",
     "rows_per_page": "Rows per page"
@@ -1349,7 +1223,6 @@
     "most_popular_plan": "Most Popular",
     "view_features": "View all features"
   },
-  "privacy_policy": "Privacy Policy",
   "privacyPolicy": {
     "description": "This document outlines the privacy practices for Vocdoni Association (\"Vocdoni\") concerning the use of its websites and services.",
     "section1": {
@@ -1430,6 +1303,7 @@
       "question_type": {
         "description": "This applies to all questions in this voting process",
         "multiple": "Multiple choice",
+        "participatory_budgeting": "Participatory budgeting",
         "single": "Single choice",
         "title": "Question Type"
       },
@@ -1449,6 +1323,7 @@
       "template": {
         "annual_general_meeting": "Annual General Meeting",
         "election": "Election",
+        "participatory_budgeting": "Participatory Budgeting",
         "title": "Get started with a template..."
       }
     },
@@ -1531,6 +1406,16 @@
           "title": "Who should be the next president?"
         },
         "title": "Election Process"
+      },
+      "participatory_budgeting": {
+        "description": "Template for community decision-making on budget allocation with project cards.",
+        "q1": {
+          "option_1": "Project C",
+          "option_1_desc": "Description of Project A",
+          "option_2_desc": "Description of Project B",
+          "option_3_desc": "Description of Project C"
+        },
+        "title": "Participatory Budgeting Cards"
       }
     },
     "total_census_size": "{{maxCensusSize}} allowed voters of {{censusSize}} total in census",
@@ -1546,48 +1431,28 @@
     "start": "Start/Resume"
   },
   "process_create": {
-    "anonymous": {
-      "legal_disclaimer": "This voting system utilizes token-based voting power (public on-chain). As you selected the 'Anonymous voting' option, weights will be grouped into similar balances and rounded down. This sacrifices some accuracy but preserves anonymous identity by unlinking balances from wallets.",
-      "legal_note": "Disclaimer: "
-    },
     "auto_start": "Start immediately",
     "census": {
-      "crm_description": "If you already have your own CRM, we can integrate it so your community can vote using the same credentials.",
-      "crm_title": "CRM Integration",
-      "database_description": "Integrate voting directly with the users in your database. A seamless way for your community to vote.",
-      "database_title": "Database Integration",
-      "digital_certificate_description": "We support different types of digital certificates to ensure maximum security and identity validation.",
-      "digital_certificate_title": "Digital Certificates",
-      "email_description": "Voters will validate their email by authenticating through their Google Mail account (OAuth).",
-      "email_title": "Via Email",
+      "extra_methods": {
+        "disable_description": "Do you want to disable extra census methods? This will hide the Spreadsheet and Web3 options and show only the Group method.",
+        "enable_description": "Do you want to enable extra census methods? This will show additional options like Spreadsheet and Web3 census creation.",
+        "modal_title": "Extra census methods"
+      },
       "group": {
         "label": "Group"
       },
       "label": "Census creation",
-      "mandatory_max_census_size": "At least one voter needs to be selected",
       "memberbase": {
         "label": "Select a group of members to create the census"
       },
-      "others_description": "Do you need a specific solution? We can help with a custom integration tailored to your needs.",
-      "others_title": "Others",
-      "phone_description": "Voters will need to validate their mobile phone by entering their number and the verification code they receive.",
-      "phone_title": "Via Phone Number",
+      "settings": "Census settings",
       "spreadsheet": {
         "label": "Spreadsheet"
       },
-      "total_tokens_one": "1 token",
-      "total_tokens_other": "{{ count }} tokens",
       "web3": {
         "label": "Web3"
       }
     },
-    "creation_steps": {
-      "census_created": "Census creation",
-      "done": "Process creation",
-      "sign_tx": "Sign transaction"
-    },
-    "creation_steps_description": "Sign transaction to create the voting process. Generating the census can take a few minutes, please don't close this window.",
-    "creation_steps_title": "Progress",
     "end_datetime": "End date and time",
     "group": {
       "select": "Select group"
@@ -1595,59 +1460,29 @@
     "groups": {
       "scroll_to_load": "Scroll to load more..."
     },
-    "modal_pro": {
-      "description": "<p><bold>{{ reason, ucfirst }}</bold> is a Premium feature</p>",
-      "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
-      "form_btn": "SEND",
-      "form_description": "You can give us your contact information and we will contact you to talk about your needs.",
-      "form_email_label": "Email:",
-      "form_email_placeholder": "Your email",
-      "form_name_label": "Name:",
-      "form_name_placeholder": "Your name",
-      "scheudle_btn": "BOOK NOW",
-      "scheudle_description": "Schedule a 30-minute call with our team to discuss your voting project. We'll guide you through the process and tailor solutions to meet your specific needs.",
-      "success": "Email sent successfully",
-      "title": "Contact Us"
-    },
+    "new_option": "Add a new option",
     "option": {
       "add": "Add option",
       "placeholder": "Option {{number}}",
       "remove": "Remove option"
     },
-    "preview": {
-      "accuracy": "Anonymous Census Balance Accuracy: "
+    "participatory_budgeting": {
+      "option": {
+        "description": {
+          "placeholder": "Project description"
+        },
+        "option": {
+          "placeholder": "Project Title"
+        }
+      }
     },
     "question": {
-      "approval_voting": {
-        "description": "Voters can vote for as many options as they approve of. The option with the most votes win.",
-        "title": "Approval Voting"
-      },
-      "borda_count": {
-        "description": "Voters rank the options, and points are assigned base on their rank. The option with the most points wins.",
-        "title": "Ranked Choice"
-      },
       "description": {
         "placeholder": "Add the description of the question here (optional)..."
       },
-      "multi_choice": {
-        "description": "Voters choose a pre-defined number of options. The option with more voters win.",
-        "title": "Multiple Choice"
-      },
-      "participation_budgeting": {
-        "description": "Voters can distribute a predefined number among all options/projects (representing the total available budget) as they wish.",
-        "title": "Participatory Budgeting"
-      },
       "remove": "Remove question",
-      "single_choice": {
-        "description": "Voters choose one option. The option with the most votes wins.",
-        "title": "Single Choice"
-      },
       "title": {
         "placeholder": "Add a title to the question"
-      },
-      "voting_type": {
-        "description": "Select the voting type for this election. Contact us if you need other options.",
-        "title": "Voting Types"
       }
     },
     "result_visibility": {
@@ -1656,14 +1491,6 @@
       "title": "Result visibility"
     },
     "start_datetime": "Start date and time",
-    "title": "Title",
-    "title_placeholder": "Title of the voting process",
-    "vote_overwrite": {
-      "max_changes": "Maximum vote changes",
-      "multiple": "Allow vote changes",
-      "single": "Allow only one vote",
-      "title": "Vote overwrite"
-    },
     "voter_auth": "Configure Voter Authentication",
     "voter_auth_2fa_description": "Add an extra layer of security by requiring voters to verify their identity",
     "voter_auth_2fa_email": "Email verification",
@@ -1910,7 +1737,6 @@
     "section9Title": "9. Contact Information",
     "title": "Terms and Conditions for Vocdoni Association"
   },
-  "terms_and_conditions": "Terms and Conditions",
   "testimonials": {
     "auth": {
       "position": "President",
@@ -1942,7 +1768,6 @@
   "total_votes": "Total votes",
   "total_votes_submitted": "Total Votes Submitted",
   "turnout": "Turnout",
-  "upgrade": "Upgrade",
   "uploader": {
     "click_or_drag_and_drop": "<click>Click to upload or drag and drop</click><formats>(Allowed formats: {{ formats, list }})</formats>",
     "click_or_drag_and_drop_image": "Upload Image",

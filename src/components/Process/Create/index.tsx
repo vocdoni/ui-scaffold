@@ -71,8 +71,6 @@ export type Process = {
   questions: Question[]
   resultVisibility: 'live' | 'hidden'
   voterPrivacy: 'anonymous' | 'public'
-  voteOverwrite: boolean
-  maxVoteOverwrites: number
   groupId: string
   censusType: CensusTypes
   addresses?: Web3Address[]
@@ -132,8 +130,6 @@ const defaultProcessValues: Process = {
   questions: [DefaultQuestions[QuestionTypes.Single]],
   resultVisibility: 'hidden',
   voterPrivacy: 'public',
-  voteOverwrite: false,
-  maxVoteOverwrites: 0,
   groupId: '',
   censusType: CensusTypes.Memberbase,
   addresses: [],
@@ -241,7 +237,7 @@ const electionFromForm = (form) => {
     startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`).getTime(),
     endDate: new Date(`${form.endDate}T${form.endTime}`).getTime(),
     voteType: {
-      maxVoteOverwrites: Number(form.maxVoteOverwrites),
+      maxVoteOverwrites: 10,
     },
     temporarySecretIdentity: form.censusType === CensusTypes.Spreadsheet && Boolean(form.voterPrivacy === 'anonymous'),
     meta: {
@@ -576,8 +572,6 @@ export const ProcessCreate = () => {
       'groupId',
       'resultVisibility',
       'voterPrivacy',
-      'voteOverwrite',
-      'maxVoteOverwrites',
       'endDate',
       'endTime',
       'startDate',

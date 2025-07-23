@@ -32,10 +32,6 @@
       "ticanoia": "logo TIC Anoia"
     }
   },
-  "anonymous": {
-    "description": "Los votantes permanecerán anónimos",
-    "title": "Anónimo"
-  },
   "anonymous_voting": "Anonymous voting",
   "aside": {
     "has_already_voted": "Tu voto ha sido registrado correctamente",
@@ -97,12 +93,7 @@
     "voting_process_cost": "Coste del proceso de votación:"
   },
   "calendar": {
-    "define_active_period": "Define the active period for receiving votes",
-    "end_date": "End date",
-    "end_date_description": "Define the exact date and time of completion",
     "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
-    "start_date": "Start date",
-    "subtitle": "Specify the active period for receiving votes",
     "title": "Calendar"
   },
   "call_us": "Llámanos",
@@ -192,22 +183,6 @@
       "voted_title": "¡Tu voto se ha registrado con éxito!"
     }
   },
-  "census": {
-    "chain_required": "Necesitas seleccionar una red",
-    "description": "Selecciona cómo los votantes se autenticarán e identificarán.",
-    "gitcoin_description": "Con este censo, solo los votantes con Gitcoin Passport podrán votar, proporcionando un método de resistencia contra sybil-attack. Puedes definir la puntuación general (GPS) y diferentes stamps que el votante debe tener.",
-    "gitcoin_read_more": "<a>Lee más sobre Scorer & Thresholds de Gitcoin</a>",
-    "gitcoin_title": "Gitcoin Passport",
-    "request_custom_token": "Solicitar Tokens Personalizados",
-    "social_address_title": "Usuarios de Github",
-    "spreadsheet_title": "Datos personalizados",
-    "title": "Censo",
-    "token_description": "Selecciona la red y el token para crear un censo donde los titulares de token votarán con su poder de voto. Puedes <link1>solicitar un token</link1> si lo necesitas.",
-    "token_required": "Necesitas seleccionar un token",
-    "token_title": "Censo basado en tokens",
-    "wallet_address_title": "Direcciones de billetera"
-  },
-  "census_details": "Census Details",
   "census_size": "Census size",
   "change_password": {
     "subtitle": "Enter your current password and a new password to update your credentials.",
@@ -232,6 +207,8 @@
   "common": {
     "cancel": "Back",
     "confirm": "Confirm",
+    "disable": "Disable",
+    "enable": "Enable",
     "next": "Next"
   },
   "confirm_password": "Confirm Password",
@@ -258,12 +235,6 @@
     "public_info_description": "Esta información se muestra en varios lugares, incluidas las páginas de votación.",
     "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
     "title": "Crea tu organización"
-  },
-  "csp_census": {
-    "github": {
-      "error_fetching_users": "Error al recuperar usuarios",
-      "selected_users": "Usuarios seleccionados:"
-    }
   },
   "current": "Actual",
   "current_plan": "Current Plan",
@@ -402,11 +373,7 @@
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
       "email_invalid": "Correo electrónico incorrecto",
       "field_is_required": "Este campo es obligatorio",
-      "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{days}} days for your plan.",
       "max_greater_than_min": "Max must be greater than or equal to Min",
-      "min_address": "Por favor, proporciona al menos una dirección",
-      "min_users_address": "Por favor, proporciona al menos una dirección",
-      "min_value": "Minimum value is 1",
       "password_min_length": "Min. 8 caracteres",
       "recipient_address_invalid": "La dirección especificada no parece válida",
       "required": "This field is required"
@@ -432,89 +399,11 @@
       }
     },
     "process_create": {
-      "calendar": {
-        "date_format": "PPPPpppp",
-        "end_date_description": "Esta votación comenzará en {{ date.begin, format }} y terminará en {{ date.end, format }}, durando ~{{ date, duration }}",
-        "now": "Ahora",
-        "start_on_a_date": "Comenzar en una fecha"
-      },
       "census": {
         "add_button": "Añadir",
-        "gitcoin_description": "Construye un censo resistente a Sybil (resistente a la falsificación de identidad) con Gitcoin Passport y sus sellos de verificación para una seguridad mejorada",
-        "gitcoin_passport_score": "Puntuación de Gitcoin Pasaport",
-        "gitcoin_stamps": "Stamps",
-        "gitcoin_strategy_description_AND": "Los usuarios votantes deben ser propietarios de todos los sellos seleccionados y tener un GPS igual o superior.",
-        "gitcoin_strategy_description_OR": "Los votantes deben ser propietarios de al menos un sello y tener un GPS igual o superior.",
-        "gitcoin_title": "Gitcoin Passport",
-        "holders": "{{ holders }} titulares",
-        "max_census_resum": "Tienes un grupo de {{ uniTokenHolders }} posibles votantes de {{ symbol }}. Para reducir el costo del proceso de votación, puedes optar por limitar el número total de participantes en el proceso de votación (ahora mismo {{ titulares }}, {{ porcentaje }}% del total de votantes potenciales). Esto no afectará a votantes específicos ni reducirá el censo; simplemente reducirá el número máximo de votos que se pueden emitir.",
-        "max_census_slider_arialabel": "Selector deslizante de participación máxima esperada",
-        "max_census_slider_label": "Participación max. esperada:",
-        "max_census_slider_tooltip": "{{ voters }} votantes ({{ percent }}% del total)",
-        "network": "Red",
-        "network_placeholder": "Selecciona una red",
-        "remove_address": "Remove address",
-        "social_description": "Cree un censo de votantes elegibles que proporcione una lista de usuarios de Github.",
-        "social_title": "Censo de Github",
-        "spreadsheet_description": "Datos personalizados, como nombres de usuario y contraseñas, o información personal de los votantes, pueden utilizarse para la autenticación mediante un formulario.",
-        "spreadsheet_title": "Datos personalizados",
-        "token_base_description": "Utiliza un token (basado en EVM) para permitir a los usuarios votar en función de la cantidad que poseen.",
-        "token_base_title": "Basado en tokens",
-        "tokens_placeholder": "Busca o pega la dirección del token",
-        "wallet_address_description": "Identifica a tus votantes por sus direcciones de monedero digital.",
-        "wallet_address_title": "Direcciones de monedero",
-        "weighted_voting_description": "Cuando se activa, tu poder de voto se alinea con tu puntuación GPS. Si se desactiva, el voto de cada usuario tiene el mismo peso, establecido en 1 punto.",
-        "weighted_voting_title": "Peso del Voto Basado en GPS"
+        "remove_address": "Remove address"
       },
-      "confirm": {
-        "anonymous": "Anónimo",
-        "census": "Censo",
-        "census_preview_is_shortened": "(la lista previa está limitada a {{ limit }} resultados)",
-        "census_total_people_one": "Una persona podrá votar en esta votación",
-        "census_total_people_many": "",
-        "census_total_people_other": "{{ count }} personas podrán votar en esta votación",
-        "configuration": "Configuración",
-        "confirmation": "Confirmación",
-        "confirmation_valid_info": "Confirmo que esta información es correcta y válida",
-        "create_button": "Crear",
-        "dates": "Fecha",
-        "description": "En esta página, puedes revisar que toda la información sea correcta y editarla en caso de que haya algún error. También puedes verificar el costo del proceso de votación y comprar más créditos en caso de que no tengas suficientes.",
-        "description_election": "Descripción",
-        "edit": "Editar",
-        "election_info": "Información de Votación",
-        "live_results": "Resultados en directo",
-        "questions_one": "Pregunta",
-        "questions_many": "",
-        "questions_other": "Preguntas",
-        "title": "Vista previa y costos de votación",
-        "title_election": "Título",
-        "vote_overwrite": "Sobrescribir voto"
-      },
-      "creating_process": "Creando Proceso de Votación...",
       "error_title": "Error creating process",
-      "meta": {
-        "description_label": "Descripción",
-        "description_placeholder": "Descripción (opcional)"
-      },
-      "next_step": "Siguiente",
-      "previous_step": "Anterior",
-      "question": {
-        "add_new_option": "Añadir opción",
-        "add_question": "Añadir pregunta",
-        "approval_description": "Con la votación de aprobación, solo se puede agregar una pregunta con múltiples opciones. La opción con más votos ganará.",
-        "approval_title": "Agregar una pregunta",
-        "delete_option": "Eliminar opcion número {{ option }} de la pregunta {{ question }}",
-        "description": "Agrega las preguntas junto con las opciones que tus votantes deberán elegir. Tienes la flexibilidad de agregar varias preguntas, cada una con un número personalizado de opciones seleccionables.",
-        "description_placeholder": "Escribe aquí una descripción de la pregunta",
-        "option_placeholder": "Opción",
-        "question_delete": "Eliminar pregunta {{ num }}",
-        "title": "Preguntas",
-        "title_placeholder": "Título de tu pregunta"
-      },
-      "question_identifier": "Pregunta {{ num }}",
-      "question_placeholder": "Título de la pregunta {{ num }}",
-      "question_title": "Título",
-      "running_checks": "Ejecutando comprobaciones requeridas, por favor espera...",
       "spreadsheet": {
         "download_template": "You don't have a CSV file? <a>Download template.csv</a>, fill it and upload it.",
         "download_template_btn": "Descargar plantilla",
@@ -569,11 +458,6 @@
   },
   "form_error": {
     "passwords_must_match": ""
-  },
-  "gitcoin": {
-    "effective": "20: Efectivo",
-    "more_effective": "25: Más efectivo",
-    "most_effective": "30: Muy efectivo"
   },
   "google_oauth_error": "Google OAuth Error",
   "google_oauth_error_description": "Google OAuth error, please try again",
@@ -999,6 +883,8 @@
     "title": "<p1>¿Estás</p1><p2>listo para una nueva Era en la gobernanza Web3?</p2>"
   },
   "import_progress": {
+    "completed_with_errors": "Import Completed with Errors",
+    "completed_with_errors_description": "Your member data has been imported, but some errors occurred. Please review the details below.",
     "description": "Your member data is being imported. This may take a few minutes depending on the size of your file.",
     "error_description": "An error occurred while importing your member data. Please try again later.",
     "error_title": "Import Error",
@@ -1039,10 +925,6 @@
     "github": "Enlace al Github de Vocdoni",
     "twitter": "Enlace al Twitter de Vocdoni"
   },
-  "live_results": {
-    "description": "Los contenidos de los votos serán públicos durante toda la votación.",
-    "title": "Resultados en directo"
-  },
   "loading": "Cargando...",
   "login": {
     "facebook": "Iniciar sesión usando Facebook",
@@ -1058,17 +940,16 @@
       "success": "Member added successfully!",
       "title": "Add Member"
     },
-    "delate_member": {
-      "subtitle_one": "Are you sure you want to delete {{count}} member? This action cannot be undone.",
-      "subtitle_many": "Are you sure you want to delete {{count}} member? This action cannot be undone.",
-      "subtitle_other": "Are you sure you want to delete {{count}} members? This action cannot be undone."
-    },
     "delete_member": {
       "cancel": "Cancel",
       "delete": "Delete",
       "error_one": "Error deleting member",
       "error_many": "Error deleting member",
       "error_other": "Error deleting members",
+      "loading": "Loading members to delete...",
+      "subtitle_one": "Are you sure you want to delete {{count}} member? This action cannot be undone.",
+      "subtitle_many": "Are you sure you want to delete {{count}} member? This action cannot be undone.",
+      "subtitle_other": "Are you sure you want to delete {{count}} members? This action cannot be undone.",
       "success_one": "Member deleted successfully",
       "success_many": "Member deleted successfully",
       "success_other": "Members deleted successfully",
@@ -1099,6 +980,7 @@
     },
     "form": {
       "cancel": "Cancel",
+      "phone_warning": "Phone number hidden. Any changes here will overwrite it.",
       "save": "Save Changes"
     },
     "groups": {
@@ -1151,6 +1033,7 @@
     "create_group_form_title": "Create New Group",
     "create_group_success": "Group created successfully",
     "delete": "Delete",
+    "delete_all": "Delete (All)",
     "edit": "Edit",
     "group_description": "Description (Optional)",
     "group_description_placeholder": "Enter a brief description of the group",
@@ -1166,7 +1049,6 @@
     "remaining_members_one": "+{{count}} more",
     "remaining_members_many": "+{{count}} more",
     "remaining_members_other": "+{{count}} more",
-    "search": "Search members...",
     "select_hint": "Select members to perform bulk actions",
     "selected_one": "Selected: <strong>{{count}} member</strong>",
     "selected_many": "Selected: <strong>{{count}} member</strong>",
@@ -1195,9 +1077,6 @@
     "terms": "Términos",
     "wallet": "Billetera"
   },
-  "meta": {
-    "helper": "Provide a clear title and description to help voters understand the vote"
-  },
   "more_than_users_one": "more than {{ count }} users",
   "more_than_users_many": "more than {{ count }} users",
   "more_than_users_other": "more than {{ count }} users",
@@ -1212,11 +1091,8 @@
     "title": "Primeros pasos"
   },
   "new_organization": {
-    "create_organization_btn": "Crear Organización",
     "description1": "Antes de comenzar a crear su proceso de votación, <span>debe crear una organización</span>, es gratuito. Con una organización, podrá crear una amplia gama de elecciones y dar voz a los miembros de su comunidad.",
-    "description2": "Como <span>paquete de bienvenida</span>, recibirá {{ faucetAmount }} tokens gratis para comenzar a utilizar nuestra plataforma.",
-    "onboarding": "If your organization is already on Vocdoni, ask its administrator to invite you.",
-    "title": "Nueva Organización"
+    "onboarding": "If your organization is already on Vocdoni, ask its administrator to invite you."
   },
   "new_password": "Nueva contraseña",
   "new_password_placeholder": "Introduce tu nueva contraseña",
@@ -1282,10 +1158,6 @@
   },
   "organizations": "Organizations ({{ numOrgs }})",
   "other_details": "Otros detalles",
-  "overwrite": {
-    "description": "Los votantes podrán modificar su voto una vez",
-    "title": "Modificación de voto"
-  },
   "pagination": {
     "page_out_of": "Page {{page}} of {{total}}",
     "rows_per_page": "Rows per page"
@@ -1365,7 +1237,6 @@
     "most_popular_plan": "Recomendado",
     "view_features": "Ver todas las características"
   },
-  "privacy_policy": "Política de Privacidad",
   "privacyPolicy": {
     "description": "Este documento describe las prácticas de privacidad de la Asociación Vocdoni (\"Vocdoni\") con respecto al uso de sus sitios web y servicios.",
     "section1": {
@@ -1446,6 +1317,7 @@
       "question_type": {
         "description": "This applies to all questions in this voting process",
         "multiple": "Multiple choice",
+        "participatory_budgeting": "Participatory budgeting",
         "single": "Single choice",
         "title": "Question Type"
       },
@@ -1465,6 +1337,7 @@
       "template": {
         "annual_general_meeting": "Annual General Meeting",
         "election": "Election",
+        "participatory_budgeting": "Participatory Budgeting",
         "title": "Get started with a template..."
       }
     },
@@ -1548,6 +1421,16 @@
           "title": "Who should be the next president?"
         },
         "title": "Election Process"
+      },
+      "participatory_budgeting": {
+        "description": "Template for community decision-making on budget allocation with project cards.",
+        "q1": {
+          "option_1": "Project C",
+          "option_1_desc": "Description of Project A",
+          "option_2_desc": "Description of Project B",
+          "option_3_desc": "Description of Project C"
+        },
+        "title": "Participatory Budgeting Cards"
       }
     },
     "total_census_size": "{{maxCensusSize}} votantes permitidos de {{censusSize}} totales en el censo",
@@ -1563,49 +1446,28 @@
     "start": "Iniciar/Reanudar"
   },
   "process_create": {
-    "anonymous": {
-      "legal_disclaimer": "Este sistema de votación utiliza el poder de votación basado en tokens (público en la cadena de bloques). Al seleccionar la opción de 'Votación anónima', los pesos se agruparán en saldos similares y se redondearán hacia abajo. Esto sacrifica cierta precisión, pero preserva la identidad anónima al desvincular los saldos de las carteras.",
-      "legal_note": "Aviso legal: "
-    },
     "auto_start": "Start immediately",
     "census": {
-      "crm_description": "Si ya tienes tu propio CRM, podemos integrarlo para permitir que tu comunidad vote con las mismas credenciales.",
-      "crm_title": "Integración CRM",
-      "database_description": "Integra la votación directamente con los usuarios en tu base de datos. Una manera sencilla de votar para tu comunidad.",
-      "database_title": "Base de Datos",
-      "digital_certificate_description": "Apoyamos diferentes certificados digitales, para obtener la máxima seguridad y validación de identidad.",
-      "digital_certificate_title": "Certificado Digital",
-      "email_description": "Los votantes validarán su correo electrónico autenticándose en su cuenta de Google Mail (OAuth).",
-      "email_title": "Por Correo Electrónico",
+      "extra_methods": {
+        "disable_description": "Do you want to disable extra census methods? This will hide the Spreadsheet and Web3 options and show only the Group method.",
+        "enable_description": "Do you want to enable extra census methods? This will show additional options like Spreadsheet and Web3 census creation.",
+        "modal_title": "Extra census methods"
+      },
       "group": {
         "label": "Group"
       },
       "label": "Census creation",
-      "mandatory_max_census_size": "Al menos un votante debe ser seleccionado",
       "memberbase": {
         "label": "Select a group of members to create the census"
       },
-      "others_description": "¿Necesitas una solución específica? Podemos ayudarte con una integración personalizada que se adapte a tus necesidades.",
-      "others_title": "Otros",
-      "phone_description": "Los votantes tendrán que validar su teléfono móvil, ingresando su número y el código de verificación que recibirán.",
-      "phone_title": "Por Número de Teléfono",
+      "settings": "Census settings",
       "spreadsheet": {
         "label": "Spreadsheet"
       },
-      "total_tokens_one": "1 token",
-      "total_tokens_many": "",
-      "total_tokens_other": "{{ count }} tokens",
       "web3": {
         "label": "Web3"
       }
     },
-    "creation_steps": {
-      "census_created": "Creación del censo",
-      "done": "Creación del proceso",
-      "sign_tx": "Firmar transacción"
-    },
-    "creation_steps_description": "Necesitas firmar las transacciones para crear el proceso de votación en la cadena de bloques de Vocdoni. No cierres esta ventana.",
-    "creation_steps_title": "Progreso",
     "end_datetime": "End date and time",
     "group": {
       "select": "Select group"
@@ -1613,59 +1475,29 @@
     "groups": {
       "scroll_to_load": "Scroll to load more..."
     },
-    "modal_pro": {
-      "description": "<p><bold>{{ reason, ucfirst }}</bold> es una característica Premium</p>",
-      "error": "Error sending email, try it later or contact us at <email>info@vocdoni.org</email>",
-      "form_btn": "ENVIAR",
-      "form_description": "Puedes proporcionarnos tu información de contacto y nosotros te contactaremos para hablar sobre tus necesidades",
-      "form_email_label": "Correo electrónico:",
-      "form_email_placeholder": "Tu correo electrónico",
-      "form_name_label": "Nombre:",
-      "form_name_placeholder": "Tu nombre",
-      "scheudle_btn": "RESERVAR AHORA",
-      "scheudle_description": "Programa una llamada de 30 minutos con nuestro equipo para discutir tu proyecto de votación. Te guiaremos a través del proceso y adaptaremos soluciones para satisfacer tus necesidades específicas.",
-      "success": "Correo enviado correctamente",
-      "title": "Contáctanos"
-    },
+    "new_option": "Add a new option",
     "option": {
       "add": "Add option",
       "placeholder": "Option {{number}}",
       "remove": "Remove option"
     },
-    "preview": {
-      "accuracy": "Precisión del Balance en Censos Anónimos: "
+    "participatory_budgeting": {
+      "option": {
+        "description": {
+          "placeholder": "Project description"
+        },
+        "option": {
+          "placeholder": "Project Title"
+        }
+      }
     },
     "question": {
-      "approval_voting": {
-        "description": "Los votantes pueden votar por tantos candidatos como aprueben, y el candidato con más votos gana.",
-        "title": "Votación por Aprobación"
-      },
-      "borda_count": {
-        "description": "Los votantes clasifican a los candidatos, y se asignan puntos en función de su clasificación. El candidato con más puntos gana.",
-        "title": "<p>Elección por Rango</p><p>(Cuenta Borda)</p>"
-      },
       "description": {
         "placeholder": "Add the description of the question here (optional)..."
       },
-      "multi_choice": {
-        "description": "Los votantes eligen un número predefinido de opciones, y la opción con más votantes gana.",
-        "title": "<p>Votación Plurinominal</p><p>(Elección Múltiple)</p>"
-      },
-      "participation_budgeting": {
-        "description": "Los votantes pueden distribuir un número predefinido entre todas las opciones/proyectos (que representan el presupuesto total disponible) como deseen.",
-        "title": "Presupuesto Participativo"
-      },
       "remove": "Remove question",
-      "single_choice": {
-        "description": "Los votantes eligen una opción/candidato, y la opción/candidato con más votos gana.",
-        "title": "<p>Votación Plurinominal</p><p>(Elección Individual)</p>"
-      },
       "title": {
         "placeholder": "Add a title to the question"
-      },
-      "voting_type": {
-        "description": "Selecciona el tipo de votación para esta elección. Contáctanos si necesitas otras opciones.",
-        "title": "Tipos de Votación"
       }
     },
     "result_visibility": {
@@ -1674,14 +1506,6 @@
       "title": "Result visibility"
     },
     "start_datetime": "Start date and time",
-    "title": "Título",
-    "title_placeholder": "Título del proceso de votación",
-    "vote_overwrite": {
-      "max_changes": "Maximum vote changes",
-      "multiple": "Allow vote changes",
-      "single": "Allow only one vote",
-      "title": "Vote overwrite"
-    },
     "voter_auth": "Configure Voter Authentication",
     "voter_auth_2fa_description": "Add an extra layer of security by requiring voters to verify their identity",
     "voter_auth_2fa_email": "Email verification",
@@ -1930,7 +1754,6 @@
     "section9Title": "9. Información de Contacto",
     "title": "Términos y Condiciones de la Asociación Vocdoni"
   },
-  "terms_and_conditions": "Terms and Conditions",
   "testimonials": {
     "auth": {
       "position": "President",
@@ -1962,7 +1785,6 @@
   "total_votes": "Total votes",
   "total_votes_submitted": "Total de votos enviados",
   "turnout": "Turnout",
-  "upgrade": "Amplíalo",
   "uploader": {
     "click_or_drag_and_drop": "<click>Haz clic para subir</click><formats>(Formatos permitidos: {{ formats, list }})</formats>",
     "click_or_drag_and_drop_image": "Upload Image",

@@ -1,13 +1,4 @@
-import {
-  Box,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  NumberInput,
-  NumberInputField,
-  Spinner,
-  VStack,
-} from '@chakra-ui/react'
+import { Box, FormControl, FormErrorMessage, FormLabel, Spinner, VStack } from '@chakra-ui/react'
 import { chakraComponents, Select } from 'chakra-react-select'
 import { useEffect, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
@@ -98,13 +89,8 @@ export const ExtraConfig = () => {
   const {
     control,
     formState: { errors },
-    watch,
-    setValue,
   } = useFormContext()
-  const { required, requiredBoolean } = useValidations()
-
-  const maxVoteOverwrites = watch('maxVoteOverwrites')
-  const voteOverwrite = watch('voteOverwrite')
+  const { required } = useValidations()
 
   const resultVisibilityOptions: SelectOption[] = [
     { value: 'live', label: t('process_create.result_visibility.live', 'Live results') },
@@ -114,11 +100,6 @@ export const ExtraConfig = () => {
   const voterPrivacyOptions: SelectOption[] = [
     { value: 'anonymous', label: t('process_create.voter_privacy.anonymous', 'Anonymous') },
     { value: 'public', label: t('process_create.voter_privacy.public', 'Public') },
-  ]
-
-  const voteOverwriteOptions: SelectOption<boolean>[] = [
-    { value: false, label: t('process_create.vote_overwrite.single', 'Allow only one vote') },
-    { value: true, label: t('process_create.vote_overwrite.multiple', 'Allow vote changes') },
   ]
 
   return (
@@ -167,53 +148,6 @@ export const ExtraConfig = () => {
           />
           <FormErrorMessage>{errors.voterPrivacy?.message?.toString()}</FormErrorMessage>
         </FormControl>
-      </Box>
-
-      {/* Vote overwrite */}
-      <Box>
-        <FormControl isInvalid={!!errors.voteOverwrite}>
-          <FormLabel>
-            <Trans i18nKey='process_create.vote_overwrite.title'>Vote overwrite</Trans>
-          </FormLabel>
-          <Controller
-            control={control}
-            name='voteOverwrite'
-            rules={{ validate: requiredBoolean }}
-            render={({ field }) => (
-              <Select
-                value={voteOverwriteOptions.find((opt) =>
-                  (voteOverwrite ?? maxVoteOverwrites > 0) ? opt.value : !opt.value
-                )}
-                onChange={(opt) => {
-                  field.onChange(opt.value)
-                  setValue('maxVoteOverwrites', Number(opt.value))
-                }}
-                options={voteOverwriteOptions}
-              />
-            )}
-          />
-          <FormErrorMessage>{errors.voteOverwrite?.message?.toString()}</FormErrorMessage>
-        </FormControl>
-        {voteOverwrite && (
-          <FormControl isInvalid={!!errors.maxVoteOverwrites} mt={2}>
-            <Controller
-              control={control}
-              name='maxVoteOverwrites'
-              rules={{
-                required,
-                min: { value: 1, message: t('form.error.min_value', 'Minimum value is 1') },
-              }}
-              render={({ field }) => (
-                <NumberInput min={1} {...field}>
-                  <NumberInputField
-                    placeholder={t('process_create.vote_overwrite.max_changes', 'Maximum vote changes')}
-                  />
-                </NumberInput>
-              )}
-            />
-            <FormErrorMessage>{errors.maxVoteOverwrites?.message?.toString()}</FormErrorMessage>
-          </FormControl>
-        )}
       </Box>
     </VStack>
   )
