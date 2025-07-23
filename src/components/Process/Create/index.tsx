@@ -33,7 +33,7 @@ import {
   UnpublishedElection,
 } from '@vocdoni/sdk'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { FormProvider, useForm, useFormContext } from 'react-hook-form'
+import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import { createPath, generatePath, useBlocker, useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -522,7 +522,7 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
             : t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
         </Button>
         <Button colorScheme='black' onClick={() => handleLeave({ saveDraft: true })}>
-          {t('process.create.leave_confirmation.leave_and_save', { defaultValue: 'Leave and save' })}
+          {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save and leave' })}
         </Button>
       </Flex>
     </DeleteModal>
@@ -608,6 +608,7 @@ export const ProcessCreate = () => {
   const resetForm = () => {
     setActiveTemplate(null)
     reset()
+    storeFormDraft(null)
     onResetFormModalClose()
   }
 
@@ -774,13 +775,19 @@ export const ProcessCreate = () => {
               />
               <FormErrorMessage>{methods.formState.errors.title?.message?.toString()}</FormErrorMessage>
             </FormControl>
-            <Editor
-              onChange={(text: string) => methods.setValue('description', text)}
-              placeholder={
-                placeholders[activeTemplate]?.description ??
-                t('process.create.description.placeholder', 'Add a description...')
-              }
-              defaultValue={description}
+            <Controller
+              name='description'
+              control={methods.control}
+              render={({ field }) => (
+                <Editor
+                  onChange={field.onChange}
+                  placeholder={
+                    placeholders[activeTemplate]?.description ??
+                    t('process.create.description.placeholder', 'Add a description...')
+                  }
+                  defaultValue={field.value}
+                />
+              )}
             />
           </VStack>
 
