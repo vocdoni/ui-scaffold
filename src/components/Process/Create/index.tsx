@@ -553,16 +553,13 @@ export const ProcessCreate = () => {
       switch (questionType) {
         case QuestionTypes.ParticipatoryBudgeting:
         case QuestionTypes.Multiple:
-          console.log('Creating multi-choice election')
           election = MultiChoiceElection.from(params as IMultiChoiceElectionParameters)
           break
         case QuestionTypes.Approval:
-          console.log('Creating approval election')
           election = ApprovalElection.from(params as IElectionParameters)
           break
         case QuestionTypes.Single:
         default:
-          console.log('Creating single-choice election')
           election = Election.from(params as IElectionParameters)
           break
       }
