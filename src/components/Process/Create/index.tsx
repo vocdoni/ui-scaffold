@@ -296,8 +296,7 @@ const getQuestionType = (form: Process): QuestionTypes => {
   const { maxNumberOfChoices, minNumberOfChoices, questionType } = form
 
   const isApproval =
-    (maxNumberOfChoices === totalChoices && minNumberOfChoices === 0) ||
-    (maxNumberOfChoices === 0 && minNumberOfChoices === 0)
+    (maxNumberOfChoices === totalChoices && !minNumberOfChoices) || (!maxNumberOfChoices && !minNumberOfChoices)
 
   if (isApproval) return QuestionTypes.Approval
 
