@@ -102,9 +102,7 @@ const SelectionLimits = ({ index }) => {
                       value >= min || t('form.error.max_greater_than_min', 'Max must be greater than or equal to Min'),
                   }}
                   render={({ field, fieldState }) => {
-                    console.log('options', options)
                     const maxOptions = options.filter((opt) => !min || opt.value >= min)
-                    console.log('maxOptions', maxOptions)
                     const selectedOption = maxOptions.find((opt) => opt.value === field.value) ?? maxOptions[0]
 
                     return (
