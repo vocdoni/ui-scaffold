@@ -9,6 +9,7 @@ import {
   Icon,
   IconButton,
   Input,
+  Progress,
   Spacer,
   Text,
   useBreakpointValue,
@@ -555,6 +556,7 @@ const ResetFormModal = ({ isOpen, onClose, onReset }) => {
 export const ProcessCreate = () => {
   const { t } = useTranslation()
   const toast = useToast()
+  const [formDraftLoaded, setFormDraftLoaded] = useState(false)
   const [formDraft, storeFormDraft] = useLocalStorage('form-draft', null)
   const { groupId } = useParams()
   const navigate = useNavigate()
@@ -586,6 +588,7 @@ export const ProcessCreate = () => {
         methods.setValue(key as keyof Process, value as Process[keyof Process], { shouldDirty: true })
       })
     }
+    setFormDraftLoaded(true)
   }, [])
 
   // Trigger confirmation modal when form is dirty and user tries to navigate away
@@ -696,6 +699,8 @@ export const ProcessCreate = () => {
       setShowSidebar(true)
     }
   }
+
+  if (!formDraftLoaded) return <Progress size='xs' isIndeterminate />
 
   return (
     <FormProvider {...methods}>
