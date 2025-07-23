@@ -80,7 +80,7 @@ export type Process = {
   voterPrivacy: 'anonymous' | 'public'
   groupId: string
   censusType: CensusTypes
-  youtubeUrl?: string
+  streamUri?: string
   addresses?: Web3Address[]
   spreadsheet?: CensusSpreadsheetManager | undefined
 }
@@ -154,7 +154,7 @@ const defaultProcessValues: Process = {
   voterPrivacy: 'public',
   groupId: '',
   censusType: CensusTypes.Memberbase,
-  youtubeUrl: '',
+  streamUri: '',
   addresses: [],
   spreadsheet: undefined,
 }

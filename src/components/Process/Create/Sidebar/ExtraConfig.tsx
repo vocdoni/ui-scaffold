@@ -120,7 +120,7 @@ export const ExtraConfig = () => {
   } = useFormContext()
   const { required } = useValidations()
 
-  const youtubeUrl = watch('youtubeUrl')
+  const streamUri = watch('streamUri')
 
   const resultVisibilityOptions: SelectOption[] = [
     { value: 'live', label: t('process_create.result_visibility.live', 'Live results') },
@@ -182,13 +182,13 @@ export const ExtraConfig = () => {
 
       {/* Live streaming video URL */}
       <Box>
-        <FormControl isInvalid={!!errors.youtubeUrl}>
+        <FormControl isInvalid={!!errors.streamUri}>
           <FormLabel>
             <Trans i18nKey='process_create.youtube.title'>Live streaming video</Trans>
           </FormLabel>
           <Controller
             control={control}
-            name='youtubeUrl'
+            name='streamUri'
             rules={{
               pattern: {
                 value: /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/).+$/,
@@ -199,10 +199,10 @@ export const ExtraConfig = () => {
               <Input {...field} type='url' placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ' />
             )}
           />
-          <FormErrorMessage>{errors.youtubeUrl?.message?.toString()}</FormErrorMessage>
+          <FormErrorMessage>{errors.streamUri?.message?.toString()}</FormErrorMessage>
           {/* YouTube Preview */}
           {(() => {
-            const videoId = getYouTubeVideoId(youtubeUrl)
+            const videoId = getYouTubeVideoId(streamUri)
             return videoId ? <YouTubePreview videoId={videoId} /> : null
           })()}
         </FormControl>

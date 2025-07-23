@@ -374,6 +374,7 @@
       "email_invalid": "Invalid email address",
       "field_is_required": "Aquest camp és obligatori",
       "max_greater_than_min": "Max must be greater than or equal to Min",
+      "invalid_youtube_url": "Si us plau, introdueix una URL vàlida de YouTube",
       "password_min_length": "Min. 8 characters",
       "recipient_address_invalid": "L'adreça especificada no sembla vàlida",
       "required": "This field is required"
@@ -1559,6 +1560,9 @@
     },
     "voter_privacy_placeholder": {
       "anonymous": "Anonymous"
+    },
+    "youtube": {
+      "title": "Vídeo en directe"
     }
   },
   "process_list": {
