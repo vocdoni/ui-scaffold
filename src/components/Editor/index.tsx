@@ -6,6 +6,7 @@ import { $convertFromMarkdownString, TRANSFORMERS as DEFAULT_TRANSFORMERS } from
 import { OverflowNode } from '@lexical/overflow'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
@@ -15,7 +16,7 @@ import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPl
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { IMAGE, ImageNode } from './ImageNode'
 import { FloatingLinkEditorPlugin, FloatingTextFormatToolbarPlugin } from './plugins'
@@ -59,12 +60,72 @@ const theme = {
   paragraph: 'lexical-paragraph',
 }
 
-const Editor = (props: EditorProps) => {
-  const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false)
+const MarkdownEditor = (props: EditorProps) => {
+  const [editor] = useLexicalComposerContext()
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
+  const hasInitialized = useRef(false)
 
+  useEffect(() => {
+    if (!editor) return
+
+    // Initialize the editor with the default value if provided
+    if (!hasInitialized.current && props.defaultValue !== undefined) {
+      editor.update(() => {
+        $convertFromMarkdownString(props.defaultValue ?? '', TRANSFORMERS)
+      })
+      hasInitialized.current = true
+    }
+
+    // If the value is cleared, reset the editor content
+    if (hasInitialized.current && !props.defaultValue) {
+      editor.update(() => {
+        $convertFromMarkdownString('', TRANSFORMERS)
+      })
+    }
+  }, [editor, props.defaultValue])
+
+  return (
+    <>
+      <Box position='relative'>
+        <RichTextPlugin
+          contentEditable={
+            <Box ref={setFloatingAnchorElem}>
+              <Input px={0} variant='unstyled' as={ChakraContentEditable} />
+            </Box>
+          }
+          aria-placeholder={props.placeholder}
+          placeholder={
+            <Text position='absolute' top='2' color='texts.dark' pointerEvents='none'>
+              {props.placeholder}
+            </Text>
+          }
+          ErrorBoundary={LexicalErrorBoundary}
+        />
+      </Box>
+
+      <HistoryPlugin />
+      <ListPlugin />
+      <LinkPlugin />
+      <ReadOnlyPlugin isDisabled={props.isDisabled} />
+      <OnChangeMarkdown onChange={props.onChange} transformers={TRANSFORMERS} />
+      {props.maxLength && props.maxLength > 0 && <CharacterLimitPlugin maxLength={props.maxLength} charset='UTF-8' />}
+      {floatingAnchorElem && (
+        <>
+          <FloatingLinkEditorPlugin
+            anchorElem={floatingAnchorElem}
+            isLinkEditMode={false}
+            setIsLinkEditMode={() => {}}
+          />
+          <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} setIsLinkEditMode={() => {}} />
+        </>
+      )}
+      <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+    </>
+  )
+}
+
+const Editor = (props: EditorProps) => {
   const settings = {
-    editorState: () => $convertFromMarkdownString(props.defaultValue ?? '', TRANSFORMERS),
     namespace: '',
     theme,
     onError(error: any) {
@@ -87,47 +148,9 @@ const Editor = (props: EditorProps) => {
     ],
   }
 
-  const onRef = (_floatingAnchorElem: HTMLDivElement) => {
-    if (_floatingAnchorElem !== null) {
-      setFloatingAnchorElem(_floatingAnchorElem)
-    }
-  }
-
   return (
     <LexicalComposer initialConfig={settings}>
-      <Box position='relative'>
-        <RichTextPlugin
-          contentEditable={
-            <Box ref={onRef}>
-              <Input px={0} variant='unstyled' as={ChakraContentEditable} />
-            </Box>
-          }
-          aria-placeholder={props.placeholder}
-          placeholder={
-            <Text position='absolute' top='2' color='texts.dark' pointerEvents='none'>
-              {props.placeholder}
-            </Text>
-          }
-          ErrorBoundary={LexicalErrorBoundary}
-        />
-      </Box>
-      <HistoryPlugin />
-      <ListPlugin />
-      <LinkPlugin />
-      <ReadOnlyPlugin isDisabled={props.isDisabled} />
-      <OnChangeMarkdown onChange={props.onChange} transformers={TRANSFORMERS} />
-      {props.maxLength && props.maxLength > 0 && <CharacterLimitPlugin maxLength={props.maxLength} charset='UTF-8' />}
-      {floatingAnchorElem && (
-        <>
-          <FloatingLinkEditorPlugin
-            anchorElem={floatingAnchorElem}
-            isLinkEditMode={isLinkEditMode}
-            setIsLinkEditMode={setIsLinkEditMode}
-          />
-          <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} setIsLinkEditMode={setIsLinkEditMode} />
-        </>
-      )}
-      <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
+      <MarkdownEditor {...props} />
     </LexicalComposer>
   )
 }
