@@ -17,7 +17,9 @@ import {
 } from '@chakra-ui/react'
 import { useClient } from '@vocdoni/react-providers'
 import {
+  AccountData,
   ApprovalElection,
+  ArchivedAccountData,
   Election,
   ElectionCreationSteps,
   IElectionParameters,
@@ -90,6 +92,10 @@ enum TemplateIds {
 }
 
 export type DefaultQuestionsType = Record<QuestionTypes, Question>
+
+export const isAccountData = (account: AccountData | ArchivedAccountData): account is AccountData => {
+  return 'electionIndex' in account
+}
 
 export const DefaultQuestions: DefaultQuestionsType = {
   [QuestionTypes.Single]: {
@@ -452,17 +458,10 @@ export const ProcessCreate = () => {
   const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
   const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
   const blocker = useBlocker(methods.formState.isDirty)
-  const { client, account, fetchAccount } = useClient()
+  const { client } = useClient()
   const { setStepDoneAsync } = useOrganizationSetup()
   const { isSubmitting, isSubmitSuccessful } = methods.formState
   const description = methods.watch('description')
-
-  // IMPORTANT: We need to ensure the electionIndex is updated before creating an election.
-  useEffect(() => {
-    ;(async () => {
-      await fetchAccount()
-    })()
-  }, [])
 
   // Trigger confirmation modal when form is dirty and user tries to navigate away
   useEffect(() => {
@@ -511,10 +510,11 @@ export const ProcessCreate = () => {
 
   const onSubmit = async (form) => {
     try {
+      const account = await client.fetchAccountInfo()
       if (!account.address) {
         throw new Error('No account address found.')
       }
-      if (isNaN(account.electionIndex)) {
+      if (!isAccountData(account) || isNaN(account.electionIndex)) {
         throw new Error('No election index found for the account.')
       }
       const salt = await client.electionService.getElectionSalt(account.address, account.electionIndex)
