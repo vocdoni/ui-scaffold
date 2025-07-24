@@ -22,8 +22,8 @@ import { FaGlobeAmericas } from 'react-icons/fa'
 import { LuCheck } from 'react-icons/lu'
 import i18n from '~i18n'
 import { LanguagesSlice } from '~i18n/languages.mjs'
+import { Select } from '~shared/Form/Select'
 import { languagesListSelectStyles } from '~theme/selectStyles'
-import { Select } from '../Form/Select'
 
 export const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => {
   const { i18n } = useTranslation()
