@@ -87,10 +87,7 @@ export const colors = {
     },
   },
   input: {
-    placeholder: {
-      _light: 'gray.500',
-      _dark: 'gray.500',
-    },
+    placeholder: 'gray.500',
   },
   table: {
     border: {
