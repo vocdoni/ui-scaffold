@@ -12,16 +12,17 @@ export const AccountEdit = () => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { data: profile } = useProfile()
-  const [_, copyToClipboard] = useCopyToClipboard()
+  const [, copyToClipboard] = useCopyToClipboard()
   const [showCheck, setShowCheck] = useState(false)
+  const supportEmail = import.meta.env.SUPPORT_EMAIL
 
   const handleCopy = () => {
-    copyToClipboard('support@vocdoni.org')
+    copyToClipboard(supportEmail)
     setShowCheck(true)
 
     setTimeout(() => {
       setShowCheck(false)
-    }, 2000) // 2 segundos, ajusta si quieres
+    }, 2000)
   }
 
   return (
@@ -54,7 +55,7 @@ export const AccountEdit = () => {
             </Text>
             <HStack py={4}>
               <Text fontFamily='mono' colorScheme='black' fontWeight='extrabold'>
-                support@vocdoni.org
+                {supportEmail}
               </Text>
               <IconButton
                 icon={<Icon as={showCheck ? LuCheck : LuCopy} />}
