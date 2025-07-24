@@ -552,7 +552,10 @@ export const ProcessCreate = () => {
       switch (questionType) {
         case QuestionTypes.ParticipatoryBudgeting:
         case QuestionTypes.Multiple:
-          election = MultiChoiceElection.from(params as IMultiChoiceElectionParameters)
+          election = MultiChoiceElection.from({
+            ...params,
+            canAbstain: form.questions[0]?.minSelections === 0,
+          } as IMultiChoiceElectionParameters)
           break
         case QuestionTypes.Approval:
           election = ApprovalElection.from(params as IElectionParameters)
