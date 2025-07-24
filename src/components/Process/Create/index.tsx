@@ -293,10 +293,10 @@ const getCensus = async (form: Process, salt: string) => {
 const getQuestionType = (form: Process): QuestionTypes => {
   const question = form.questions[0]
   const totalChoices = question.options.length
-  const { maxNumberOfChoices, minNumberOfChoices, questionType } = form
+  const { questionType } = form
+  const { maxSelections, minSelections } = question
 
-  const isApproval =
-    (maxNumberOfChoices === totalChoices && !minNumberOfChoices) || (!maxNumberOfChoices && !minNumberOfChoices)
+  const isApproval = (maxSelections === totalChoices && !minSelections) || (!maxSelections && !minSelections)
 
   if (isApproval) return QuestionTypes.Approval
 
