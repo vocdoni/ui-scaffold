@@ -18,6 +18,13 @@ import {
   Icon,
   IconButton,
   ListItem,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Progress,
   Stack,
   Table,
@@ -100,13 +107,32 @@ export const ImportProgress = () => {
   const { organization } = useOrganization()
   const { jobId, setJobId } = useOutletContext<MemberbaseTabsContext>()
   const { data, isError } = useImportJobProgress()
+
+  const [fakeProgress, setFakeProgress] = useState(0)
   const isComplete = data?.progress === 100
   const hasErrors = data?.errors?.length > 0
 
-  /**
-   * Refetches members when import progress reaches 100%.
-   * Ensures the members list is up-to-date after a successful import.
-   */
+  useEffect(() => {
+    if (data?.progress === undefined || isComplete) return
+
+    let interval: NodeJS.Timeout
+    const current = data.progress
+    const target = current + 5
+
+    interval = setInterval(() => {
+      setFakeProgress((prev) => {
+        const next = prev + 1
+        return next >= target ? target : next
+      })
+    }, 500)
+
+    setFakeProgress(current)
+
+    return () => clearInterval(interval)
+  }, [data?.progress, isComplete])
+
+  const { isOpen: isErrorModalOpen, onOpen: onOpenErrors, onClose: onCloseErrors } = useDisclosure()
+
   useEffect(() => {
     if (isComplete) {
       queryClient.invalidateQueries({
@@ -114,14 +140,14 @@ export const ImportProgress = () => {
         exact: false,
       })
     }
-  }, [data?.progress, queryClient, organization.address])
+  }, [data?.progress, queryClient, organization.address, isComplete])
 
   const closeAlert = () => setJobId(null)
 
   const getStatus = () => {
     if (isComplete && hasErrors) return 'warning'
     if (isComplete) return 'success'
-    if (hasErrors || isError) return 'error'
+    if (isError) return 'error'
     return 'info'
   }
 
@@ -129,7 +155,7 @@ export const ImportProgress = () => {
     if (isComplete && hasErrors)
       return t('import_progress.completed_with_errors', { defaultValue: 'Import Completed with Errors' })
     if (isComplete) return t('import_progress.success_title', { defaultValue: 'Import Completed Successfully' })
-    if (hasErrors || isError) return t('import_progress.error_title', { defaultValue: 'Import Error' })
+    if (isError) return t('import_progress.error_title', { defaultValue: 'Import Error' })
 
     return t('import_progress.title', { defaultValue: 'Memberbase Import in Progress' })
   }
@@ -140,15 +166,15 @@ export const ImportProgress = () => {
         <>
           <Text>
             {t('import_progress.completed_with_errors_description', {
-              defaultValue:
-                'Your member data has been imported, but some errors occurred. Please review the details below.',
+              defaultValue: 'Your data was imported with some errors.',
             })}
           </Text>
-          <UnorderedList mt={2}>
-            {data.errors.map((error, index) => (
-              <ListItem key={index}>{error}</ListItem>
-            ))}
-          </UnorderedList>
+          <Button onClick={onOpenErrors} variant='link' size='sm' mt={1} alignSelf='start'>
+            {t('import_progress.view_errors', {
+              defaultValue: `View {{count}} errors`,
+              count: data.errors.length,
+            })}
+          </Button>
         </>
       )
     }
@@ -174,7 +200,7 @@ export const ImportProgress = () => {
       return (
         <Text>
           {t('import_progress.error_description', {
-            defaultValue: 'An error occurred while fetching the import progress. Please try again later.',
+            defaultValue: 'An error occurred while fetching the import errors. Please try again later.',
           })}
         </Text>
       )
@@ -199,7 +225,7 @@ export const ImportProgress = () => {
 
     return (
       <>
-        <Progress size='md' value={data?.progress} borderRadius='md' isAnimated />
+        <Progress size='md' value={fakeProgress} borderRadius='md' isAnimated hasStripe />
         <Text>
           {t('import_progress.description', {
             defaultValue:
@@ -218,25 +244,52 @@ export const ImportProgress = () => {
   if (!jobId) return null
 
   return (
-    <Alert
-      status={getStatus()}
-      borderRadius='md'
-      mb={3}
-      mt={4}
-      p={6}
-      as={Flex}
-      flexDirection='row'
-      justifyContent='space-between'
-    >
-      <Flex flexDirection='column' gap={2} flex={1}>
-        <AlertTitle>{getTitle()}</AlertTitle>
-        <AlertDescription display='flex' flexDirection='column' gap={2}>
-          {getDescription()}
-        </AlertDescription>
-      </Flex>
+    <>
+      <Alert
+        status={getStatus()}
+        borderRadius='md'
+        mb={3}
+        mt={4}
+        p={6}
+        as={Flex}
+        flexDirection='row'
+        justifyContent='space-between'
+      >
+        <Flex flexDirection='column' gap={2} flex={1}>
+          <AlertTitle>{getTitle()}</AlertTitle>
+          <AlertDescription display='flex' flexDirection='column' gap={2}>
+            {getDescription()}
+          </AlertDescription>
+        </Flex>
 
-      <CloseButton alignSelf='flex-start' position='relative' onClick={closeAlert} />
-    </Alert>
+        <CloseButton alignSelf='flex-start' position='relative' onClick={closeAlert} />
+      </Alert>
+
+      {/* Error modal */}
+      <Modal isOpen={isErrorModalOpen} onClose={onCloseErrors} size='xl'>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            {t('import_progress.error_modal_title', {
+              defaultValue: 'Import Errors',
+            })}
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody maxH='60vh' overflowY='auto'>
+            <UnorderedList spacing={2} pl={4}>
+              {data?.errors?.map((error, i) => (
+                <ListItem key={i} whiteSpace='pre-wrap' fontSize='sm'>
+                  {error}
+                </ListItem>
+              ))}
+            </UnorderedList>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onCloseErrors}>{t('close', { defaultValue: 'Close' })}</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   )
 }
 
