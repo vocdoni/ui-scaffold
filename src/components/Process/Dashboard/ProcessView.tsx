@@ -2,7 +2,9 @@ import {
   Badge,
   BadgeProps,
   Box,
+  BoxProps,
   Button,
+  chakra,
   Flex,
   forwardRef,
   HStack,
@@ -15,6 +17,7 @@ import {
   Text,
   Tooltip,
   useClipboard,
+  useStyleConfig,
   VStack,
 } from '@chakra-ui/react'
 import {
@@ -62,6 +65,25 @@ import {
   SidebarTitle,
 } from '~shared/Dashboard/Contents'
 import { Routes } from '~src/router/routes'
+import { getYouTubeVideoId, YouTubePreview } from '../Create'
+
+export const ElectionVideo = forwardRef<BoxProps, 'div'>((props, ref) => {
+  const { election } = useElection()
+  const styles = useStyleConfig('ElectionVideoPreview', props)
+
+  if (!election) return null
+
+  const streamUri = election instanceof PublishedElection ? election.streamUri : undefined
+  const videoId = getYouTubeVideoId(streamUri)
+
+  if (!videoId) return null
+
+  return (
+    <chakra.div ref={ref} __css={styles} {...props}>
+      <YouTubePreview videoId={videoId} />
+    </chakra.div>
+  )
+})
 
 export const ProcessView = () => {
   const { t } = useTranslation()
@@ -97,6 +119,7 @@ export const ProcessView = () => {
 
         <Box as='header'>
           <ElectionTitle textAlign={'start'} fontWeight={'bold'} />
+          <ElectionVideo mb='3' />
           <ElectionDescription color='gray.500' />
         </Box>
 
