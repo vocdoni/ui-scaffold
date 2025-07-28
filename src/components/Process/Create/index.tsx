@@ -1,10 +1,16 @@
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Box,
   Button,
   ButtonGroup,
   Flex,
   FormControl,
   FormErrorMessage,
+  FormLabel,
   HStack,
   Icon,
   IconButton,
@@ -575,7 +581,7 @@ export const ProcessCreate = () => {
   const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
   const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
   const { client, account, fetchAccount } = useClient()
-  const { isSubmitting, isSubmitSuccessful, isDirty } = methods.formState
+  const { isSubmitting, isSubmitSuccessful, isDirty, errors } = methods.formState
   const blocker = useBlocker(isDirty)
   const { setStepDoneAsync } = useOrganizationSetup()
   const description = methods.watch('description')
@@ -756,7 +762,7 @@ export const ProcessCreate = () => {
             </ButtonGroup>
           </HStack>
 
-          {/* Title and Description */}
+          {/* Title, Video, and Description */}
           <VStack as='header' align='stretch' spacing={4}>
             <TemplateButtons />
             <FormControl isInvalid={!!methods.formState.errors.title}>
@@ -777,6 +783,50 @@ export const ProcessCreate = () => {
               />
               <FormErrorMessage>{methods.formState.errors.title?.message?.toString()}</FormErrorMessage>
             </FormControl>
+
+            {/* Live streaming video URL */}
+            <Accordion allowToggle>
+              <AccordionItem border='none'>
+                <AccordionButton px={0}>
+                  <Box textAlign='left'>
+                    <Text fontSize='sm' color='texts.subtle'>
+                      {t('process_create.youtube.accordion_title', {
+                        defaultValue: 'Attach video (optional)',
+                      })}
+                    </Text>
+                  </Box>
+                  <AccordionIcon />
+                </AccordionButton>
+
+                <AccordionPanel px={0}>
+                  <FormControl isInvalid={!!errors.streamUri}>
+                    <FormLabel>
+                      <Trans i18nKey='process_create.youtube.title'>Live streaming video</Trans>
+                    </FormLabel>
+                    <Controller
+                      control={methods.control}
+                      name='streamUri'
+                      rules={{
+                        pattern: {
+                          value: /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/).+$/,
+                          message: t('form.error.invalid_youtube_url', 'Please enter a valid YouTube URL'),
+                        },
+                      }}
+                      render={({ field }) => (
+                        <Input {...field} type='url' placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ' />
+                      )}
+                    />
+                    <FormErrorMessage>{errors.streamUri?.message?.toString()}</FormErrorMessage>
+
+                    {/* Preview */}
+                    {(() => {
+                      const videoId = getYouTubeVideoId(methods.watch('streamUri'))
+                      return videoId ? <YouTubePreview videoId={videoId} /> : null
+                    })()}
+                  </FormControl>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
             <Controller
               name='description'
               control={methods.control}
