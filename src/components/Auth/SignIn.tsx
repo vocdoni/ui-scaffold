@@ -46,7 +46,11 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   const methods = useForm<FormData>({
     defaultValues: { email: emailProp },
   })
-  const { handleSubmit, watch } = methods
+  const {
+    handleSubmit,
+    watch,
+    formState: { isSubmitting },
+  } = methods
   const email = watch('email', emailProp)
 
   const {
@@ -127,7 +131,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
               </Link>
             </Flex>
           </Flex>
-          <Button type='submit' w='full' colorScheme='black'>
+          <Button type='submit' w='full' colorScheme='black' isLoading={isSubmitting}>
             {t('signin')}
           </Button>
         </Box>
