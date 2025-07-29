@@ -1,11 +1,10 @@
-import { Heading, Text } from '@chakra-ui/react'
 import { ElectionListWithPagination } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLoaderData, useOutletContext, useParams } from 'react-router-dom'
 import Votings from '~components/Organization/Dashboard/Votings'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
-import { DashboardContents } from '~shared/Dashboard/Contents'
+import { DashboardContents, Heading, SubHeading } from '~shared/Dashboard/Contents'
 
 const OrganizationVotings = () => {
   const { t } = useTranslation()
@@ -23,11 +22,9 @@ const OrganizationVotings = () => {
   }, [setBreadcrumb])
 
   return (
-    <DashboardContents display='flex' flexDirection='column'>
-      <Heading fontSize='2xl' textTransform='capitalize'>
-        {t('voting_processes')}
-      </Heading>
-      <Text mb={6}>{t('voting_processes_description')}</Text>
+    <DashboardContents>
+      <Heading textTransform='capitalize'>{t('voting_processes')}</Heading>
+      <SubHeading>{t('voting_processes_description')}</SubHeading>
       <Votings data={data as ElectionListWithPagination} status={status} />
     </DashboardContents>
   )

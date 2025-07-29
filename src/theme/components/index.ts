@@ -23,6 +23,7 @@ import { Table } from './table'
 import { Tabs } from './tabs'
 import { Tag } from './tag'
 import { Text } from './text'
+import { Textarea } from './textarea'
 import { Tooltip } from './tooltip'
 
 const components = {
@@ -51,6 +52,7 @@ const components = {
   Table,
   Tabs,
   Tag,
+  Textarea,
   Text,
   Tooltip,
   SecurityLevelBox,

@@ -1,10 +1,10 @@
-import { Heading, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
+import { Tab, TabList, Tabs } from '@chakra-ui/react'
 import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { useSaasAccount } from '~components/Account/SaasAccountProvider'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
-import { DashboardContents } from '~shared/Dashboard/Contents'
+import { DashboardContents, Heading, SubHeading } from '~shared/Dashboard/Contents'
 import QueryDataLayout from '~shared/Layout/QueryDataLayout'
 import { Routes } from '~src/router/routes'
 
@@ -60,17 +60,17 @@ const Settings = () => {
 
   return (
     <DashboardContents>
-      <Heading size='md'>
+      <Heading>
         {t('organization_settings.title', {
           defaultValue: '{{organization}} Settings',
           organization: organization.account.name.default,
         })}
       </Heading>
-      <Text mb={4} color='gray.500'>
+      <SubHeading>
         {t('organization_settings.subtitle', {
           defaultValue: 'Manage your organization, team members and your subscription plan',
         })}
-      </Text>
+      </SubHeading>
       <QueryDataLayout isLoading={isLoading} isError={isError} error={error}>
         <Tabs
           variant='settings'

@@ -1,10 +1,11 @@
 import { Alert, Box, Flex, FormControl, FormErrorMessage, FormLabel, Icon, Text } from '@chakra-ui/react'
-import { Select, Props as SelectProps, chakraComponents } from 'chakra-react-select'
+import { Props as SelectProps, chakraComponents } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { ControllerProps } from 'react-hook-form/dist/types'
 import { useTranslation } from 'react-i18next'
 import { LuEye, LuKey, LuUserRoundCog, LuUsers } from 'react-icons/lu'
 import { useOrganizationTypes, useRoles } from '~src/queries/organization'
+import { Select } from '../Form/Select'
 
 export type SelectOptionType = {
   label: string

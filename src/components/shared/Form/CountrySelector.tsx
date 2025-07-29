@@ -1,8 +1,9 @@
 import { Alert, FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { GroupBase, Props, Select } from 'chakra-react-select'
+import { GroupBase, Props } from 'chakra-react-select'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { Select } from './Select'
 
 type OptionType = {
   label: string
