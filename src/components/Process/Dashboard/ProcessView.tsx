@@ -1,10 +1,10 @@
 import {
+  AspectRatio,
   Badge,
   BadgeProps,
   Box,
   BoxProps,
   Button,
-  chakra,
   Flex,
   forwardRef,
   HStack,
@@ -53,6 +53,7 @@ import {
   LuUsers,
   LuVote,
 } from 'react-icons/lu'
+import ReactPlayer from 'react-player'
 import { generatePath } from 'react-router-dom'
 import {
   DashboardBox,
@@ -65,23 +66,23 @@ import {
   SidebarTitle,
 } from '~shared/Dashboard/Contents'
 import { Routes } from '~src/router/routes'
-import { getYouTubeVideoId, YouTubePreview } from '../Create'
 
 export const ElectionVideo = forwardRef<BoxProps, 'div'>((props, ref) => {
   const { election } = useElection()
-  const styles = useStyleConfig('ElectionVideoPreview', props)
+  const styles = useStyleConfig('ElectionVideo', props)
 
   if (!election) return null
 
   const streamUri = election instanceof PublishedElection ? election.streamUri : undefined
-  const videoId = getYouTubeVideoId(streamUri)
 
-  if (!videoId) return null
+  if (!streamUri) return null
 
   return (
-    <chakra.div ref={ref} __css={styles} {...props}>
-      <YouTubePreview videoId={videoId} />
-    </chakra.div>
+    <Box ref={ref} __css={styles} {...props}>
+      <AspectRatio ratio={16 / 9} width='100%' height='100%'>
+        <ReactPlayer url={streamUri} width='100%' controls height='100%' />
+      </AspectRatio>
+    </Box>
   )
 })
 

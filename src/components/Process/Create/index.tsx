@@ -42,6 +42,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
+import ReactPlayer from 'react-player'
 import { createPath, generatePath, useBlocker, useLocation, useNavigate, useParams } from 'react-router-dom'
 import Editor from '~components/Editor'
 import { CensusSpreadsheetManager } from '~components/Process/Census/Spreadsheet/CensusSpreadsheetManager'
@@ -585,6 +586,7 @@ export const ProcessCreate = () => {
   const blocker = useBlocker(isDirty)
   const { setStepDoneAsync } = useOrganizationSetup()
   const description = methods.watch('description')
+  const streamUri = methods.watch('streamUri')
 
   // Trigger confirmation modal when form is dirty and user tries to navigate away
   useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
@@ -818,11 +820,8 @@ export const ProcessCreate = () => {
                     />
                     <FormErrorMessage>{errors.streamUri?.message?.toString()}</FormErrorMessage>
 
-                    {/* Preview */}
-                    {(() => {
-                      const videoId = getYouTubeVideoId(methods.watch('streamUri'))
-                      return videoId ? <YouTubePreview videoId={videoId} /> : null
-                    })()}
+                    {/* Video Preview */}
+                    {streamUri && <ReactPlayer url={streamUri} controls />}
                   </FormControl>
                 </AccordionPanel>
               </AccordionItem>
