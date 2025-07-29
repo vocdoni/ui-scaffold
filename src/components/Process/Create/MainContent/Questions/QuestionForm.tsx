@@ -22,7 +22,6 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { Select } from 'chakra-react-select'
 import { useEffect } from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -30,6 +29,7 @@ import { LuGripVertical, LuPlus, LuTrash2, LuX } from 'react-icons/lu'
 import Editor from '~components/Editor'
 import { useProcessTemplates } from '~components/Process/TemplateProvider'
 import { DashboardBox, DashboardSection } from '~components/shared/Dashboard/Contents'
+import { Select } from '~components/shared/Form/Select'
 import { ImageUploader } from '~components/shared/Layout/Uploader'
 import { QuestionTypes } from '../..'
 
@@ -171,9 +171,9 @@ const SortableOption = ({
         )}
 
         {questionType === QuestionTypes.Single ? (
-          <Radio isChecked={false} isReadOnly mt={2} />
+          <Radio isChecked={false} isReadOnly inputProps={{ tabIndex: -1 }} mt={2} />
         ) : (
-          <Checkbox isChecked={false} isReadOnly mt={2} />
+          <Checkbox isChecked={false} isReadOnly tabIndex={-1} mt={2} />
         )}
         <FormControl isInvalid={!!errors.questions?.[questionIndex]?.options?.[optionIndex]?.option} flex='1'>
           <Input
@@ -315,11 +315,11 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
 
         {/* Add new option card */}
         <DashboardBox
-          onClick={() => append({ option: '', description: '', budget: null })}
+          onClick={() => append({ option: '', description: '' })}
           borderStyle='dashed'
           cursor='pointer'
           minH='350px'
-          _hover={{ bg: 'gray.800' }}
+          _hover={{ bg: 'gray.100', _dark: { bg: 'gray.800' } }}
         >
           <VStack justify='center' align='center' height='100%'>
             <Icon as={LuPlus} boxSize={6} />

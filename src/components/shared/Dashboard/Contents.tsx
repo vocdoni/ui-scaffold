@@ -6,6 +6,8 @@ import {
   forwardRef,
   HeadingProps,
   Slide,
+  Text,
+  TextProps,
   useBreakpointValue,
 } from '@chakra-ui/react'
 
@@ -39,6 +41,20 @@ export const Heading = forwardRef<HeadingProps, 'h2'>((props, ref) => (
     size='sm'
     fontSize='2xl'
     fontWeight='bold'
+    display='flex'
+    gap={2}
+    alignItems='center'
+    ref={ref}
+    {...props}
+  />
+))
+
+export const SubHeading = forwardRef<TextProps, 'p'>((props, ref) => (
+  <Text
+    mt={2}
+    mb={4}
+    fontSize='md'
+    color='texts.subtle'
     display='flex'
     gap={2}
     alignItems='center'

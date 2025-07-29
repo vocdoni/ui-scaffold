@@ -27,6 +27,7 @@ const viteconfig = ({ mode }) => {
 
   const title = process.env.APP_TITLE || 'Vocdoni - The voice of digital voting'
   const prioritySupportPhone = process.env.PRIORITY_SUPPORT_PHONE || '+34 900 123 456'
+  const supportEmail = process.env.SUPPORT_EMAIL || 'support@vocdoni.org'
 
   let saasUrl = process.env.SAAS_URL || 'https://saas-api-dev.vocdoni.net'
   if (saasUrl.endsWith('/')) {
@@ -56,6 +57,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.OAUTH_URL': JSON.stringify(oauthUrl),
       'import.meta.env.PRIORITY_SUPPORT_PHONE': JSON.stringify(prioritySupportPhone),
       'import.meta.env.CALCOM_EVENT_SLUG': JSON.stringify(process.env.CALCOM_EVENT_SLUG),
+      'import.meta.env.SUPPORT_EMAIL': JSON.stringify(supportEmail),
     },
     plugins: [
       tsconfigPaths(),

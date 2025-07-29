@@ -1,4 +1,5 @@
 import {
+  Box,
   Flex,
   Heading,
   Modal,
@@ -7,7 +8,6 @@ import {
   ModalHeader,
   ModalOverlay,
   ModalProps,
-  Text,
 } from '@chakra-ui/react'
 
 export type DeleteModalProps = {
@@ -24,9 +24,9 @@ const DeleteModal = ({ title, subtitle, children, ...modalProps }: DeleteModalPr
         <ModalHeader p={0}>
           <Flex flexDirection='column' gap={3}>
             <Heading size='sm'>{title}</Heading>
-            <Text size='sm' color='texts.subtle'>
+            <Box fontSize='sm' color='texts.subtle'>
               {subtitle}
-            </Text>
+            </Box>
           </Flex>
         </ModalHeader>
         <ModalBody p={0}>{children}</ModalBody>
