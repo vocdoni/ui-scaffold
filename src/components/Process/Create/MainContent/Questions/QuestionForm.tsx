@@ -178,7 +178,7 @@ const SortableOption = ({
         <FormControl isInvalid={!!errors.questions?.[questionIndex]?.options?.[optionIndex]?.option} flex='1'>
           <Input
             placeholder={
-              placeholders[activeTemplate]?.questions?.[questionIndex].options?.[optionIndex] ??
+              placeholders[activeTemplate]?.questions?.[questionIndex]?.options?.[optionIndex]?.option ??
               t('process_create.option.placeholder', 'Option {{number}}', {
                 number: optionIndex + 1,
               })
@@ -214,7 +214,7 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
     formState: { errors },
     setValue,
     watch,
-    getValues,
+    control,
   } = useFormContext()
   const {
     fields: questionOptions,
@@ -299,13 +299,22 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
                     </FormErrorMessage>
                   </FormControl>
                   {/* Description */}
-                  <Editor
-                    onChange={(text: string) => setValue(`questions.${index}.options.${optionIndex}.description`, text)}
-                    placeholder={
-                      placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.description ??
-                      t('process_create.participatory_budgeting.option..description.placeholder', 'Project description')
-                    }
-                    defaultValue={optionDescription}
+                  <Controller
+                    name={`questions.${index}.options.${optionIndex}.description`}
+                    control={control}
+                    render={({ field }) => (
+                      <Editor
+                        onChange={field.onChange}
+                        placeholder={
+                          placeholders[activeTemplate]?.questions?.[index].options?.[optionIndex]?.description ??
+                          t(
+                            'process_create.participatory_budgeting.option..description.placeholder',
+                            'Project description'
+                          )
+                        }
+                        defaultValue={field.value}
+                      />
+                    )}
                   />
                 </Box>
               </VStack>
@@ -375,16 +384,22 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
               />
               <FormErrorMessage>{errors.questions?.[index]?.title?.message?.toString()}</FormErrorMessage>
             </FormControl>
-            <Editor
-              onChange={(text: string) => setValue(`questions.${index}.description`, text)}
-              placeholder={
-                placeholders[activeTemplate]?.questions?.[index]?.description ??
-                t(
-                  'process_create.question.description.placeholder',
-                  'Add the description of the question here (optional)...'
-                )
-              }
-              defaultValue={questionDescription}
+            <Controller
+              name={`questions.${index}.description`}
+              control={control}
+              render={({ field }) => (
+                <Editor
+                  onChange={field.onChange}
+                  placeholder={
+                    placeholders[activeTemplate]?.questions?.[index]?.description ??
+                    t(
+                      'process_create.question.description.placeholder',
+                      'Add the description of the question here (optional)...'
+                    )
+                  }
+                  defaultValue={field.value}
+                />
+              )}
             />
           </VStack>
           {questions.length > 1 && (
