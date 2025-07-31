@@ -59,72 +59,70 @@ const SelectionLimits = ({ index }) => {
 
   return (
     <DashboardSection p={4} mb={4}>
-      <Box color='white'>
-        <Text fontWeight='medium' mb={1}>
-          <Trans i18nKey='process.create.selectionLimits.title'>Selection limits:</Trans>
-        </Text>
-        <Text as='span' fontSize='sm'>
-          <Trans
-            i18nKey='process.create.selectionLimits.full'
-            defaults='Voters must select at least  <min />  and at most  <max />  options.'
-            components={{
-              min: (
-                <Controller
-                  name={`questions.${index}.minSelections`}
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field, fieldState }) => {
-                    const selectedOption = options.find((opt) => opt.value === field.value)
+      <Text fontWeight='medium' mb={1}>
+        <Trans i18nKey='process.create.selectionLimits.title'>Selection limits:</Trans>
+      </Text>
+      <Text as='span' fontSize='sm'>
+        <Trans
+          i18nKey='process.create.selectionLimits.full'
+          defaults='Voters must select at least  <min />  and at most  <max />  options.'
+          components={{
+            min: (
+              <Controller
+                name={`questions.${index}.minSelections`}
+                control={control}
+                rules={{ required: true }}
+                render={({ field, fieldState }) => {
+                  const selectedOption = options.find((opt) => opt.value === field.value)
 
-                    return (
-                      <Box display='inline-block'>
-                        <Select
-                          {...field}
-                          value={selectedOption}
-                          options={options}
-                          isInvalid={!!fieldState.invalid}
-                          isClearable={false}
-                          onChange={(option) => field.onChange(option?.value)}
-                          size='sm'
-                        />
-                      </Box>
-                    )
-                  }}
-                />
-              ),
-              max: (
-                <Controller
-                  name={`questions.${index}.maxSelections`}
-                  control={control}
-                  rules={{
-                    required: true,
-                    validate: (value) =>
-                      value >= min || t('form.error.max_greater_than_min', 'Max must be greater than or equal to Min'),
-                  }}
-                  render={({ field, fieldState }) => {
-                    const maxOptions = options.filter((opt) => !min || opt.value >= min)
-                    const selectedOption = maxOptions.find((opt) => opt.value === field.value) ?? maxOptions[0]
+                  return (
+                    <Box display='inline-block'>
+                      <Select
+                        {...field}
+                        value={selectedOption}
+                        options={options}
+                        isInvalid={!!fieldState.invalid}
+                        isClearable={false}
+                        onChange={(option) => field.onChange(option?.value)}
+                        size='sm'
+                      />
+                    </Box>
+                  )
+                }}
+              />
+            ),
+            max: (
+              <Controller
+                name={`questions.${index}.maxSelections`}
+                control={control}
+                rules={{
+                  required: true,
+                  validate: (value) =>
+                    value >= min || t('form.error.max_greater_than_min', 'Max must be greater than or equal to Min'),
+                }}
+                render={({ field, fieldState }) => {
+                  const maxOptions = options.filter((opt) => !min || opt.value >= min)
+                  const selectedOption = maxOptions.find((opt) => opt.value === field.value) ?? maxOptions[0]
 
-                    return (
-                      <Box display='inline-block'>
-                        <Select
-                          {...field}
-                          value={selectedOption}
-                          options={maxOptions}
-                          isInvalid={!!fieldState.invalid}
-                          isClearable={false}
-                          onChange={(option) => field.onChange(option?.value)}
-                          size='sm'
-                        />
-                      </Box>
-                    )
-                  }}
-                />
-              ),
-            }}
-          />
-        </Text>
-      </Box>
+                  return (
+                    <Box display='inline-block'>
+                      <Select
+                        {...field}
+                        value={selectedOption}
+                        options={maxOptions}
+                        isInvalid={!!fieldState.invalid}
+                        isClearable={false}
+                        onChange={(option) => field.onChange(option?.value)}
+                        size='sm'
+                      />
+                    </Box>
+                  )
+                }}
+              />
+            ),
+          }}
+        />
+      </Text>
     </DashboardSection>
   )
 }
