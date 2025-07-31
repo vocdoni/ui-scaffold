@@ -1,7 +1,9 @@
 import {
+  AspectRatio,
   Badge,
   BadgeProps,
   Box,
+  BoxProps,
   Button,
   Flex,
   forwardRef,
@@ -15,6 +17,7 @@ import {
   Text,
   Tooltip,
   useClipboard,
+  useStyleConfig,
   VStack,
 } from '@chakra-ui/react'
 import {
@@ -50,6 +53,7 @@ import {
   LuUsers,
   LuVote,
 } from 'react-icons/lu'
+import ReactPlayer from 'react-player'
 import { generatePath } from 'react-router-dom'
 import {
   DashboardBox,
@@ -62,6 +66,25 @@ import {
   SidebarTitle,
 } from '~shared/Dashboard/Contents'
 import { Routes } from '~src/router/routes'
+
+export const ElectionVideo = forwardRef<BoxProps, 'div'>((props, ref) => {
+  const { election } = useElection()
+  const styles = useStyleConfig('ElectionVideo', props)
+
+  if (!election) return null
+
+  const streamUri = election instanceof PublishedElection ? election.streamUri : undefined
+
+  if (!streamUri) return null
+
+  return (
+    <Box ref={ref} __css={styles} {...props}>
+      <AspectRatio ratio={16 / 9} width='100%' height='100%'>
+        <ReactPlayer src={streamUri} width='100%' controls height='100%' />
+      </AspectRatio>
+    </Box>
+  )
+})
 
 export const ProcessView = () => {
   const { t } = useTranslation()
@@ -97,6 +120,7 @@ export const ProcessView = () => {
 
         <Box as='header'>
           <ElectionTitle textAlign={'start'} fontWeight={'bold'} />
+          <ElectionVideo mb='3' />
           <ElectionDescription color='gray.500' />
         </Box>
 

@@ -89,9 +89,12 @@ export const ExtraConfig = () => {
   const { t } = useTranslation()
   const {
     control,
+    watch,
     formState: { errors },
   } = useFormContext()
   const { required } = useValidations()
+
+  const streamUri = watch('streamUri')
 
   const resultVisibilityOptions: SelectOption[] = [
     { value: 'live', label: t('process_create.result_visibility.live', 'Live results') },
