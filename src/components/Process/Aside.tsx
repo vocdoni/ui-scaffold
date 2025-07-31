@@ -2,12 +2,13 @@ import { Box, Button, Card, Flex, Link, Text } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { VoteButton as CVoteButton, environment, SpreadsheetAccess, VoteWeight } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
-import { dotobject, ElectionStatus, formatUnits, InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { CensusType, dotobject, ElectionStatus, formatUnits, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount, useDisconnect } from 'wagmi'
 import { CensusMeta } from './Census/CensusType'
+import { CspAuth } from './CSP/CSPAuthModal'
 
 const results = (result: number, decimals?: number) =>
   decimals ? parseInt(formatUnits(BigInt(result), decimals), 10) : result
@@ -52,6 +53,7 @@ const ProcessAside = () => {
   }
 
   const votersCount = election?.voteCount
+  const isCSP = election.census.type === CensusType.CSP
 
   return (
     <>
@@ -106,9 +108,11 @@ const ProcessAside = () => {
           )}
         </Flex>
 
+        {isCSP && !connected && <CspAuth />}
         {census?.type !== 'spreadsheet' &&
           !isConnected &&
           !connected &&
+          !isCSP &&
           election?.status !== ElectionStatus.CANCELED && (
             <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
               <Box display={{ base: 'none', md: 'block' }}>
@@ -181,6 +185,8 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
   }
 
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
+  const isCSP = election.census.type === CensusType.CSP
+
   if (isConnected && !isInCensus && !['spreadsheet', 'csp'].includes(census?.type)) {
     return null
   }
@@ -197,7 +203,7 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       px={{ base: 3, lg2: 0 }}
       {...props}
     >
-      {census?.type !== 'spreadsheet' && !connected && (
+      {!isCSP && census?.type !== 'spreadsheet' && !connected && (
         <ConnectButton.Custom>
           {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
             const ready = mounted && authenticationStatus !== 'loading'
@@ -229,13 +235,13 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
           }}
         </ConnectButton.Custom>
       )}
+      {isCSP && !connected && <CspAuth />}
       {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
       {isAbleToVote && (
         <>
           <CVoteButton
             w='100%'
             fontSize='lg'
-            colorScheme='black'
             height='50px'
             onClick={setQuestionsTab}
             mb={4}

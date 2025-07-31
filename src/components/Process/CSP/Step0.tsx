@@ -1,0 +1,169 @@
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  Button,
+  Checkbox,
+  FormControl,
+  FormHelperText,
+  FormLabel,
+  Input,
+  Link,
+  Stack,
+  Text,
+  VStack,
+} from '@chakra-ui/react'
+import { PublishedElection } from '@vocdoni/sdk'
+import { useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import { Link as RouterLink } from 'react-router-dom'
+import { Routes } from '~routes'
+import { useCspAuthContext } from './CSPStepsProvider'
+import { CSPStep0FormData, CSPStep0RequestData, useTwoFactorAuth } from './basics'
+
+export const Step0Base = ({ election }: { election: PublishedElection }) => {
+  const { t } = useTranslation()
+  const { setCurrentStep, setAuthData, authFields, twoFaFields } = useCspAuthContext()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<CSPStep0FormData>()
+  const auth = useTwoFactorAuth<0>(election, 0)
+
+  const onSubmit = async (values: CSPStep0FormData) => {
+    const form: CSPStep0RequestData = {}
+
+    // Add auth fields to the form
+    authFields.forEach((field) => {
+      if (values[field]) {
+        form[field] = values[field]
+      }
+    })
+
+    // Handle 2FA field - process based on available methods
+    if (values.contact) {
+      if (twoFaFields.includes('email') && twoFaFields.includes('phone')) {
+        // Both are supported, determine based on content
+        if (values.contact.includes('@')) {
+          form.email = values.contact
+        } else {
+          form.phone = values.contact
+        }
+      } else if (twoFaFields.includes('email')) {
+        form.email = values.contact
+      } else if (twoFaFields.includes('phone')) {
+        form.phone = values.contact
+      }
+    }
+
+    try {
+      const { authToken } = await auth.mutateAsync(form)
+
+      // Store auth token in global context and proceed to the next step
+      setAuthData((prev) => ({ ...prev, authToken }))
+      setCurrentStep(1)
+    } catch (error) {
+      console.error('CSP auth failed:', error)
+    }
+  }
+
+  const getFieldLabel = (field: string) => {
+    const labels: Record<string, string> = {
+      memberNumber: t('csp.auth.fields.memberNumber', 'Member Number'),
+      name: t('csp.auth.fields.name', 'Name'),
+      surname: t('csp.auth.fields.surname', 'Surname'),
+      nationalId: t('csp.auth.fields.nationalId', 'National ID'),
+      birthDate: t('csp.auth.fields.birthDate', 'Birth Date'),
+    }
+    return labels[field] || field
+  }
+
+  const get2FaFieldLabel = () => {
+    if (twoFaFields.includes('email') && twoFaFields.includes('phone')) {
+      return t('csp.auth.fields.contact', 'Email or Phone')
+    } else if (twoFaFields.includes('email')) {
+      return t('csp.auth.fields.email', 'Email')
+    } else if (twoFaFields.includes('phone')) {
+      return t('csp.auth.fields.phone', 'Phone')
+    }
+    return t('csp.auth.fields.contact', 'Contact')
+  }
+
+  const getFieldType = (field: string) => {
+    if (field === 'email') return 'email'
+    if (field === 'phone') return 'tel'
+    if (field === 'birthDate') return 'date'
+    return 'text'
+  }
+
+  return (
+    <VStack spacing={6} align='stretch' w='full'>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Stack spacing={4}>
+          {/* Render auth fields */}
+          {authFields.map((field) => (
+            <FormControl key={field} isInvalid={!!errors[field]} isRequired>
+              <FormLabel>{getFieldLabel(field)}</FormLabel>
+              <Input {...register(field, { required: true })} type={getFieldType(field)} />
+            </FormControl>
+          ))}
+
+          {/* Render 2FA field */}
+          {twoFaFields.length > 0 && (
+            <FormControl isInvalid={!!errors.contact} isRequired>
+              <FormLabel>{get2FaFieldLabel()}</FormLabel>
+              <Input {...register('contact', { required: true })} type='text' />
+              <FormHelperText>
+                <strong>{t('csp.auth.important', 'Important')}:</strong>{' '}
+                {t('csp.auth.contact_match_help', 'Must match the one registered in the system')}
+              </FormHelperText>
+            </FormControl>
+          )}
+
+          {auth.isError && (
+            <Alert status='error'>
+              <AlertIcon />
+              <AlertDescription>{auth.error.message}</AlertDescription>
+            </Alert>
+          )}
+
+          <FormControl isRequired>
+            <Checkbox size='sm' variant='inline' colorScheme='blue'>
+              {t('csp.auth.terms_acceptance', 'I have read and accept the')}{' '}
+              <Link as={RouterLink} to={Routes.terms} isExternal>
+                {t('csp.auth.terms_and_conditions', 'Terms and Conditions')}
+              </Link>{' '}
+              {t('csp.auth.and', 'and')}{' '}
+              <Link as={RouterLink} to={Routes.privacy} isExternal>
+                {t('csp.auth.privacy_policy', 'Privacy Policy')}
+              </Link>
+              .
+            </Checkbox>
+          </FormControl>
+
+          <Text fontSize='xs'>
+            💡{' '}
+            {t(
+              'csp.auth.data_usage_info',
+              'Your data will only be used to verify your identity. Vocdoni does not store personal data.'
+            )}
+          </Text>
+
+          <Button type='submit' w='full' isLoading={auth.isPending} mt={2}>
+            {t('csp.auth.receive_code', 'Receive Code')}
+          </Button>
+
+          {twoFaFields.length > 0 && (
+            <Text textAlign='center' fontSize='sm'>
+              {t(
+                'csp.auth.code_info',
+                'You will receive a unique code on the selected medium to verify your identity and complete authentication'
+              )}
+            </Text>
+          )}
+        </Stack>
+      </form>
+    </VStack>
+  )
+}
