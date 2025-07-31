@@ -80,7 +80,7 @@ export const ElectionVideo = forwardRef<BoxProps, 'div'>((props, ref) => {
   return (
     <Box ref={ref} __css={styles} {...props}>
       <AspectRatio ratio={16 / 9} width='100%' height='100%'>
-        <ReactPlayer url={streamUri} width='100%' controls height='100%' />
+        <ReactPlayer src={streamUri} width='100%' controls height='100%' />
       </AspectRatio>
     </Box>
   )

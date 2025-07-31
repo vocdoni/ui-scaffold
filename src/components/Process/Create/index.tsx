@@ -821,7 +821,7 @@ export const ProcessCreate = () => {
                     <FormErrorMessage>{errors.streamUri?.message?.toString()}</FormErrorMessage>
 
                     {/* Video Preview */}
-                    {streamUri && <ReactPlayer url={streamUri} controls />}
+                    {streamUri && <ReactPlayer src={streamUri} controls />}
                   </FormControl>
                 </AccordionPanel>
               </AccordionItem>
