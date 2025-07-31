@@ -22,5 +22,6 @@ interface ImportMeta {
     PRIORITY_SUPPORT_PHONE: string
     SUPPORT_EMAIL: string
     CALCOM_EVENT_SLUG: string
+    VIDEO_TUTORIAL: string
   }
 }

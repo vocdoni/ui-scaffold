@@ -374,6 +374,7 @@
       "email_invalid": "Correo electrónico incorrecto",
       "field_is_required": "Este campo es obligatorio",
       "max_greater_than_min": "Max must be greater than or equal to Min",
+      "invalid_youtube_url": "Por favor, ingresa una URL válida de YouTube",
       "password_min_length": "Min. 8 caracteres",
       "recipient_address_invalid": "La dirección especificada no parece válida",
       "required": "This field is required"
@@ -1559,6 +1560,9 @@
     },
     "voter_privacy_placeholder": {
       "anonymous": "Anonymous"
+    },
+    "youtube": {
+      "title": "Video en vivo"
     }
   },
   "process_list": {

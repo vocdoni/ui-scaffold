@@ -1,5 +1,4 @@
 import {
-  AspectRatio,
   Box,
   Button,
   Flex,
@@ -29,10 +28,10 @@ import { useClient, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import ReactPlayer from 'react-player'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import ProcessAside, { VoteButton } from './Aside'
 import { ConfirmVoteModal } from './ConfirmVoteModal'
+import { ElectionVideo } from './Dashboard/ProcessView'
 import Header from './Header'
 import successImg from '/assets/spreadsheet-success-modal.jpg'
 
@@ -108,19 +107,14 @@ export const ProcessView = () => {
       <Box>
         <Header />
 
-        {election instanceof PublishedElection && election?.streamUri && (
-          <Box
-            maxW={{ base: '800px', lg: videoTop ? '400px' : '800px' }}
-            ml={videoTop ? 'auto' : 'none'}
-            position={{ base: 'unset', lg: 'sticky' }}
-            top={{ base: 0, xl2: 20 }}
-            zIndex={100}
-          >
-            <AspectRatio ref={videoRef} ratio={16 / 9}>
-              <ReactPlayer url={election?.streamUri} width='100%' height='100%' playing controls />
-            </AspectRatio>
-          </Box>
-        )}
+        <ElectionVideo
+          ref={videoRef}
+          maxW={{ base: '800px', lg: videoTop ? '400px' : '800px' }}
+          ml={videoTop ? 'auto' : 'none'}
+          position={{ base: 'unset', lg: 'sticky' }}
+          top={{ base: 0, xl2: 20 }}
+          zIndex={100}
+        />
 
         <Flex direction={{ base: 'column', xl2: 'row' }} alignItems='start' gap={{ base: 6, lg: 12, xl: 20 }} mt={6}>
           <Tabs

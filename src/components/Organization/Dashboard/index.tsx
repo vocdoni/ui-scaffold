@@ -25,6 +25,7 @@ import { PublishedElection } from '@vocdoni/sdk'
 import { format } from 'date-fns'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuArrowUpRight, LuCheck, LuPlus, LuUsers, LuVote, LuX } from 'react-icons/lu'
+import ReactPlayer from 'react-player'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
 import { usePlanTranslations } from '~components/Pricing/Plans'
@@ -128,13 +129,9 @@ const Tutorial = () => {
           })}
         </Text>
         <AspectRatio ratio={16 / 9}>
-          <Box
-            as='iframe'
-            src='https://www.youtube.com/embed/arZZw8NyPq8'
-            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
-            allowFullScreen
-            border='0'
-            borderRadius='md'
+          <ReactPlayer
+            src={import.meta.env.VIDEO_TUTORIAL}
+            style={{ width: '100%', height: 'auto', aspectRatio: '16/9' }}
           />
         </AspectRatio>
       </Flex>
