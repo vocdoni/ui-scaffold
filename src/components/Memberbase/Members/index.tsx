@@ -246,7 +246,7 @@ const CreateGroupButton = ({ members }: CreateGroupButtonProps) => {
   return (
     <>
       <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray' onClick={onOpen}>
-        {t('members_table.create_group', { defaultValue: 'Create group' })}
+        {t('members_table.create_group_all', { defaultValue: 'Create group (All)' })}
       </Button>
       <Drawer isOpen={isOpen} placement='right' onClose={onClose} size='sm'>
         <DrawerOverlay />
