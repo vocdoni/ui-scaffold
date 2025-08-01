@@ -40,6 +40,7 @@ import {
 } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
+import { ensure0x } from '@vocdoni/sdk'
 import { useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -66,34 +67,53 @@ type SecurityLevelMessages = {
   }
 }
 
-type CreateCensusArgs = {
-  orgAddress: string
+type ValidateGroupArgs = {
   groupId: string
-  authFields: string[]
+  authFields?: string[]
   twoFaFields?: string[]
 }
 
-const useCreateCensus = () => {
+type PublishCensusArgs = {
+  censusId: string
+  groupId: string
+  authFields: string[]
+  twoFaFields: string[]
+}
+
+const useValidateGroup = () => {
+  const { organization } = useOrganization()
   const { bearedFetch } = useAuth()
 
   return useMutation({
-    mutationFn: async (body: CreateCensusArgs) => {
-      return await bearedFetch<{ ID: string }>(ApiEndpoints.OrganizationCensuses, {
-        method: 'POST',
-        body,
-      })
+    mutationFn: async ({ groupId, authFields, twoFaFields }: ValidateGroupArgs) => {
+      return await bearedFetch<{ valid: boolean }>(
+        ApiEndpoints.OrganizationGroupValidate.replace('{address}', organization?.address).replace(
+          '{groupId}',
+          groupId
+        ),
+        {
+          method: 'POST',
+          body: {
+            authFields,
+            twoFaFields,
+          },
+        }
+      )
     },
   })
 }
 
-const useUpdateCensus = () => {
+const useCreateCensus = () => {
   const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
 
   return useMutation({
-    mutationFn: async ({ censusId, updatedCensus }: { censusId: string; updatedCensus: CreateCensusArgs }) => {
-      return await bearedFetch<{ ID: string }>(ApiEndpoints.OrganizationCensusPublish.replace('{censusId}', censusId), {
-        method: 'PUT',
-        body: updatedCensus,
+    mutationFn: async () => {
+      return await bearedFetch<{ id: string }>(ApiEndpoints.OrganizationCensuses, {
+        method: 'POST',
+        body: {
+          orgAddress: ensure0x(organization?.address),
+        },
       })
     },
   })
@@ -103,9 +123,22 @@ const usePublishCensus = () => {
   const { bearedFetch } = useAuth()
 
   return useMutation({
-    mutationFn: async (censusId: string) => {
-      return await bearedFetch<{ ID: string }>(ApiEndpoints.OrganizationCensusPublish.replace('{censusId}', censusId), {
+    mutationFn: async ({ censusId, groupId, authFields, twoFaFields }: PublishCensusArgs) => {
+      const body: Record<string, any> = {}
+
+      if (authFields?.length) {
+        body.authFields = authFields
+      }
+      body.twoFaFields = twoFaFields
+
+      const endpoint = ApiEndpoints.OrganizationCensusPublish.replace('{censusId}', censusId).replace(
+        '{groupId}',
+        groupId
+      )
+
+      return await bearedFetch<{ size: number }>(endpoint, {
         method: 'POST',
+        body,
       })
     },
   })
@@ -498,57 +531,141 @@ const SummaryTab = () => {
     </TabPanel>
   )
 }
+type ValidationErrorData = {
+  memberIds: string[]
+  duplicates: string[]
+  missingData: string[]
+}
+
+type ValidationError = {
+  error: string
+  code: number
+  data: ValidationErrorData
+}
+
+export const ValidationErrorsAlert = ({ validationError }) => {
+  const { t } = useTranslation()
+
+  if (!validationError) return null
+
+  const errorData: ValidationErrorData = validationError?.data
+
+  const { memberIds, duplicates, missingData } = errorData
+  const hasDuplicates = duplicates.length > 0
+  const hasMissing = missingData.length > 0
+  const total = memberIds.length
+
+  if (!hasDuplicates && !hasMissing) return null
+
+  return (
+    <Alert status='error' variant='subtle' borderRadius='md'>
+      <AlertIcon />
+      <Box>
+        <AlertTitle fontWeight='bold'>
+          {t('process_create.voter_auth_validation_error_title', 'Validation Error')}
+        </AlertTitle>
+
+        <AlertDescription fontSize='sm'>
+          <Stack spacing={3} mt={2}>
+            <Text>
+              {t('process_create.voter_auth_validation_summary', {
+                defaultValue: 'Validation failed for some users.',
+              })}
+            </Text>
+
+            <UnorderedList>
+              <ListItem>
+                {t('process_create.voter_auth_validation_total', {
+                  defaultValue: '{{count}} users total',
+                  count: total,
+                })}
+              </ListItem>
+              <ListItem>
+                {t('process_create.voter_auth_validation_missing_data', {
+                  defaultValue: '{{count}} users missing required fields',
+                  count: missingData.length,
+                })}
+              </ListItem>
+              <ListItem>
+                {t('process_create.voter_auth_validation_duplicates', {
+                  defaultValue: '{{count}} duplicated users',
+                  count: duplicates.length,
+                })}
+              </ListItem>
+            </UnorderedList>
+          </Stack>
+        </AlertDescription>
+      </Box>
+    </Alert>
+  )
+}
 
 export const VoterAuthentication = () => {
   const { t } = useTranslation()
   const mainForm = useFormContext()
-  const { organization } = useOrganization()
-  const groupId = mainForm.watch('groupId')
-
-  const methods = useForm({ defaultValues: { credentials: [], use2FA: false, use2FAMethod: 'email' } })
-  const { handleSubmit, watch, getValues } = methods
-  const credentials = watch('credentials')
-  const hasNoCredentialsSelected = credentials.length === 0
-
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { setMaxCensusSize } = useCensus()
   const [activeTabIndex, setActiveTabIndex] = useState(0)
-  const [censusId, setCensusId] = useState<string | null>(null)
+  const [validationError, setValidationError] = useState<ValidationError | null>(null)
+  const validateGroupMutation = useValidateGroup()
   const createCensusMutation = useCreateCensus()
-  const updateCensusMutation = useUpdateCensus()
   const publishCensusMutation = usePublishCensus()
 
+  const methods = useForm({ defaultValues: { credentials: [], use2FA: false, use2FAMethod: 'email' } })
+  const { handleSubmit, watch, getValues } = methods
+  const groupId = mainForm.watch('groupId')
+  const censusId = mainForm.watch('censusId')
+  const credentials = watch('credentials')
+  const use2FA = watch('use2FA')
+  const hasNoCredentialsSelected = !credentials.length && !use2FA
+
   const goToTab = async (nextIndex: number) => {
-    if (activeTabIndex === 0 && nextIndex === 1) {
-      const { ID: createdCensusId } = await createCensusMutation.mutateAsync({
-        groupId,
-        authFields: credentials,
-        orgAddress: organization?.address,
-      })
-      setCensusId(createdCensusId)
-    }
+    setValidationError(null)
 
-    if (activeTabIndex === 1 && nextIndex === 2) {
-      const censusData = getValues()
-      if (censusData.use2FA) {
-        const twoFaFields =
-          censusData.use2FAMethod === "voter's choice" ? ['email', 'phone'] : [censusData.use2FAMethod]
-        const updatedCensus = {
-          orgAddress: organization?.address,
-          groupId,
-          authFields: censusData.credentials,
-          twoFaFields,
+    try {
+      if (activeTabIndex === 0 && nextIndex === 1) {
+        if (credentials.length) {
+          await validateGroupMutation.mutateAsync({
+            groupId,
+            authFields: credentials,
+          })
         }
-        const { ID: updatedCensusId } = await updateCensusMutation.mutateAsync({ censusId, updatedCensus })
-        setCensusId(updatedCensusId)
       }
-    }
 
-    setActiveTabIndex(nextIndex)
+      if (activeTabIndex === 1 && nextIndex === 2) {
+        const censusData = getValues()
+        if (censusData.use2FA) {
+          const twoFaFields =
+            censusData.use2FAMethod === "voter's choice" ? ['email', 'phone'] : [censusData.use2FAMethod]
+          await validateGroupMutation.mutateAsync({
+            groupId,
+            authFields: censusData.credentials,
+            twoFaFields,
+          })
+        }
+      }
+
+      setActiveTabIndex(nextIndex)
+    } catch (error) {
+      setValidationError(error.apiError as ValidationError)
+    }
   }
 
-  const onSubmit = () => {
-    publishCensusMutation.mutateAsync(censusId)
+  const onSubmit = async () => {
+    const censusData = getValues()
+    const { id: censusId } = await createCensusMutation.mutateAsync()
+    const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
+      censusId,
+      groupId,
+      authFields: censusData.credentials,
+      twoFaFields: censusData.use2FA
+        ? censusData.use2FAMethod === "voter's choice"
+          ? ['email', 'phone']
+          : [censusData.use2FAMethod]
+        : [],
+    })
+    setMaxCensusSize(maxCensusSize)
+    mainForm.setValue('censusId', censusId)
     onClose()
     goToTab(0)
   }
@@ -571,6 +688,13 @@ export const VoterAuthentication = () => {
       <Button isDisabled={!groupId} colorScheme='gray' w='full' onClick={onOpen}>
         <Trans i18nKey='process_create.voter_auth'>Configure Voter Authentication</Trans>
       </Button>
+      {censusId && (
+        <Text color='texts.subtle' size='xs'>
+          {t('process_create.voter_auth_no_census_description', {
+            defaultValue: 'Census already created.',
+          })}
+        </Text>
+      )}
       {!groupId && (
         <Text color='texts.subtle' size='xs'>
           {t('process_create.voter_auth_no_group_description', {
@@ -592,12 +716,13 @@ export const VoterAuthentication = () => {
             </Text>
           </ModalHeader>
           <FormProvider {...methods}>
-            <Box as='form'>
-              <ModalBody>
+            <Box as='form' onSubmit={handleSubmit(onSubmit)} p={4}>
+              <ModalBody display='flex' flexDirection='column' gap={4}>
+                <ValidationErrorsAlert validationError={validationError} />
                 <Tabs index={activeTabIndex} onChange={goToTab} isFitted>
                   <TabList w='full'>
                     <Tab>Credentials</Tab>
-                    <Tab isDisabled={hasNoCredentialsSelected}>Two-Factor</Tab>
+                    <Tab>Two-Factor</Tab>
                     <Tab isDisabled={hasNoCredentialsSelected}>Summary</Tab>
                   </TabList>
                   <TabPanels>
@@ -612,7 +737,11 @@ export const VoterAuthentication = () => {
                   <Button variant='outline' onClick={handlePrevious}>
                     {t('common.back', 'Back')}
                   </Button>
-                  <Button colorScheme='black' onClick={handleNext}>
+                  <Button
+                    colorScheme='black'
+                    // isDisabled={hasNoCredentialsSelected && activeTabIndex === 1}
+                    onClick={handleNext}
+                  >
                     {activeTabIndex === 2 ? t('common.confirm', 'Confirm') : t('common.next', 'Next')}
                   </Button>
                 </Flex>
