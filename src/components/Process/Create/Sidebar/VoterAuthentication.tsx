@@ -226,10 +226,11 @@ const CredentialSelectionTab = () => {
           <Controller
             name='credentials'
             control={control}
-            rules={{ validate: (val) => val.length >= 1 && val.length <= 3 }}
+            rules={{ validate: (val) => val.length <= 3 }}
             render={({ field }) => (
               <CheckboxGroup value={field.value} onChange={(value: string[]) => field.onChange(value)}>
                 {fields.map((column) => {
+                  if (column.is2fa) return null // Skip 2FA fields in this selection
                   const isChecked = credentials.includes(column.id)
                   const isAtLimit = credentials.length >= 3 && !isChecked
                   return (

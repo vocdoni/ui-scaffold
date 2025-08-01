@@ -23,10 +23,12 @@ export const useMemberColumns = () => {
       },
       {
         label: t('form.members.spreadsheet.template.email', { defaultValue: 'Email' }),
+        is2fa: true,
         id: 'email',
       },
       {
         label: t('form.members.spreadsheet.template.phone', { defaultValue: 'Phone' }),
+        is2fa: true,
         id: 'phone',
       },
       {
