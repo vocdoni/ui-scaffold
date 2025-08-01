@@ -52,7 +52,7 @@ export const GroupSelect = () => {
         name='groupId'
         rules={{
           required: {
-            value: censusType === CensusTypes.Memberbase,
+            value: censusType === CensusTypes.CSP,
             message: t('form.error.required', 'This field is required'),
           },
         }}

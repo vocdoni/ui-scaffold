@@ -24,12 +24,12 @@ import { Routes } from '~src/router/routes'
 import { VoterAuthentication } from './VoterAuthentication'
 
 export enum CensusTypes {
-  Memberbase = 'memberbase',
+  CSP = 'csp',
   Spreadsheet = 'spreadsheet',
   Web3 = 'web3',
 }
 
-export const censusTabs = [CensusTypes.Memberbase, CensusTypes.Spreadsheet, CensusTypes.Web3] as const
+export const censusTabs = [CensusTypes.CSP, CensusTypes.Spreadsheet, CensusTypes.Web3] as const
 
 export const GroupSelect = () => {
   const { t } = useTranslation()
@@ -84,7 +84,7 @@ export const GroupSelect = () => {
         name='groupId'
         rules={{
           required: {
-            value: censusType === CensusTypes.Memberbase,
+            value: censusType === CensusTypes.CSP,
             message: t('form.error.required', 'This field is required'),
           },
         }}
@@ -127,7 +127,7 @@ const CensusCreation = ({ showExtraMethods }: { showExtraMethods: boolean }) => 
   // Set default census type to Memberbase (Group) if not set
   useEffect(() => {
     if (!censusType) {
-      setValue('censusType', CensusTypes.Memberbase)
+      setValue('censusType', CensusTypes.CSP)
     }
   }, [censusType, setValue])
 
@@ -138,7 +138,7 @@ const CensusCreation = ({ showExtraMethods }: { showExtraMethods: boolean }) => 
     if (nextType === prevType) return
 
     switch (prevType) {
-      case CensusTypes.Memberbase:
+      case CensusTypes.CSP:
         setValue('groupId', '')
         break
       case CensusTypes.Web3:
