@@ -623,7 +623,7 @@ export const VoterAuthentication = () => {
     setValidationError(null)
 
     try {
-      if (activeTabIndex === 0 && nextIndex === 1) {
+      if (activeTabIndex === 0) {
         if (credentials.length) {
           await validateGroupMutation.mutateAsync({
             groupId,
@@ -632,7 +632,7 @@ export const VoterAuthentication = () => {
         }
       }
 
-      if (activeTabIndex === 1 && nextIndex === 2) {
+      if (activeTabIndex === 1) {
         const censusData = getValues()
         if (censusData.use2FA) {
           const twoFaFields =
