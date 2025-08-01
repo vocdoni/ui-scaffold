@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react'
-import { CensusData, AuthFieldType, TwoFaFieldType } from './basics'
+import { AuthFieldType, CensusData, TwoFaFieldType } from './basics'
 
 type CspAuthStep = {
   step: number
@@ -34,8 +34,8 @@ export const CspAuthProvider = ({
   const [authData, setAuthData] = useState<Record<string, any>>({})
 
   // Process census data to determine auth fields
-  const authFields = (censusData?.orgMemberAuthFields || []) as AuthFieldType[]
-  const twoFaFields = (censusData?.orgMemberTwoFaFields || []) as TwoFaFieldType[]
+  const authFields = (censusData?.authFields || []) as AuthFieldType[]
+  const twoFaFields = (censusData?.twoFaFields || []) as TwoFaFieldType[]
 
   return (
     <CspAuthContext.Provider

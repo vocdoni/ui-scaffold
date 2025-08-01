@@ -2,8 +2,8 @@ import { useMutation } from '@tanstack/react-query'
 import { PublishedElection } from '@vocdoni/sdk'
 
 export type CensusData = {
-  orgMemberAuthFields: string[]
-  orgMemberTwoFaFields: string[]
+  authFields: string[]
+  twoFaFields: string[]
 }
 
 export type AuthFieldType = 'memberNumber' | 'name' | 'surname' | 'nationalId' | 'birthDate'

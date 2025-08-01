@@ -31,8 +31,8 @@ type CensusBundleData = {
       root: string
       createdAt: string
     }
-    orgMemberAuthFields: string[]
-    orgMemberTwoFaFields: string[]
+    authFields: string[]
+    twoFaFields: string[]
     createdAt: string
     updatedAt: string
   }
@@ -110,8 +110,8 @@ export const CspAuth = () => {
 
   const processedCensusData = censusData
     ? {
-        orgMemberAuthFields: censusData.census.orgMemberAuthFields,
-        orgMemberTwoFaFields: censusData.census.orgMemberTwoFaFields,
+        authFields: censusData.census.authFields,
+        twoFaFields: censusData.census.twoFaFields,
       }
     : null
 
