@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  ButtonProps,
   Checkbox,
   Drawer,
   DrawerBody,
@@ -79,7 +80,7 @@ type DeleteMemberModalProps = {
 
 type CreateGroupButtonProps = {
   members?: Member[]
-}
+} & ButtonProps
 
 const maskedFields = new Set<string>(['phone'])
 
@@ -182,7 +183,9 @@ const MemberFilters = ({ onDelete }) => {
           <IconButton size='xs' aria-label='search' type='submit' icon={<Icon as={LuSearch} />} />
         </InputRightElement>
       </InputGroup>
-      <CreateGroupButton members={data?.members ?? []} />
+      <CreateGroupButton members={data?.members ?? []}>
+        {t('members_table.create_group_all', { defaultValue: 'Create group (All)' })}
+      </CreateGroupButton>
       <Button leftIcon={<Icon as={LuTrash2} />} variant='outline' colorScheme='red' onClick={onDelete}>
         {t('members_table.delete_all', {
           defaultValue: 'Delete (All)',
@@ -192,7 +195,7 @@ const MemberFilters = ({ onDelete }) => {
   )
 }
 
-const CreateGroupButton = ({ members }: CreateGroupButtonProps) => {
+const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false })
@@ -246,7 +249,7 @@ const CreateGroupButton = ({ members }: CreateGroupButtonProps) => {
   return (
     <>
       <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray' onClick={onOpen}>
-        {t('members_table.create_group_all', { defaultValue: 'Create group (All)' })}
+        {children}
       </Button>
       <Drawer isOpen={isOpen} placement='right' onClose={onClose} size='sm'>
         <DrawerOverlay />
@@ -353,7 +356,7 @@ const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
               defaults='Selected: <strong>{{count}} member</strong>'
             />
           </Text>
-          <CreateGroupButton />
+          <CreateGroupButton>{t('members_table.create_group', { defaultValue: 'Create group' })}</CreateGroupButton>
           <Button leftIcon={<Icon as={LuTrash2} />} size='sm' colorScheme='red' variant='outline' onClick={onDelete}>
             {t('members_table.bulk_delete', { defaultValue: 'Delete' })}
           </Button>
