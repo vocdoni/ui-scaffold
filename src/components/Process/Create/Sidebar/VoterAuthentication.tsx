@@ -47,6 +47,7 @@ import { LuCheck, LuInfo, LuLock, LuMail, LuShield } from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { useMemberColumns } from '~elements/dashboard/memberbase/members'
+import { useCensus } from './CensusProvider'
 
 enum SecurityLevels {
   WEAK = 'WEAK',
@@ -509,6 +510,7 @@ export const VoterAuthentication = () => {
   const hasNoCredentialsSelected = credentials.length === 0
 
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { setMaxCensusSize } = useCensus()
   const [activeTabIndex, setActiveTabIndex] = useState(0)
   const [censusId, setCensusId] = useState<string | null>(null)
   const createCensusMutation = useCreateCensus()
