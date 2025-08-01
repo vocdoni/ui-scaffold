@@ -622,12 +622,12 @@ const ResetFormModal = ({ isOpen, onClose, onReset }) => {
 const useProcessBundle = () => {
   const { bearedFetch } = useAuth()
   return useMutation({
-    mutationFn: async ({ censusId, processIds }: { censusId: string; processIds?: string[] }) => {
+    mutationFn: async ({ censusId, processes }: { censusId: string; processes?: string[] }) => {
       return await bearedFetch<{ uri: string; root: string }>(ApiEndpoints.ProcessBundle, {
         method: 'POST',
         body: {
           censusId,
-          processIds,
+          processes,
         },
       })
     },
@@ -718,7 +718,7 @@ export const ProcessCreate = () => {
         })
         const bundledProcess = await processBundleMutation.mutateAsync({
           censusId: form.censusId,
-          processIds: [nextElectionId],
+          processes: [nextElectionId],
         })
         census = new CspCensus(bundledProcess.root, bundledProcess.uri)
 
