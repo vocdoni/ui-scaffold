@@ -3148,10 +3148,10 @@
     "@types/babel__core" "^7.20.5"
     react-refresh "^0.14.2"
 
-"@vocdoni/chakra-components@^0.9.6":
-  version "0.9.6"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.9.6.tgz#a0ff7160a50ad31189c238673ac809d8c40b34ad"
-  integrity sha512-8mOmEQ1yQvKWkAiAM3ohXaSZ7cXdWeIpItCZhb/QN/WIC//QoYBQk+RCnCZQjH4dmLsfbAVgNIyjWcuerYNXjQ==
+"@vocdoni/chakra-components@0.9.6-fix":
+  version "0.9.6-fix"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-0.9.6-fix.tgz#10d5e17977571d19fb441adf1d8c2374038e091e"
+  integrity sha512-ZN3Nae4JL8NCEIAzNOTDSpBr9NQzf/EMjOkJWIw+dFLOvgVUtTo0OBZhg2GlPKyAY/BNTXyY3qpVhC0KJEEcaQ==
   dependencies:
     "@vocdoni/react-providers" "~0.5.1"
 
@@ -3171,9 +3171,9 @@
     crypto-js "^4.2.0"
 
 "@vocdoni/react-providers@~0.5.1":
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.5.4.tgz#638edb351446789ceab99bd7828f02a345fb2569"
-  integrity sha512-3m1b9KnM/2xeRmsBg9yR9wj5tOEEbMcU1lqzRvAU+HPeTsth5qU9g6P3XjuFTU00Z7jaGVdm4Xa/ltN/+HKNAg==
+  version "0.5.5"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-0.5.5.tgz#59f7b14435cfb84d633ad6b48d88d48a55929c4d"
+  integrity sha512-qi/5dP7EZScDfxihaXVX0Rq6y6BMRdal3pScF/ZEppSrwoSoMBigHUGNooPlOU3jiRUX42wsQs5jNZxTdTJmKQ==
 
 "@vocdoni/sdk@~0.9.1":
   version "0.9.1"

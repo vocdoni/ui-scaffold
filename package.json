@@ -25,7 +25,7 @@
     "@stripe/react-stripe-js": "^2.7.0",
     "@stripe/stripe-js": "4.10.0",
     "@tanstack/react-query": "^5.59.15",
-    "@vocdoni/chakra-components": "^0.9.6",
+    "@vocdoni/chakra-components": "0.9.6-fix",
     "@vocdoni/rainbowkit-wallets": "^0.2.2",
     "@vocdoni/sdk": "~0.9.1",
     "chakra-react-select": "^5.0.1",
