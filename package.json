@@ -61,7 +61,7 @@
   },
   "engines": {
     "yarn": "^1.22.x",
-    "node": "20.x"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "vite",
