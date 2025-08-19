@@ -45,9 +45,6 @@ import { generatePath, Link as ReactRouterLink, useNavigate } from 'react-router
 import { useAccount } from 'wagmi'
 import { MinPurchaseTokens, StripeEnabled } from '~constants'
 
-
-
-
 const Calculator = () => {
   const { t } = useTranslation()
   const [tabIndex, setTabIndex] = useState(0)
@@ -640,10 +637,9 @@ const BuyBtns = ({ totalTokens }: { totalTokens: number }) => {
   )
 }
 
-
-const getTokenPrice = (totalTokens: number) =>{
+const getTokenPrice = (totalTokens: number) => {
   if (totalTokens <= 500) {
-   return 0.5
+    return 0.5
   }
   if (totalTokens <= 1000) {
     return 0.48
