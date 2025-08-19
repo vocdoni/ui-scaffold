@@ -4,7 +4,7 @@ import { questionsAnatomy } from '@vocdoni/chakra-components'
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
 
 const baseStyle = definePartsStyle({
-  group: {
+  radioGroup: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
