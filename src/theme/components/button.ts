@@ -1,6 +1,5 @@
 import { theme } from '@chakra-ui/react'
 import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
-import { mode } from '@chakra-ui/theme-tools'
 
 const baseStyle = defineStyle({
   minW: 0,
@@ -67,16 +66,26 @@ const sizes = {
     minW: '8',
     fontSize: 'sm',
   }),
-}
+} as const
+
+// Helper function to convert space values to CSS variables
+const spaceVar = (v: number | string) => (typeof v === 'number' ? `var(--chakra-space-${v})` : v)
 
 const outline = defineStyle((props) => {
-  const { colorScheme } = props
-  const color = mode('gray.200', 'whiteAlpha.300')(props)
+  const s = (props.size ?? 'sm') as keyof typeof sizes
+  const base = sizes[s] ?? sizes.sm
+
+  const pyToken = (base as any).py ?? (sizes.sm as any).py
+  const pxToken = (base as any).px ?? (sizes.sm as any).px
+
+  // border width
+  const bw = '1px'
+
   return {
     ...theme.components.Button.variants.outline(props),
-    border: 'none',
-    outline: '1px solid',
-    outlineColor: colorScheme === 'gray' ? color : 'currentColor',
+    borderWidth: bw,
+    py: `calc(${spaceVar(pyToken)} - ${bw})`,
+    px: `calc(${spaceVar(pxToken)} - ${bw})`,
   }
 })
 
