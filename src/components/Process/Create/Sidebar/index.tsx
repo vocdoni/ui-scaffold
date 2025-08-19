@@ -12,7 +12,7 @@ import {
   useBreakpointValue,
   useDisclosure,
 } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useLocalStorage } from '@uidotdev/usehooks'
 import { useTranslation } from 'react-i18next'
 import { LuSettings, LuX } from 'react-icons/lu'
 import {
@@ -33,7 +33,7 @@ type CreateSidebarProps = {
 export const CreateSidebar = (props: CreateSidebarProps) => {
   const { t } = useTranslation()
   const isMobile = useBreakpointValue({ base: true, md: false })
-  const [showExtraCensusMethods, setShowExtraCensusMethods] = useState(false)
+  const [showExtraCensusMethods, setShowExtraCensusMethods] = useLocalStorage('showExtraCensusMethods', false)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const handleToggleExtraMethods = () => {
