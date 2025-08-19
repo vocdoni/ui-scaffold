@@ -21,8 +21,8 @@ export const DashboardBox = (props: BoxProps) => (
     p={4}
     display='flex'
     flexDirection='column'
-    flexWrap={'wrap'}
-    justifyContent={'space-between'}
+    flexWrap='wrap'
+    justifyContent='space-between'
     gap={4}
     {...props}
   />

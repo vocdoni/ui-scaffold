@@ -13,7 +13,6 @@ import {
   IconButton,
   Link,
   Progress,
-  Spacer,
   Stack,
   Text,
   useDisclosure,
@@ -254,7 +253,7 @@ const OrganizationProcesses = () => {
 
   return (
     <Flex flexDirection={{ base: 'column', md: 'row' }} gap={4}>
-      <DashboardBox p={6} minH='324px' flex='1 1 66%' display='flex' flexDirection='column'>
+      <DashboardBox p={6} minH='324px' flex='1 1 66%' display='flex' flexWrap='unset'>
         <Box mb={4}>
           <Text fontWeight='bold' mb={1.5} fontSize='2xl'>
             {t('dashboard_empty_processes.recent_voting_title', { defaultValue: 'Recent Voting Processes' })}
@@ -352,7 +351,7 @@ const Processes = () => {
         return (
           <ElectionProvider election={election} id={election.id} key={election.id}>
             <Flex align='center'>
-              <Box>
+              <Box flex='1' minW={0} mr={4}>
                 <Link
                   as={ReactRouterLink}
                   to={generatePath(Routes.dashboard.process, { id: election.id })}
@@ -362,17 +361,16 @@ const Processes = () => {
                 >
                   <ElectionTitle mb={0} fontSize='md' textAlign='left' fontWeight='500' isTruncated />
                 </Link>
-                <Text fontSize='sm' color='gray.500'>
+                <Text fontSize='sm' color='gray.500' isTruncated>
                   {t('election.ends_on', {
                     defaultValue: 'Ends on {{date}}',
                     date: format(election.endDate, t('organization.date_format')),
                   })}
                 </Text>
               </Box>
-              <Spacer />
-              <Flex align='center' gap={2}>
+              <Flex align='center' gap={2} flexShrink={0}>
                 <ElectionStatusBadge />
-                <Text fontWeight='bold'>
+                <Text fontWeight='bold' fontSize={{ base: 'sm', md: 'md' }} whiteSpace='nowrap'>
                   {t('election.total_votes', { defaultValue: '{{totalVotes}} votes', totalVotes: election.voteCount })}
                 </Text>
               </Flex>
