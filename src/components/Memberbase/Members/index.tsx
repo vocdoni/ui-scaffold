@@ -535,8 +535,8 @@ const MembersTable = () => {
   return (
     <>
       <ImportProgress />
-      <TableContainer border='1px' borderRadius='sm' borderColor='table.border' overflowX='visible' overflowY='visible'>
-        <Flex px={4} pt={4}>
+      <Box border='1px' borderRadius='sm' borderColor='table.border'>
+        <Flex direction={{ base: 'column', xl: 'row' }} px={4} pt={4}>
           <Flex direction='column' flex={1} gap={2}>
             <MemberFilters onDelete={openDeleteAll} />
             <MemberBulkActions onDelete={openDeleteSelected} />
@@ -554,32 +554,34 @@ const MembersTable = () => {
           </Flex>
         </Flex>
         {isLoadingOrImporting && <Progress size='xs' isIndeterminate />}
-        <Table>
-          <Thead>
-            <Tr>
-              <Th width='50px'>
-                <Checkbox
-                  isChecked={allVisibleSelected}
-                  isIndeterminate={someSelected && !allVisibleSelected}
-                  onChange={(e) => toggleAll(e.target.checked)}
-                />
-              </Th>
-              {columns
-                .filter((col) => col.visible)
-                .map((col) => (
-                  <Th key={col.id}>{col.label}</Th>
-                ))}
-              <Th width='50px'>
-                <ColumnManager />
-              </Th>
-            </Tr>
-          </Thead>
-          <MembersList openDeleteSelected={openDeleteSelected} />
-        </Table>
+        <TableContainer>
+          <Table>
+            <Thead>
+              <Tr>
+                <Th width='50px'>
+                  <Checkbox
+                    isChecked={allVisibleSelected}
+                    isIndeterminate={someSelected && !allVisibleSelected}
+                    onChange={(e) => toggleAll(e.target.checked)}
+                  />
+                </Th>
+                {columns
+                  .filter((col) => col.visible)
+                  .map((col) => (
+                    <Th key={col.id}>{col.label}</Th>
+                  ))}
+                <Th width='50px'>
+                  <ColumnManager />
+                </Th>
+              </Tr>
+            </Thead>
+            <MembersList openDeleteSelected={openDeleteSelected} />
+          </Table>
+        </TableContainer>
         <Box p={4}>
           <RoutedPaginatedTableFooter />
         </Box>
-      </TableContainer>
+      </Box>
       <DeleteMemberModal isOpen={isOpen} onClose={onClose} mode={deleteMode} />
     </>
   )
