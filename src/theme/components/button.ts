@@ -1,5 +1,6 @@
 import { theme } from '@chakra-ui/react'
 import { defineStyle, defineStyleConfig } from '@chakra-ui/styled-system'
+import { mode } from '@chakra-ui/theme-tools'
 
 const baseStyle = defineStyle({
   minW: 0,
@@ -68,11 +69,23 @@ const sizes = {
   }),
 }
 
+const outline = defineStyle((props) => {
+  const { colorScheme } = props
+  const color = mode('gray.200', 'whiteAlpha.300')(props)
+  return {
+    ...theme.components.Button.variants.outline(props),
+    border: 'none',
+    outline: '1px solid',
+    outlineColor: colorScheme === 'gray' ? color : 'currentColor',
+  }
+})
+
 export const Button = defineStyleConfig({
   variants: {
     ...theme.components.Button.variants,
     unstyled,
     listmenu,
+    outline,
     profilemenu,
   },
   baseStyle,
