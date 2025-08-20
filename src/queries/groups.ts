@@ -138,3 +138,34 @@ export const useGroupMembers = (groupId: string, page, isOpen: boolean = false) 
     refetchOnWindowFocus: false,
   })
 }
+
+type UpdateGroupMembersData = {
+  addMembers?: string[]
+  removeMembers?: string[]
+}
+
+export const useUpdateGroup = () => {
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: async ({ groupId, body }: { groupId: string; body: UpdateGroupMembersData }) => {
+      await bearedFetch(
+        ApiEndpoints.OrganizationGroup.replace('{address}', enforceHexPrefix(organization.address)).replace(
+          '{groupId}',
+          groupId
+        ),
+        {
+          method: 'PUT',
+          body,
+        }
+      )
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: QueryKeys.organization.groups(organization.address),
+      })
+    },
+  })
+}
