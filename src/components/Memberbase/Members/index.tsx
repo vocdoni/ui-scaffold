@@ -46,10 +46,11 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuEllipsis, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers, LuX } from 'react-icons/lu'
 import { generatePath, useNavigate, useOutletContext } from 'react-router-dom'
 import InputBasic from '~components/shared/Form/InputBasic'
+import { Select } from '~components/shared/Form/Select'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
 import RoutedPaginatedTableFooter from '~components/shared/Pagination/PaginatedTableFooter'
 import { Routes } from '~routes'
-import { useCreateGroup } from '~src/queries/groups'
+import { useCreateGroup, useGroups, useUpdateGroup } from '~src/queries/groups'
 import { QueryKeys } from '~src/queries/keys'
 import { Member, useDeleteMembers, usePaginatedMembers } from '~src/queries/members'
 import { MemberbaseTabsContext } from '..'
@@ -66,10 +67,12 @@ enum DeleteModes {
 type MemberActionsProps = {
   member: Member
   onDelete: () => void
+  onAddToGroup: () => void
 }
 
 type MemberBulkActionsProps = {
   onDelete: () => void
+  onAddToGroup: () => void
 }
 
 type DeleteMemberModalProps = {
@@ -82,6 +85,26 @@ type CreateGroupButtonProps = {
   members?: Member[]
 } & ButtonProps
 
+type MembersListProps = {
+  openDeleteSelected: (member: Member) => void
+  onAddToGroup: (member: Member) => void
+}
+
+type AddMembersToGroupDrawerProps = {
+  isOpen: boolean
+  onClose: () => void
+}
+
+type MemberFiltersProps = {
+  onDelete: () => void
+}
+
+type MemberTableItemProps = {
+  member: Member
+  openDeleteSelected: () => void
+  onAddToGroup: () => void
+}
+
 const maskedFields = new Set<string>(['phone'])
 
 export const maskIfNeeded = (fieldId: string, value: string): string => {
@@ -90,23 +113,122 @@ export const maskIfNeeded = (fieldId: string, value: string): string => {
   return '*********'
 }
 
-const MemberActions = ({ member, onDelete }: MemberActionsProps) => {
+const AddMembersToGroupDrawer = ({ isOpen, onClose }: AddMembersToGroupDrawerProps) => {
+  const { t } = useTranslation()
+  const toast = useToast()
+  const { data } = useGroups()
+  const [selectedGroup, setSelectedGroup] = useState<{ id: string; title: string } | null>(null)
+  const addMemberToGroup = useUpdateGroup()
+  const { selectedRows, resetSelectedRows } = useTable()
+
+  const handleAddToGroup = () => {
+    addMemberToGroup.mutate(
+      { groupId: selectedGroup.id, body: { addMembers: selectedRows.map((row) => row.id) } },
+      {
+        onSuccess: () => {
+          toast({
+            title: t('members_table.add_to_group_success', { defaultValue: 'Members added to group successfully' }),
+            status: 'success',
+            duration: 3000,
+            isClosable: true,
+          })
+          resetSelectedRows()
+          onClose()
+        },
+      }
+    )
+  }
+
+  return (
+    <Drawer isOpen={isOpen} placement='right' onClose={onClose} size='sm'>
+      <DrawerOverlay />
+      <DrawerContent>
+        <DrawerHeader display='flex' justifyContent='space-between' alignItems='center'>
+          <Box>
+            <Heading size='md'>{t('members_table.add_to_group', { defaultValue: 'Add to Group' })}</Heading>
+            <Text fontSize='sm' color='texts.subtle'>
+              {t('members_table.add_to_group_description', {
+                defaultValue: 'Select a group to add the members to.',
+              })}
+            </Text>
+          </Box>
+          <IconButton
+            icon={<LuX />}
+            aria-label={t('members_table.close_drawer', { defaultValue: 'Close' })}
+            variant='ghost'
+            size='sm'
+            onClick={onClose}
+          />
+        </DrawerHeader>
+
+        <DrawerBody display='flex' flexDirection='column' gap={4}>
+          <Select
+            placeholder={t('members_table.select_group', { defaultValue: 'Select group' })}
+            options={data}
+            getOptionLabel={(option) => (
+              <Flex align='center' gap={2}>
+                {option.title}
+                <Box fontSize='sm' color='texts.subtle'>
+                  <Icon as={LuUsers} />
+                  {option.membersCount}
+                </Box>
+              </Flex>
+            )}
+            getOptionValue={(option) => option.id}
+            value={selectedGroup}
+            onChange={(option) => setSelectedGroup(option)}
+          />
+
+          {selectedGroup && (
+            <Text fontSize='sm' color='texts.subtle'>
+              {t('members_table.add_to_group_confirmation', {
+                defaultValue: 'You will add {{count}} members to the "{{group}}" group.',
+                count: selectedRows.length,
+                group: selectedGroup.title,
+              })}
+            </Text>
+          )}
+
+          <Button
+            onClick={handleAddToGroup}
+            mt={2}
+            width='100%'
+            colorScheme='black'
+            isDisabled={!selectedGroup || selectedRows.length === 0}
+          >
+            {t('members_table.add_to_group_button', {
+              defaultValue: 'Add {{count}} member',
+              count: selectedRows.length,
+            })}
+          </Button>
+        </DrawerBody>
+      </DrawerContent>
+    </Drawer>
+  )
+}
+
+const MemberActions = ({ member, onDelete, onAddToGroup }: MemberActionsProps) => {
   const { t } = useTranslation()
 
   return (
-    <Menu placement='bottom-end'>
-      <MenuButton as={IconButton} icon={<LuEllipsis />} variant='ghost' size='sm' />
-      <MenuList minW='120px'>
-        <MemberManager
-          member={member}
-          control={<MenuItem>{t('members_table.edit', { defaultValue: 'Edit' })}</MenuItem>}
-        />
-        <MenuDivider />
-        <MenuItem color='red.400' onClick={onDelete}>
-          {t('members_table.delete', { defaultValue: 'Delete' })}
-        </MenuItem>
-      </MenuList>
-    </Menu>
+    <>
+      <Menu placement='bottom-end'>
+        <MenuButton as={IconButton} icon={<LuEllipsis />} variant='ghost' size='sm' />
+        <MenuList minW='120px'>
+          <MemberManager
+            member={member}
+            control={<MenuItem>{t('members_table.edit', { defaultValue: 'Edit' })}</MenuItem>}
+          />
+          <MenuItem onClick={onAddToGroup}>
+            {t('members_table.add_to_group', { defaultValue: 'Add to Group' })}
+          </MenuItem>
+          <MenuDivider />
+          <MenuItem color='red.400' onClick={onDelete}>
+            {t('members_table.delete', { defaultValue: 'Delete' })}
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    </>
   )
 }
 
@@ -161,7 +283,7 @@ const ColumnManager = () => {
   )
 }
 
-const MemberFilters = ({ onDelete }) => {
+const MemberFilters = ({ onDelete }: MemberFiltersProps) => {
   const { t } = useTranslation()
   const { search, setSearch, submitSearch } = useOutletContext<MemberbaseTabsContext>()
   const { data } = usePaginatedMembers({ showAll: true })
@@ -340,7 +462,7 @@ const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
   )
 }
 
-const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
+const MemberBulkActions = ({ onDelete, onAddToGroup }: MemberBulkActionsProps) => {
   const { t } = useTranslation()
   const { selectedRows } = useTable()
 
@@ -357,7 +479,16 @@ const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
             />
           </Text>
           <CreateGroupButton>{t('members_table.create_group', { defaultValue: 'Create group' })}</CreateGroupButton>
-          <Button leftIcon={<Icon as={LuTrash2} />} size='sm' colorScheme='red' variant='outline' onClick={onDelete}>
+          <Button onClick={() => onAddToGroup()}>
+            {t('members_table.add_to_group', { defaultValue: 'Add to group' })}
+          </Button>
+          <Button
+            leftIcon={<Icon as={LuTrash2} />}
+            size='sm'
+            colorScheme='red'
+            variant='outline'
+            onClick={() => onDelete()}
+          >
             {t('members_table.bulk_delete', { defaultValue: 'Delete' })}
           </Button>
         </>
@@ -370,7 +501,7 @@ const MemberBulkActions = ({ onDelete }: MemberBulkActionsProps) => {
   )
 }
 
-const MembersList = ({ openDeleteSelected }) => {
+const MembersList = ({ openDeleteSelected, onAddToGroup }: MembersListProps) => {
   const { data = [], isLoading, isFetching } = useTable()
   const isLoadingOrImporting = isLoading || isFetching
   const isEmpty = data.length === 0 && !isLoadingOrImporting
@@ -380,7 +511,12 @@ const MembersList = ({ openDeleteSelected }) => {
         <EmptyMembers />
       ) : (
         data.map((member) => (
-          <MemberTableItem key={member.id} member={member} openDeleteSelected={() => openDeleteSelected(member)} />
+          <MemberTableItem
+            key={member.id}
+            member={member}
+            openDeleteSelected={() => openDeleteSelected(member)}
+            onAddToGroup={() => onAddToGroup(member)}
+          />
         ))
       )}
     </Tbody>
@@ -410,7 +546,7 @@ const EmptyMembers = () => {
   )
 }
 
-const MemberTableItem = ({ member, openDeleteSelected }) => {
+const MemberTableItem = ({ member, openDeleteSelected, onAddToGroup }: MemberTableItemProps) => {
   const { isSelected, toggleOne, columns } = useTable()
 
   return (
@@ -424,7 +560,7 @@ const MemberTableItem = ({ member, openDeleteSelected }) => {
           <Td key={column.id}>{maskIfNeeded(column.id, member[column.id])}</Td>
         ))}
       <Td>
-        <MemberActions member={member} onDelete={() => openDeleteSelected(member)} />
+        <MemberActions member={member} onDelete={openDeleteSelected} onAddToGroup={onAddToGroup} />
       </Td>
     </Tr>
   )
@@ -518,13 +654,26 @@ const MembersTable = () => {
   const { t } = useTranslation()
   const [deleteMode, setDeleteMode] = useState<DeleteModes>(DeleteModes.SELECTED)
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { isLoading, isFetching, allVisibleSelected, someSelected, toggleAll, toggleOne, columns } = useTable()
+  const { isOpen: isAddToGroupOpen, onOpen: onOpenAddToGroup, onClose: onAddToGroupClose } = useDisclosure()
+  const { isLoading, isFetching, allVisibleSelected, someSelected, resetSelectedRows, toggleAll, toggleOne, columns } =
+    useTable()
   const isLoadingOrImporting = isLoading || isFetching
 
-  const openDeleteSelected = (member?) => {
+  const openDeleteSelected = (member?: Member) => {
     setDeleteMode(DeleteModes.SELECTED)
-    if (member) toggleOne(member.id, true)
+    if (member) {
+      resetSelectedRows()
+      toggleOne(member.id, true)
+    }
     onOpen()
+  }
+
+  const openAddToGroup = (member?: Member) => {
+    if (member) {
+      resetSelectedRows()
+      toggleOne(member.id, true)
+    }
+    onOpenAddToGroup()
   }
 
   const openDeleteAll = () => {
@@ -539,7 +688,7 @@ const MembersTable = () => {
         <Flex direction={{ base: 'column', xl: 'row' }} px={4} pt={4}>
           <Flex direction='column' flex={1} gap={2}>
             <MemberFilters onDelete={openDeleteAll} />
-            <MemberBulkActions onDelete={openDeleteSelected} />
+            <MemberBulkActions onDelete={openDeleteSelected} onAddToGroup={openAddToGroup} />
           </Flex>
           <Flex gap={2}>
             <ImportMembers />
@@ -575,7 +724,7 @@ const MembersTable = () => {
                 </Th>
               </Tr>
             </Thead>
-            <MembersList openDeleteSelected={openDeleteSelected} />
+            <MembersList openDeleteSelected={openDeleteSelected} onAddToGroup={openAddToGroup} />
           </Table>
         </TableContainer>
         <Box p={4}>
@@ -583,6 +732,7 @@ const MembersTable = () => {
         </Box>
       </Box>
       <DeleteMemberModal isOpen={isOpen} onClose={onClose} mode={deleteMode} />
+      <AddMembersToGroupDrawer isOpen={isAddToGroupOpen} onClose={onAddToGroupClose} />
     </>
   )
 }
