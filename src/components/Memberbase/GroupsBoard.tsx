@@ -5,6 +5,7 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Checkbox,
   CloseButton,
   Divider,
   Drawer,
@@ -45,7 +46,7 @@ import { DashboardBox } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
 import { PaginatedTableFooter } from '~components/shared/Pagination/PaginatedTableFooter'
 import { Routes } from '~routes'
-import { Group, useDeleteGroup, useGroupMembers, useGroups } from '~src/queries/groups'
+import { Group, useDeleteGroup, useGroupMembers, useGroups, useUpdateGroup } from '~src/queries/groups'
 import { TableProvider, useTable } from './TableProvider'
 
 type GroupActionsProps = {
@@ -212,10 +213,27 @@ const GroupActions = ({ group, onMembersDrawerOpen, onDeleteModalOpen }: GroupAc
   )
 }
 
-const GroupMembersTable = () => {
+const GroupMembersTable = ({ groupId }: { groupId: string }) => {
   const { t } = useTranslation()
-  const { data, isLoading, columns } = useTable()
+  const deleteGroupMembers = useUpdateGroup()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {
+    data,
+    isLoading,
+    columns,
+    selectedRows,
+    resetSelectedRows,
+    allVisibleSelected,
+    isSelected,
+    someSelected,
+    toggleAll,
+    toggleOne,
+  } = useTable()
   const isEmpty = data.length === 0 && !isLoading
+
+  const onDeleteMember = (memberIds: string[]) => {
+    deleteGroupMembers.mutate({ groupId: groupId, body: { removeMembers: memberIds } })
+  }
 
   return (
     <>
@@ -234,6 +252,13 @@ const GroupMembersTable = () => {
             <Table>
               <Thead>
                 <Tr>
+                  <Th width='50px'>
+                    <Checkbox
+                      isChecked={allVisibleSelected}
+                      isIndeterminate={someSelected && !allVisibleSelected}
+                      onChange={(e) => toggleAll(e.target.checked)}
+                    />
+                  </Th>
                   {columns.map((col) => (
                     <Th key={col.id}>{col.label}</Th>
                   ))}
@@ -242,9 +267,27 @@ const GroupMembersTable = () => {
               <Tbody>
                 {data.map((member) => (
                   <Tr key={member.id}>
+                    <Td>
+                      <Checkbox
+                        isChecked={isSelected(member.id)}
+                        onChange={(e) => toggleOne(member.id, e.target.checked)}
+                      />
+                    </Td>
                     {columns.map((column) => (
                       <Td key={column.id}>{member[column.id]}</Td>
                     ))}
+                    <Td>
+                      <IconButton
+                        onClick={() => {
+                          onOpen()
+                          resetSelectedRows()
+                          toggleOne(member.id, true)
+                        }}
+                        aria-label={t('actions.delete', { defaultValue: 'Delete' })}
+                        icon={<Icon as={LuTrash} />}
+                        colorScheme='red'
+                      />
+                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -255,6 +298,29 @@ const GroupMembersTable = () => {
           </>
         )}
       </TableContainer>
+      <DeleteModal
+        title={t('memberbase.delete_member.title', { defaultValue: 'Delete Members' })}
+        subtitle={'test'}
+        isOpen={isOpen}
+        onClose={onClose}
+      >
+        <Flex justifyContent='flex-end' mt={4} gap={2}>
+          <Button variant='outline' onClick={onClose}>
+            {t('memberbase.delete_member.cancel', { defaultValue: 'Cancel' })}
+          </Button>
+          <Button
+            isLoading={deleteGroupMembers.isPending}
+            colorScheme='red'
+            onClick={() => {
+              onDeleteMember(selectedRows.map((row) => row.id))
+              onClose()
+              resetSelectedRows()
+            }}
+          >
+            {t('memberbase.delete_member.delete', { defaultValue: 'Delete' })}
+          </Button>
+        </Flex>
+      </DeleteModal>
     </>
   )
 }
@@ -367,7 +433,7 @@ const GroupMembersWithPagination = ({ group, isOpen }: GroupMembersProps) => {
         { id: 'email', label: t('group.members.email', { defaultValue: 'Email' }) },
       ]}
     >
-      <GroupMembersTable />
+      <GroupMembersTable groupId={group.id} />
     </TableProvider>
   )
 }
