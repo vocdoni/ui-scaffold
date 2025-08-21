@@ -43,7 +43,7 @@ import { useOrganization } from '@vocdoni/react-providers'
 import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuEllipsis, LuPlus, LuSearch, LuSettings, LuTrash2, LuUsers, LuX } from 'react-icons/lu'
+import { LuEllipsis, LuPlus, LuSearch, LuSettings, LuTrash2, LuUserPlus, LuUsers, LuX } from 'react-icons/lu'
 import { generatePath, useNavigate, useOutletContext } from 'react-router-dom'
 import InputBasic from '~components/shared/Form/InputBasic'
 import { Select } from '~components/shared/Form/Select'
@@ -479,8 +479,8 @@ const MemberBulkActions = ({ onDelete, onAddToGroup }: MemberBulkActionsProps) =
             />
           </Text>
           <CreateGroupButton>{t('members_table.create_group', { defaultValue: 'Create group' })}</CreateGroupButton>
-          <Button onClick={() => onAddToGroup()}>
-            {t('members_table.add_to_group', { defaultValue: 'Add to group' })}
+          <Button leftIcon={<Icon as={LuUserPlus} />} size='sm' variant='outline' onClick={() => onAddToGroup()}>
+            {t('members_table.add_to_group', { defaultValue: 'Add to Group' })}
           </Button>
           <Button
             leftIcon={<Icon as={LuTrash2} />}
