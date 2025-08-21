@@ -63,7 +63,7 @@ export function TableProvider({
   const isSelected = (id: string) => selectedRows.some((row) => row.id === id)
 
   const allVisibleSelected = data.length && data.every((item) => isSelected(item.id))
-  const someSelected = selectedRows.length && !allVisibleSelected
+  const someSelected = selectedRows.length > 0 && !allVisibleSelected
 
   const toggleAll = (checked: boolean) => {
     if (checked) {
