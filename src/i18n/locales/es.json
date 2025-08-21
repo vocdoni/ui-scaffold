@@ -205,6 +205,7 @@
   "close": "Cerrar",
   "color_mode_switcher": "Color mode switcher",
   "common": {
+    "back": "Back",
     "cancel": "Back",
     "confirm": "Confirm",
     "disable": "Disable",
@@ -266,6 +267,15 @@
     "subtitle": "Here's an overview of your organization's voting activities",
     "title": "Here's an overview of your organization's voting activities"
   },
+  "delete": {
+    "cancel_button": "Cancel",
+    "confirm_description": "To delete your account, please contact our support team via email.",
+    "confirm_title": "Delete Your Account",
+    "copy_email": "Copy support email",
+    "delete_subtitle": "Permanently delete your account and all associated data",
+    "delete_title": "Delete Account"
+  },
+  "delete_my_account": "Delete my account",
   "description": "Description",
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
@@ -373,8 +383,8 @@
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
       "email_invalid": "Correo electrónico incorrecto",
       "field_is_required": "Este campo es obligatorio",
-      "max_greater_than_min": "Max must be greater than or equal to Min",
       "invalid_youtube_url": "Por favor, ingresa una URL válida de YouTube",
+      "max_greater_than_min": "Max must be greater than or equal to Min",
       "password_min_length": "Min. 8 caracteres",
       "recipient_address_invalid": "La dirección especificada no parece válida",
       "required": "This field is required"
@@ -480,6 +490,12 @@
     "create_vote": "Create a Vote",
     "created_on": "Created {{date}}",
     "delete_group": "Delete group",
+    "delete_member": {
+      "subtitle_one": "Are you sure you want to delete {{count}} member?",
+      "subtitle_many": "Are you sure you want to delete {{count}} members?",
+      "subtitle_other": "Are you sure you want to delete {{count}} members?",
+      "title": "Delete Members"
+    },
     "members": {
       "email": "Email",
       "name": "Name"
@@ -889,6 +905,7 @@
     "description": "Your member data is being imported. This may take a few minutes depending on the size of your file.",
     "error_description": "An error occurred while importing your member data. Please try again later.",
     "error_title": "Import Error",
+    "has_errors_description": "An error occurred while importing your member data. Please try again later.",
     "note": "You can safely close this page. An email will be sent to you upon completion.",
     "success_description": "Your member data has been imported successfully.",
     "success_note": "You may now start using your imported members.",
@@ -1025,8 +1042,18 @@
     "title": "Memberbase"
   },
   "members_table": {
+    "add_to_group": "Add to group",
+    "add_to_group_button_one": "Add {{count}} member",
+    "add_to_group_button_many": "Add {{count}} member",
+    "add_to_group_button_other": "Add {{count}} member",
+    "add_to_group_confirmation_one": "You will add {{count}} members to the \"{{group}}\" group.",
+    "add_to_group_confirmation_many": "You will add {{count}} members to the \"{{group}}\" group.",
+    "add_to_group_confirmation_other": "You will add {{count}} members to the \"{{group}}\" group.",
+    "add_to_group_description": "Select a group to add the members to.",
+    "add_to_group_success": "Members added to group successfully",
     "bulk_delete": "Delete",
     "cancel": "Cancel",
+    "close_drawer": "Close",
     "create_group": "Create group",
     "create_group_all": "Create Group (All)",
     "create_group_error": "Error creating group",
@@ -1050,10 +1077,11 @@
     "remaining_members_one": "+{{count}} more",
     "remaining_members_many": "+{{count}} more",
     "remaining_members_other": "+{{count}} more",
+    "select_group": "Select group",
     "select_hint": "Select members to perform bulk actions",
     "selected_one": "Selected: <strong>{{count}} member</strong>",
     "selected_many": "Selected: <strong>{{count}} member</strong>",
-    "selected_other": "Selected: <strong>{{count}} member</strong>",
+    "selected_other": "Selected: <strong>{{count}} members</strong>",
     "toggle_column": ""
   },
   "membership_size": {
@@ -1300,6 +1328,7 @@
         "message": "You have unsaved changes. Are you sure you want to leave?",
         "reset": "Reset",
         "reset_message": "This will reset the form. Do you want to continue?",
+        "save_and_leave": "Save and leave",
         "title": "Unsaved Changes"
       },
       "question": {
@@ -1428,7 +1457,9 @@
         "q1": {
           "option_1": "Project C",
           "option_1_desc": "Description of Project A",
+          "option_2": "Project B",
           "option_2_desc": "Description of Project B",
+          "option_3": "Project C",
           "option_3_desc": "Description of Project C"
         },
         "title": "Participatory Budgeting Cards"
@@ -1562,6 +1593,7 @@
       "anonymous": "Anonymous"
     },
     "youtube": {
+      "accordion_title": "Attach video (optional)",
       "title": "Video en vivo"
     }
   },

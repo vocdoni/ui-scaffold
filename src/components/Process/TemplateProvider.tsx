@@ -91,14 +91,14 @@ export const TemplateProvider = ({ children }) => {
               budget: 1000,
             },
             {
-              option: t('process.template.participatory_budgeting.q1.option_1', { defaultValue: 'Project B' }),
+              option: t('process.template.participatory_budgeting.q1.option_2', { defaultValue: 'Project B' }),
               description: t('process.template.participatory_budgeting.q1.option_2_desc', {
                 defaultValue: 'Description of Project B',
               }),
               budget: 2000,
             },
             {
-              option: t('process.template.participatory_budgeting.q1.option_1', { defaultValue: 'Project C' }),
+              option: t('process.template.participatory_budgeting.q1.option_3', { defaultValue: 'Project C' }),
               description: t('process.template.participatory_budgeting.q1.option_3_desc', {
                 defaultValue: 'Description of Project C',
               }),
