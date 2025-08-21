@@ -237,6 +237,27 @@ const GroupMembersTable = ({ groupId }: { groupId: string }) => {
 
   return (
     <>
+      <Flex gap={4} align='center' minH='42px' mb={2}>
+        {selectedRows.length > 0 ? (
+          <>
+            <Text fontSize='sm' color='texts.subtle'>
+              <Trans
+                i18nKey='members_table.selected'
+                count={selectedRows.length}
+                components={{ strong: <Text as='span' fontSize='sm' fontWeight='extrabold' display='inline' /> }}
+                defaults='Selected: <strong>{{count}} member</strong>'
+              />
+            </Text>
+            <Button leftIcon={<Icon as={LuTrash} />} onClick={onOpen} size='sm' colorScheme='red' variant='outline'>
+              {t('members_table.bulk_delete', { defaultValue: 'Delete' })}
+            </Button>
+          </>
+        ) : (
+          <Text fontSize='sm' color='texts.subtle'>
+            <Trans i18nKey='members_table.select_hint' defaults='Select members to perform bulk actions' />
+          </Text>
+        )}
+      </Flex>
       <TableContainer border='1px' borderRadius='sm' borderColor='table.border' overflowX='visible' overflowY='visible'>
         {isEmpty ? (
           <Flex justify='center' align='center' height='200px'>
@@ -276,18 +297,6 @@ const GroupMembersTable = ({ groupId }: { groupId: string }) => {
                     {columns.map((column) => (
                       <Td key={column.id}>{member[column.id]}</Td>
                     ))}
-                    <Td>
-                      <IconButton
-                        onClick={() => {
-                          onOpen()
-                          resetSelectedRows()
-                          toggleOne(member.id, true)
-                        }}
-                        aria-label={t('actions.delete', { defaultValue: 'Delete' })}
-                        icon={<Icon as={LuTrash} />}
-                        colorScheme='red'
-                      />
-                    </Td>
                   </Tr>
                 ))}
               </Tbody>
@@ -299,8 +308,11 @@ const GroupMembersTable = ({ groupId }: { groupId: string }) => {
         )}
       </TableContainer>
       <DeleteModal
-        title={t('memberbase.delete_member.title', { defaultValue: 'Delete Members' })}
-        subtitle={'test'}
+        title={t('group.delete_member.title', { defaultValue: 'Delete Members' })}
+        subtitle={t('group.delete_member.subtitle', {
+          defaultValue: 'Are you sure you want to delete {{count}} members?',
+          count: selectedRows.length,
+        })}
         isOpen={isOpen}
         onClose={onClose}
       >
