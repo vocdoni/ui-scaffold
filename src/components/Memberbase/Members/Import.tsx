@@ -184,7 +184,7 @@ export const ImportProgress = () => {
       return (
         <>
           <Text>
-            {t('import_progress.error_description', {
+            {t('import_progress.has_errors_description', {
               defaultValue: 'An error occurred while importing your member data. Please try again later.',
             })}
           </Text>

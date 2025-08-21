@@ -534,7 +534,7 @@ export const VoterAuthentication = () => {
               <ModalFooter>
                 <Flex justify='space-between' w='full'>
                   <Button variant='outline' onClick={handlePrevious}>
-                    {t('common.cancel', 'Back')}
+                    {t('common.back', 'Back')}
                   </Button>
                   <Button colorScheme='black' onClick={handleNext}>
                     {activeTabIndex === 2 ? t('common.confirm', 'Confirm') : t('common.next', 'Next')}
