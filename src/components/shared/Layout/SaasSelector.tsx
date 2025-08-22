@@ -3,7 +3,7 @@ import { Props as SelectProps, chakraComponents } from 'chakra-react-select'
 import { Controller, type ControllerProps, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuEye, LuKey, LuUserRoundCog, LuUsers } from 'react-icons/lu'
-import { useOrganizationTypes, useRoles } from '~src/queries/organization'
+import { Role, useOrganizationTypes, useRoles } from '~src/queries/organization'
 import { Select } from '../Form/Select'
 
 export type SelectOptionType = {
@@ -12,7 +12,8 @@ export type SelectOptionType = {
 }
 
 export type RoleOptionType = SelectOptionType & {
-  writePermission: boolean
+  organizationWritePermission: boolean
+  processWritePermission: boolean
 }
 
 export type SelectCustomProps = {
@@ -156,9 +157,18 @@ export const createRoleDisplay = (type: 'Option' | 'SingleValue') => {
   return (props: any) => {
     const { t } = useTranslation()
     const { data } = props
-    const accessLabel = data.writePermission
-      ? t('role.full_access', { defaultValue: '(Full access)' })
-      : t('role.read_only', { defaultValue: '(Read-only)' })
+    const hasOrgPermission = data.organizationWritePermission
+    const hasProcessPermission = data.processWritePermission
+
+    let accessLabel: string
+
+    if (hasOrgPermission && hasProcessPermission) {
+      accessLabel = t('role.full_access', { defaultValue: '(Full access)' })
+    } else if (hasOrgPermission || hasProcessPermission) {
+      accessLabel = t('role.manage_members_votes', { defaultValue: '(Manage members & votes)' })
+    } else {
+      accessLabel = t('role.read_only', { defaultValue: '(Read-only)' })
+    }
     const icon = roleIcons[data.value]
 
     return (
@@ -181,10 +191,11 @@ export const RoleSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) =
   const { t } = useTranslation()
   const { data = [], isLoading: rolesLoading, isError: rolesError, error: rolesFetchError } = useRoles()
 
-  const roles: SelectOptionType[] = data.map((role: any) => ({
+  const roles: RoleOptionType[] = data.map((role: Role) => ({
     label: role.name,
     value: role.role,
-    writePermission: role.writePermission,
+    organizationWritePermission: role.organizationWritePermission,
+    processWritePermission: role.processWritePermission,
   }))
   const defaultVal = roles.find((role: RoleOptionType) => role.value === 'viewer')
 
