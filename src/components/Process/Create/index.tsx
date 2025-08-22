@@ -43,7 +43,7 @@ import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-fo
 import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import ReactPlayer from 'react-player'
-import { createPath, generatePath, useBlocker, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { createPath, generatePath, useBlocker, useNavigate, useParams } from 'react-router-dom'
 import Editor from '~components/Editor'
 import { CensusSpreadsheetManager } from '~components/Process/Census/Spreadsheet/CensusSpreadsheetManager'
 import { Web3Address } from '~components/Process/Census/Web3'
@@ -56,6 +56,23 @@ import { useProcessTemplates } from '../TemplateProvider'
 import { Questions } from './MainContent/Questions'
 import { CreateSidebar } from './Sidebar'
 import { CensusTypes } from './Sidebar/CensusCreation'
+
+type ConfirmOnNavigateOptions = {
+  isDirty: boolean
+  isSubmitting?: boolean
+  isSubmitSuccessful?: boolean
+  onOpen: () => void
+  onClose: () => void
+}
+
+type LeaveConfirmationModalProps = {
+  isOpen: boolean
+  onCancel: () => void
+  onLeave: () => void
+  onResetSamePath: () => void
+  onSaveAndLeave: () => void
+  isSamePath: boolean
+}
 
 export interface Option {
   option: string
@@ -201,6 +218,76 @@ const TemplateConfigs: Record<TemplateTypes, TemplateConfig> = {
       },
     ],
   },
+}
+
+export const useConfirmOnNavigate = ({
+  isDirty,
+  isSubmitting,
+  isSubmitSuccessful,
+  onOpen,
+  onClose,
+}: ConfirmOnNavigateOptions) => {
+  const shouldBlock = isDirty && !isSubmitting && !isSubmitSuccessful
+  const blocker = useBlocker(shouldBlock)
+
+  const isOpenRef = useRef(false)
+  const isProceedingRef = useRef(false)
+
+  const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`
+  const nextPath = blocker.location ? createPath(blocker.location) : null
+  const isSamePath = nextPath === currentPath
+
+  useEffect(() => {
+    if (!shouldBlock) {
+      if (isOpenRef.current) {
+        isOpenRef.current = false
+        onClose()
+      }
+      if (blocker.state === 'blocked') {
+        blocker.reset()
+      }
+      return
+    }
+
+    if (blocker.state === 'blocked' && !isOpenRef.current && !isProceedingRef.current) {
+      isOpenRef.current = true
+      onOpen()
+    }
+
+    if (blocker.state === 'unblocked' && isOpenRef.current) {
+      isOpenRef.current = false
+      onClose()
+    }
+  }, [blocker.state, shouldBlock, onOpen, onClose])
+
+  const closeAll = () => {
+    isProceedingRef.current = false
+    isOpenRef.current = false
+    onClose()
+  }
+
+  const cancel = () => {
+    closeAll()
+    blocker.reset()
+  }
+
+  const proceed = () => {
+    isProceedingRef.current = true
+    closeAll()
+    blocker.proceed()
+
+    setTimeout(() => {
+      isProceedingRef.current = false
+      blocker.reset()
+    }, 0)
+  }
+
+  const resetSamePath = (cb?: () => void) => {
+    cb?.()
+    cancel()
+  }
+
+  return { isSamePath, cancel, proceed, resetSamePath }
 }
 
 export const useSafeReset = (externalReset?) => {
@@ -452,57 +539,15 @@ const TemplateButtons = () => {
   )
 }
 
-const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => {
+const LeaveConfirmationModal = ({
+  isOpen,
+  onCancel,
+  onLeave,
+  onResetSamePath,
+  onSaveAndLeave,
+  isSamePath,
+}: LeaveConfirmationModalProps) => {
   const { t } = useTranslation()
-  const reset = useSafeReset()
-  const location = useLocation()
-  const { getValues } = useFormContext()
-  const [_, storeFormDraft] = useLocalStorage('form-draft', null)
-
-  const currentPath = createPath(location)
-  const nextPath = blocker?.location ? createPath(blocker.location) : null
-  const isSamePath = currentPath === nextPath
-
-  const onCloseHandler = () => {
-    blocker.reset()
-    onClose()
-  }
-
-  const handleLeave = (options: { saveDraft?: boolean } = {}) => {
-    if (!blocker?.location) {
-      blocker.reset()
-      onClose()
-      return
-    }
-
-    if (isSamePath) {
-      if (!options.saveDraft) reset()
-      if (options.saveDraft) {
-        const form = getValues()
-        storeFormDraft(form)
-      } else {
-        storeFormDraft(null)
-      }
-      blocker.reset()
-      onClose()
-      return
-    }
-
-    if (options.saveDraft) {
-      const form = getValues()
-      storeFormDraft(form)
-    } else {
-      storeFormDraft(null)
-    }
-
-    if (blocker.state === 'blocked') {
-      blocker.proceed()
-    } else {
-      blocker.reset()
-    }
-
-    onClose()
-  }
 
   return (
     <DeleteModal
@@ -517,22 +562,27 @@ const LeaveConfirmationModal = ({ blocker, isOpen, onClose, ...modalProps }) => 
             })
       }
       isOpen={isOpen}
-      onClose={onClose}
-      {...modalProps}
+      onClose={onCancel}
     >
       <Flex justifyContent='flex-end' mt={4} gap={2}>
-        <Button variant='outline' onClick={onCloseHandler}>
+        <Button variant='outline' onClick={onCancel}>
           {t('process.create.leave_confirmation.cancel', { defaultValue: 'Cancel' })}
         </Button>
         <Spacer />
-        <Button colorScheme='red' onClick={() => handleLeave({ saveDraft: false })}>
-          {isSamePath
-            ? t('process.create.leave_confirmation.reset', { defaultValue: 'Reset' })
-            : t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
-        </Button>
-        <Button colorScheme='black' onClick={() => handleLeave({ saveDraft: true })}>
-          {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save and leave' })}
-        </Button>
+        {isSamePath ? (
+          <Button colorScheme='red' onClick={() => onResetSamePath()}>
+            {t('process.create.leave_confirmation.reset', { defaultValue: 'Reset' })}
+          </Button>
+        ) : (
+          <>
+            <Button colorScheme='red' onClick={onLeave}>
+              {t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
+            </Button>
+            <Button colorScheme='black' onClick={onSaveAndLeave}>
+              {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save and leave' })}
+            </Button>
+          </>
+        )}
       </Flex>
     </DeleteModal>
   )
@@ -581,14 +631,11 @@ export const ProcessCreate = () => {
   const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
   const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
   const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
-  const { client, account, fetchAccount } = useClient()
+  const { client } = useClient()
   const { isSubmitting, isSubmitSuccessful, isDirty, errors } = methods.formState
-  const blocker = useBlocker(isDirty)
   const { setStepDoneAsync } = useOrganizationSetup()
-  const description = methods.watch('description')
   const streamUri = methods.watch('streamUri')
 
-  // Trigger confirmation modal when form is dirty and user tries to navigate away
   useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
 
   // Apply form draft if it exists
@@ -601,25 +648,32 @@ export const ProcessCreate = () => {
     setFormDraftLoaded(true)
   }, [])
 
-  // Trigger confirmation modal when form is dirty and user tries to navigate away
-  useEffect(() => {
-    const isBlocked = blocker.state === 'blocked'
-
-    if (!isBlocked) return
-
-    if (isSubmitting || isSubmitSuccessful) {
-      blocker.proceed()
-      return
-    }
-
-    openConfirmationModal()
-  }, [blocker.state, isSubmitting, isSubmitSuccessful])
+  // Confirm navigation if form is dirty
+  const { isSamePath, cancel, proceed, resetSamePath } = useConfirmOnNavigate({
+    isDirty,
+    isSubmitting,
+    isSubmitSuccessful,
+    onOpen: openConfirmationModal,
+    onClose,
+  })
 
   const resetForm = () => {
     setActiveTemplate(null)
     reset()
     storeFormDraft(null)
     onResetFormModalClose()
+  }
+
+  const handleLeaveWithoutSaving = () => {
+    storeFormDraft(null)
+    reset()
+    proceed()
+  }
+
+  const handleSaveAndLeave = () => {
+    const form = methods.getValues()
+    storeFormDraft(form)
+    proceed()
   }
 
   const onSubmit = async (form) => {
@@ -847,7 +901,14 @@ export const ProcessCreate = () => {
 
         <CreateSidebar show={showSidebar} onClose={() => setShowSidebar(false)} />
       </DashboardContents>
-      <LeaveConfirmationModal blocker={blocker} isOpen={isOpen} onClose={onClose} />
+      <LeaveConfirmationModal
+        isOpen={isOpen}
+        onCancel={cancel}
+        onLeave={handleLeaveWithoutSaving}
+        onResetSamePath={() => resetSamePath(() => reset())}
+        onSaveAndLeave={handleSaveAndLeave}
+        isSamePath={isSamePath}
+      />
       <ResetFormModal isOpen={isResetFormModalOpen} onClose={onResetFormModalClose} onReset={resetForm} />
     </FormProvider>
   )
