@@ -68,7 +68,7 @@ type ConfirmOnNavigateOptions = {
 type LeaveConfirmationModalProps = {
   isOpen: boolean
   onCancel: () => void
-  onProceed: () => void
+  onLeave: () => void
   onResetSamePath: () => void
   onSaveAndLeave: () => void
   isSamePath: boolean
@@ -275,7 +275,7 @@ export const useConfirmOnNavigate = ({
     isProceedingRef.current = true
     closeAll()
     blocker.proceed()
-    // limpieza defensiva en el siguiente tick
+
     setTimeout(() => {
       isProceedingRef.current = false
       blocker.reset()
@@ -542,7 +542,7 @@ const TemplateButtons = () => {
 const LeaveConfirmationModal = ({
   isOpen,
   onCancel,
-  onProceed,
+  onLeave,
   onResetSamePath,
   onSaveAndLeave,
   isSamePath,
@@ -575,7 +575,7 @@ const LeaveConfirmationModal = ({
           </Button>
         ) : (
           <>
-            <Button colorScheme='red' onClick={onProceed}>
+            <Button colorScheme='red' onClick={onLeave}>
               {t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
             </Button>
             <Button colorScheme='black' onClick={onSaveAndLeave}>
@@ -662,6 +662,12 @@ export const ProcessCreate = () => {
     reset()
     storeFormDraft(null)
     onResetFormModalClose()
+  }
+
+  const handleLeaveWithoutSaving = () => {
+    storeFormDraft(null)
+    reset()
+    proceed()
   }
 
   const handleSaveAndLeave = () => {
@@ -898,7 +904,7 @@ export const ProcessCreate = () => {
       <LeaveConfirmationModal
         isOpen={isOpen}
         onCancel={cancel}
-        onProceed={proceed}
+        onLeave={handleLeaveWithoutSaving}
         onResetSamePath={() => resetSamePath(() => reset())}
         onSaveAndLeave={handleSaveAndLeave}
         isSamePath={isSamePath}
