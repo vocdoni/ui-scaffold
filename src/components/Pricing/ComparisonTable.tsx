@@ -27,7 +27,7 @@ const ComparisonSectionTable = ({ titleKey, plans, features, category, idx }: Co
           <Thead>
             <Tr>
               <Th>
-                <Text as={'span'} color='comparsions_table_title'>
+                <Text as={'span'} color='comparisons_table_title'>
                   <Trans i18nKey={titleKey} />
                 </Text>
               </Th>
