@@ -1633,6 +1633,14 @@
     "secret_until_end": "Awaiting results",
     "secret_until_end_tooltip": "Results are hidden and will only be available once voting ends"
   },
+  "results_type": {
+    "approval": "Per aprovació",
+    "budget": "Assignació Pressupostària",
+    "multiple_choice": "Vàries opcions",
+    "quadratic": "Quadràtica",
+    "single_choice_multiquestion": "Opció única",
+    "title": "Tipus de resultats"
+  },
   "role": {
     "full_access": "(Full access)",
     "read_only": "(Read-only)",
