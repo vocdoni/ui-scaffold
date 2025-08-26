@@ -1,6 +1,6 @@
 import { Locale } from 'date-fns'
 /**
- * If you add or remove any languages, remember to also update languges.mjs
+ * If you add or remove any languages, remember to also update languages.mjs
  */
 import ca from './ca.json'
 import en from './en.json'

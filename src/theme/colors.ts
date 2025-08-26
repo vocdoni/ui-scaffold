@@ -172,7 +172,7 @@ export const colors = {
       dark: 'gray.600',
     },
   },
-  comparsions_table_title: colorsBase.primary,
+  comparisons_table_title: colorsBase.primary,
   contents: {
     bg: {
       light: colorsBase.white.pure,
