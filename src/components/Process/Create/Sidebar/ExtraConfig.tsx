@@ -94,8 +94,6 @@ export const ExtraConfig = () => {
   } = useFormContext()
   const { required } = useValidations()
 
-  const streamUri = watch('streamUri')
-
   const resultVisibilityOptions: SelectOption[] = [
     { value: 'live', label: t('process_create.result_visibility.live', 'Live results') },
     { value: 'hidden', label: t('process_create.result_visibility.hidden', 'Hidden until the end') },

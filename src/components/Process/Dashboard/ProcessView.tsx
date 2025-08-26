@@ -32,7 +32,7 @@ import {
   ElectionTitle,
 } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
-import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { formatDate } from 'date-fns'
 import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -46,6 +46,7 @@ import {
   LuEye,
   LuInfo,
   LuPause,
+  LuRotateCw,
   LuSearch,
   LuSettings,
   LuShield,
@@ -89,7 +90,7 @@ export const ElectionVideo = forwardRef<BoxProps, 'div'>((props, ref) => {
 export const ProcessView = () => {
   const { t } = useTranslation()
   const [showSidebar, setShowSidebar] = useState(true)
-  const { id, election, participation } = useElection()
+  const { id, election } = useElection()
 
   const votingLink = `${document.location.origin}${generatePath(Routes.processes.view, { id })}`
   const { onCopy } = useClipboard(votingLink)
@@ -262,6 +263,17 @@ const ProcessViewSidebar = (props: SidebarProps) => {
   const { election, participation, client } = useElection()
   const { t } = useTranslation()
 
+  const resultTypesNames = {
+    [ElectionResultsTypeNames.APPROVAL]: t('results_type.approval', 'Approval'),
+    [ElectionResultsTypeNames.BUDGET]: t('results_type.budget', 'Budget allocation'),
+    [ElectionResultsTypeNames.MULTIPLE_CHOICE]: t('results_type.multiple_choice', 'Multiple choice'),
+    [ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION]: t(
+      'results_type.single_choice_multiquestion',
+      'Single choice'
+    ),
+    [ElectionResultsTypeNames.QUADRATIC]: t('results_type.quadratic', 'Quadratic voting'),
+  }
+
   return (
     <Sidebar {...props}>
       <SidebarContents borderBottom='1px solid' borderColor='table.border'>
@@ -344,6 +356,14 @@ const ProcessViewSidebar = (props: SidebarProps) => {
             <Trans i18nKey='voting_settings'>Voting settings</Trans>
           </SidebarSubtitle>
           <SettingsField
+            icon={LuVote}
+            text={t('results_type.title', 'Results type')}
+            subtext={
+              election instanceof PublishedElection &&
+              resultTypesNames[election.resultsType.name as ElectionResultsTypeNames]
+            }
+          />
+          <SettingsField
             icon={LuEye}
             text={t('result_visibility', 'Results visibility')}
             subtext={
@@ -364,7 +384,7 @@ const ProcessViewSidebar = (props: SidebarProps) => {
             }
           />
           <SettingsField
-            icon={LuVote}
+            icon={LuRotateCw}
             text={t('vote_overwrite', 'Vote overwrite')}
             subtext={
               election instanceof PublishedElection &&
