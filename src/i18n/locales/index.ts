@@ -7,8 +7,8 @@ import en from './en.json'
 import es from './es.json'
 
 // no need to import english here, since it's date-fns default language
-import { ca as dca } from 'date-fns/locale/ca'
-import { es as des } from 'date-fns/locale/es'
+import dca from 'date-fns/locale/ca'
+import des from 'date-fns/locale/es'
 
 export const translations: { [key: string]: any } = {
   ca,

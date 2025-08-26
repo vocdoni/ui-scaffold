@@ -1,8 +1,8 @@
-import { connectorsForWallets, Wallet } from '@rainbow-me/rainbowkit'
+import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
 import { coinbaseWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
 import { oAuthWallet, privateKeyWallet, saasOAuthWallet } from '@vocdoni/rainbowkit-wallets'
-import { configureChains, createConfig } from 'wagmi'
+import { createConfig, http } from 'wagmi'
 import {
   arbitrum,
   avalanche,
@@ -19,46 +19,37 @@ import {
   polygon,
   polygonMumbai,
   polygonZkEvm,
-  zkSync,
   zora,
 } from 'wagmi/chains'
-import { publicProvider } from 'wagmi/providers/public'
 import i18n from '~i18n'
 
-export const { chains, publicClient } = configureChains(
-  [
-    mainnet,
-    arbitrum,
-    avalanche,
-    base,
-    bsc,
-    eos,
-    fantom,
-    gnosis,
-    goerli,
-    hardhat,
-    localhost,
-    optimism,
-    polygon,
-    polygonMumbai,
-    polygonZkEvm,
-    zkSync,
-    zora,
-  ],
-  [publicProvider()]
-)
+// Define chains for the application
+const chains = [
+  mainnet,
+  arbitrum,
+  avalanche,
+  base,
+  bsc,
+  eos,
+  fantom,
+  gnosis,
+  goerli,
+  hardhat,
+  localhost,
+  optimism,
+  polygon,
+  polygonMumbai,
+  polygonZkEvm,
+  zora,
+] as const
+
+export { chains }
 
 const appName = 'Vocdoni UI Scaffold'
 const projectId = '641a1f59121ad0b519cca3a699877a08'
 
-type WalletGroup = {
-  groupName: string
-  wallets: Wallet[]
-}
-
 export const googleWallet = saasOAuthWallet({
   id: 'google',
-  chains,
   name: 'Google',
   iconUrl: 'https://authjs.dev/img/providers/google.svg',
   options: {
@@ -68,72 +59,83 @@ export const googleWallet = saasOAuthWallet({
   },
 })
 
-const featuredConnectors = () => {
-  const web3: WalletGroup = {
+const featuredConnectors = [
+  {
     groupName: 'Popular',
-    wallets: [
-      metaMaskWallet({ chains, projectId }),
-      rainbowWallet({ projectId, chains }),
-      coinbaseWallet({ chains, appName }),
-      walletConnectWallet({ chains, projectId }),
-    ],
-  }
-
-  const web2: WalletGroup = {
+    wallets: [metaMaskWallet, rainbowWallet, coinbaseWallet, walletConnectWallet],
+  },
+  {
     groupName: 'Social',
     wallets: [
-      oAuthWallet({
-        id: 'github',
-        chains,
-        name: 'Github',
-        iconUrl: 'https://authjs.dev/img/providers/github-dark.svg',
-        options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
-          oAuthServiceProvider: 'github',
-        },
-      }) as unknown as Wallet,
-      oAuthWallet({
-        id: 'google',
-        chains,
-        name: 'Google',
-        iconUrl: 'https://authjs.dev/img/providers/google.svg',
-        options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
-          oAuthServiceProvider: 'google',
-        },
-      }) as unknown as Wallet,
-      oAuthWallet({
-        id: 'facebook',
-        chains,
-        name: 'Facebook',
-        iconUrl: 'https://authjs.dev/img/providers/facebook.svg',
-        options: {
-          oAuthServiceUrl: 'https://oauth.vocdoni.io/',
-          oAuthServiceProvider: 'facebook',
-        },
-      }),
-      googleWallet,
+      () =>
+        oAuthWallet({
+          id: 'github',
+          name: 'Github',
+          iconUrl: 'https://authjs.dev/img/providers/github-dark.svg',
+          options: {
+            oAuthServiceUrl: 'https://oauth.vocdoni.io/',
+            oAuthServiceProvider: 'github',
+          },
+        }),
+      () =>
+        oAuthWallet({
+          id: 'google',
+          name: 'Google',
+          iconUrl: 'https://authjs.dev/img/providers/google.svg',
+          options: {
+            oAuthServiceUrl: 'https://oauth.vocdoni.io/',
+            oAuthServiceProvider: 'google',
+          },
+        }),
+      () =>
+        oAuthWallet({
+          id: 'facebook',
+          name: 'Facebook',
+          iconUrl: 'https://authjs.dev/img/providers/facebook.svg',
+          options: {
+            oAuthServiceUrl: 'https://oauth.vocdoni.io/',
+            oAuthServiceProvider: 'facebook',
+          },
+        }),
+      () => googleWallet,
     ],
-  }
-
-  const recovery: WalletGroup = {
+  },
+  {
     groupName: i18n.t('rainbow.group.recovery'),
     wallets: [
-      privateKeyWallet({
-        name: i18n.t('rainbow.recovery'),
-        iconUrl: 'https://www.svgrepo.com/show/525392/key-minimalistic-square-3.svg',
-        chains,
-      }),
+      () =>
+        privateKeyWallet({
+          name: i18n.t('rainbow.recovery'),
+          iconUrl: 'https://www.svgrepo.com/show/525392/key-minimalistic-square-3.svg',
+        }),
     ],
-  }
+  },
+]
 
-  return [web2, web3, recovery]
-}
-
-const connectors = connectorsForWallets(featuredConnectors())
+const connectors = connectorsForWallets(featuredConnectors, {
+  appName,
+  projectId,
+})
 
 export const wagmiConfig = createConfig({
-  autoConnect: true,
+  chains,
   connectors,
-  publicClient,
+  transports: {
+    [mainnet.id]: http(),
+    [arbitrum.id]: http(),
+    [avalanche.id]: http(),
+    [base.id]: http(),
+    [bsc.id]: http(),
+    [eos.id]: http(),
+    [fantom.id]: http(),
+    [gnosis.id]: http(),
+    [goerli.id]: http(),
+    [hardhat.id]: http(),
+    [localhost.id]: http(),
+    [optimism.id]: http(),
+    [polygon.id]: http(),
+    [polygonMumbai.id]: http(),
+    [polygonZkEvm.id]: http(),
+    [zora.id]: http(),
+  },
 })

@@ -1,7 +1,6 @@
 import { Alert, Box, Flex, FormControl, FormErrorMessage, FormLabel, Icon, Text } from '@chakra-ui/react'
 import { Props as SelectProps, chakraComponents } from 'chakra-react-select'
-import { Controller, useFormContext } from 'react-hook-form'
-import { ControllerProps } from 'react-hook-form/dist/types'
+import { Controller, type ControllerProps, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuEye, LuKey, LuUserRoundCog, LuUsers } from 'react-icons/lu'
 import { useOrganizationTypes, useRoles } from '~src/queries/organization'

@@ -1,6 +1,5 @@
 import { ChakraProvider, extendTheme, useColorMode } from '@chakra-ui/react'
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit'
-import { RainbowKitChain } from '@rainbow-me/rainbowkit/dist/components/RainbowKitProvider/RainbowKitChainContext'
 import { PropsWithChildren } from 'react'
 import Fonts from '~shared/Layout/Fonts'
 // Note these imports are dynamic aliases. Check vite.config.ts for more details
@@ -15,11 +14,7 @@ export const Theme = ({ children }: PropsWithChildren) => {
   )
 }
 
-export const RainbowKitTheme = ({ chains, children }: PropsWithChildren<{ chains: RainbowKitChain[] }>) => {
+export const RainbowKitTheme = ({ children }: PropsWithChildren) => {
   const { colorMode } = useColorMode()
-  return (
-    <RainbowKitProvider chains={chains} theme={rainbowStyles(colorMode)}>
-      {children}
-    </RainbowKitProvider>
-  )
+  return <RainbowKitProvider theme={rainbowStyles(colorMode)}>{children}</RainbowKitProvider>
 }
