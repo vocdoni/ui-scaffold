@@ -8,7 +8,7 @@ import { useAuth } from './useAuth'
 
 const GoogleAuth = () => {
   const { setBearer, updateSigner } = useAuth()
-  const { isConnected } = useAccount()
+  const { isConnected, connector } = useAccount()
   const { t } = useTranslation()
   const toast = useToast()
 
@@ -26,13 +26,13 @@ const GoogleAuth = () => {
       })
       return
     }
-    if (isConnected) {
+    if (isConnected && connector?.id === 'google') {
       const token = localStorage.getItem('authToken')
       setBearer(token)
       updateSigner(token)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isConnected, isError])
+  }, [isConnected, isError, connector])
 
   return (
     <Button
