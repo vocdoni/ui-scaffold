@@ -1635,9 +1635,9 @@
   },
   "results_type": {
     "budget": "Asignación presupuestaria",
-    "multiple_choice": "Opción múltiple",
+    "multiple_choice": "Respuesta múltiple",
     "quadratic": "Votación cuadrática",
-    "single_choice_multiquestion": "Opción única",
+    "single_choice_multiquestion": "Respuesta única",
     "title": "Tipo de votación"
   },
   "role": {

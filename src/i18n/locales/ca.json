@@ -1635,9 +1635,9 @@
   },
   "results_type": {
     "budget": "Assignació Pressupostària",
-    "multiple_choice": "Vàries opcions",
+    "multiple_choice": "Resposta múltiple",
     "quadratic": "Quadràtica",
-    "single_choice_multiquestion": "Opció única",
+    "single_choice_multiquestion": "Resposta única",
     "title": "Tipus de votació"
   },
   "role": {
