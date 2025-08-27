@@ -2461,7 +2461,7 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
-"@rainbow-me/rainbowkit@^2.0.0":
+"@rainbow-me/rainbowkit@^2.2.8":
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/@rainbow-me/rainbowkit/-/rainbowkit-2.2.8.tgz#6fe6b26cd297a5aef7f00410429f0e6ec5474944"
   integrity sha512-EdNIK2cdAT6GJ9G11wx7nCVfjqBfxh7dx/1DhPYrB+yg+VFrII6cM1PiMFVC9evD4mqVHe9mmLAt3nvlwDdiPQ==
@@ -9725,7 +9725,7 @@ viem@2.23.2:
     ox "0.6.7"
     ws "8.18.0"
 
-viem@2.x, viem@>=2.29.0, viem@^2.1.1, viem@^2.27.2, viem@^2.31.7:
+viem@>=2.29.0, viem@^2.1.1, viem@^2.27.2, viem@^2.31.7, viem@^2.36.0:
   version "2.36.0"
   resolved "https://registry.yarnpkg.com/viem/-/viem-2.36.0.tgz#e564484018c6e4432dfa936fdda4ca585008d4f7"
   integrity sha512-Xz7AkGtR43K+NY74X2lBevwfRrsXuifGUzt8QiULO47NXIcT7g3jcA4nIvl5m2OTE5v8SlzishwXmg64xOIVmQ==
@@ -9852,7 +9852,7 @@ void-elements@3.1.0:
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
   integrity sha512-Dhxzh5HZuiHQhbvTW9AMetFfBHDMYpo23Uo9btPXgdYP+3T5S+p+jgNy7spra+veYhBP2dCSgxR/i2Y02h5/6w==
 
-wagmi@2:
+wagmi@^2.16.8:
   version "2.16.8"
   resolved "https://registry.yarnpkg.com/wagmi/-/wagmi-2.16.8.tgz#977e357808f97037bda5866b212b173ca296c5fb"
   integrity sha512-442yAXQJ2bEHPN7Z/AwDUo0bVsWAgGtux7jQmA49oE1ur6Q0IusJZdCmzP/PxxeB3fXEJt1TwXLpRkR6yjuRVA==
