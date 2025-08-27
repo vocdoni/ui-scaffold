@@ -859,9 +859,9 @@
     "success_note": "You may now start using your imported members.",
     "success_title": "Import Completed Successfully",
     "title": "Memberbase Import in Progress",
-    "view_errors_one": "View {{count}} errors",
-    "view_errors_many": "View {{count}} errors",
-    "view_errors_other": "View {{count}} errors"
+    "view_errors_one": "Veure {{count}} error",
+    "view_errors_many": "Veure {{count}} errors",
+    "view_errors_other": "Veure {{count}} errors"
   },
   "invite": {
     "account_not_verified": "Your account is not verified. Please verify your account to continue.",
