@@ -5,12 +5,10 @@ import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
 import ErrorElement from '~elements/Error'
 import Layout from '~elements/Layout'
-import ProtectedRoutes from '~src/router/ProtectedRoutes'
 import { Routes } from '.'
 import { SuspenseLoader } from '../SuspenseLoader'
 
 // elements / pages
-const Faucet = lazy(() => import('~elements/Faucet'))
 const Home = lazy(() => import('~components/Home'))
 const NotFound = lazy(() => import('~elements/NotFound'))
 const Process = lazy(() => import('~elements/processes/view'))
@@ -18,13 +16,10 @@ const OrganizationView = lazy(() => import('~elements/organization/view'))
 const PlansPublicPage = lazy(() => import('~elements/plans'))
 const UseCases = lazy(() => import('~components/UseCases'))
 const UseCase = lazy(() => import('~components/UseCases/view'))
-const StripeCheckout = lazy(() => import('~elements/Stripe').then((module) => ({ default: module.StripeCheckout })))
-const StripeReturn = lazy(() => import('~elements/Stripe').then((module) => ({ default: module.StripeReturn })))
 
 // others
 const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
 const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
-const Calculator = lazy(() => import('~components/Calculator'))
 
 const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
 
@@ -58,43 +53,6 @@ const RootElements = (client: VocdoniSDKClient) => [
     ),
     loader: async ({ params }: { params: Params<string> }) => client.fetchAccountInfo(params.address),
     errorElement: <ErrorElement />,
-  },
-  {
-    ...ProtectedRoutes([
-      {
-        path: Routes.stripe.checkout,
-        element: (
-          <SuspenseLoader>
-            <StripeCheckout />
-          </SuspenseLoader>
-        ),
-      },
-      {
-        path: Routes.stripe.return,
-        element: (
-          <SuspenseLoader>
-            <StripeReturn />
-          </SuspenseLoader>
-        ),
-        errorElement: <ErrorElement />,
-      },
-    ]),
-  },
-  {
-    path: Routes.faucet,
-    element: (
-      <SuspenseLoader>
-        <Faucet />
-      </SuspenseLoader>
-    ),
-  },
-  {
-    path: Routes.calculator,
-    element: (
-      <SuspenseLoader>
-        <Calculator />
-      </SuspenseLoader>
-    ),
   },
   {
     path: Routes.plans,
