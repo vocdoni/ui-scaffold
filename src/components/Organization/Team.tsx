@@ -49,7 +49,7 @@ import QueryDataLayout from '~shared/Layout/QueryDataLayout'
 import { roleIcons } from '~shared/Layout/SaasSelector'
 import { useProfile } from '~src/queries/account'
 import { QueryKeys } from '~src/queries/keys'
-import { useRemoveUserMutation, useRoles } from '~src/queries/organization'
+import { Role, useRemoveUserMutation, useRoles } from '~src/queries/organization'
 import { InviteToTeamModal } from './Invite'
 
 // Define types
@@ -265,8 +265,7 @@ const RoleRadio = ({ fieldName: title, description, value, isDisabled, ...props 
       as='label'
       border='1px solid'
       borderRadius='md'
-      borderColor={isSelected ? 'gray.500' : 'gray.200'}
-      bg={isSelected && 'gray.50'}
+      borderColor={isSelected && 'gray.400'}
       p={2}
       cursor={isDisabled ? 'not-allowed' : 'pointer'}
       opacity={isDisabled ? 0.6 : 1}
@@ -279,13 +278,26 @@ const RoleRadio = ({ fieldName: title, description, value, isDisabled, ...props 
             <Text>{roleIcons[value]}</Text>
             <Text fontWeight='semibold'>{title}</Text>
           </Flex>
-          <Text fontSize='sm' color='gray.600'>
+          <Text fontSize='sm' color='texts.subtle'>
             {description}
           </Text>
         </Box>
       </Flex>
     </Box>
   )
+}
+
+const getRoleDescription = (role: Role) => {
+  const hasOrgPermission = role.organizationWritePermission
+  const hasProcessPermission = role.processWritePermission
+
+  if (hasOrgPermission && hasProcessPermission) {
+    return <Trans i18nKey='role.full_access' defaults='Full access' />
+  } else if (hasOrgPermission || hasProcessPermission) {
+    return <Trans i18nKey='role.manage_members_votes' defaults='Manage members & votes' />
+  }
+
+  return <Trans i18nKey='role.read_only' defaults='Read-only access' />
 }
 
 const RoleRadioGroup = ({ currentRole }: RoleRadioGroupProps) => {
@@ -305,19 +317,13 @@ const RoleRadioGroup = ({ currentRole }: RoleRadioGroupProps) => {
         render={({ field }) => (
           <RadioGroup {...field} colorScheme='gray'>
             <Stack direction='column' gap={2}>
-              {roles?.map((role) => (
+              {roles?.map((role: Role) => (
                 <RoleRadio
                   key={role.role}
                   value={role.role}
                   fieldName={role.name}
                   isDisabled={role.role === currentRole}
-                  description={
-                    role.writePermission ? (
-                      <Trans i18nKey='role.write_permission'>Can create and edit content</Trans>
-                    ) : (
-                      <Trans i18nKey='role.read_permission'>Read-only access</Trans>
-                    )
-                  }
+                  description={getRoleDescription(role)}
                 />
               ))}
             </Stack>
@@ -366,14 +372,14 @@ const ChangeRoleForm = ({ user, onClose }: ChangeRoleFormProps) => {
   return (
     <FormProvider {...methods}>
       <Flex as='form' direction='column' gap={4} onSubmit={methods.handleSubmit(onSubmit)}>
-        <Flex border='1px solid' borderColor='gray.200' p={4} borderRadius='md' alignItems='center' bg='gray.50'>
+        <Flex border='1px solid' borderColor='table.border' p={4} borderRadius='md' alignItems='center'>
           <Avatar name={fullName} />
           <Box ml='3'>
             <HStack align='center'>
               <Text fontWeight='bold'>{fullName}</Text>
             </HStack>
             <Flex direction='column'>
-              <Text fontSize='sm' color='gray.500'>
+              <Text fontSize='sm' color='texts.subtle'>
                 {user?.info.email}
               </Text>
             </Flex>
@@ -384,7 +390,7 @@ const ChangeRoleForm = ({ user, onClose }: ChangeRoleFormProps) => {
             defaultValue: 'Current Role',
           })}
         </Text>
-        <Box p={2} border='1px solid' borderColor='gray.200' borderRadius='md'>
+        <Box p={2} border='1px solid' borderColor='table.border' borderRadius='md'>
           <Flex gap={2} align='center'>
             <Text>{roleIcons[currentRole]}</Text>
             <Text fontWeight='semibold' textTransform='capitalize'>
