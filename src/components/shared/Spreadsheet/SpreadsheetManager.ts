@@ -1,5 +1,6 @@
 import { read, utils, WorkBook } from 'xlsx'
-import i18n from '~i18n'
+import ErrorMissingData from '~components/Process/Census/Spreadsheet/errors/ErrorMissingData'
+import ErrorMissingHeader from '~components/Process/Census/Spreadsheet/errors/ErrorMissingHeader'
 
 export enum ErrorType {
   InvalidRowLength,
@@ -41,15 +42,11 @@ export class SpreadsheetManager {
 
   public validateDataIntegrity(): void {
     if (this.headed && (!this.header || this.header.length === 0)) {
-      const e = new Error(i18n.t('error.missing_header', { defaultValue: 'Spreadsheet has no header.' }))
-      e.name = 'MissingHeader'
-      throw e
+      throw new ErrorMissingHeader()
     }
 
     if (!this.data || this.data.length === 0) {
-      const e = new Error(i18n.t('error.missing_data', { defaultValue: 'Spreadsheet has no data.' }))
-      e.name = 'MissingData'
-      throw e
+      throw new ErrorMissingData()
     }
   }
 
