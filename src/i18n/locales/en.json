@@ -1614,12 +1614,11 @@
     "secret_until_end_tooltip": "Results are hidden and will only be available once voting ends"
   },
   "results_type": {
-    "approval": "Approval",
     "budget": "Budget allocation",
     "multiple_choice": "Multiple choice",
     "quadratic": "Quadratic voting",
     "single_choice_multiquestion": "Single choice",
-    "title": "Results type"
+    "title": "Voting type"
   },
   "role": {
     "full_access": "(Full access)",
