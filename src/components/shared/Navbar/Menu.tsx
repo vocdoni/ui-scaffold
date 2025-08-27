@@ -1,23 +1,10 @@
 import { ChevronDownIcon, ChevronUpIcon, CopyIcon } from '@chakra-ui/icons'
-import {
-  Box,
-  Button,
-  Flex,
-  HStack,
-  Icon,
-  IconButton,
-  Link,
-  MenuItem,
-  MenuList,
-  Text,
-  useClipboard,
-} from '@chakra-ui/react'
-import { Balance, HR } from '@vocdoni/chakra-components'
+import { Box, HStack, Icon, IconButton, Link, MenuItem, MenuList, Text, useClipboard } from '@chakra-ui/react'
+import { HR } from '@vocdoni/chakra-components'
 import { useClient } from '@vocdoni/react-providers'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FaWallet } from 'react-icons/fa'
-import { HiShoppingCart } from 'react-icons/hi'
 import { MdOutlineLogout } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useDisconnect } from 'wagmi'
@@ -88,33 +75,6 @@ const MenuDropdown = () => {
                 }}
               />
             </Box>
-          </MenuItem>
-          <MenuItem
-            as='div'
-            _hover={{
-              bgColor: 'white',
-            }}
-            _focus={{
-              '& button': {
-                outline: '2px solid #8DC2ED',
-              },
-            }}
-            mb={3}
-          >
-            <Flex alignItems='center' gap={7}>
-              <Flex>
-                <Balance p={0} bg='white' fontWeight='bold' />
-              </Flex>
-              <Button
-                as={ReactRouterLink}
-                to={Routes.calculator}
-                aria-label={t('menu.get_more')}
-                title={t('menu.get_more')}
-              >
-                <Icon as={HiShoppingCart} />
-                {t('menu.get_more')}
-              </Button>
-            </Flex>
           </MenuItem>
 
           <MenuItem as={ReactRouterLink} to={Routes.dashboard.profile}>
