@@ -264,14 +264,15 @@ const ProcessViewSidebar = (props: SidebarProps) => {
   const { t } = useTranslation()
 
   const resultTypesNames = {
-    [ElectionResultsTypeNames.APPROVAL]: t('results_type.approval', 'Approval'),
     [ElectionResultsTypeNames.BUDGET]: t('results_type.budget', 'Budget allocation'),
-    [ElectionResultsTypeNames.MULTIPLE_CHOICE]: t('results_type.multiple_choice', 'Multiple choice'),
     [ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION]: t(
       'results_type.single_choice_multiquestion',
       'Single choice'
     ),
     [ElectionResultsTypeNames.QUADRATIC]: t('results_type.quadratic', 'Quadratic voting'),
+    // Yeah we name approval and multiple choice the same, they're also unified during creation
+    [ElectionResultsTypeNames.APPROVAL]: t('results_type.multiple_choice', 'Multiple choice'),
+    [ElectionResultsTypeNames.MULTIPLE_CHOICE]: t('results_type.multiple_choice', 'Multiple choice'),
   }
 
   return (
