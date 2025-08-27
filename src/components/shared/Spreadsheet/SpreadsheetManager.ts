@@ -1,4 +1,5 @@
 import { read, utils, WorkBook } from 'xlsx'
+import i18n from '~i18n'
 
 export enum ErrorType {
   InvalidRowLength,
@@ -38,7 +39,19 @@ export class SpreadsheetManager {
     'application/vnd.oasis.opendocument.spreadsheet',
   ]
 
-  public validateDataIntegrity(): void {}
+  public validateDataIntegrity(): void {
+    if (this.headed && (!this.header || this.header.length === 0)) {
+      const e = new Error(i18n.t('error.missing_header', { defaultValue: 'Spreadsheet has no header.' }))
+      e.name = 'MissingHeader'
+      throw e
+    }
+
+    if (!this.data || this.data.length === 0) {
+      const e = new Error(i18n.t('error.missing_data', { defaultValue: 'Spreadsheet has no data.' }))
+      e.name = 'MissingData'
+      throw e
+    }
+  }
 
   public get header(): string[] {
     return this.heading

@@ -295,6 +295,8 @@
     "loading_page": "Error loading the page",
     "loading_roles": "Loading roles",
     "loading_types": "",
+    "missing_data": "Spreadsheet has no data.",
+    "missing_header": "Spreadsheet has no header.",
     "not_found": "We can't find that page",
     "return_to_home": "Go to home",
     "title": "Error"

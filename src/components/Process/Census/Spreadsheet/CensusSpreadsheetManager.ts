@@ -26,6 +26,8 @@ export class CensusSpreadsheetManager extends SpreadsheetManager {
   public validateDataIntegrity(): void {
     const errorTypes: ErrorType[] = []
 
+    super.validateDataIntegrity()
+
     this.filedata.forEach((row, index) => {
       // actual index
       const ai = this.headed ? index + 2 : index + 1
