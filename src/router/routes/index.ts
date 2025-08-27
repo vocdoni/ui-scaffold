@@ -9,7 +9,6 @@ export const Routes = {
     verify: '/account/verify',
     passwordReset: '/account/password/reset',
   },
-  calculator: '/calculator',
   contact: 'https://www.vocdoni.io/contact',
   dashboard: {
     base: '/admin',
@@ -32,16 +31,11 @@ export const Routes = {
     },
   },
   plans: '/plans',
-  faucet: '/faucet',
   organization: '/organization/:address',
   privacy: '/privacy',
   processes: {
     create: '/admin/processes/create/:groupId?',
     view: '/processes/:id',
-  },
-  stripe: {
-    checkout: '/stripe/checkout/:amount?',
-    return: '/stripe/return/:sessionId',
   },
   terms: '/terms',
   usecases: {
