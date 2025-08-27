@@ -33,7 +33,7 @@ import {
 } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
 import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
-import { formatDate } from 'date-fns'
+import { format as formatDate } from 'date-fns'
 import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import {

@@ -33,6 +33,7 @@ const useSigner = () => {
       url: import.meta.env.SAAS_URL,
       token: t,
     })
+
     // Once the signer is set, try to get the signer address
     try {
       const addresses = await signer.remoteSignerService.addresses()
