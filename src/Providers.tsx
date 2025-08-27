@@ -5,13 +5,13 @@ import { ClientProvider } from '@vocdoni/chakra-components'
 import { EnvOptions } from '@vocdoni/sdk'
 import { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useAccount, useWalletClient, WagmiConfig } from 'wagmi'
+import { useAccount, useWalletClient, WagmiProvider } from 'wagmi'
 import { SaasAccountProvider } from '~components/Account/SaasAccountProvider'
 import { AuthProvider } from '~components/Auth/AuthContext'
 import { SubscriptionProvider } from '~components/Auth/Subscription'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
-import { chains, wagmiConfig } from './constants/rainbow'
+import { wagmiConfig } from './constants/rainbow'
 import { translations } from './i18n/components'
 import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
@@ -22,11 +22,11 @@ const queryClient = new QueryClient()
 export const Providers = () => {
   return (
     <Theme>
-      <WagmiConfig config={wagmiConfig}>
+      <WagmiProvider config={wagmiConfig}>
         <QueryClientProvider client={queryClient}>
           <AppProviders />
         </QueryClientProvider>
-      </WagmiConfig>
+      </WagmiProvider>
     </Theme>
   )
 }
@@ -50,7 +50,7 @@ export const AppProviders = () => {
   }
 
   return (
-    <RainbowKitTheme chains={chains}>
+    <RainbowKitTheme>
       <ClientProvider
         env={VocdoniEnvironment as EnvOptions}
         signer={signer as Signer}

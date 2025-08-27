@@ -1,19 +1,18 @@
 import { Button, Icon, useToast } from '@chakra-ui/react'
+import { saasOAuthWallet } from '@vocdoni/rainbowkit-wallets'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BsGoogle } from 'react-icons/bs'
 import { useAccount, useConnect } from 'wagmi'
-import { googleWallet } from '~constants/rainbow'
 import { useAuth } from './useAuth'
 
 const GoogleAuth = () => {
   const { setBearer, updateSigner } = useAuth()
-  const { isConnected } = useAccount()
+  const { isConnected, connector } = useAccount()
   const { t } = useTranslation()
   const toast = useToast()
 
-  const { connector } = googleWallet.createConnector()
-  const { connect, isLoading, isError, error } = useConnect()
+  const { connect, isPending, isError, error } = useConnect()
 
   useEffect(() => {
     if (isError) {
@@ -27,19 +26,31 @@ const GoogleAuth = () => {
       })
       return
     }
-    if (isConnected) {
+    if (isConnected && connector?.id === 'google') {
       const token = localStorage.getItem('authToken')
       setBearer(token)
       updateSigner(token)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isConnected, isError])
+  }, [isConnected, isError, connector])
 
   return (
     <Button
       variant={'outline'}
-      isLoading={isLoading}
-      onClick={() => connect({ connector })}
+      isLoading={isPending}
+      onClick={() => {
+        const wallet = saasOAuthWallet({
+          id: 'google',
+          name: 'Google',
+          iconUrl: 'https://authjs.dev/img/providers/google.svg',
+          options: {
+            oAuthServiceUrl: import.meta.env.OAUTH_URL,
+            oAuthServiceProvider: 'google',
+            saasBackendUrl: import.meta.env.SAAS_URL,
+          },
+        })
+        connect({ connector: wallet.createConnector({} as any) })
+      }}
       w='full'
       fontWeight={'bold'}
       leftIcon={<Icon as={BsGoogle} />}
