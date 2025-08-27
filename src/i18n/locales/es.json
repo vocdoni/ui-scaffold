@@ -298,6 +298,8 @@
     "loading_page": "Error al cargar la página",
     "loading_roles": "Cargando roles",
     "loading_types": "",
+    "missing_data": "La hoja de cálculo no tiene datos.",
+    "missing_header": "La hoja de cálculo no tiene cabecera.",
     "not_found": "No podemos encontrar esa página",
     "return_to_home": "Ves al inicio",
     "title": "Error"
