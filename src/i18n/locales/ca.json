@@ -298,6 +298,8 @@
     "loading_page": "Càrrega de pàgina errònia",
     "loading_roles": "Carregant rols",
     "loading_types": "",
+    "missing_data": "El full de càlcul no té dades.",
+    "missing_header": "El full de càlcul no té capçalera.",
     "not_found": "No podem trobar aquesta pàgina",
     "return_to_home": "Ves a l'inici",
     "title": "Error"
