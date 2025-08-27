@@ -67,6 +67,9 @@ type ImportDataPreviewProps = {
   setColumnMapping: React.Dispatch<React.SetStateAction<ColumnMapping>>
 }
 
+const PROGRESS_INCREMENT = 5 // Maximum increment for fake progress
+const PROGRESS_UPDATE_INTERVAL = 500 // Interval for fake progress updates
+
 const mapSpreadsheetData = (data: SpreadsheetRow[], mapping: ColumnMapping): MappedRow[] => {
   return data.map((row) => {
     const mappedRow: MappedRow = {}
@@ -117,14 +120,14 @@ export const ImportProgress = () => {
 
     let interval: NodeJS.Timeout
     const current = data.progress
-    const target = current + 5
+    const target = current + PROGRESS_INCREMENT
 
     interval = setInterval(() => {
       setFakeProgress((prev) => {
         const next = prev + 1
         return next >= target ? target : next
       })
-    }, 500)
+    }, PROGRESS_UPDATE_INTERVAL)
 
     setFakeProgress(current)
 
