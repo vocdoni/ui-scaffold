@@ -35,7 +35,7 @@
     "@uidotdev/usehooks": "^2.4.1",
     "@untitled-ui/icons-react": "^0.1.3",
     "@vocdoni/chakra-components": "^0.9.16-beta1",
-    "@vocdoni/rainbowkit-wallets": "^0.2.6",
+    "@vocdoni/rainbowkit-wallets": "^1.0.0-beta.1",
     "@vocdoni/sdk": "~0.9.1",
     "chakra-react-select": "^5.0.1",
     "date-fns": "^4.1.0",
