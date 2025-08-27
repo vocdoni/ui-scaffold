@@ -52,7 +52,7 @@ const OrganizationView = () => {
       .fetchElections({ organizationId: organization.address, page })
       .then((res) => {
         const elections = res.elections
-        if (!res || (res && !elections.length)) {
+        if (!res || (res && !elections.length) || res.pagination.currentPage === res.pagination.lastPage) {
           setFinished(true)
         }
 
