@@ -21,15 +21,15 @@ import { CensusWeb3Addresses } from '~components/Process/Census/Web3'
 import { Select } from '~components/shared/Form/Select'
 import { useGroups } from '~src/queries/groups'
 import { Routes } from '~src/router/routes'
-import { VoterAuthentication } from './VoterAuthentication'
+import { GroupCensusCreation } from './GroupCensusCreation'
 
 export enum CensusTypes {
-  Memberbase = 'memberbase',
+  CSP = 'csp',
   Spreadsheet = 'spreadsheet',
   Web3 = 'web3',
 }
 
-export const censusTabs = [CensusTypes.Memberbase, CensusTypes.Spreadsheet, CensusTypes.Web3] as const
+export const censusTabs = [CensusTypes.CSP, CensusTypes.Spreadsheet, CensusTypes.Web3] as const
 
 export const GroupSelect = () => {
   const { t } = useTranslation()
@@ -84,7 +84,7 @@ export const GroupSelect = () => {
         name='groupId'
         rules={{
           required: {
-            value: censusType === CensusTypes.Memberbase,
+            value: censusType === CensusTypes.CSP,
             message: t('form.error.required', 'This field is required'),
           },
         }}
@@ -127,7 +127,7 @@ const CensusCreation = ({ showExtraMethods }: { showExtraMethods: boolean }) => 
   // Set default census type to Memberbase (Group) if not set
   useEffect(() => {
     if (!censusType) {
-      setValue('censusType', CensusTypes.Memberbase)
+      setValue('censusType', CensusTypes.CSP)
     }
   }, [censusType, setValue])
 
@@ -138,7 +138,7 @@ const CensusCreation = ({ showExtraMethods }: { showExtraMethods: boolean }) => 
     if (nextType === prevType) return
 
     switch (prevType) {
-      case CensusTypes.Memberbase:
+      case CensusTypes.CSP:
         setValue('groupId', '')
         break
       case CensusTypes.Web3:
@@ -154,12 +154,7 @@ const CensusCreation = ({ showExtraMethods }: { showExtraMethods: boolean }) => 
 
   // If extra methods are not enabled, show only the Group selection
   if (!showExtraMethods) {
-    return (
-      <Box display='flex' flexDirection='column' gap={4}>
-        <GroupSelect />
-        <VoterAuthentication />
-      </Box>
-    )
+    return <GroupCensusCreation />
   }
 
   // If extra methods are enabled, show the full tab system
@@ -171,9 +166,8 @@ const CensusCreation = ({ showExtraMethods }: { showExtraMethods: boolean }) => 
         <Tab>{t('process_create.census.web3.label', { defaultValue: 'Web3' })}</Tab>
       </TabList>
       <TabPanels>
-        <TabPanel px={0} display='flex' flexDirection='column' gap={4}>
-          <GroupSelect />
-          <VoterAuthentication />
+        <TabPanel px={0}>
+          <GroupCensusCreation />
         </TabPanel>
         <TabPanel px={0} display='flex' flexDirection='column' gap={4}>
           <CensusCsvManager />

@@ -23,12 +23,14 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react'
+import { useMutation } from '@tanstack/react-query'
 import { useLocalStorage } from '@uidotdev/usehooks'
-import { useClient } from '@vocdoni/react-providers'
+import { useClient, useOrganization } from '@vocdoni/react-providers'
 import {
   AccountData,
   ApprovalElection,
   ArchivedAccountData,
+  CspCensus,
   Election,
   ElectionCreationSteps,
   IElectionParameters,
@@ -44,6 +46,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import ReactPlayer from 'react-player'
 import { createPath, generatePath, useBlocker, useNavigate, useParams } from 'react-router-dom'
+import { ApiEndpoints } from '~components/Auth/api'
+import { useAuth } from '~components/Auth/useAuth'
 import Editor from '~components/Editor'
 import { CensusSpreadsheetManager } from '~components/Process/Census/Spreadsheet/CensusSpreadsheetManager'
 import { Web3Address } from '~components/Process/Census/Web3'
@@ -56,6 +60,7 @@ import { useProcessTemplates } from '../TemplateProvider'
 import { Questions } from './MainContent/Questions'
 import { CreateSidebar } from './Sidebar'
 import { CensusTypes } from './Sidebar/CensusCreation'
+import { useCensus } from './Sidebar/CensusProvider'
 
 type ConfirmOnNavigateOptions = {
   isDirty: boolean
@@ -103,6 +108,7 @@ export type Process = {
   resultVisibility: 'live' | 'hidden'
   voterPrivacy: 'anonymous' | 'public'
   groupId: string
+  censusId: string | undefined
   censusType: CensusTypes
   streamUri?: string
   addresses?: Web3Address[]
@@ -172,12 +178,13 @@ const defaultProcessValues: Process = {
   endTime: '',
   questionType: QuestionTypes.Single,
   questions: [DefaultQuestions[QuestionTypes.Single]],
-  maxNumberOfChoices: 0,
-  minNumberOfChoices: 0,
+  maxNumberOfChoices: undefined,
+  minNumberOfChoices: undefined,
   resultVisibility: 'hidden',
   voterPrivacy: 'public',
   groupId: '',
-  censusType: CensusTypes.Memberbase,
+  censusId: undefined,
+  censusType: CensusTypes.CSP,
   streamUri: '',
   addresses: [],
   spreadsheet: undefined,
@@ -354,79 +361,6 @@ export const useFormDraftSaver = (isDirty: boolean, getValues: () => any, storeF
 
     return () => clearInterval(interval)
   }, [isDirty])
-}
-
-const electionFromForm = (form) => {
-  // max census size is calculated by the SDK when creating a process, but we need it to
-  // calculate the cost preview... so here we set it for all cases anyway
-  const maxCensusSize = 1
-
-  return {
-    ...form,
-    electionType: {
-      anonymous: Boolean(form.voterPrivacy === 'anonymous'),
-      secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
-    },
-    maxNumberOfChoices: form.questions[0]?.maxSelections ?? null,
-    minNumberOfChoices: form.questions[0]?.minSelections ?? null,
-    maxCensusSize: form.spreadsheet?.data?.length ?? form.addresses?.length ?? maxCensusSize,
-    questions: form.questions.map(
-      (question) =>
-        ({
-          title: { default: question.title },
-          description: { default: question.description },
-          choices: question.options.map((q: Option, i: number) => ({
-            title: { default: q.option },
-            value: i,
-            meta: {
-              description: q.description,
-              image: { default: q.image },
-            },
-          })),
-        }) as IQuestion
-    ),
-    startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`).getTime(),
-    endDate: new Date(`${form.endDate}T${form.endTime}`).getTime(),
-    voteType: {
-      maxVoteOverwrites: 10,
-    },
-    temporarySecretIdentity: form.censusType === CensusTypes.Spreadsheet && Boolean(form.voterPrivacy === 'anonymous'),
-    meta: {
-      generated: 'ui-scaffold',
-      app: 'vocdoni',
-      census: {
-        type: form.censusType,
-        fields: form.spreadsheet?.header ?? undefined,
-      } as CensusMeta,
-    },
-  }
-}
-
-const getCensus = async (form: Process, salt: string) => {
-  if (form.censusType === 'spreadsheet') {
-    form.addresses = (await form.spreadsheet?.generateWallets(salt)) as Web3Address[]
-  }
-  let census = null
-  switch (form.censusType) {
-    case CensusTypes.Memberbase:
-      census = new PlainCensus()
-      const addresses = '0x9b1e78c120dbe9B919397852D0B3d4D851b1cd7e'
-      census.add(addresses)
-
-      return census
-    case CensusTypes.Spreadsheet:
-    case CensusTypes.Web3:
-      census = new PlainCensus()
-      if (form.addresses && form.addresses.length > 0) {
-        form.addresses.forEach(({ address }) => {
-          if (address) census.add(address)
-        })
-      }
-
-      return census
-    default:
-      throw new Error(`census type ${form.censusType} is not allowed`)
-  }
 }
 
 const getFormQuestionType = (form: Process): QuestionTypes => {
@@ -612,6 +546,21 @@ const ResetFormModal = ({ isOpen, onClose, onReset }) => {
   )
 }
 
+const useProcessBundle = () => {
+  const { bearedFetch } = useAuth()
+  return useMutation({
+    mutationFn: async ({ censusId, processes }: { censusId: string; processes?: string[] }) => {
+      return await bearedFetch<{ uri: string; root: string }>(ApiEndpoints.ProcessBundle, {
+        method: 'POST',
+        body: {
+          censusId,
+          processes,
+        },
+      })
+    },
+  })
+}
+
 export const ProcessCreate = () => {
   const { t } = useTranslation()
   const toast = useToast()
@@ -620,6 +569,7 @@ export const ProcessCreate = () => {
   const { groupId } = useParams()
   const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(true)
+  const { maxCensusSize } = useCensus()
   const methods = useForm({
     defaultValues: {
       ...defaultProcessValues,
@@ -631,9 +581,11 @@ export const ProcessCreate = () => {
   const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
   const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
   const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
+  const { organization } = useOrganization()
   const { client } = useClient()
   const { isSubmitting, isSubmitSuccessful, isDirty, errors } = methods.formState
   const { setStepDoneAsync } = useOrganizationSetup()
+  const processBundleMutation = useProcessBundle()
   const streamUri = methods.watch('streamUri')
 
   useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
@@ -674,6 +626,86 @@ export const ProcessCreate = () => {
     const form = methods.getValues()
     storeFormDraft(form)
     proceed()
+  }
+
+  const getCensus = async (form: Process, salt: string) => {
+    if (form.censusType === 'spreadsheet') {
+      form.addresses = (await form.spreadsheet?.generateWallets(salt)) as Web3Address[]
+    }
+    let census = null
+    switch (form.censusType) {
+      case CensusTypes.CSP:
+        if (!form.censusId) {
+          throw new Error('Census data is missing for Memberbase census type')
+        }
+
+        const nextElectionId = await client.electionService.nextElectionId(organization.address, {
+          ...electionFromForm(form),
+          census: { type: CensusTypes.CSP },
+        })
+        const bundledProcess = await processBundleMutation.mutateAsync({
+          censusId: form.censusId,
+          processes: [nextElectionId],
+        })
+        census = new CspCensus(bundledProcess.root, bundledProcess.uri)
+
+        return census
+      case CensusTypes.Spreadsheet:
+      case CensusTypes.Web3:
+        census = new PlainCensus()
+        if (form.addresses && form.addresses.length > 0) {
+          form.addresses.forEach(({ address }) => {
+            if (address) census.add(address)
+          })
+        }
+
+        return census
+      default:
+        throw new Error(`census type ${form.censusType} is not allowed`)
+    }
+  }
+
+  const electionFromForm = (form) => {
+    return {
+      ...form,
+      electionType: {
+        anonymous: Boolean(form.voterPrivacy === 'anonymous'),
+        secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
+      },
+      maxNumberOfChoices: form.questions[0]?.maxSelections ?? null,
+      minNumberOfChoices: form.questions[0]?.minSelections ?? null,
+      maxCensusSize: form.addresses?.length > 0 ? form.addresses.length : maxCensusSize,
+      questions: form.questions.map(
+        (question) =>
+          ({
+            title: { default: question.title },
+            description: { default: question.description },
+            choices: question.options.map((q: Option, i: number) => ({
+              title: { default: q.option },
+              value: i,
+              meta: {
+                description: q.description,
+                image: { default: q.image },
+              },
+            })),
+          }) as IQuestion
+      ),
+      startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`).getTime(),
+      endDate: new Date(`${form.endDate}T${form.endTime}`).getTime(),
+      voteType: {
+        maxVoteOverwrites: 10,
+      },
+      temporarySecretIdentity:
+        form.censusType === CensusTypes.Spreadsheet && Boolean(form.voterPrivacy === 'anonymous'),
+      meta: {
+        generated: 'ui-scaffold',
+        app: 'vocdoni',
+        census: {
+          type: form.censusType,
+          fields: form.spreadsheet?.header ?? undefined,
+        } as CensusMeta,
+      },
+    }
   }
 
   const onSubmit = async (form) => {
@@ -750,6 +782,7 @@ export const ProcessCreate = () => {
   const onError = (errors) => {
     const sidebarFieldKeys = [
       'groupId',
+      'censusId',
       'resultVisibility',
       'voterPrivacy',
       'endDate',
@@ -775,6 +808,7 @@ export const ProcessCreate = () => {
         display='flex'
         flexDirection='row'
         position='relative'
+        id='process-create'
       >
         {/* Main content area */}
         <Box

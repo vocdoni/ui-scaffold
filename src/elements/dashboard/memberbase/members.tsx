@@ -14,32 +14,34 @@ export const useMemberColumns = () => {
   return useMemo(
     () => [
       {
-        label: t('form.members.spreadsheet.template.firstname', { defaultValue: 'First Name' }),
+        label: t('members.fields.firstname', { defaultValue: 'First Name' }),
         id: 'name',
       },
       {
-        label: t('form.members.spreadsheet.template.surname', { defaultValue: 'Last Name' }),
+        label: t('members.fields.surname', { defaultValue: 'Last Name' }),
         id: 'surname',
       },
       {
-        label: t('form.members.spreadsheet.template.email', { defaultValue: 'Email' }),
+        label: t('members.fields.email', { defaultValue: 'Email' }),
+        is2fa: true,
         id: 'email',
       },
       {
-        label: t('form.members.spreadsheet.template.phone', { defaultValue: 'Phone' }),
+        label: t('members.fields.phone', { defaultValue: 'Phone' }),
+        is2fa: true,
         id: 'phone',
       },
       {
-        label: t('form.members.spreadsheet.template.member_number', { defaultValue: 'Member Number' }),
+        label: t('members.fields.member_number', { defaultValue: 'Member Number' }),
         id: 'memberNumber',
       },
       {
-        label: t('form.members.spreadsheet.template.national_id', { defaultValue: 'National ID' }),
+        label: t('members.fields.national_id', { defaultValue: 'National ID' }),
         id: 'nationalId',
         visible: false,
       },
       {
-        label: t('form.members.spreadsheet.template.birth_date', { defaultValue: 'Birth Date' }),
+        label: t('members.fields.birth_date', { defaultValue: 'Birth Date' }),
         id: 'birthDate',
         visible: false,
       },

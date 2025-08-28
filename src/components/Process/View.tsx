@@ -175,9 +175,6 @@ export const ProcessView = () => {
           </Flex>
         </Flex>
       </Box>
-      <Box position='sticky' bottom={0} left={0} pt={1} display={{ base: 'block', xl2: 'none' }}>
-        <VoteButton setQuestionsTab={setQuestionsTab} />
-      </Box>
       <VotingVoteModal />
       <SuccessVoteModal />
     </Box>

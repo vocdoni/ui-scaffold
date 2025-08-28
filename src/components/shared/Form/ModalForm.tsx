@@ -1,5 +1,6 @@
 import {
   Button,
+  Heading,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -61,12 +62,8 @@ export const ModalForm = ({ isOpen, onClose, title, subtitle, children, submitTe
         <ModalContent>
           <ModalCloseButton fontSize={10} />
           <ModalHeader>
-            <Text size={'lg'}>{title}</Text>
-            {subtitle && (
-              <Text color='rgb(115, 115, 115)' fontWeight={'normal'} size={'sm'}>
-                {subtitle}
-              </Text>
-            )}
+            <Heading variant='header'>{title}</Heading>
+            {subtitle && <Text variant='subheader'>{subtitle}</Text>}
           </ModalHeader>
 
           <ModalBody>{children}</ModalBody>
