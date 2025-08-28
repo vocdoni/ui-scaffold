@@ -429,17 +429,17 @@ const getCensus = async (form: Process, salt: string) => {
   }
 }
 
-const getQuestionType = (form: Process): QuestionTypes => {
-  const question = form.questions[0]
+const getFormQuestionType = (form: Process): QuestionTypes => {
+  const [question] = form.questions
   const totalChoices = question.options.length
   const { questionType } = form
   const { maxSelections, minSelections } = question
 
+  if (questionType !== QuestionTypes.Multiple) return questionType
+
   const isApproval = (maxSelections === totalChoices && !minSelections) || (!maxSelections && !minSelections)
 
-  if (isApproval) return QuestionTypes.Approval
-
-  return questionType
+  return isApproval ? QuestionTypes.Approval : QuestionTypes.Multiple
 }
 
 const TemplateButtons = () => {
@@ -692,7 +692,7 @@ export const ProcessCreate = () => {
         census,
       }
 
-      const questionType = getQuestionType(form)
+      const questionType = getFormQuestionType(form)
 
       let election: UnpublishedElection
 
