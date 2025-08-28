@@ -19,14 +19,14 @@ import { useMutation } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { useState } from 'react'
-import { useFormContext } from 'react-hook-form'
+import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { useCensus } from '../Sidebar/CensusProvider'
-import { CredentialsForm, CredentialsFormData } from './CredentialsForm'
+import { CredentialsForm } from './CredentialsForm'
 import { SummaryDisplay } from './SummaryDisplay'
-import { TwoFactorForm, TwoFactorFormData } from './TwoFactorForm'
+import { TwoFactorForm } from './TwoFactorForm'
 import { getTwoFaFields, StepCompletionState, VoterAuthFormData } from './utils'
 import { ValidationError, ValidationErrorsAlert } from './ValidationErrorsAlert'
 
@@ -114,14 +114,17 @@ export const VoterAuthentication = () => {
   const { setMaxCensusSize } = useCensus()
   const [activeTabIndex, setActiveTabIndex] = useState(0)
   const [validationError, setValidationError] = useState<ValidationError | null>(null)
-  const [formData, setFormData] = useState<VoterAuthFormData>({
-    credentials: [],
-    use2FA: false,
-    use2FAMethod: 'email',
-  })
   const [stepCompletion, setStepCompletion] = useState<StepCompletionState>({
     step1Completed: false,
     step2Completed: false,
+  })
+
+  const voterAuthForm = useForm<VoterAuthFormData>({
+    defaultValues: {
+      credentials: [],
+      use2FA: false,
+      use2FAMethod: 'email',
+    },
   })
 
   const validateGroupMutation = useValidateGroup()
@@ -130,60 +133,55 @@ export const VoterAuthentication = () => {
 
   const groupId = mainForm.watch('groupId')
   const censusId = mainForm.watch('censusId')
+  const formData = voterAuthForm.watch()
   const hasNoCredentialsSelected = !formData.credentials.length && !formData.use2FA
 
-  const handleCredentialsSubmit = async (data: CredentialsFormData) => {
-    setFormData((prev) => ({ ...prev, ...data }))
-    setStepCompletion((prev) => ({ ...prev, step1Completed: true }))
-    setActiveTabIndex(1)
-  }
+  const handleNext = async () => {
+    if (activeTabIndex === 0) {
+      // Step 1 → Step 2: Simple navigation
+      setStepCompletion((prev) => ({ ...prev, step1Completed: true }))
+      setActiveTabIndex(1)
+    } else if (activeTabIndex === 1) {
+      // Step 2 → Step 3: Validate and submit data
+      setValidationError(null)
 
-  const handleTwoFactorSubmit = async (data: TwoFactorFormData) => {
-    setValidationError(null)
+      try {
+        const currentFormData = voterAuthForm.getValues()
+        const twoFaFields = currentFormData.use2FA ? getTwoFaFields(currentFormData.use2FAMethod) : []
 
-    try {
-      // Always perform validation, but adjust twoFaFields based on 2FA setting
-      const twoFaFields = data.use2FA ? getTwoFaFields(data.use2FAMethod) : []
+        // Validate the group configuration
+        await validateGroupMutation.mutateAsync({
+          groupId,
+          authFields: currentFormData.credentials,
+          twoFaFields,
+        })
 
-      await validateGroupMutation.mutateAsync({
-        groupId,
-        authFields: formData.credentials,
-        twoFaFields,
-      })
+        // Create and publish census
+        const { id: censusId } = await createCensusMutation.mutateAsync()
+        const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
+          censusId,
+          groupId,
+          authFields: currentFormData.credentials,
+          twoFaFields,
+        })
 
-      setFormData((prev) => ({ ...prev, ...data }))
-      setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
-      setActiveTabIndex(2)
-    } catch (error) {
-      setValidationError(error.apiError as ValidationError)
-    }
-  }
-
-  const handleFinalSubmit = async () => {
-    try {
-      const { id: censusId } = await createCensusMutation.mutateAsync()
-      const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
-        censusId,
-        groupId,
-        authFields: formData.credentials,
-        twoFaFields: formData.use2FA ? getTwoFaFields(formData.use2FAMethod) : [],
-      })
-      setMaxCensusSize(maxCensusSize)
-      mainForm.setValue('censusId', censusId)
+        setMaxCensusSize(maxCensusSize)
+        mainForm.setValue('censusId', censusId)
+        setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
+        setActiveTabIndex(2)
+      } catch (error) {
+        setValidationError(error.apiError as ValidationError)
+      }
+    } else {
+      // Step 3: Close modal (data already submitted)
       onClose()
       resetForm()
-    } catch (error) {
-      console.error('Failed to create census:', error)
     }
   }
 
   const resetForm = () => {
     setActiveTabIndex(0)
-    setFormData({
-      credentials: [],
-      use2FA: false,
-      use2FAMethod: 'email',
-    })
+    voterAuthForm.reset()
     setStepCompletion({
       step1Completed: false,
       step2Completed: false,
@@ -252,32 +250,21 @@ export const VoterAuthentication = () => {
             </Text>
           </ModalHeader>
           <ModalBody display='flex' flexDirection='column' gap={4}>
-            <ValidationErrorsAlert validationError={validationError} />
-            <Tabs index={activeTabIndex} onChange={handleTabChange} isFitted>
-              <TabList w='full'>
-                <Tab>Credentials</Tab>
-                <Tab isDisabled={!stepCompletion.step1Completed}>Two-Factor</Tab>
-                <Tab isDisabled={!stepCompletion.step2Completed || hasNoCredentialsSelected}>Summary</Tab>
-              </TabList>
-              <TabPanels>
-                <CredentialsForm
-                  onSubmit={handleCredentialsSubmit}
-                  defaultValues={{ credentials: formData.credentials }}
-                />
-                <TwoFactorForm
-                  onSubmit={handleTwoFactorSubmit}
-                  defaultValues={{ use2FA: formData.use2FA, use2FAMethod: formData.use2FAMethod }}
-                  credentials={formData.credentials}
-                  groupId={groupId}
-                  isLoading={validateGroupMutation.isPending}
-                />
-                <SummaryDisplay
-                  credentials={formData.credentials}
-                  use2FA={formData.use2FA}
-                  use2FAMethod={formData.use2FAMethod}
-                />
-              </TabPanels>
-            </Tabs>
+            <FormProvider {...voterAuthForm}>
+              <ValidationErrorsAlert validationError={validationError} />
+              <Tabs index={activeTabIndex} onChange={handleTabChange} isFitted>
+                <TabList w='full'>
+                  <Tab>Credentials</Tab>
+                  <Tab isDisabled={!stepCompletion.step1Completed}>Two-Factor</Tab>
+                  <Tab isDisabled={!stepCompletion.step2Completed || hasNoCredentialsSelected}>Summary</Tab>
+                </TabList>
+                <TabPanels>
+                  <CredentialsForm />
+                  <TwoFactorForm />
+                  <SummaryDisplay />
+                </TabPanels>
+              </Tabs>
+            </FormProvider>
           </ModalBody>
           <ModalFooter>
             <Flex justify='space-between' w='full'>
@@ -285,9 +272,7 @@ export const VoterAuthentication = () => {
                 {t('common.back', 'Back')}
               </Button>
               <Button
-                form='voter-authentication'
-                type='submit'
-                onClick={activeTabIndex === 2 ? handleFinalSubmit : undefined}
+                onClick={handleNext}
                 colorScheme='black'
                 isLoading={isLoading}
                 isDisabled={activeTabIndex === 2 ? hasNoCredentialsSelected : false}

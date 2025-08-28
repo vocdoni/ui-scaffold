@@ -13,17 +13,14 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import { useFormContext } from 'react-hook-form'
 import { LuCheck, LuMail, LuShield } from 'react-icons/lu'
 import { getSecurityLevel, getSecurityLevelMessages, SecurityLevelDisplay } from './SecurityLevel'
 
-export type SummaryDisplayProps = {
-  credentials: string[]
-  use2FA: boolean
-  use2FAMethod: string
-}
-
-export const SummaryDisplay = ({ credentials, use2FA, use2FAMethod }: SummaryDisplayProps) => {
+export const SummaryDisplay = () => {
   const { t } = useTranslation()
+  const { watch } = useFormContext()
+  const { credentials, use2FA, use2FAMethod } = watch()
   const level = getSecurityLevel(use2FA, credentials)
   const { subtext, alert } = getSecurityLevelMessages(level)
 
