@@ -36,6 +36,7 @@ Vocdoni UI Scaffold is a multi-tenant SaaS platform for creating and managing bl
 - Use functional components with hooks
 - Prefer const assertions and explicit typing when beneficial
 - Use existing libraries and utilities already in the codebase
+- Prefer array destructuring over direct index access
 
 ## Architecture Patterns
 
