@@ -21,7 +21,7 @@ import { CensusWeb3Addresses } from '~components/Process/Census/Web3'
 import { Select } from '~components/shared/Form/Select'
 import { useGroups } from '~src/queries/groups'
 import { Routes } from '~src/router/routes'
-import { VoterAuthentication } from './VoterAuthentication'
+import { VoterAuthentication } from '../VoterAuthentication'
 
 export enum CensusTypes {
   CSP = 'csp',
