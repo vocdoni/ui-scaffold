@@ -213,18 +213,18 @@ export const VoterAuthentication = () => {
   return (
     <>
       <Button isDisabled={!groupId} colorScheme='gray' w='full' onClick={onOpen}>
-        <Trans i18nKey='process_create.voter_auth'>Configure Voter Authentication</Trans>
+        <Trans i18nKey='voter_auth.title'>Configure Voter Authentication</Trans>
       </Button>
       {censusId && (
         <Text color='texts.subtle' size='xs'>
-          {t('process_create.voter_auth_no_census_description', {
+          {t('voter_auth.no_census_description', {
             defaultValue: 'Census already created.',
           })}
         </Text>
       )}
       {!groupId && (
         <Text color='texts.subtle' size='xs'>
-          {t('process_create.voter_auth_no_group_description', {
+          {t('voter_auth.no_group_description', {
             defaultValue: 'Please select a group first to configure authentication.',
           })}
         </Text>
@@ -240,11 +240,11 @@ export const VoterAuthentication = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <Heading size='md' fontWeight='extrabold'>
-              {t('process_create.voter_auth_title', { defaultValue: 'Configure Voter Authentication' })}
+            <Heading variant='header'>
+              {t('voter_auth.title', { defaultValue: 'Configure Voter Authentication' })}
             </Heading>
-            <Text size='sm' color='texts.subtle'>
-              {t('process_create.voter_auth_description', {
+            <Text variant='subheader'>
+              {t('voter_auth.description', {
                 defaultValue: 'Set up how voters will authenticate to participate in this voting process.',
               })}
             </Text>
@@ -254,9 +254,15 @@ export const VoterAuthentication = () => {
               <ValidationErrorsAlert validationError={validationError} />
               <Tabs index={activeTabIndex} onChange={handleTabChange} isFitted>
                 <TabList w='full'>
-                  <Tab>Credentials</Tab>
-                  <Tab isDisabled={!stepCompletion.step1Completed}>Two-Factor</Tab>
-                  <Tab isDisabled={!stepCompletion.step2Completed || hasNoCredentialsSelected}>Summary</Tab>
+                  <Tab>
+                    <Trans i18nKey='voter_auth.credentials'>Credentials</Trans>
+                  </Tab>
+                  <Tab isDisabled={!stepCompletion.step1Completed}>
+                    <Trans i18nKey='voter_auth.two_factor'>Two-Factor</Trans>
+                  </Tab>
+                  <Tab isDisabled={!stepCompletion.step2Completed || hasNoCredentialsSelected}>
+                    <Trans i18nKey='voter_auth.summary'>Summary</Trans>
+                  </Tab>
                 </TabList>
                 <TabPanels>
                   <CredentialsForm />

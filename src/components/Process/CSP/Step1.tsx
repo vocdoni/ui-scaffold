@@ -63,12 +63,12 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
                 control={control}
                 name='code'
                 rules={{
-                  required: t('csp_census.auth.step1.validation.required', {
+                  required: t('csp.step1.validation.required', {
                     defaultValue: 'Code is required',
                   }),
                   minLength: {
                     value: 6,
-                    message: t('csp_census.auth.step1.validation.length', {
+                    message: t('csp.step1.validation.length', {
                       defaultValue: 'Code must be 6 digits',
                     }),
                   },
@@ -96,7 +96,7 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
             </HStack>
             {errors.code && <FormErrorMessage textAlign='center'>{errors.code.message}</FormErrorMessage>}
             <FormHelperText>
-              <Trans i18nKey='csp.auth.step1.helper_text'>If using email, don't forget to check spam folder</Trans>
+              <Trans i18nKey='csp.step1.helper_text'>If using email, don't forget to check spam folder</Trans>
             </FormHelperText>
           </FormControl>
           {auth.isError && (
@@ -107,7 +107,7 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
           )}
 
           <Button type='submit' colorScheme='primary' w='full' isLoading={auth.isPending}>
-            {t('csp_census.auth.step1.submit', { defaultValue: 'Authenticate' })}
+            {t('csp.step1.submit', { defaultValue: 'Authenticate' })}
           </Button>
         </VStack>
       </form>

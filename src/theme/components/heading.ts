@@ -14,8 +14,14 @@ export const Heading = defineStyleConfig({
     fontWeight: 'bold',
   },
   variants: {
+    header: defineStyle({
+      fontWeight: 'extrabold',
+    }),
     ['sidebar-title']: sidebarTitle,
     ['sidebar-subtitle']: sidebarSubtitle,
+  },
+  defaultProps: {
+    size: 'md',
   },
 })
 

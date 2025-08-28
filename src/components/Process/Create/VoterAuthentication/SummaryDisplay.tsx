@@ -26,23 +26,23 @@ export const SummaryDisplay = () => {
 
   const get2FAMethodLabel = (method: string) =>
     method === 'sms'
-      ? t('process_create.voter_auth_sms', { defaultValue: 'Via SMS verification' })
+      ? t('voter_auth.sms', { defaultValue: 'Via SMS verification' })
       : method === 'voter_choice'
-        ? t('process_create.voter_auth_voters_choice', { defaultValue: "Voter's choice" })
-        : t('process_create.voter_auth_email', { defaultValue: 'Via email verification' })
+        ? t('voter_auth.voters_choice', { defaultValue: "Voter's choice" })
+        : t('voter_auth.email', { defaultValue: 'Via email verification' })
 
   return (
     <TabPanel>
       <Box border='1px solid' borderColor='table.border' borderRadius='md' p={5} bg='background.raised'>
         <Stack spacing={4}>
           <Text fontWeight='bold'>
-            {t('process_create.voter_auth_summary_title', { defaultValue: 'Authentication Configuration Summary' })}
+            {t('voter_auth.summary_title', { defaultValue: 'Authentication Configuration Summary' })}
           </Text>
           <Box>
             <HStack mb={1}>
               <Icon as={LuShield} />
               <Text fontWeight='semibold'>
-                {t('process_create.voter_auth_summary_credentials', { defaultValue: 'Required Credentials' })}
+                {t('voter_auth.summary_credentials', { defaultValue: 'Required Credentials' })}
               </Text>
             </HStack>
             <Stack pl={6} spacing={2}>
@@ -61,13 +61,13 @@ export const SummaryDisplay = () => {
                   2FA
                 </Badge>
                 <Text fontWeight='semibold'>
-                  {t('process_create.voter_auth_summary_2fa_enable', { defaultValue: 'Two-Factor Authentication' })}
+                  {t('voter_auth.summary_2fa_enable', { defaultValue: 'Two-Factor Authentication' })}
                 </Text>
               </HStack>
               <Stack pl={6}>
                 <HStack>
                   <Icon as={LuCheck} color='green.500' />
-                  <Text>{t('process_create.voter_auth_summary_2fa_enabled', { defaultValue: 'Enabled' })}</Text>
+                  <Text>{t('voter_auth.summary_2fa_enabled', { defaultValue: 'Enabled' })}</Text>
                 </HStack>
                 <HStack>
                   <Icon as={LuMail} />
@@ -81,7 +81,7 @@ export const SummaryDisplay = () => {
             <HStack mb={3}>
               <Icon as={LuShield} />
               <Text fontWeight='semibold'>
-                {t('process_create.voter_auth_guarantees', { defaultValue: 'Authentication Guarantees' })}
+                {t('voter_auth.guarantees', { defaultValue: 'Authentication Guarantees' })}
               </Text>
             </HStack>
             <SecurityLevelDisplay credentials={credentials} use2FA={use2FA} />

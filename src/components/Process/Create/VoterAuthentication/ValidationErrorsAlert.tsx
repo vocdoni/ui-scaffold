@@ -41,33 +41,31 @@ export const ValidationErrorsAlert = ({ validationError }: { validationError: Va
     <Alert status='error' variant='subtle' borderRadius='md'>
       <AlertIcon />
       <Box>
-        <AlertTitle fontWeight='bold'>
-          {t('process_create.voter_auth_validation_error_title', 'Validation Error')}
-        </AlertTitle>
+        <AlertTitle fontWeight='bold'>{t('voter_auth.validation_error_title', 'Validation Error')}</AlertTitle>
 
         <AlertDescription fontSize='sm'>
           <Stack spacing={3} mt={2}>
             <Text>
-              {t('process_create.voter_auth_validation_summary', {
+              {t('voter_auth.validation_summary', {
                 defaultValue: 'Validation failed for some users.',
               })}
             </Text>
 
             <UnorderedList>
               <ListItem>
-                {t('process_create.voter_auth_validation_total', {
+                {t('voter_auth.validation_total', {
                   defaultValue: '{{count}} users total',
                   count: total,
                 })}
               </ListItem>
               <ListItem>
-                {t('process_create.voter_auth_validation_missing_data', {
+                {t('voter_auth.validation_missing_data', {
                   defaultValue: '{{count}} users missing required fields',
                   count: missingData.length,
                 })}
               </ListItem>
               <ListItem>
-                {t('process_create.voter_auth_validation_duplicates', {
+                {t('voter_auth.validation_duplicates', {
                   defaultValue: '{{count}} duplicated users',
                   count: duplicates.length,
                 })}

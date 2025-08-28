@@ -416,10 +416,12 @@ const ChangeRoleModal = ({ isOpen, onClose, user, ...props }: ActiveUserModalPro
       <ModalOverlay />
       <ModalContent py={4}>
         <ModalHeader>
-          <Heading fontSize='md'>{t('role.update.title', { defaultValue: 'Change team member role' })}</Heading>
-          <Trans i18nKey='role.update.subtitle'>
-            Update the permissions for this team member by changing their role.
-          </Trans>
+          <Heading variant='header'>{t('role.update.title', { defaultValue: 'Change team member role' })}</Heading>
+          <Text variant='subheader'>
+            <Trans i18nKey='role.update.subtitle'>
+              Update the permissions for this team member by changing their role.
+            </Trans>
+          </Text>
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>

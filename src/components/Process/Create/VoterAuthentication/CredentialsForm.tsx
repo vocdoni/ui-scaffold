@@ -26,12 +26,12 @@ export const CredentialsForm = () => {
       <Box>
         <Flex direction='column' border='1px solid' borderColor='table.border' p={4} borderRadius='md' gap={4}>
           <Text fontSize='sm' fontWeight='extrabold'>
-            {t('process_create.voter_auth_select_credentials', {
+            {t('voter_auth.select_credentials', {
               defaultValue: 'Select required credentials for voter authentication',
             })}
           </Text>
           <Text fontSize='sm' color='texts.subtle'>
-            {t('process_create.voter_auth_select_credentials_description', {
+            {t('voter_auth.select_credentials_description', {
               defaultValue:
                 'Choose the fields voters must provide to authenticate. Select up to 3 for the best balance of security and ease of use. If you plan to use only email or phone for 2FA, skip this step and click Next to set it up',
             })}
@@ -70,18 +70,18 @@ export const CredentialsForm = () => {
               <Box>
                 <AlertTitle fontWeight='bold'>
                   {credentials.length >= 2
-                    ? t('process_create.voter_auth_security_level', { defaultValue: 'Good security' })
-                    : t('process_create.voter_auth_security_recommendation_title', {
+                    ? t('voter_auth.security_level', { defaultValue: 'Good security' })
+                    : t('voter_auth.security_recommendation_title', {
                         defaultValue: 'Security recommendation',
                       })}
                 </AlertTitle>
                 <AlertDescription fontSize='sm'>
                   {credentials.length === 1 &&
-                    t('process_create.voter_auth_security_recommendation_1', {
+                    t('voter_auth.security_recommendation_1', {
                       defaultValue: 'For better security, we recommend selecting at least 2 credentials.',
                     })}
                   {credentials.length >= 2 &&
-                    t('process_create.voter_auth_security_recommendation_2', {
+                    t('voter_auth.security_recommendation_2', {
                       defaultValue:
                         "You've selected {{ count }} credentials, which provides good security for your voters.",
                       count: credentials.length,
@@ -91,7 +91,7 @@ export const CredentialsForm = () => {
             </Alert>
           )}
           <Text>
-            {t('process_create.voter_auth_selected_credentials_count', {
+            {t('voter_auth.selected_credentials_count', {
               defaultValue: '{{ count }}/3 credentials selected',
               count: credentials.length,
             })}

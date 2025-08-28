@@ -23,16 +23,14 @@ export const getSecurityLevelMessages = (level: SecurityLevel): SecurityLevelMes
     case SecurityLevels.STRONG:
       return {
         subtext: (
-          <Trans i18nKey='process_create.voter_auth_guarantees_sub_strong'>
+          <Trans i18nKey='voter_auth.guarantees_sub_strong'>
             Strong authentication guarantees with two-factor verification enabled.
           </Trans>
         ),
         alert: {
-          title: (
-            <Trans i18nKey='process_create.voter_auth_guarantees_strong_title'>Strong Authentication Guarantees</Trans>
-          ),
+          title: <Trans i18nKey='voter_auth.guarantees_strong_title'>Strong Authentication Guarantees</Trans>,
           description: (
-            <Trans i18nKey='process_create.voter_auth_guarantees_strong_description'>
+            <Trans i18nKey='voter_auth.guarantees_strong_description'>
               Your configuration provides strong authentication guarantees with two-factor verification.
             </Trans>
           ),
@@ -42,22 +40,20 @@ export const getSecurityLevelMessages = (level: SecurityLevel): SecurityLevelMes
     case SecurityLevels.MID:
       return {
         subtext: (
-          <Trans i18nKey='process_create.voter_auth_guarantees_sub_mid'>
+          <Trans i18nKey='voter_auth.guarantees_sub_mid'>
             Mid-level authentication guarantees with 3 credentials but no two-factor verification.
           </Trans>
         ),
         alert: {
-          title: (
-            <Trans i18nKey='process_create.voter_auth_guarantees_mid_title'>Mid-Level Authentication Guarantees</Trans>
-          ),
+          title: <Trans i18nKey='voter_auth.guarantees_mid_title'>Mid-Level Authentication Guarantees</Trans>,
           description: (
             <>
-              <Trans i18nKey='process_create.voter_auth_guarantees_mid_description_intro'>
+              <Trans i18nKey='voter_auth.guarantees_mid_description_intro'>
                 Your configuration provides mid-level authentication guarantees with 3 credentials.
               </Trans>
               <UnorderedList mt={2} pl={4}>
                 <ListItem>
-                  <Trans i18nKey='process_create.voter_auth_guarantees_mid_list_1'>
+                  <Trans i18nKey='voter_auth.guarantees_mid_list_1'>
                     Enable two-factor authentication for strong guarantees
                   </Trans>
                 </ListItem>
@@ -71,27 +67,25 @@ export const getSecurityLevelMessages = (level: SecurityLevel): SecurityLevelMes
     default:
       return {
         subtext: (
-          <Trans i18nKey='process_create.voter_auth_guarantees_sub_weak'>
+          <Trans i18nKey='voter_auth.guarantees_sub_weak'>
             Basic authentication guarantees with 1 credential and no two-factor verification.
           </Trans>
         ),
         alert: {
-          title: (
-            <Trans i18nKey='process_create.voter_auth_guarantees_weak_title'>Weak Authentication Guarantees</Trans>
-          ),
+          title: <Trans i18nKey='voter_auth.guarantees_weak_title'>Weak Authentication Guarantees</Trans>,
           description: (
             <>
-              <Trans i18nKey='process_create.voter_auth_guarantees_weak_description_intro'>
+              <Trans i18nKey='voter_auth.guarantees_weak_description_intro'>
                 Your current configuration provides minimal authentication guarantees. We strongly recommend:
               </Trans>
               <UnorderedList mt={2} pl={4}>
                 <ListItem>
-                  <Trans i18nKey='process_create.voter_auth_guarantees_weak_list_1'>
+                  <Trans i18nKey='voter_auth.guarantees_weak_list_1'>
                     Add more credentials (aim for 2) for better identity verification
                   </Trans>
                 </ListItem>
                 <ListItem>
-                  <Trans i18nKey='process_create.voter_auth_guarantees_weak_list_2'>
+                  <Trans i18nKey='voter_auth.guarantees_weak_list_2'>
                     Enable two-factor authentication for an additional verification layer
                   </Trans>
                 </ListItem>

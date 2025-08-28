@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link as RouterLink } from 'react-router-dom'
 import { Routes } from '~routes'
 import { useCspAuthContext } from './CSPStepsProvider'
@@ -70,24 +70,24 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
 
   const getFieldLabel = (field: string) => {
     const labels: Record<string, string> = {
-      memberNumber: t('csp.auth.fields.memberNumber', 'Member Number'),
-      name: t('csp.auth.fields.name', 'Name'),
-      surname: t('csp.auth.fields.surname', 'Surname'),
-      nationalId: t('csp.auth.fields.nationalId', 'National ID'),
-      birthDate: t('csp.auth.fields.birthDate', 'Birth Date'),
+      memberNumber: t('csp.fields.memberNumber', 'Member Number'),
+      name: t('csp.fields.name', 'Name'),
+      surname: t('csp.fields.surname', 'Surname'),
+      nationalId: t('csp.fields.nationalId', 'National ID'),
+      birthDate: t('csp.fields.birthDate', 'Birth Date'),
     }
     return labels[field] || field
   }
 
   const get2FaFieldLabel = () => {
     if (twoFaFields.includes('email') && twoFaFields.includes('phone')) {
-      return t('csp.auth.fields.contact', 'Email or Phone')
+      return t('csp.fields.email_or_phone', 'Email or Phone')
     } else if (twoFaFields.includes('email')) {
-      return t('csp.auth.fields.email', 'Email')
+      return t('csp.fields.email', 'Email')
     } else if (twoFaFields.includes('phone')) {
-      return t('csp.auth.fields.phone', 'Phone')
+      return t('csp.fields.phone', 'Phone')
     }
-    return t('csp.auth.fields.contact', 'Contact')
+    return t('csp.fields.contact', 'Contact')
   }
 
   const getFieldType = (field: string) => {
@@ -115,8 +115,8 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
               <FormLabel>{get2FaFieldLabel()}</FormLabel>
               <Input {...register('contact', { required: true })} type='text' />
               <FormHelperText>
-                <strong>{t('csp.auth.important', 'Important')}:</strong>{' '}
-                {t('csp.auth.contact_match_help', 'Must match the one registered in the system')}
+                <strong>{t('csp.important', 'Important')}:</strong>{' '}
+                {t('csp.contact_match_help', 'Must match the one registered in the system')}
               </FormHelperText>
             </FormControl>
           )}
@@ -130,34 +130,36 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
 
           <FormControl isRequired>
             <Checkbox size='sm' variant='inline' colorScheme='blue'>
-              {t('csp.auth.terms_acceptance', 'I have read and accept the')}{' '}
-              <Link as={RouterLink} to={Routes.terms} isExternal>
-                {t('csp.auth.terms_and_conditions', 'Terms and Conditions')}
-              </Link>{' '}
-              {t('csp.auth.and', 'and')}{' '}
-              <Link as={RouterLink} to={Routes.privacy} isExternal>
-                {t('csp.auth.privacy_policy', 'Privacy Policy')}
-              </Link>
-              .
+              <Trans i18nKey='csp.terms_acceptance'>
+                I have read and accept the{' '}
+                <Link as={RouterLink} to={Routes.terms} isExternal>
+                  Terms and Conditions
+                </Link>{' '}
+                and the{' '}
+                <Link as={RouterLink} to={Routes.privacy} isExternal>
+                  Privacy Policy
+                </Link>
+                .
+              </Trans>
             </Checkbox>
           </FormControl>
 
           <Text fontSize='xs'>
             💡{' '}
             {t(
-              'csp.auth.data_usage_info',
+              'csp.data_usage_info',
               'Your data will only be used to verify your identity. Vocdoni does not store personal data.'
             )}
           </Text>
 
           <Button type='submit' w='full' isLoading={auth.isPending} mt={2}>
-            {t('csp.auth.receive_code', 'Receive Code')}
+            {t('csp.receive_code', 'Receive Code')}
           </Button>
 
           {twoFaFields.length > 0 && (
             <Text textAlign='center' fontSize='sm'>
               {t(
-                'csp.auth.code_info',
+                'csp.code_info',
                 'You will receive a unique code on the selected medium to verify your identity and complete authentication'
               )}
             </Text>

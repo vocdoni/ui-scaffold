@@ -27,22 +27,22 @@ export const TwoFactorForm = () => {
   const TwoFactorMethods = [
     {
       value: 'email',
-      label: t('process_create.voter_auth_2fa_email', { defaultValue: 'Email verification' }),
-      description: t('process_create.voter_auth_2fa_email_description', {
+      label: t('voter_auth.2fa_email', { defaultValue: 'Email verification' }),
+      description: t('voter_auth.2fa_email_description', {
         defaultValue: 'Voters will receive a verification code via email',
       }),
     },
     {
       value: 'sms',
-      label: t('process_create.voter_auth_2fa_sms', { defaultValue: 'SMS verification' }),
-      description: t('process_create.voter_auth_2fa_sms_description', {
+      label: t('voter_auth.2fa_sms', { defaultValue: 'SMS verification' }),
+      description: t('voter_auth.2fa_sms_description', {
         defaultValue: 'Voters will receive a verification code via SMS',
       }),
     },
     {
       value: 'voter_choice',
-      label: t('process_create.voter_auth_2fa_voter_choice', { defaultValue: "Voter's choice" }),
-      description: t('process_create.voter_auth_2fa_voter_choice_description', {
+      label: t('voter_auth.2fa_voter_choice', { defaultValue: "Voter's choice" }),
+      description: t('voter_auth.2fa_voter_choice_description', {
         defaultValue: 'Voters can choose their preferred verification method',
       }),
     },
@@ -55,10 +55,10 @@ export const TwoFactorForm = () => {
           <FormControl as={HStack}>
             <Box>
               <FormLabel fontWeight='extrabold' m={0}>
-                {t('process_create.voter_auth_2fa_enable', { defaultValue: 'Enable Two-Factor Authentication' })}
+                {t('voter_auth.2fa_enable', { defaultValue: 'Enable Two-Factor Authentication' })}
               </FormLabel>
               <Text fontSize='sm' color='texts.subtle'>
-                {t('process_create.voter_auth_2fa_description', {
+                {t('voter_auth.2fa_description', {
                   defaultValue: 'Add an extra layer of security by requiring voters to verify their identity',
                 })}
               </Text>
@@ -80,7 +80,7 @@ export const TwoFactorForm = () => {
             <VStack align='start' spacing={6}>
               <Box>
                 <Text fontWeight='bold'>
-                  {t('process_create.voter_auth_2fa_method_title', { defaultValue: 'Select verification method' })}
+                  {t('voter_auth.2fa_method_title', { defaultValue: 'Select verification method' })}
                 </Text>
                 <VStack align='start' spacing={3} mt={3}>
                   <FormControl>
@@ -110,10 +110,10 @@ export const TwoFactorForm = () => {
                 <AlertIcon as={LuLock} />
                 <Box>
                   <AlertTitle fontWeight='bold'>
-                    {t('process_create.voter_auth_2fa_security_title', { defaultValue: 'Enhanced Security' })}
+                    {t('voter_auth.2fa_security_title', { defaultValue: 'Enhanced Security' })}
                   </AlertTitle>
                   <AlertDescription fontSize='sm'>
-                    {t('process_create.voter_auth_2fa_security_description', {
+                    {t('voter_auth.2fa_security_description', {
                       defaultValue:
                         'Two-factor authentication significantly increases the security of your voting process by ensuring only authorized members can vote.',
                     })}

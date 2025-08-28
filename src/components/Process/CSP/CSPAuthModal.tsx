@@ -77,9 +77,9 @@ export const CspAuthModal = () => {
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader textAlign='center' pt={0}>
+          <ModalHeader textAlign='center'>
             <Heading>
-              <Trans i18nKey='csp.auth.title'>Authentication</Trans>
+              <Trans i18nKey='csp.title'>Authentication</Trans>
             </Heading>
           </ModalHeader>
           <ModalCloseButton />
@@ -107,8 +107,6 @@ export const CspAuth = () => {
   if (election instanceof InvalidElection) return null
   if (isLoading) return <div>Loading census data...</div>
   if (error) return <div>Error loading census data: {error.message}</div>
-
-  console.log('Census Data:', censusData)
 
   const processedCensusData = censusData
     ? {
