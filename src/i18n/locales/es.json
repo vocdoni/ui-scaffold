@@ -343,6 +343,7 @@
     "error": {
       "address_already_in_use": "Esta dirección ya está en el censo",
       "address_pattern": "Solo se permiten direcciones hexadecimales (p.ej. 0x031101A...)",
+      "census_config_required": "Por favor, configura cómo se autenticarán los votantes",
       "email_invalid": "Correo electrónico incorrecto",
       "field_is_required": "Este campo es obligatorio",
       "invalid_youtube_url": "Por favor, ingresa una URL válida de YouTube",
@@ -1840,6 +1841,9 @@
     "guarantees_weak_list_1": "Añade más credenciales (apunta a 2) para una mejor verificación de identidad",
     "guarantees_weak_list_2": "Habilita la autenticación en dos pasos para una capa adicional de verificación",
     "guarantees_weak_title": "Garantías de autenticación débiles",
+    "level_mid": "Medio",
+    "level_strong": "Fuerte",
+    "level_weak": "Débil",
     "no_census_description": "Censo ya creado.",
     "no_group_description": "Por favor, selecciona primero un grupo para configurar la autenticación.",
     "security_level": "Buena seguridad",

@@ -343,6 +343,7 @@
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
+      "census_config_required": "Si us plau, configura com s'autenticaran els votants",
       "email_invalid": "Invalid email address",
       "field_is_required": "Aquest camp és obligatori",
       "invalid_youtube_url": "Si us plau, introdueix una URL vàlida de YouTube",
@@ -1840,6 +1841,9 @@
     "guarantees_weak_list_1": "Afegeix més credencials (apunta a 2) per a una millor verificació d'identitat",
     "guarantees_weak_list_2": "Habilita l'autenticació en dos passos per una capa addicional de verificació",
     "guarantees_weak_title": "Garanties d'autenticació febles",
+    "level_mid": "Mitjà",
+    "level_strong": "Fort",
+    "level_weak": "Feble",
     "no_census_description": "Cens ja creat.",
     "no_group_description": "Si us plau, selecciona primer un grup per configurar l'autenticació.",
     "security_level": "Bona seguretat",

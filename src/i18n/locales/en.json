@@ -340,6 +340,7 @@
     "error": {
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
+      "census_config_required": "Please configure the census authentication settings.",
       "email_invalid": "Invalid email address",
       "field_is_required": "This field is required",
       "invalid_youtube_url": "Please enter a valid YouTube URL",
@@ -1822,6 +1823,9 @@
     "guarantees_weak_list_1": "Add more credentials (aim for 2) for better identity verification",
     "guarantees_weak_list_2": "Enable two-factor authentication for an additional verification layer",
     "guarantees_weak_title": "Weak Authentication Guarantees",
+    "level_mid": "Mid",
+    "level_strong": "Strong",
+    "level_weak": "Weak",
     "no_census_description": "Census already created.",
     "no_group_description": "Please select a group first to configure authentication.",
     "security_level": "Good security",

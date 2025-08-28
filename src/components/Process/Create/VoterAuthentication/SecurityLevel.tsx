@@ -1,5 +1,5 @@
 import { AlertStatus, Box, HStack, ListItem, UnorderedList, useStyleConfig } from '@chakra-ui/react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 export enum SecurityLevels {
   WEAK = 'WEAK',
@@ -104,10 +104,24 @@ export const getSecurityLevel = (use2FA: boolean, credentials: string[]): Securi
 }
 
 const SecurityLevelBox = ({ level, isActive }: { level: SecurityLevel; isActive: boolean }) => {
+  const { t } = useTranslation()
   const variant = isActive ? level.toLowerCase() : 'inactive'
   const styles = useStyleConfig('SecurityLevelBox', { variant })
 
-  return <Box __css={styles}>{level}</Box>
+  const getTranslatedLevel = (level: SecurityLevel) => {
+    switch (level) {
+      case SecurityLevels.STRONG:
+        return t('voter_auth.level_strong', 'Strong')
+      case SecurityLevels.MID:
+        return t('voter_auth.level_mid', 'Mid')
+      case SecurityLevels.WEAK:
+        return t('voter_auth.level_weak', 'Weak')
+      default:
+        return level
+    }
+  }
+
+  return <Box __css={styles}>{getTranslatedLevel(level)}</Box>
 }
 
 export const SecurityLevelDisplay = ({ credentials = [], use2FA }: { credentials: string[]; use2FA: boolean }) => {
