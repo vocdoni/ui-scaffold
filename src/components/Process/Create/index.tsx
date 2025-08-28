@@ -103,8 +103,8 @@ export type Process = {
   endTime: string
   questionType: QuestionTypes
   questions: Question[]
-  maxNumberOfChoices: number | undefined
-  minNumberOfChoices: number | undefined
+  maxNumberOfChoices: number
+  minNumberOfChoices: number
   resultVisibility: 'live' | 'hidden'
   voterPrivacy: 'anonymous' | 'public'
   groupId: string

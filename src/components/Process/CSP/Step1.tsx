@@ -14,7 +14,7 @@ import {
 import { useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { Controller, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useCspAuthContext } from './CSPStepsProvider'
 import { useTwoFactorAuth } from './basics'
 
@@ -48,7 +48,6 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
       })
 
       csp1(authToken)
-      // Aquí podrías manejar el siguiente paso o finalizar la autenticación
     } catch (error) {
       console.error('Authentication failed:', error)
     }
@@ -96,7 +95,9 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
               />
             </HStack>
             {errors.code && <FormErrorMessage textAlign='center'>{errors.code.message}</FormErrorMessage>}
-            <FormHelperText>Si fas servir email, no oblidis revisar el correu brossa</FormHelperText>
+            <FormHelperText>
+              <Trans i18nKey='csp.auth.step1.helper_text'>If using email, don't forget to check spam folder</Trans>
+            </FormHelperText>
           </FormControl>
           {auth.isError && (
             <Alert status='error'>

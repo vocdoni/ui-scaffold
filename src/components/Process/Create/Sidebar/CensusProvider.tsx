@@ -1,8 +1,15 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, PropsWithChildren, useContext, useState } from 'react'
 
-const CensusContext = createContext(undefined)
+type CensusContextType =
+  | {
+      maxCensusSize: number | null
+      setMaxCensusSize: React.Dispatch<React.SetStateAction<number | null>>
+    }
+  | undefined
 
-export const CensusProvider = ({ children }) => {
+const CensusContext = createContext<CensusContextType>(undefined)
+
+export const CensusProvider = ({ children }: PropsWithChildren) => {
   const [maxCensusSize, setMaxCensusSize] = useState<number | null>(null)
 
   return <CensusContext.Provider value={{ maxCensusSize, setMaxCensusSize }}>{children}</CensusContext.Provider>

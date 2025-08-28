@@ -78,7 +78,9 @@ export const CspAuthModal = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader textAlign='center' pt={0}>
-            <Heading>Autenticació</Heading>
+            <Heading>
+              <Trans i18nKey='csp.auth.title'>Authentication</Trans>
+            </Heading>
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
