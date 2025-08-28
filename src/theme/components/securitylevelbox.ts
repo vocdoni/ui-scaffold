@@ -10,6 +10,7 @@ const baseStyle = defineStyle({
   textAlign: 'center',
   w: 'full',
   color: 'white',
+  textTransform: 'uppercase',
 })
 
 const weak = defineStyle(() => ({ bg: 'red.800', borderColor: 'red.600' }))
