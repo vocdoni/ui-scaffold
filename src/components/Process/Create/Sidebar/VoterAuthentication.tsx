@@ -58,6 +58,8 @@ enum SecurityLevels {
 
 type SecurityLevel = SecurityLevels.WEAK | SecurityLevels.MID | SecurityLevels.STRONG
 
+type TwoFAMethod = 'email' | 'sms' | 'voter_choice'
+
 type SecurityLevelMessages = {
   subtext: JSX.Element
   alert: {
@@ -235,94 +237,145 @@ const getSecurityLevel = (use2FA: boolean, credentials: string[]): SecurityLevel
   return credentials.length === 3 ? SecurityLevels.MID : SecurityLevels.WEAK
 }
 
-const CredentialSelectionTab = () => {
+const getTwoFaFields = (method: TwoFAMethod): string[] => {
+  switch (method) {
+    case 'email':
+      return ['email']
+    case 'sms':
+      return ['phone']
+    case 'voter_choice':
+      return ['email', 'phone']
+  }
+}
+
+type CredentialsFormData = {
+  credentials: string[]
+}
+
+type CredentialsFormProps = {
+  onSubmit: (data: CredentialsFormData) => void
+  defaultValues?: CredentialsFormData
+}
+
+const CredentialsForm = ({ onSubmit, defaultValues }: CredentialsFormProps) => {
   const { t } = useTranslation()
-  const { control, watch } = useFormContext()
   const fields = useMemberColumns()
+  const methods = useForm<CredentialsFormData>({
+    defaultValues: defaultValues || { credentials: [] },
+  })
+  const { control, watch, handleSubmit } = methods
   const credentials = watch('credentials')
 
   return (
     <TabPanel px={0} pb={0}>
-      <Flex direction='column' border='1px solid' borderColor='table.border' p={4} borderRadius='md' gap={4}>
-        <Text fontSize='sm' fontWeight='extrabold'>
-          {t('process_create.voter_auth_select_credentials', {
-            defaultValue: 'Select required credentials for voter authentication',
-          })}
-        </Text>
-        <Text fontSize='sm' color='texts.subtle'>
-          {t('process_create.voter_auth_select_credentials_description', {
-            defaultValue:
-              'Choose the fields voters must provide to authenticate. Select up to 3 for the best balance of security and ease of use. If you plan to use only email or phone for 2FA, skip this step and click Next to set it up',
-          })}
-        </Text>
-        <Flex direction='column' gap={2}>
-          <Controller
-            name='credentials'
-            control={control}
-            rules={{ validate: (val) => val.length <= 3 }}
-            render={({ field }) => (
-              <CheckboxGroup value={field.value} onChange={(value: string[]) => field.onChange(value)}>
-                {fields.map((column) => {
-                  if (column.is2fa) return null // Skip 2FA fields in this selection
-                  const isChecked = credentials.includes(column.id)
-                  const isAtLimit = credentials.length >= 3 && !isChecked
-                  return (
-                    <Checkbox key={column.id} value={column.id} isDisabled={isAtLimit}>
-                      {column.label}
-                    </Checkbox>
-                  )
-                })}
-              </CheckboxGroup>
-            )}
-          />
-        </Flex>
-        {credentials.length >= 1 && (
-          <Alert
-            status={credentials.length >= 2 ? 'success' : 'info'}
-            variant='subtle'
-            borderRadius='md'
-            alignItems='start'
-            py={3}
-            px={4}
-          >
-            <AlertIcon as={credentials.length >= 2 ? LuCheck : LuInfo} />
-            <Box>
-              <AlertTitle fontWeight='bold'>
-                {credentials.length >= 2
-                  ? t('process_create.voter_auth_security_level', { defaultValue: 'Good security' })
-                  : t('process_create.voter_auth_security_recommendation_title', {
-                      defaultValue: 'Security recommendation',
+      <FormProvider {...methods}>
+        <Box
+          as='form'
+          id='voter-authentication'
+          onSubmit={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            handleSubmit(onSubmit)(e)
+          }}
+        >
+          <Flex direction='column' border='1px solid' borderColor='table.border' p={4} borderRadius='md' gap={4}>
+            <Text fontSize='sm' fontWeight='extrabold'>
+              {t('process_create.voter_auth_select_credentials', {
+                defaultValue: 'Select required credentials for voter authentication',
+              })}
+            </Text>
+            <Text fontSize='sm' color='texts.subtle'>
+              {t('process_create.voter_auth_select_credentials_description', {
+                defaultValue:
+                  'Choose the fields voters must provide to authenticate. Select up to 3 for the best balance of security and ease of use. If you plan to use only email or phone for 2FA, skip this step and click Next to set it up',
+              })}
+            </Text>
+            <Flex direction='column' gap={2}>
+              <Controller
+                name='credentials'
+                control={control}
+                rules={{ validate: (val) => val.length <= 3 }}
+                render={({ field }) => (
+                  <CheckboxGroup value={field.value} onChange={(value: string[]) => field.onChange(value)}>
+                    {fields.map((column) => {
+                      if (column.is2fa) return null // Skip 2FA fields in this selection
+                      const isChecked = credentials.includes(column.id)
+                      const isAtLimit = credentials.length >= 3 && !isChecked
+                      return (
+                        <Checkbox key={column.id} value={column.id} isDisabled={isAtLimit}>
+                          {column.label}
+                        </Checkbox>
+                      )
                     })}
-              </AlertTitle>
-              <AlertDescription fontSize='sm'>
-                {credentials.length === 1 &&
-                  t('process_create.voter_auth_security_recommendation_1', {
-                    defaultValue: 'For better security, we recommend selecting at least 2 credentials.',
-                  })}
-                {credentials.length >= 2 &&
-                  t('process_create.voter_auth_security_recommendation_2', {
-                    defaultValue:
-                      "You've selected {{ count }} credentials, which provides good security for your voters.",
-                    count: credentials.length,
-                  })}
-              </AlertDescription>
-            </Box>
-          </Alert>
-        )}
-        <Text>
-          {t('process_create.voter_auth_selected_credentials_count', {
-            defaultValue: '{{ count }}/3 credentials selected',
-            count: credentials.length,
-          })}
-        </Text>
-      </Flex>
+                  </CheckboxGroup>
+                )}
+              />
+            </Flex>
+            {credentials.length >= 1 && (
+              <Alert
+                status={credentials.length >= 2 ? 'success' : 'info'}
+                variant='subtle'
+                borderRadius='md'
+                alignItems='start'
+                py={3}
+                px={4}
+              >
+                <AlertIcon as={credentials.length >= 2 ? LuCheck : LuInfo} />
+                <Box>
+                  <AlertTitle fontWeight='bold'>
+                    {credentials.length >= 2
+                      ? t('process_create.voter_auth_security_level', { defaultValue: 'Good security' })
+                      : t('process_create.voter_auth_security_recommendation_title', {
+                          defaultValue: 'Security recommendation',
+                        })}
+                  </AlertTitle>
+                  <AlertDescription fontSize='sm'>
+                    {credentials.length === 1 &&
+                      t('process_create.voter_auth_security_recommendation_1', {
+                        defaultValue: 'For better security, we recommend selecting at least 2 credentials.',
+                      })}
+                    {credentials.length >= 2 &&
+                      t('process_create.voter_auth_security_recommendation_2', {
+                        defaultValue:
+                          "You've selected {{ count }} credentials, which provides good security for your voters.",
+                        count: credentials.length,
+                      })}
+                  </AlertDescription>
+                </Box>
+              </Alert>
+            )}
+            <Text>
+              {t('process_create.voter_auth_selected_credentials_count', {
+                defaultValue: '{{ count }}/3 credentials selected',
+                count: credentials.length,
+              })}
+            </Text>
+          </Flex>
+        </Box>
+      </FormProvider>
     </TabPanel>
   )
 }
 
-const TwoFactorAuthTab = () => {
+type TwoFactorFormData = {
+  use2FA: boolean
+  use2FAMethod: TwoFAMethod
+}
+
+type TwoFactorFormProps = {
+  onSubmit: (data: TwoFactorFormData) => Promise<void>
+  defaultValues?: TwoFactorFormData
+  credentials: string[]
+  groupId: string
+  isLoading?: boolean
+}
+
+const TwoFactorForm = ({ onSubmit, defaultValues, credentials, groupId, isLoading }: TwoFactorFormProps) => {
   const { t } = useTranslation()
-  const { control, watch } = useFormContext()
+  const methods = useForm<TwoFactorFormData>({
+    defaultValues: defaultValues || { use2FA: false, use2FAMethod: 'email' as TwoFAMethod },
+  })
+  const { control, watch, handleSubmit } = methods
   const use2FA = watch('use2FA')
 
   const TwoFactorMethods = [
@@ -351,74 +404,90 @@ const TwoFactorAuthTab = () => {
 
   return (
     <TabPanel>
-      <VStack spacing={4} border='1px solid' borderColor='table.border' p={4} borderRadius='md'>
-        <FormControl as={HStack}>
-          <Box>
-            <FormLabel fontWeight='extrabold' m={0}>
-              {t('process_create.voter_auth_2fa_enable', { defaultValue: 'Enable Two-Factor Authentication' })}
-            </FormLabel>
-            <Text fontSize='sm' color='texts.subtle'>
-              {t('process_create.voter_auth_2fa_description', {
-                defaultValue: 'Add an extra layer of security by requiring voters to verify their identity',
-              })}
-            </Text>
-          </Box>
-          <Controller
-            name='use2FA'
-            control={control}
-            render={({ field }) => (
-              <Switch isChecked={field.value} onChange={(e) => field.onChange(e.target.checked)} colorScheme='black' />
-            )}
-          />
-        </FormControl>
-
-        {use2FA && (
-          <VStack align='start' spacing={6}>
-            <Box>
-              <Text fontWeight='bold'>
-                {t('process_create.voter_auth_2fa_method_title', { defaultValue: 'Select verification method' })}
-              </Text>
-              <VStack align='start' spacing={3} mt={3}>
-                <FormControl>
-                  <Controller
-                    name='use2FAMethod'
-                    control={control}
-                    render={({ field }) => (
-                      <RadioGroup {...field} colorScheme='black'>
-                        <Stack direction='column' gap={2}>
-                          {TwoFactorMethods.map((method) => (
-                            <Radio key={method.value} value={method.value} alignItems='flex-start' size='sm'>
-                              <Text fontWeight='bold'>{method.label}</Text>
-                              <Text fontSize='sm' color='texts.subtle'>
-                                {method.description}
-                              </Text>
-                            </Radio>
-                          ))}
-                        </Stack>
-                      </RadioGroup>
-                    )}
-                  />
-                </FormControl>
-              </VStack>
-            </Box>
-
-            <Alert status='success' variant='subtle' borderRadius='md' alignItems='start' py={3} px={4}>
-              <AlertIcon as={LuLock} />
+      <FormProvider {...methods}>
+        <Box
+          as='form'
+          id='voter-authentication'
+          onSubmit={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            handleSubmit(onSubmit)(e)
+          }}
+        >
+          <VStack spacing={4} border='1px solid' borderColor='table.border' p={4} borderRadius='md'>
+            <FormControl as={HStack}>
               <Box>
-                <AlertTitle fontWeight='bold'>
-                  {t('process_create.voter_auth_2fa_security_title', { defaultValue: 'Enhanced Security' })}
-                </AlertTitle>
-                <AlertDescription fontSize='sm'>
-                  {t('process_create.voter_auth_2fa_security_description', {
-                    defaultValue:
-                      'Two-factor authentication significantly increases the security of your voting process by ensuring only authorized members can vote.',
+                <FormLabel fontWeight='extrabold' m={0}>
+                  {t('process_create.voter_auth_2fa_enable', { defaultValue: 'Enable Two-Factor Authentication' })}
+                </FormLabel>
+                <Text fontSize='sm' color='texts.subtle'>
+                  {t('process_create.voter_auth_2fa_description', {
+                    defaultValue: 'Add an extra layer of security by requiring voters to verify their identity',
                   })}
-                </AlertDescription>
+                </Text>
               </Box>
-            </Alert>
+              <Controller
+                name='use2FA'
+                control={control}
+                render={({ field }) => (
+                  <Switch
+                    isChecked={field.value}
+                    onChange={(e) => field.onChange(e.target.checked)}
+                    colorScheme='black'
+                  />
+                )}
+              />
+            </FormControl>
+
+            {use2FA && (
+              <VStack align='start' spacing={6}>
+                <Box>
+                  <Text fontWeight='bold'>
+                    {t('process_create.voter_auth_2fa_method_title', { defaultValue: 'Select verification method' })}
+                  </Text>
+                  <VStack align='start' spacing={3} mt={3}>
+                    <FormControl>
+                      <Controller
+                        name='use2FAMethod'
+                        control={control}
+                        render={({ field }) => (
+                          <RadioGroup {...field} colorScheme='black'>
+                            <Stack direction='column' gap={2}>
+                              {TwoFactorMethods.map((method) => (
+                                <Radio key={method.value} value={method.value} alignItems='flex-start' size='sm'>
+                                  <Text fontWeight='bold'>{method.label}</Text>
+                                  <Text fontSize='sm' color='texts.subtle'>
+                                    {method.description}
+                                  </Text>
+                                </Radio>
+                              ))}
+                            </Stack>
+                          </RadioGroup>
+                        )}
+                      />
+                    </FormControl>
+                  </VStack>
+                </Box>
+
+                <Alert status='success' variant='subtle' borderRadius='md' alignItems='start' py={3} px={4}>
+                  <AlertIcon as={LuLock} />
+                  <Box>
+                    <AlertTitle fontWeight='bold'>
+                      {t('process_create.voter_auth_2fa_security_title', { defaultValue: 'Enhanced Security' })}
+                    </AlertTitle>
+                    <AlertDescription fontSize='sm'>
+                      {t('process_create.voter_auth_2fa_security_description', {
+                        defaultValue:
+                          'Two-factor authentication significantly increases the security of your voting process by ensuring only authorized members can vote.',
+                      })}
+                    </AlertDescription>
+                  </Box>
+                </Alert>
+              </VStack>
+            )}
           </VStack>
-        )}
-      </VStack>
+        </Box>
+      </FormProvider>
     </TabPanel>
   )
 }
@@ -430,10 +499,7 @@ const SecurityLevelBox = ({ level, isActive }: { level: SecurityLevel; isActive:
   return <Box __css={styles}>{level}</Box>
 }
 
-const SecurityLevelDisplay = () => {
-  const { watch } = useFormContext()
-  const credentials = watch('credentials') || []
-  const use2FA = watch('use2FA')
+const SecurityLevelDisplay = ({ credentials = [], use2FA }: { credentials: string[]; use2FA: boolean }) => {
   const level = getSecurityLevel(use2FA, credentials)
 
   return (
@@ -445,12 +511,14 @@ const SecurityLevelDisplay = () => {
   )
 }
 
-const SummaryTab = () => {
+type SummaryDisplayProps = {
+  credentials: string[]
+  use2FA: boolean
+  use2FAMethod: string
+}
+
+const SummaryDisplay = ({ credentials, use2FA, use2FAMethod }: SummaryDisplayProps) => {
   const { t } = useTranslation()
-  const { watch } = useFormContext()
-  const credentials = watch('credentials') || []
-  const use2FA = watch('use2FA')
-  const use2FAMethod = watch('use2FAMethod')
   const level = getSecurityLevel(use2FA, credentials)
   const { subtext, alert } = getSecurityLevelMessages(level)
 
@@ -514,7 +582,7 @@ const SummaryTab = () => {
                 {t('process_create.voter_auth_guarantees', { defaultValue: 'Authentication Guarantees' })}
               </Text>
             </HStack>
-            <SecurityLevelDisplay />
+            <SecurityLevelDisplay credentials={credentials} use2FA={use2FA} />
             <Text fontSize='sm' color='texts.subtle' mt={2}>
               {subtext}
             </Text>
@@ -600,6 +668,17 @@ export const ValidationErrorsAlert = ({ validationError }) => {
   )
 }
 
+type VoterAuthFormData = {
+  credentials: string[]
+  use2FA: boolean
+  use2FAMethod: TwoFAMethod
+}
+
+type StepCompletionState = {
+  step1Completed: boolean
+  step2Completed: boolean
+}
+
 export const VoterAuthentication = () => {
   const { t } = useTranslation()
   const mainForm = useFormContext()
@@ -607,81 +686,103 @@ export const VoterAuthentication = () => {
   const { setMaxCensusSize } = useCensus()
   const [activeTabIndex, setActiveTabIndex] = useState(0)
   const [validationError, setValidationError] = useState<ValidationError | null>(null)
+  const [formData, setFormData] = useState<VoterAuthFormData>({
+    credentials: [],
+    use2FA: false,
+    use2FAMethod: 'email' as TwoFAMethod,
+  })
+  const [stepCompletion, setStepCompletion] = useState<StepCompletionState>({
+    step1Completed: false,
+    step2Completed: false,
+  })
+
   const validateGroupMutation = useValidateGroup()
   const createCensusMutation = useCreateCensus()
   const publishCensusMutation = usePublishCensus()
 
-  const methods = useForm({ defaultValues: { credentials: [], use2FA: false, use2FAMethod: 'email' } })
-  const { handleSubmit, watch, getValues } = methods
   const groupId = mainForm.watch('groupId')
   const censusId = mainForm.watch('censusId')
-  const credentials = watch('credentials')
-  const use2FA = watch('use2FA')
-  const hasNoCredentialsSelected = !credentials.length && !use2FA
+  const hasNoCredentialsSelected = !formData.credentials.length && !formData.use2FA
 
-  const goToTab = async (nextIndex: number) => {
+  const handleCredentialsSubmit = async (data: CredentialsFormData) => {
+    setFormData((prev) => ({ ...prev, ...data }))
+    setStepCompletion((prev) => ({ ...prev, step1Completed: true }))
+    setActiveTabIndex(1)
+  }
+
+  const handleTwoFactorSubmit = async (data: TwoFactorFormData) => {
     setValidationError(null)
 
     try {
-      if (activeTabIndex === 0) {
-        if (credentials.length) {
-          await validateGroupMutation.mutateAsync({
-            groupId,
-            authFields: credentials,
-          })
-        }
-      }
+      // Always perform validation, but adjust twoFaFields based on 2FA setting
+      const twoFaFields = data.use2FA ? getTwoFaFields(data.use2FAMethod) : []
 
-      if (activeTabIndex === 1) {
-        const censusData = getValues()
-        if (censusData.use2FA) {
-          const twoFaFields =
-            censusData.use2FAMethod === "voter's choice" ? ['email', 'phone'] : [censusData.use2FAMethod]
-          await validateGroupMutation.mutateAsync({
-            groupId,
-            authFields: censusData.credentials,
-            twoFaFields,
-          })
-        }
-      }
+      await validateGroupMutation.mutateAsync({
+        groupId,
+        authFields: formData.credentials,
+        twoFaFields,
+      })
 
-      setActiveTabIndex(nextIndex)
+      setFormData((prev) => ({ ...prev, ...data }))
+      setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
+      setActiveTabIndex(2)
     } catch (error) {
       setValidationError(error.apiError as ValidationError)
     }
   }
 
-  const onSubmit = async () => {
-    const censusData = getValues()
-    const { id: censusId } = await createCensusMutation.mutateAsync()
-    const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
-      censusId,
-      groupId,
-      authFields: censusData.credentials,
-      twoFaFields: censusData.use2FA
-        ? censusData.use2FAMethod === "voter's choice"
-          ? ['email', 'phone']
-          : [censusData.use2FAMethod]
-        : [],
-    })
-    setMaxCensusSize(maxCensusSize)
-    mainForm.setValue('censusId', censusId)
-    onClose()
-    goToTab(0)
+  const handleFinalSubmit = async () => {
+    try {
+      const { id: censusId } = await createCensusMutation.mutateAsync()
+      const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
+        censusId,
+        groupId,
+        authFields: formData.credentials,
+        twoFaFields: formData.use2FA ? getTwoFaFields(formData.use2FAMethod) : [],
+      })
+      setMaxCensusSize(maxCensusSize)
+      mainForm.setValue('censusId', censusId)
+      onClose()
+      resetForm()
+    } catch (error) {
+      console.error('Failed to create census:', error)
+    }
   }
 
-  const handleNext = () => {
-    if (activeTabIndex < 2) {
-      goToTab(activeTabIndex + 1)
-    } else {
-      handleSubmit(onSubmit)()
+  const resetForm = () => {
+    setActiveTabIndex(0)
+    setFormData({
+      credentials: [],
+      use2FA: false,
+      use2FAMethod: 'email' as TwoFAMethod,
+    })
+    setStepCompletion({
+      step1Completed: false,
+      step2Completed: false,
+    })
+    setValidationError(null)
+  }
+
+  const handleTabChange = (index: number) => {
+    // Allow navigation to any completed step or the next available step
+    if (index === 0) {
+      setActiveTabIndex(0)
+    } else if (index === 1 && stepCompletion.step1Completed) {
+      setActiveTabIndex(1)
+    } else if (index === 2 && stepCompletion.step2Completed) {
+      setActiveTabIndex(2)
     }
   }
 
   const handlePrevious = () => {
-    if (activeTabIndex > 0) goToTab(activeTabIndex - 1)
-    else onClose()
+    if (activeTabIndex > 0) {
+      setActiveTabIndex(activeTabIndex - 1)
+    } else {
+      onClose()
+    }
   }
+
+  const isLoading = validateGroupMutation.isPending || createCensusMutation.isPending || publishCensusMutation.isPending
 
   return (
     <>
@@ -702,7 +803,14 @@ export const VoterAuthentication = () => {
           })}
         </Text>
       )}
-      <Modal isOpen={isOpen} onClose={onClose} size='xl'>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => {
+          onClose()
+          resetForm()
+        }}
+        size='xl'
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
@@ -715,39 +823,51 @@ export const VoterAuthentication = () => {
               })}
             </Text>
           </ModalHeader>
-          <FormProvider {...methods}>
-            <Box as='form' onSubmit={handleSubmit(onSubmit)} p={4}>
-              <ModalBody display='flex' flexDirection='column' gap={4}>
-                <ValidationErrorsAlert validationError={validationError} />
-                <Tabs index={activeTabIndex} onChange={goToTab} isFitted>
-                  <TabList w='full'>
-                    <Tab>Credentials</Tab>
-                    <Tab>Two-Factor</Tab>
-                    <Tab isDisabled={hasNoCredentialsSelected}>Summary</Tab>
-                  </TabList>
-                  <TabPanels>
-                    <CredentialSelectionTab />
-                    <TwoFactorAuthTab />
-                    <SummaryTab />
-                  </TabPanels>
-                </Tabs>
-              </ModalBody>
-              <ModalFooter>
-                <Flex justify='space-between' w='full'>
-                  <Button variant='outline' onClick={handlePrevious}>
-                    {t('common.back', 'Back')}
-                  </Button>
-                  <Button
-                    colorScheme='black'
-                    // isDisabled={hasNoCredentialsSelected && activeTabIndex === 1}
-                    onClick={handleNext}
-                  >
-                    {activeTabIndex === 2 ? t('common.confirm', 'Confirm') : t('common.next', 'Next')}
-                  </Button>
-                </Flex>
-              </ModalFooter>
-            </Box>
-          </FormProvider>
+          <ModalBody display='flex' flexDirection='column' gap={4}>
+            <ValidationErrorsAlert validationError={validationError} />
+            <Tabs index={activeTabIndex} onChange={handleTabChange} isFitted>
+              <TabList w='full'>
+                <Tab>Credentials</Tab>
+                <Tab isDisabled={!stepCompletion.step1Completed}>Two-Factor</Tab>
+                <Tab isDisabled={!stepCompletion.step2Completed || hasNoCredentialsSelected}>Summary</Tab>
+              </TabList>
+              <TabPanels>
+                <CredentialsForm
+                  onSubmit={handleCredentialsSubmit}
+                  defaultValues={{ credentials: formData.credentials }}
+                />
+                <TwoFactorForm
+                  onSubmit={handleTwoFactorSubmit}
+                  defaultValues={{ use2FA: formData.use2FA, use2FAMethod: formData.use2FAMethod }}
+                  credentials={formData.credentials}
+                  groupId={groupId}
+                  isLoading={validateGroupMutation.isPending}
+                />
+                <SummaryDisplay
+                  credentials={formData.credentials}
+                  use2FA={formData.use2FA}
+                  use2FAMethod={formData.use2FAMethod}
+                />
+              </TabPanels>
+            </Tabs>
+          </ModalBody>
+          <ModalFooter>
+            <Flex justify='space-between' w='full'>
+              <Button variant='outline' onClick={handlePrevious}>
+                {t('common.back', 'Back')}
+              </Button>
+              <Button
+                form='voter-authentication'
+                type='submit'
+                onClick={activeTabIndex === 2 ? handleFinalSubmit : undefined}
+                colorScheme='black'
+                isLoading={isLoading}
+                isDisabled={activeTabIndex === 2 ? hasNoCredentialsSelected : false}
+              >
+                {activeTabIndex === 2 ? t('common.confirm', 'Confirm') : t('common.next', 'Next')}
+              </Button>
+            </Flex>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

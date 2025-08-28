@@ -807,6 +807,7 @@ export const ProcessCreate = () => {
         display='flex'
         flexDirection='row'
         position='relative'
+        id='process-create'
       >
         {/* Main content area */}
         <Box
