@@ -85,10 +85,8 @@ export const ExportMembers = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <Heading size='md' fontWeight='extrabold'>
-              {t('memberbase.exporter.title', { defaultValue: 'Export Members' })}
-            </Heading>
-            <Text color='texts.subtle' fontSize='sm'>
+            <Heading variant='header'>{t('memberbase.exporter.title', { defaultValue: 'Export Members' })}</Heading>
+            <Text variant='subheader'>
               {t('memberbase.exporter.subtitle', {
                 defaultValue: 'Configure your export options. The export will include {{count}} members.',
                 count: selectedRows.length,

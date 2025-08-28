@@ -127,7 +127,7 @@ const AddMembersToGroupDrawer = ({ isOpen, onClose }: AddMembersToGroupDrawerPro
       {
         onSuccess: () => {
           toast({
-            title: t('members_table.add_to_group_success', { defaultValue: 'Members added to group successfully' }),
+            title: t('members.table.add_to_group_success', { defaultValue: 'Members added to group successfully' }),
             status: 'success',
             duration: 3000,
             isClosable: true,
@@ -145,16 +145,16 @@ const AddMembersToGroupDrawer = ({ isOpen, onClose }: AddMembersToGroupDrawerPro
       <DrawerContent>
         <DrawerHeader display='flex' justifyContent='space-between' alignItems='center'>
           <Box>
-            <Heading size='md'>{t('members_table.add_to_group', { defaultValue: 'Add to Group' })}</Heading>
+            <Heading size='md'>{t('members.table.add_to_group', { defaultValue: 'Add to Group' })}</Heading>
             <Text fontSize='sm' color='texts.subtle'>
-              {t('members_table.add_to_group_description', {
+              {t('members.table.add_to_group_description', {
                 defaultValue: 'Select a group to add the members to.',
               })}
             </Text>
           </Box>
           <IconButton
             icon={<LuX />}
-            aria-label={t('members_table.close_drawer', { defaultValue: 'Close' })}
+            aria-label={t('members.table.close_drawer', { defaultValue: 'Close' })}
             variant='ghost'
             size='sm'
             onClick={onClose}
@@ -163,7 +163,7 @@ const AddMembersToGroupDrawer = ({ isOpen, onClose }: AddMembersToGroupDrawerPro
 
         <DrawerBody display='flex' flexDirection='column' gap={4}>
           <Select
-            placeholder={t('members_table.select_group', { defaultValue: 'Select group' })}
+            placeholder={t('members.table.select_group', { defaultValue: 'Select group' })}
             options={data}
             getOptionLabel={(option) => (
               <Flex align='center' gap={2}>
@@ -181,7 +181,7 @@ const AddMembersToGroupDrawer = ({ isOpen, onClose }: AddMembersToGroupDrawerPro
 
           {selectedGroup && (
             <Text fontSize='sm' color='texts.subtle'>
-              {t('members_table.add_to_group_confirmation', {
+              {t('members.table.add_to_group_confirmation', {
                 defaultValue: 'You will add {{count}} members to the "{{group}}" group.',
                 count: selectedRows.length,
                 group: selectedGroup.title,
@@ -196,7 +196,7 @@ const AddMembersToGroupDrawer = ({ isOpen, onClose }: AddMembersToGroupDrawerPro
             colorScheme='black'
             isDisabled={!selectedGroup || selectedRows.length === 0}
           >
-            {t('members_table.add_to_group_button', {
+            {t('members.table.add_to_group_button', {
               defaultValue: 'Add {{count}} member',
               count: selectedRows.length,
             })}
@@ -217,14 +217,14 @@ const MemberActions = ({ member, onDelete, onAddToGroup }: MemberActionsProps) =
         <MenuList minW='120px'>
           <MemberManager
             member={member}
-            control={<MenuItem>{t('members_table.edit', { defaultValue: 'Edit' })}</MenuItem>}
+            control={<MenuItem>{t('members.table.edit', { defaultValue: 'Edit' })}</MenuItem>}
           />
           <MenuItem onClick={onAddToGroup}>
-            {t('members_table.add_to_group', { defaultValue: 'Add to Group' })}
+            {t('members.table.add_to_group', { defaultValue: 'Add to Group' })}
           </MenuItem>
           <MenuDivider />
           <MenuItem color='red.400' onClick={onDelete}>
-            {t('members_table.delete', { defaultValue: 'Delete' })}
+            {t('members.table.delete', { defaultValue: 'Delete' })}
           </MenuItem>
         </MenuList>
       </Menu>
@@ -246,7 +246,7 @@ const ColumnManager = () => {
     <>
       <IconButton
         icon={<LuSettings />}
-        aria-label={t('members_table.manage_columns', { defaultValue: 'Manage Columns' })}
+        aria-label={t('members.table.manage_columns', { defaultValue: 'Manage Columns' })}
         variant='ghost'
         size='sm'
         onClick={onOpen}
@@ -255,9 +255,9 @@ const ColumnManager = () => {
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader>
-            <Heading size='md'>{t('members_table.manage_columns', { defaultValue: 'Manage Columns' })}</Heading>
+            <Heading size='md'>{t('members.table.manage_columns', { defaultValue: 'Manage Columns' })}</Heading>
             <Text fontSize='sm' color='texts.subtle'>
-              {t('members_table.manage_columns_description', {
+              {t('members.table.manage_columns_description', {
                 defaultValue: 'Customize which columns are displayed in the members table.',
               })}
             </Text>
@@ -270,7 +270,7 @@ const ColumnManager = () => {
                   colorScheme='black'
                   isChecked={col.visible}
                   onChange={toggleColumn.bind(null, col.id)}
-                  aria-label={t('members_table.toggle_column', {
+                  aria-label={t('members.table.toggle_column', {
                     defaultValue: `Toggle ${col.id} column`,
                   })}
                 />
@@ -306,10 +306,10 @@ const MemberFilters = ({ onDelete }: MemberFiltersProps) => {
         </InputRightElement>
       </InputGroup>
       <CreateGroupButton members={data?.members ?? []}>
-        {t('members_table.create_group_all', { defaultValue: 'Create group (All)' })}
+        {t('members.table.create_group_all', { defaultValue: 'Create group (All)' })}
       </CreateGroupButton>
       <Button leftIcon={<Icon as={LuTrash2} />} variant='outline' colorScheme='red' onClick={onDelete}>
-        {t('members_table.delete_all', {
+        {t('members.table.delete_all', {
           defaultValue: 'Delete (All)',
         })}
       </Button>
@@ -344,7 +344,7 @@ const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
     createGroupMutation.mutate(group, {
       onSuccess: () => {
         toast({
-          title: t('members_table.create_group_success', {
+          title: t('members.table.create_group_success', {
             defaultValue: 'Group created successfully',
           }),
           status: 'success',
@@ -356,7 +356,7 @@ const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
       },
       onError: (error: Error) => {
         toast({
-          title: t('members_table.create_group_error', {
+          title: t('members.table.create_group_error', {
             defaultValue: 'Error creating group',
           }),
           description: error.message,
@@ -387,10 +387,10 @@ const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
           />
           <DrawerHeader display='flex' flexDirection='column' gap={2}>
             <Heading size='md'>
-              {t('members_table.create_group_form_title', { defaultValue: 'Create New Group' })}
+              {t('members.table.create_group_form_title', { defaultValue: 'Create New Group' })}
             </Heading>
             <Text fontSize='sm' color='texts.subtle'>
-              {t('members_table.create_group_form_description', {
+              {t('members.table.create_group_form_description', {
                 defaultValue:
                   'Create a new group from selected members. This will organize them for future voting processes.',
               })}
@@ -401,21 +401,21 @@ const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
               <DrawerBody p={4} display='flex' flexDirection='column' gap={4}>
                 <InputBasic
                   formValue='title'
-                  label={t('members_table.group_name', { defaultValue: 'Group name' })}
+                  label={t('members.table.group_name', { defaultValue: 'Group name' })}
                   required
                 />
                 <InputBasic
                   formValue='description'
-                  label={t('members_table.group_description', { defaultValue: 'Description (Optional)' })}
-                  placeholder={t('members_table.group_description_placeholder', {
+                  label={t('members.table.group_description', { defaultValue: 'Description (Optional)' })}
+                  placeholder={t('members.table.group_description_placeholder', {
                     defaultValue: 'Enter a brief description of the group',
                   })}
                 />
                 <Box>
-                  <Text mb={1}>{t('members_table.group_members', { defaultValue: 'Selected Members' })}</Text>
+                  <Text mb={1}>{t('members.table.group_members', { defaultValue: 'Selected Members' })}</Text>
                   <Box border='1px' borderColor='table.border' borderRadius='md' p={4}>
                     <Text fontSize='sm' mb={2}>
-                      {t('members_table.group_members_count', {
+                      {t('members.table.group_members_count', {
                         defaultValue: '{{count}} members selected',
                         count: selectedMembers.length,
                       })}
@@ -434,7 +434,7 @@ const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
                         <WrapItem>
                           <Tag borderRadius='sm' size='sm' variant='outline' colorScheme='black'>
                             <TagLabel>
-                              {t('members_table.remaining_members', {
+                              {t('members.table.remaining_members', {
                                 defaultValue: '+{{count}} more',
                                 count: remainingCount,
                               })}
@@ -448,10 +448,10 @@ const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
               </DrawerBody>
               <Flex justifyContent='flex-end' p={4}>
                 <Button variant='outline' onClick={onClose}>
-                  {t('members_table.cancel', { defaultValue: 'Cancel' })}
+                  {t('members.table.cancel', { defaultValue: 'Cancel' })}
                 </Button>
                 <Button disabled={!selectedMembers.length} colorScheme='black' ml={2} type='submit'>
-                  {t('members_table.create_group', { defaultValue: 'Create group' })}
+                  {t('members.table.create_group', { defaultValue: 'Create group' })}
                 </Button>
               </Flex>
             </Box>
@@ -472,15 +472,15 @@ const MemberBulkActions = ({ onDelete, onAddToGroup }: MemberBulkActionsProps) =
         <>
           <Text fontSize='sm' color='texts.subtle'>
             <Trans
-              i18nKey='members_table.selected'
+              i18nKey='members.table.selected'
               count={selectedRows.length}
               components={{ strong: <Text as='span' fontSize='sm' fontWeight='extrabold' display='inline' /> }}
               defaults='Selected: <strong>{{count}} member</strong>'
             />
           </Text>
-          <CreateGroupButton>{t('members_table.create_group', { defaultValue: 'Create group' })}</CreateGroupButton>
+          <CreateGroupButton>{t('members.table.create_group', { defaultValue: 'Create group' })}</CreateGroupButton>
           <Button leftIcon={<Icon as={LuUserPlus} />} size='sm' variant='outline' onClick={() => onAddToGroup()}>
-            {t('members_table.add_to_group', { defaultValue: 'Add to Group' })}
+            {t('members.table.add_to_group', { defaultValue: 'Add to Group' })}
           </Button>
           <Button
             leftIcon={<Icon as={LuTrash2} />}
@@ -489,12 +489,12 @@ const MemberBulkActions = ({ onDelete, onAddToGroup }: MemberBulkActionsProps) =
             variant='outline'
             onClick={() => onDelete()}
           >
-            {t('members_table.bulk_delete', { defaultValue: 'Delete' })}
+            {t('members.table.bulk_delete', { defaultValue: 'Delete' })}
           </Button>
         </>
       ) : (
         <Text fontSize='sm' color='texts.subtle'>
-          <Trans i18nKey='members_table.select_hint' defaults='Select members to perform bulk actions' />
+          <Trans i18nKey='members.table.select_hint' defaults='Select members to perform bulk actions' />
         </Text>
       )}
     </Flex>
@@ -533,10 +533,10 @@ const EmptyMembers = () => {
         <Flex justify='center' align='center' height='150px'>
           <Text color='texts.subtle' fontSize='sm'>
             {debouncedSearch
-              ? t('members_table.no_filter_results', {
+              ? t('members.table.no_filter_results', {
                   defaultValue: 'No members matching these attributes',
                 })
-              : t('members_table.no_results', {
+              : t('members.table.no_results', {
                   defaultValue: 'No members found',
                 })}
           </Text>

@@ -242,19 +242,19 @@ const GroupMembersTable = ({ groupId }: { groupId: string }) => {
           <>
             <Text fontSize='sm' color='texts.subtle'>
               <Trans
-                i18nKey='members_table.selected'
+                i18nKey='members.table.selected'
                 count={selectedRows.length}
                 components={{ strong: <Text as='span' fontSize='sm' fontWeight='extrabold' display='inline' /> }}
                 defaults='Selected: <strong>{{count}} member</strong>'
               />
             </Text>
             <Button leftIcon={<Icon as={LuTrash} />} onClick={onOpen} size='sm' colorScheme='red' variant='outline'>
-              {t('members_table.bulk_delete', { defaultValue: 'Delete' })}
+              {t('members.table.bulk_delete', { defaultValue: 'Delete' })}
             </Button>
           </>
         ) : (
           <Text fontSize='sm' color='texts.subtle'>
-            <Trans i18nKey='members_table.select_hint' defaults='Select members to perform bulk actions' />
+            <Trans i18nKey='members.table.select_hint' defaults='Select members to perform bulk actions' />
           </Text>
         )}
       </Flex>
@@ -262,7 +262,7 @@ const GroupMembersTable = ({ groupId }: { groupId: string }) => {
         {isEmpty ? (
           <Flex justify='center' align='center' height='200px'>
             <Text color='texts.subtle' fontSize='sm'>
-              {t('members_table.no_results', {
+              {t('members.table.no_results', {
                 defaultValue: 'No members found',
               })}
             </Text>

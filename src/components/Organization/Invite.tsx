@@ -9,6 +9,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  Text,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
@@ -126,12 +127,14 @@ export const InviteToTeamModal = (props: ButtonProps) => {
           <ModalOverlay />
           <ModalContent>
             <ModalHeader>
-              <Heading>
+              <Heading variant='header'>
                 <Trans i18nKey='invite.title'>Add team member</Trans>
               </Heading>
-              <Trans i18nKey='invite.subtitle'>
-                Send an invitation to join your organization. They'll receive an email with instructions.
-              </Trans>
+              <Text variant='subheader'>
+                <Trans i18nKey='invite.subtitle'>
+                  Send an invitation to join your organization. They'll receive an email with instructions.
+                </Trans>
+              </Text>
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>

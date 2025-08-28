@@ -30,6 +30,12 @@ const sizes = {
 
 export const Text = defineStyleConfig({
   sizes,
+  variants: {
+    subheader: defineStyle({
+      color: 'texts.subtle',
+      fontWeight: 'normal',
+    }),
+  },
   defaultProps: {
     size: 'md',
   },

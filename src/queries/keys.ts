@@ -15,6 +15,9 @@ export const QueryKeys = {
       ['organizations', 'members', address, 'importJobProgress', jobID].filter(Boolean),
     groups: (address?: string) => ['organizations', 'groups', address].filter(Boolean),
   },
+  census: {
+    bundle: (censusURI?: string) => ['census', 'bundle', censusURI].filter(Boolean),
+  },
   plans: ['plans'],
   profile: ['profile'],
 }
