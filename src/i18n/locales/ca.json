@@ -58,40 +58,6 @@
   },
   "back": "Enrere",
   "billing_details": "Billing Details",
-  "calculator": {
-    "anonymous": "Anònim",
-    "buy_with_card": "Compra amb targeta",
-    "buy_with_crypto": "Compra amb Crypto",
-    "calculate_cost": "Calcular cost",
-    "census_size": "Mida del cens (votants)",
-    "coming_soon": "Pròximament",
-    "contact": "Si tens algun dubte, consulta les <faqsLink>FAQ</faqsLink> o posa't en <customLink>contacte</customLink> amb l'equip de suport",
-    "contact_us": "Contacteu-nos",
-    "description": "<p>Vocdoni utilitza la seva pròpia blockchain pública de votació (Vochain) per garantir la màxima seguretat, verificabilitat de punta a punta i un procés de votació resistent a la censura. Per utilitzar aquesta infraestructura, els usuaris necessiten gastar tokens (una representació de crèdit de l'ús de Vochain) per crear l'elecció necessària. Diversos paràmetres, com la mida del cens i la durada, determinen el cost final de la votació.</p><p>Aquí pots simular el cost del teu procés de votació i comprar els tokens necessaris.</p>",
-    "discount": "Descompte",
-    "duration": "Durada (dies)",
-    "encrypted": "Encriptat",
-    "estimate_election_cost": "Estima el cost de la teva elecció",
-    "modal": {
-      "enough_tokens": "<p>Tens prou tokens per a l'elecció.</p><p>Encara vols comprar igualment?</p>",
-      "minimum_tokens_purchase": "<p>La compra mínima de tokens és de {{ minimumTokens }} a {{ pricePerToken }}€ per token, sumant un total de {{ totalPrice }}€.</p><p>Vol seguir amb la compra?</p>",
-      "minimum_tokens_purchase_and_enough_tokens": "<p>Tens prou tokens per a l'elecció i la compra mínima de tokens és de {{ minimumTokens }} a {{ pricePerToken }}€ per token, sumant un total de {{ totalPrice }}€.</p><p>Vol seguir amb la compra?</p>"
-    },
-    "more_tokens": "Necessites més tokens dels indicats? <customLink>Contacta</customLink> amb el nostre equip de suport",
-    "num_elections": "Núm. d'eleccions",
-    "one_time": "Una sola vegada",
-    "package": "Paquet",
-    "packages": "Paquets",
-    "price_per_token": "Preu per token:",
-    "recurring": "Recurrent",
-    "recurring_description": "<p>Necessites una quantitat recurrent de tokens o tens la intenció de crear múltiples eleccions?</p><p>Necessites votació digital segura pel teu software?</p><p>Oferim integracions atractives i opcions de serveis per a aquest tipus de necessitats.</p><p>No dubtis i posa't en contacte amb nosaltres; el nostre equip d'experts t'ajudarà i t'elaborarà un pla específic per a tu!</p>",
-    "title": "Com funciona Vocdoni?",
-    "total": "Total",
-    "total_cost": "Cost total:",
-    "vat": "(sense IVA)",
-    "vote_overwrite": "Correcció de vot",
-    "voting_process_cost": "Cost del procés de votació:"
-  },
   "calendar": {
     "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
     "title": "Calendar"
@@ -187,20 +153,6 @@
   "change_password": {
     "subtitle": "Enter your current password and a new password to update your credentials.",
     "title": "Change Password"
-  },
-  "claim": {
-    "loading_description": "<h3>Autenticació de cartera (Metamask, Rainbow, Coinbase):</h3><p>Per rebre els teus tokens, si us plau, signa la sol·licitud quan se't demani.</p><strong>Important:</strong><p>Si surts d'aquesta pàgina sense signar, no rebràs els tokens que has pagat.</p><strong>Autenticació de compte social (Google, Github, Facebook):</strong><p>Si us plau, espera mentre processem la teva sol·licitud.</p>",
-    "purchase_success": "<title>Apreciem la seva compra!</title><p>Si tens alguna pregunta, envia un correu a <mailto>orders@vocdoni.org</mailto></p>",
-    "signature_aborted": "<p>Has cancel·lat l'acció.</p><strong>Important:</strong><p>Si surts d'aquesta pàgina sense signar, no rebràs els tokens que has pagat.</p>",
-    "signature_aborted_sign": "Signar",
-    "success_faucetPackage_title": "El Faucet Package s'ha obtingut correctament",
-    "toast": {
-      "error_title": "Error",
-      "loading_description": "Si us plau, espera mentre els tokens s'estan reclamant",
-      "loading_title": "Reclamant",
-      "success_description": "Èxit",
-      "success_title": "Els tokens s'han reclamat amb èxit"
-    }
   },
   "close": "Tanca",
   "color_mode_switcher": "Color mode switcher",
@@ -305,26 +257,6 @@
     "title": "Error"
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que busqueu",
-  "faucet": {
-    "advanced_settings": "Avançat...",
-    "connect": "Si us plau, connecteu la vostra cartera",
-    "copy_package": "Copiar Paquet de Faucet",
-    "copy_package_done": "Copiat!",
-    "description": "Per desenvolupar amb Vocdoni, necessites tokens per a certes accions (crear una elecció, canviar l'estat d'una elecció, etc.). El nombre de diferents factors com la mida del cens, la durada de l'elecció, els paràmetres de l'elecció, etc.",
-    "general_information": {
-      "description": "Quan sol·licites tokens de desenvolupament, rebràs {{ amount }} tokens. Pots reclamar des del faucet una vegada cada {{ waitHours }} hores.",
-      "description2": "Si necessites més tokens per desenvolupar sobre la plataforma de Vocdoni, pots posar-te en contacte amb nosaltres a tokens (at) vocdoni.io",
-      "title": "Informació General"
-    },
-    "package_success": "Felicitats! Aquí tens el teu Paquet de Faucet:",
-    "recipient_address": "Introduïu l'adreça del destinatari on voleu rebre els tokens.",
-    "request_description": "Per aconseguir més tokens de Vocdoni, has d'iniciar la sessió amb un compte de xarxes socials (per evitar-ne l'abús). Només demanem accés de lectura.",
-    "request_tokens": {
-      "title": "Sol·licita Tokens"
-    },
-    "title": "Faucet de Tokens Vocdoni",
-    "tokens_you_own": "Tens {{ balance }} tokens."
-  },
   "features": {
     "anonymous": "Votacions anònimes",
     "anonymous_voting": "Anonymous voting",
@@ -388,7 +320,6 @@
       "invalid_youtube_url": "Si us plau, introdueix una URL vàlida de YouTube",
       "max_greater_than_min": "Max must be greater than or equal to Min",
       "password_min_length": "Min. 8 characters",
-      "recipient_address_invalid": "L'adreça especificada no sembla vàlida",
       "required": "This field is required"
     },
     "member": {
@@ -946,11 +877,6 @@
     "twitter": "Enllaç al Twitter de Vocdoni"
   },
   "loading": "Carregant...",
-  "login": {
-    "facebook": "Inicia sessió amb Facebook",
-    "github": "Inicia sessió amb Github",
-    "google": "Inicia sessió amb Google"
-  },
   "logout": "Tanca la sessió",
   "memberbase": {
     "add_member": {
@@ -1097,12 +1023,10 @@
     "create_process": "Nou procés",
     "dashboard": "Dashboard",
     "documentation": "Documentació",
-    "get_more": "Obtenir-ne més",
     "languages": "Idiomes",
     "languages_list": "Mostrar idiomes disponibles",
     "login": "Iniciar sessió",
     "logout": "Tancar sessió",
-    "my_org": "La Meva Org",
     "organization": "Edita Organització",
     "privacy": "Privadesa",
     "terms": "Termes",

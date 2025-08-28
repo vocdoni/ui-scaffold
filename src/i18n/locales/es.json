@@ -58,40 +58,6 @@
   },
   "back": "Atrás",
   "billing_details": "Billing Details",
-  "calculator": {
-    "anonymous": "Anónimo",
-    "buy_with_card": "Comprar con tarjeta",
-    "buy_with_crypto": "Comprar con Crypto",
-    "calculate_cost": "Calcular coste",
-    "census_size": "Tamaño del censo (votantes)",
-    "coming_soon": "Próximamente",
-    "contact": "Si tienes alguna duda, consulta las <faqsLink>FAQ</faqsLink> o <customLink>contacta</customLink> con el equipo de soporte",
-    "contact_us": "Contáctenos",
-    "description": "<p>Vocdoni utiliza su propia blockchain pública de votación (Vochain) para garantizar máxima seguridad, verificabilidad y resistencia a la censura. Los usuarios necesitan tokens para crear elecciones, y el coste final depende del censo y duración.</p>",
-    "discount": "Descuento",
-    "duration": "Duración (días)",
-    "encrypted": "Encriptado",
-    "estimate_election_cost": "Estima el coste de tu elección",
-    "modal": {
-      "enough_tokens": "<p>Tienes suficientes tokens para la elección.</p><p>¿Aun así quieres comprar?</p>",
-      "minimum_tokens_purchase": "<p>La compra mínima de tokens es de {{ minimumTokens }} a {{ pricePerToken }}€ por token, sumando un total de {{ totalPrice }}€.</p><p>¿Quiere seguir con la compra?</p>",
-      "minimum_tokens_purchase_and_enough_tokens": "<p>Tienes suficientes tokens para la elección y la compra mínima de tokens es de {{ minimumTokens }} a {{ pricePerToken }}€ por token, sumando un total de {{ totalPrice }}€.</p><p>¿Quiere seguir con la compra?</p>"
-    },
-    "more_tokens": "¿Necesitas más tokens de los indicados? <customLink>Contacta</customLink> con nuestro equipo de soporte",
-    "num_elections": "Núm. de elecciones",
-    "one_time": "Una sola vez",
-    "package": "Paquete",
-    "packages": "Paquetes",
-    "price_per_token": "Precio por token:",
-    "recurring": "Recurrente",
-    "recurring_description": "<p>¿Necesitas una cantidad recurrente de tokens o planeas crear múltiples elecciones?</p><p>¿Necesitas votación digital segura para tu software?</p><p>Ofrecemos integraciones atractivas y opciones de acuerdos de servicios para este tipo de necesidades</p><p>No dudes en contactarnos; ¡nuestro equipo de expertos te ayudará y te elaborará un plan específico para ti!</p>",
-    "title": "¿Como funciona Vocdoni?",
-    "total": "Total",
-    "total_cost": "Coste total:",
-    "vat": "(sin IVA)",
-    "vote_overwrite": "Corrección de voto",
-    "voting_process_cost": "Coste del proceso de votación:"
-  },
   "calendar": {
     "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
     "title": "Calendar"
@@ -187,20 +153,6 @@
   "change_password": {
     "subtitle": "Enter your current password and a new password to update your credentials.",
     "title": "Change Password"
-  },
-  "claim": {
-    "loading_description": "<h3>Autenticación de cartera (Metamask, Rainbow, Coinbase):</h3><p>Para recibir tus tokens, por favor firma la solicitud cuando se te pida.</p><strong>Importante:</strong><p>Si sales de esta página sin firmar, no recibirás los tokens que has pagado.</p><strong>Autenticación de cuenta social (Google, Github, Facebook):</strong><p>Por favor, espera mientras procesamos tu solicitud.</p>",
-    "purchase_success": "<title>¡Apreciamos su compra!</title><p>Si tienes alguna pregunta, por favor envía un correo a <mailto>orders@vocdoni.org</mailto></p>",
-    "signature_aborted": "<p>Has abortado la acción.</p>strong>Importante:</strong><p>Si sales de esta página sin firmar, no recibirás los tokens que has pagado.</p>",
-    "signature_aborted_sign": "Firmar",
-    "success_faucetPackage_title": "El Faucet Package se obtuvo con éxito",
-    "toast": {
-      "error_title": "Error",
-      "loading_description": "Por favor espera mientras se reclaman los tokens",
-      "loading_title": "Reclamando",
-      "success_description": "Éxito",
-      "success_title": "Los tokens han sido reclamados correctamente"
-    }
   },
   "close": "Cerrar",
   "color_mode_switcher": "Color mode switcher",
@@ -305,26 +257,6 @@
     "title": "Error"
   },
   "error_text": "Lo sentimos, no se encontró la página que buscabas.",
-  "faucet": {
-    "advanced_settings": "Avanzado...",
-    "connect": "Por favor, conecta tu wallet",
-    "copy_package": "Copiar Paquete de Faucet",
-    "copy_package_done": "¡Copiado!",
-    "description": "Para desarrollar con Vocdoni, necesitas tokens para ciertas acciones (crear una elección, cambiar el estado de una elección, etc.). El número de diferentes factores como el tamaño del censo, la duración de la elección, los parámetros de la elección, etc.",
-    "general_information": {
-      "description": "Cuando solicites tokens de desarrollo, recibirás {{ amount }} tokens. Puedes reclamar desde el faucet una vez cada {{ waitHours }} horas.",
-      "description2": "Si necesitas más tokens para desarrollar sobre la plataforma de Vocdoni, puedes ponerte en contacto con nosotros en tokens (at) vocdoni.io",
-      "title": "Información General"
-    },
-    "package_success": "¡Felicidades! Aquí está tu Paquete de Faucet:",
-    "recipient_address": "Ingrese la dirección del destinatario en el que desea recibir los tokens.",
-    "request_description": "Para obtener más tokens de Vocdoni, debes iniciar sesión con una cuenta social (para evitar el mal uso del grifo). Solo solicitamos acceso de lectura.",
-    "request_tokens": {
-      "title": "Solicitar Tokens"
-    },
-    "title": "Faucet de Tokens Vocdoni",
-    "tokens_you_own": "Tienes {{ balance }} tokens."
-  },
   "features": {
     "anonymous": "Votación anónima",
     "anonymous_voting": "Anonymous voting",
@@ -388,7 +320,6 @@
       "invalid_youtube_url": "Por favor, ingresa una URL válida de YouTube",
       "max_greater_than_min": "Max must be greater than or equal to Min",
       "password_min_length": "Min. 8 caracteres",
-      "recipient_address_invalid": "La dirección especificada no parece válida",
       "required": "This field is required"
     },
     "member": {
@@ -946,11 +877,6 @@
     "twitter": "Enlace al Twitter de Vocdoni"
   },
   "loading": "Cargando...",
-  "login": {
-    "facebook": "Iniciar sesión usando Facebook",
-    "github": "Iniciar sesión con Github",
-    "google": "Iniciar sesión con Google"
-  },
   "logout": "Cerrar sesión",
   "memberbase": {
     "add_member": {
@@ -1097,12 +1023,10 @@
     "create_process": "Nuevo proceso",
     "dashboard": "Dashboard",
     "documentation": "Documentación",
-    "get_more": "Obtener más",
     "languages": "Idiomas",
     "languages_list": "Mostrar idiomas disponibles",
     "login": "Iniciar sesión",
     "logout": "Cerrar sesión",
-    "my_org": "Mi Org",
     "organization": "Editar Organización",
     "privacy": "Privacidad",
     "terms": "Términos",
