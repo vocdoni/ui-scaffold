@@ -161,3 +161,5 @@ Where `SaasProviders` wraps: `AuthProvider → SubscriptionProvider → SaasAcco
 - `main` branch → app.vocdoni.io (production environment)
 
 When generating code suggestions, prioritize patterns and conventions already established in the codebase. Always consider the multi-tenant nature of the application and the Web3/blockchain integration requirements.
+
+Do not reinterpret the application logic or make assumptions about the flow. Do not propose adjustments unless there is a clear contradiction with what is documented or stated in comments. If the flow seems incomplete or ambiguous, stick to the existing patterns and comments without inventing alternatives.
