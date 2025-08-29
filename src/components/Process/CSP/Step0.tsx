@@ -13,6 +13,7 @@ import {
   Text,
   VStack,
 } from '@chakra-ui/react'
+import { useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
@@ -25,11 +26,15 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
   const { t } = useTranslation()
   const { setCurrentStep, setAuthData, authFields, twoFaFields } = useCspAuthContext()
   const {
+    actions: { csp1 },
+  } = useElection()
+  const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<CSPStep0FormData>()
   const auth = useTwoFactorAuth<0>(election, 0)
+  const is2Factor = twoFaFields.length > 0
 
   const onSubmit = async (values: CSPStep0FormData) => {
     const form: CSPStep0RequestData = {}
@@ -60,9 +65,17 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
     try {
       const { authToken } = await auth.mutateAsync(form)
 
-      // Store auth token in global context and proceed to the next step
+      // Store auth token in global context
       setAuthData((prev) => ({ ...prev, authToken }))
-      setCurrentStep(1)
+
+      // Check if 2FA is required
+      if (is2Factor) {
+        // 2FA required - proceed to Step 1 for code verification
+        setCurrentStep(1)
+      } else {
+        // No 2FA - complete authentication directly using the same method as Step 1
+        csp1(authToken)
+      }
     } catch (error) {
       console.error('CSP auth failed:', error)
     }
@@ -110,7 +123,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
           ))}
 
           {/* Render 2FA field */}
-          {twoFaFields.length > 0 && (
+          {is2Factor && (
             <FormControl isInvalid={!!errors.contact} isRequired>
               <FormLabel>{get2FaFieldLabel()}</FormLabel>
               <Input {...register('contact', { required: true })} type='text' />
@@ -153,10 +166,10 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
           </Text>
 
           <Button type='submit' w='full' isLoading={auth.isPending} mt={2}>
-            {t('csp.receive_code', 'Receive Code')}
+            {is2Factor ? t('csp.receive_code', 'Receive Code') : t('csp.authenticate', 'Identify')}
           </Button>
 
-          {twoFaFields.length > 0 && (
+          {is2Factor && (
             <Text textAlign='center' fontSize='sm'>
               {t(
                 'csp.code_info',

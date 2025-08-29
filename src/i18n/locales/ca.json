@@ -190,6 +190,7 @@
     "title": "Crea la teva organització"
   },
   "csp": {
+    "authenticate": "Identificar-se",
     "code_info": "Rebràs un codi únic al mitjà seleccionat per verificar la teva identitat i completar l'autenticació",
     "contact_match_help": "Ha de coincidir amb el registrat al sistema",
     "data_usage_info": "Les teves dades només s'utilitzaran per verificar la teva identitat. Vocdoni no emmagatzema dades personals.",

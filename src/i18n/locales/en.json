@@ -187,6 +187,7 @@
     "title": "Tell us about your organization"
   },
   "csp": {
+    "authenticate": "Identify",
     "code_info": "You will receive a unique code on the selected medium to verify your identity and complete authentication",
     "contact_match_help": "Must match the one registered in the system",
     "data_usage_info": "Your data will only be used to verify your identity. Vocdoni does not store personal data.",
