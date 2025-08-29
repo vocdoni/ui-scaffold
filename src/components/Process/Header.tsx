@@ -1,46 +1,19 @@
-import { InfoIcon, WarningIcon } from '@chakra-ui/icons'
-import { Box, Flex, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
+import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { ElectionDescription, ElectionSchedule, ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
-import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { CensusType, ElectionStatus, InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
-import { ReactNode, useEffect, useState } from 'react'
+import { useElection } from '@vocdoni/react-providers'
+import { InvalidElection, PublishedElection, Strategy } from '@vocdoni/sdk'
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ShareModalButton } from '~components/Share'
 import { useReadMoreMarkdown } from '~shared/Layout/use-read-more'
-import { ActionsMenu } from './ActionsMenu'
 import { StampIcon } from './Census/StampIcon'
-import { CreatedBy } from './CreatedBy'
-import { ProcessDate } from './Date'
-
-type CensusInfo = { size: number; weight: bigint; type: CensusType }
 
 const ProcessHeader = () => {
   const { t } = useTranslation()
   const { election } = useElection()
-  const { organization, loaded } = useOrganization()
-  const { account, client } = useClient()
-  const [censusInfo, setCensusInfo] = useState<CensusInfo>()
   const { ReadMoreMarkdownWrapper, ReadMoreMarkdownButton } = useReadMoreMarkdown(600, 20)
-  const strategy = useStrategy()
-
-  // Get the census info to show the total size if the maxCensusSize is less than the total size
-  useEffect(() => {
-    ;(async () => {
-      try {
-        if (!client || !(election instanceof PublishedElection) || !election?.census?.censusId) return
-        const censusInfo: CensusInfo = await client.fetchCensusInfo(election.census.censusId)
-        setCensusInfo(censusInfo)
-      } catch (e) {
-        // If the census info is not available, just ignore it
-        setCensusInfo(undefined)
-      }
-    })()
-  }, [election, client])
 
   if (!(election instanceof PublishedElection)) return null
-
-  const showOrgInformation = !loaded || (loaded && organization?.account?.name)
-  const showTotalCensusSize = censusInfo?.size && election?.maxCensusSize && election.maxCensusSize < censusInfo.size
 
   return (
     <Box>
@@ -90,9 +63,7 @@ const ProcessHeader = () => {
           </Flex>
           <Flex flexDirection='column'>
             {!election?.description?.default.length && (
-              <Text textAlign='center' mt={5} color='process.description'>
-                {t('process.no_description')}
-              </Text>
+              <Text color='process.description'>{t('process.no_description')}</Text>
             )}
             <Box className='md-sizes'>
               <ReadMoreMarkdownWrapper toDark='var(--chakra-colors-process-read_more_dark)'>
@@ -102,117 +73,6 @@ const ProcessHeader = () => {
             <ReadMoreMarkdownButton colorScheme='primary' alignSelf='center' />
           </Flex>
         </Box>
-
-        <Flex
-          display={{ base: 'none', xl2: 'flex' }}
-          flexGrow={{ xl2: 1 }}
-          position='relative'
-          flexDirection={{ base: 'row', xl2: 'column' }}
-          alignItems='start'
-          flexWrap='wrap'
-          justifyContent={{ base: 'center', xl2: 'start' }}
-          gap={{ base: 4, sm: 10, xl2: 4 }}
-          opacity={0.85}
-          _hover={{
-            opacity: 1,
-          }}
-        >
-          <Box flexDir='row' display='flex' justifyContent='space-between' w={{ xl2: 'full' }}>
-            {election?.status !== ElectionStatus.CANCELED ? (
-              <ProcessDate />
-            ) : (
-              <Text color='process.canceled' fontWeight='bold'>
-                {t('process.status.canceled')}
-              </Text>
-            )}
-            <ActionsMenu />
-          </Box>
-          {election?.electionType.anonymous && (
-            <Box>
-              <Text fontWeight='bold'>{t('process.is_anonymous.title')}</Text>
-              <Text>{t('process.is_anonymous.description')}</Text>
-            </Box>
-          )}
-          <Box cursor='help'>
-            <Text fontWeight='bold'>
-              {t('process.census')} {showTotalCensusSize && <InfoIcon ml={1} />}
-            </Text>
-            {showTotalCensusSize ? (
-              <Tooltip
-                hasArrow
-                bg='primary.600'
-                color='white'
-                placement='top'
-                label={t('process.total_census_size_tooltip', {
-                  censusSize: censusInfo?.size,
-                  maxCensusSize: election?.maxCensusSize,
-                  percent:
-                    censusInfo?.size && election?.maxCensusSize
-                      ? Math.round((election?.maxCensusSize / censusInfo?.size) * 100)
-                      : 0,
-                })}
-              >
-                <Text>
-                  {t('process.total_census_size', {
-                    censusSize: censusInfo?.size,
-                    maxCensusSize: election?.maxCensusSize,
-                  })}
-                </Text>
-              </Tooltip>
-            ) : (
-              <Text>{t('process.people_in_census', { count: election?.maxCensusSize })}</Text>
-            )}
-          </Box>
-          {election?.meta?.census && (
-            <>
-              <Box>
-                <Text fontWeight='bold'>{t('process.strategy')}</Text>
-                <Text>{strategy}</Text>
-              </Box>
-            </>
-          )}
-          {showOrgInformation && (
-            <Box w={{ xl2: 'full' }}>
-              <Text fontWeight='bold' mb={1}>
-                {t('process.created_by')}
-              </Text>
-              <CreatedBy
-                sx={{
-                  '& p': {
-                    minW: 0,
-                    display: 'flex',
-                    justifyContent: 'start',
-                    alignItems: 'center',
-                    flexWrap: 'wrap',
-                  },
-                  '& p strong': {
-                    maxW: { base: '100%', md: '220px', xl2: '120px' },
-                    isTruncated: true,
-                    mr: 1,
-                  },
-                }}
-              />
-            </Box>
-          )}
-          {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
-            <Flex
-              color='process.paused'
-              _dark={{ color: 'white' }}
-              gap={2}
-              alignItems='center'
-              border='1px solid'
-              borderColor='process.paused'
-              borderRadius='lg'
-              p={2}
-            >
-              <Icon as={WarningIcon} />
-              <Box>
-                <Text>{t('process.status.paused')}</Text>
-                <Text>{t('process.status.paused_description')}</Text>
-              </Box>
-            </Flex>
-          )}
-        </Flex>
       </Flex>
     </Box>
   )

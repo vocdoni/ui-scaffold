@@ -1,8 +1,9 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import { useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, InvalidElection } from '@vocdoni/sdk'
 import { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
+import { ProcessInfoCard } from './View'
 
 export const ProcessDate = () => {
   const { election } = useElection()
@@ -15,17 +16,16 @@ export const ProcessDate = () => {
   if (election.status === ElectionStatus.CANCELED) return null
 
   return (
-    <Box
+    <ProcessInfoCard
       title={t('process.date.relative', {
         date: election.startDate > new Date() ? election.startDate : election.endDate,
       })}
       cursor='help'
-    >
-      <Text fontWeight='bold'>{statusText}</Text>
-      <Text>
-        {t('process.date.relative', { date: election.startDate > new Date() ? election.startDate : election.endDate })}
-      </Text>
-    </Box>
+      label={statusText}
+      description={t('process.date.relative', {
+        date: election.startDate > new Date() ? election.startDate : election.endDate,
+      })}
+    />
   )
 }
 
