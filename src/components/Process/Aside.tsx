@@ -244,7 +244,6 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
             fontSize='lg'
             height='50px'
             onClick={setQuestionsTab}
-            mb={4}
             sx={{
               '&::disabled': {
                 opacity: '0.8',
