@@ -190,6 +190,7 @@
     "title": "Crea tu organización"
   },
   "csp": {
+    "authenticate": "Identificarse",
     "code_info": "Recibirás un código único en el medio seleccionado para verificar tu identidad y completar la autenticación",
     "contact_match_help": "Debe coincidir con el registrado en el sistema",
     "data_usage_info": "Tus datos solo se utilizarán para verificar tu identidad. Vocdoni no almacena datos personales.",

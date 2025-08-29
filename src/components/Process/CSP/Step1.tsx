@@ -107,7 +107,7 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
           )}
 
           <Button type='submit' colorScheme='primary' w='full' isLoading={auth.isPending}>
-            {t('csp.step1.submit', { defaultValue: 'Authenticate' })}
+            {t('csp.authenticate', { defaultValue: 'Authenticate' })}
           </Button>
         </VStack>
       </form>
