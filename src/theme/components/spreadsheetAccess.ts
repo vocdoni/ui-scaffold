@@ -46,12 +46,10 @@ const baseStyle = definePartsStyle({
     },
   },
   disconnect: {
-    color: 'black',
-    textDecoration: 'underline',
+    bg: 'transparent',
     border: 'none',
     _hover: {
-      color: 'gray.800',
-      textDecoration: 'none',
+      textDecoration: 'underline',
 
       _disabled: {
         color: 'button.variant.common.disabled.color.light',
@@ -59,10 +57,6 @@ const baseStyle = definePartsStyle({
         _dark: {
           color: 'button.variant.common.disabled.color.dark',
         },
-      },
-
-      _dark: {
-        color: 'gray.800',
       },
     },
     _disabled: {

@@ -35,7 +35,7 @@ import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
 import { ActionsMenu } from './ActionsMenu'
-import { VoteButton } from './Aside'
+import ProcessAside, { VoteButton } from './Aside'
 import { ConfirmVoteModal } from './ConfirmVoteModal'
 import { CreatedBy } from './CreatedBy'
 import { ElectionVideo } from './Dashboard/ProcessView'
@@ -339,8 +339,9 @@ export const ProcessView = () => {
           </Tabs>
         </Box>
       </GridItem>
-      <GridItem>
+      <GridItem display='grid' gap={6}>
         <ProcessInfoPanel />
+        <ProcessAside />
       </GridItem>
       <VotingVoteModal />
       <SuccessVoteModal />
