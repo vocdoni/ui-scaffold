@@ -20,7 +20,6 @@ export const ProcessDate = () => {
       title={t('process.date.relative', {
         date: election.startDate > new Date() ? election.startDate : election.endDate,
       })}
-      cursor='help'
       label={statusText}
       description={t('process.date.relative', {
         date: election.startDate > new Date() ? election.startDate : election.endDate,

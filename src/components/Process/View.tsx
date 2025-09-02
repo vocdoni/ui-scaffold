@@ -120,7 +120,6 @@ const ProcessInfoPanel = () => {
         <ProcessInfoCard label={t('process.is_anonymous.title')} description={t('process.is_anonymous.description')} />
       )}
       <ProcessInfoCard
-        help='cursor'
         label={t('process.census')}
         description={
           showTotalCensusSize ? (
