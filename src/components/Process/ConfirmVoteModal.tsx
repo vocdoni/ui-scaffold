@@ -46,7 +46,7 @@ export const ConfirmVoteModal = ({ election, answers }: { election: PublishedEle
                 {election.resultsType.name === ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION ? (
                   <ConfirmQuestion question={q} answers={answers} index={i} />
                 ) : (
-                  <ConfirmMultiquestion question={q} answers={answers} />
+                  <ConfirmMultichoice question={q} answers={answers} />
                 )}
               </Flex>
             ))}
@@ -65,7 +65,7 @@ export const ConfirmVoteModal = ({ election, answers }: { election: PublishedEle
   )
 }
 
-const ConfirmMultiquestion = ({ question, answers }: { question: IQuestion; answers: FieldValues }) => {
+const ConfirmMultichoice = ({ question, answers }: { question: IQuestion; answers: FieldValues }) => {
   const { t } = useTranslation()
 
   // Add abstain option to choices if needed
