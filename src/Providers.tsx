@@ -7,6 +7,7 @@ import { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useAccount, useWalletClient, WagmiProvider } from 'wagmi'
 import { SaasAccountProvider } from '~components/Account/SaasAccountProvider'
+import { AnalyticsProvider } from '~components/AnalyticsProvider'
 import { AuthProvider } from '~components/Auth/AuthContext'
 import { SubscriptionProvider } from '~components/Auth/Subscription'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
@@ -60,7 +61,9 @@ export const AppProviders = () => {
       >
         <SaasProviders>
           <ColorModeScript />
-          <RoutesProvider />
+          <AnalyticsProvider>
+            <RoutesProvider />
+          </AnalyticsProvider>
         </SaasProviders>
       </ClientProvider>
     </RainbowKitTheme>
