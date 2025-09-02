@@ -209,7 +209,6 @@
     "receive_code": "Rebre codi",
     "step1": {
       "helper_text": "Si fas servir el correu electrònic, no oblidis revisar la carpeta de correu brossa",
-      "submit": "Autenticar",
       "validation": {
         "length": "El codi ha de tenir 6 dígits",
         "required": "El codi és obligatori"
@@ -1430,6 +1429,11 @@
     "end": "Finalitza el procés",
     "pause": "Pausa",
     "start": "Inicia/Continua"
+  },
+  "process_context": {
+    "explorer": "Explorer",
+    "more_info": "Més informació",
+    "public_voting_page": "Pàgina pública de votació"
   },
   "process_create": {
     "auto_start": "Start immediately",

@@ -206,7 +206,6 @@
     "receive_code": "Receive Code",
     "step1": {
       "helper_text": "If using email, don't forget to check spam folder",
-      "submit": "Authenticate",
       "validation": {
         "length": "Code must be 6 digits",
         "required": "Code is required"
@@ -1412,6 +1411,11 @@
     "end": "End voting",
     "pause": "Pause",
     "start": "Start/Resume"
+  },
+  "process_context": {
+    "explorer": "Explorer",
+    "more_info": "More info",
+    "public_voting_page": "Public voting page"
   },
   "process_create": {
     "auto_start": "Start immediately",

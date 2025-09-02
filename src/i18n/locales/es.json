@@ -209,7 +209,6 @@
     "receive_code": "Recibir código",
     "step1": {
       "helper_text": "Si utilizas correo electrónico, no olvides revisar la carpeta de correo no deseado",
-      "submit": "Autenticar",
       "validation": {
         "length": "El código debe tener 6 dígitos",
         "required": "El código es obligatorio"
@@ -1430,6 +1429,11 @@
     "end": "Finalizar proceso",
     "pause": "Pausar",
     "start": "Iniciar/Reanudar"
+  },
+  "process_context": {
+    "explorer": "Explorer",
+    "more_info": "Más información",
+    "public_voting_page": "Página pública de votación"
   },
   "process_create": {
     "auto_start": "Start immediately",

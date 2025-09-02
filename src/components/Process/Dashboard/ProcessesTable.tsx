@@ -7,6 +7,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Portal,
   Table,
   TableContainer,
   Tag,
@@ -125,31 +126,33 @@ const ProcessContextMenu = () => {
   return (
     <Menu>
       <MenuButton as={IconButton} icon={<LuEllipsisVertical />} variant='ghost' size='sm' />
-      <MenuList>
-        <MenuItem
-          as={RouterLink}
-          to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
-          icon={<Icon as={LuInfo} boxSize={4} />}
-        >
-          More info
-        </MenuItem>
-        <MenuItem
-          as={RouterLink}
-          to={generatePath(Routes.processes.view, { id: ensure0x(election.id) })}
-          icon={<Icon as={LuExternalLink} boxSize={4} />}
-          target='_blank'
-        >
-          Public voting page
-        </MenuItem>
-        <MenuItem
-          as={Link}
-          href={`${client.explorerUrl}/process/${election.id}`}
-          icon={<Icon as={LuSearch} boxSize={4} />}
-          isExternal
-        >
-          Explorer
-        </MenuItem>
-      </MenuList>
+      <Portal>
+        <MenuList>
+          <MenuItem
+            as={RouterLink}
+            to={generatePath(Routes.dashboard.process, { id: ensure0x(election.id) })}
+            icon={<Icon as={LuInfo} boxSize={4} />}
+          >
+            <Trans i18nKey='process_context.more_info'>More info</Trans>
+          </MenuItem>
+          <MenuItem
+            as={RouterLink}
+            to={generatePath(Routes.processes.view, { id: ensure0x(election.id) })}
+            icon={<Icon as={LuExternalLink} boxSize={4} />}
+            target='_blank'
+          >
+            <Trans i18nKey='process_context.public_voting_page'>Public voting page</Trans>
+          </MenuItem>
+          <MenuItem
+            as={Link}
+            href={`${client.explorerUrl}/process/${election.id}`}
+            icon={<Icon as={LuSearch} boxSize={4} />}
+            isExternal
+          >
+            <Trans i18nKey='process_context.explorer'>Explorer</Trans>
+          </MenuItem>
+        </MenuList>
+      </Portal>
     </Menu>
   )
 }
