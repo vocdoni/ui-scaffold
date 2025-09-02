@@ -1,6 +1,7 @@
 import { WarningIcon } from '@chakra-ui/icons'
 import {
   Box,
+  BoxProps,
   Button,
   Flex,
   Grid,
@@ -48,7 +49,7 @@ type CensusInfo = { size: number; weight: bigint; type: CensusType }
 type ProcessInfoCardProps = {
   label: string
   description?: ReactNode
-} & React.ComponentProps<typeof Box>
+} & BoxProps
 
 export const ProcessInfoCard = ({ label, description, ...props }: ProcessInfoCardProps) => {
   return (
