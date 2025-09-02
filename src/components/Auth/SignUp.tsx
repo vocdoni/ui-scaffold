@@ -128,7 +128,7 @@ const SignUp = ({ invite }: SignupProps) => {
                   <Trans
                     i18nKey='signup_agree_promotions'
                     defaultValue='I agree to receive promotions and offers for digital voting services offered by Vocdoni.'
-                  ></Trans>
+                  />
                 </Text>
               </Checkbox>
               <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
@@ -142,7 +142,7 @@ const SignUp = ({ invite }: SignupProps) => {
                       termsLink: <Link isExternal as={ReactRouterLink} to={Routes.terms} fontSize={'14px'} />,
                       privacyLink: <Link isExternal as={ReactRouterLink} to={Routes.privacy} fontSize={'14px'} />,
                     }}
-                  ></Trans>
+                  />
                 </Text>
               </Checkbox>
               <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
