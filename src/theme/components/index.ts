@@ -2,6 +2,7 @@ import { Badge } from './badge'
 import { Button } from './button'
 import { Card } from './card'
 import { Checkbox, DetailedCheckbox } from './checkbox'
+import { ConfirmModal } from './confirmModal'
 import { Drawer } from './drawer'
 import { FormLabel } from './form'
 import { ElectionTitle, Heading } from './heading'
@@ -13,6 +14,7 @@ import { Pagination } from './pagination'
 import { Popover } from './popover'
 import { Progress } from './progress'
 import { ElectionQuestions } from './questions'
+import { QuestionsConfirmation } from './questionsConfirmation'
 import { Radio } from './radio'
 import { ElectionResults } from './results'
 import { SecurityLevelBox } from './securitylevelbox'
@@ -56,6 +58,8 @@ const components = {
   Text,
   Tooltip,
   SecurityLevelBox,
+  ConfirmModal,
+  QuestionsConfirmation,
 }
 
 export default components
