@@ -9,8 +9,8 @@ export const CreatedBy = (props: FlexProps) => {
 
   return (
     <Flex gap={2} alignItems='center' {...props}>
-      <Avatar size='sm' src={organization?.account.avatar} name={organization?.account.name.default} />
-      <LongOrganizationName />
+      <Avatar size='xs' src={organization?.account.avatar} name={organization?.account.name.default} />
+      <LongOrganizationName size='sm' fontWeight='bold' />
       <CopyAddressBtn />
     </Flex>
   )
@@ -29,11 +29,7 @@ export const LongOrganizationName = (props: TextProps) => {
   }
   const name = account.name.default
 
-  return (
-    <Text {...props}>
-      <strong>{name}</strong>
-    </Text>
-  )
+  return <Text {...props}>{name}</Text>
 }
 
 const CopyAddressBtn = () => {
