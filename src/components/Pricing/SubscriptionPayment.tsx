@@ -18,11 +18,13 @@ import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { useAnalytics } from '~components/AnalyticsProvider'
 import { ApiEndpoints } from '~components/Auth/api'
 import { SubscriptionType, useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { QueryKeys } from '~src/queries/keys'
 import { Routes } from '~src/router/routes'
+import { AnalyticsEvent } from '~utils/analytics'
 import { usePricingModal } from './use-pricing-modal'
 
 const stripePublicKey = import.meta.env.STRIPE_PUBLIC_KEY
@@ -60,6 +62,7 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
   const { mutateAsync: checkSubscription } = useUpdateSubscription()
   const { closeModal } = usePricingModal()
   const toast = useToast()
+  const { trackPlausibleEvent } = useAnalytics()
 
   const [stripePromise] = useState<Promise<Stripe | null>>(
     loadStripe(stripePublicKey, {
@@ -113,6 +116,9 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
     }
     setSubscriptionCompleted(true)
     await queryClient.invalidateQueries({ queryKey: QueryKeys.organization.subscription() })
+    trackPlausibleEvent({
+      name: AnalyticsEvent.SubscriptionSuccessful,
+    })
   }
 
   const options = {

@@ -61,6 +61,8 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.VIDEO_TUTORIAL': JSON.stringify(
         process.env.VIDEO_TUTORIAL || 'https://www.youtube.com/watch?v=bIKxUTS4X8E'
       ),
+      'import.meta.env.GTM_CONTAINER_ID': JSON.stringify(process.env.GTM_CONTAINER_ID),
+      'import.meta.env.PLAUSIBLE_DOMAIN': JSON.stringify(process.env.PLAUSIBLE_DOMAIN || 'app.vocdoni.io'),
     },
     plugins: [
       tsconfigPaths(),

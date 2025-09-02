@@ -23,5 +23,7 @@ interface ImportMeta {
     SUPPORT_EMAIL: string
     CALCOM_EVENT_SLUG: string
     VIDEO_TUTORIAL: string
+    GTM_CONTAINER_ID: string
+    PLAUSIBLE_DOMAIN: string
   }
 }
