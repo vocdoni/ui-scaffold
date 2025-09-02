@@ -3,7 +3,7 @@ import TagManager from 'react-gtm-module'
 
 export const AnalyticsEvent = {
   AccountSignup: 'Signup',
-  OrganizationCreated: 'OrghanizationCreated',
+  OrganizationCreated: 'OrganizationCreated',
   UserLoggedIn: 'LoggedIn',
   ProcessCreated: 'ProcessCreated',
   SubscriptionSuccessful: 'SubscriptionSuccessful',
