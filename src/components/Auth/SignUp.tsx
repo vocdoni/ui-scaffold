@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Navigate, NavLink, Link as ReactRouterLink, useOutletContext } from 'react-router-dom'
+import { useAnalytics } from '~components/AnalyticsProvider'
 import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
@@ -10,6 +11,7 @@ import InputPassword from '~shared/Form/InputPassword'
 import FormSubmitMessage from '~shared/Layout/FormSubmitMessage'
 import { useSignupFromInvite } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
+import { AnalyticsEvent } from '~utils/analytics'
 import { default as InputBasic } from '../shared/Form/InputBasic'
 import GoogleAuth from './GoogleAuth'
 import { OrSeparator } from './SignIn'
@@ -34,6 +36,7 @@ const SignUp = ({ invite }: SignupProps) => {
   const { register: signup } = useAuth()
   const inviteSignup = useSignupFromInvite(invite?.address)
   const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
+  const { trackPlausibleEvent } = useAnalytics()
 
   const methods = useForm<FormData>({
     defaultValues: {
@@ -48,7 +51,6 @@ const SignUp = ({ invite }: SignupProps) => {
     formState: { errors },
   } = methods
   const email = watch('email')
-  const password = watch('password')
 
   const isPending = signup.isPending || inviteSignup.isPending
   const isError = signup.isError || inviteSignup.isError
@@ -75,12 +77,14 @@ const SignUp = ({ invite }: SignupProps) => {
 
   // normally registered accounts need verification
   if (signup.isSuccess) {
+    trackPlausibleEvent({ name: AnalyticsEvent.AccountSignup })
     signup.reset()
     return <Navigate to={`${Routes.auth.verify}?email=${encodeURIComponent(email)}`} />
   }
 
   // accounts coming from invites don't need verification
   if (inviteSignup.isSuccess) {
+    trackPlausibleEvent({ name: AnalyticsEvent.AccountSignup })
     return <Navigate to={Routes.auth.signIn} />
   }
 

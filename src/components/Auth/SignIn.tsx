@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { NavLink, useNavigate, useOutletContext } from 'react-router-dom'
+import { useAnalytics } from '~components/AnalyticsProvider'
 import { api, ApiEndpoints, UnverifiedApiError } from '~components/Auth/api'
 import { ILoginParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
@@ -12,6 +13,7 @@ import { AuthOutletContextType } from '~elements/LayoutAuth'
 import InputPassword from '~shared/Form/InputPassword'
 import FormSubmitMessage from '~shared/Layout/FormSubmitMessage'
 import { Routes } from '~src/router/routes'
+import { AnalyticsEvent } from '~utils/analytics'
 import InputBasic from '../shared/Form/InputBasic'
 import GoogleAuth from './GoogleAuth'
 
@@ -43,6 +45,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
   const toast = useToast()
   const navigate = useNavigate()
   const { setTitle, setSubtitle } = useOutletContext<AuthOutletContextType>()
+  const { trackPlausibleEvent } = useAnalytics()
   const methods = useForm<FormData>({
     defaultValues: { email: emailProp },
   })
@@ -71,7 +74,10 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
 
   const onSubmit = async (data: FormData) => {
     await login(data)
-      .then(() => navigate(Routes.dashboard.base))
+      .then(() => {
+        trackPlausibleEvent({ name: AnalyticsEvent.UserLoggedIn })
+        navigate(Routes.dashboard.base)
+      })
       .catch(async (e) => {
         if (e instanceof UnverifiedApiError && email) {
           try {

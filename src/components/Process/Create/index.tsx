@@ -46,6 +46,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import ReactPlayer from 'react-player'
 import { createPath, generatePath, useBlocker, useNavigate, useParams } from 'react-router-dom'
+import { useAnalytics } from '~components/AnalyticsProvider'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import Editor from '~components/Editor'
@@ -55,6 +56,7 @@ import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
 import { Routes } from '~routes'
 import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
+import { AnalyticsEvent } from '~utils/analytics'
 import { CensusMeta } from '../Census/CensusType'
 import { useProcessTemplates } from '../TemplateProvider'
 import { Questions } from './MainContent/Questions'
@@ -587,6 +589,7 @@ export const ProcessCreate = () => {
   const { setStepDoneAsync } = useOrganizationSetup()
   const processBundleMutation = useProcessBundle()
   const streamUri = methods.watch('streamUri')
+  const { trackPlausibleEvent } = useAnalytics()
 
   useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
 
@@ -755,6 +758,8 @@ export const ProcessCreate = () => {
       }
 
       await setStepDoneAsync(SetupStepIds.firstVoteCreation)
+
+      trackPlausibleEvent({ name: AnalyticsEvent.ProcessCreated })
 
       toast({
         title: t('form.process_create.success_title'),

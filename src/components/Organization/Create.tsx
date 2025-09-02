@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink, To, useNavigate } from 'react-router-dom'
+import { useAnalytics } from '~components/AnalyticsProvider'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys, useAuthProvider } from '~components/Auth/useAuthProvider'
@@ -14,6 +15,7 @@ import { CreateOrgParams } from '~components/Organization/AccountTypes'
 import FormSubmitMessage from '~shared/Layout/FormSubmitMessage'
 import { QueryKeys } from '~src/queries/keys'
 import { Routes } from '~src/router/routes'
+import { AnalyticsEvent } from '~utils/analytics'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 
 type FormData = PrivateOrgFormData & CreateOrgParams
@@ -95,6 +97,7 @@ export const OrganizationCreate = ({
   const methods = useForm<FormData>()
   const { fetchAccount } = useClient()
   const { handleSubmit } = methods
+  const { trackPlausibleEvent } = useAnalytics()
 
   const {
     mutateAsync: createOrganization,
@@ -102,6 +105,7 @@ export const OrganizationCreate = ({
     error,
   } = useOrganizationCreate({
     onSuccess: async () => {
+      trackPlausibleEvent({ name: AnalyticsEvent.OrganizationCreated })
       navigate(onSuccessRoute)
       setTimeout(async () => {
         await fetchAccount()
