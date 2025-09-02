@@ -176,7 +176,6 @@ export const ProcessView = () => {
   const { t } = useTranslation()
   const { election } = useElection()
   const videoRef = useRef<HTMLDivElement>(null)
-  const [videoTop, setVideoTop] = useState(false)
   const electionRef = useRef<HTMLDivElement>(null)
   const [tabIndex, setTabIndex] = useState(0)
   const [formErrors, setFormErrors] = useState<any>(null)
@@ -186,24 +185,6 @@ export const ProcessView = () => {
   }
 
   const setQuestionsTab = () => setTabIndex(0)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!videoRef.current) return
-
-      const rect = videoRef.current.getBoundingClientRect()
-      if (rect.top <= 84) {
-        setVideoTop(true)
-      } else {
-        setVideoTop(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   // If the election is finished show the results tab
   useEffect(() => {
@@ -247,11 +228,9 @@ export const ProcessView = () => {
 
           <ElectionVideo
             ref={videoRef}
-            maxW={{ base: '800px', lg: videoTop ? '400px' : '800px' }}
-            ml={videoTop ? 'auto' : 'none'}
+            maxW={{ base: '800px', lg: '800px' }}
             position={{ base: 'unset', lg: 'sticky' }}
             top={{ base: 0, xl2: 20 }}
-            zIndex={100}
           />
 
           <Tabs
