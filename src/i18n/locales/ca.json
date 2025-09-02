@@ -107,7 +107,7 @@
       "date_format": "PPpp",
       "secret_until_the_end": "Els resultats es faran públics quan el procés finalitzi el {{ endDate }}",
       "title": "Resultats per a \"{{ title }}\"",
-      "votes": "{{ percent }}"
+      "votes": "{{votes}} votants ({{ percent }})"
     },
     "schedule": {
       "created": "Creat {{ distance }}",
