@@ -42,7 +42,7 @@ import { useOrganization } from '@vocdoni/react-providers'
 import { chakraComponents, Select } from 'chakra-react-select'
 import { useEffect, useRef, useState } from 'react'
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { LuCheck, LuTriangleAlert, LuUpload, LuX } from 'react-icons/lu'
 import { useOutletContext } from 'react-router-dom'
 import { SpreadsheetManager } from '~components/shared/Spreadsheet/SpreadsheetManager'
@@ -111,7 +111,7 @@ export const ImportProgress = () => {
   const { jobId, setJobId } = useOutletContext<MemberbaseTabsContext>()
   const { data, isError } = useImportJobProgress()
 
-  const [fakeProgress, setFakeProgress] = useState(0)
+  const [progress, setProgress] = useState(0)
   const isComplete = data?.progress === 100
   const hasErrors = data?.errors?.length > 0
 
@@ -123,13 +123,13 @@ export const ImportProgress = () => {
     const target = current + PROGRESS_INCREMENT
 
     interval = setInterval(() => {
-      setFakeProgress((prev) => {
+      setProgress((prev) => {
         const next = prev + 1
         return next >= target ? target : next
       })
     }, PROGRESS_UPDATE_INTERVAL)
 
-    setFakeProgress(current)
+    setProgress(current)
 
     return () => clearInterval(interval)
   }, [data?.progress, isComplete])
@@ -154,16 +154,16 @@ export const ImportProgress = () => {
     return 'info'
   }
 
-  const getTitle = () => {
+  const ImportTitle = () => {
     if (isComplete && hasErrors)
-      return t('import_progress.completed_with_errors', { defaultValue: 'Import Completed with Errors' })
-    if (isComplete) return t('import_progress.success_title', { defaultValue: 'Import Completed Successfully' })
-    if (isError) return t('import_progress.error_title', { defaultValue: 'Import Error' })
+      return <Trans i18nKey='import_progress.completed_with_errors' defaults='Import Completed with Errors' />
+    if (isComplete) return <Trans i18nKey='import_progress.success_title' defaults='Import Completed Successfully' />
+    if (isError) return <Trans i18nKey='import_progress.error_title' defaults='Import Error' />
 
-    return t('import_progress.title', { defaultValue: 'Memberbase Import in Progress' })
+    return <Trans i18nKey='import_progress.title' defaults='Memberbase Import in Progress' />
   }
 
-  const getDescription = () => {
+  const ImportDescription = () => {
     if (isComplete && hasErrors) {
       return (
         <>
@@ -203,7 +203,7 @@ export const ImportProgress = () => {
       return (
         <Text>
           {t('import_progress.error_description', {
-            defaultValue: 'An error occurred while fetching the import errors. Please try again later.',
+            defaultValue: 'An error occurred while importing your member data. Please try again later.',
           })}
         </Text>
       )
@@ -228,7 +228,7 @@ export const ImportProgress = () => {
 
     return (
       <>
-        <Progress size='md' value={fakeProgress} borderRadius='md' isAnimated hasStripe />
+        <Progress size='md' value={progress} borderRadius='md' isAnimated hasStripe />
         <Text>
           {t('import_progress.description', {
             defaultValue:
@@ -259,9 +259,11 @@ export const ImportProgress = () => {
         justifyContent='space-between'
       >
         <Flex flexDirection='column' gap={2} flex={1}>
-          <AlertTitle>{getTitle()}</AlertTitle>
+          <AlertTitle>
+            <ImportTitle />
+          </AlertTitle>
           <AlertDescription display='flex' flexDirection='column' gap={2}>
-            {getDescription()}
+            <ImportDescription />
           </AlertDescription>
         </Flex>
 
