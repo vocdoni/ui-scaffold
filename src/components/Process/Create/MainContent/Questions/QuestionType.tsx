@@ -61,6 +61,7 @@ export const QuestionType = () => {
               }}
               options={options}
               placeholder={t('process.create.question_type.single', 'Single choice')}
+              menuPortalTarget={document.body}
             />
           )
         }}
