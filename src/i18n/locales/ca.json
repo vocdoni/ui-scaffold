@@ -850,7 +850,7 @@
     "completed_with_errors": "Import Completed with Errors",
     "completed_with_errors_description": "Your member data has been imported, but some errors occurred. Please review the details below.",
     "description": "Your member data is being imported. This may take a few minutes depending on the size of your file.",
-    "error_description": "An error occurred while fetching the import errors. Please try again later.",
+    "error_description": "An error occurred while importing your member data. Please try again later.",
     "error_modal_title": "Import Errors",
     "error_title": "Import Error",
     "has_errors_description": "An error occurred while importing your member data. Please try again later.",
