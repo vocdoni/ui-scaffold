@@ -102,15 +102,15 @@ export const Questions = () => {
           {fields.map((field, index) => (
             <Box key={field.id}>
               <QuestionForm index={index} onRemove={onRemoveQuestion} questionId={field.id} />
-              <DeleteQuestionModal
-                isOpen={isOpen}
-                onClose={onClose}
-                removeQuestion={() => removeQuestion(pendingDeleteIndex)}
-              />
             </Box>
           ))}
         </SortableContext>
       </DndContext>
+      <DeleteQuestionModal
+        isOpen={isOpen}
+        onClose={onClose}
+        removeQuestion={() => removeQuestion(pendingDeleteIndex)}
+      />
 
       {questionType === QuestionTypes.Single && (
         <Button leftIcon={<Icon as={LuPlus} />} variant='outline' onClick={addQuestion}>
