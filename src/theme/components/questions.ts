@@ -71,9 +71,6 @@ const baseStyle = definePartsStyle({
       gap: 10,
       pt: { base: 6, xl: 10 },
       mb: { base: 8, xl: 12 },
-      '& > div:first-of-type': {
-        display: 'none',
-      },
     },
   },
 
