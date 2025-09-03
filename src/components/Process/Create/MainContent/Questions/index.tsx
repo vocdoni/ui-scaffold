@@ -47,7 +47,7 @@ const DeleteQuestionModal = ({ isOpen, onClose, removeQuestion }) => {
 export const Questions = () => {
   const { control, watch } = useFormContext()
   const { isOpen, onClose, onOpen } = useDisclosure()
-  const [pendingDeleteIndex, setPendingDeleteIndex] = useState(null)
+  const [pendingDeleteIndex, setPendingDeleteIndex] = useState<number | null>(null)
   const { fields, append, remove, move } = useFieldArray({
     control,
     name: 'questions',
@@ -81,7 +81,8 @@ export const Questions = () => {
     }
   }
 
-  const onRemoveQuestion = (index) => {
+  const onRemoveQuestion = (index: number | null) => {
+    if (index === null) return
     setPendingDeleteIndex(index)
     onOpen()
   }
