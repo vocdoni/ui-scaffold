@@ -1834,6 +1834,11 @@
     "2fa_sms_description": "Los votantes recibirán un código de verificación por SMS",
     "2fa_voter_choice": "Elección del votante",
     "2fa_voter_choice_description": "Los votantes pueden elegir el método de verificación que prefieran",
+    "button": {
+      "configure": "Configurar autenticación de votantes",
+      "edit": "Editar autenticación de votantes"
+    },
+    "configured_auth": "Autenticación configurada",
     "credentials": "Credenciales",
     "description": "Configura cómo se autenticarán los votantes para participar en este proceso de votación.",
     "email": "Vía verificación por correo electrónico",
@@ -1853,7 +1858,6 @@
     "level_mid": "Medio",
     "level_strong": "Fuerte",
     "level_weak": "Débil",
-    "no_census_description": "Censo ya creado.",
     "no_group_description": "Por favor, selecciona primero un grupo para configurar la autenticación.",
     "security_level": "Buena seguridad",
     "security_recommendation_1": "Para una mejor seguridad, recomendamos seleccionar al menos 2 credenciales.",

@@ -1816,6 +1816,11 @@
     "2fa_sms_description": "Voters will receive a verification code via SMS",
     "2fa_voter_choice": "Voter's choice",
     "2fa_voter_choice_description": "Voters can choose their preferred verification method",
+    "button": {
+      "configure": "Configure Voter Authentication",
+      "edit": "Edit Voter Authentication"
+    },
+    "configured_auth": "Voter Authentication",
     "credentials": "Credentials",
     "description": "Set up how voters will authenticate to participate in this voting process.",
     "email": "Via email verification",
@@ -1835,7 +1840,6 @@
     "level_mid": "Mid",
     "level_strong": "Strong",
     "level_weak": "Weak",
-    "no_census_description": "Census already created.",
     "no_group_description": "Please select a group first to configure authentication.",
     "security_level": "Good security",
     "security_recommendation_1": "For better security, we recommend selecting at least 2 credentials.",
