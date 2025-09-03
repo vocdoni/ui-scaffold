@@ -1,4 +1,5 @@
 import {
+  Badge,
   Button,
   Flex,
   Heading,
@@ -18,14 +19,14 @@ import {
 import { useMutation } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { useCensus } from '../Sidebar/CensusProvider'
 import { CredentialsForm } from './CredentialsForm'
-import { SummaryDisplay } from './SummaryDisplay'
+import { CredentialsOverview, SummaryDisplay } from './SummaryDisplay'
 import { TwoFactorForm } from './TwoFactorForm'
 import { getTwoFaFields, StepCompletionState, VoterAuthFormData } from './utils'
 import { ValidationError, ValidationErrorsAlert } from './ValidationErrorsAlert'
@@ -132,9 +133,18 @@ export const VoterAuthentication = () => {
   const publishCensusMutation = usePublishCensus()
 
   const groupId = mainForm.watch('groupId')
-  const censusId = mainForm.watch('censusId')
+  const census = mainForm.watch('census')
   const formData = voterAuthForm.watch()
   const hasNoCredentialsSelected = !formData.credentials.length && !formData.use2FA
+
+  // Sync form values with stored census data
+  useEffect(() => {
+    if (census) {
+      voterAuthForm.setValue('credentials', census.credentials)
+      voterAuthForm.setValue('use2FA', census.use2FA)
+      voterAuthForm.setValue('use2FAMethod', census.use2FAMethod)
+    }
+  }, [census])
 
   const handleNext = async () => {
     if (activeTabIndex === 0) {
@@ -166,7 +176,12 @@ export const VoterAuthentication = () => {
         })
 
         setMaxCensusSize(maxCensusSize)
-        mainForm.setValue('censusId', censusId)
+        mainForm.setValue('census', {
+          id: censusId,
+          credentials: currentFormData.credentials,
+          use2FA: currentFormData.use2FA,
+          use2FAMethod: currentFormData.use2FAMethod ?? null,
+        })
         setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
         setActiveTabIndex(2)
       } catch (error) {
@@ -212,16 +227,34 @@ export const VoterAuthentication = () => {
 
   return (
     <>
-      <Button isDisabled={!groupId} colorScheme='gray' w='full' onClick={onOpen}>
-        <Trans i18nKey='voter_auth.title'>Configure Voter Authentication</Trans>
-      </Button>
-      {censusId && (
-        <Text color='texts.subtle' size='xs'>
-          {t('voter_auth.no_census_description', {
-            defaultValue: 'Census already created.',
-          })}
-        </Text>
+      {census && (
+        <Flex p={4} direction='column' border='1px solid' borderColor='table.border' borderRadius='md' gap={2}>
+          <Flex justify='space-between'>
+            <Text fontWeight='semibold'>
+              {t('voter_auth.configured_auth', {
+                defaultValue: 'Voter Authentication',
+              })}
+            </Text>
+            {census?.use2FA && (
+              <Badge colorScheme='black' fontSize='xs'>
+                2FA
+              </Badge>
+            )}
+          </Flex>
+          <CredentialsOverview
+            credentials={census?.credentials}
+            use2FA={census?.use2FA}
+            use2FAMethod={census?.use2FAMethod}
+          />
+        </Flex>
       )}
+      <Button isDisabled={!groupId} colorScheme='gray' w='full' onClick={onOpen}>
+        {census ? (
+          <Trans i18nKey='voter_auth.button.edit'>Edit Voter Authentication</Trans>
+        ) : (
+          <Trans i18nKey='voter_auth.button.configure'>Configure Voter Authentication</Trans>
+        )}
+      </Button>
       {!groupId && (
         <Text color='texts.subtle' size='xs'>
           {t('voter_auth.no_group_description', {
