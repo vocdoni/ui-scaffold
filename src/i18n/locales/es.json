@@ -62,7 +62,6 @@
     "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
     "title": "Calendar"
   },
-  "call_us": "Llámanos",
   "cancel": "Cancel",
   "cc": {
     "actions": {
@@ -469,7 +468,6 @@
     "no_groups": "No groups found",
     "search": "Search groups..."
   },
-  "guides": "Guías",
   "home": {
     "benefits": {
       "card_1": {
@@ -1059,6 +1057,9 @@
     "terms": "Términos",
     "wallet": "Billetera"
   },
+  "more_than_users_one": "more than {{ count }} users",
+  "more_than_users_many": "more than {{ count }} users",
+  "more_than_users_other": "more than {{ count }} users",
   "name": "Nombre",
   "navbar": {
     "contact": "Contact Us",

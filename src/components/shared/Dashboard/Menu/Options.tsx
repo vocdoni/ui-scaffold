@@ -1,7 +1,7 @@
 import { Box, Flex, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LuBookOpen, LuHouse, LuLifeBuoy, LuPhone, LuSettings, LuUsers, LuVote } from 'react-icons/lu'
+import { LuHouse, LuLifeBuoy, LuSettings, LuUsers, LuVote } from 'react-icons/lu'
 import { matchPath, useLocation } from 'react-router-dom'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~src/router/routes'
@@ -39,16 +39,6 @@ export const DashboardMenuOptions = () => {
       label: t('support'),
       icon: LuLifeBuoy,
       route: Routes.dashboard.settings.support,
-    },
-    {
-      label: t('call_us', { defaultValue: 'Call us' }),
-      icon: LuPhone,
-      route: '',
-    },
-    {
-      label: t('guides', { defaultValue: 'Guides' }),
-      icon: LuBookOpen,
-      route: '',
     },
   ]
 
