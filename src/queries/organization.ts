@@ -62,10 +62,11 @@ type SetupChecklistItem = {
   type?: CheckboxTypes
 }
 
-type Role = {
+export type Role = {
   role: string
   name: string
-  writePermission: boolean
+  organizationWritePermission: boolean
+  processWritePermission: boolean
 }
 
 type OrganizationType = {

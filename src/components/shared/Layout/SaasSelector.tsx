@@ -1,9 +1,9 @@
 import { Alert, Box, Flex, FormControl, FormErrorMessage, FormLabel, Icon, Text } from '@chakra-ui/react'
 import { Props as SelectProps, chakraComponents } from 'chakra-react-select'
 import { Controller, type ControllerProps, useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { LuEye, LuKey, LuUserRoundCog, LuUsers } from 'react-icons/lu'
-import { useOrganizationTypes, useRoles } from '~src/queries/organization'
+import { Role, useOrganizationTypes, useRoles } from '~src/queries/organization'
 import { Select } from '../Form/Select'
 
 export type SelectOptionType = {
@@ -12,7 +12,8 @@ export type SelectOptionType = {
 }
 
 export type RoleOptionType = SelectOptionType & {
-  writePermission: boolean
+  organizationWritePermission: boolean
+  processWritePermission: boolean
 }
 
 export type SelectCustomProps = {
@@ -150,15 +151,26 @@ export const roleIcons: Record<string, JSX.Element> = {
   any: <Icon as={LuUsers} />,
 }
 
+const getRoleBadge = (role: Role) => {
+  const hasOrgPermission = role.organizationWritePermission
+  const hasProcessPermission = role.processWritePermission
+
+  if (hasOrgPermission && hasProcessPermission) {
+    return <Trans i18nKey='role.full_access.badge' defaults='(Full access)' />
+  } else if (hasOrgPermission || hasProcessPermission) {
+    return <Trans i18nKey='role.manage_members_votes.badge' defaults='(Manage members & votes)' />
+  }
+
+  return <Trans i18nKey='role.read_only.badge' defaults='(Read-only)' />
+}
+
 export const createRoleDisplay = (type: 'Option' | 'SingleValue') => {
   const BaseComponent = chakraComponents[type]
 
   return (props: any) => {
-    const { t } = useTranslation()
     const { data } = props
-    const accessLabel = data.writePermission
-      ? t('role.full_access', { defaultValue: '(Full access)' })
-      : t('role.read_only', { defaultValue: '(Read-only)' })
+
+    const accessLabel = getRoleBadge(data)
     const icon = roleIcons[data.value]
 
     return (
@@ -168,7 +180,7 @@ export const createRoleDisplay = (type: 'Option' | 'SingleValue') => {
             {icon}
           </Box>
           <Text fontWeight='bold'>{data.label}</Text>
-          <Text fontSize='sm' color='gray.500'>
+          <Text fontSize='sm' color='texts.subtle'>
             {accessLabel}
           </Text>
         </Flex>
@@ -181,10 +193,11 @@ export const RoleSelector = ({ ...props }: Omit<SelectCustomProps, 'options'>) =
   const { t } = useTranslation()
   const { data = [], isLoading: rolesLoading, isError: rolesError, error: rolesFetchError } = useRoles()
 
-  const roles: SelectOptionType[] = data.map((role: any) => ({
+  const roles: RoleOptionType[] = data.map((role: Role) => ({
     label: role.name,
     value: role.role,
-    writePermission: role.writePermission,
+    organizationWritePermission: role.organizationWritePermission,
+    processWritePermission: role.processWritePermission,
   }))
   const defaultVal = roles.find((role: RoleOptionType) => role.value === 'viewer')
 

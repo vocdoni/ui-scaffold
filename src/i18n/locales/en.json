@@ -1044,8 +1044,6 @@
     "terms": "Terms",
     "wallet": "Wallet"
   },
-  "more_than_users_one": "more than {{ count }} users",
-  "more_than_users_other": "more than {{ count }} users",
   "name": "Name",
   "navbar": {
     "contact": "Contact Us",
@@ -1338,9 +1336,8 @@
       "confirm": {
         "blank_vote": "No choices selected, sending blank vote",
         "description": "Before casting your vote review that everything is correct.",
-        "option": "<strong>Option {{ number }}:</strong> {{ answer }}",
-        "options": "<strong>Choices:</strong> {{ answers }}",
-        "question": "<strong>Question {{ number }}:</strong> {{ answer }}"
+        "election_title": "Your vote has been recorded for:",
+        "your_selections": "Your Selections:"
       }
     },
     "state": "STATE",
@@ -1353,7 +1350,6 @@
       "unknown": "Unknown",
       "upcoming": "Upcoming"
     },
-    "strategy": "Census strategy",
     "success_modal": {
       "btn": "Close",
       "text": "<p>We've securely processed and stored your vote on our Blockchain. <verify>Verify your vote</verify>.</p>",
@@ -1535,9 +1531,18 @@
     "title": "Voting type"
   },
   "role": {
-    "full_access": "(Full access)",
-    "read_only": "(Read-only)",
-    "read_permission": "Read-only access",
+    "full_access": {
+      "badge": "(Full access)",
+      "description": "Full access to all organization settings and members."
+    },
+    "manage_members_votes": {
+      "badge": "(Manage members & votes)",
+      "description": "Can manage members, groups, censuses, and voting processes."
+    },
+    "read_only": {
+      "badge": "(Read-only)",
+      "description": "Read-only access to organization data."
+    },
     "update": {
       "cancel": "Cancel",
       "current_role": "Current Role",
@@ -1547,8 +1552,7 @@
       "subtitle": "Update the permissions for this team member by changing their role.",
       "success": "Role updated successfully",
       "title": "Change team member role"
-    },
-    "write_permission": "Can create and edit content"
+    }
   },
   "role_selector": {
     "selector_label": "Role"
