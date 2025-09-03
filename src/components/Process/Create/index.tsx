@@ -645,7 +645,7 @@ export const ProcessCreate = () => {
     let census = null
     switch (form.censusType) {
       case CensusTypes.CSP:
-        if (!form.census.id) {
+        if (!form.census?.id) {
           throw new Error('Census data is missing for Memberbase census type')
         }
 
@@ -654,7 +654,7 @@ export const ProcessCreate = () => {
           census: { type: CensusTypes.CSP },
         })
         const bundledProcess = await processBundleMutation.mutateAsync({
-          censusId: form.census.id,
+          censusId: form.census?.id,
           processes: [nextElectionId],
         })
         census = new CspCensus(bundledProcess.root, bundledProcess.uri)
