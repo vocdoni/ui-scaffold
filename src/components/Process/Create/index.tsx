@@ -95,6 +95,13 @@ type Question = {
   options: Option[]
 }
 
+export type Census = {
+  id: string
+  credentials: string[]
+  use2FA: boolean
+  use2FAMethod: 'email' | 'sms' | null
+}
+
 export type Process = {
   title: string
   description: string
@@ -110,7 +117,7 @@ export type Process = {
   resultVisibility: 'live' | 'hidden'
   voterPrivacy: 'anonymous' | 'public'
   groupId: string
-  censusId: string | undefined
+  census: Census | undefined
   censusType: CensusTypes
   streamUri?: string
   addresses?: Web3Address[]
@@ -185,7 +192,7 @@ const defaultProcessValues: Process = {
   resultVisibility: 'hidden',
   voterPrivacy: 'public',
   groupId: '',
-  censusId: undefined,
+  census: undefined,
   censusType: CensusTypes.CSP,
   streamUri: '',
   addresses: [],
@@ -638,7 +645,7 @@ export const ProcessCreate = () => {
     let census = null
     switch (form.censusType) {
       case CensusTypes.CSP:
-        if (!form.censusId) {
+        if (!form.census?.id) {
           throw new Error('Census data is missing for Memberbase census type')
         }
 
@@ -647,7 +654,7 @@ export const ProcessCreate = () => {
           census: { type: CensusTypes.CSP },
         })
         const bundledProcess = await processBundleMutation.mutateAsync({
-          censusId: form.censusId,
+          censusId: form.census?.id,
           processes: [nextElectionId],
         })
         census = new CspCensus(bundledProcess.root, bundledProcess.uri)
@@ -787,7 +794,7 @@ export const ProcessCreate = () => {
   const onError = (errors) => {
     const sidebarFieldKeys = [
       'groupId',
-      'censusId',
+      'census',
       'resultVisibility',
       'voterPrivacy',
       'endDate',
