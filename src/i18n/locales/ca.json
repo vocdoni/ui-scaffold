@@ -1834,6 +1834,11 @@
     "2fa_sms_description": "Els votants rebran un codi de verificació per SMS",
     "2fa_voter_choice": "Elecció del votant",
     "2fa_voter_choice_description": "Els votants poden escollir el mètode de verificació que prefereixin",
+    "button": {
+      "configure": "Configura l'autenticació dels votants",
+      "edit": "Edita l'autenticació dels votants"
+    },
+    "configured_auth": "Autenticació configurada",
     "credentials": "Credencials",
     "description": "Configura com s'autenticaran els votants per participar en aquest procés de votació.",
     "email": "Via verificació per correu electrònic",
@@ -1853,7 +1858,6 @@
     "level_mid": "Mitjà",
     "level_strong": "Fort",
     "level_weak": "Feble",
-    "no_census_description": "Cens ja creat.",
     "no_group_description": "Si us plau, selecciona primer un grup per configurar l'autenticació.",
     "security_level": "Bona seguretat",
     "security_recommendation_1": "Per a una millor seguretat, recomanem seleccionar almenys 2 credencials.",
