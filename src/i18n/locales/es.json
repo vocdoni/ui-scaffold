@@ -1059,9 +1059,6 @@
     "terms": "Términos",
     "wallet": "Billetera"
   },
-  "more_than_users_one": "more than {{ count }} users",
-  "more_than_users_many": "more than {{ count }} users",
-  "more_than_users_other": "more than {{ count }} users",
   "name": "Nombre",
   "navbar": {
     "contact": "Contact Us",
@@ -1356,9 +1353,8 @@
       "confirm": {
         "blank_vote": "No se han seleccionado opciones, enviando voto en blanco",
         "description": "Antes de emitir tu voto, revisa que todo esté correcto.",
-        "option": "<strong>Opción {{ number }}:</strong> {{ answer }}",
-        "options": "<strong>Selección:</strong> {{ answers }}",
-        "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
+        "election_title": "Your vote has been recorded for:",
+        "your_selections": "Your Selections:"
       }
     },
     "state": "ESTADO",
@@ -1371,7 +1367,6 @@
       "unknown": "Desconocido",
       "upcoming": "Próximo"
     },
-    "strategy": "Estrategia",
     "success_modal": {
       "btn": "Finalizar",
       "text": "<p>Tu voto ha sido emitido y almacenado de forma segura en la cadena de bloques de Vocdoni. <verify>Puedes comprobarlo aquí</verify>.</p><p>La democracia es importante, puedes compartirla con tu comunidad y amigos:</p>",
@@ -1553,9 +1548,18 @@
     "title": "Tipo de votación"
   },
   "role": {
-    "full_access": "(Full access)",
-    "read_only": "(Read-only)",
-    "read_permission": "Acceso solo lectura",
+    "full_access": {
+      "badge": "(Full access)",
+      "description": "Full access to all organization settings and members."
+    },
+    "manage_members_votes": {
+      "badge": "(Manage members & votes)",
+      "description": "Can manage members, groups, censuses, and voting processes."
+    },
+    "read_only": {
+      "badge": "(Read-only)",
+      "description": "Read-only access to organization data."
+    },
     "update": {
       "cancel": "Cancel",
       "current_role": "Current Role",
@@ -1565,8 +1569,7 @@
       "subtitle": "Update the permissions for this team member by changing their role.",
       "success": "Role updated successfully",
       "title": "Change team member role"
-    },
-    "write_permission": "Puede crear y editar contenido"
+    }
   },
   "role_selector": {
     "selector_label": "Role"

@@ -1059,9 +1059,6 @@
     "terms": "Termes",
     "wallet": "Cartera"
   },
-  "more_than_users_one": "more than {{ count }} users",
-  "more_than_users_many": "more than {{ count }} users",
-  "more_than_users_other": "more than {{ count }} users",
   "name": "Name",
   "navbar": {
     "contact": "Contact Us",
@@ -1356,9 +1353,8 @@
       "confirm": {
         "blank_vote": "No s'han seleccionat opcions, enviant vot en blanc",
         "description": "Abans de votar, reviseu que tot sigui correcte.",
-        "option": "<strong>Opció {{ number }}:</strong> {{ answer }}",
-        "options": "<strong>Selecció:</strong> {{ answers }}",
-        "question": "<strong>Pregunta {{ number }}:</strong> {{ answer }}"
+        "election_title": "Your vote has been recorded for:",
+        "your_selections": "Your Selections:"
       }
     },
     "state": "ESTAT",
@@ -1371,7 +1367,6 @@
       "unknown": "Desconegut",
       "upcoming": "Previst"
     },
-    "strategy": "Estratègia",
     "success_modal": {
       "btn": "Finalitzar",
       "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura a la cadena de blocs de Vocdoni. <verify>Pots comprovar-ho aquí</verify>.</p><p>La democràcia és important, la pots compartir amb la teva comunitat i amics:</p>",
@@ -1553,9 +1548,18 @@
     "title": "Tipus de votació"
   },
   "role": {
-    "full_access": "(Full access)",
-    "read_only": "(Read-only)",
-    "read_permission": "Read-only access",
+    "full_access": {
+      "badge": "(Full access)",
+      "description": "Full access to all organization settings and members."
+    },
+    "manage_members_votes": {
+      "badge": "(Manage members & votes)",
+      "description": "Can manage members, groups, censuses, and voting processes."
+    },
+    "read_only": {
+      "badge": "(Read-only)",
+      "description": "Read-only access to organization data."
+    },
     "update": {
       "cancel": "Cancel",
       "current_role": "Current Role",
@@ -1565,8 +1569,7 @@
       "subtitle": "Update the permissions for this team member by changing their role.",
       "success": "Role updated successfully",
       "title": "Change team member role"
-    },
-    "write_permission": "Can create and edit content"
+    }
   },
   "role_selector": {
     "selector_label": "Role"
