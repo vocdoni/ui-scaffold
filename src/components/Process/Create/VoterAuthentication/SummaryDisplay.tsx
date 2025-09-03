@@ -12,17 +12,13 @@ import {
   TabPanel,
   Text,
 } from '@chakra-ui/react'
-import { useTranslation } from 'react-i18next'
 import { useFormContext } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { LuCheck, LuMail, LuShield } from 'react-icons/lu'
 import { getSecurityLevel, getSecurityLevelMessages, SecurityLevelDisplay } from './SecurityLevel'
 
-export const SummaryDisplay = () => {
+export const CredentialsOverview = ({ credentials, use2FA, use2FAMethod }) => {
   const { t } = useTranslation()
-  const { watch } = useFormContext()
-  const { credentials, use2FA, use2FAMethod } = watch()
-  const level = getSecurityLevel(use2FA, credentials)
-  const { subtext, alert } = getSecurityLevelMessages(level)
 
   const get2FAMethodLabel = (method: string) =>
     method === 'sms'
@@ -32,50 +28,64 @@ export const SummaryDisplay = () => {
         : t('voter_auth.email', { defaultValue: 'Via email verification' })
 
   return (
+    <>
+      <Box>
+        <HStack mb={1}>
+          <Icon as={LuShield} />
+          <Text fontWeight='semibold'>
+            {t('voter_auth.summary_credentials', { defaultValue: 'Required Credentials' })}
+          </Text>
+        </HStack>
+        <Stack pl={6} spacing={2}>
+          {credentials.map((cred) => (
+            <HStack key={cred}>
+              <Icon as={LuCheck} color='green.500' />
+              <Text>{cred}</Text>
+            </HStack>
+          ))}
+        </Stack>
+      </Box>
+      {use2FA && (
+        <Box>
+          <HStack mb={1}>
+            <Badge colorScheme='black' fontSize='xs'>
+              2FA
+            </Badge>
+            <Text fontWeight='semibold'>
+              {t('voter_auth.summary_2fa_enable', { defaultValue: 'Two-Factor Authentication' })}
+            </Text>
+          </HStack>
+          <Stack pl={6}>
+            <HStack>
+              <Icon as={LuCheck} color='green.500' />
+              <Text>{t('voter_auth.summary_2fa_enabled', { defaultValue: 'Enabled' })}</Text>
+            </HStack>
+            <HStack>
+              <Icon as={LuMail} />
+              <Text>{get2FAMethodLabel(use2FAMethod)}</Text>
+            </HStack>
+          </Stack>
+        </Box>
+      )}
+    </>
+  )
+}
+
+export const SummaryDisplay = () => {
+  const { t } = useTranslation()
+  const { watch } = useFormContext()
+  const { credentials, use2FA, use2FAMethod } = watch()
+  const level = getSecurityLevel(use2FA, credentials)
+  const { subtext, alert } = getSecurityLevelMessages(level)
+
+  return (
     <TabPanel>
       <Box border='1px solid' borderColor='table.border' borderRadius='md' p={5} bg='background.raised'>
         <Stack spacing={4}>
           <Text fontWeight='bold'>
             {t('voter_auth.summary_title', { defaultValue: 'Authentication Configuration Summary' })}
           </Text>
-          <Box>
-            <HStack mb={1}>
-              <Icon as={LuShield} />
-              <Text fontWeight='semibold'>
-                {t('voter_auth.summary_credentials', { defaultValue: 'Required Credentials' })}
-              </Text>
-            </HStack>
-            <Stack pl={6} spacing={2}>
-              {credentials.map((cred) => (
-                <HStack key={cred}>
-                  <Icon as={LuCheck} color='green.500' />
-                  <Text>{cred}</Text>
-                </HStack>
-              ))}
-            </Stack>
-          </Box>
-          {use2FA && (
-            <Box>
-              <HStack mb={1}>
-                <Badge colorScheme='black' fontSize='xs'>
-                  2FA
-                </Badge>
-                <Text fontWeight='semibold'>
-                  {t('voter_auth.summary_2fa_enable', { defaultValue: 'Two-Factor Authentication' })}
-                </Text>
-              </HStack>
-              <Stack pl={6}>
-                <HStack>
-                  <Icon as={LuCheck} color='green.500' />
-                  <Text>{t('voter_auth.summary_2fa_enabled', { defaultValue: 'Enabled' })}</Text>
-                </HStack>
-                <HStack>
-                  <Icon as={LuMail} />
-                  <Text>{get2FAMethodLabel(use2FAMethod)}</Text>
-                </HStack>
-              </Stack>
-            </Box>
-          )}
+          <CredentialsOverview credentials={credentials} use2FA={use2FA} use2FAMethod={use2FAMethod} />
           <Divider />
           <Box>
             <HStack mb={3}>
