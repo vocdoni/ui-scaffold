@@ -292,12 +292,19 @@ const getRoleDescription = (role: Role) => {
   const hasProcessPermission = role.processWritePermission
 
   if (hasOrgPermission && hasProcessPermission) {
-    return <Trans i18nKey='role.full_access' defaults='Full access' />
+    return (
+      <Trans i18nKey='role.full_access.description' defaults='Full access to all organization settings and members.' />
+    )
   } else if (hasOrgPermission || hasProcessPermission) {
-    return <Trans i18nKey='role.manage_members_votes' defaults='Manage members & votes' />
+    return (
+      <Trans
+        i18nKey='role.manage_members_votes.description'
+        defaults='Can manage members, groups, censuses, and voting processes.'
+      />
+    )
   }
 
-  return <Trans i18nKey='role.read_only' defaults='Read-only access' />
+  return <Trans i18nKey='role.read_only.description' defaults='Read-only access to organization data.' />
 }
 
 const RoleRadioGroup = ({ currentRole }: RoleRadioGroupProps) => {
