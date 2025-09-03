@@ -1057,9 +1057,9 @@
     "terms": "Términos",
     "wallet": "Billetera"
   },
-  "more_than_users_one": "more than {{ count }} users",
-  "more_than_users_many": "more than {{ count }} users",
-  "more_than_users_other": "more than {{ count }} users",
+  "more_than_users_one": "más de un usuario",
+  "more_than_users_many": "",
+  "more_than_users_other": "más de {{ count }} usuarios",
   "name": "Nombre",
   "navbar": {
     "contact": "Contact Us",

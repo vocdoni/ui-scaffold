@@ -1057,9 +1057,9 @@
     "terms": "Termes",
     "wallet": "Cartera"
   },
-  "more_than_users_one": "more than {{ count }} users",
-  "more_than_users_many": "more than {{ count }} users",
-  "more_than_users_other": "more than {{ count }} users",
+  "more_than_users_one": "més d'un usuari'",
+  "more_than_users_many": "",
+  "more_than_users_other": "més de {{ count }} usuaris",
   "name": "Name",
   "navbar": {
     "contact": "Contact Us",
