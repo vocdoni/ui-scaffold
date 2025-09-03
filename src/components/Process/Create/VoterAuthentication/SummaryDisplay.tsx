@@ -17,7 +17,13 @@ import { useTranslation } from 'react-i18next'
 import { LuCheck, LuMail, LuShield } from 'react-icons/lu'
 import { getSecurityLevel, getSecurityLevelMessages, SecurityLevelDisplay } from './SecurityLevel'
 
-export const CredentialsOverview = ({ credentials, use2FA, use2FAMethod }) => {
+type CredentialsOverviewProps = {
+  credentials: string[]
+  use2FA: boolean
+  use2FAMethod: string
+}
+
+export const CredentialsOverview = ({ credentials, use2FA, use2FAMethod }: CredentialsOverviewProps) => {
   const { t } = useTranslation()
 
   const get2FAMethodLabel = (method: string) =>
@@ -29,22 +35,25 @@ export const CredentialsOverview = ({ credentials, use2FA, use2FAMethod }) => {
 
   return (
     <>
-      <Box>
-        <HStack mb={1}>
-          <Icon as={LuShield} />
-          <Text fontWeight='semibold'>
-            {t('voter_auth.summary_credentials', { defaultValue: 'Required Credentials' })}
-          </Text>
-        </HStack>
-        <Stack pl={6} spacing={2}>
-          {credentials.map((cred) => (
-            <HStack key={cred}>
-              <Icon as={LuCheck} color='green.500' />
-              <Text>{cred}</Text>
-            </HStack>
-          ))}
-        </Stack>
-      </Box>
+      {credentials.length > 0 && (
+        <Box>
+          <HStack mb={1}>
+            <Icon as={LuShield} />
+            <Text fontWeight='semibold'>
+              {t('voter_auth.summary_credentials', { defaultValue: 'Required Credentials' })}
+            </Text>
+          </HStack>
+
+          <Stack pl={6} spacing={2}>
+            {credentials.map((cred) => (
+              <HStack key={cred}>
+                <Icon as={LuCheck} color='green.500' />
+                <Text>{cred}</Text>
+              </HStack>
+            ))}
+          </Stack>
+        </Box>
+      )}
       {use2FA && (
         <Box>
           <HStack mb={1}>
