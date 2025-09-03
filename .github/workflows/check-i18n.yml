@@ -1,0 +1,48 @@
+name: Ensure i18n translations are up to date
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check-translations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # We don't need full history; default is fine.
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Generate translations
+        run: yarn translations
+
+      - name: Fail if translations changed
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Collect unstaged changes in the locales path (modified files)
+          MODIFIED="$(git diff --name-only -- src/i18n/locales/*.json || true)"
+
+          # Collect untracked (new) files in the locales path
+          UNTRACKED="$(git ls-files --others --exclude-standard -- src/i18n/locales/*.json || true)"
+
+          if [ -n "${MODIFIED}${UNTRACKED}" ]; then
+            echo "::error::Translation files are out of date. Run 'yarn translations' locally and commit the changes."
+            echo "Changed files:"
+            [ -n "$MODIFIED" ] && echo "$MODIFIED"
+            [ -n "$UNTRACKED" ] && echo "$UNTRACKED"
+            exit 1
+          else
+            echo "Translations are up to date."
+          fi
