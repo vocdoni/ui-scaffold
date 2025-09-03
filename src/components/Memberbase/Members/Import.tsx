@@ -36,6 +36,7 @@ import {
   Tr,
   UnorderedList,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
@@ -463,6 +464,7 @@ const ImportDataPreview = ({ columnMapping, setColumnMapping }: ImportDataPrevie
 
 export const ImportMembers = () => {
   const { t } = useTranslation()
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef<HTMLButtonElement>(null)
   const methods = useForm({ defaultValues: { spreadsheet: null } })
@@ -494,6 +496,11 @@ export const ImportMembers = () => {
       onClose()
     } catch (error) {
       console.error(error)
+      toast({
+        status: 'error',
+        title: 'Import failed',
+        description: error?.message ?? 'Unexpected error while importing members',
+      })
     }
   }
 
