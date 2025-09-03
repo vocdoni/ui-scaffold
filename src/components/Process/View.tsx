@@ -228,7 +228,7 @@ export const ProcessView = () => {
 
           <ElectionVideo
             ref={videoRef}
-            maxW={{ base: '800px', lg: '800px' }}
+            maxW='800px'
             position={{ base: 'unset', lg: 'sticky' }}
             top={{ base: 0, xl2: 20 }}
           />
