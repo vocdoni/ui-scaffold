@@ -35,7 +35,7 @@ import { QuestionTypes } from '../..'
 
 interface QuestionFormProps {
   index: number
-  onRemove: () => void
+  onRemove: (index: number) => void
   questionId: string
 }
 
@@ -406,7 +406,7 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
               aria-label={t('process_create.question.remove', 'Remove question')}
               size='sm'
               variant='ghost'
-              onClick={onRemove}
+              onClick={() => onRemove(index)}
             />
           )}
         </HStack>

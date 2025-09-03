@@ -10,6 +10,7 @@ import {
 } from '@dnd-kit/core'
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers'
 import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import { useState } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuPlus } from 'react-icons/lu'
@@ -44,8 +45,9 @@ const DeleteQuestionModal = ({ isOpen, onClose, removeQuestion }) => {
 }
 
 export const Questions = () => {
-  const { control, watch, setValue, getValues } = useFormContext()
+  const { control, watch } = useFormContext()
   const { isOpen, onClose, onOpen } = useDisclosure()
+  const [pendingDeleteIndex, setPendingDeleteIndex] = useState(null)
   const { fields, append, remove, move } = useFieldArray({
     control,
     name: 'questions',
@@ -79,6 +81,11 @@ export const Questions = () => {
     }
   }
 
+  const onRemoveQuestion = (index) => {
+    setPendingDeleteIndex(index)
+    onOpen()
+  }
+
   return (
     <VStack align='stretch' spacing={4}>
       <DashboardSection>
@@ -94,8 +101,12 @@ export const Questions = () => {
         <SortableContext items={fields.map((field) => field.id)} strategy={verticalListSortingStrategy}>
           {fields.map((field, index) => (
             <Box key={field.id}>
-              <QuestionForm index={index} onRemove={onOpen} questionId={field.id} />
-              <DeleteQuestionModal isOpen={isOpen} onClose={onClose} removeQuestion={() => removeQuestion(index)} />
+              <QuestionForm index={index} onRemove={onRemoveQuestion} questionId={field.id} />
+              <DeleteQuestionModal
+                isOpen={isOpen}
+                onClose={onClose}
+                removeQuestion={() => removeQuestion(pendingDeleteIndex)}
+              />
             </Box>
           ))}
         </SortableContext>
