@@ -152,7 +152,7 @@ export const VoterAuthentication = () => {
       setStepCompletion((prev) => ({ ...prev, step1Completed: true }))
       setActiveTabIndex(1)
     } else if (activeTabIndex === 1) {
-      // Step 2 → Step 3: Validate and submit data
+      // Step 2 → Step 3: Validate data
       setValidationError(null)
 
       try {
@@ -166,29 +166,31 @@ export const VoterAuthentication = () => {
           twoFaFields,
         })
 
-        // Create and publish census
-        const { id: censusId } = await createCensusMutation.mutateAsync()
-        const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
-          censusId,
-          groupId,
-          authFields: currentFormData.credentials,
-          twoFaFields,
-        })
-
-        setMaxCensusSize(maxCensusSize)
-        mainForm.setValue('census', {
-          id: censusId,
-          credentials: currentFormData.credentials,
-          use2FA: currentFormData.use2FA,
-          use2FAMethod: currentFormData.use2FAMethod ?? null,
-        })
-        setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
         setActiveTabIndex(2)
       } catch (error) {
         setValidationError(error.apiError as ValidationError)
       }
     } else {
-      // Step 3: Close modal (data already submitted)
+      // Step 3: Create and publish census
+      const currentFormData = voterAuthForm.getValues()
+      const twoFaFields = currentFormData.use2FA ? getTwoFaFields(currentFormData.use2FAMethod) : []
+
+      const { id: censusId } = await createCensusMutation.mutateAsync()
+      const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
+        censusId,
+        groupId,
+        authFields: currentFormData.credentials,
+        twoFaFields,
+      })
+
+      setMaxCensusSize(maxCensusSize)
+      mainForm.setValue('census', {
+        id: censusId,
+        credentials: currentFormData.credentials,
+        use2FA: currentFormData.use2FA,
+        use2FAMethod: currentFormData.use2FAMethod ?? null,
+      })
+      setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
       onClose()
       resetForm()
     }
