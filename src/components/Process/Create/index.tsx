@@ -30,6 +30,7 @@ import {
   AccountData,
   ApprovalElection,
   ArchivedAccountData,
+  BudgetElection,
   CensusType,
   CspCensus,
   Election,
@@ -741,6 +742,8 @@ export const ProcessCreate = () => {
 
       switch (questionType) {
         case QuestionTypes.ParticipatoryBudgeting:
+          election = BudgetElection.from(params)
+          break
         case QuestionTypes.Multiple:
           election = MultiChoiceElection.from({
             ...params,
