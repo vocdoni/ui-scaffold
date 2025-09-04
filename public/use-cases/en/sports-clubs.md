@@ -1,6 +1,6 @@
 # Sports clubs
 
-![Exemple](/assets/sport.jpeg)
+![Exemple](../../assets/sport.jpeg)
 
 ## Engaging membership and lowering administrative burden with Vocdoni
 
