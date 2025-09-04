@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next'
 
 export const ConfirmVoteModal = ({ election, answers }: { election: PublishedElection; answers: FieldValues }) => {
   const { t } = useTranslation()
-  const styles = useMultiStyleConfig('ConfirmModal')
+  const styles = useMultiStyleConfig('ConfirmModal', { variant: 'neutral' })
   const { isOpen, cancel, proceed } = useConfirm()
 
   return (
@@ -56,7 +56,7 @@ export const ConfirmVoteModal = ({ election, answers }: { election: PublishedEle
           <Button onClick={cancel!} variant='ghost' sx={styles.cancel}>
             {t('cc.confirm.cancel')}
           </Button>
-          <Button onClick={proceed!} sx={styles.confirm}>
+          <Button colorScheme='black' onClick={proceed!} sx={styles.confirm}>
             {t('cc.confirm.confirm')}
           </Button>
         </ModalFooter>
