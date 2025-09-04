@@ -22,7 +22,7 @@ export const GroupCensusCreation = () => {
       <FormControl isInvalid={!!errors.censusId}>
         <Input
           type='hidden'
-          {...register('censusId', {
+          {...register('census', {
             required: {
               value: censusType === CensusTypes.CSP,
               message: t('form.error.census_config_required', 'Please configure the census authentication settings.'),
