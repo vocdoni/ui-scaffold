@@ -49,7 +49,7 @@ const LayoutAuth = () => {
   const { testimonial } = useTestimonials()
 
   return (
-    <Flex justifyContent='center' alignItems='center' minH='100vh' p={{ base: 6, md: 10 }} bgColor='auth.bg'>
+    <Flex justifyContent='center' alignItems='center' minH='100vh' p={{ base: 6, md: 10 }}>
       <Flex w='full' maxW={{ base: 'sm', md: '3xl' }} flexDir='column' gap={2}>
         <Link as={RouterLink} to={Routes.root} display='flex' alignItems='center' alignSelf='start'>
           <Icon as={LuArrowLeft} />
