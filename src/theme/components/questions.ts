@@ -69,8 +69,8 @@ const baseStyle = definePartsStyle({
       display: 'flex',
       flexDirection: 'column',
       gap: 10,
-      pt: { base: 6, xl: 10 },
-      mb: { base: 8, xl: 12 },
+      // Hides voting type label
+      '& > div:nth-of-type(-n+2):has(> label)': { display: 'none' },
     },
   },
 
@@ -90,7 +90,9 @@ const baseStyle = definePartsStyle({
     display: 'block',
     textAlign: 'start',
     lineHeight: 1.3,
-    fontSize: 'xl !important',
+    fontSize: 'lg',
+    fontWeight: 'semibold',
+    mb: 6,
   },
 
   description: {
@@ -105,93 +107,43 @@ const baseStyle = definePartsStyle({
 
   stack: {
     '& label': {
-      borderRadius: 'lg',
-      overflow: 'hidden',
-      display: 'flex',
-      alignItems: 'center',
       gap: 2,
-      w: { lg2: '99%' },
-      _hover: {
-        bgColor: 'process.questions.hover.light',
-
-        _dark: {
-          bgColor: 'process.questions.hover.dark',
-        },
-      },
 
       '& span:nth-of-type(1)': {
-        display: { base: 'none', md: 'block' },
-        position: 'absolute',
-        width: '30px',
-        height: '30px',
-        background: 'transparent',
-        ml: '10px',
-        borderRadius: 'none',
-
         '&[data-checked=""]': {
           '&:before': {
             display: 'none',
-            bgColor: 'transparent',
           },
 
-          background: 'process.questions.question_selected.bg',
-          borderColor: 'white',
+          background: 'transparent',
           borderWidth: '1px',
-          bgSize: '15px',
+          bgSize: '12px',
           bgRepeat: 'no-repeat',
           bgPosition: 'center',
           bgImage: checkIcon,
-
-          _hover: {
-            border: 'none',
-            background: 'process.questions.question_selected.bg',
-            borderColor: 'process.questions.question_selected.bg',
-            bgSize: '15px',
-            bgRepeat: 'no-repeat',
-            bgPosition: 'center',
-            bgImage: checkIcon,
-          },
-        },
-
-        '&[data-disabled=""]': {
-          bgColor: 'process.questions.disabled.light',
-          border: 'none',
-
-          _dark: {
-            bgColor: 'process.questions.disabled.dark',
-          },
         },
       },
       '& span:nth-of-type(2)': {
         p: 2,
-        pl: { md: 12 },
         m: 0,
-        border: '1px solid lightgray',
-        w: '100%',
+        border: '1px solid',
+        borderColor: 'table.border',
         borderRadius: 'lg',
-      },
-
-      '& input:checked ~ span:nth-of-type(2)': {
-        color: 'process.questions.question_selected.color',
-        bgColor: 'process.questions.question_selected.bg',
         w: '100%',
+        _hover: {
+          bgColor: 'process.questions.hover.light',
+
+          _dark: {
+            bgColor: 'process.questions.hover.dark',
+          },
+        },
       },
     },
-  },
-
-  radio: {
-    borderRadius: 'full !important',
   },
 
   checkbox: {
-    // Checkbox label style
-    '& span:nth-of-type(2)': {
-      display: 'flex',
-      flexDir: 'row',
-      justifyContent: 'space-between',
-      justifyItems: 'center',
-      alignItems: 'center',
-    },
+    /* Disable svg icon that comes with chakra */
+    '& svg': { display: 'none' },
   },
 
   error: {

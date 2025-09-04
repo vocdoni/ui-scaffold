@@ -19,14 +19,23 @@ const baseStyle = definePartsStyle({
     border: '1px solid',
     borderColor: 'table.border',
   },
+})
 
+const danger = definePartsStyle({
   confirm: {
-    bg: 'red.800',
+    bg: 'red.600',
+    _dark: { bg: 'red.800' },
     color: 'white',
-    _hover: { bg: 'red.900' },
+    _hover: { bg: 'red.700', _dark: { bg: 'red.900' } },
   },
+})
+
+const neutral = definePartsStyle({
+  confirm: {},
 })
 
 export const ConfirmModal = defineMultiStyleConfig({
   baseStyle,
+  variants: { danger, neutral },
+  defaultProps: { variant: 'danger' },
 })
