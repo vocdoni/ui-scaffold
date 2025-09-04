@@ -7,14 +7,7 @@ const Layout = () => {
   const location = useLocation()
 
   return (
-    <Flex
-      position='relative'
-      flexDirection='column'
-      minH='100vh'
-      mx='auto'
-      bgColor={'bg.light'}
-      _dark={{ bgColor: 'bg.dark' }}
-    >
+    <Flex position='relative' flexDirection='column' minH='100vh' mx='auto'>
       <HStack
         as='header'
         position='sticky'
