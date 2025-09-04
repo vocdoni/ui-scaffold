@@ -255,54 +255,6 @@ export const ProcessView = () => {
                       setFormErrors(args)
                     }}
                     confirmContents={(election, answers) => <ConfirmVoteModal election={election} answers={answers} />}
-                    sx={{
-                      '& form': {
-                        p: 0,
-                        m: 0,
-
-                        /* Title & subtitle */
-                        '& .chakra-form-control > div:first-of-type > label': {
-                          fontSize: 'lg',
-                          fontWeight: 'semibold',
-                        },
-                        '& .chakra-form-control .chakra-text:first-of-type': { fontSize: 'sm', color: 'texts.subtle' },
-
-                        /* Unified card style for Radio & Checkbox options */
-                        '& :is(.chakra-radio-group .chakra-radio, .chakra-checkbox)': {
-                          display: 'flex',
-                          border: '1px solid',
-                          borderColor: 'table.border',
-                          borderRadius: 'lg',
-                          px: 2,
-                          py: 3,
-                          cursor: 'pointer',
-                        },
-
-                        /* Spacing between adjacent option cards */
-                        '& :is(.chakra-radio-group .chakra-radio, .chakra-checkbox) + :is(.chakra-radio, .chakra-checkbox)':
-                          { mt: 3 },
-
-                        /* Remove selected background and border */
-                        '& :is(.chakra-radio .chakra-radio__label, .chakra-checkbox .chakra-checkbox__label)': {
-                          bg: 'transparent',
-                          border: 0,
-                        },
-                        '& :is(.chakra-radio__label, .chakra-checkbox__label) .chakra-text:first-of-type': {
-                          fontSize: 'md',
-                          fontWeight: 'semibold',
-                        },
-
-                        /* No label background when checked */
-                        '& :is(.chakra-radio[data-checked] .chakra-radio__label, .chakra-checkbox[data-checked] .chakra-checkbox__label)':
-                          { bg: 'transparent !important' },
-
-                        /* Control icon size (dot/square) */
-                        '& :is(.chakra-radio__control, .chakra-checkbox__control)': { boxSize: 6 },
-
-                        /* Remove duplicate check icon for checkbox */
-                        '& .chakra-checkbox .chakra-checkbox__control svg': { display: 'none !important' },
-                      },
-                    }}
                   />
                 </Box>
                 <Box position='sticky' bottom={0} left={0} pb={1} pt={1} display={{ base: 'none', xl2: 'block' }}>
