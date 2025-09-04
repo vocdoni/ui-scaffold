@@ -30,6 +30,7 @@ import {
   AccountData,
   ApprovalElection,
   ArchivedAccountData,
+  CensusType,
   CspCensus,
   Election,
   ElectionCreationSteps,
@@ -651,7 +652,7 @@ export const ProcessCreate = () => {
 
         const nextElectionId = await client.electionService.nextElectionId(organization.address, {
           ...electionFromForm(form),
-          census: { type: CensusTypes.CSP },
+          census: { type: CensusType.CSP },
         })
         const bundledProcess = await processBundleMutation.mutateAsync({
           censusId: form.census?.id,
@@ -700,8 +701,8 @@ export const ProcessCreate = () => {
             })),
           }) as IQuestion
       ),
-      startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`).getTime(),
-      endDate: new Date(`${form.endDate}T${form.endTime}`).getTime(),
+      startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`),
+      endDate: new Date(`${form.endDate}T${form.endTime}`),
       voteType: {
         maxVoteOverwrites: 10,
       },
