@@ -11,14 +11,14 @@ const SelectionLimits = ({ index }) => {
   const { t } = useTranslation()
   const questionType = watch('questionType')
   const fields = watch(`questions.${index}.options`)
-  const min = watch(`questions.${index}.minSelections`)
-  const max = watch(`questions.${index}.maxSelections`)
+  const min = watch(`minNumberOfChoices`)
+  const max = watch(`maxNumberOfChoices`)
   const options = [{ value: 0, label: '0' }, ...fields.map((_, i) => ({ value: i + 1, label: `${i + 1}` }))]
 
   // Ensure max is not less than min
   useEffect(() => {
     if (min && max && max < min) {
-      setValue(`questions.${index}.maxSelections`, min)
+      setValue(`maxNumberOfChoices`, min)
     }
   }, [min, max, index, setValue])
 
@@ -36,9 +36,8 @@ const SelectionLimits = ({ index }) => {
           components={{
             min: (
               <Controller
-                name={`questions.${index}.minSelections`}
+                name='minNumberOfChoices'
                 control={control}
-                rules={{ required: true }}
                 render={({ field, fieldState }) => {
                   const selectedOption = options.find((opt) => opt.value === field.value)
 
@@ -49,7 +48,7 @@ const SelectionLimits = ({ index }) => {
                         value={selectedOption}
                         options={options}
                         isInvalid={!!fieldState.invalid}
-                        isClearable={false}
+                        isClearable
                         onChange={(option) => field.onChange(option?.value)}
                         size='sm'
                       />
@@ -60,16 +59,21 @@ const SelectionLimits = ({ index }) => {
             ),
             max: (
               <Controller
-                name={`questions.${index}.maxSelections`}
+                name='maxNumberOfChoices'
                 control={control}
                 rules={{
-                  required: true,
-                  validate: (value) =>
-                    value >= min || t('form.error.max_greater_than_min', 'Max must be greater than or equal to Min'),
+                  required: false,
+                  validate: (value) => {
+                    return (
+                      value == null ||
+                      value > min ||
+                      t('form.error.max_greater_than_min', 'Max must be greater than or equal to Min')
+                    )
+                  },
                 }}
                 render={({ field, fieldState }) => {
-                  const maxOptions = options.filter((opt) => !min || opt.value >= min)
-                  const selectedOption = maxOptions.find((opt) => opt.value === field.value) ?? maxOptions[0]
+                  const maxOptions = options.slice(1).filter((opt) => min === undefined || opt.value >= min)
+                  const selectedOption = maxOptions.find((opt) => opt.value === field.value)
 
                   return (
                     <Box display='inline-block'>
@@ -78,7 +82,7 @@ const SelectionLimits = ({ index }) => {
                         value={selectedOption}
                         options={maxOptions}
                         isInvalid={!!fieldState.invalid}
-                        isClearable={false}
+                        isClearable
                         onChange={(option) => field.onChange(option?.value)}
                         size='sm'
                       />
