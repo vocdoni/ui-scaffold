@@ -19,10 +19,10 @@ import { useDropzone } from 'react-dropzone'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCheck, LuPlus, LuTrash2, LuWallet } from 'react-icons/lu'
-import { CensusTypes } from '~components/Process/Create/Sidebar/CensusCreation'
 import { DashboardSection, SidebarSubtitle } from '~components/shared/Dashboard/Contents'
 import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
 import Uploader from '~shared/Layout/Uploader'
+import { CensusTypes } from './CensusType'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
 
 export interface Web3Address {

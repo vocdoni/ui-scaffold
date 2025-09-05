@@ -5,7 +5,7 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuGripVertical, LuPlus, LuTrash2 } from 'react-icons/lu'
 import Editor from '~components/Editor'
-import { useProcessTemplates } from '~components/Process/TemplateProvider'
+import { useProcessTemplates } from '~components/Process/Create/TemplateProvider'
 import { DashboardBox } from '~components/shared/Dashboard/Contents'
 import { ImageUploader } from '~components/shared/Layout/Uploader'
 

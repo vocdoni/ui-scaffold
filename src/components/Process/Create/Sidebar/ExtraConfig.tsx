@@ -3,10 +3,10 @@ import { chakraComponents } from 'chakra-react-select'
 import { useEffect, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { CensusTypes } from '~components/Process/Census/CensusType'
 import { Select } from '~components/shared/Form/Select'
 import { useGroups } from '~src/queries/groups'
 import { useValidations } from '~utils/validation'
-import { CensusTypes } from './CensusCreation'
 
 type SelectOption<T = string> = {
   value: T

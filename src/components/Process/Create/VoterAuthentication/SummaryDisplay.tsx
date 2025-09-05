@@ -16,17 +16,18 @@ import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuCheck, LuMail, LuShield } from 'react-icons/lu'
 import { getSecurityLevel, getSecurityLevelMessages, SecurityLevelDisplay } from './SecurityLevel'
+import { TwoFAMethod } from './utils'
 
 type CredentialsOverviewProps = {
   credentials: string[]
   use2FA: boolean
-  use2FAMethod: string
+  use2FAMethod: TwoFAMethod
 }
 
 export const CredentialsOverview = ({ credentials, use2FA, use2FAMethod }: CredentialsOverviewProps) => {
   const { t } = useTranslation()
 
-  const get2FAMethodLabel = (method: string) =>
+  const get2FAMethodLabel = (method: TwoFAMethod) =>
     method === 'sms'
       ? t('voter_auth.sms', { defaultValue: 'Via SMS verification' })
       : method === 'voter_choice'
@@ -35,7 +36,7 @@ export const CredentialsOverview = ({ credentials, use2FA, use2FAMethod }: Crede
 
   return (
     <>
-      {credentials.length > 0 && (
+      {credentials && credentials.length > 0 && (
         <Box>
           <HStack mb={1}>
             <Icon as={LuShield} />

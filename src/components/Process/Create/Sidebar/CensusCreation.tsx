@@ -3,6 +3,7 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
+  Input,
   Link,
   Spinner,
   Tab,
@@ -16,20 +17,13 @@ import { useEffect, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { CensusTypes, CensusTypeValues } from '~components/Process/Census/CensusType'
 import { CensusCsvManager } from '~components/Process/Census/Spreadsheet'
 import { CensusWeb3Addresses } from '~components/Process/Census/Web3'
 import { Select } from '~components/shared/Form/Select'
 import { useGroups } from '~src/queries/groups'
 import { Routes } from '~src/router/routes'
-import { GroupCensusCreation } from './GroupCensusCreation'
-
-export enum CensusTypes {
-  CSP = 'csp',
-  Spreadsheet = 'spreadsheet',
-  Web3 = 'web3',
-}
-
-export const censusTabs = [CensusTypes.CSP, CensusTypes.Spreadsheet, CensusTypes.Web3] as const
+import { VoterAuthentication } from '../VoterAuthentication'
 
 export const GroupSelect = () => {
   const { t } = useTranslation()
@@ -117,12 +111,43 @@ export const GroupSelect = () => {
   )
 }
 
+const GroupCensusCreation = () => {
+  const { t } = useTranslation()
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useFormContext()
+
+  const censusType = watch('censusType')
+
+  return (
+    <Box display='flex' flexDirection='column' gap={4}>
+      <GroupSelect />
+      <VoterAuthentication />
+
+      <FormControl isInvalid={!!errors.censusId}>
+        <Input
+          type='hidden'
+          {...register('census', {
+            required: {
+              value: censusType === CensusTypes.CSP,
+              message: t('form.error.census_config_required', 'Please configure the census authentication settings.'),
+            },
+          })}
+        />
+        <FormErrorMessage>{errors.censusId?.message?.toString()}</FormErrorMessage>
+      </FormControl>
+    </Box>
+  )
+}
+
 const CensusCreation = ({ showExtraMethods }: { showExtraMethods: boolean }) => {
   const { t } = useTranslation()
   const { setValue, watch } = useFormContext()
   const censusType = watch('censusType')
 
-  const currentIndex = censusTabs.indexOf(censusType)
+  const currentIndex = CensusTypeValues.indexOf(censusType)
 
   // Set default census type to Memberbase (Group) if not set
   useEffect(() => {
@@ -132,7 +157,7 @@ const CensusCreation = ({ showExtraMethods }: { showExtraMethods: boolean }) => 
   }, [censusType, setValue])
 
   const handleTabChange = (index: number) => {
-    const nextType = censusTabs[index]
+    const nextType = CensusTypeValues[index]
     const prevType = watch('censusType')
 
     if (nextType === prevType) return
