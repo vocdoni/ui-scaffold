@@ -90,7 +90,7 @@ const SortableExtendedOption = ({
     <div ref={setNodeRef} style={style}>
       <DashboardBox position='relative' p={0}>
         {/* Drag handle */}
-        {fieldsLength > 2 && (
+        {fieldsLength > 1 && (
           <Box
             {...attributes}
             {...listeners}

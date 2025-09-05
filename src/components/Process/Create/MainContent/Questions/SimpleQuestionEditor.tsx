@@ -96,7 +96,7 @@ const SortableOption = ({
     <div ref={setNodeRef} style={style}>
       <HStack align='start'>
         {/* Drag handle for options */}
-        {fieldsLength > 2 && (
+        {fieldsLength > 1 && (
           <Box
             {...attributes}
             {...listeners}
