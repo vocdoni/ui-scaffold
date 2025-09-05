@@ -1445,19 +1445,9 @@
     },
     "new_option": "Add a new option",
     "option": {
-      "add": "Add option",
+      "description_placeholder": "Project description",
       "placeholder": "Option {{number}}",
       "remove": "Remove option"
-    },
-    "participatory_budgeting": {
-      "option": {
-        "description": {
-          "placeholder": "Project description"
-        },
-        "option": {
-          "placeholder": "Project Title"
-        }
-      }
     },
     "question": {
       "description": {
