@@ -1323,7 +1323,7 @@
       "relative_inline": "{{ status }} {{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"
     },
-    "extended_info": "Información extendida",
+    "extended_info": "Informació ampliada",
     "gitcoin": {
       "all_of_them": "(Tots ells)",
       "gps_score": "Gitcoin Passport Score: Puntuació mínima {{score}}",
@@ -1461,21 +1461,11 @@
     "groups": {
       "scroll_to_load": "Scroll to load more..."
     },
-    "new_option": "Add a new option",
+    "new_option": "Afegeix opció",
     "option": {
-      "add": "Add option",
-      "placeholder": "Option {{number}}",
-      "remove": "Remove option"
-    },
-    "participatory_budgeting": {
-      "option": {
-        "description": {
-          "placeholder": "Project description"
-        },
-        "option": {
-          "placeholder": "Project Title"
-        }
-      }
+      "description_placeholder": "Descripció del projecte",
+      "placeholder": "Opció {{number}}",
+      "remove": "Esborra opció"
     },
     "question": {
       "description": {

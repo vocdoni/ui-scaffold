@@ -57,7 +57,7 @@ const ExtendedQuestionEditor = ({
       >
         <VStack justify='center' align='center' height='100%'>
           <Icon as={LuPlus} boxSize={6} />
-          <Text>{t('process_create.new_option', { defaultValue: 'Add a new option' })}</Text>
+          <Text>{t('process_create.new_option', { defaultValue: 'Add option' })}</Text>
         </VStack>
       </DashboardBox>
     </SimpleGrid>
@@ -135,7 +135,9 @@ const SortableExtendedOption = ({
                 variant='unstyled'
                 placeholder={
                   placeholders[activeTemplate]?.questions?.[questionIndex].options?.[optionIndex]?.option ??
-                  t('process_create.participatory_budgeting.option.option.placeholder', 'Project Title')
+                  t('process_create.option.placeholder', 'Option {{number}}', {
+                    number: optionIndex + 1,
+                  })
                 }
                 fontWeight='bold'
                 fontSize='md'
@@ -156,7 +158,7 @@ const SortableExtendedOption = ({
                   onChange={field.onChange}
                   placeholder={
                     placeholders[activeTemplate]?.questions?.[questionIndex].options?.[optionIndex]?.description ??
-                    t('process_create.participatory_budgeting.option..description.placeholder', 'Project description')
+                    t('process_create.option.description_placeholder', 'Project description')
                   }
                   defaultValue={field.value}
                 />

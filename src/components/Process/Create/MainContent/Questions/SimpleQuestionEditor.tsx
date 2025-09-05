@@ -64,7 +64,7 @@ const SimpleQuestionEditor = ({
         onClick={() => append({ option: '' })}
         alignSelf='flex-start'
       >
-        <Trans i18nKey='process_create.option.add'>Add option</Trans>
+        <Trans i18nKey='process_create.new_option'>Add option</Trans>
       </Button>
     </VStack>
   )

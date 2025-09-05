@@ -1461,21 +1461,11 @@
     "groups": {
       "scroll_to_load": "Scroll to load more..."
     },
-    "new_option": "Add a new option",
+    "new_option": "Añadir opción",
     "option": {
-      "add": "Add option",
-      "placeholder": "Option {{number}}",
-      "remove": "Remove option"
-    },
-    "participatory_budgeting": {
-      "option": {
-        "description": {
-          "placeholder": "Project description"
-        },
-        "option": {
-          "placeholder": "Project Title"
-        }
-      }
+      "description_placeholder": "Descripción del proyecto",
+      "placeholder": "Opción {{ number }}",
+      "remove": "Eliminar opción"
     },
     "question": {
       "description": {
