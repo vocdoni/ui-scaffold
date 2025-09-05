@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  BoxProps,
   Button,
   Flex,
   FormControl,
@@ -31,10 +32,7 @@ export type UploaderProps = {
 
 type ImageUploaderProps = {
   name: string
-  shape?: 'circle' | 'square'
-  w?: string
-  h?: string
-}
+} & Pick<BoxProps, 'w' | 'h' | 'borderTopRadius'>
 
 const useUploadFile = () => {
   const { bearedFetch } = useAuth()
@@ -146,7 +144,7 @@ export const AvatarUploader = (props: FormControlProps) => {
   )
 }
 
-export const ImageUploader = ({ name, shape = 'square', w = 'full', h = '150px' }: ImageUploaderProps) => {
+export const ImageUploader = ({ name, borderTopRadius, w = 'full', h = '150px' }: ImageUploaderProps) => {
   const {
     watch,
     setValue,
@@ -177,8 +175,6 @@ export const ImageUploader = ({ name, shape = 'square', w = 'full', h = '150px' 
     },
   })
 
-  const borderRadius = shape === 'circle' ? 'full' : 'none'
-
   return (
     <FormControl isInvalid={!!errors?.[name]}>
       <Flex direction='column' gap={2} align='center'>
@@ -190,7 +186,7 @@ export const ImageUploader = ({ name, shape = 'square', w = 'full', h = '150px' 
             bgImage={`url(${value})`}
             bgSize='cover'
             bgPos='center'
-            borderRadius={borderRadius}
+            borderTopRadius={borderTopRadius}
             position='relative'
           />
         ) : (
@@ -202,7 +198,7 @@ export const ImageUploader = ({ name, shape = 'square', w = 'full', h = '150px' 
             justify='center'
             align='center'
             cursor='pointer'
-            borderRadius={borderRadius}
+            borderTopRadius={borderTopRadius}
             borderColor={isDragActive ? 'green.400' : 'gray.600'}
           >
             <input {...getInputProps()} />
