@@ -91,8 +91,6 @@ export interface Option {
 type Question = {
   title: string
   description: string
-  minSelections?: number
-  maxSelections?: number
   options: Option[]
 }
 
@@ -154,8 +152,6 @@ export const DefaultQuestions: DefaultQuestionsType = {
   [SelectorTypes.Multiple]: {
     title: '',
     description: '',
-    minSelections: 0,
-    maxSelections: 0,
     options: [{ option: '' }, { option: '' }],
   },
 }
@@ -196,12 +192,12 @@ const TemplateConfigs: Record<TemplateTypes, TemplateConfig> = {
   [TemplateTypes.Election]: {
     questionType: SelectorTypes.Multiple,
     extendedInfo: false,
+    minNumberOfChoices: 1,
+    maxNumberOfChoices: 3,
     questions: [
       {
         title: '',
         description: '',
-        minSelections: 1,
-        maxSelections: 3,
         options: [{ option: '' }, { option: '' }, { option: '' }],
       },
     ],
@@ -655,8 +651,8 @@ export const ProcessCreate = () => {
         anonymous: Boolean(form.voterPrivacy === 'anonymous'),
         secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
       },
-      maxNumberOfChoices: form.questions[0]?.maxSelections ?? null,
-      minNumberOfChoices: form.questions[0]?.minSelections ?? null,
+      maxNumberOfChoices: form.maxNumberOfChoices > 0 ? form.maxNumberOfChoices : form.questions[0].options.length,
+      minNumberOfChoices: form.minNumberOfChoices ?? 0,
       maxCensusSize: form.addresses?.length > 0 ? form.addresses.length : maxCensusSize,
       questions: form.questions.map(
         (question) =>
@@ -715,7 +711,7 @@ export const ProcessCreate = () => {
         case SelectorTypes.Multiple:
           election = MultiChoiceElection.from({
             ...params,
-            canAbstain: form.questions[0]?.minSelections === 0,
+            canAbstain: form.minNumberOfChoices === 0,
           } as IMultiChoiceElectionParameters)
           break
         case SelectorTypes.Single:
