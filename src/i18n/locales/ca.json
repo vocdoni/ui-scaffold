@@ -1295,13 +1295,6 @@
         },
         "question_number": "Question {{index}} of {{total}}"
       },
-      "question_type": {
-        "description": "This applies to all questions in this voting process",
-        "multiple": "Multiple choice",
-        "participatory_budgeting": "Participatory budgeting",
-        "single": "Single choice",
-        "title": "Question Type"
-      },
       "reset_form": {
         "cancel": "Cancel",
         "message": "Are you sure you want to reset the form? This action cannot be undone.",
@@ -1330,6 +1323,7 @@
       "relative_inline": "{{ status }} {{ date, relative(past: fa %time; future: en %time) }}",
       "starts": "Comença el procés"
     },
+    "extended_info": "Información extendida",
     "gitcoin": {
       "all_of_them": "(Tots ells)",
       "gps_score": "Gitcoin Passport Score: Puntuació mínima {{score}}",
@@ -1345,6 +1339,12 @@
     "people_in_census_one": "Un votant",
     "people_in_census_many": "",
     "people_in_census_other": "{{ count }} votants",
+    "question_type": {
+      "description": "Això aplica a totes les preguntes d'aquest procés.",
+      "multiple": "Múltiples opcions",
+      "single": "Opció única",
+      "title": "Tipus de Pregunta"
+    },
     "questions": "Preguntes",
     "results": "Resultats",
     "schedule": "HORARI",

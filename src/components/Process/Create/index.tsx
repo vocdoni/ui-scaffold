@@ -28,13 +28,12 @@ import { useLocalStorage } from '@uidotdev/usehooks'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import {
   AccountData,
-  ApprovalElection,
   ArchivedAccountData,
-  BudgetElection,
   CensusType,
   CspCensus,
   Election,
   ElectionCreationSteps,
+  ElectionResultsTypeNames,
   IElectionParameters,
   IMultiChoiceElectionParameters,
   IQuestion,
@@ -104,6 +103,11 @@ export type Census = {
   use2FAMethod: 'email' | 'sms' | null
 }
 
+export enum SelectorTypes {
+  Multiple = ElectionResultsTypeNames.MULTIPLE_CHOICE,
+  Single = ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION,
+}
+
 export type Process = {
   title: string
   description: string
@@ -112,7 +116,8 @@ export type Process = {
   startTime: string
   endDate: string
   endTime: string
-  questionType: QuestionTypes
+  extendedInfo: boolean
+  questionType: SelectorTypes
   questions: Question[]
   maxNumberOfChoices: number
   minNumberOfChoices: number
@@ -126,19 +131,6 @@ export type Process = {
   spreadsheet?: CensusSpreadsheetManager | undefined
 }
 
-export enum QuestionTypes {
-  Single = 'single',
-  Multiple = 'multiple',
-  Approval = 'approval',
-  ParticipatoryBudgeting = 'participatory_budgeting',
-}
-
-export enum SelectorTypes {
-  ParticipatoryBudgeting = QuestionTypes.ParticipatoryBudgeting,
-  Multiple = QuestionTypes.Multiple,
-  Single = QuestionTypes.Single,
-}
-
 export enum TemplateTypes {
   AnnualGeneralMeeting = 'annual_general_meeting',
   Election = 'election',
@@ -147,35 +139,24 @@ export enum TemplateTypes {
 
 export type DefaultQuestionsType = Record<SelectorTypes, Question>
 
-export type TemplateConfig = {
-  questions: Process['questions']
-  questionType: QuestionTypes
-}
+export type TemplateConfig = Partial<Process>
 
 export const isAccountData = (account: AccountData | ArchivedAccountData): account is AccountData => {
   return 'electionIndex' in account
 }
 
 export const DefaultQuestions: DefaultQuestionsType = {
-  [QuestionTypes.Single]: {
+  [SelectorTypes.Single]: {
     title: '',
     description: '',
     options: [{ option: '' }, { option: '' }],
   },
-  [QuestionTypes.Multiple]: {
+  [SelectorTypes.Multiple]: {
     title: '',
     description: '',
     minSelections: 0,
     maxSelections: 0,
     options: [{ option: '' }, { option: '' }],
-  },
-  [QuestionTypes.ParticipatoryBudgeting]: {
-    title: '',
-    description: '',
-    options: [
-      { option: '', description: '' },
-      { option: '', description: '' },
-    ],
   },
 }
 
@@ -187,8 +168,9 @@ const defaultProcessValues: Process = {
   startTime: '',
   endDate: '',
   endTime: '',
-  questionType: QuestionTypes.Single,
-  questions: [DefaultQuestions[QuestionTypes.Single]],
+  extendedInfo: false,
+  questionType: SelectorTypes.Single,
+  questions: [DefaultQuestions[SelectorTypes.Single]],
   maxNumberOfChoices: undefined,
   minNumberOfChoices: undefined,
   resultVisibility: 'hidden',
@@ -203,7 +185,8 @@ const defaultProcessValues: Process = {
 
 const TemplateConfigs: Record<TemplateTypes, TemplateConfig> = {
   [TemplateTypes.AnnualGeneralMeeting]: {
-    questionType: QuestionTypes.Single,
+    questionType: SelectorTypes.Single,
+    extendedInfo: false,
     questions: [
       { title: '', description: '', options: [{ option: '' }, { option: '' }] },
       { title: '', description: '', options: [{ option: '' }, { option: '' }] },
@@ -211,7 +194,8 @@ const TemplateConfigs: Record<TemplateTypes, TemplateConfig> = {
     ],
   },
   [TemplateTypes.Election]: {
-    questionType: QuestionTypes.Multiple,
+    questionType: SelectorTypes.Multiple,
+    extendedInfo: false,
     questions: [
       {
         title: '',
@@ -223,7 +207,8 @@ const TemplateConfigs: Record<TemplateTypes, TemplateConfig> = {
     ],
   },
   [TemplateTypes.ParticipatoryBudgeting]: {
-    questionType: QuestionTypes.ParticipatoryBudgeting,
+    questionType: SelectorTypes.Multiple,
+    extendedInfo: true,
     questions: [
       {
         title: '',
@@ -374,19 +359,6 @@ export const useFormDraftSaver = (isDirty: boolean, getValues: () => any, storeF
   }, [isDirty])
 }
 
-const getFormQuestionType = (form: Process): QuestionTypes => {
-  const [question] = form.questions
-  const totalChoices = question.options.length
-  const { questionType } = form
-  const { maxSelections, minSelections } = question
-
-  if (questionType !== QuestionTypes.Multiple) return questionType
-
-  const isApproval = (maxSelections === totalChoices && !minSelections) || (!maxSelections && !minSelections)
-
-  return isApproval ? QuestionTypes.Approval : QuestionTypes.Multiple
-}
-
 const TemplateButtons = () => {
   const { t } = useTranslation()
   const methods = useFormContext<Process>()
@@ -401,8 +373,7 @@ const TemplateButtons = () => {
     setActiveTemplate(templateId)
     reset({
       ...previousFormValues,
-      questionType: config.questionType,
-      questions: config.questions,
+      ...config,
     })
   }
 
@@ -720,7 +691,7 @@ export const ProcessCreate = () => {
     }
   }
 
-  const onSubmit = async (form) => {
+  const onSubmit = async (form: Process) => {
     try {
       const account = await client.fetchAccountInfo()
       if (!account.address) {
@@ -736,24 +707,18 @@ export const ProcessCreate = () => {
         census,
       }
 
-      const questionType = getFormQuestionType(form)
+      const questionType = form.questionType
 
       let election: UnpublishedElection
 
       switch (questionType) {
-        case QuestionTypes.ParticipatoryBudgeting:
-          election = BudgetElection.from(params)
-          break
-        case QuestionTypes.Multiple:
+        case SelectorTypes.Multiple:
           election = MultiChoiceElection.from({
             ...params,
             canAbstain: form.questions[0]?.minSelections === 0,
           } as IMultiChoiceElectionParameters)
           break
-        case QuestionTypes.Approval:
-          election = ApprovalElection.from(params as IElectionParameters)
-          break
-        case QuestionTypes.Single:
+        case SelectorTypes.Single:
         default:
           election = Election.from(params as IElectionParameters)
           break

@@ -26,4 +26,7 @@ const baseStyle = definePartsStyle(({ colorScheme }) => {
 
 export const Switch = defineMultiStyleConfig({
   baseStyle,
+  defaultProps: {
+    colorScheme: 'black',
+  },
 })
