@@ -267,7 +267,6 @@ const ColumnManager = () => {
               <Flex key={col.id} justify='space-between' align='center' my={2}>
                 <Text>{col.label}</Text>
                 <Switch
-                  colorScheme='black'
                   isChecked={col.visible}
                   onChange={toggleColumn.bind(null, col.id)}
                   aria-label={t('members.table.toggle_column', {

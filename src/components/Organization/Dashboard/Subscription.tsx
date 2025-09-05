@@ -32,7 +32,7 @@ const SubscriptionPage = () => {
       .then((res) => {
         window.open(res.portalURL, '_blank')
       })
-      .catch(() => console.log('Error fetching portal URL'))
+      .catch((e) => console.error('Error fetching portal URL', e))
 
   if (loading) return <Progress isIndeterminate />
 

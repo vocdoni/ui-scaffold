@@ -67,11 +67,7 @@ export const TwoFactorForm = () => {
               name='use2FA'
               control={control}
               render={({ field }) => (
-                <Switch
-                  isChecked={field.value}
-                  onChange={(e) => field.onChange(e.target.checked)}
-                  colorScheme='black'
-                />
+                <Switch isChecked={field.value} onChange={(e) => field.onChange(e.target.checked)} />
               )}
             />
           </FormControl>

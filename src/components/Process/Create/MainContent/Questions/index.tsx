@@ -16,7 +16,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuPlus } from 'react-icons/lu'
 import { DashboardSection } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
-import { DefaultQuestions, QuestionTypes } from '../..'
+import { DefaultQuestions, SelectorTypes } from '../..'
 import { QuestionForm } from './QuestionForm'
 import { QuestionType } from './QuestionType'
 
@@ -113,7 +113,7 @@ export const Questions = () => {
         removeQuestion={() => removeQuestion(pendingDeleteIndex)}
       />
 
-      {questionType === QuestionTypes.Single && (
+      {questionType === SelectorTypes.Single && (
         <Button leftIcon={<Icon as={LuPlus} />} variant='outline' onClick={addQuestion}>
           <Trans i18nKey='process.create.question.add'>Add question</Trans>
         </Button>
