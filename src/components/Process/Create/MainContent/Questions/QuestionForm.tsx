@@ -9,14 +9,13 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { useEffect } from 'react'
 import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuGripVertical, LuX } from 'react-icons/lu'
 import Editor from '~components/Editor'
 import { useProcessTemplates } from '~components/Process/TemplateProvider'
 import { DashboardBox } from '~components/shared/Dashboard/Contents'
-import { SelectorTypes } from '../..'
+import { Process, SelectorTypes } from '../..'
 import SelectionLimits from '../../SelectionLimits'
 import ExtendedQuestionEditor from './ExtendedQuestionEditor'
 import SimpleQuestionEditor from './SimpleQuestionEditor'
@@ -33,10 +32,9 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
   const {
     register,
     formState: { errors },
-    setValue,
     watch,
     control,
-  } = useFormContext()
+  } = useFormContext<Process>()
   const {
     fields: questionOptions,
     append,
@@ -45,8 +43,6 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
   } = useFieldArray({
     name: `questions.${index}.options`,
   })
-  const min = watch(`questions.${index}.minSelections`)
-  const max = watch(`questions.${index}.maxSelections`)
   const questions = watch('questions')
   const extendedInfo = watch('extendedInfo')
   const questionType = watch('questionType')
@@ -65,12 +61,6 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
     transition,
     opacity: isDragging ? 0.5 : 1,
   }
-
-  useEffect(() => {
-    if (min && max && max < min) {
-      setValue(`questions.${index}.maxSelections`, min)
-    }
-  }, [min, max, index, setValue])
 
   return (
     <div ref={setNodeRef} style={style}>

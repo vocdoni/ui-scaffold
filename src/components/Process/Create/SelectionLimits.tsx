@@ -11,8 +11,8 @@ const SelectionLimits = ({ index }) => {
   const { t } = useTranslation()
   const questionType = watch('questionType')
   const fields = watch(`questions.${index}.options`)
-  const min = watch(`minNumberOfChoices`)
-  const max = watch(`maxNumberOfChoices`)
+  const min = watch('minNumberOfChoices')
+  const max = watch('maxNumberOfChoices')
   const options = [{ value: 0, label: '0' }, ...fields.map((_, i) => ({ value: i + 1, label: `${i + 1}` }))]
 
   // Ensure max is not less than min
