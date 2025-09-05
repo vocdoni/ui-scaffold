@@ -16,7 +16,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuPlus } from 'react-icons/lu'
 import { DashboardSection } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
-import { DefaultQuestions, SelectorTypes } from '../..'
+import { DefaultQuestions, SelectorTypes } from '../common'
 import { QuestionForm } from './QuestionForm'
 import { QuestionType } from './QuestionType'
 

@@ -24,7 +24,7 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
-import { useCensus } from '../Sidebar/CensusProvider'
+import { Process } from '../common'
 import { CredentialsForm } from './CredentialsForm'
 import { CredentialsOverview, SummaryDisplay } from './SummaryDisplay'
 import { TwoFactorForm } from './TwoFactorForm'
@@ -110,9 +110,8 @@ const usePublishCensus = () => {
 
 export const VoterAuthentication = () => {
   const { t } = useTranslation()
-  const mainForm = useFormContext()
+  const mainForm = useFormContext<Process>()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { setMaxCensusSize } = useCensus()
   const [activeTabIndex, setActiveTabIndex] = useState(0)
   const [validationError, setValidationError] = useState<ValidationError | null>(null)
   const [stepCompletion, setStepCompletion] = useState<StepCompletionState>({
@@ -183,12 +182,12 @@ export const VoterAuthentication = () => {
         twoFaFields,
       })
 
-      setMaxCensusSize(maxCensusSize)
       mainForm.setValue('census', {
         id: censusId,
         credentials: currentFormData.credentials,
         use2FA: currentFormData.use2FA,
         use2FAMethod: currentFormData.use2FAMethod ?? null,
+        size: maxCensusSize,
       })
       setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
       onClose()

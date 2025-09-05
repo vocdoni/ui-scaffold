@@ -16,8 +16,8 @@ import { CSS } from '@dnd-kit/utilities'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuGripVertical, LuPlus, LuX } from 'react-icons/lu'
-import { useProcessTemplates } from '~components/Process/TemplateProvider'
-import { SelectorTypes } from '../..'
+import { useProcessTemplates } from '~components/Process/Create/TemplateProvider'
+import { SelectorTypes } from '../common'
 
 const SimpleQuestionEditor = ({
   index,

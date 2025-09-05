@@ -4,7 +4,7 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { DashboardSection } from '~components/shared/Dashboard/Contents'
 import { Select } from '~components/shared/Form/Select'
-import { SelectorTypes } from '.'
+import { SelectorTypes } from '../common'
 
 const SelectionLimits = ({ index }) => {
   const { control, setValue, watch } = useFormContext()

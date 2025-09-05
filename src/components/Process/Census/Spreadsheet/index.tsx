@@ -3,10 +3,10 @@ import { useCallback, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { CensusTypes } from '~components/Process/Create/Sidebar/CensusCreation'
 import Uploader from '~shared/Layout/Uploader'
 import { CsvGenerator } from '../../../shared/Spreadsheet/generator'
 import { CsvPreview } from '../../../shared/Spreadsheet/Preview'
+import { CensusTypes } from '../CensusType'
 import { CensusSpreadsheetManager } from './CensusSpreadsheetManager'
 
 export const CensusCsvManager = () => {
