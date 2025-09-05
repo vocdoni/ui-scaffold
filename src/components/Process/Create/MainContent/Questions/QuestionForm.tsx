@@ -251,17 +251,15 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
 
   if (questionType === QuestionTypes.ParticipatoryBudgeting) {
     return (
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
+      <SimpleGrid columns={{ base: 1, lg: 2, xl: 3, '2xl': 4 }} spacing={4}>
         {questionOptions.map((field, optionIndex) => {
-          const optionDescription = watch(`questions.${index}.options.${optionIndex}.description`)
-
           return (
             <DashboardBox key={field.id} position='relative' p={0}>
               {/* Trash button */}
               {questionOptions.length > 2 && (
                 <IconButton
                   icon={<Icon as={LuTrash2} />}
-                  aria-label='Remove option'
+                  aria-label={t('process_create.option.remove', 'Remove option')}
                   size='sm'
                   colorScheme='red'
                   onClick={() => remove(optionIndex)}
