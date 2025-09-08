@@ -13,6 +13,7 @@ import { Modal } from './modal'
 import { Pagination } from './pagination'
 import { Popover } from './popover'
 import { Progress } from './progress'
+import { QuestionChoice } from './questionChoice'
 import { ElectionQuestions } from './questions'
 import { QuestionsConfirmation } from './questionsConfirmation'
 import { Radio } from './radio'
@@ -60,6 +61,7 @@ const components = {
   SecurityLevelBox,
   ConfirmModal,
   QuestionsConfirmation,
+  QuestionChoice,
 }
 
 export default components

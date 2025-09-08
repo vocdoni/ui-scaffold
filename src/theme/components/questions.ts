@@ -1,5 +1,6 @@
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 import { questionsAnatomy } from '@vocdoni/chakra-components'
+import checkIconBlack from '/assets/check-icon-black.png'
 import checkIcon from '/assets/check-icon.png'
 
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
@@ -106,6 +107,24 @@ const baseStyle = definePartsStyle({
   },
 
   stack: {
+    // Only for extended question type
+    '&:has(img), &:has(.chakra-skeleton img)': {
+      flexDirection: 'row',
+      '& label': {
+        width: '100%',
+        position: 'relative',
+
+        '& span:nth-of-type(1)': {
+          position: 'absolute',
+          top: 2,
+          right: 2,
+        },
+        '& span:nth-of-type(2)': {
+          p: 0,
+        },
+      },
+    },
+
     '& label': {
       gap: 2,
 
@@ -114,8 +133,11 @@ const baseStyle = definePartsStyle({
           '&:before': {
             display: 'none',
           },
-
-          background: 'transparent',
+          bgColor: 'black',
+          _dark: {
+            bgColor: 'white',
+            bgImage: checkIconBlack,
+          },
           borderWidth: '1px',
           bgSize: '12px',
           bgRepeat: 'no-repeat',
