@@ -21,7 +21,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { IoPricetagOutline } from 'react-icons/io5'
 import { LuLogOut } from 'react-icons/lu'
 import { RiContactsBook3Line } from 'react-icons/ri'
-import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch } from 'react-router-dom'
+import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch, useMatches } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import { ColorModeSwitcher } from '~shared/Layout/ColorModeSwitcher'
 import Logo from '~shared/Layout/Logo'
@@ -32,6 +32,15 @@ type MenuItem = {
   icon: any
   label: string
   route?: string
+}
+
+type RouteHandle = {
+  hideNavbar?: boolean
+}
+
+export function useHideNavbar() {
+  const matches = useMatches() as Array<{ handle?: RouteHandle }>
+  return Boolean(matches.some((m) => m.handle?.hideNavbar))
 }
 
 const Navbar = () => {
@@ -55,11 +64,12 @@ const DesktopNav = ({ display }: { display?: any }) => {
   const { isAuthenticated } = useAuth()
   const isOnProcessesPage = useMatch(Routes.processes.view)
   const reducedMenu = !!isOnProcessesPage && !isAuthenticated
+  const hideNavbar = useHideNavbar()
   return (
     <>
-      {!reducedMenu && <NavMenu display={display} />}
-      <Flex alignItems={'center'} display={display ? display : 'flex'}>
-        {!reducedMenu && <DashboardButton />}
+      {!hideNavbar && !reducedMenu && <NavMenu display={display} />}
+      <Flex alignItems={'center'} display={display ? display : 'flex'} gap={2}>
+        {!hideNavbar && !reducedMenu && <DashboardButton />}
         <LanguagesMenu ml={'18px'} />
         <ColorModeSwitcher />
       </Flex>
@@ -74,6 +84,7 @@ const Mobile = () => {
     base: false,
     xl: true,
   })
+  const hideNavbar = useHideNavbar()
 
   useEffect(() => {
     if (isXlSize) onClose()
@@ -89,52 +100,54 @@ const Mobile = () => {
       />
       <Drawer isOpen={isOpen} placement='right' onClose={onClose}>
         <DrawerOverlay />
-        <DrawerContent bg='dashboard.sidebar.bg.light' _dark={{ bg: 'dashboard.sidebar.bg.dark' }}>
-          <DrawerContent bg='dashboard.sidebar.bg.light' _dark={{ bg: 'dashboard.sidebar.bg.dark' }}>
-            <Box p={4} display='flex' flexDirection='column' gap={4}>
-              <NavMenu>
-                <Divider />
-                <ListItem>
-                  <DashboardButton />
-                </ListItem>
-                <Divider />
+        <DrawerContent>
+          <Box p={4} display='flex' flexDirection='column' gap={4}>
+            <NavMenu>
+              {!hideNavbar && (
+                <>
+                  <Divider />
+                  <ListItem>
+                    <DashboardButton />
+                  </ListItem>
+                  <Divider />
+                </>
+              )}
 
-                <ListItem>
-                  <LanguagesListAccordion />
-                </ListItem>
-                <ListItem>
-                  <ColorModeSwitcher />
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <Button
-                    variant={'unstyled'}
-                    onClick={logout}
-                    display={'flex'}
-                    alignItems={'center'}
-                    gap={2}
-                    h='fit-content'
-                  >
-                    <Icon as={LuLogOut} />
-                    <Text as={'span'} fontWeight={'semibold'}>
-                      <Trans i18nKey='logout'>Logout</Trans>
-                    </Text>
-                  </Button>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <Text fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.terms}>
-                    <Trans i18nKey='menu.terms'>Terms</Trans>
+              <ListItem>
+                <LanguagesListAccordion />
+              </ListItem>
+              <ListItem>
+                <ColorModeSwitcher />
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <Button
+                  variant={'unstyled'}
+                  onClick={logout}
+                  display={'flex'}
+                  alignItems={'center'}
+                  gap={2}
+                  h='fit-content'
+                >
+                  <Icon as={LuLogOut} />
+                  <Text as={'span'} fontWeight={'semibold'}>
+                    <Trans i18nKey='logout'>Logout</Trans>
                   </Text>
-                </ListItem>
-                <ListItem>
-                  <Text fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.privacy}>
-                    <Trans i18nKey='menu.privacy'>Privacy</Trans>
-                  </Text>
-                </ListItem>
-              </NavMenu>
-            </Box>
-          </DrawerContent>
+                </Button>
+              </ListItem>
+              <Divider />
+              <ListItem>
+                <Text fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.terms}>
+                  <Trans i18nKey='menu.terms'>Terms</Trans>
+                </Text>
+              </ListItem>
+              <ListItem>
+                <Text fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.privacy}>
+                  <Trans i18nKey='menu.privacy'>Privacy</Trans>
+                </Text>
+              </ListItem>
+            </NavMenu>
+          </Box>
         </DrawerContent>
       </Drawer>
     </>
@@ -147,6 +160,7 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
   const { isAuthenticated } = useAuth()
   const isOnProcessesPage = useMatch(Routes.processes.view)
   const reducedMenu = !!isOnProcessesPage && !isAuthenticated
+  const hideNavbar = useHideNavbar()
   const menuItems: MenuItem[] = [
     {
       icon: <IoPricetagOutline />,
@@ -166,7 +180,7 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
   ]
   return (
     <List as='nav' display={display ? display : 'flex'} flexDirection={{ base: 'column', xl: 'row' }} gap={4}>
-      {!reducedMenu && (
+      {!hideNavbar && !reducedMenu && (
         <>
           {menuItems.map((item, index) => (
             <ListItem key={index}>
