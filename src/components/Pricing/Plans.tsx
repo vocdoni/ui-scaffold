@@ -14,14 +14,13 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { MutableRefObject, ReactNode, useEffect, useMemo } from 'react'
-import { Controller, FormProvider, useForm } from 'react-hook-form'
+import { MutableRefObject, ReactNode, useMemo } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
-import { Select } from '~components/shared/Form/Select'
 import { PlanId } from '~constants'
 import { QueryKeys } from '~src/queries/keys'
 import { Routes } from '~src/router/routes'
@@ -64,16 +63,9 @@ export type Plan = {
     liveStreaming: boolean
     phoneSupport: boolean
   }
-  censusSizeTiers?:
-    | {
-        amount: number
-        upTo: number
-      }[]
-    | null
 }
 
 type FormValues = {
-  censusSize: number | null
   planId: number | null
 }
 
@@ -167,72 +159,24 @@ export const SubscriptionPlans = ({
   featuresRef?: MutableRefObject<HTMLDivElement>
   hidePlanActions?: boolean
 }) => {
-  const { t } = useTranslation()
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations()
   const { openModal } = usePricingModal()
 
-  // Find the best fitting tier for the current subscription's census size
-  const defaultCensusSize = useMemo(() => {
-    if (!plans || !subscription?.subscriptionDetails?.maxCensusSize) return null
-
-    // Get all available tiers across all plans
-    const allTiers = plans.flatMap((plan) => plan.censusSizeTiers || [])
-
-    // Sort by upTo value to find the smallest tier that fits
-    const sortedTiers = allTiers.sort((a, b) => a.upTo - b.upTo)
-
-    // Find the first tier that can accommodate the current census size
-    const bestFitTier = sortedTiers.find((tier) => tier.upTo >= subscription.subscriptionDetails.maxCensusSize)
-
-    return bestFitTier?.upTo || null
-  }, [plans, subscription?.subscriptionDetails?.maxCensusSize])
-
   const methods = useForm<FormValues>({
     defaultValues: {
-      censusSize: null,
       planId: null,
     },
   })
 
-  const { watch, handleSubmit } = methods
-  const selectedCensusSize = watch('censusSize')
+  const { handleSubmit } = methods
 
   const onSubmit = (data: FormValues) => {
     openModal('subscriptionPayment', {
-      amount: data.censusSize,
       lookupKey: data.planId,
     })
   }
-
-  const censusSizeOptions = useMemo(() => {
-    if (!plans) return []
-
-    // Step 1: Merge censusSizeTiers from all plans, removing duplicates
-    const mergedTiers = plans
-      .flatMap((plan) => plan.censusSizeTiers || []) // Combine all tiers
-      .reduce((acc, tier) => {
-        if (!acc.has(tier.upTo)) {
-          acc.set(tier.upTo, tier) // Keep unique `upTo` values
-        }
-        return acc
-      }, new Map<number, { upTo: number }>())
-
-    // Step 2: Create options array from merged and sorted tiers
-    const sortedTiers = Array.from(mergedTiers.values()).sort((a, b) => a.upTo - b.upTo)
-
-    const options = sortedTiers.map((tier, idx) => {
-      const previous = sortedTiers[idx - 1] || { upTo: 0 }
-      const from = previous.upTo + 1
-      return {
-        label: t('pricing.members_size', { defaultValue: '{{ from }}-{{ to }} members', from, to: tier.upTo }),
-        value: tier.upTo,
-      }
-    })
-
-    return options
-  }, [plans, t])
 
   const cards = useMemo(() => {
     if (!plans) return []
@@ -242,59 +186,18 @@ export const SubscriptionPlans = ({
         popular: plan.id === PlanId.Essential,
         title: translations[plan.id]?.title || plan.name,
         subtitle: translations[plan.id]?.subtitle || '',
-        price: currency(
-          selectedCensusSize
-            ? (plan.censusSizeTiers?.find((tier) => tier.upTo === selectedCensusSize)?.amount ?? plan.startingPrice)
-            : plan.startingPrice
-        ),
+        price: currency(plan.startingPrice),
         features: translations[plan.id]?.features || [],
         isCurrentPlan: subscription && plan.id === subscription?.plan.id,
-        isDisabled:
-          selectedCensusSize && plan.censusSizeTiers?.some((tier) => tier.upTo === selectedCensusSize) === false,
+        isDisabled: false,
       }
     })
-  }, [plans, selectedCensusSize, subscription, translations])
-
-  useEffect(() => {
-    if (defaultCensusSize !== null && !methods.getValues('censusSize')) {
-      methods.setValue('censusSize', defaultCensusSize)
-    }
-  }, [defaultCensusSize, methods])
+  }, [plans, subscription, translations])
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex flexDir='column' gap={4}>
-          {!hidePlanActions && (
-            <Flex
-              flexDir={{ base: 'column', lg: 'row' }}
-              justifyContent={'center'}
-              alignItems={'center'}
-              gap={{ base: 2, lg: 4 }}
-              mb={{ base: 4, lg: 6 }}
-            >
-              <Text>
-                <Trans i18nKey='pricing.membership_size'>Select your membership size:</Trans>
-              </Text>
-              <Controller
-                name='censusSize'
-                control={methods.control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <Select
-                    options={censusSizeOptions}
-                    onChange={(selected) => field.onChange(selected?.value || null)}
-                    value={censusSizeOptions.find((option) => option.value === field.value)}
-                  />
-                )}
-              />
-              {methods.formState.errors.censusSize && (
-                <Text color='red.500' fontSize='sm' mt={1}>
-                  {t('form.error.field_is_required')}
-                </Text>
-              )}
-            </Flex>
-          )}
           {isLoading && <Progress isIndeterminate />}
           <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} spacing={6}>
             {cards.map((card, idx) => (

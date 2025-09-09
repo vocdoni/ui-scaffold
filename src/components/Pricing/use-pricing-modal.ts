@@ -1,16 +1,12 @@
 import { createContext } from '@chakra-ui/react-utils'
 import type { PlanUpgradeData } from './PlanUpgrade'
 import type { SubscriptionPaymentData } from './SubscriptionPayment'
-import type { TierUpgradeData } from './TierUpgrade'
 
 // Define types for the context
-export type PricingModalType = 'tierUpgrade' | 'planUpgrade' | 'subscription' | 'subscriptionPayment' | null
+export type PricingModalType = 'planUpgrade' | 'subscription' | 'subscriptionPayment' | null
 
 export type PricingModalContextState = {
-  openModal: (
-    type: PricingModalType,
-    modalData?: PlanUpgradeData | TierUpgradeData | SubscriptionPaymentData | null
-  ) => void
+  openModal: (type: PricingModalType, modalData?: PlanUpgradeData | SubscriptionPaymentData | null) => void
   closeModal: () => void
   modalType: PricingModalType
   modalData: any

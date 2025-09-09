@@ -30,7 +30,6 @@ import { usePricingModal } from './use-pricing-modal'
 const stripePublicKey = import.meta.env.STRIPE_PUBLIC_KEY
 
 export type SubscriptionPaymentData = {
-  amount: number
   lookupKey: number
 }
 
@@ -54,7 +53,7 @@ const useUpdateSubscription = () => {
   })
 }
 
-export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentData) => {
+export const SubscriptionPayment = ({ lookupKey }: SubscriptionPaymentData) => {
   const { bearedFetch } = useAuth()
   const { signer } = useClient()
   const { i18n } = useTranslation()
@@ -77,7 +76,6 @@ export const SubscriptionPayment = ({ amount, lookupKey }: SubscriptionPaymentDa
     if (signerAddress) {
       const body = {
         lookupKey,
-        amount,
         address: signerAddress,
         locale: i18n.resolvedLanguage,
       }
