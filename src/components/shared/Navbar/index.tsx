@@ -23,7 +23,7 @@ import { LuLogOut } from 'react-icons/lu'
 import { RiContactsBook3Line } from 'react-icons/ri'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch, useMatches } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
-import { ColorModeSwitcher } from '~shared/Layout/ColorModeSwitcher'
+import { ColorModeSwitcher, ColorModeSwitcherDetailed } from '~shared/Layout/ColorModeSwitcher'
 import Logo from '~shared/Layout/Logo'
 import { Routes } from '~src/router/routes'
 import LanguagesListAccordion, { LanguagesMenu } from './LanguagesList'
@@ -38,6 +38,8 @@ type RouteHandle = {
   hideNavbar?: boolean
 }
 
+const BREAKPOINT = 'lg'
+
 export function useHideNavbar() {
   const matches = useMatches() as Array<{ handle?: RouteHandle }>
   return Boolean(matches.some((m) => m.handle?.hideNavbar))
@@ -48,12 +50,10 @@ const Navbar = () => {
   const isOnProcessesPage = useMatch(Routes.processes.view)
   const reducedMenu = !!isOnProcessesPage && !isAuthenticated
   return (
-    <Flex width='full' m='0 auto' mx='auto' py={{ base: 4, md: 6 }} position='relative'>
+    <Flex width='full' m='0 auto' mx='auto' py={3} position='relative'>
       <Flex justifyContent='space-between' alignItems='center' zIndex={1} w='100%'>
-        <Flex w='248.67px'>
-          <Logo />
-        </Flex>
-        <DesktopNav display={{ base: reducedMenu ? 'flex' : 'none', xl: 'flex' }} />
+        <Logo />
+        <DesktopNav display={{ base: reducedMenu ? 'flex' : 'none', [BREAKPOINT]: 'flex' }} />
         {!reducedMenu && <Mobile />}
       </Flex>
     </Flex>
@@ -68,9 +68,9 @@ const DesktopNav = ({ display }: { display?: any }) => {
   return (
     <>
       {!hideNavbar && !reducedMenu && <NavMenu display={display} />}
-      <Flex alignItems={'center'} display={display ? display : 'flex'} gap={2}>
+      <Flex alignItems='center' display={display ? display : 'flex'} gap={2}>
         {!hideNavbar && !reducedMenu && <DashboardButton />}
-        <LanguagesMenu ml={'18px'} />
+        <LanguagesMenu />
         <ColorModeSwitcher />
       </Flex>
     </>
@@ -80,23 +80,24 @@ const DesktopNav = ({ display }: { display?: any }) => {
 const Mobile = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { logout } = useAuth()
-  const isXlSize = useBreakpointValue({
+  const { t } = useTranslation()
+  const isBreakpointSize = useBreakpointValue({
     base: false,
-    xl: true,
+    [BREAKPOINT]: true,
   })
   const hideNavbar = useHideNavbar()
 
   useEffect(() => {
-    if (isXlSize) onClose()
-  }, [isXlSize])
+    if (isBreakpointSize) onClose()
+  }, [isBreakpointSize])
 
   return (
     <>
       <IconButton
         icon={<HamburgerIcon />}
         onClick={onOpen}
-        aria-label='Open menu'
-        display={{ base: 'block', xl: 'none' }}
+        aria-label={t('menu.open', { defaultValue: 'Open Menu' })}
+        display={{ base: 'block', [BREAKPOINT]: 'none' }}
       />
       <Drawer isOpen={isOpen} placement='right' onClose={onClose}>
         <DrawerOverlay />
@@ -117,18 +118,11 @@ const Mobile = () => {
                 <LanguagesListAccordion />
               </ListItem>
               <ListItem>
-                <ColorModeSwitcher />
+                <ColorModeSwitcherDetailed />
               </ListItem>
               <Divider />
               <ListItem>
-                <Button
-                  variant={'unstyled'}
-                  onClick={logout}
-                  display={'flex'}
-                  alignItems={'center'}
-                  gap={2}
-                  h='fit-content'
-                >
+                <Button variant='unstyled' onClick={logout} display='flex' alignItems='center' gap={2} h='fit-content'>
                   <Icon as={LuLogOut} />
                   <Text as={'span'} fontWeight={'semibold'}>
                     <Trans i18nKey='logout'>Logout</Trans>
@@ -156,7 +150,7 @@ const Mobile = () => {
 
 const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
   const { t } = useTranslation()
-  const isMobile = useBreakpointValue({ base: true, xl: false })
+  const isMobile = useBreakpointValue({ base: true, [BREAKPOINT]: false })
   const { isAuthenticated } = useAuth()
   const isOnProcessesPage = useMatch(Routes.processes.view)
   const reducedMenu = !!isOnProcessesPage && !isAuthenticated
@@ -179,7 +173,7 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
     },
   ]
   return (
-    <List as='nav' display={display ? display : 'flex'} flexDirection={{ base: 'column', xl: 'row' }} gap={4}>
+    <List as='nav' display={display ? display : 'flex'} flexDirection={{ base: 'column', [BREAKPOINT]: 'row' }} gap={4}>
       {!hideNavbar && !reducedMenu && (
         <>
           {menuItems.map((item, index) => (
@@ -215,7 +209,7 @@ const DashboardButton = (props?: ButtonProps) => {
     <Button
       as={ReactRouterLink}
       to={isAuthenticated ? generatePath(Routes.dashboard.base) : Routes.auth.signIn}
-      size={'lg'}
+      size='lg'
       colorScheme='black'
       p='10px 30px'
       height='36px'

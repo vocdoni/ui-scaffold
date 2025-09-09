@@ -15,6 +15,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Stack,
   Text,
 } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -148,34 +149,33 @@ export const LanguagesListAccordion = () => {
           m={0}
           p={0}
           h='fit-content'
-          _hover={{ bgColor: 'transparent' }}
-          display={'flex'}
-          alignItems={'center'}
-          justifyContent={'start'}
-          fontSize={'md'}
+          display='flex'
+          alignItems='center'
+          justifyContent='start'
+          fontSize='md'
           leftIcon={<FaGlobeAmericas />}
+          bg='none'
         >
-          <Trans i18nKey={'languages'}>Languages</Trans>
+          <Trans i18nKey='languages'>Languages</Trans>
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel pb={0}>
-          {Object.keys(languages).map((k: string) => (
-            <Button
-              key={k}
-              onClick={() => {
-                i18n.changeLanguage(k)
-              }}
-              display='flex'
-              fontWeight={k === i18n.language ? 'bold' : ''}
-              p={0}
-              m={0}
-              h={'fit-content'}
-              w={'fit-content'}
-              my='5px'
-            >
-              {k.toUpperCase()}
-            </Button>
-          ))}
+          <Stack direction={{ base: 'column', md: 'row' }} spacing={2} mt={2}>
+            {Object.entries(languages).map(([k, lang]: [string, string]) => (
+              <Button
+                key={k}
+                onClick={() => {
+                  i18n.changeLanguage(k)
+                }}
+                display='flex'
+                isActive={k === i18n.language}
+                p={2}
+                h='fit-content'
+              >
+                {lang}
+              </Button>
+            ))}
+          </Stack>
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
