@@ -1218,6 +1218,7 @@
     "most_popular_plan": "Recomendado",
     "view_features": "Ver todas las características"
   },
+  "privacy_policy": "Política de Privacidad",
   "privacyPolicy": {
     "description": "Este documento describe las prácticas de privacidad de la Asociación Vocdoni (\"Vocdoni\") con respecto al uso de sus sitios web y servicios.",
     "section1": {
@@ -1697,6 +1698,7 @@
     "section9Title": "9. Información de Contacto",
     "title": "Términos y Condiciones de la Asociación Vocdoni"
   },
+  "terms_of_service": "Términos del Servicio",
   "testimonials": {
     "auth": {
       "position": "President",
