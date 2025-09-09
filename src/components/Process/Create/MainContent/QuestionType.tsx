@@ -30,7 +30,13 @@ export const QuestionType = () => {
           <FormLabel htmlFor='extended-info' mb='0'>
             <Trans i18nKey='process.extended_info'>Extended info</Trans>
           </FormLabel>
-          <Switch id='extended-info' {...register('extendedInfo')} />
+          <Controller
+            name='extendedInfo'
+            control={control}
+            render={({ field }) => (
+              <Switch id='extended-info' isChecked={!!field.value} onChange={(e) => field.onChange(e.target.checked)} />
+            )}
+          />
         </FormControl>
         <Controller
           control={control}
