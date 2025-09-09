@@ -6,6 +6,7 @@ import {
   FormControl,
   FormLabel,
   Icon,
+  Link,
   Popover,
   PopoverBody,
   PopoverContent,
@@ -146,7 +147,7 @@ const UserProfile = () => {
                   <Trans i18nKey={'user_settings'} />
                 </Button>
               </Box>
-              <Box py={1}>
+              <Box borderBottom='1px solid' borderBottomColor='table.border' py={1}>
                 <Text fontWeight={600} size={'sm'} px={2} py={1.5}>
                   {t('preferences', { defaultValue: 'Preferences' })}
                 </Text>
@@ -158,11 +159,20 @@ const UserProfile = () => {
                 </FormControl>
                 <LanguageListDashboard px={2} py={1.5} />
               </Box>
-            </PopoverBody>
-            <PopoverFooter pt={1}>
               <Button colorScheme='gray' variant='profilemenu' onClick={logout} leftIcon={<LuLogOut />}>
                 <Trans i18nKey={'logout'} />
               </Button>
+            </PopoverBody>
+            <PopoverFooter pt={1}>
+              <Flex gap={2} alignItems='center' justifyContent='center'>
+                <Link as={ReactRouterLink} to={Routes.privacy} fontSize='xs' color='dashboard.support_link'>
+                  <Trans i18nKey='privacy_policy'>Privacy policy</Trans>
+                </Link>
+                <Text fontSize='xs'>•</Text>
+                <Link as={ReactRouterLink} to={Routes.terms} fontSize='xs' color='dashboard.support_link'>
+                  <Trans i18nKey='terms_of_service'>Terms of Service</Trans>
+                </Link>
+              </Flex>
             </PopoverFooter>
           </>
         )}
