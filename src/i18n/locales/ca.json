@@ -1198,9 +1198,6 @@
     "free_title": "Gratuït",
     "gpdr_compilance": "Compliment del GDPR",
     "help": "Necessites ajuda?",
-    "members_size": "{{ from }}-{{ to }} membres",
-    "membership_size": "Select your membership size:",
-    "membership_size_title": "How many voters do you need*?",
     "premium_subtitle": "Un volum més gran que requereix funcions més avançades.",
     "premium_title": "Premium",
     "priority_support": "Suport prioritari per tiquets",
@@ -1717,23 +1714,6 @@
     }
   },
   "theme": "Theme",
-  "tier_upgrade": {
-    "current_plan": "El teu pla <2>{{ plan, lowercase }}</2> està limitat a seleccionar fins a <6>{{ voters }} votants</6>.",
-    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
-    "plan": {
-      "basic": "Basic",
-      "custom": "Custom",
-      "free": "Free",
-      "limit": {
-        "basic": "Up to 1500",
-        "custom": "Unlimited",
-        "free": "50 voters",
-        "pro": "Up to 3000"
-      },
-      "pro": "Pro"
-    },
-    "satisfaction_rate": "97% satisfaction rate, starting at 9€/month."
-  },
   "total_votes": "Total votes",
   "total_votes_submitted": "Total Votes Submitted",
   "turnout": "Turnout",
