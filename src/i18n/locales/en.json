@@ -1039,6 +1039,7 @@
     "languages_list": "Show available languages",
     "login": "Login",
     "logout": "Logout",
+    "open": "Open Menu",
     "organization": "Edit Organization",
     "privacy": "Privacy",
     "terms": "Terms",
@@ -1580,6 +1581,7 @@
     "title": "Subscription Plan"
   },
   "support": "Support",
+  "switch_mode": "Switch to {{ mode }} mode",
   "switch_organization": "Switch organization",
   "system": "System",
   "team": {
