@@ -125,7 +125,7 @@ export const TemplateConfigs: Record<TemplateTypes, TemplateConfig> = {
     questionType: SelectorTypes.Multiple,
     extendedInfo: true,
     minNumberOfChoices: 1,
-    maxNumberOfChoices: 1,
+    maxNumberOfChoices: 3,
     questions: [
       {
         title: '',
