@@ -36,6 +36,7 @@ const RootElements = (client: VocdoniSDKClient) => [
   },
   {
     path: Routes.processes.view,
+    handle: { hideNavbar: true },
     element: (
       <SuspenseLoader>
         <Process />
