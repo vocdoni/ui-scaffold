@@ -1384,14 +1384,6 @@
       },
       "participatory_budgeting": {
         "description": "Template for community decision-making on budget allocation with project cards.",
-        "q1": {
-          "option_1": "Project C",
-          "option_1_desc": "Description of Project A",
-          "option_2": "Project B",
-          "option_2_desc": "Description of Project B",
-          "option_3": "Project C",
-          "option_3_desc": "Description of Project C"
-        },
         "title": "Participatory Budgeting Cards"
       }
     },

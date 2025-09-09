@@ -80,33 +80,6 @@ export const TemplateProvider = ({ children }) => {
       description: t('process.template.participatory_budgeting.description', {
         defaultValue: 'Template for community decision-making on budget allocation with project cards.',
       }),
-      questions: [
-        {
-          options: [
-            {
-              option: t('process.template.participatory_budgeting.q1.option_1', { defaultValue: 'Project A' }),
-              description: t('process.template.participatory_budgeting.q1.option_1_desc', {
-                defaultValue: 'Description of Project A',
-              }),
-              budget: 1000,
-            },
-            {
-              option: t('process.template.participatory_budgeting.q1.option_2', { defaultValue: 'Project B' }),
-              description: t('process.template.participatory_budgeting.q1.option_2_desc', {
-                defaultValue: 'Description of Project B',
-              }),
-              budget: 2000,
-            },
-            {
-              option: t('process.template.participatory_budgeting.q1.option_3', { defaultValue: 'Project C' }),
-              description: t('process.template.participatory_budgeting.q1.option_3_desc', {
-                defaultValue: 'Description of Project C',
-              }),
-              budget: 1500,
-            },
-          ],
-        },
-      ],
     },
   }
 
