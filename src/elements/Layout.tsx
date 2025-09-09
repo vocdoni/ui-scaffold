@@ -16,8 +16,8 @@ const Layout = () => {
         backdropFilter='blur(40px)'
         zIndex={30}
         px={{ base: 4, md: 6, xl: 10 }}
-        maxW={'1920px'}
-        mx={'auto'}
+        maxW='1920px'
+        mx='auto'
       >
         <Navbar />
       </HStack>
