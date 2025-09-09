@@ -97,6 +97,7 @@ const baseStyle = definePartsStyle({
   },
 
   description: {
+    wordBreak: 'break-word',
     px: 1,
     textAlign: 'start',
     fontSize: 'md !important',
@@ -110,6 +111,7 @@ const baseStyle = definePartsStyle({
     // Only for extended question type
     '&:has(img), &:has(.chakra-skeleton img)': {
       flexDirection: 'row',
+      align: 'stretch',
       '& label': {
         width: '100%',
         position: 'relative',
@@ -121,11 +123,15 @@ const baseStyle = definePartsStyle({
         },
         '& span:nth-of-type(2)': {
           p: 0,
+          h: '100%',
         },
       },
     },
 
     '& label': {
+      '&:has(img), &:has(.chakra-skeleton img)': {
+        minH: '220px',
+      },
       gap: 2,
 
       '& span:nth-of-type(1)': {
@@ -151,6 +157,14 @@ const baseStyle = definePartsStyle({
         border: '1px solid',
         borderColor: 'table.border',
         borderRadius: 'lg',
+        '&[data-checked=""]': {
+          outline: '2px solid',
+          outlineColor: 'process.questions.outline.checked.light',
+          _dark: {
+            outlineColor: 'process.questions.outline.checked.dark',
+          },
+        },
+
         w: '100%',
         _hover: {
           bgColor: 'process.questions.hover.light',

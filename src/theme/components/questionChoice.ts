@@ -4,12 +4,6 @@ import { questionChoiceAnatomy } from '@vocdoni/chakra-components'
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionChoiceAnatomy)
 
 const baseStyle = definePartsStyle({
-  wrapper: {
-    '&:has(img), &:has(.chakra-skeleton img)': {
-      minH: '350px',
-    },
-  },
-
   skeleton: {
     w: '100%',
     h: '150px',
@@ -23,15 +17,18 @@ const baseStyle = definePartsStyle({
 
   label: {
     '.chakra-skeleton + &': {
+      wordBreak: 'break-word',
       fontWeight: 'semibold',
       mt: 4,
       px: 4,
+      mb: 4,
     },
   },
 
   description: {
     '.chakra-skeleton ~ &': {
       px: 4,
+      mb: 4,
     },
   },
 })
