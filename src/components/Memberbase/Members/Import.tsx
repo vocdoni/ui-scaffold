@@ -18,6 +18,13 @@ import {
   Icon,
   IconButton,
   ListItem,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Progress,
   Stack,
   Table,
@@ -29,13 +36,14 @@ import {
   Tr,
   UnorderedList,
   useDisclosure,
+  useToast,
 } from '@chakra-ui/react'
 import { useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
 import { chakraComponents, Select } from 'chakra-react-select'
 import { useEffect, useRef, useState } from 'react'
 import { FormProvider, useForm, useFormContext, useWatch } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { LuCheck, LuTriangleAlert, LuUpload, LuX } from 'react-icons/lu'
 import { useOutletContext } from 'react-router-dom'
 import { SpreadsheetManager } from '~components/shared/Spreadsheet/SpreadsheetManager'
@@ -59,6 +67,9 @@ type ImportDataPreviewProps = {
   columnMapping: ColumnMapping
   setColumnMapping: React.Dispatch<React.SetStateAction<ColumnMapping>>
 }
+
+const PROGRESS_INCREMENT = 5 // Maximum increment for fake progress
+const PROGRESS_UPDATE_INTERVAL = 500 // Interval for fake progress updates
 
 const mapSpreadsheetData = (data: SpreadsheetRow[], mapping: ColumnMapping): MappedRow[] => {
   return data.map((row) => {
@@ -100,13 +111,32 @@ export const ImportProgress = () => {
   const { organization } = useOrganization()
   const { jobId, setJobId } = useOutletContext<MemberbaseTabsContext>()
   const { data, isError } = useImportJobProgress()
+
+  const [progress, setProgress] = useState(0)
   const isComplete = data?.progress === 100
   const hasErrors = data?.errors?.length > 0
 
-  /**
-   * Refetches members when import progress reaches 100%.
-   * Ensures the members list is up-to-date after a successful import.
-   */
+  useEffect(() => {
+    if (data?.progress === undefined || isComplete) return
+
+    let interval: NodeJS.Timeout
+    const current = data.progress
+    const target = current + PROGRESS_INCREMENT
+
+    interval = setInterval(() => {
+      setProgress((prev) => {
+        const next = prev + 1
+        return next >= target ? target : next
+      })
+    }, PROGRESS_UPDATE_INTERVAL)
+
+    setProgress(current)
+
+    return () => clearInterval(interval)
+  }, [data?.progress, isComplete])
+
+  const { isOpen: isErrorModalOpen, onOpen: onOpenErrors, onClose: onCloseErrors } = useDisclosure()
+
   useEffect(() => {
     if (isComplete) {
       queryClient.invalidateQueries({
@@ -114,41 +144,41 @@ export const ImportProgress = () => {
         exact: false,
       })
     }
-  }, [data?.progress, queryClient, organization.address])
+  }, [data?.progress, queryClient, organization.address, isComplete])
 
   const closeAlert = () => setJobId(null)
 
   const getStatus = () => {
     if (isComplete && hasErrors) return 'warning'
     if (isComplete) return 'success'
-    if (hasErrors || isError) return 'error'
+    if (isError) return 'error'
     return 'info'
   }
 
-  const getTitle = () => {
+  const ImportTitle = () => {
     if (isComplete && hasErrors)
-      return t('import_progress.completed_with_errors', { defaultValue: 'Import Completed with Errors' })
-    if (isComplete) return t('import_progress.success_title', { defaultValue: 'Import Completed Successfully' })
-    if (hasErrors || isError) return t('import_progress.error_title', { defaultValue: 'Import Error' })
+      return <Trans i18nKey='import_progress.completed_with_errors' defaults='Import Completed with Errors' />
+    if (isComplete) return <Trans i18nKey='import_progress.success_title' defaults='Import Completed Successfully' />
+    if (isError) return <Trans i18nKey='import_progress.error_title' defaults='Import Error' />
 
-    return t('import_progress.title', { defaultValue: 'Memberbase Import in Progress' })
+    return <Trans i18nKey='import_progress.title' defaults='Memberbase Import in Progress' />
   }
 
-  const getDescription = () => {
+  const ImportDescription = () => {
     if (isComplete && hasErrors) {
       return (
         <>
           <Text>
             {t('import_progress.completed_with_errors_description', {
-              defaultValue:
-                'Your member data has been imported, but some errors occurred. Please review the details below.',
+              defaultValue: 'Your data was imported with some errors.',
             })}
           </Text>
-          <UnorderedList mt={2}>
-            {data.errors.map((error, index) => (
-              <ListItem key={index}>{error}</ListItem>
-            ))}
-          </UnorderedList>
+          <Button onClick={onOpenErrors} variant='link' size='sm' mt={1} alignSelf='start'>
+            {t('import_progress.view_errors', {
+              defaultValue: `View {{count}} errors`,
+              count: data.errors.length,
+            })}
+          </Button>
         </>
       )
     }
@@ -174,32 +204,15 @@ export const ImportProgress = () => {
       return (
         <Text>
           {t('import_progress.error_description', {
-            defaultValue: 'An error occurred while fetching the import progress. Please try again later.',
+            defaultValue: 'An error occurred while importing your member data. Please try again later.',
           })}
         </Text>
       )
     }
 
-    if (hasErrors) {
-      return (
-        <>
-          <Text>
-            {t('import_progress.has_errors_description', {
-              defaultValue: 'An error occurred while importing your member data. Please try again later.',
-            })}
-          </Text>
-          <UnorderedList mt={2}>
-            {data.errors.map((error, index) => (
-              <ListItem key={index}>{error}</ListItem>
-            ))}
-          </UnorderedList>
-        </>
-      )
-    }
-
     return (
       <>
-        <Progress size='md' value={data?.progress} borderRadius='md' isAnimated />
+        <Progress size='md' value={progress} borderRadius='md' isAnimated hasStripe />
         <Text>
           {t('import_progress.description', {
             defaultValue:
@@ -218,25 +231,54 @@ export const ImportProgress = () => {
   if (!jobId) return null
 
   return (
-    <Alert
-      status={getStatus()}
-      borderRadius='md'
-      mb={3}
-      mt={4}
-      p={6}
-      as={Flex}
-      flexDirection='row'
-      justifyContent='space-between'
-    >
-      <Flex flexDirection='column' gap={2} flex={1}>
-        <AlertTitle>{getTitle()}</AlertTitle>
-        <AlertDescription display='flex' flexDirection='column' gap={2}>
-          {getDescription()}
-        </AlertDescription>
-      </Flex>
+    <>
+      <Alert
+        status={getStatus()}
+        borderRadius='md'
+        mb={3}
+        mt={4}
+        p={6}
+        as={Flex}
+        flexDirection='row'
+        justifyContent='space-between'
+      >
+        <Flex flexDirection='column' gap={2} flex={1}>
+          <AlertTitle>
+            <ImportTitle />
+          </AlertTitle>
+          <AlertDescription display='flex' flexDirection='column' gap={2}>
+            <ImportDescription />
+          </AlertDescription>
+        </Flex>
 
-      <CloseButton alignSelf='flex-start' position='relative' onClick={closeAlert} />
-    </Alert>
+        <CloseButton alignSelf='flex-start' position='relative' onClick={closeAlert} />
+      </Alert>
+
+      {/* Error modal */}
+      <Modal isOpen={isErrorModalOpen} onClose={onCloseErrors} size='xl'>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            {t('import_progress.error_modal_title', {
+              defaultValue: 'Import Errors',
+            })}
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody maxH='60vh' overflowY='auto'>
+            <UnorderedList spacing={2} pl={4}>
+              {data?.errors?.map((error, i) => (
+                <ListItem key={i} whiteSpace='pre-wrap' fontSize='sm'>
+                  {error}
+                </ListItem>
+              ))}
+            </UnorderedList>
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onCloseErrors}>{t('close', { defaultValue: 'Close' })}</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   )
 }
 
@@ -395,7 +437,7 @@ const ImportDataPreview = ({ columnMapping, setColumnMapping }: ImportDataPrevie
         <Button type='button' variant='outline' colorScheme='black' onClick={resetImport}>
           {t('memberbase.importer.reset', { defaultValue: 'Reset Import' })}
         </Button>
-        <Button type='submit' colorScheme='black' form='import-members'>
+        <Button type='submit' colorScheme='black' form='import-members' isLoading={methods.formState.isSubmitting}>
           {t('memberbase.importer.submit', { defaultValue: 'Import Data' })}
         </Button>
       </Flex>
@@ -405,6 +447,7 @@ const ImportDataPreview = ({ columnMapping, setColumnMapping }: ImportDataPrevie
 
 export const ImportMembers = () => {
   const { t } = useTranslation()
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef<HTMLButtonElement>(null)
   const methods = useForm({ defaultValues: { spreadsheet: null } })
@@ -436,6 +479,11 @@ export const ImportMembers = () => {
       onClose()
     } catch (error) {
       console.error(error)
+      toast({
+        status: 'error',
+        title: 'Import failed',
+        description: error?.message ?? 'Unexpected error while importing members',
+      })
     }
   }
 
