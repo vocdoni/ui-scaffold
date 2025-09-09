@@ -110,12 +110,9 @@ export const MembershipSizeSelector = ({ defaultValue, ...props }: Omit<SelectCu
   const { t } = useTranslation()
   const listSizes: SelectOptionType[] = [
     { label: '0-100', value: '0-100' },
-    { label: '100-250', value: '100-250' },
-    { label: '250-500', value: '250-500' },
-    { label: '500-1K', value: '500-1K' },
-    { label: '1K-5K', value: '1K-5K' },
-    { label: '5K-10K', value: '5K-10K' },
-    { label: '+10K', value: '10K+' },
+    { label: '101-1000', value: '101-1000' },
+    { label: '1001-5000', value: '1001-5000' },
+    { label: '5000+', value: '5000+' },
   ]
 
   return (
