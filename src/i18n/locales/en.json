@@ -1200,6 +1200,7 @@
     "most_popular_plan": "Most Popular",
     "view_features": "View all features"
   },
+  "privacy_policy": "Privacy policy",
   "privacyPolicy": {
     "description": "This document outlines the privacy practices for Vocdoni Association (\"Vocdoni\") concerning the use of its websites and services.",
     "section1": {
@@ -1678,6 +1679,7 @@
     "section9Title": "9. Contact Information",
     "title": "Terms and Conditions for Vocdoni Association"
   },
+  "terms_of_service": "Terms of Service",
   "testimonials": {
     "auth": {
       "position": "President",
