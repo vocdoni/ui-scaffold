@@ -125,7 +125,7 @@ const SortableExtendedOption = ({
 
         <VStack align='stretch' spacing={4}>
           {/* Image uploader */}
-          <ImageUploader name={`questions.${questionIndex}.options.${optionIndex}.image`} />
+          <ImageUploader name={`questions.${questionIndex}.options.${optionIndex}.image`} borderTopRadius='sm' />
           {/* Content box */}
           <Box p={4}>
             {/* Title */}
