@@ -210,23 +210,6 @@ export const ImportProgress = () => {
       )
     }
 
-    if (hasErrors) {
-      return (
-        <>
-          <Text>
-            {t('import_progress.has_errors_description', {
-              defaultValue: 'An error occurred while importing your member data. Please try again later.',
-            })}
-          </Text>
-          <UnorderedList mt={2}>
-            {data.errors.map((error, index) => (
-              <ListItem key={index}>{error}</ListItem>
-            ))}
-          </UnorderedList>
-        </>
-      )
-    }
-
     return (
       <>
         <Progress size='md' value={progress} borderRadius='md' isAnimated hasStripe />
