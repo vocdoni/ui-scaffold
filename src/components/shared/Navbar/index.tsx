@@ -51,7 +51,14 @@ const Navbar = () => {
   const reducedMenu = !!isOnProcessesPage && !isAuthenticated
   return (
     <Flex width='full' m='0 auto' mx='auto' py={3} position='relative'>
-      <Flex justifyContent='space-between' alignItems='center' zIndex={1} w='100%'>
+      <Flex
+        justifyContent='space-between'
+        alignItems='center'
+        zIndex={1}
+        w='100%'
+        display='grid'
+        gridTemplateColumns='minmax(0, 1fr) auto minmax(0, 1fr)'
+      >
         <Logo />
         <DesktopNav display={{ base: reducedMenu ? 'flex' : 'none', [BREAKPOINT]: 'flex' }} />
         {!reducedMenu && <Mobile />}
@@ -68,7 +75,7 @@ const DesktopNav = ({ display }: { display?: any }) => {
   return (
     <>
       {!hideNavbar && !reducedMenu && <NavMenu display={display} />}
-      <Flex alignItems='center' display={display ? display : 'flex'} gap={2}>
+      <Flex alignItems='center' display={display ? display : 'flex'} gap={2} justifySelf='end'>
         {!hideNavbar && !reducedMenu && <DashboardButton />}
         <LanguagesMenu />
         <ColorModeSwitcher />
@@ -209,11 +216,9 @@ const DashboardButton = (props?: ButtonProps) => {
     <Button
       as={ReactRouterLink}
       to={isAuthenticated ? generatePath(Routes.dashboard.base) : Routes.auth.signIn}
-      size='lg'
       colorScheme='black'
-      p='10px 30px'
-      height='36px'
-      fontSize='12px'
+      px={6}
+      fontSize='xs'
       {...props}
     >
       {isAuthenticated ? t('menu.dashboard', { defaultValue: 'Dashboard' }) : t('menu.login')}
