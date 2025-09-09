@@ -1,56 +1,36 @@
-import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
+import { createMultiStyleConfigHelpers, StyleFunctionProps } from '@chakra-ui/react'
 import { spreadsheetAccessAnatomy } from '@vocdoni/chakra-components'
 
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(spreadsheetAccessAnatomy)
 
-const baseStyle = definePartsStyle({
-  button: {
-    w: 'full',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '10px',
-    border: '1px solid',
-    bg: '#276958',
-    borderColor: '#12271f',
-    color: 'button.variant.primary.color',
+const baseStyle = definePartsStyle((props: StyleFunctionProps) => {
+  const { theme } = props
+  const btn = theme.components?.Button
 
-    _hover: {
-      bg: '#205345',
-      borderColor: '#12271f',
-      _disabled: {
-        bg: 'button.variant.primary.disabled.light.bg',
-        color: 'button.variant.primary.disabled.light.color',
-        borderColor: 'button.variant.primary.disabled.light.border',
-        opacity: 1,
-        _dark: {
-          bg: 'button.variant.primary.disabled.dark.bg',
-          color: 'button.variant.primary.disabled.dark.color',
-          borderColor: 'button.variant.primary.disabled.dark.border',
-          opacity: 0.4,
+  const buttonVariant = 'solid'
+  const colorScheme = 'black'
+
+  const variantDef = btn.variants[buttonVariant]({ ...props, colorScheme })
+
+  return {
+    button: {
+      ...variantDef,
+      w: 'full',
+    },
+    disconnect: {
+      bg: 'transparent',
+      border: 'none',
+      _hover: {
+        textDecoration: 'underline',
+
+        _disabled: {
+          color: 'button.variant.common.disabled.color.light',
+
+          _dark: {
+            color: 'button.variant.common.disabled.color.dark',
+          },
         },
       },
-    },
-    _active: { bg: '#193d32' },
-    _disabled: {
-      bg: 'button.variant.primary.disabled.light.bg',
-      color: 'button.variant.primary.disabled.light.color',
-      borderColor: 'button.variant.primary.disabled.light.border',
-      opacity: 1,
-      _dark: {
-        bg: 'button.variant.primary.disabled.dark.bg',
-        color: 'button.variant.primary.disabled.dark.color',
-        borderColor: 'button.variant.primary.disabled.dark.border',
-        opacity: 0.4,
-      },
-    },
-  },
-  disconnect: {
-    bg: 'transparent',
-    border: 'none',
-    _hover: {
-      textDecoration: 'underline',
-
       _disabled: {
         color: 'button.variant.common.disabled.color.light',
 
@@ -58,25 +38,18 @@ const baseStyle = definePartsStyle({
           color: 'button.variant.common.disabled.color.dark',
         },
       },
-    },
-    _disabled: {
-      color: 'button.variant.common.disabled.color.light',
 
       _dark: {
-        color: 'button.variant.common.disabled.color.light',
+        color: 'white',
       },
     },
 
-    _dark: {
-      color: 'white',
+    close: {
+      display: 'none',
     },
-  },
 
-  close: {
-    display: 'none',
-  },
-
-  input: { mb: 5 },
+    input: { mb: 5 },
+  }
 })
 
 export const SpreadsheetAccess = defineMultiStyleConfig({

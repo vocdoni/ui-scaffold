@@ -256,7 +256,7 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
                 {(() => {
                   if (!connected) {
                     return (
-                      <Button onClick={openConnectModal} w='full'>
+                      <Button colorScheme='black' onClick={openConnectModal} w='full'>
                         {t('menu.connect').toString()}
                       </Button>
                     )
@@ -272,6 +272,7 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       {isAbleToVote && (
         <>
           <CVoteButton
+            colorScheme='black'
             w='100%'
             fontSize='lg'
             height='50px'
