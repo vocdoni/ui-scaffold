@@ -1,4 +1,5 @@
 import {
+  Button,
   ButtonGroup,
   ButtonGroupProps,
   Icon,
@@ -24,12 +25,28 @@ export const ColorModeSwitcher: FC<ColorModeSwitcherProps> = (props) => {
   return (
     <IconButton
       colorScheme='gray'
-      size='md'
-      fontSize='lg'
       onClick={toggleColorMode}
-      borderRadius='full'
       icon={<SwitchIcon />}
       aria-label={`Switch to ${text} mode`}
+      {...props}
+    />
+  )
+}
+
+export const ColorModeSwitcherDetailed: FC<ColorModeSwitcherProps> = (props) => {
+  const { toggleColorMode } = useColorMode()
+  const SwitchIcon = useColorModeValue(IoMdMoon, IoMdSunny)
+  const { t } = useTranslation()
+  const text = useColorModeValue(t('dark'), t('light'))
+
+  return (
+    <Button
+      colorScheme='gray'
+      fontSize='lg'
+      onClick={toggleColorMode}
+      leftIcon={<SwitchIcon />}
+      aria-label={t('switch_mode', { defaultValue: 'Switch to {{ mode }} mode', mode: text })}
+      children={text}
       {...props}
     />
   )
