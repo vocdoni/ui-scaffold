@@ -49,7 +49,8 @@ const SelectionLimits = ({ index }) => {
                         options={options}
                         isInvalid={!!fieldState.invalid}
                         isClearable
-                        onChange={(option) => field.onChange(option?.value)}
+                        onChange={(option) => field.onChange(option ? option?.value : null)}
+                        menuPortalTarget={document.body}
                         size='sm'
                       />
                     </Box>
@@ -83,7 +84,8 @@ const SelectionLimits = ({ index }) => {
                         options={maxOptions}
                         isInvalid={!!fieldState.invalid}
                         isClearable
-                        onChange={(option) => field.onChange(option?.value)}
+                        onChange={(option) => field.onChange(option ? option?.value : null)}
+                        menuPortalTarget={document.body}
                         size='sm'
                       />
                     </Box>
