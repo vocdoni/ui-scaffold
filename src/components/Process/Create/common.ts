@@ -124,6 +124,8 @@ export const TemplateConfigs: Record<TemplateTypes, TemplateConfig> = {
   [TemplateTypes.ParticipatoryBudgeting]: {
     questionType: SelectorTypes.Multiple,
     extendedInfo: true,
+    minNumberOfChoices: 1,
+    maxNumberOfChoices: 1,
     questions: [
       {
         title: '',
