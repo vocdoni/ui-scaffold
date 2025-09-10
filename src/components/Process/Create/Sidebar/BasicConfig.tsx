@@ -3,29 +3,29 @@ import {
   AlertDescription,
   AlertIcon,
   Box,
-  Button,
   FormControl,
   FormErrorMessage,
   FormLabel,
   HStack,
   Input,
+  Link,
   Switch,
   VStack,
 } from '@chakra-ui/react'
 import { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { Link as RouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
-import { usePricingModal } from '~components/Pricing/use-pricing-modal'
 import { SubscriptionPermission } from '~constants'
 import { useDateFns } from '~i18n/use-date-fns'
+import { Routes } from '~routes'
 
 const DateFormatHtml = 'yyyy-MM-dd'
 
 export const BasicConfig = () => {
   const { t } = useTranslation()
   const { permission } = useSubscription()
-  const { openModal } = usePricingModal()
   const { format } = useDateFns()
   const maxDuration = permission(SubscriptionPermission.MaxDuration)
   const [durationExceeded, setDurationExceeded] = useState(false)
@@ -216,14 +216,12 @@ export const BasicConfig = () => {
         <Alert status='error'>
           <AlertIcon />
           <AlertDescription fontSize='sm'>
-            <Trans i18nKey='calendar.max_duration_exceeded'>
-              The selected duration exceeds the maximum allowed duration of {{ maxDuration }} days for your plan. Reduce
-              the voting length or{' '}
-              <Button variant='link' onClick={() => openModal('subscription')}>
-                upgrade your plan
-              </Button>
-              .
-            </Trans>
+            <Trans
+              i18nKey='calendar.max_duration_exceeded'
+              values={{ maxDuration }}
+              components={{ a: <Link as={RouterLink} to={Routes.dashboard.settings.support} /> }}
+              defaults='Duration exceeds your plan’s {{ maxDuration }}-day limit. Reduce the voting length, or <a>contact us</a> if you need more days.'
+            />
           </AlertDescription>
         </Alert>
       )}
