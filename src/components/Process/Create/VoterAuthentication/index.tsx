@@ -135,7 +135,7 @@ export const VoterAuthentication = () => {
   const census = mainForm.watch('census')
   const censusId = mainForm.watch('censusId')
   const formData = voterAuthForm.watch()
-  const hasNoCredentialsSelected = !formData.credentials.length && !formData.use2FA
+  const hasNoCredentialsSelected = !formData?.credentials?.length && !formData?.use2FA
 
   // Sync form values with stored census data
   useEffect(() => {
