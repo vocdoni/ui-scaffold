@@ -55,7 +55,6 @@ import { QueryKeys } from '~src/queries/keys'
 import { Member, useDeleteMembers, usePaginatedMembers } from '~src/queries/members'
 import { MemberbaseTabsContext } from '..'
 import { useTable } from '../TableProvider'
-import { ExportMembers } from './Export'
 import { ImportMembers, ImportProgress } from './Import'
 import { MemberManager } from './Manager'
 
@@ -691,7 +690,6 @@ const MembersTable = () => {
           </Flex>
           <Flex gap={2}>
             <ImportMembers />
-            <ExportMembers />
             <MemberManager
               control={
                 <Button colorScheme='black' leftIcon={<Icon as={LuPlus} />}>
