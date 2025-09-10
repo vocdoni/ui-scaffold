@@ -58,7 +58,7 @@ const Navbar = () => {
         alignItems='center'
         zIndex={1}
         w='100%'
-        display='grid'
+        display={{ base: 'flex', [BREAKPOINT]: 'grid' }}
         gridTemplateColumns={`minmax(0, 1fr) ${hideNavbar ? '' : 'auto'} minmax(0, 1fr)`}
       >
         <Logo />
