@@ -97,7 +97,6 @@ const settings = definePartsStyle({
   },
   tabpanel: {
     borderRadius: 'md',
-    boxShadow: '0 1px 2px 0 rgb(0 0 0/0.05)',
     p: 6,
   },
 })

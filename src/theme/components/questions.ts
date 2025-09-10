@@ -1,5 +1,6 @@
 import { createMultiStyleConfigHelpers } from '@chakra-ui/react'
 import { questionsAnatomy } from '@vocdoni/chakra-components'
+import checkIconBlack from '/assets/check-icon-black.png'
 import checkIcon from '/assets/check-icon.png'
 
 const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(questionsAnatomy)
@@ -96,6 +97,7 @@ const baseStyle = definePartsStyle({
   },
 
   description: {
+    wordBreak: 'break-word',
     px: 1,
     textAlign: 'start',
     fontSize: 'md !important',
@@ -106,7 +108,30 @@ const baseStyle = definePartsStyle({
   },
 
   stack: {
+    // Only for extended question type
+    '&:has(img), &:has(.chakra-skeleton img)': {
+      flexDirection: 'row',
+      align: 'stretch',
+      '& label': {
+        width: '100%',
+        position: 'relative',
+
+        '& span:nth-of-type(1)': {
+          position: 'absolute',
+          top: 2,
+          right: 2,
+        },
+        '& span:nth-of-type(2)': {
+          p: 0,
+          h: '100%',
+        },
+      },
+    },
+
     '& label': {
+      '&:has(img), &:has(.chakra-skeleton img)': {
+        minH: '220px',
+      },
       gap: 2,
 
       '& span:nth-of-type(1)': {
@@ -114,8 +139,11 @@ const baseStyle = definePartsStyle({
           '&:before': {
             display: 'none',
           },
-
-          background: 'transparent',
+          bgColor: 'black',
+          _dark: {
+            bgColor: 'white',
+            bgImage: checkIconBlack,
+          },
           borderWidth: '1px',
           bgSize: '12px',
           bgRepeat: 'no-repeat',
@@ -129,6 +157,14 @@ const baseStyle = definePartsStyle({
         border: '1px solid',
         borderColor: 'table.border',
         borderRadius: 'lg',
+        '&[data-checked=""]': {
+          outline: '2px solid',
+          outlineColor: 'process.questions.outline.checked.light',
+          _dark: {
+            outlineColor: 'process.questions.outline.checked.dark',
+          },
+        },
+
         w: '100%',
         _hover: {
           bgColor: 'process.questions.hover.light',
