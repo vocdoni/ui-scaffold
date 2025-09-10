@@ -59,8 +59,8 @@
   "back": "Enrere",
   "billing_details": "Billing Details",
   "calendar": {
-    "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
-    "title": "Calendar"
+    "max_duration_exceeded": "La durada supera el límit de {{ maxDuration }} dies del teu pla. Redueix la durada de la votació o <a>contacta'ns</a> si necessites més dies.",
+    "title": "Calendari"
   },
   "cancel": "Cancel",
   "cc": {

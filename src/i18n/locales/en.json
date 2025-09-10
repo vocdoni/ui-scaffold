@@ -56,8 +56,8 @@
   "back": "Back",
   "billing_details": "Billing Details",
   "calendar": {
-    "max_duration_exceeded": "The selected duration exceeds the maximum allowed duration of {{maxDuration}} days for your plan. Reduce the voting length or <4>upgrade your plan</4>.",
-    "title": "Calendar"
+    "max_duration_exceeded": "Duration exceeds your plan’s {{ maxDuration }}-day limit. Reduce the voting length, or <a>contact us</a> if you need more days.",
+    "title": "Schedule"
   },
   "cancel": "Cancel",
   "cc": {
