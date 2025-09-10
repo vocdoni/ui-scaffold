@@ -199,7 +199,6 @@ export const VoterAuthentication = () => {
 
   const resetForm = () => {
     setActiveTabIndex(0)
-    voterAuthForm.reset()
     setStepCompletion({
       step1Completed: false,
       step2Completed: false,
@@ -271,6 +270,7 @@ export const VoterAuthentication = () => {
           onClose()
           resetForm()
         }}
+        onCloseComplete={resetForm}
         size='xl'
       >
         <ModalOverlay />
