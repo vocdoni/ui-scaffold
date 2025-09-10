@@ -56,6 +56,7 @@ export type Process = {
   voterPrivacy: 'anonymous' | 'public'
   groupId: string
   census: Census | undefined
+  censusId?: string | undefined
   censusType: CensusTypes
   streamUri?: string
   addresses?: Web3Address[]
@@ -92,6 +93,7 @@ export const defaultProcessValues: Process = {
   voterPrivacy: 'public',
   groupId: '',
   census: undefined,
+  censusId: undefined,
   censusType: CensusTypes.CSP,
   streamUri: '',
   addresses: [],

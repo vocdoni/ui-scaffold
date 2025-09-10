@@ -113,11 +113,8 @@ export const GroupSelect = () => {
 
 const GroupCensusCreation = () => {
   const { t } = useTranslation()
-  const {
-    register,
-    watch,
-    formState: { errors },
-  } = useFormContext()
+  const { register, watch, formState, getFieldState } = useFormContext()
+  const censusIdError = getFieldState('censusId', formState).error
 
   const censusType = watch('censusType')
 
@@ -126,17 +123,17 @@ const GroupCensusCreation = () => {
       <GroupSelect />
       <VoterAuthentication />
 
-      <FormControl isInvalid={!!errors.censusId}>
+      <FormControl isInvalid={!!censusIdError}>
         <Input
           type='hidden'
-          {...register('census', {
+          {...register('censusId', {
             required: {
               value: censusType === CensusTypes.CSP,
               message: t('form.error.census_config_required', 'Please configure the census authentication settings.'),
             },
           })}
         />
-        <FormErrorMessage>{errors.censusId?.message?.toString()}</FormErrorMessage>
+        <FormErrorMessage>{censusIdError?.message?.toString()}</FormErrorMessage>
       </FormControl>
     </Box>
   )

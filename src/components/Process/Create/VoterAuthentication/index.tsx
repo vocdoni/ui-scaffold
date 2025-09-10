@@ -133,6 +133,7 @@ export const VoterAuthentication = () => {
 
   const groupId = mainForm.watch('groupId')
   const census = mainForm.watch('census')
+  const censusId = mainForm.watch('censusId')
   const formData = voterAuthForm.watch()
   const hasNoCredentialsSelected = !formData.credentials.length && !formData.use2FA
 
@@ -189,6 +190,7 @@ export const VoterAuthentication = () => {
         use2FAMethod: currentFormData.use2FAMethod ?? null,
         size: maxCensusSize,
       })
+      mainForm.setValue('censusId', censusId)
       setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
       onClose()
       resetForm()
@@ -228,7 +230,7 @@ export const VoterAuthentication = () => {
 
   return (
     <>
-      {census && (
+      {census && censusId && (
         <Flex p={4} direction='column' border='1px solid' borderColor='table.border' borderRadius='md' gap={2}>
           <Flex justify='space-between'>
             <Text fontWeight='semibold'>
@@ -250,7 +252,7 @@ export const VoterAuthentication = () => {
         </Flex>
       )}
       <Button isDisabled={!groupId} colorScheme='gray' w='full' onClick={onOpen}>
-        {census ? (
+        {census && censusId ? (
           <Trans i18nKey='voter_auth.button.edit'>Edit Voter Authentication</Trans>
         ) : (
           <Trans i18nKey='voter_auth.button.configure'>Configure Voter Authentication</Trans>
