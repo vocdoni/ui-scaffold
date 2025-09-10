@@ -1,13 +1,14 @@
 import { CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons'
 import { Button, Flex, Menu, MenuButton, MenuItem, MenuList, Text, useClipboard, useToast } from '@chakra-ui/react'
-import { enforceHexPrefix, useOrganization } from '@vocdoni/react-providers'
+import { enforceHexPrefix, useClient, useOrganization } from '@vocdoni/react-providers'
 import { useTranslation } from 'react-i18next'
 import { HiOutlineEllipsisHorizontalCircle } from 'react-icons/hi2'
-import { addressTextOverflow, ExplorerBaseURL } from '~constants'
+import { addressTextOverflow } from '~constants'
 
 const AddressBtn = ({ ...props }) => {
   const { t } = useTranslation()
   const { organization } = useOrganization()
+  const { client } = useClient()
   const toast = useToast()
   const { onCopy } = useClipboard(organization?.address as string)
 
@@ -47,7 +48,7 @@ const AddressBtn = ({ ...props }) => {
           as={Button}
           variant=''
           leftIcon={<ExternalLinkIcon />}
-          onClick={() => window.open(`${ExplorerBaseURL}/organizations/show/#/${address}`, '_blank')}
+          onClick={() => window.open(`${client.explorerUrl}/organization/${address}`, '_blank')}
           display='flex'
           justifyContent='start'
           alignItems='center'
