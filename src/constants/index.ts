@@ -49,15 +49,8 @@ export enum PlanId {
   Custom = 4,
 }
 
-const evocdoni = import.meta.env.VOCDONI_ENVIRONMENT
-let explorer = 'https://explorer.vote'
-if (['stg', 'dev'].includes(evocdoni)) {
-  explorer = `https://${evocdoni}.explorer.vote`
-}
-
 export const AppTitle = import.meta.env.title
-export const ExplorerBaseURL = explorer
-export const VocdoniEnvironment = evocdoni
+export const VocdoniEnvironment = import.meta.env.VOCDONI_ENVIRONMENT
 export const CensusPreviewRowsLimit = 10
 
 const defaultCensusSize = import.meta.env.DEFAULT_CENSUS_SIZE
