@@ -134,7 +134,7 @@ export const VoterAuthentication = () => {
   const groupId = mainForm.watch('groupId')
   const census = mainForm.watch('census')
   const formData = voterAuthForm.watch()
-  const hasNoCredentialsSelected = !formData.credentials.length && !formData.use2FA
+  const hasNoCredentialsSelected = !formData?.credentials?.length && !formData?.use2FA
 
   // Sync form values with stored census data
   useEffect(() => {
@@ -174,35 +174,40 @@ export const VoterAuthentication = () => {
       const currentFormData = voterAuthForm.getValues()
       const twoFaFields = currentFormData.use2FA ? getTwoFaFields(currentFormData.use2FAMethod) : []
 
-      const { id: censusId } = await createCensusMutation.mutateAsync()
-      const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
-        censusId,
-        groupId,
-        authFields: currentFormData.credentials,
-        twoFaFields,
-      })
+      try {
+        const { id: censusId } = await createCensusMutation.mutateAsync()
+        const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
+          censusId,
+          groupId,
+          authFields: currentFormData.credentials,
+          twoFaFields,
+        })
 
-      mainForm.setValue('census', {
-        id: censusId,
-        credentials: currentFormData.credentials,
-        use2FA: currentFormData.use2FA,
-        use2FAMethod: currentFormData.use2FAMethod ?? null,
-        size: maxCensusSize,
-      })
-      setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
-      onClose()
-      resetForm()
+        mainForm.setValue('census', {
+          id: censusId,
+          credentials: currentFormData.credentials,
+          use2FA: currentFormData.use2FA,
+          use2FAMethod: currentFormData.use2FAMethod ?? null,
+          size: maxCensusSize,
+        })
+        setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
+        onClose()
+        resetForm()
+      } catch (error) {
+        setValidationError(error.apiError as ValidationError)
+      }
     }
   }
 
   const resetForm = () => {
     setActiveTabIndex(0)
-    voterAuthForm.reset()
     setStepCompletion({
       step1Completed: false,
       step2Completed: false,
     })
     setValidationError(null)
+    // clear possible main form census validation errors
+    mainForm.clearErrors('census')
   }
 
   const handleTabChange = (index: number) => {
@@ -269,6 +274,7 @@ export const VoterAuthentication = () => {
           onClose()
           resetForm()
         }}
+        onCloseComplete={resetForm}
         size='xl'
       >
         <ModalOverlay />

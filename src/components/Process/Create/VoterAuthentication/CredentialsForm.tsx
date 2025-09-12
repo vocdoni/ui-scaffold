@@ -57,34 +57,34 @@ export const CredentialsForm = () => {
               )}
             />
           </Flex>
-          {credentials.length >= 1 && (
+          {credentials?.length >= 1 && (
             <Alert
-              status={credentials.length >= 2 ? 'success' : 'info'}
+              status={credentials?.length >= 2 ? 'success' : 'info'}
               variant='subtle'
               borderRadius='md'
               alignItems='start'
               py={3}
               px={4}
             >
-              <AlertIcon as={credentials.length >= 2 ? LuCheck : LuInfo} />
+              <AlertIcon as={credentials?.length >= 2 ? LuCheck : LuInfo} />
               <Box>
                 <AlertTitle fontWeight='bold'>
-                  {credentials.length >= 2
+                  {credentials?.length >= 2
                     ? t('voter_auth.security_level', { defaultValue: 'Good security' })
                     : t('voter_auth.security_recommendation_title', {
                         defaultValue: 'Security recommendation',
                       })}
                 </AlertTitle>
                 <AlertDescription fontSize='sm'>
-                  {credentials.length === 1 &&
+                  {credentials?.length === 1 &&
                     t('voter_auth.security_recommendation_1', {
                       defaultValue: 'For better security, we recommend selecting at least 2 credentials.',
                     })}
-                  {credentials.length >= 2 &&
+                  {credentials?.length >= 2 &&
                     t('voter_auth.security_recommendation_2', {
                       defaultValue:
                         "You've selected {{ count }} credentials, which provides good security for your voters.",
-                      count: credentials.length,
+                      count: credentials?.length,
                     })}
                 </AlertDescription>
               </Box>
@@ -93,7 +93,7 @@ export const CredentialsForm = () => {
           <Text>
             {t('voter_auth.selected_credentials_count', {
               defaultValue: '{{ count }}/3 credentials selected',
-              count: credentials.length,
+              count: credentials?.length,
             })}
           </Text>
         </Flex>

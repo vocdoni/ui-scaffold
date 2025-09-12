@@ -100,7 +100,7 @@ export const getSecurityLevelMessages = (level: SecurityLevel): SecurityLevelMes
 
 export const getSecurityLevel = (use2FA: boolean, credentials: string[]): SecurityLevel => {
   if (use2FA) return SecurityLevels.STRONG
-  return credentials.length === 3 ? SecurityLevels.MID : SecurityLevels.WEAK
+  return credentials?.length === 3 ? SecurityLevels.MID : SecurityLevels.WEAK
 }
 
 const SecurityLevelBox = ({ level, isActive }: { level: SecurityLevel; isActive: boolean }) => {

@@ -50,16 +50,16 @@ export type Process = {
   extendedInfo: boolean
   questionType: SelectorTypes
   questions: Question[]
-  maxNumberOfChoices: number
-  minNumberOfChoices: number
+  maxNumberOfChoices: number | null
+  minNumberOfChoices: number | null
   resultVisibility: 'live' | 'hidden'
   voterPrivacy: 'anonymous' | 'public'
   groupId: string
-  census: Census | undefined
+  census?: Census | null
   censusType: CensusTypes
   streamUri?: string
   addresses?: Web3Address[]
-  spreadsheet?: CensusSpreadsheetManager | undefined
+  spreadsheet?: CensusSpreadsheetManager | null
 }
 
 export const DefaultQuestions: DefaultQuestionsType = {
@@ -86,16 +86,16 @@ export const defaultProcessValues: Process = {
   extendedInfo: false,
   questionType: SelectorTypes.Single,
   questions: [DefaultQuestions[SelectorTypes.Single]],
-  maxNumberOfChoices: undefined,
-  minNumberOfChoices: undefined,
+  maxNumberOfChoices: null,
+  minNumberOfChoices: null,
   resultVisibility: 'hidden',
   voterPrivacy: 'public',
   groupId: '',
-  census: undefined,
+  census: null,
   censusType: CensusTypes.CSP,
   streamUri: '',
   addresses: [],
-  spreadsheet: undefined,
+  spreadsheet: null,
 }
 
 export const TemplateConfigs: Record<TemplateTypes, TemplateConfig> = {
