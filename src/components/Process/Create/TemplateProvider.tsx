@@ -10,10 +10,10 @@ export const TemplateProvider = ({ children }) => {
   const placeholders = {
     annual_general_meeting: {
       title: t('process.template.annual_general_meeting.title', {
-        defaultValue: 'Annual General Meeting',
+        defaultValue: 'Annual General Meeting Title',
       }),
       description: t('process.template.annual_general_meeting.description', {
-        defaultValue: 'Set up your annual general meeting',
+        defaultValue: 'Set up your annual general meeting description (optional)',
       }),
       questions: [
         {
@@ -52,10 +52,10 @@ export const TemplateProvider = ({ children }) => {
     },
     election: {
       title: t('process.template.election.title', {
-        defaultValue: 'Election Process',
+        defaultValue: 'Election Process Title',
       }),
       description: t('process.template.election.description', {
-        defaultValue: 'Set up your organization’s election process.',
+        defaultValue: 'Define a description (optional) for your election process.',
       }),
       questions: [
         {
@@ -75,10 +75,10 @@ export const TemplateProvider = ({ children }) => {
     },
     participatory_budgeting: {
       title: t('process.template.participatory_budgeting.title', {
-        defaultValue: 'Participatory Budgeting Cards',
+        defaultValue: 'Participatory Budgeting Title',
       }),
       description: t('process.template.participatory_budgeting.description', {
-        defaultValue: 'Template for community decision-making on budget allocation with project cards.',
+        defaultValue: 'Budget allocation decision-making (optional) description',
       }),
     },
   }

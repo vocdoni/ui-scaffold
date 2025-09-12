@@ -1358,7 +1358,7 @@
     },
     "template": {
       "annual_general_meeting": {
-        "description": "Set up your annual general meeting",
+        "description": "Set up your annual general meeting description (optional)",
         "q1": {
           "description": "Do you approve the proposed budget for the next fiscal year?",
           "option_1": "Yes",
@@ -1371,10 +1371,10 @@
           "option_2": "Candidate B",
           "title": "Elect new board members"
         },
-        "title": "Annual General Meeting"
+        "title": "Annual General Meeting Title"
       },
       "election": {
-        "description": "Set up your organization’s election process.",
+        "description": "Define a description (optional) for your election process.",
         "q1": {
           "description": "Choose the best candidate to represent your interests.",
           "option_1": "Candidate A",
@@ -1382,11 +1382,11 @@
           "option_3": "Candidate C",
           "title": "Who should be the next president?"
         },
-        "title": "Election Process"
+        "title": "Election Process Title"
       },
       "participatory_budgeting": {
-        "description": "Template for community decision-making on budget allocation with project cards.",
-        "title": "Participatory Budgeting Cards"
+        "description": "Budget allocation decision-making (optional) description",
+        "title": "Participatory Budgeting Title"
       }
     },
     "total_census_size": "{{maxCensusSize}} allowed voters of {{censusSize}} total in census",

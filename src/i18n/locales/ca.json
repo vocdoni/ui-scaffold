@@ -1377,7 +1377,7 @@
     },
     "template": {
       "annual_general_meeting": {
-        "description": "Set up your annual general meeting",
+        "description": "Configura la descripció de la teva assemblea general anual (opcional)",
         "q1": {
           "description": "Do you approve the proposed budget for the next fiscal year?",
           "option_1": "Yes",
@@ -1390,10 +1390,10 @@
           "option_2": "Candidate B",
           "title": "Elect new board members"
         },
-        "title": "Annual General Meeting"
+        "title": "Títol de l'Assemblea General Anual"
       },
       "election": {
-        "description": "Set up your organization’s election process.",
+        "description": "Defineix una descripció (opcional) per al teu procés electoral.",
         "q1": {
           "description": "Choose the best candidate to represent your interests.",
           "option_1": "Candidate A",
@@ -1401,11 +1401,11 @@
           "option_3": "Candidate C",
           "title": "Who should be the next president?"
         },
-        "title": "Election Process"
+        "title": "Títol del procés electoral"
       },
       "participatory_budgeting": {
-        "description": "Template for community decision-making on budget allocation with project cards.",
-        "title": "Participatory Budgeting Cards"
+        "description": "Descripció (opcional) de la presa de decisions de l'assignació pressupostària",
+        "title": "Títol del Pressupost Participatiu"
       }
     },
     "total_census_size": "{{maxCensusSize}} electors permesos de {{censusSize}} totals en el cens",
