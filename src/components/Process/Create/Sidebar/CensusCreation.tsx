@@ -24,6 +24,7 @@ import { Select } from '~components/shared/Form/Select'
 import { useGroups } from '~src/queries/groups'
 import { Routes } from '~src/router/routes'
 import { VoterAuthentication } from '../VoterAuthentication'
+import { Process } from '../common'
 
 export const GroupSelect = () => {
   const { t } = useTranslation()
@@ -117,8 +118,7 @@ const GroupCensusCreation = () => {
     register,
     watch,
     formState: { errors },
-  } = useFormContext()
-
+  } = useFormContext<Process>()
   const censusType = watch('censusType')
 
   return (
@@ -126,7 +126,7 @@ const GroupCensusCreation = () => {
       <GroupSelect />
       <VoterAuthentication />
 
-      <FormControl isInvalid={!!errors.censusId}>
+      <FormControl isInvalid={!!errors.census}>
         <Input
           type='hidden'
           {...register('census', {
@@ -136,7 +136,7 @@ const GroupCensusCreation = () => {
             },
           })}
         />
-        <FormErrorMessage>{errors.censusId?.message?.toString()}</FormErrorMessage>
+        <FormErrorMessage>{errors.census?.message?.toString()}</FormErrorMessage>
       </FormControl>
     </Box>
   )
