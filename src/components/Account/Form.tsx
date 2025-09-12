@@ -103,7 +103,13 @@ const AccountForm = ({ profile }: { profile: User }) => {
             </HStack>
           </FormControl>
 
-          <Button type='submit' size='lg' isLoading={isSubmitting || updateProfile.isPending} alignSelf={'start'}>
+          <Button
+            type='submit'
+            size='lg'
+            isLoading={isSubmitting || updateProfile.isPending}
+            alignSelf={'start'}
+            colorScheme='black'
+          >
             {t('actions.save_changes', { defaultValue: 'Save Changes' })}
           </Button>
         </VStack>

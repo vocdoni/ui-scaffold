@@ -78,6 +78,7 @@ export const ModalForm = ({ isOpen, onClose, title, subtitle, children, submitTe
                 e.stopPropagation()
                 formRef.current?.requestSubmit()
               }}
+              colorScheme='black'
               isLoading={isSubmitting}
             >
               {submitText || t('actions.save', { defaultValue: 'Save' })}

@@ -132,7 +132,7 @@ const SupportTicketForm = () => {
               placeholder={t('form.support.description_placeholder', { defaultValue: 'Describe your issue in detail' })}
             />
           </FormControl>
-          <Button type='submit' colorScheme='blackAlpha' mt={4}>
+          <Button type='submit' colorScheme='black' mt={4}>
             {t('form.support.submit_ticket', { defaultValue: 'Submit Ticket' })}
           </Button>
           <FormSubmitMessage

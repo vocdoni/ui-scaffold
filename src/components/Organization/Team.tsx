@@ -407,10 +407,10 @@ const ChangeRoleForm = ({ user, onClose }: ChangeRoleFormProps) => {
         </Box>
         <RoleRadioGroup currentRole={currentRole} />
         <Flex gap={2} justifyContent='flex-end' mt={4}>
-          <Button colorScheme='black' onClick={onClose}>
+          <Button variant='outline' onClick={onClose}>
             {t('role.update.cancel', { defaultValue: 'Cancel' })}
           </Button>
-          <Button isLoading={updateRole.isPending} variant='outline' type='submit'>
+          <Button isLoading={updateRole.isPending} type='submit' colorScheme='black'>
             {t('role.update.save', {
               defaultValue: 'Update role',
             })}

@@ -165,7 +165,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
             )}
           </Text>
 
-          <Button type='submit' w='full' isLoading={auth.isPending} mt={2}>
+          <Button type='submit' colorScheme='black' w='full' isLoading={auth.isPending} mt={2}>
             {is2Factor ? t('csp.receive_code', 'Receive Code') : t('csp.authenticate', 'Authenticate')}
           </Button>
 
