@@ -8,6 +8,7 @@ import {
   Icon,
   Progress,
   SimpleGrid,
+  SimpleGridProps,
   Stack,
   Text,
   Textarea,
@@ -48,6 +49,10 @@ type SubscriptionLockedContentProps = {
 
 const OrganizationSupport = () => {
   const { t } = useTranslation()
+  let columns: SimpleGridProps['columns'] = { base: 1 }
+  if (import.meta.env.PRIORITY_SUPPORT_PHONE) {
+    columns = { base: 1, md: 2 }
+  }
 
   return (
     <Box>
@@ -57,11 +62,13 @@ const OrganizationSupport = () => {
           defaultValue: 'Get help and support for your organization.',
         })}
       </Text>
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
+      <SimpleGrid columns={columns} spacing={6}>
         <SupportTicketForm />
-        <SubscriptionLockedContent>
-          {({ isLocked }) => <PhoneSupportCard isLocked={isLocked} />}
-        </SubscriptionLockedContent>
+        {import.meta.env.PRIORITY_SUPPORT_PHONE && (
+          <SubscriptionLockedContent>
+            {({ isLocked }) => <PhoneSupportCard isLocked={isLocked} />}
+          </SubscriptionLockedContent>
+        )}
       </SimpleGrid>
     </Box>
   )
