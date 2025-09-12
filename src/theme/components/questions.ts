@@ -110,8 +110,12 @@ const baseStyle = definePartsStyle({
   stack: {
     // Only for extended question type
     '&:has(img), &:has(.chakra-skeleton img)': {
-      flexDirection: 'row',
-      align: 'stretch',
+      display: 'grid',
+      gridTemplateColumns: {
+        base: '1fr',
+        md: 'repeat(2, minmax(0, 1fr))',
+        lg: 'repeat(3, minmax(0, 1fr))',
+      },
       '& label': {
         width: '100%',
         position: 'relative',
