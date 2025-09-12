@@ -3,17 +3,18 @@ import { AccountData, IAccount } from '@vocdoni/sdk'
 export type SaasOrganizationData = {
   active: boolean
   address: string
-  createdAt: string
-  website: string
-  size: string
-  type: string
-  country: string
-  timezone: string
-  language: string
-  header: string
-  subdomain: string
   color: string
-  communications: boolean
+  country: string
+  createdAt: string
+  header: string
+  language: string
+  meta: Record<string, string>
+  parent: string
+  size: string
+  subdomain: string
+  timezone: string
+  type: string
+  website: string
 }
 
 export type OrganizationData = SaasOrganizationData & AccountData
