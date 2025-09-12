@@ -1,7 +1,7 @@
 import { Box, Button, Flex, Icon, IconButton, Text, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { LuCircleHelp, LuPanelLeft, LuPlus } from 'react-icons/lu'
 import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
@@ -26,6 +26,7 @@ const LayoutDashboard: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const isMobile = useBreakpointValue({ base: true, md: false })
   const [reduced, setReduced] = useState(false)
+  const { t } = useTranslation()
 
   // Close/reduce the sidebar when the screen size changes
   useEffect(() => {
@@ -59,7 +60,7 @@ const LayoutDashboard: React.FC = () => {
             >
               <IconButton
                 icon={<LuPanelLeft />}
-                aria-label='Open menu'
+                aria-label={t('menu.open')}
                 colorScheme='gray'
                 size='xs'
                 onClick={isMobile ? onOpen : () => setReduced((prev) => !prev)}
