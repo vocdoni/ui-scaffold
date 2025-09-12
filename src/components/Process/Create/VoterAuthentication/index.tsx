@@ -313,19 +313,17 @@ export const VoterAuthentication = () => {
             </FormProvider>
           </ModalBody>
           <ModalFooter>
-            <Flex justify='space-between' w='full'>
-              <Button variant='outline' onClick={handlePrevious}>
-                {t('common.back', 'Back')}
-              </Button>
-              <Button
-                onClick={handleNext}
-                colorScheme='black'
-                isLoading={isLoading}
-                isDisabled={activeTabIndex === 2 ? hasNoCredentialsSelected : false}
-              >
-                {activeTabIndex === 2 ? t('common.confirm', 'Confirm') : t('common.next', 'Next')}
-              </Button>
-            </Flex>
+            <Button variant='ghost' onClick={handlePrevious}>
+              {t('common.back', 'Back')}
+            </Button>
+            <Button
+              onClick={handleNext}
+              colorScheme='black'
+              isLoading={isLoading}
+              isDisabled={activeTabIndex === 2 ? hasNoCredentialsSelected : false}
+            >
+              {activeTabIndex === 2 ? t('common.confirm', 'Confirm') : t('common.next', 'Next')}
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
