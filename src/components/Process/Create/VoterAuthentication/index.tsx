@@ -175,25 +175,29 @@ export const VoterAuthentication = () => {
       const currentFormData = voterAuthForm.getValues()
       const twoFaFields = currentFormData.use2FA ? getTwoFaFields(currentFormData.use2FAMethod) : []
 
-      const { id: censusId } = await createCensusMutation.mutateAsync()
-      const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
-        censusId,
-        groupId,
-        authFields: currentFormData.credentials,
-        twoFaFields,
-      })
+      try {
+        const { id: censusId } = await createCensusMutation.mutateAsync()
+        const { size: maxCensusSize } = await publishCensusMutation.mutateAsync({
+          censusId,
+          groupId,
+          authFields: currentFormData.credentials,
+          twoFaFields,
+        })
 
-      mainForm.setValue('census', {
-        id: censusId,
-        credentials: currentFormData.credentials,
-        use2FA: currentFormData.use2FA,
-        use2FAMethod: currentFormData.use2FAMethod ?? null,
-        size: maxCensusSize,
-      })
-      mainForm.setValue('censusId', censusId)
-      setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
-      onClose()
-      resetForm()
+        mainForm.setValue('census', {
+          id: censusId,
+          credentials: currentFormData.credentials,
+          use2FA: currentFormData.use2FA,
+          use2FAMethod: currentFormData.use2FAMethod ?? null,
+          size: maxCensusSize,
+        })
+        mainForm.setValue('censusId', censusId)
+        setStepCompletion((prev) => ({ ...prev, step2Completed: true }))
+        onClose()
+        resetForm()
+      } catch (error) {
+        setValidationError(error.apiError as ValidationError)
+      }
     }
   }
 
