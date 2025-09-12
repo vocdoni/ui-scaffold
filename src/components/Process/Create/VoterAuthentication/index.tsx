@@ -206,6 +206,8 @@ export const VoterAuthentication = () => {
       step2Completed: false,
     })
     setValidationError(null)
+    // clear possible main form census validation errors
+    mainForm.clearErrors('census')
   }
 
   const handleTabChange = (index: number) => {
