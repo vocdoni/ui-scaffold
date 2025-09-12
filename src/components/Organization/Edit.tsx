@@ -62,7 +62,6 @@ const EditOrganization = () => {
         value: organization.type,
       },
       country: organization?.country,
-      communications: organization?.communications || false,
       avatar: organization?.account.avatar || '',
       header: organization?.account.header || '',
     },
@@ -77,7 +76,6 @@ const EditOrganization = () => {
       size: values.size?.value,
       type: values.type?.value,
       country: values.country?.value,
-      communications: values.communications,
     }
 
     try {

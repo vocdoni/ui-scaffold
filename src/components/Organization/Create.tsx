@@ -46,7 +46,6 @@ const useOrganizationCreate = (
           size: values.size?.value,
           country: values.country?.value,
           type: values.type?.value,
-          communications: values.communications,
         },
         method: 'POST',
       })
