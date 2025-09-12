@@ -1,4 +1,4 @@
-import { Box, Checkbox, FormControl, FormErrorMessage, FormLabel, Text, Textarea, VStack } from '@chakra-ui/react'
+import { Box, FormControl, FormLabel, Text, Textarea, VStack } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { CountrySelector } from '~shared/Form/CountrySelector'
@@ -42,15 +42,10 @@ export type PrivateOrgFormData = {
   size: SelectOptionType
   type: SelectOptionType
   country: SelectOptionType
-  communications: boolean
 }
 
 export const PrivateOrgForm = ({ minified }: { minified?: boolean }) => {
   const { t } = useTranslation()
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext<PrivateOrgFormData>()
 
   return (
     <>
@@ -69,16 +64,6 @@ export const PrivateOrgForm = ({ minified }: { minified?: boolean }) => {
       <MembershipSizeSelector name='size' required />
       <OrganizationTypeSelector name='type' required />
       <CountrySelector name='country' />
-      {!minified && (
-        <FormControl as='fieldset' isInvalid={!!errors?.communications}>
-          <Checkbox {...register('communications')}>
-            {t('create_org.communication', {
-              defaultValue: 'I want to receive communications and be contacted to tailor my governance experience.',
-            })}
-          </Checkbox>
-          <FormErrorMessage>{errors?.communications?.message.toString()}</FormErrorMessage>
-        </FormControl>
-      )}
     </>
   )
 }
