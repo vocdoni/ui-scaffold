@@ -182,6 +182,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
                       {...methods.register(col.id, {
                         ...(fieldValidations[col.id] || {}),
                       })}
+                      placeholder={hadPhone && isPhone ? '•••••••••••' : ''}
                       type={isBirthdate ? 'date' : isPhone ? 'tel' : 'text'}
                       required={false} // we don't want HTML5 validation
                     />
