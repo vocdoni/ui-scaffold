@@ -155,7 +155,7 @@ export const ExportMembers = () => {
                   </Box>
                 </Box>
               </ModalBody>
-              <ModalFooter display='flex' justifyContent='flex-end' gap={2}>
+              <ModalFooter>
                 <Button variant='outline' onClick={onClose}>
                   {t('memberbase.exporter.cancel', { defaultValue: 'Cancel' })}
                 </Button>

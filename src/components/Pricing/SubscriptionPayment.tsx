@@ -148,14 +148,12 @@ export const SubscriptionPaymentModal = ({ isOpen, onClose, ...props }: ModalPro
         </ModalBody>
 
         <ModalFooter>
-          <Box>
-            <Text>
-              <Trans i18nKey='pricing.help'>Need some help?</Trans>
-            </Text>
-            <Button as={ReactRouterLink} to={Routes.contact}>
-              <Trans i18nKey='contact_us'>Contact us</Trans>
-            </Button>
-          </Box>
+          <Text>
+            <Trans i18nKey='pricing.help'>Need some help?</Trans>
+          </Text>
+          <Button as={ReactRouterLink} to={Routes.contact}>
+            <Trans i18nKey='contact_us'>Contact us</Trans>
+          </Button>
         </ModalFooter>
       </ModalContent>
     </Modal>
