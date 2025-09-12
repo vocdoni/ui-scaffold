@@ -16,6 +16,7 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
+import { useOrganization } from '@vocdoni/react-providers'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuBuilding, LuChevronLeft, LuChevronRight, LuChevronsUpDown, LuLogOut, LuUserPen } from 'react-icons/lu'
@@ -32,6 +33,7 @@ const UserProfile = () => {
   const { t } = useTranslation()
   const { logout } = useAuth()
   const { data: profile } = useProfile()
+  const { organization } = useOrganization()
   const { reduced } = useContext(DashboardLayoutContext)
   const variant = useBreakpointValue({
     base: false,
@@ -82,7 +84,7 @@ const UserProfile = () => {
                 maxW={'165px'}
                 isTruncated
               >
-                {profile.email}
+                {organization.account.name.default}
               </Text>
             </Flex>
           )}
