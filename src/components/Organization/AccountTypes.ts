@@ -8,7 +8,6 @@ export type SaasOrganizationData = {
   createdAt: string
   header: string
   language: string
-  meta: Record<string, string>
   parent: string
   size: string
   subdomain: string
