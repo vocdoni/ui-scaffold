@@ -462,7 +462,7 @@ export const ProcessCreate = () => {
   const { groupId } = useParams()
   const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(true)
-  const methods = useForm({
+  const methods = useForm<Process>({
     defaultValues: {
       ...defaultProcessValues,
       groupId,

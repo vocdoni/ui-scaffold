@@ -24,6 +24,7 @@ import { Select } from '~components/shared/Form/Select'
 import { useGroups } from '~src/queries/groups'
 import { Routes } from '~src/router/routes'
 import { VoterAuthentication } from '../VoterAuthentication'
+import { Process } from '../common'
 
 export const GroupSelect = () => {
   const { t } = useTranslation()
@@ -113,9 +114,11 @@ export const GroupSelect = () => {
 
 const GroupCensusCreation = () => {
   const { t } = useTranslation()
-  const { register, watch, formState, getFieldState } = useFormContext()
-  const censusIdError = getFieldState('censusId', formState).error
-
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useFormContext<Process>()
   const censusType = watch('censusType')
 
   return (
@@ -123,17 +126,17 @@ const GroupCensusCreation = () => {
       <GroupSelect />
       <VoterAuthentication />
 
-      <FormControl isInvalid={!!censusIdError}>
+      <FormControl isInvalid={!!errors.census}>
         <Input
           type='hidden'
-          {...register('censusId', {
+          {...register('census', {
             required: {
               value: censusType === CensusTypes.CSP,
               message: t('form.error.census_config_required', 'Please configure the census authentication settings.'),
             },
           })}
         />
-        <FormErrorMessage>{censusIdError?.message?.toString()}</FormErrorMessage>
+        <FormErrorMessage>{errors.census?.message?.toString()}</FormErrorMessage>
       </FormControl>
     </Box>
   )
