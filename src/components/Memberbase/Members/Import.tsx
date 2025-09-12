@@ -274,7 +274,9 @@ export const ImportProgress = () => {
             </UnorderedList>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={onCloseErrors}>{t('close', { defaultValue: 'Close' })}</Button>
+            <Button variant='ghost' onClick={onCloseErrors}>
+              {t('close', { defaultValue: 'Close' })}
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

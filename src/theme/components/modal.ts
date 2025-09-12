@@ -17,7 +17,7 @@ const baseStyle = definePartsStyle({
     borderColor: 'table.border',
   },
   footer: {
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   header: {
     display: 'flex',
