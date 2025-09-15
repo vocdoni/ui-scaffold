@@ -174,7 +174,7 @@ const ProcessInfoPanel = () => {
 
 export const ProcessView = () => {
   const { t } = useTranslation()
-  const { election } = useElection()
+  const { election, voted } = useElection()
   const videoRef = useRef<HTMLDivElement>(null)
   const electionRef = useRef<HTMLDivElement>(null)
   const [tabIndex, setTabIndex] = useState(0)
@@ -220,6 +220,12 @@ export const ProcessView = () => {
     }
   }, [formErrors])
 
+  useEffect(() => {
+    if (voted) {
+      electionRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [voted])
+
   return (
     <Grid templateColumns={{ base: '1fr', xl: 'minmax(0,1fr) 360px' }} gap={6} alignItems='start' mx='auto'>
       <GridItem>
@@ -249,7 +255,15 @@ export const ProcessView = () => {
             </TabList>
             <TabPanels mt={6}>
               <TabPanel p={0}>
-                <Box ref={electionRef} p={6} mt={6} border='1px solid' borderColor='table.border' borderRadius='md'>
+                <Box
+                  ref={electionRef}
+                  p={6}
+                  mt={6}
+                  border='1px solid'
+                  borderColor='table.border'
+                  borderRadius='md'
+                  scrollMarginTop='70px'
+                >
                   <ElectionQuestions
                     onInvalid={(args) => {
                       setFormErrors(args)
