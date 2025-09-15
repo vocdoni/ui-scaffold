@@ -192,6 +192,9 @@
     "code_info": "Rebràs un codi únic al mitjà seleccionat per verificar la teva identitat i completar l'autenticació",
     "contact_match_help": "Ha de coincidir amb el registrat al sistema",
     "data_usage_info": "Les teves dades només s'utilitzaran per verificar la teva identitat. Vocdoni no emmagatzema dades personals.",
+    "errors": {
+      "participant_not_found": "The voter is not listed in the census, or the provided credentials are incorrect."
+    },
     "fields": {
       "birthDate": "Data de naixement",
       "contact": "Contacte",
