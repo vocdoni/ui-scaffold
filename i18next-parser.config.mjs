@@ -8,7 +8,7 @@ export default {
   // Key separator used in your translation keys
 
   createOldCatalogs: true,
-  // Save the \_old files
+  // Save the old files
 
   defaultNamespace: 'translation',
   // Default namespace used in your i18next config
