@@ -177,7 +177,6 @@
   },
   "create_org": {
     "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
-    "communication": "Vull rebre comunicacions i ser contactat per adaptar la meva experiència de governança.",
     "create_button": "Create your organization",
     "organization_details": "Organization Details",
     "organization_details_description": "Manage your organization's profile and configuration settings.",
@@ -1061,9 +1060,6 @@
     "terms": "Termes",
     "wallet": "Cartera"
   },
-  "more_than_users_one": "més d'un usuari'",
-  "more_than_users_many": "",
-  "more_than_users_other": "més de {{ count }} usuaris",
   "name": "Name",
   "navbar": {
     "contact": "Contact Us",
@@ -1084,6 +1080,9 @@
   "new_voting": "Nova votació",
   "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "No tens un compte?",
+  "number_of_members_one": "{{ count }} membre de l'equip",
+  "number_of_members_many": "{{ count }} team member",
+  "number_of_members_other": "{{ count }} membres de l'equip",
   "open_in_explorer": "Obre a l'explorador",
   "or_continue_with": "or continue with",
   "org_type_selector": {
@@ -1175,10 +1174,10 @@
     "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
   },
   "plan_upgrade": {
-    "dont_limit_yourself": "No et limitis. Uneix-te a la família de 725 organitzacions que confien en <2>Vocdoni</2>.",
-    "feature_available_in": "Funció disponible a:",
-    "feature_unavailable": "Ups... el teu <2>pla {{ plan, lowercase }}</2> no suporta {{ feature }}.",
-    "satisfaction_rate": "Satisfacció del 97%, per només 9€/mes."
+    "cancel": "Cancel·la",
+    "see_plans": "Veure Plans",
+    "subtitle": "El teu pla actual només permet {{ memberLimit }} per a la col·laboració. Actualitza el teu pla per afegir més membres de l'equip i desbloquejar funcions avançades.",
+    "title": "Actualitza per afegir més membres de l'equip"
   },
   "preferences": "Preferències",
   "preview": "Preview",
@@ -1787,7 +1786,6 @@
   },
   "view_in_explorer": "View in explorer",
   "view_plans_and_pricing": "Veure Plans i Preus",
-  "view_pricing_plans": "View Pricing Plans",
   "vocdoni logo": "",
   "vote_information": "Vote information",
   "vote_overwrite": "Vote overwrite",
