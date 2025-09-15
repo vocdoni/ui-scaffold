@@ -12,6 +12,7 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys, useAuthProvider } from '~components/Auth/useAuthProvider'
 import { CreateOrgParams } from '~components/Organization/AccountTypes'
+import { SetupStepIds, useOrganizationSetup } from '~queries/organization'
 import FormSubmitMessage from '~shared/Layout/FormSubmitMessage'
 import { QueryKeys } from '~src/queries/keys'
 import { Routes } from '~src/router/routes'
@@ -97,6 +98,7 @@ export const OrganizationCreate = ({
   const { fetchAccount } = useClient()
   const { handleSubmit } = methods
   const { trackPlausibleEvent } = useAnalytics()
+  const { setStepDoneAsync } = useOrganizationSetup()
 
   const {
     mutateAsync: createOrganization,
@@ -105,6 +107,7 @@ export const OrganizationCreate = ({
   } = useOrganizationCreate({
     onSuccess: async () => {
       trackPlausibleEvent({ name: AnalyticsEvent.OrganizationCreated })
+      await setStepDoneAsync(SetupStepIds.organizationDetails)
       navigate(onSuccessRoute)
       setTimeout(async () => {
         await fetchAccount()
