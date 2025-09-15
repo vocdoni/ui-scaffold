@@ -141,7 +141,7 @@
     "vote": {
       "abstain": "Abstenció",
       "button": "Vota",
-      "button_update": "Torna a enviar el vot",
+      "button_update": "Canviar el meu vot",
       "confirm": "Confirma les teves seleccions:",
       "sign": "Signa abans de votar",
       "voted_description": "Per verificar el teu vot, pots utilitzar aquesta identificació única: {{ id }}",

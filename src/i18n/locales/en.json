@@ -138,7 +138,7 @@
     "vote": {
       "abstain": "Abstain",
       "button": "Vote",
-      "button_update": "Re-submit vote",
+      "button_update": "Change my vote",
       "confirm": "Please confirm your choices:",
       "sign": "Sign first",
       "voted_description": "To verify your vote, you can use this unique identifier: {{ id }}",
