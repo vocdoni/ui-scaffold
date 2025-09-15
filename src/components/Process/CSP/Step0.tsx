@@ -110,8 +110,6 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
     return 'text'
   }
 
-  console.log(auth)
-
   return (
     <VStack spacing={6} align='stretch' w='full'>
       <form onSubmit={handleSubmit(onSubmit)}>

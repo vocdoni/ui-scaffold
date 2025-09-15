@@ -141,7 +141,7 @@
     "vote": {
       "abstain": "Abstenerse",
       "button": "Votar",
-      "button_update": "Reenviar voto",
+      "button_update": "Cambiar mi voto",
       "confirm": "Confirma tus selecciones:",
       "sign": "Firma antes de votar",
       "voted_description": "Para verificar tu voto, puedes utilizar este identificador único: {{ id }}",
