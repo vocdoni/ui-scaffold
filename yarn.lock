@@ -3171,11 +3171,11 @@
     react-refresh "^0.14.2"
 
 "@vocdoni/chakra-components@^1.0.0-beta.1":
-  version "1.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-1.0.0-beta.2.tgz#c4d1ad8e2d4e50048ea55e54ec5286f17879e399"
-  integrity sha512-/qlswk5aAhTdOxMhvGhMzDryfOhCHy8JhgwIsupapdLYsE7xHIlvTxE7nnsTZQziTOeNwvLKQEzfGnJebiPZVA==
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-1.0.0-beta.3.tgz#a6a0d8e368d4a6dac01350e945a2b68bcf2a9bcd"
+  integrity sha512-pPUzft3JGJKgtNCtXO6qrIEAfivxdX9WtEYzPa6TeP+4hdCGfNWXFvHD+UJFyV7fkpWBvaKr9hJ+PLj8LLFMYA==
   dependencies:
-    "@vocdoni/react-providers" "^1.0.0-beta.2"
+    "@vocdoni/react-providers" "^1.0.0-beta.3"
 
 "@vocdoni/proto@1.15.9":
   version "1.15.9"
@@ -3192,10 +3192,10 @@
   dependencies:
     crypto-js "^4.2.0"
 
-"@vocdoni/react-providers@^1.0.0-beta.2":
-  version "1.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-1.0.0-beta.2.tgz#683d3484b8f5005448ccc6213849e246870e82d5"
-  integrity sha512-t4rxhFhKnr/GuRgWZdPwphPkALqa+1ld3NBamZ/hsU1p9nI3/jYMnVctYH6OFOft3RSM9dCwRef1Wzx7QmmUQA==
+"@vocdoni/react-providers@^1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@vocdoni/react-providers/-/react-providers-1.0.0-beta.3.tgz#c86ca7b7117487eb1b7074b78235a1efcd10d1f1"
+  integrity sha512-yVuaklhzflgH6P1BwA0nw0sUqqCae1axxGtUcICdwl7bqUOLPCTJYnGRTUUteYXWxnTOffWNpYEH0hTHBK8hmQ==
   dependencies:
     up-fetch "^2.4.0"
 
