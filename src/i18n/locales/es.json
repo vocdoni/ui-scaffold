@@ -1443,9 +1443,9 @@
         "modal_title": "Extra census methods"
       },
       "group": {
-        "label": "Group"
+        "label": "Grupo",
+        "no_groups": "No tienes ningún grupo aún. <2>Crea uno aquí</2> para iniciar un proceso."
       },
-      "label": "Census creation",
       "memberbase": {
         "label": "Select a group of members to create the census"
       },
