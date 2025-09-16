@@ -174,7 +174,6 @@
   },
   "create_org": {
     "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
-    "communication": "I want to receive communications and be contacted to tailor my governance experience.",
     "create_button": "Create your organization",
     "organization_details": "Organization Details",
     "organization_details_description": "Manage your organization's profile and configuration settings.",
@@ -1045,8 +1044,6 @@
     "terms": "Terms",
     "wallet": "Wallet"
   },
-  "more_than_users_one": "more than {{ count }} users",
-  "more_than_users_other": "more than {{ count }} users",
   "name": "Name",
   "navbar": {
     "contact": "Contact Us",
@@ -1067,6 +1064,8 @@
   "new_voting": "New vote",
   "no_results_filtering": "Your current search filter returns no results",
   "not_registred_yet": "Don't have an account?",
+  "number_of_members_one": "{{ count }} team member",
+  "number_of_members_other": "{{ count }} team members",
   "open_in_explorer": "Open in explorer",
   "or_continue_with": "or continue with",
   "org_type_selector": {
@@ -1158,10 +1157,10 @@
     "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
   },
   "plan_upgrade": {
-    "dont_limit_yourself": "Don't limit yourself. Join the family of 725 orgs that trust <2>Vocdoni</2>.",
-    "feature_available_in": "Feature available in:",
-    "feature_unavailable": "Oops ... your <2>{{ plan, lowercase }} plan</2> doesn't support {{feature}}.",
-    "satisfaction_rate": "97% satisfaction rate, for only 9€/month."
+    "cancel": "Cancel",
+    "see_plans": "See Plans",
+    "subtitle": "Your current plan allows only {{ memberLimit }} for collaboration. Upgrade your plan to add more team members and unlock advanced features.",
+    "title": "Upgrade to add more team members"
   },
   "preferences": "Preferences",
   "preview": "Preview",
@@ -1768,7 +1767,6 @@
   },
   "view_in_explorer": "View in explorer",
   "view_plans_and_pricing": "View Plans & Pricing",
-  "view_pricing_plans": "View Pricing Plans",
   "vocdoni logo": "Vocdoni logo",
   "vote_information": "Vote information",
   "vote_overwrite": "Vote overwrite",

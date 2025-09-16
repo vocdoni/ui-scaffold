@@ -323,7 +323,7 @@ export const useRemoveUserMutation = () => {
     mutationFn: async (id: number) =>
       await bearedFetch(
         ApiEndpoints.OrganizationUser.replace('{address}', ensure0x(organization.address)).replace(
-          '{memberId}',
+          '{userId}',
           String(id)
         ),
         { method: 'DELETE' }
