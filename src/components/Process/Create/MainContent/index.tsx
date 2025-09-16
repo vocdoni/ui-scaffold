@@ -1,4 +1,17 @@
-import { Box, Button, Flex, Icon, useDisclosure, VStack } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Icon,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+  VStack,
+} from '@chakra-ui/react'
 import {
   closestCenter,
   DndContext,
@@ -14,8 +27,12 @@ import { useState } from 'react'
 import { useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuPlus } from 'react-icons/lu'
+import { Link } from 'react-router-dom'
+import { useAnalytics } from '~components/AnalyticsProvider'
 import { DashboardSection } from '~components/shared/Dashboard/Contents'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
+import { Routes } from '~routes'
+import { AnalyticsEvent } from '~utils/analytics'
 import { DefaultQuestions, SelectorTypes } from '../common'
 import { QuestionForm } from './QuestionForm'
 import { QuestionType } from './QuestionType'
@@ -44,9 +61,52 @@ const DeleteQuestionModal = ({ isOpen, onClose, removeQuestion }) => {
   )
 }
 
+const AddMultipleQuestionModal = ({ isOpen, onClose }) => {
+  const { t } = useTranslation()
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent p={5}>
+        <ModalHeader p={0}>
+          <Flex flexDirection='column' gap={3}>
+            <Heading size='sm'>
+              {t('process.create.question.add_multiple.title', {
+                defaultValue: 'Multi-question multiple-choice is not available yet',
+              })}
+            </Heading>
+            <Box fontSize='sm' color='texts.subtle'>
+              {t('process.create.question.add_multiple.description', {
+                defaultValue:
+                  'Creating processes with more than one multiple-choice question is currently not available. If you need this type of process, please contact us.',
+              })}
+            </Box>
+          </Flex>
+        </ModalHeader>
+        <ModalBody p={0}>
+          <Flex justifyContent='flex-end' mt={4} gap={2}>
+            <Button variant='outline' onClick={onClose}>
+              {t('process.create.question.add_multiple.cancel_button', { defaultValue: 'Cancel' })}
+            </Button>
+            <Button as={Link} to={Routes.dashboard.settings.support} colorScheme='black'>
+              {t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact Us' })}
+            </Button>
+          </Flex>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  )
+}
+
 export const Questions = () => {
+  const { trackPlausibleEvent } = useAnalytics()
   const { control, watch } = useFormContext()
   const { isOpen, onClose, onOpen } = useDisclosure()
+  const {
+    isOpen: isAddMultipleQuestionsOpen,
+    onClose: onAddMultipleQuestionsClose,
+    onOpen: onAddMultipleQuestionsOpen,
+  } = useDisclosure()
   const [pendingDeleteIndex, setPendingDeleteIndex] = useState<number | null>(null)
   const { fields, append, remove, move } = useFieldArray({
     control,
@@ -61,7 +121,14 @@ export const Questions = () => {
     })
   )
 
-  const addQuestion = () => append(DefaultQuestions[questionType])
+  const addQuestion = () => {
+    if (questionType === SelectorTypes.Single) {
+      append(DefaultQuestions[questionType])
+    } else {
+      trackPlausibleEvent({ name: AnalyticsEvent.TriedMultiquestionMultichoice })
+      onAddMultipleQuestionsOpen()
+    }
+  }
 
   const removeQuestion = (index) => {
     remove(index)
@@ -113,11 +180,10 @@ export const Questions = () => {
         removeQuestion={() => removeQuestion(pendingDeleteIndex)}
       />
 
-      {questionType === SelectorTypes.Single && (
-        <Button leftIcon={<Icon as={LuPlus} />} variant='outline' onClick={addQuestion}>
-          <Trans i18nKey='process.create.question.add'>Add question</Trans>
-        </Button>
-      )}
+      <Button leftIcon={<Icon as={LuPlus} />} variant='outline' onClick={addQuestion}>
+        <Trans i18nKey='process.create.question.add'>Add question</Trans>
+      </Button>
+      <AddMultipleQuestionModal isOpen={isAddMultipleQuestionsOpen} onClose={onAddMultipleQuestionsClose} />
     </VStack>
   )
 }

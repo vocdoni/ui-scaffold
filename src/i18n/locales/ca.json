@@ -1289,6 +1289,12 @@
       },
       "question": {
         "add": "Add question",
+        "add_multiple": {
+          "cancel_button": "Cancel·la",
+          "contact_button": "Contacta'ns",
+          "description": "La creació de processos amb més d'una pregunta de selecció múltiple no està disponible actualment. Si necessiteu aquest tipus de procés, si us plau, contacteu amb nosaltres.",
+          "title": "Els processos de selecció múltiple amb diverses preguntes no estan disponibles actualment."
+        },
         "delete": {
           "cancel_button": "Cancel",
           "delete_button": "Delete",
