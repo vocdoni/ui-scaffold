@@ -24,6 +24,7 @@ import { useSaasAccount } from '~components/Account/SaasAccountProvider'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
+import { DashboardBox } from '~components/shared/Dashboard/Contents'
 import { SubscriptionPermission } from '~constants'
 import InputBasic from '~shared/Form/InputBasic'
 import FormSubmitMessage from '~shared/Layout/FormSubmitMessage'
@@ -55,9 +56,9 @@ const OrganizationSupport = () => {
   }
 
   return (
-    <Box>
+    <DashboardBox p={6}>
       <Heading size='md'>{t('organization_settings.support.title', { defaultValue: 'Support' })}</Heading>
-      <Text mb={8} color='gray.500'>
+      <Text mb={8} color='texts.dark'>
         {t('organization_settings.support.description', {
           defaultValue: 'Get help and support for your organization.',
         })}
@@ -70,7 +71,7 @@ const OrganizationSupport = () => {
           </SubscriptionLockedContent>
         )}
       </SimpleGrid>
-    </Box>
+    </DashboardBox>
   )
 }
 
@@ -194,7 +195,7 @@ const SubscriptionLockedContent = ({ children }: SubscriptionLockedContentProps)
               defaultValue: 'Phone Support is available with a Custom plan',
             })}
           </Text>
-          <Text fontSize='sm' color='gray.500' mb={4}>
+          <Text fontSize='sm' color='texts.dark' mb={4}>
             {t('organization_settings.phone_support.locked_description', {
               defaultValue: 'Upgrade to our Custom plan to get priority phone support with dedicated agents.',
             })}
@@ -203,7 +204,7 @@ const SubscriptionLockedContent = ({ children }: SubscriptionLockedContentProps)
             as={ReactRouterLink}
             to={generatePath(Routes.dashboard.settings.subscription)}
             leftIcon={<Icon as={LuSparkles} mr={2} />}
-            colorScheme='blackAlpha'
+            colorScheme='black'
           >
             {t('organization_settings.phone_support.unlock', {
               defaultValue: 'Unlock Phone Support',
@@ -227,7 +228,7 @@ const PhoneSupportCard = ({ isLocked }) => {
       <Heading size='md' mb={1}>
         {t('organization_settings.phone_support.title', { defaultValue: 'Phone Support' })}
       </Heading>
-      <Text fontSize='sm' color='gray.500' mb={6}>
+      <Text fontSize='sm' color='text.subtle' mb={6}>
         {t('organization_settings.phone_support.description', {
           defaultValue: 'Available for Custom plan subscribers only.',
         })}
@@ -259,7 +260,7 @@ const PhoneSupportCard = ({ isLocked }) => {
             <Text fontSize='lg' fontWeight='bold'>
               {maskValue(prioritySupportPhone, isLocked)}
             </Text>
-            <Text fontSize='sm' color='gray.500'>
+            <Text fontSize='sm' color='text.dark'>
               {t('organization_settings.phone_support.priority_support_line_description', {
                 defaultValue: 'Available Monday–Friday, 9:00–18:00 CET',
               })}
@@ -280,7 +281,7 @@ const PhoneSupportCard = ({ isLocked }) => {
             justifyContent='center'
             mr={3}
           >
-            ID
+            {t('organization_settings.phone_support.id', { defaultValue: 'ID' })}
           </Box>
           <Box>
             <Text fontWeight='medium'>
