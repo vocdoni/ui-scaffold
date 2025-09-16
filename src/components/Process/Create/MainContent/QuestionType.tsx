@@ -11,7 +11,7 @@ interface SelectOption {
 
 export const QuestionType = () => {
   const { t } = useTranslation()
-  const { control, setValue, getValues, register } = useFormContext()
+  const { control, setValue, getValues } = useFormContext()
 
   return (
     <Box display='flex' alignItems='center' justifyContent='space-between'>
@@ -25,7 +25,7 @@ export const QuestionType = () => {
           </Trans>
         </Text>
       </Box>
-      <HStack>
+      <HStack spacing={4}>
         <FormControl display='flex' alignItems='center'>
           <FormLabel htmlFor='extended-info' mb='0'>
             <Trans i18nKey='process.extended_info'>Extended info</Trans>
@@ -38,38 +38,41 @@ export const QuestionType = () => {
             )}
           />
         </FormControl>
-        <Controller
-          control={control}
-          name='questionType'
-          rules={{ required: t('form.error.field_is_required', 'This field is required') }}
-          render={({ field }) => {
-            const options: SelectOption[] = [
-              { value: SelectorTypes.Single, label: t('process.question_type.single', 'Single choice') },
-              { value: SelectorTypes.Multiple, label: t('process.question_type.multiple', 'Multiple choice') },
-            ]
-            const selectedOption = options.find((opt) => opt.value === field.value)
+        <Box>
+          <Controller
+            control={control}
+            name='questionType'
+            rules={{ required: t('form.error.field_is_required', 'This field is required') }}
+            render={({ field }) => {
+              const options: SelectOption[] = [
+                { value: SelectorTypes.Single, label: t('process.question_type.single', 'Single choice') },
+                { value: SelectorTypes.Multiple, label: t('process.question_type.multiple', 'Multiple choice') },
+              ]
+              const selectedOption = options.find((opt) => opt.value === field.value)
 
-            return (
-              <Select
-                value={selectedOption}
-                onChange={(option: SelectOption) => {
-                  const newType = option?.value
-                  field.onChange(newType)
-                  const oldQuestion = getValues('questions')[0]
-                  setValue('questions', [
-                    {
-                      ...DefaultQuestions[newType],
-                      ...oldQuestion,
-                    },
-                  ])
-                }}
-                options={options}
-                placeholder={t('process.question_type.single', 'Single choice')}
-                menuPortalTarget={document.body}
-              />
-            )
-          }}
-        />
+              return (
+                <Select
+                  value={selectedOption}
+                  onChange={(option: SelectOption) => {
+                    const newType = option?.value
+                    field.onChange(newType)
+                    const oldQuestion = getValues('questions')[0]
+                    setValue('questions', [
+                      {
+                        ...DefaultQuestions[newType],
+                        ...oldQuestion,
+                      },
+                    ])
+                  }}
+                  options={options}
+                  placeholder={t('process.question_type.single', 'Single choice')}
+                  menuPortalTarget={document.body}
+                  chakraStyles={{ container: (p) => ({ ...p, width: 'max-content', maxWidth: '100%' }) }}
+                />
+              )
+            }}
+          />
+        </Box>
       </HStack>
     </Box>
   )
