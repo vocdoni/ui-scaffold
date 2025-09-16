@@ -211,7 +211,7 @@ export const ProcessView = () => {
             <Trans i18nKey='questions_and_results'>Questions and results</Trans>
             <ResultsStateBadge />
           </Heading>
-          <ElectionResults />
+          <ElectionResults forceRender />
         </DashboardBox>
       </Box>
 
