@@ -11,6 +11,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  Text,
 } from '@chakra-ui/react'
 import { chakraComponents } from 'chakra-react-select'
 import { useEffect, useState } from 'react'
@@ -21,12 +22,18 @@ import { CensusTypes, CensusTypeValues } from '~components/Process/Census/Census
 import { CensusCsvManager } from '~components/Process/Census/Spreadsheet'
 import { CensusWeb3Addresses } from '~components/Process/Census/Web3'
 import { Select } from '~components/shared/Form/Select'
-import { useGroups } from '~src/queries/groups'
-import { Routes } from '~src/router/routes'
+import { Routes } from '~routes'
+import { Group, useGroups } from '~src/queries/groups'
 import { VoterAuthentication } from '../VoterAuthentication'
 import { Process } from '../common'
 
-export const GroupSelect = () => {
+type GroupsQuery = ReturnType<typeof useGroups>
+
+export type GroupSelectProps = {
+  groups: Group[]
+} & Pick<GroupsQuery, 'fetchNextPage' | 'hasNextPage' | 'isFetching'>
+
+export const GroupSelect = ({ groups, fetchNextPage, hasNextPage, isFetching }: GroupSelectProps) => {
   const { t } = useTranslation()
   const {
     watch,
@@ -35,7 +42,6 @@ export const GroupSelect = () => {
   } = useFormContext()
   const censusType = watch('censusType')
   const [hasFetchedScroll, setHasFetchedScroll] = useState(false)
-  const { data, fetchNextPage, hasNextPage, isFetching } = useGroups(6)
 
   const CustomMenuList = (props) => {
     return (
@@ -59,20 +65,6 @@ export const GroupSelect = () => {
     <FormControl isInvalid={!!errors.groupId}>
       <FormLabel>
         <Trans i18nKey='process_create.census.memberbase.label'>Select a group of members to create the census</Trans>
-        {(!data || data.length === 0) && (
-          <>
-            . If you don't have any yet, create one first{' '}
-            <Link
-              as={ReactRouterLink}
-              to={Routes.dashboard.memberbase.base}
-              color='blue.500'
-              _hover={{ textDecoration: 'underline' }}
-            >
-              here
-            </Link>
-            .
-          </>
-        )}
       </FormLabel>
       <Controller
         control={control}
@@ -84,10 +76,10 @@ export const GroupSelect = () => {
           },
         }}
         render={({ field }) => {
-          const selected = data?.find((g) => g.id === field.value) ?? null
+          const selected = groups?.find((g) => g.id === field.value) ?? null
           return (
             <Select
-              options={data ?? []}
+              options={groups ?? []}
               value={selected}
               getOptionLabel={(option) => option.title}
               getOptionValue={(option) => option.id}
@@ -120,11 +112,33 @@ const GroupCensusCreation = () => {
     formState: { errors },
   } = useFormContext<Process>()
   const censusType = watch('censusType')
+  const { data: groups, fetchNextPage, hasNextPage, isFetching } = useGroups(6)
 
   return (
     <Box display='flex' flexDirection='column' gap={4}>
-      <GroupSelect />
-      <VoterAuthentication />
+      {groups?.length > 0 && (
+        <>
+          <GroupSelect
+            groups={groups}
+            fetchNextPage={fetchNextPage}
+            hasNextPage={hasNextPage}
+            isFetching={isFetching}
+          />
+          <VoterAuthentication />
+        </>
+      )}
+
+      {(!groups || groups?.length === 0) && (
+        <Text fontSize='xs' color='texts.subtle'>
+          <Trans i18nKey='process_create.census.group.no_groups'>
+            You don't have any groups yet.{' '}
+            <Link as={ReactRouterLink} to={Routes.dashboard.memberbase.base} textDecoration='underline'>
+              Create one here
+            </Link>{' '}
+            to start a process.
+          </Trans>
+        </Text>
+      )}
 
       <FormControl isInvalid={!!errors.census}>
         <Input
