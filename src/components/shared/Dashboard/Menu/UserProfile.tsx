@@ -84,7 +84,7 @@ const UserProfile = () => {
                 maxW={'165px'}
                 isTruncated
               >
-                {organization.account.name.default}
+                {organization?.account?.name?.default}
               </Text>
             </Flex>
           )}
