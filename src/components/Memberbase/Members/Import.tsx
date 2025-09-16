@@ -216,7 +216,7 @@ export const ImportProgress = () => {
         <Text>
           {t('import_progress.description', {
             defaultValue:
-              'Your member data is being imported. This may take a few minutes depending on the size of your file.',
+              'Your member data has been imported, but some errors occurred, and because of that some users have missing fields.',
           })}
         </Text>
         <Text fontSize='sm'>
