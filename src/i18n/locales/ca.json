@@ -847,7 +847,7 @@
   },
   "import_progress": {
     "completed_with_errors": "Import Completed with Errors",
-    "completed_with_errors_description": "Your member data has been imported, but some errors occurred. Please review the details below.",
+    "completed_with_errors_description": "Les teves dades d'usuari s'han importat, però han ocorregut alguns errors, i a causa d'això alguns usuaris tenen camps buits.",
     "description": "Your member data is being imported. This may take a few minutes depending on the size of your file.",
     "error_description": "An error occurred while importing your member data. Please try again later.",
     "error_modal_title": "Import Errors",
