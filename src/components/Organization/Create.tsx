@@ -1,7 +1,7 @@
 import { Button, Flex, FlexProps, Link, Text } from '@chakra-ui/react'
 
 import { useMutation, UseMutationOptions, useQueryClient } from '@tanstack/react-query'
-import { useClient } from '@vocdoni/react-providers'
+import { enforceHexPrefix, useClient } from '@vocdoni/react-providers'
 import { Account, RemoteSigner } from '@vocdoni/sdk'
 import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -12,7 +12,7 @@ import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { LocalStorageKeys, useAuthProvider } from '~components/Auth/useAuthProvider'
 import { CreateOrgParams } from '~components/Organization/AccountTypes'
-import { SetupStepIds, useOrganizationSetup } from '~queries/organization'
+import { OrganizationMetaKeys, OrganizationMetaResponse, SetupStepIds } from '~queries/organization'
 import FormSubmitMessage from '~shared/Layout/FormSubmitMessage'
 import { QueryKeys } from '~src/queries/keys'
 import { Routes } from '~src/router/routes'
@@ -98,16 +98,31 @@ export const OrganizationCreate = ({
   const { fetchAccount } = useClient()
   const { handleSubmit } = methods
   const { trackPlausibleEvent } = useAnalytics()
-  const { setStepDoneAsync } = useOrganizationSetup()
+  const { bearedFetch } = useAuth()
 
   const {
     mutateAsync: createOrganization,
     isError,
     error,
   } = useOrganizationCreate({
-    onSuccess: async () => {
+    onSuccess: async ({ address }) => {
       trackPlausibleEvent({ name: AnalyticsEvent.OrganizationCreated })
-      await setStepDoneAsync(SetupStepIds.organizationDetails)
+      try {
+        // Mark organizationDetails step as done (can't use org hook here because org is not created yet)
+        await bearedFetch<OrganizationMetaResponse>(
+          ApiEndpoints.OrganizationMeta.replace('{address}', enforceHexPrefix(address)),
+          {
+            method: 'PUT',
+            body: {
+              meta: {
+                [OrganizationMetaKeys.completedSteps]: [SetupStepIds.organizationDetails],
+              },
+            },
+          }
+        )
+      } catch (e) {
+        console.warn('Error marking organizationDetails step as done', e)
+      }
       navigate(onSuccessRoute)
       setTimeout(async () => {
         await fetchAccount()
