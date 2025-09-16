@@ -461,6 +461,7 @@ const RemoveUserModal = ({ isOpen, onClose, user, ...props }: ActiveUserModalPro
           duration: 5000,
           isClosable: true,
         })
+        onClose()
       },
       onError: (error: Error) => {
         toast({
@@ -617,14 +618,13 @@ const UserActions = ({ user }: UserActionsProps) => {
   const { t } = useTranslation()
   const { data: profile, isLoading } = useProfile()
   const { isOpen: isMenuOpen, onOpen: openMenu, onClose: closeMenu } = useDisclosure()
-
-  const isCurrentUser = String(user.info?.id) === String(profile?.id)
-  if (isCurrentUser) return null
-
-  // Disclosures para los modales
   const roleModal = useDisclosure()
   const removeModal = useDisclosure()
   const cancelModal = useDisclosure()
+
+  const isCurrentUser = String(user.info?.id) === String(profile?.id)
+
+  if (isCurrentUser) return null
 
   return (
     <>

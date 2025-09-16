@@ -1,8 +1,7 @@
 import { useDisclosure } from '@chakra-ui/hooks'
 import React, { ReactNode, useState } from 'react'
-import { PlanUpgradeModal } from './Modals'
+import { PlanUpgradeData, PlanUpgradeModal } from './Modals'
 import { SubscriptionModal } from './Plans'
-import { PlanUpgradeData } from './PlanUpgrade'
 import { SubscriptionPaymentData, SubscriptionPaymentModal } from './SubscriptionPayment'
 import { PricingModalProviderContext, PricingModalType } from './use-pricing-modal'
 
