@@ -36,13 +36,13 @@ export enum OrganizationMetaKeys {
 
 type SetupStepId = `${SetupStepIds}`
 
-type OrganizationMeta = {
+export type OrganizationMeta = {
   [OrganizationMetaKeys.completedSteps]?: SetupStepId[]
   [OrganizationMetaKeys.dashboardTutorial]?: boolean
   [OrganizationMetaKeys.sidebarTutorial]?: boolean
 }
 
-type OrganizationMetaResponse = {
+export type OrganizationMetaResponse = {
   meta: OrganizationMeta
 }
 
