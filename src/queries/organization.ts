@@ -201,9 +201,9 @@ export const useOrganizationSetup = () => {
     updateMeta({ completedSteps: [...new Set([...completedSteps, stepId])] })
   }
 
-  const setStepDoneAsync = (stepId: SetupStepId) => {
+  const setStepDoneAsync = async (stepId: SetupStepId) => {
     if (hasStepDone(stepId)) return
-    updateMetaAsync({ completedSteps: [...new Set([...completedSteps, stepId])] })
+    await updateMetaAsync({ completedSteps: [...new Set([...completedSteps, stepId])] })
   }
 
   const unsetStepDone = (stepId: SetupStepId) => {
