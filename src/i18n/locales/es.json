@@ -1351,6 +1351,12 @@
     "people_in_census_many": "",
     "people_in_census_other": "{{ count }} votantes",
     "question_type": {
+      "confirm": {
+        "cancel_button": "Cancelar",
+        "confirm_button": "Confirmar",
+        "subtitle": "La selección múltiple permite solo una pregunta. Cambiar mantendrá solo la primera pregunta y descartará el resto.",
+        "title": "¿Quieres cambiar a Selección múltiple?"
+      },
       "description": "Esto aplica a todas las preguntas de este proceso.",
       "multiple": "Múltiples opciones",
       "single": "Opción única",
