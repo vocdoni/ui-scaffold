@@ -1271,6 +1271,12 @@
       },
       "question": {
         "add": "Add question",
+        "add_multiple": {
+          "cancel_button": "Cancel",
+          "contact_button": "Contact Us",
+          "description": "Creating processes with more than one multiple-choice question is currently not available. If you need this type of process, please contact us.",
+          "title": "Multi-question multiple-choice is not available yet"
+        },
         "delete": {
           "cancel_button": "Cancel",
           "delete_button": "Delete",

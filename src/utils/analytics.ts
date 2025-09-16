@@ -7,6 +7,7 @@ export const AnalyticsEvent = {
   UserLoggedIn: 'LoggedIn',
   ProcessCreated: 'ProcessCreated',
   SubscriptionSuccessful: 'SubscriptionSuccessful',
+  TriedMultiquestionMultichoice: 'MMAttempt',
 } as const
 
 export interface AnalyticsEvent {
