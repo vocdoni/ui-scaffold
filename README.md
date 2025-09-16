@@ -144,6 +144,10 @@ While we welcome contributions from the community, we do not track all of our is
 
 Please review our [development guidelines](https://developer.vocdoni.io/development-guidelines).
 
+### Contributions and pull requests
+
+To avoid unnecessary review overhead, **pull requests that only fix typos, whitespace, punctuation, or other minor changes without functional impact or clear added value will not be accepted**. If you want to correct such issues, please open an issue first. If the change is considered necessary, it may be accepted as a dedicated pull request that groups those corrections together. Accepted contributions must provide a clear benefit, whether through functional improvements, meaningful documentation updates, or the implementation of a feature or bug fix. Minor changes should be made with consideration and strong justification to avoid unnecessary distractions for reviewers.
+
 ## License
 
 This repository is licensed under the [GNU Affero General Public License v3.0.](./LICENSE)
