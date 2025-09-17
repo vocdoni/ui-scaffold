@@ -1447,7 +1447,7 @@
       },
       "group": {
         "label": "Grupo",
-        "no_groups": "Para iniciar una votación, primero debes crear un grupo de votantes elegibles a partir de tu base de miembros.<1>Crea uno aquí</1>."
+        "no_groups": "Para iniciar una votación, primero debes crear un grupo de votantes elegibles a partir de tu base de miembros. <1>Crea uno aquí</1>."
       },
       "memberbase": {
         "label": "Select a group of members to create the census"
