@@ -27,13 +27,24 @@ export const useTestimonials = () => {
       company: 'Centre Excursionista de Catalunya',
     },
     {
-      image: '/assets/testimonials/auth.png',
-      text: t('testimonials.auth.text', {
-        defaultValue: 'Vocdoni has transformed how we conduct our voting processes',
+      image: '/assets/testimonials/bellpuig.png',
+      text: t('testimonials.bellpuig.text', {
+        defaultValue:
+          'We chose Vocdoni because we believe this is the future of what real elections of any kind should be. Electronic voting is open to everyone and makes the voting process easier for citizens.',
       }),
-      author: 'John Doe',
-      position: t('testimonials.auth.position', { defaultValue: 'President' }),
-      company: 'COIB',
+      author: 'Jordi Estiarte',
+      position: t('testimonials.bellpuig.position', { defaultValue: 'Mayor' }),
+      company: t('testimonials.bellpuig.company', { defaultValue: 'Bellpuig City Council' }),
+    },
+    {
+      image: '/assets/testimonials/eic.png',
+      text: t('testimonials.eic.text', {
+        defaultValue:
+          'Vocdoni provides us with an easy, secure, anonymous, scalable voting system that is fully integrated into our institutional environment. We will certainly continue to trust their solution.',
+      }),
+      author: 'Oscar Tirvió',
+      position: t('testimonials.eic.position', { defaultValue: 'IT Director' }),
+      company: t('testimonials.eic.company', { defaultValue: 'Enginyers Industrials de Catalunya' }),
     },
   ]
 
