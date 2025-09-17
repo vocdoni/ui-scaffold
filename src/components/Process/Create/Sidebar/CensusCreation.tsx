@@ -1,4 +1,6 @@
 import {
+  Alert,
+  AlertDescription,
   Box,
   FormControl,
   FormErrorMessage,
@@ -11,7 +13,6 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Text,
 } from '@chakra-ui/react'
 import { chakraComponents } from 'chakra-react-select'
 import { useEffect, useState } from 'react'
@@ -129,15 +130,17 @@ const GroupCensusCreation = () => {
       )}
 
       {(!groups || groups?.length === 0) && (
-        <Text fontSize='xs' color='texts.subtle'>
-          <Trans i18nKey='process_create.census.group.no_groups'>
-            You don't have any groups yet.{' '}
-            <Link as={ReactRouterLink} to={Routes.dashboard.memberbase.base} textDecoration='underline'>
-              Create one here
-            </Link>{' '}
-            to start a process.
-          </Trans>
-        </Text>
+        <Alert status='warning' fontSize='xs' color='texts.subtle'>
+          <AlertDescription>
+            <Trans i18nKey='process_create.census.group.no_groups'>
+              To start a vote, you first need to create a group of eligible voters from your memberbase.
+              <Link as={ReactRouterLink} to={Routes.dashboard.memberbase.base} textDecoration='underline'>
+                Create one here
+              </Link>
+              .
+            </Trans>
+          </AlertDescription>
+        </Alert>
       )}
 
       <FormControl isInvalid={!!errors.census}>
