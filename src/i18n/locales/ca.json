@@ -1447,7 +1447,7 @@
       },
       "group": {
         "label": "Grup",
-        "no_groups": "Per començar una votació, primer has de crear un grup de votants elegibles a partir de la teva base de membres.<1>Crea'n un aquí</1>."
+        "no_groups": "Per començar una votació, primer has de crear un grup de votants elegibles a partir de la teva base de membres. <1>Crea'n un aquí</1>."
       },
       "memberbase": {
         "label": "Select a group of members to create the census"
