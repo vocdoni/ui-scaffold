@@ -32,7 +32,6 @@
       "ticanoia": "TIC Anoia logo"
     }
   },
-  "anonymous_voting": "Anonymous voting",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -1472,14 +1471,6 @@
       "title": "Result visibility"
     },
     "start_datetime": "Start date and time",
-    "voter_privacy": {
-      "anonymous": "Anonymous",
-      "public": "Public",
-      "title": "Voter's privacy"
-    },
-    "voter_privacy_placeholder": {
-      "anonymous": "Anonymous"
-    },
     "youtube": {
       "accordion_title": "Attach video (optional)",
       "title": "Live streaming video"

@@ -49,7 +49,6 @@ import {
   LuRotateCw,
   LuSearch,
   LuSettings,
-  LuShield,
   LuTrash2,
   LuUsers,
   LuVote,
@@ -372,16 +371,6 @@ const ProcessViewSidebar = (props: SidebarProps) => {
               (election.electionType.secretUntilTheEnd
                 ? t('results_state.hidden_until_end', 'Hidden until the end')
                 : t('results_state.live_results', 'Live results'))
-            }
-          />
-          <SettingsField
-            icon={LuShield}
-            text={t('anonymous_voting', 'Anonymous voting')}
-            subtext={
-              election instanceof PublishedElection &&
-              (election.electionType.anonymous
-                ? t('results_state.enabled', 'Enabled')
-                : t('results_state.not_enabled', 'Not enabled'))
             }
           />
           <SettingsField
