@@ -72,10 +72,10 @@ const MultichoiceWarningModal = ({
         <ModalBody p={0}>
           <Flex justifyContent='flex-end' mt={4} gap={2}>
             <Button variant='outline' onClick={cancel}>
-              <Trans i18nKey='process.question_type.confirm.cancel_button'>Cancel</Trans>
+              <Trans i18nKey='common.cancel'>Cancel</Trans>
             </Button>
             <Button colorScheme='black' onClick={confirm}>
-              <Trans i18nKey='process.question_type.confirm.confirm_button'>Confirm</Trans>
+              <Trans i18nKey='common.confirm'>Confirm</Trans>
             </Button>
           </Flex>
         </ModalBody>
