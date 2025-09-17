@@ -156,7 +156,7 @@
   "color_mode_switcher": "Color mode switcher",
   "common": {
     "back": "Back",
-    "cancel": "Back",
+    "cancel": "Cancel·lar",
     "confirm": "Confirm",
     "disable": "Disable",
     "enable": "Enable",
@@ -1351,8 +1351,6 @@
     "people_in_census_other": "{{ count }} votants",
     "question_type": {
       "confirm": {
-        "cancel_button": "Cancel·la",
-        "confirm_button": "Confirma",
         "subtitle": "Els processos de selecció múltiple només permeten una pregunta. Canviar mantindrà només la vostra primera pregunta i descartarà la resta.",
         "title": "Voleu canviar a Selecció múltiple?"
       },
