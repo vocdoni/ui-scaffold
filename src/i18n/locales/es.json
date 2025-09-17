@@ -1704,13 +1704,19 @@
   },
   "terms_of_service": "Términos del Servicio",
   "testimonials": {
-    "auth": {
-      "position": "President",
-      "text": "Vocdoni has transformed how we conduct our voting processes"
+    "bellpuig": {
+      "company": "Ayuntamiento de Bellpuig",
+      "position": "Alcalde",
+      "text": "Escogimos Vocdoni porque estamos convencidos de que representa el futuro de cualquier proceso electoral. El voto electrónico abre la participación a todos y hace que votar sea mucho más fácil para la ciudadanía."
     },
     "ceec": {
-      "position": "CEO",
-      "text": "We chose Vocdoni because it guarantees secure, reliable, and transparent participation for all our members in our Annual General Meeting."
+      "position": "Director",
+      "text": "Elegimos Vocdoni porque garantiza la participación segura, fiable y transparente de todos nuestros miembros en nuestra Asamblea General."
+    },
+    "eic": {
+      "company": "Enginyers Industrials de Catalunya",
+      "position": "Director del Área tecnológica",
+      "text": "Vocdoni nos proporciona un sistema de votación fácil, seguro, anónimo y escalable, totalmente integrado en nuestro entorno institucional. Sin duda, seguiremos confiando en su solución."
     }
   },
   "theme": "Theme",
