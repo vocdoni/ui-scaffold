@@ -407,7 +407,6 @@ const formToElectionMapper = (form: Process, census: Census): UnpublishedElectio
     title: form.title,
     description: form.description,
     electionType: {
-      anonymous: Boolean(form.voterPrivacy === 'anonymous'),
       secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
     },
     maxCensusSize: form.addresses?.length > 0 ? form.addresses.length : form.census.size,
@@ -607,16 +606,7 @@ export const ProcessCreate = () => {
   }
 
   const onError = (errors) => {
-    const sidebarFieldKeys = [
-      'groupId',
-      'census',
-      'resultVisibility',
-      'voterPrivacy',
-      'endDate',
-      'endTime',
-      'startDate',
-      'startTime',
-    ]
+    const sidebarFieldKeys = ['groupId', 'census', 'resultVisibility', 'endDate', 'endTime', 'startDate', 'startTime']
 
     const hasSidebarErrors = sidebarFieldKeys.some((key) => key in errors)
 

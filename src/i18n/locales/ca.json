@@ -32,7 +32,6 @@
       "ticanoia": "logo TIC Anoia"
     }
   },
-  "anonymous_voting": "Anonymous voting",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -1491,14 +1490,6 @@
       "title": "Result visibility"
     },
     "start_datetime": "Start date and time",
-    "voter_privacy": {
-      "anonymous": "Anonymous",
-      "public": "Public",
-      "title": "Voter's privacy"
-    },
-    "voter_privacy_placeholder": {
-      "anonymous": "Anonymous"
-    },
     "youtube": {
       "accordion_title": "Attach video (optional)",
       "title": "Vídeo en directe"

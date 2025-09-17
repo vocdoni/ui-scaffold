@@ -53,7 +53,7 @@ export type Process = {
   maxNumberOfChoices: number | null
   minNumberOfChoices: number | null
   resultVisibility: 'live' | 'hidden'
-  voterPrivacy: 'anonymous' | 'public'
+  voterPrivacy: 'public' | 'anonymous'
   groupId: string
   census?: Census | null
   censusType: CensusTypes

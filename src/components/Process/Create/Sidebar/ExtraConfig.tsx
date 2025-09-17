@@ -23,11 +23,6 @@ export const ExtraConfig = () => {
     { value: 'hidden', label: t('process_create.result_visibility.hidden', 'Hidden until the end') },
   ]
 
-  const voterPrivacyOptions: SelectOption[] = [
-    { value: 'anonymous', label: t('process_create.voter_privacy.anonymous', 'Anonymous') },
-    { value: 'public', label: t('process_create.voter_privacy.public', 'Public') },
-  ]
-
   return (
     <VStack align='stretch' spacing={4}>
       {/* Result visibility */}
@@ -50,29 +45,6 @@ export const ExtraConfig = () => {
             )}
           />
           <FormErrorMessage>{errors.resultVisibility?.message?.toString()}</FormErrorMessage>
-        </FormControl>
-      </Box>
-
-      {/* Voter's privacy */}
-      <Box>
-        <FormControl isInvalid={!!errors.voterPrivacy}>
-          <FormLabel>
-            <Trans i18nKey='process_create.voter_privacy.title'>Voter's privacy</Trans>
-          </FormLabel>
-          <Controller
-            control={control}
-            name='voterPrivacy'
-            rules={{ required }}
-            render={({ field }) => (
-              <Select
-                value={voterPrivacyOptions.find((opt) => opt.value === field.value)}
-                onChange={(opt) => field.onChange(opt.value)}
-                options={voterPrivacyOptions}
-                placeholder={t('process_create.voter_privacy_placeholder.anonymous', 'Anonymous')}
-              />
-            )}
-          />
-          <FormErrorMessage>{errors.voterPrivacy?.message?.toString()}</FormErrorMessage>
         </FormControl>
       </Box>
     </VStack>
