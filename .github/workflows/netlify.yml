@@ -44,5 +44,5 @@ jobs:
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: 5f9bd529-1b25-49af-acde-818bbd33109b
+          NETLIFY_SITE_ID: 5bddb63a-3f70-4de9-9fa8-89afc6f813a8
         timeout-minutes: 1
