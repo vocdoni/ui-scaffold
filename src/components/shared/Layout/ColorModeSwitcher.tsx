@@ -18,6 +18,7 @@ import { LuMonitor, LuMoon, LuSun } from 'react-icons/lu'
 type ColorModeSwitcherProps = Omit<IconButtonProps, 'aria-label'>
 
 export const ColorModeSwitcher: FC<ColorModeSwitcherProps> = (props) => {
+  const { t } = useTranslation()
   const { toggleColorMode } = useColorMode()
   const text = useColorModeValue('dark', 'light')
   const SwitchIcon = useColorModeValue(IoMdMoon, IoMdSunny)
@@ -27,7 +28,7 @@ export const ColorModeSwitcher: FC<ColorModeSwitcherProps> = (props) => {
       colorScheme='gray'
       onClick={toggleColorMode}
       icon={<SwitchIcon />}
-      aria-label={`Switch to ${text} mode`}
+      aria-label={t('switch_mode', { defaultValue: 'Switch to {{ mode }} mode', mode: text })}
       {...props}
     />
   )

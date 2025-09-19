@@ -21,6 +21,7 @@ import {
 } from 'lexical'
 import { Dispatch, useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useTranslation } from 'react-i18next'
 import { LuBold, LuItalic, LuLink, LuList, LuListOrdered, LuStrikethrough, LuText, LuUnderline } from 'react-icons/lu'
 
 export function getSelectedNode(selection: RangeSelection): TextNode | ElementNode {
@@ -118,6 +119,7 @@ function TextFormatFloatingToolbar({
   isStrikethrough: boolean
   setIsLinkEditMode: Dispatch<boolean>
 }): JSX.Element {
+  const { t } = useTranslation()
   const [textType, setTextType] = useState<'text' | 'list' | 'ordered-list'>('text')
   const popupCharStylesEditorRef = useRef<HTMLDivElement | null>(null)
 
@@ -238,7 +240,7 @@ function TextFormatFloatingToolbar({
         <HStack>
           <IconButton
             icon={<Icon as={LuBold} />}
-            aria-label='Bold'
+            aria-label={t('editor.bold', 'Bold')}
             variant={isBold ? 'solid' : 'ghost'}
             colorScheme='black'
             size='sm'
@@ -246,7 +248,7 @@ function TextFormatFloatingToolbar({
           />
           <IconButton
             icon={<Icon as={LuItalic} />}
-            aria-label='Italic'
+            aria-label={t('editor.italic', 'Italic')}
             variant={isItalic ? 'solid' : 'ghost'}
             colorScheme='black'
             size='sm'
@@ -254,7 +256,7 @@ function TextFormatFloatingToolbar({
           />
           <IconButton
             icon={<Icon as={LuUnderline} />}
-            aria-label='Underline'
+            aria-label={t('editor.underline', 'Underline')}
             variant={isUnderline ? 'solid' : 'ghost'}
             colorScheme='black'
             size='sm'
@@ -262,7 +264,7 @@ function TextFormatFloatingToolbar({
           />
           <IconButton
             icon={<Icon as={LuStrikethrough} />}
-            aria-label='Strikethrough'
+            aria-label={t('editor.strikethrough', 'Strikethrough')}
             variant={isStrikethrough ? 'solid' : 'ghost'}
             colorScheme='black'
             size='sm'
@@ -270,7 +272,7 @@ function TextFormatFloatingToolbar({
           />
           <IconButton
             icon={<Icon as={LuLink} />}
-            aria-label='Link'
+            aria-label={t('editor.link.title', 'Link')}
             variant={isLink ? 'solid' : 'ghost'}
             colorScheme='black'
             size='sm'
@@ -288,7 +290,7 @@ function TextFormatFloatingToolbar({
                   <Icon as={LuListOrdered} />
                 )
               }
-              aria-label='Paragraph'
+              aria-label={t('editor.paragraph', 'Paragraph')}
               variant='ghost'
               colorScheme='black'
               size='sm'

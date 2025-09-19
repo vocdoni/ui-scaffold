@@ -145,7 +145,7 @@ const HistoryDrawer = ({ group, isOpen, onClose }: HistoryDrawerProps) => {
       <DrawerOverlay />
       <DrawerContent>
         <IconButton
-          aria-label='Close drawer'
+          aria-label={t('drawer.close', 'Close drawer')}
           icon={<Icon as={LuX} />}
           position='absolute'
           top='6px'
@@ -346,7 +346,7 @@ const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMemb
       <DrawerOverlay />
       <DrawerContent>
         <IconButton
-          aria-label='Close drawer'
+          aria-label={t('drawer.close', 'Close drawer')}
           icon={<Icon as={LuX} />}
           position='absolute'
           top='6px'

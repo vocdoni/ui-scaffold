@@ -68,7 +68,7 @@ const Tutorial = () => {
   return (
     <DashboardBox p={6} mb={12} display='flex' gap={10} position='relative' flexDirection='row'>
       <IconButton
-        aria-label='Close'
+        aria-label={t('common.close', { defaultValue: 'Close' })}
         icon={<Icon as={LuX} />}
         size='sm'
         variant='ghost'
@@ -181,7 +181,7 @@ const Setup = () => {
                   icon={<Icon as={InvertedAccordionIcon} />}
                 ></AccordionButton>
                 <IconButton
-                  aria-label='Close'
+                  aria-label={t('common.close', { defaultValue: 'Close' })}
                   icon={<Icon as={LuX} />}
                   h='28px'
                   minW='28px'

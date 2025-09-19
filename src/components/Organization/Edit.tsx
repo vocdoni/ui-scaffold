@@ -132,7 +132,12 @@ const EditOrganization = () => {
           </SimpleGrid>
 
           <Flex align='center' direction='column' alignSelf='end'>
-            <Button type='submit' isLoading={isPending} aria-label='' w='full'>
+            <Button
+              type='submit'
+              isLoading={isPending}
+              aria-label={t('actions.save', { defaultValue: 'Save' })}
+              w='full'
+            >
               {t('actions.save', { defaultValue: 'Save' })}
             </Button>
             <FormSubmitMessage

@@ -44,7 +44,7 @@ const CopyAddressBtn = () => {
     <IconButton
       variant='transparent'
       icon={<CopyIcon boxSize={3} />}
-      aria-label='copy address'
+      aria-label={t('copy.address', { defaultValue: 'Copy address' })}
       onClick={() => {
         toast({
           title: t('copy.copied_title'),
