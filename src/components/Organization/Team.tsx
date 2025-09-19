@@ -673,11 +673,11 @@ const UsersEmpty = () => {
   return (
     <Flex alignItems='center' direction='column' p={10} gap={6}>
       <Flex alignItems='center' direction='column'>
-        <Icon as={LuUserPlus} boxSize={20} color='gray.500' />
+        <Icon as={LuUserPlus} boxSize={20} color='texts.subtle' />
         <Text fontSize='lg' fontWeight='bold'>
           {t('team.only_one_member.title', { defaultValue: "You're the only team member of this organization" })}
         </Text>
-        <Text color='gray.500'>
+        <Text color='texts.subtle'>
           {t('team.only_one_member.subtitle', {
             defaultValue: 'Add team members to collaborate on your organization',
           })}
@@ -714,11 +714,11 @@ const UsersList = ({ users }: UsersListProps) => {
                 </Badge>
               </HStack>
               <Flex direction='column'>
-                <Text fontSize='sm' color='gray.500'>
+                <Text fontSize='sm' color='texts.subtle'>
                   {email}
                 </Text>
                 {user.expiration && (
-                  <Text fontSize='xs' color='gray.500'>
+                  <Text fontSize='xs' color='texts.subtle'>
                     {t('team.expires_in', {
                       defaultValue: 'Expires in {{time}}',
                       time: formatDistanceToNow(new Date(user.expiration)),

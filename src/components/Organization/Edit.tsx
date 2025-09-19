@@ -101,7 +101,7 @@ const EditOrganization = () => {
       <FormProvider {...methods}>
         <Flex as='form' id='process-create-form' onSubmit={handleSubmit(onSubmit)} flexDirection='column'>
           <Heading size='md'>{t('create_org.organization_details', { defaultValue: 'Organization Details' })}</Heading>
-          <Text mb={6} color='gray.500' size='sm'>
+          <Text mb={6} color='texts.subtle' size='sm'>
             {t('create_org.organization_details_description', {
               defaultValue: "Manage your organization's profile and configuration settings.",
             })}
@@ -110,7 +110,7 @@ const EditOrganization = () => {
             <Text fontWeight='bold' mb={4} size='lg'>
               {t('create_org.public_info', { defaultValue: 'Public Profile' })}
             </Text>
-            <Text color='gray.500' size='sm' mb={4}>
+            <Text color='texts.subtle' size='sm' mb={4}>
               {t('create_org.public_info_description', {
                 defaultValue: 'This information is shown in various places including the voting pages.',
               })}
@@ -122,7 +122,14 @@ const EditOrganization = () => {
           </Flex>
           <Flex align='center' my={6}>
             <HSeparator />
-            <Text color='gray.500' fontWeight='bold' mx={3.5} whiteSpace='nowrap' size='xs' textTransform='uppercase'>
+            <Text
+              color='texts.subtle'
+              fontWeight='bold'
+              mx={3.5}
+              whiteSpace='nowrap'
+              size='xs'
+              textTransform='uppercase'
+            >
               {t('other_details', { defaultValue: 'Other Details' })}
             </Text>
             <HSeparator />

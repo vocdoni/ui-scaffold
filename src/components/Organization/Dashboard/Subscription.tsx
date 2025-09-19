@@ -46,7 +46,7 @@ const SubscriptionPage = () => {
       <Flex>
         <Flex flex={1} direction='column'>
           <Heading size='md'>{t('subscription_plan.title', { defaultValue: 'Subscription Plan' })}</Heading>
-          <Text mb={6} color='gray.500' size='sm'>
+          <Text mb={6} color='texts.subtle' size='sm'>
             {t('subscription_plan.subtitle', {
               defaultValue: 'Manage your subscription plan and billing cycle.',
             })}

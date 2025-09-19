@@ -87,12 +87,11 @@ const Support = () => {
             as={ReactRouterLink}
             to='mailto:info@vocdoni.org'
             variant='outline'
-            colorScheme='whiteAlpha'
+            colorScheme='black'
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             target='_blank'
             height='60px'
-            color='white'
           >
             {t('home.support.btn_contact')}
           </Button>
@@ -104,7 +103,6 @@ const Support = () => {
             title={t('home.support.btn_watch')}
             target='_blank'
             height='60px'
-            color='white'
           >
             <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>

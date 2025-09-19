@@ -142,7 +142,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
           )}
 
           <FormControl isRequired>
-            <Checkbox size='sm' variant='inline' colorScheme='blue'>
+            <Checkbox size='sm' variant='inline' colorScheme='black'>
               <Trans i18nKey='csp.terms_acceptance'>
                 I have read and accept the{' '}
                 <Link as={RouterLink} to={Routes.terms} isExternal>

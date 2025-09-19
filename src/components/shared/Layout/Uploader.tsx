@@ -131,7 +131,7 @@ export const AvatarUploader = (props: FormControlProps) => {
               justifyContent='center'
             >
               <input {...getInputProps()} />
-              {isPending ? <Spinner /> : <Icon as={LuUpload} boxSize={8} color='gray.500' />}
+              {isPending ? <Spinner /> : <Icon as={LuUpload} boxSize={8} color='texts.subtle' />}
             </Box>
             <Button variant='outline' leftIcon={<Icon as={LuUpload} mr={2} boxSize={4} />}>
               {t('uploader.click_or_drag_and_drop_image', { defaultValue: 'Upload Image' })}

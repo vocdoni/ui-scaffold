@@ -260,7 +260,7 @@ export const SubscriptionModal = ({
             <Text>
               <Trans i18nKey='pricing.help'>Need some help?</Trans>
             </Text>
-            <Button as={ReactRouterLink} to={Routes.contact} target='_blank' colorScheme='whiteAlpha' color={'white'}>
+            <Button as={ReactRouterLink} to={Routes.contact} target='_blank' colorScheme='black'>
               <Trans i18nKey='contact_us'>Contact us</Trans>
             </Button>
           </Box>
