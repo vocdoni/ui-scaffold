@@ -1,15 +1,4 @@
-import {
-  Box,
-  Card,
-  HStack,
-  Icon,
-  IconButton,
-  Input,
-  Link,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@chakra-ui/react'
+import { Card, HStack, Icon, IconButton, Input, Link } from '@chakra-ui/react'
 import { $createLinkNode, $isAutoLinkNode, $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { $findMatchingParent, mergeRegister } from '@lexical/utils'
@@ -304,68 +293,6 @@ function FloatingLinkEditor({
         </HStack>
       )}
     </Card>
-  )
-
-  return (
-    <Popover isOpen={isLink} placement='bottom-start' closeOnBlur={true}>
-      <PopoverTrigger>
-        <Box ref={editorRef} />
-      </PopoverTrigger>
-      <PopoverContent>
-        {isLinkEditMode ? (
-          <HStack spacing={2}>
-            <Input
-              ref={inputRef}
-              flex={1}
-              value={editedLinkUrl}
-              onChange={(e) => setEditedLinkUrl(e.target.value)}
-              onKeyDown={monitorInputInteraction}
-              placeholder='Enter link URL'
-              size='sm'
-            />
-            <IconButton
-              icon={<Icon as={LuX} />}
-              aria-label='Cancel'
-              size='xs'
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => setIsLinkEditMode(false)}
-            />
-            <IconButton
-              icon={<Icon as={LuCheck} />}
-              aria-label='Confirm'
-              size='xs'
-              colorScheme='black'
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={handleLinkSubmission}
-            />
-          </HStack>
-        ) : (
-          <HStack spacing={2}>
-            <Link flex={1} href={linkUrl} isExternal fontSize='sm'>
-              {linkUrl}
-            </Link>
-            <IconButton
-              icon={<Icon as={LuPencil} />}
-              aria-label='Edit link'
-              size='xs'
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => {
-                setEditedLinkUrl(linkUrl)
-                setIsLinkEditMode(true)
-              }}
-            />
-            <IconButton
-              icon={<Icon as={LuTrash2} />}
-              aria-label='Remove link'
-              size='xs'
-              colorScheme='red'
-              onMouseDown={(e) => e.preventDefault()}
-              onClick={() => editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)}
-            />
-          </HStack>
-        )}
-      </PopoverContent>
-    </Popover>
   )
 }
 
