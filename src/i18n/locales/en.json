@@ -310,6 +310,7 @@
     "approval": "Approval voting",
     "cumulative": "Cumulative voting",
     "custom_url": "Custom URL",
+    "email_notification": "2FA Email",
     "email_reminder": "Email reminders",
     "interruptible": "Interruptible",
     "live_results": "Live results",
@@ -324,7 +325,7 @@
       "voting_types": "Voting Types"
     },
     "single": "Single choice voting",
-    "sms_notification": "SMS notifications",
+    "sms_notification": "2FA SMS",
     "sub_orgs": "Up to {{ count }} sub-organizations",
     "total_orgs": "Total available sub-organizations",
     "total_users": "Total available users",

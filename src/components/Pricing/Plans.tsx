@@ -35,14 +35,14 @@ export type Plan = {
   startingPrice: number
   default: boolean
   organization: {
-    users: number
+    teamMembers: number
     subOrgs: number
     censusSize: number
     maxProcesses: number
     maxCensus: number
     maxDuration: string
     customURL: boolean
-    drafts: number
+    drafts: boolean
   }
   votingTypes: {
     single: boolean
@@ -58,7 +58,8 @@ export type Plan = {
     liveResults: boolean
     personalization: boolean
     emailReminder: boolean
-    smsNotification: boolean
+    '2FAsms': number
+    '2FAemail': number
     whiteLabel: boolean
     liveStreaming: boolean
     phoneSupport: boolean
