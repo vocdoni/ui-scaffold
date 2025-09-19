@@ -29,6 +29,7 @@ import {
 import * as React from 'react'
 import { Dispatch, useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useTranslation } from 'react-i18next'
 import { LuCheck, LuPencil, LuTrash2, LuX } from 'react-icons/lu'
 import { getSelectedNode } from './FloatingTextFormatToolbarPlugin'
 
@@ -87,6 +88,7 @@ function FloatingLinkEditor({
   isLinkEditMode: boolean
   setIsLinkEditMode: Dispatch<boolean>
 }): JSX.Element {
+  const { t } = useTranslation()
   const editorRef = useRef<HTMLDivElement | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [linkUrl, setLinkUrl] = useState('')
@@ -259,19 +261,19 @@ function FloatingLinkEditor({
             value={editedLinkUrl}
             onChange={(e) => setEditedLinkUrl(e.target.value)}
             onKeyDown={monitorInputInteraction}
-            placeholder='Enter link URL'
+            placeholder={t('editor.link.placeholder', { defaultValue: 'Enter link URL' })}
             size='sm'
           />
           <IconButton
             icon={<Icon as={LuX} />}
-            aria-label='Cancel'
+            aria-label={t('editor.link.cancel', { defaultValue: 'Cancel' })}
             size='xs'
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => setIsLinkEditMode(false)}
           />
           <IconButton
             icon={<Icon as={LuCheck} />}
-            aria-label='Confirm'
+            aria-label={t('editor.link.confirm', { defaultValue: 'Confirm' })}
             size='xs'
             colorScheme='black'
             onMouseDown={(e) => e.preventDefault()}
@@ -285,7 +287,7 @@ function FloatingLinkEditor({
           </Link>
           <IconButton
             icon={<Icon as={LuPencil} />}
-            aria-label='Edit link'
+            aria-label={t('editor.link.edit', { defaultValue: 'Edit link' })}
             size='xs'
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => {
@@ -295,7 +297,7 @@ function FloatingLinkEditor({
           />
           <IconButton
             icon={<Icon as={LuTrash2} />}
-            aria-label='Remove link'
+            aria-label={t('editor.link.remove', { defaultValue: 'Remove link' })}
             size='xs'
             colorScheme='red'
             onMouseDown={(e) => e.preventDefault()}

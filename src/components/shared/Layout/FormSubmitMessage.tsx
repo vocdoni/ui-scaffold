@@ -1,4 +1,5 @@
 import { BoxProps, Flex, FormControl, FormErrorMessage, Text } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 
 const FormSubmitMessage = ({
   isLoading,
@@ -14,6 +15,7 @@ const FormSubmitMessage = ({
   isSuccess?: boolean
   success?: string
 } & BoxProps) => {
+  const { t } = useTranslation()
   if (isLoading) {
     return null
   }
@@ -31,7 +33,9 @@ const FormSubmitMessage = ({
       <FormControl isInvalid={isError}>
         <Flex justifyContent={'center'} w='full' {...boxProps}>
           <FormErrorMessage>
-            {typeof error === 'string' ? error : error?.message || 'Error performing the operation'}
+            {typeof error === 'string'
+              ? error
+              : error?.message || t('form.error.generic', { defaultValue: 'Error performing the operation' })}
           </FormErrorMessage>
         </Flex>
       </FormControl>

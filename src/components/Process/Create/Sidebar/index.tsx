@@ -13,7 +13,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useLocalStorage } from '@uidotdev/usehooks'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { LuSettings, LuX } from 'react-icons/lu'
 import {
   Sidebar,
@@ -44,10 +44,12 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
   return (
     <Sidebar {...props}>
       <SidebarContents borderBottom='1px solid' borderColor='table.border'>
-        <SidebarTitle>Settings</SidebarTitle>
+        <SidebarTitle>
+          <Trans i18nKey='process_create.settings'>Settings</Trans>
+        </SidebarTitle>
         {isMobile && (
           <IconButton
-            aria-label='Close sidebar'
+            aria-label={t('drawer.close', { defaultValue: 'Close drawer' })}
             icon={<Icon as={LuX} />}
             variant='ghost'
             size='sm'
@@ -61,11 +63,13 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
       </SidebarContents>
 
       <SidebarContents flex='1' overflowY='auto'>
-        <SidebarSubtitle>Basic Configuration</SidebarSubtitle>
+        <SidebarSubtitle>
+          <Trans i18nKey='process_create.basic_configuration'>Basic Configuration</Trans>
+        </SidebarSubtitle>
         <BasicConfig />
 
         <SidebarSubtitle borderTop='1px solid' borderColor='table.border' mt={4}>
-          Extra Configuration
+          <Trans i18nKey='process_create.extra_configuration'>Extra Configuration</Trans>
         </SidebarSubtitle>
         <ExtraConfig />
 
@@ -77,7 +81,9 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
           justifyContent='space-between'
           alignItems='center'
         >
-          <SidebarSubtitle m={0}>Census Creation</SidebarSubtitle>
+          <SidebarSubtitle m={0}>
+            <Trans i18nKey='process_create.census_creation'>Census Creation</Trans>
+          </SidebarSubtitle>
           <IconButton
             aria-label={t('process_create.census.settings', 'Census settings')}
             icon={<Icon as={LuSettings} />}

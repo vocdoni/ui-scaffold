@@ -642,7 +642,7 @@ const UserActions = ({ user }: UserActionsProps) => {
           icon={<Icon as={LuEllipsis} />}
           ml='auto'
           variant='ghost'
-          aria-label='Options'
+          aria-label={t('team.actions.options', { defaultValue: 'Options' })}
           onClick={openMenu}
         />
         <MenuList minW='unset'>

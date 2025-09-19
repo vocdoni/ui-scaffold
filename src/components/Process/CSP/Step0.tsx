@@ -128,7 +128,9 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
               <FormLabel>{get2FaFieldLabel()}</FormLabel>
               <Input {...register('contact', { required: true })} type='text' />
               <FormHelperText>
-                <strong>{t('csp.important', 'Important')}:</strong>{' '}
+                <Text as='span' fontWeight='bold'>
+                  {t('csp.important', { defaultValue: 'Important' })}:
+                </Text>{' '}
                 {t('csp.contact_match_help', 'Must match the one registered in the system')}
               </FormHelperText>
             </FormControl>
@@ -165,7 +167,18 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
             )}
           </Text>
 
-          <Button type='submit' colorScheme='black' w='full' isLoading={auth.isPending} mt={2}>
+          <Button
+            type='submit'
+            colorScheme='black'
+            w='full'
+            isLoading={auth.isPending}
+            mt={2}
+            aria-label={
+              is2Factor
+                ? t('csp.receive_code', { defaultValue: 'Receive Code' })
+                : t('csp.authenticate', { defaultValue: 'Authenticate' })
+            }
+          >
             {is2Factor ? t('csp.receive_code', 'Receive Code') : t('csp.authenticate', 'Authenticate')}
           </Button>
 

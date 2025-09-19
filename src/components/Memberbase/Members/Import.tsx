@@ -498,7 +498,7 @@ export const ImportMembers = () => {
         <DrawerOverlay />
         <DrawerContent p={1}>
           <IconButton
-            aria-label='Close drawer'
+            aria-label={t('drawer.close', 'Close drawer')}
             icon={<Icon as={LuX} />}
             position='absolute'
             top='6px'

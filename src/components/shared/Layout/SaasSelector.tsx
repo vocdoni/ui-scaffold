@@ -81,7 +81,9 @@ export const SelectCustom = ({
           />
         )}
       />
-      <FormErrorMessage mt={2}>{getErrorMessage(errors[name]) || 'Error performing the operation'}</FormErrorMessage>
+      <FormErrorMessage mt={2}>
+        {getErrorMessage(errors[name]) || t('form.error.generic', { defaultValue: 'Error performing the operation' })}
+      </FormErrorMessage>
     </FormControl>
   )
 }
@@ -94,7 +96,12 @@ export const OrganizationTypeSelector = ({ ...props }: Omit<SelectCustomProps, '
     value: type.type,
   }))
 
-  if (isError) return <Alert status='error'>{error?.message || t('error.loading_types')}</Alert>
+  if (isError)
+    return (
+      <Alert status='error'>
+        {error?.message || t('error.loading_types', { defaultValue: 'Error loading organization types' })}
+      </Alert>
+    )
 
   return (
     <SelectCustom

@@ -112,7 +112,7 @@ const SortableExtendedOption = ({
         {fieldsLength > 2 && (
           <IconButton
             icon={<Icon as={LuTrash2} />}
-            aria-label='Remove option'
+            aria-label={t('process_create.remove_option', { defaultValue: 'Remove option' })}
             size='sm'
             colorScheme='red'
             onClick={onRemove}

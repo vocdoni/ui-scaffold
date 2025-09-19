@@ -104,6 +104,7 @@ const PricingCard = ({
           onClick={() => setValue('planId', plan.id)}
           type='submit'
           variant={popular ? 'solid' : 'outline'}
+          aria-label={isCurrentPlan ? t('current_plan') : t('subscribe')}
           colorScheme='gray'
         >
           {isCurrentPlan

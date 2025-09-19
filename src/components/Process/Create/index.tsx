@@ -528,7 +528,9 @@ export const ProcessCreate = () => {
     switch (form.censusType) {
       case CensusTypes.CSP:
         if (!form.census?.id) {
-          throw new Error('Census data is missing for Memberbase census type')
+          throw new Error(
+            t('process_create.census_missing', { defaultValue: 'Census data is missing for Memberbase census type' })
+          )
         }
 
         const nextElectionId = await client.electionService.nextElectionId(
@@ -553,7 +555,12 @@ export const ProcessCreate = () => {
 
         return census
       default:
-        throw new Error(`census type ${form.censusType} is not allowed`)
+        throw new Error(
+          t('process_create.census_type_not_allowed', {
+            type: form.censusType,
+            defaultValue: 'Census type {{type}} not allowed',
+          })
+        )
     }
   }
 
@@ -561,10 +568,12 @@ export const ProcessCreate = () => {
     try {
       const account = await client.fetchAccountInfo()
       if (!account.address) {
-        throw new Error('No account address found.')
+        throw new Error(t('process_create.no_account_address', { defaultValue: 'No account address found.' }))
       }
       if (!isAccountData(account) || isNaN(account.electionIndex)) {
-        throw new Error('No election index found for the account.')
+        throw new Error(
+          t('process_create.no_election_index', { defaultValue: 'No election index found for the account.' })
+        )
       }
       const salt = await client.electionService.getElectionSalt(account.address, account.electionIndex)
       const census = await getCensus(form, salt)
@@ -649,7 +658,7 @@ export const ProcessCreate = () => {
             <ButtonGroup size='sm'>
               {methods.formState.isDirty && (
                 <IconButton
-                  aria-label='Reset form'
+                  aria-label={t('form.reset', { defaultValue: 'Reset form' })}
                   icon={<Icon as={LuRotateCcw} />}
                   variant='outline'
                   onClick={onResetFormModalOpen}

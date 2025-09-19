@@ -146,6 +146,7 @@ const ChangePasswordModal = ({ isOpen, onClose }: ChangePasswordModalProps) => {
 }
 
 export const ChangePasswordButton = () => {
+  const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -153,7 +154,7 @@ export const ChangePasswordButton = () => {
       <IconButton
         onClick={onOpen}
         icon={<LuPencil />}
-        aria-label='change password'
+        aria-label={t('change_password.title', { defaultValue: 'Change Password' })}
         variant={'outline'}
         size='sm'
         w='40px'

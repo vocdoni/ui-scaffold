@@ -56,7 +56,7 @@ const useUpdateSubscription = () => {
 export const SubscriptionPayment = ({ lookupKey }: SubscriptionPaymentData) => {
   const { bearedFetch } = useAuth()
   const { signer } = useClient()
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { subscription } = useSubscription()
   const { mutateAsync: checkSubscription } = useUpdateSubscription()
   const { closeModal } = usePricingModal()
@@ -130,7 +130,12 @@ export const SubscriptionPayment = ({ lookupKey }: SubscriptionPaymentData) => {
       <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>
-      <Button onClick={() => closeModal()} type='submit' isDisabled={!subscriptionCompleted}>
+      <Button
+        onClick={() => closeModal()}
+        type='submit'
+        aria-label={t('close', { defaultValue: 'Close' })}
+        isDisabled={!subscriptionCompleted}
+      >
         <Trans i18nKey='close'>Close</Trans>
       </Button>
     </Box>
