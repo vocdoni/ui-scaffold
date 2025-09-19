@@ -243,7 +243,7 @@ export const VoterAuthentication = () => {
             </Text>
             {census?.use2FA && (
               <Badge colorScheme='black' fontSize='xs'>
-                2FA
+                <Trans i18nKey='voter_auth.2fa_badge'>2FA</Trans>
               </Badge>
             )}
           </Flex>

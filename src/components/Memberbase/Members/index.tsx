@@ -298,7 +298,11 @@ const MemberFilters = ({ onDelete }: MemberFiltersProps) => {
   return (
     <Flex gap={2}>
       <InputGroup maxW='300px' as='form' onSubmit={handleSubmit}>
-        <Input placeholder='Search members...' value={search} onChange={handleSearchChange} />
+        <Input
+          placeholder={t('members.table.search', { defaultValue: 'Search members...' })}
+          value={search}
+          onChange={handleSearchChange}
+        />
         <InputRightElement>
           <IconButton size='xs' aria-label='search' type='submit' icon={<Icon as={LuSearch} />} />
         </InputRightElement>
@@ -375,7 +379,7 @@ const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
         <DrawerOverlay />
         <DrawerContent>
           <IconButton
-            aria-label='Close drawer'
+            aria-label={t('common.close_drawer', { defaultValue: 'Close drawer' })}
             icon={<Icon as={LuX} />}
             position='absolute'
             top='6px'

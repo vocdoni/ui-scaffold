@@ -158,7 +158,13 @@ export const OrganizationCreate = ({
       >
         <PublicOrgForm minified={minified} />
         <PrivateOrgForm minified={minified} />
-        <Button form='process-create-form' type='submit' isLoading={isPending} colorScheme='black'>
+        <Button
+          form='process-create-form'
+          type='submit'
+          isLoading={isPending}
+          colorScheme='black'
+          aria-label={t('organization.create_org', { defaultValue: 'Create organization' })}
+        >
           {t('organization.create_org')}
         </Button>
         <FormSubmitMessage isError={isError} error={error} />
@@ -175,6 +181,7 @@ export const OrganizationCreate = ({
           <Button
             as={ReactRouterLink}
             to={Routes.dashboard.base}
+            aria-label={t('do_it_later', { defaultValue: 'Do it later' })}
             variant='outline'
             border='none'
             isDisabled={isPending}

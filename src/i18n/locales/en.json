@@ -59,6 +59,7 @@
     "title": "Schedule"
   },
   "cancel": "Cancel",
+  "cancel_vote": "Cancel vote",
   "cc": {
     "actions": {
       "cancel": "Cancel the process immediately, not allowing new votes and not counting any results (caution: it cannot be reverted)",
@@ -154,6 +155,8 @@
   "common": {
     "back": "Back",
     "cancel": "Cancel",
+    "close": "Close",
+    "close_drawer": "Close drawer",
     "confirm": "Confirm",
     "disable": "Disable",
     "enable": "Enable",
@@ -256,8 +259,26 @@
   "description": "Description",
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
+  "drawer": {
+    "close": "Close drawer"
+  },
   "edit_saas_profile": {
     "edited_successfully": "Updated successfully"
+  },
+  "editor": {
+    "bold": "Bold",
+    "italic": "Italic",
+    "link": {
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "edit": "Edit link",
+      "placeholder": "Enter link URL",
+      "remove": "Remove link",
+      "title": "Link"
+    },
+    "paragraph": "Paragraph",
+    "strikethrough": "Strikethrough",
+    "underline": "Underline"
   },
   "election": {
     "ends_on": "Ends on {{date}}",
@@ -267,6 +288,7 @@
   "email_placeholder": "name@email.com",
   "end_date": "End date",
   "end_time": "End time",
+  "end_vote": "End vote",
   "error": {
     "go_back": "Go back",
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
@@ -343,6 +365,7 @@
       "census_config_required": "Please configure the census authentication settings.",
       "email_invalid": "Invalid email address",
       "field_is_required": "This field is required",
+      "generic": "Error performing the operation",
       "invalid_youtube_url": "Please enter a valid YouTube URL",
       "max_greater_than_min": "Max must be greater than or equal to Min",
       "password_min_length": "Min. 8 characters",
@@ -398,6 +421,7 @@
         "questions_title": "Questions"
       }
     },
+    "reset": "Reset form",
     "select_language": "Language",
     "support": {
       "billing_issue": "Billing issue",
@@ -416,6 +440,7 @@
   "form_error": {
     "passwords_must_match": ""
   },
+  "go_back": "go back",
   "google_oauth_error": "Google OAuth Error",
   "google_oauth_error_description": "Google OAuth error, please try again",
   "group": {
@@ -795,6 +820,11 @@
       },
       "title": "A simple 4 steps process"
     },
+    "projects": {
+      "description": "We help you at every step. We offer turnkey customized projects. We take care of everything.",
+      "expertise": "We are experts in digital voting",
+      "title": "Do you want to create a vote for your community?"
+    },
     "solutions": {
       "card_1": {
         "description": "Streamline decision-making with secure, transparent voting. Engage members effectively, save on administrative costs, and foster a culture of participation and transparency.",
@@ -857,6 +887,7 @@
     "view_errors_one": "View {{count}} error",
     "view_errors_other": "View {{count}} errors"
   },
+  "internal_server_error": "Internal server error",
   "invite": {
     "account_not_verified": "Your account is not verified. Please verify your account to continue.",
     "create_account_subtitle": "You need an account first, in order to accept your invite",
@@ -1018,6 +1049,7 @@
       "no_results": "No members found",
       "remaining_members_one": "+{{count}} more",
       "remaining_members_other": "+{{count}} more",
+      "search": "Search members...",
       "select_group": "Select group",
       "select_hint": "Select members to perform bulk actions",
       "selected_one": "Selected: <strong>{{count}} member</strong>",
@@ -1155,6 +1187,7 @@
     "success": "Password updated successfully"
   },
   "passwords_do_not_match": "Passwords doesn't match",
+  "pause_vote": "Pause vote",
   "plan": {
     "details": "You're currently on the {{ title }} plan, {{ subtitle }}",
     "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
@@ -1420,6 +1453,7 @@
   },
   "process_create": {
     "auto_start": "Start immediately",
+    "basic_configuration": "Basic Configuration",
     "census": {
       "extra_methods": {
         "disable_description": "Do you want to disable extra census methods? This will hide the Spreadsheet and Web3 options and show only the Group method.",
@@ -1441,7 +1475,11 @@
         "label": "Web3"
       }
     },
+    "census_creation": "Census Creation",
+    "census_missing": "Census data is missing for Memberbase census type",
+    "census_type_not_allowed": "Census type {{type}} not allowed",
     "end_datetime": "End date and time",
+    "extra_configuration": "Extra Configuration",
     "group": {
       "select": "Select group"
     },
@@ -1449,6 +1487,8 @@
       "scroll_to_load": "Scroll to load more..."
     },
     "new_option": "Add a new option",
+    "no_account_address": "No account address found.",
+    "no_election_index": "No election index found for the account.",
     "option": {
       "description_placeholder": "Project description",
       "placeholder": "Option {{number}}",
@@ -1463,11 +1503,13 @@
         "placeholder": "Add a title to the question"
       }
     },
+    "remove_option": "Remove option",
     "result_visibility": {
       "hidden": "Hidden until the end",
       "live": "Live results",
       "title": "Result visibility"
     },
+    "settings": "Settings",
     "start_datetime": "Start date and time",
     "youtube": {
       "accordion_title": "Attach video (optional)",
@@ -1517,6 +1559,7 @@
     "single_choice_multiquestion": "Single choice",
     "title": "Voting type"
   },
+  "resume_vote": "Resume",
   "role": {
     "full_access": {
       "badge": "(Full access)",
@@ -1595,6 +1638,7 @@
       "cancel_invitation_error": "Error cancelling invitation",
       "cancel_invitation_success": "Invitation cancelled successfully",
       "change_role": "Change Role",
+      "options": "Options",
       "remove_user": "Remove user",
       "resend_invitation": "Resend Invitation",
       "resend_invitation_error": "Error resending invitation",
@@ -1782,6 +1826,7 @@
   "vote_information": "Vote information",
   "vote_overwrite": "Vote overwrite",
   "voter_auth": {
+    "2fa_badge": "2FA",
     "2fa_description": "Add an extra layer of security by requiring voters to verify their identity",
     "2fa_email": "Email verification",
     "2fa_email_description": "Voters will receive a verification code via email",

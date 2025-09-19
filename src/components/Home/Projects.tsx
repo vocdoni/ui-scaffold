@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 
 const Support = () => {
@@ -32,7 +32,7 @@ const Support = () => {
           maxW='900px'
           mx='auto'
         >
-          Vols crear una votació per la teva comunitat?
+          <Trans i18nKey='home.projects.title'>Do you want to create a vote for your community?</Trans>
         </Text>
         <Text
           fontSize='18px'
@@ -43,7 +43,9 @@ const Support = () => {
           fontWeight='100'
           mx='auto'
         >
-          T'ajudem en tots els passos. Oferim projectes customizats clau en mà. Ens encarreguem de tot.
+          <Trans i18nKey='home.projects.description'>
+            We help you at every step. We offer turnkey customized projects. We take care of everything.
+          </Trans>
         </Text>
       </Box>
       <Flex flexGrow={1} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
@@ -57,7 +59,7 @@ const Support = () => {
           mx='auto'
           w='100%'
         >
-          Som experts en vot digital
+          <Trans i18nKey='home.projects.expertise'>We are experts in digital voting</Trans>
         </Text>
         <Button
           as={ReactRouterLink}

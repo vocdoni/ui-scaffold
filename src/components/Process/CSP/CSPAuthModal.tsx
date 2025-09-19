@@ -12,7 +12,7 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { useElection } from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { QueryKeys } from '~queries/keys'
 import { CspAuthProvider, useCspAuthContext } from './CSPStepsProvider'
 import { Step0Base } from './Step0'
@@ -63,6 +63,7 @@ const useCensusBundle = (censusURI?: string) => {
 }
 
 export const CspAuthModal = () => {
+  const { t } = useTranslation()
   const { isOpen, onClose, onOpen } = useDisclosure()
   const { election } = useElection()
   const { currentStep } = useCspAuthContext()
@@ -71,7 +72,12 @@ export const CspAuthModal = () => {
 
   return (
     <>
-      <Button colorScheme='black' onClick={onOpen} w='full'>
+      <Button
+        colorScheme='black'
+        onClick={onOpen}
+        w='full'
+        aria-label={t('cc.spreadsheet.access_button', { defaultValue: 'Login' })}
+      >
         <Trans i18nKey='cc.spreadsheet.access_button'>Login</Trans>
       </Button>
       <Modal isOpen={isOpen} onClose={onClose} isCentered>

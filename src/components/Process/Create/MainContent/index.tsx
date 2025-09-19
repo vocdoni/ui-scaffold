@@ -85,10 +85,19 @@ const AddMultipleQuestionModal = ({ isOpen, onClose }) => {
         </ModalHeader>
         <ModalBody p={0}>
           <Flex justifyContent='flex-end' mt={4} gap={2}>
-            <Button variant='outline' onClick={onClose}>
+            <Button
+              variant='outline'
+              aria-label={t('process.create.question.add_multiple.cancel_button', { defaultValue: 'Cancel' })}
+              onClick={onClose}
+            >
               {t('process.create.question.add_multiple.cancel_button', { defaultValue: 'Cancel' })}
             </Button>
-            <Button as={Link} to={Routes.dashboard.settings.support} colorScheme='black'>
+            <Button
+              as={Link}
+              to={Routes.dashboard.settings.support}
+              aria-label={t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact Us' })}
+              colorScheme='black'
+            >
               {t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact Us' })}
             </Button>
           </Flex>

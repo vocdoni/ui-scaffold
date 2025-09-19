@@ -61,6 +61,7 @@ const SimpleQuestionEditor = ({
         leftIcon={<Icon as={LuPlus} />}
         variant='ghost'
         size='sm'
+        aria-label={t('process_create.new_option', { defaultValue: 'Add option' })}
         onClick={() => append({ option: '' })}
         alignSelf='flex-start'
       >

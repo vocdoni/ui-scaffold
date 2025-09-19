@@ -30,7 +30,12 @@ export const ValidationErrorsAlert = ({ validationError }: { validationError: Va
 
   const errorData: ValidationErrorData = validationError?.data
 
-  if (!errorData) return <Alert status='error'>{validationError.error || 'Internal server error'}</Alert>
+  if (!errorData)
+    return (
+      <Alert status='error'>
+        {validationError.error || t('internal_server_error', { defaultValue: 'Internal server error' })}
+      </Alert>
+    )
 
   const { memberIds, duplicates, missingData } = errorData
   const hasDuplicates = duplicates.length > 0
