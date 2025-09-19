@@ -712,7 +712,7 @@ export const ProcessCreate = () => {
                   <AccordionIcon />
                 </AccordionButton>
 
-                <AccordionPanel px={0}>
+                <AccordionPanel px={0} display='flex' flexDirection='column' gap={4}>
                   <FormControl isInvalid={!!errors.streamUri}>
                     <FormLabel>
                       <Trans i18nKey='process_create.youtube.title'>Live streaming video</Trans>
@@ -731,10 +731,9 @@ export const ProcessCreate = () => {
                       )}
                     />
                     <FormErrorMessage>{errors.streamUri?.message?.toString()}</FormErrorMessage>
-
-                    {/* Video Preview */}
-                    {streamUri && <ReactPlayer src={streamUri} controls />}
                   </FormControl>
+                  {/* Video Preview */}
+                  {streamUri && <ReactPlayer src={streamUri} controls />}
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
