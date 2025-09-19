@@ -70,6 +70,7 @@ jobs:
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
           STRIPE_PUBLIC_KEY: pk_live_51PNuOtDW6VLep8WGBEgNv3hb8dNW9hMH0jjfw60U3XbC6JoBohN4LLcG5QcNvuWq80QNsAdzl6WL8e7vf3diZyKR00mbbsOys5
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
+          SAAS_URL: https://saas-api.vocdoni.net
 
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v2.0
