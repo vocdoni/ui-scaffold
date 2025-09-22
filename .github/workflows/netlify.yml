@@ -1,13 +1,28 @@
 name: Build and Deploy to Netlify
+
 on:
   push:
     branches:
-    - develop
-    - d/**
+      - develop
+      - d/**
   pull_request:
+
 jobs:
-  build-dev-vocdoni:
+  build-and-deploy:
     runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        target:
+          - name: dev
+            voc_env: dev
+            stripe_public_key: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
+            netlify_site_id: 5bddb63a-3f70-4de9-9fa8-89afc6f813a8
+          - name: stg
+            voc_env: prod
+            stripe_public_key: pk_live_51PNuOtDW6VLep8WGBEgNv3hb8dNW9hMH0jjfw60U3XbC6JoBohN4LLcG5QcNvuWq80QNsAdzl6WL8e7vf3diZyKR00mbbsOys5
+            netlify_site_id: 5f9bd529-1b25-49af-acde-818bbd33109b
+            saas_url: https://saas-api.vocdoni.net
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,66 +38,27 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Build vocdoni app dev
+      - name: Build vocdoni app (${{ matrix.target.name }})
         run: yarn build
         env:
-          VOCDONI_ENVIRONMENT: dev
+          VOCDONI_ENVIRONMENT: ${{ matrix.target.voc_env }}
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
-          STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
+          STRIPE_PUBLIC_KEY: ${{ matrix.target.stripe_public_key }}
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
+          # Only set when present in matrix (stg)
+          SAAS_URL: ${{ matrix.target.saas_url || '' }}
 
-      - name: Deploy to Netlify
+      - name: Deploy to Netlify (${{ matrix.target.name }})
         uses: nwtgck/actions-netlify@v2.0
         with:
           publish-dir: './dist'
           production-branch: develop
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Vocdoni dev Deploy from GitHub Actions'
+          deploy-message: Vocdoni ${{ matrix.target.name }} deploy from Github Actions
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: 5bddb63a-3f70-4de9-9fa8-89afc6f813a8
-        timeout-minutes: 1
-
-  build-stg-vocdoni:
-    runs-on: ubuntu-22.04
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22.x
-
-      - name: Install
-        run: yarn install --frozen-lockfile
-
-      - name: Lint
-        run: yarn lint
-
-      - name: Build vocdoni app dev
-        run: yarn build
-        env:
-          VOCDONI_ENVIRONMENT: prod
-          CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
-          STRIPE_PUBLIC_KEY: pk_live_51PNuOtDW6VLep8WGBEgNv3hb8dNW9hMH0jjfw60U3XbC6JoBohN4LLcG5QcNvuWq80QNsAdzl6WL8e7vf3diZyKR00mbbsOys5
-          CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
-          SAAS_URL: https://saas-api.vocdoni.net
-
-      - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v2.0
-        with:
-          publish-dir: './dist'
-          production-branch: develop
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Vocdoni stg Deploy from GitHub Actions'
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: 5f9bd529-1b25-49af-acde-818bbd33109b
+          NETLIFY_SITE_ID: ${{ matrix.target.netlify_site_id }}
         timeout-minutes: 1
