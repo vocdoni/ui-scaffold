@@ -148,29 +148,11 @@ Please review our [development guidelines](https://developer.vocdoni.io/developm
 
 To avoid unnecessary review overhead, **pull requests that only fix typos, whitespace, punctuation, or other minor changes without functional impact or clear added value will not be accepted**. If you want to correct such issues, please open an issue first. If the change is considered necessary, it may be accepted as a dedicated pull request that groups those corrections together. Accepted contributions must provide a clear benefit, whether through functional improvements, meaningful documentation updates, or the implementation of a feature or bug fix. Minor changes should be made with consideration and strong justification to avoid unnecessary distractions for reviewers.
 
-## License
+## License [![License: BSL 1.1](https://img.shields.io/badge/license-BSL%201.1-blue.svg)](https://mariadb.com/bsl11/)
 
-This repository is licensed under the [GNU Affero General Public License v3.0.](./LICENSE)
+This repository is licensed under the [Business Source License 1.1](./LICENSE).
 
-
-    Vocdoni UI Scaffold
-    Copyright (C) 2024 Vocdoni Association
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-
+Copyright © 2025 Vocdoni.
 
 
 [app-dev.vocdoni.io]: https://app-dev.vocdoni.io
