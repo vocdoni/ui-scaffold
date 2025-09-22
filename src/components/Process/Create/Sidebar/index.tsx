@@ -57,7 +57,6 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
             top={2}
             right={2}
             onClick={() => props.onClose?.()}
-            _hover={{ bg: 'gray.100', _dark: { bg: 'whiteAlpha.200' } }}
           />
         )}
       </SidebarContents>

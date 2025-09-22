@@ -77,7 +77,7 @@ const PricingCard = ({
               values={{ price }}
               components={{
                 price: <Text size='2xl' fontWeight='bold' />,
-                time: <Text size='sm' color='gray.500' />,
+                time: <Text size='sm' color='texts.subtle' />,
               }}
             >
               {{ price }}/year

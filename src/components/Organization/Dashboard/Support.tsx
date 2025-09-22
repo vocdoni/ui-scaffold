@@ -260,7 +260,7 @@ const PhoneSupportCard = ({ isLocked }) => {
             <Text fontSize='lg' fontWeight='bold'>
               {maskValue(prioritySupportPhone, isLocked)}
             </Text>
-            <Text fontSize='sm' color='text.dark'>
+            <Text fontSize='sm' color='texts.dark'>
               {t('organization_settings.phone_support.priority_support_line_description', {
                 defaultValue: 'Available Monday–Friday, 9:00–18:00 CET',
               })}

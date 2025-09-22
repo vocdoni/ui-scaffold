@@ -297,7 +297,7 @@ const Processes = () => {
   if (isError) {
     return (
       <Flex flexGrow={1} flexDir='column' justify='center' align='center' gap={4}>
-        <Text color='gray.500'>
+        <Text color='texts.subtle'>
           {t('dashboard_empty_processes.error_loading_processes', {
             defaultValue: 'Error loading voting processes',
           })}
@@ -309,7 +309,7 @@ const Processes = () => {
   if (!organization) {
     return (
       <Flex flexGrow={1} flexDir='column' justify='center' align='center' gap={4}>
-        <Text color='gray.500'>
+        <Text color='texts.subtle'>
           {t('dashboard_empty_processes.no_organization', { defaultValue: 'No organization found' })}
         </Text>
         <Button
@@ -361,7 +361,7 @@ const Processes = () => {
                 >
                   <ElectionTitle mb={0} fontSize='md' textAlign='left' fontWeight='500' isTruncated />
                 </Link>
-                <Text fontSize='sm' color='gray.500' isTruncated>
+                <Text fontSize='sm' color='texts.subtle' isTruncated>
                   {t('election.ends_on', {
                     defaultValue: 'Ends on {{date}}',
                     date: format(election.endDate, t('organization.date_format')),

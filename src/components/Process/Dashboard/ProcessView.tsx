@@ -121,7 +121,7 @@ export const ProcessView = () => {
         <Box as='header'>
           <ElectionTitle textAlign={'start'} fontWeight={'bold'} />
           <ElectionVideo mb='3' />
-          <ElectionDescription color='gray.500' />
+          <ElectionDescription color='texts.subtle' />
         </Box>
 
         {/* Schedule */}
@@ -176,7 +176,7 @@ export const ProcessView = () => {
               <Icon as={LuExternalLink} />
               <Trans i18nKey='voting_link.title'>Voting Link</Trans>
             </Heading>
-            <Text color='gray.500' fontSize='sm'>
+            <Text color='texts.subtle' fontSize='sm'>
               <Trans i18nKey='voting_link.description'>
                 Share this link with your voters to participate in the voting process
               </Trans>
@@ -425,7 +425,7 @@ const SettingsField = ({ subtext, icon, text }: { subtext?: string; icon: typeof
       <Text fontSize='sm' fontWeight='bold' textTransform='capitalize'>
         {text}
       </Text>
-      <Text whiteSpace='nowrap' color='gray.500' fontSize='sm'>
+      <Text whiteSpace='nowrap' color='texts.subtle' fontSize='sm'>
         {subtext}
       </Text>
     </Box>
