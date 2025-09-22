@@ -855,23 +855,6 @@
       "title": "Start giving a voice to your community"
     }
   },
-  "home_features": {
-    "anonymous_description": "Unlock true democracy with zkSNARKs! Participants can cast their votes with complete anonymity, ensuring every voice is heard without compromise.",
-    "anonymous_title": "Anonymous",
-    "census_startegy_description": "Craft the perfect census strategy combining variables to determine voter eligibility. Leverage combinations of multiple tokens from EVM-based networks and other data.",
-    "census_startegy_title": "Census strategies",
-    "descentralized_description": "Onvote runs on top of a specialized decentralized network built for digital voting. The entire process is universally verifiable and the votes are completely tamper-proof.",
-    "descentralized_title": "Decentralized",
-    "flexible_description": "Onvote leverages the Vocdoni Protocol: a highly flexible ballot protocol that allows multiple voting methods (like simple, quadratic or ranked voting) as well as other customizations to fit your unique requirements. You can unleash all its potential with our user-friendly SDK.",
-    "flexible_title": "Flexible protocol",
-    "gas_less_description": "Paying for voting is wrong. To eliminate barriers and uphold governance, voting on Onvote is gasless. Only the initiators of voting processes bear the cost.",
-    "gas_less_title": "Gasless voting",
-    "multichain_description": "Combine tokens across any chain to maximize voting power. For example, holders can vote with all their $UNI on Polygon, Optimism, Ethereum and more!",
-    "multichain_title": "Multichain",
-    "open_source_description": "We believe that something as important as your vote must be open-source and publicly audited to be trusted. We release everything under AGPLv3.",
-    "open_source_title": "Opensource",
-    "title": "<p1>are you</p1><p2>Ready for a new Era of Web3 governance?</p2>"
-  },
   "import_progress": {
     "completed_with_errors": "Import Completed with Errors",
     "completed_with_errors_description": "Your member data has been imported, but some errors occurred, and because of that some users have missing fields.",
