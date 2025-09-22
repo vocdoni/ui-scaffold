@@ -15,7 +15,6 @@ import FormSubmitMessage from '~shared/Layout/FormSubmitMessage'
 import { Routes } from '~src/router/routes'
 import { AnalyticsEvent } from '~utils/analytics'
 import InputBasic from '../shared/Form/InputBasic'
-import GoogleAuth from './GoogleAuth'
 
 type FormData = {
   keepLogedIn: boolean
@@ -141,8 +140,6 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
             {t('signin')}
           </Button>
         </Box>
-        <OrSeparator />
-        <GoogleAuth />
       </FormProvider>
 
       <Text display={'flex'} justifyContent={'center'} alignItems={'center'} fontWeight='bold' fontSize='sm' mt={6}>
