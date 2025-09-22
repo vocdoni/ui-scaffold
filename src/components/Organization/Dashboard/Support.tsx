@@ -18,18 +18,16 @@ import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { LuInfo, LuLock, LuSparkles } from 'react-icons/lu'
-import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
+import { LuInfo } from 'react-icons/lu'
 import { useSaasAccount } from '~components/Account/SaasAccountProvider'
 import { ApiEndpoints } from '~components/Auth/api'
-import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { DashboardBox } from '~components/shared/Dashboard/Contents'
+import { SubscriptionLockedContent } from '~components/shared/Layout/SubscriptionLockedContent'
 import { SubscriptionPermission } from '~constants'
 import InputBasic from '~shared/Form/InputBasic'
 import FormSubmitMessage from '~shared/Layout/FormSubmitMessage'
 import { IssueTypeSelector, SelectOptionType } from '~shared/Layout/SaasSelector'
-import { Routes } from '~src/router/routes'
 import { maskValue } from '~utils/strings'
 
 type FormData = {
@@ -42,10 +40,6 @@ type SupportTicket = {
   title: string
   type: string
   description: string
-}
-
-type SubscriptionLockedContentProps = {
-  children: (args: { isLocked: boolean }) => React.ReactNode
 }
 
 const OrganizationSupport = () => {
@@ -66,8 +60,8 @@ const OrganizationSupport = () => {
       <SimpleGrid columns={columns} spacing={6}>
         <SupportTicketForm />
         {import.meta.env.PRIORITY_SUPPORT_PHONE && (
-          <SubscriptionLockedContent>
-            {({ isLocked }) => <PhoneSupportCard isLocked={isLocked} />}
+          <SubscriptionLockedContent permissionType={SubscriptionPermission.PhoneSupport}>
+            {({ isLocked }: { isLocked: boolean }) => <PhoneSupportCard isLocked={isLocked} />}
           </SubscriptionLockedContent>
         )}
       </SimpleGrid>
@@ -152,67 +146,6 @@ const SupportTicketForm = () => {
         </VStack>
       </Box>
     </FormProvider>
-  )
-}
-
-const SubscriptionLockedContent = ({ children }: SubscriptionLockedContentProps) => {
-  const { t } = useTranslation()
-  const { loading, permission } = useSubscription()
-
-  if (loading) return <Progress size='xs' isIndeterminate colorScheme='gray' />
-
-  const hasPhoneSupport = permission(SubscriptionPermission.PhoneSupport)
-  const isLocked = !hasPhoneSupport
-
-  return (
-    <Box position='relative' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-      <Box
-        pointerEvents={isLocked ? 'none' : 'auto'}
-        filter={isLocked ? 'blur(10px)' : ''}
-        transition='filter 0.2s ease'
-        zIndex={0}
-      >
-        {children({ isLocked })}
-      </Box>
-      {isLocked && (
-        <Box
-          position='absolute'
-          top={0}
-          left={0}
-          right={0}
-          bottom={0}
-          display='flex'
-          alignItems='center'
-          justifyContent='center'
-          flexDirection='column'
-          backdropFilter='blur(5px)'
-          px={4}
-          zIndex={1}
-        >
-          <Icon as={LuLock} boxSize={8} mb={4} />
-          <Text fontWeight='bold' mb={2}>
-            {t('organization_settings.phone_support.locked', {
-              defaultValue: 'Phone Support is available with a Custom plan',
-            })}
-          </Text>
-          <Text fontSize='sm' color='texts.dark' mb={4}>
-            {t('organization_settings.phone_support.locked_description', {
-              defaultValue: 'Upgrade to our Custom plan to get priority phone support with dedicated agents.',
-            })}
-          </Text>
-          <Button
-            as={ReactRouterLink}
-            to={generatePath(Routes.dashboard.settings.subscription)}
-            leftIcon={<Icon as={LuSparkles} mr={2} />}
-            colorScheme='black'
-          >
-            {t('organization_settings.phone_support.unlock', {
-              defaultValue: 'Unlock Phone Support',
-            })}
-          </Button>
-        </Box>
-      )}
-    </Box>
   )
 }
 

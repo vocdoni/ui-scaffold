@@ -321,6 +321,7 @@
     "multiple": "Elecció múltiple",
     "overwrite": "Sobre-escriptura del vot",
     "personalization": "Personalització",
+    "phone_support": "Suport telefònic",
     "ranked": "Votació ordenada",
     "section": {
       "features": "Funcionalitats",
@@ -1613,6 +1614,12 @@
   "start_time": "Hora d'inici",
   "subscribe": "Subscriu-te",
   "subscription": {
+    "locked_content": {
+      "available_in": "Disponible a:",
+      "description": "Actualitza el teu pla per obtenir {{ permissionName }} i més.",
+      "title": "El teu pla actual {{ plan }} no inclou {{ permissionName }}",
+      "unlock": "Desbloqueja {{ permissionName }}"
+    },
     "title": "Subscripció"
   },
   "subscription_plan": {
