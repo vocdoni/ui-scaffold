@@ -9,6 +9,7 @@ on:
 
 jobs:
   build-and-deploy:
+    name: Build & Deploy (${{ matrix.target.name }})
     runs-on: ubuntu-22.04
     strategy:
       matrix:
