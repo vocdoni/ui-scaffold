@@ -386,27 +386,18 @@ const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMemb
                   "When a new vote is created, the system takes a snapshot of the group's members at that moment. Any changes to the member list afterward will not affect the created census.",
               })}
             </Text>
+          </Flex>
+          <Flex justify='space-between' mt={4}>
             <Button
-              justifyContent='flex-start'
               colorScheme='black'
-              variant='outline'
               leftIcon={<Icon as={LuVote} boxSize={4} />}
               size='xs'
               onClick={() => navigateToVote(group.id)}
             >
               {t('group.create_vote', { defaultValue: 'Create a Vote' })}
             </Button>
-          </Flex>
-          <Flex justify='flex-end'>
-            <Button
-              leftIcon={<Icon as={LuTrash} boxSize={4} />}
-              onClick={openDeleteModal}
-              colorScheme='red'
-              variant='outline'
-              size='xs'
-              mt={4}
-            >
-              <Text>{t('group.delete_group', { defaultValue: 'Delete group' })}</Text>
+            <Button leftIcon={<Icon as={LuTrash} boxSize={4} />} onClick={openDeleteModal} colorScheme='red' size='xs'>
+              {t('group.delete_group', { defaultValue: 'Delete group' })}
             </Button>
           </Flex>
         </DrawerBody>
