@@ -50,7 +50,9 @@ import { useAuth } from '~components/Auth/useAuth'
 import Editor from '~components/Editor'
 import { Web3Address } from '~components/Process/Census/Web3'
 import { DashboardContents } from '~components/shared/Dashboard/Contents'
+import { SubscriptionLockedContent } from '~components/shared/Layout/SubscriptionLockedContent'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
+import { SubscriptionPermission } from '~constants'
 import { Routes } from '~routes'
 import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
 import { AnalyticsEvent } from '~utils/analytics'
@@ -214,6 +216,65 @@ export const useFormDraftSaver = (isDirty: boolean, getValues: () => any, storeF
 
     return () => clearInterval(interval)
   }, [isDirty])
+}
+
+const LiveStreamingInput = () => {
+  const { t } = useTranslation()
+  const methods = useFormContext<Process>()
+  const { errors } = methods.formState
+  const streamUri = methods.watch('streamUri')
+
+  return (
+    <Accordion allowToggle>
+      <AccordionItem border='none'>
+        <AccordionButton px={0}>
+          <Box textAlign='left'>
+            <Text fontSize='sm' color='texts.subtle'>
+              {t('process_create.youtube.accordion_title', {
+                defaultValue: 'Attach video (optional)',
+              })}
+            </Text>
+          </Box>
+          <AccordionIcon />
+        </AccordionButton>
+
+        <AccordionPanel px={0} display='flex' flexDirection='column' gap={4}>
+          <SubscriptionLockedContent permissionType={SubscriptionPermission.LiveStreaming}>
+            {({ isLocked }: { isLocked: boolean }) => (
+              <>
+                <FormControl isInvalid={!!errors.streamUri}>
+                  <FormLabel>
+                    <Trans i18nKey='process_create.youtube.title'>Live streaming video</Trans>
+                  </FormLabel>
+                  <Controller
+                    control={methods.control}
+                    name='streamUri'
+                    rules={{
+                      pattern: {
+                        value: /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/).+$/,
+                        message: t('form.error.invalid_youtube_url', 'Please enter a valid YouTube URL'),
+                      },
+                    }}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type='url'
+                        placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                        tabIndex={isLocked ? -1 : 0}
+                      />
+                    )}
+                  />
+                  <FormErrorMessage>{errors.streamUri?.message?.toString()}</FormErrorMessage>
+                </FormControl>
+                {/* Video Preview */}
+                {streamUri && <ReactPlayer src={streamUri} controls />}
+              </>
+            )}
+          </SubscriptionLockedContent>
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  )
 }
 
 const TemplateButtons = () => {
@@ -699,44 +760,7 @@ export const ProcessCreate = () => {
             </FormControl>
 
             {/* Live streaming video URL */}
-            <Accordion allowToggle>
-              <AccordionItem border='none'>
-                <AccordionButton px={0}>
-                  <Box textAlign='left'>
-                    <Text fontSize='sm' color='texts.subtle'>
-                      {t('process_create.youtube.accordion_title', {
-                        defaultValue: 'Attach video (optional)',
-                      })}
-                    </Text>
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-
-                <AccordionPanel px={0} display='flex' flexDirection='column' gap={4}>
-                  <FormControl isInvalid={!!errors.streamUri}>
-                    <FormLabel>
-                      <Trans i18nKey='process_create.youtube.title'>Live streaming video</Trans>
-                    </FormLabel>
-                    <Controller
-                      control={methods.control}
-                      name='streamUri'
-                      rules={{
-                        pattern: {
-                          value: /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/).+$/,
-                          message: t('form.error.invalid_youtube_url', 'Please enter a valid YouTube URL'),
-                        },
-                      }}
-                      render={({ field }) => (
-                        <Input {...field} type='url' placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ' />
-                      )}
-                    />
-                    <FormErrorMessage>{errors.streamUri?.message?.toString()}</FormErrorMessage>
-                  </FormControl>
-                  {/* Video Preview */}
-                  {streamUri && <ReactPlayer src={streamUri} controls />}
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
+            <LiveStreamingInput />
             <Controller
               name='description'
               control={methods.control}
