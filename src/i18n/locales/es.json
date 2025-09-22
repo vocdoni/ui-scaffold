@@ -860,23 +860,6 @@
       "title": "Da voz a tu comunidad"
     }
   },
-  "home_features": {
-    "anonymous_description": "¡Desbloquea la verdadera democracia con zkSNARKs! Los participantes pueden emitir sus votos con completa anonimato, asegurando que cada voz sea escuchada sin compromisos.",
-    "anonymous_title": "Anónimo",
-    "census_startegy_description": "Elabora la estrategia de censo perfecta combinando variables para determinar la elegibilidad de los votantes. Aprovecha combinaciones de múltiples tokens de redes basadas en EVM y otros datos.",
-    "census_startegy_title": "Estrategias de censo",
-    "descentralized_description": "Onvote funciona sobre una red descentralizada especializada construida para votaciones digitales. Todo el proceso es universalmente verificable y los votos son completamente a prueba de manipulaciones.",
-    "descentralized_title": "Descentralizado",
-    "flexible_description": "Onvote utiliza el Protocolo Vocdoni, un protocolo de votación altamente flexible que permite múltiples métodos de votación (como simple, cuadrático o clasificado), así como otras personalizaciones para ajustarse a tus necesidades únicas. Puedes liberar todo su potencial con nuestro SDK fácil de usar.",
-    "flexible_title": "Protocolo Flexible",
-    "gas_less_description": "Pagar por votar está mal. Para eliminar barreras y mantener la gobernanza, votar en Onvote es sin coste de gas. Solo los iniciadores de los procesos de votación asumen el costo.",
-    "gas_less_title": "Votación sin gas",
-    "multichain_description": "Combina tokens a través de cualquier cadena para maximizar el poder de votación. ¡Por ejemplo, los titulares pueden votar con todos sus $UNI en Polygon, Optimism, Ethereum y más!",
-    "multichain_title": "Multicadena",
-    "open_source_description": "Creemos que algo tan importante como tu voto debe ser de código abierto y auditado públicamente para ser confiable. Liberamos todo bajo AGPLv3.",
-    "open_source_title": "Código Abierto",
-    "title": "<p1>¿Estás</p1><p2>listo para una nueva Era en la gobernanza Web3?</p2>"
-  },
   "import_progress": {
     "completed_with_errors": "Import Completed with Errors",
     "completed_with_errors_description": "Tus datos de usuario se han importado, pero han ocurrido algunos errores, y a causa de eso algunos usuarios tienen campos vacíos.",
