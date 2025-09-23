@@ -313,6 +313,7 @@
     "approval": "Votación por aprobación",
     "cumulative": "Votación acumulativa",
     "custom_url": "URL personalizada",
+    "email_notification": "2FA Email",
     "email_reminder": "Recordatorios por correo electrónico",
     "interruptible": "Interruptible",
     "live_results": "Resultados en directo",
@@ -327,7 +328,7 @@
       "voting_types": "Tipos de votación"
     },
     "single": "Votación de opción única",
-    "sms_notification": "Notificaciones por SMS",
+    "sms_notification": "2FA SMS",
     "sub_orgs": "Hasta {{ value }} suborganizaciones",
     "total_orgs": "Total de suborganizaciones disponibles",
     "total_users": "Total available users",
