@@ -416,15 +416,6 @@
         "wallet_addresses": "Wallet Addresses"
       }
     },
-    "process_create_saas": {
-      "steps": {
-        "census_title": "Censo",
-        "confirm_title": "Confirmar",
-        "features_title": "Características",
-        "info_title": "Información",
-        "questions_title": "Preguntas"
-      }
-    },
     "reset": "Reset form",
     "select_language": "Idioma",
     "support": {
@@ -440,9 +431,6 @@
       "title_placeholder": "Briefly describe your issue",
       "voting_issue": "Voting issue"
     }
-  },
-  "form_error": {
-    "passwords_must_match": ""
   },
   "go_back": "go back",
   "google_oauth_error": "Google OAuth Error",
@@ -894,7 +882,6 @@
     "unexpected_error": "",
     "user_invited": "Email sent to {{email}}"
   },
-  "invite_people": "Invitar Gente",
   "language": {
     "catalan": "Català",
     "english": "English",
@@ -903,7 +890,6 @@
   "languages": "Languages",
   "lastname": "Last name",
   "light": "Claro",
-  "light_mode": "Modo claro",
   "link": {
     "discord": "Enlace al Discord de Vocdoni",
     "github": "Enlace al Github de Vocdoni",
@@ -1749,7 +1735,6 @@
   },
   "theme": "Theme",
   "total_votes": "Total votes",
-  "total_votes_submitted": "Total de votos enviados",
   "turnout": "Turnout",
   "uploader": {
     "click_or_drag_and_drop": "<click>Haz clic para subir</click><formats>(Formatos permitidos: {{ formats, list }})</formats>",
