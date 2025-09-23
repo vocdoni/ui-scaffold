@@ -409,7 +409,9 @@
       "success_title": "Proceso de votación creado con éxito",
       "web3": {
         "census_description": "Add wallet addresses that will be eligible to vote. You can add them individually or upload a CSV file.",
-        "census_summary_description": "<b>{{count}}</b> wallet address will be eligible to vote",
+        "census_summary_description_one": "<b>{{count}}</b> wallet address will be eligible to vote",
+        "census_summary_description_many": "<b>{{count}}</b> wallet address will be eligible to vote",
+        "census_summary_description_other": "<b>{{count}}</b> wallet address will be eligible to vote",
         "census_summary_title": "Census Summary",
         "csv_format": "CSV file should contain wallet addresses in the first column.",
         "upload_csv": "OR UPLOAD CSV",
