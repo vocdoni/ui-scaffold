@@ -24,7 +24,7 @@ export const SubscriptionLockedContent = ({ children, permissionType }: Subscrip
   const { loading, permission, subscription } = useSubscription()
   const plansWithFeature = useGetPlansWithFeature(permissionType)
   const translations = usePlanTranslations()
-  const plan = translations[subscription?.plan?.id]?.title
+  const plan = translations[subscription?.plan?.id]?.title ?? subscription?.plan?.name ?? subscription?.plan?.id
   const permissionName = t(PlanFeaturesTranslationKeys[permissionType])
   const hasPermission = permission(permissionType)
   const isLocked = !hasPermission
@@ -35,7 +35,14 @@ export const SubscriptionLockedContent = ({ children, permissionType }: Subscrip
 
   return (
     <Box borderWidth='1px' borderRadius='lg' display='grid'>
-      <Box gridArea='1 / 1' pointerEvents='none' filter='blur(5px)' borderRadius='lg' overflow='hidden'>
+      <Box
+        gridArea='1 / 1'
+        pointerEvents='none'
+        filter='blur(5px)'
+        borderRadius='lg'
+        overflow='hidden'
+        aria-hidden={isLocked}
+      >
         {children({ isLocked })}
       </Box>
 
@@ -73,7 +80,7 @@ export const SubscriptionLockedContent = ({ children, permissionType }: Subscrip
             <Wrap justify='center' spacing={2}>
               {plansWithFeature.map((p) => (
                 <Tag key={p.id} size='md' variant='subtle' colorScheme='green'>
-                  <TagLabel>{translations[p.id].title}</TagLabel>
+                  <TagLabel>{translations[p.id]?.title ?? p.name ?? p.id}</TagLabel>
                 </Tag>
               ))}
             </Wrap>
@@ -83,7 +90,7 @@ export const SubscriptionLockedContent = ({ children, permissionType }: Subscrip
         <Button
           as={ReactRouterLink}
           to={generatePath(Routes.dashboard.settings.subscription)}
-          leftIcon={<Icon as={LuSparkles} mr={2} />}
+          leftIcon={<Icon as={LuSparkles} />}
           colorScheme='black'
         >
           {t(`subscription.locked_content.unlock`, {
