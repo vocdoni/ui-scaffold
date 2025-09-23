@@ -111,7 +111,7 @@ export const CensusWeb3Addresses = () => {
             i18nKey='form.process_create.web3.census_summary_description'
             components={{ b: <Text as='span' fontWeight='extrabold' display='inline' fontSize='xs' /> }}
             defaults='<b>{{count}}</b> wallet address will be eligible to vote'
-            values={{ count: fields.length }}
+            count={fields.length}
           />
         </Text>
       </DashboardSection>
