@@ -20,9 +20,9 @@ jobs:
             netlify_site_id: 5bddb63a-3f70-4de9-9fa8-89afc6f813a8
           - name: stg
             voc_env: prod
-            stripe_public_key: pk_live_51PNuOtDW6VLep8WGBEgNv3hb8dNW9hMH0jjfw60U3XbC6JoBohN4LLcG5QcNvuWq80QNsAdzl6WL8e7vf3diZyKR00mbbsOys5
+            stripe_public_key: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
             netlify_site_id: 5f9bd529-1b25-49af-acde-818bbd33109b
-            saas_url: https://saas-api.vocdoni.net
+            saas_url: https://saas-api-lts.vocdoni.net
 
     steps:
       - name: Checkout
