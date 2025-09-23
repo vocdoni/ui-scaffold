@@ -313,6 +313,7 @@
     "approval": "Per aprovació",
     "cumulative": "Votació acumulativa",
     "custom_url": "Adreça URL personalitzada",
+    "email_notification": "2FA Email",
     "email_reminder": "Recordatoris per correu electrònic",
     "interruptible": "Interruptible",
     "live_results": "Resultats en directe",
@@ -327,7 +328,7 @@
       "voting_types": "Tipus de votacions"
     },
     "single": "Opció única",
-    "sms_notification": "Notificacions per SMS",
+    "sms_notification": "2FA SMS",
     "sub_orgs": "Fins a {{ value }} suborganitzacions",
     "total_orgs": "Sub-organitzacions disponibles",
     "total_users": "Total available users",

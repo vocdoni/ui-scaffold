@@ -1,11 +1,13 @@
 import { dotobject } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
+import { SubscriptionPermission } from '~constants'
 import type { Plan } from './Plans'
 
 export type FeaturesKeys =
   | 'personalization'
   | 'emailReminder'
-  | 'smsNotification'
+  | '2FAsms'
+  | '2FAemail'
   | 'whiteLabel'
   | 'liveStreaming'
   | 'anonymous'
@@ -14,45 +16,37 @@ export type FeaturesKeys =
 
 // Translation keys for the subscription features
 export const PlanFeaturesTranslationKeys = {
-  'organization.users': 'features.users',
-  'organization.subOrgs': 'features.sub_orgs',
-  'organization.customURL': 'features.custom_url',
-  'votingTypes.weighted': 'features.weighted',
-  'votingTypes.approval': 'features.approval',
-  // 'votingTypes.ranked': 'features.ranked',
-  'votingTypes.single': 'features.single',
-  'votingTypes.multiple': 'features.multiple',
-  // 'votingTypes.cumulative': 'features.cumulative',
-  'features.personalization': 'features.personalization',
-  'features.emailReminder': 'features.email_reminder',
-  'features.smsNotification': 'features.sms_notification',
-  'features.whiteLabel': 'features.white_label',
-  'features.liveStreaming': 'features.live_streaming',
-  'features.anonymous': 'features.anonymous',
-  'features.overwrite': 'features.overwrite',
-  'features.liveResults': 'features.live_results',
+  [SubscriptionPermission.Users]: 'features.users',
+  [SubscriptionPermission.SubOrgs]: 'features.sub_orgs',
+  [SubscriptionPermission.CustomURL]: 'features.custom_url',
+  [SubscriptionPermission.WeightedVoting]: 'features.weighted',
+  [SubscriptionPermission.ApprovalVoting]: 'features.approval',
+  // [SubscriptionPermission.RankedVoting]: 'features.ranked',
+  [SubscriptionPermission.SingleVoting]: 'features.single',
+  [SubscriptionPermission.MultipleVoting]: 'features.multiple',
+  // [SubscriptionPermission.CumulativeVoting]: 'features.cumulative',
+  [SubscriptionPermission.Personalization]: 'features.personalization',
+  [SubscriptionPermission.EmailReminder]: 'features.email_reminder',
+  [SubscriptionPermission.TwoFASms]: 'features.sms_notification',
+  [SubscriptionPermission.TwoFAEmail]: 'features.email_notification',
+  [SubscriptionPermission.WhiteLabel]: 'features.white_label',
+  [SubscriptionPermission.LiveStreaming]: 'features.live_streaming',
+  [SubscriptionPermission.Anonymous]: 'features.anonymous',
+  [SubscriptionPermission.Overwrite]: 'features.overwrite',
+  [SubscriptionPermission.LiveResults]: 'features.live_results',
 }
 
 // Translation keys for the subscription features in the comparison table
 export const PlanTableFeaturesTranslationKeys = {
   ...PlanFeaturesTranslationKeys,
-  'organization.users': 'features.total_users',
-  'organization.subOrgs': 'features.total_orgs',
+  [SubscriptionPermission.Users]: 'features.total_users',
+  [SubscriptionPermission.SubOrgs]: 'features.total_orgs',
 }
 
 export const CategorizedFeatureKeys = {
-  votingTypes: ['single', 'multiple', 'approval', 'weighted' /* 'cumulative', 'ranked' */],
-  organization: ['users', 'subOrgs', 'customURL'],
-  features: [
-    'emailReminder',
-    'smsNotification',
-    'personalization',
-    'whiteLabel',
-    'liveStreaming',
-    'anonymous',
-    'overwrite',
-    'liveResults',
-  ],
+  votingTypes: ['single', 'multiple', 'approval', 'weighted'],
+  organization: ['teamMembers'],
+  features: ['2FAsms', '2FAemail', 'liveStreaming', 'anonymous', 'overwrite', 'liveResults'],
 }
 
 export const CategoryTitleKeys = {
@@ -140,7 +134,8 @@ const UnusedComponentButRequiredToNotLoseTranslations = () => {
   t('features.weighted', { defaultValue: 'Weighted voting' })
   t('features.personalization', { defaultValue: 'Personalization' })
   t('features.email_reminder', { defaultValue: 'Email reminder' })
-  t('features.sms_notification', { defaultValue: 'SMS notification' })
+  t('features.sms_notification', { defaultValue: '2FA SMS' })
+  t('features.email_notification', { defaultValue: '2FA Email' })
   t('features.white_label', { defaultValue: 'White label' })
   t('features.live_streaming', { defaultValue: 'Live streaming' })
   t('features.anonymous_voting', { defaultValue: 'Anonymous voting' })
