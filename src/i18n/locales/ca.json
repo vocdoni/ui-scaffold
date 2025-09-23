@@ -206,7 +206,7 @@
       "name": "Nom",
       "nationalId": "DNI/NIE",
       "phone": "Telèfon",
-      "surname": "Cognom"
+      "surname": "Cognoms"
     },
     "important": "Important",
     "receive_code": "Rebre codi",
@@ -1220,8 +1220,8 @@
     "your_plan": "Actualment estàs subscrit al pla <plan>{{ plan }}</plan>. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el <plan>{{ billing, format }}</plan>, pagaràs íntegrament pel nou pla seleccionat."
   },
   "pricing_card": {
-    "comparison_table_from": "Des de {{price}}/any",
-    "from": "Des de {{price}}/any",
+    "comparison_table_from": "Des de {{ price }}/any",
+    "from": "<price>{{ price }}</price><time>/any</time>",
     "most_popular_plan": "Recomanat",
     "view_features": "Mostra totes les funcionalitats"
   },
@@ -1264,7 +1264,7 @@
     "census": "Cens",
     "census_strategies": {
       "csp": "CSP",
-      "spreadsheet": "CSV",
+      "spreadsheet": "CSV/Full de càlcul",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
       "web3": "Adreces Web3"
     },
@@ -1606,7 +1606,7 @@
   "signup_agree_terms": "Accepto els <termsLink>Termes del servei</termsLink> i la <privacyLink>Política de privacitat</privacyLink>",
   "signup_create_account": "Crea el meu compte",
   "signup_firstname": "Nom",
-  "signup_lastname": "Cognom",
+  "signup_lastname": "Cognoms",
   "signup_subtitle": "Continua per accedir al teu compte",
   "signup_title": "Crea un compte",
   "start_date": "Data d'inici",
