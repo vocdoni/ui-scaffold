@@ -249,9 +249,8 @@
   },
   "delete": {
     "cancel_button": "Cancel",
-    "confirm_description": "To delete your account, please contact our support team via email.",
+    "confirm_description": "To delete your account, please contact our support team.",
     "confirm_title": "Delete Your Account",
-    "copy_email": "Copy support email",
     "delete_subtitle": "Permanently delete your account and all associated data",
     "delete_title": "Delete Account"
   },
