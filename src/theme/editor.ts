@@ -91,8 +91,13 @@ const editor = {
   '.lexical-paragraph': {
     fontSize: '16px',
     lineHeight: '24px',
-    mb: '20px',
+    '&:has(img:only-child)': {
+      mb: 0,
+    },
+  },
 
+  '[contenteditable="false"] .lexical-paragraph': {
+    mb: '20px',
     '&:not(:has(+ p, + ul, + ol, + blockquote, + li))': {
       mb: '60px',
     },
