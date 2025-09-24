@@ -18,7 +18,6 @@ import {
   Progress,
   Spacer,
   Text,
-  useBreakpointValue,
   useDisclosure,
   useToast,
   VStack,
@@ -471,7 +470,6 @@ export const ProcessCreate = () => {
   const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
   const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
   const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
-  const sidebarMargin = useBreakpointValue({ base: 0, md: '350px' })
   const { organization } = useOrganization()
   const { client } = useClient()
   const { isSubmitting, isSubmitSuccessful, isDirty, errors } = methods.formState
@@ -639,7 +637,7 @@ export const ProcessCreate = () => {
         {/* Main content area */}
         <Box
           flex={1}
-          marginRight={showSidebar ? sidebarMargin : 0}
+          marginRight={showSidebar ? { base: 0, md: 'sidebar' } : 0}
           transition='margin-right 0.3s'
           display='flex'
           flexDirection='column'

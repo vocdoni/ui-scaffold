@@ -8,7 +8,6 @@ import {
   Slide,
   Text,
   TextProps,
-  useBreakpointValue,
 } from '@chakra-ui/react'
 
 export const DashboardBox = (props: BoxProps) => (
@@ -68,7 +67,6 @@ export type SidebarProps = BoxProps & {
 }
 
 export const Sidebar = ({ show, ...props }: SidebarProps) => {
-  const width = useBreakpointValue({ base: '100%', md: '350px' })
   return (
     <Slide
       direction='right'
@@ -78,12 +76,13 @@ export const Sidebar = ({ show, ...props }: SidebarProps) => {
         right: 0,
         top: 65,
         bottom: 0,
-        width,
+        width: undefined,
         zIndex: 10,
       }}
     >
       <Box
         height='100%'
+        width={{ base: '100%', md: 'sidebar' }}
         bg='chakra.body.bg'
         borderLeft='1px solid'
         borderColor='table.border'

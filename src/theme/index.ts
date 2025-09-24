@@ -12,6 +12,8 @@ import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'
 import '@fontsource/inter/index.css'
 
+const SIDEBAR_W = '420px'
+
 export const theme = extendTheme(vtheme, {
   config: {
     initialColorMode: 'system',
@@ -40,7 +42,9 @@ export const theme = extendTheme(vtheme, {
   components,
   colors,
   radii,
+  space: { sidebar: SIDEBAR_W },
   sizes: {
+    sidebar: SIDEBAR_W,
     'modal-stretch': 'calc(100% + var(--chakra-space-5)*2 + var(--chakra-space-6)*2)',
     'modal-stretch-lg': 'calc(100% + var(--chakra-space-10)*2 + var(--chakra-space-6)*2)',
   },
