@@ -4,6 +4,7 @@ import { Card } from './card'
 import { Checkbox, DetailedCheckbox } from './checkbox'
 import { ConfirmModal } from './confirmModal'
 import { Drawer } from './drawer'
+import { EllipsisButton } from './ellipsisButton'
 import { FormLabel } from './form'
 import { ElectionTitle, Heading } from './heading'
 import { Input } from './input'
@@ -32,6 +33,7 @@ import { Tooltip } from './tooltip'
 const components = {
   Badge,
   Button,
+  EllipsisButton,
   Card,
   Checkbox,
   DetailedCheckbox,
