@@ -150,32 +150,32 @@
   },
   "census_size": "Mida del cens",
   "change_password": {
-    "subtitle": "Enter your current password and a new password to update your credentials.",
-    "title": "Change Password"
+    "subtitle": "Introdueix la contrasenya actual i una de nova per actualitzar les teves credencials.",
+    "title": "Canvia la contrasenya"
   },
   "close": "Tanca",
-  "color_mode_switcher": "Color mode switcher",
+  "color_mode_switcher": "Commutador de mode de color",
   "common": {
-    "back": "Back",
-    "cancel": "Cancel·lar",
-    "close": "Close",
-    "close_drawer": "Close drawer",
-    "confirm": "Confirm",
-    "disable": "Disable",
-    "enable": "Enable",
-    "next": "Next"
+    "back": "Enrere",
+    "cancel": "Cancel·la",
+    "close": "Tanca",
+    "close_drawer": "Tanca el panell lateral",
+    "confirm": "Confirma",
+    "disable": "Desactiva",
+    "enable": "Activa",
+    "next": "Següent"
   },
-  "confirm_password": "Confirm Password",
-  "confirm_password_placeholder": "Confirm your new password",
-  "contact_us": "Contact us",
-  "control_panel": "Control panel",
+  "confirm_password": "Confirma la contrasenya",
+  "confirm_password_placeholder": "Confirma la teva nova contrasenya",
+  "contact_us": "Contacta amb nosaltres",
+  "control_panel": "Panell de control",
   "copy": {
     "address": "Copia l'adreça",
     "copied_title": "Copiat!",
-    "copy": "Copy"
+    "copy": "Copia"
   },
   "country_selector": {
-    "selector_label": "Country"
+    "selector_label": "País"
   },
   "create_org": {
     "already_profile": "Si la teva organització ja té un perfil, <2>accedeix al tauler de control</2> i contacta amb l'administrador perquè et convidi",
@@ -289,16 +289,16 @@
   },
   "email": "Correu electrònic",
   "email_placeholder": "nom@email.com",
-  "end_date": "End date",
-  "end_time": "End time",
-  "end_vote": "End vote",
+  "end_date": "Data de finalització",
+  "end_time": "Hora de finalització",
+  "end_vote": "Finalitza votació",
   "error": {
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
     "invalid_row_length": "Corregeix les línies {{rows, list}} del document i torna a carregar-lo",
     "invalid_weight_type": "S'esperava trobar el pes a la primera col·lumna a les línies {{rows, list}}, però s'han trobat dades inesperades",
     "loading_page": "Càrrega de pàgina errònia",
     "loading_roles": "Carregant rols",
-    "loading_types": "",
+    "loading_types": "Carregant tipus",
     "missing_data": "El full de càlcul no té dades.",
     "missing_header": "El full de càlcul no té capçalera.",
     "not_found": "Pàgina No Trobada",
@@ -309,7 +309,7 @@
   "error_text": "Ho sentim, no s'ha trobat la pàgina que cerqueu",
   "features": {
     "anonymous": "Votacions anònimes",
-    "anonymous_voting": "Anonymous voting",
+    "anonymous_voting": "Votació anònima",
     "approval": "Per aprovació",
     "cumulative": "Votació acumulativa",
     "custom_url": "Adreça URL personalitzada",
@@ -331,7 +331,7 @@
     "sms_notification": "2FA SMS",
     "sub_orgs": "Fins a {{ value }} suborganitzacions",
     "total_orgs": "Sub-organitzacions disponibles",
-    "total_users": "Total available users",
+    "total_users": "Total d'usuaris disponibles",
     "users": "Fins a {{ count }} usuaris",
     "weighted": "Amb pes",
     "white_label": "Marca blanca"
@@ -341,7 +341,7 @@
     "about_us": "Sobre Nosaltres",
     "company": "Empresa",
     "contact": "Contacte",
-    "developer_portal": "Developer Portal",
+    "developer_portal": "Portal de Desenvolupadors",
     "footer_subtitle": "El Protocol de Votació Global",
     "terms_and_privacy": "<link1>Termes d'ús</link1> i <link2>Política de privacitat</link2>"
   },
@@ -385,7 +385,7 @@
     "process_create": {
       "census": {
         "add_button": "Afegir",
-        "remove_address": "Remove address"
+        "remove_address": "Elimina l'adreça"
       },
       "error_title": "Error creant el procés",
       "spreadsheet": {
@@ -817,9 +817,9 @@
       "title": "Un procés de votació en només 4 passos"
     },
     "projects": {
-      "description": "We help you at every step. We offer turnkey customized projects. We take care of everything.",
-      "expertise": "We are experts in digital voting",
-      "title": "Do you want to create a vote for your community?"
+      "description": "T'ajudem en cada pas. Oferim projectes personalitzats clau en mà. Ens encarreguem de tot.",
+      "expertise": "Som experts en vot digital",
+      "title": "Vols crear una votació per a la teva comunitat?"
     },
     "solutions": {
       "card_1": {
@@ -1432,13 +1432,13 @@
   },
   "process_actions": {
     "cancel": "Cancel·la",
-    "continue": "Continue",
+    "continue": "Continua",
     "end": "Finalitza el procés",
     "pause": "Pausa",
     "start": "Inicia/Continua"
   },
   "process_context": {
-    "explorer": "Explorer",
+    "explorer": "Explorador",
     "more_info": "Més informació",
     "public_voting_page": "Pàgina pública de votació"
   },
