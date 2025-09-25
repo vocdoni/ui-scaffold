@@ -1,4 +1,4 @@
-import { Box, chakra, Input, Text } from '@chakra-ui/react'
+import { Box, chakra, ChakraProps, Text, Textarea, TextareaProps } from '@chakra-ui/react'
 import { CodeHighlightNode, CodeNode } from '@lexical/code'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
 import { ListItemNode, ListNode } from '@lexical/list'
@@ -29,11 +29,17 @@ type EditorProps = {
   onChange?: (value: string) => void
   placeholder?: string
   defaultValue?: string
+  variant?: TextareaProps['variant']
+  padding?: ChakraProps['padding']
 }
 
 const TRANSFORMERS = [IMAGE, ...DEFAULT_TRANSFORMERS]
 
-const ChakraContentEditable = chakra(ContentEditable)
+const ChakraContentEditable = chakra(ContentEditable, {
+  baseStyle: {
+    overflow: 'auto',
+  },
+})
 
 const theme = {
   text: {
@@ -90,12 +96,12 @@ const MarkdownEditor = (props: EditorProps) => {
         <RichTextPlugin
           contentEditable={
             <Box ref={setFloatingAnchorElem}>
-              <Input px={0} variant='unstyled' as={ChakraContentEditable} />
+              <Textarea variant={props.variant ?? 'unstyled'} padding={props.padding ?? 0} as={ChakraContentEditable} />
             </Box>
           }
           aria-placeholder={props.placeholder}
           placeholder={
-            <Text position='absolute' top='2' color='texts.dark' pointerEvents='none'>
+            <Text position='absolute' top={0} padding={props.padding ?? 0} color='texts.dark' pointerEvents='none'>
               {props.placeholder}
             </Text>
           }
