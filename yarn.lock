@@ -3171,9 +3171,9 @@
     react-refresh "^0.14.2"
 
 "@vocdoni/chakra-components@^1.0.0-beta.1":
-  version "1.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-1.0.0-beta.3.tgz#a6a0d8e368d4a6dac01350e945a2b68bcf2a9bcd"
-  integrity sha512-pPUzft3JGJKgtNCtXO6qrIEAfivxdX9WtEYzPa6TeP+4hdCGfNWXFvHD+UJFyV7fkpWBvaKr9hJ+PLj8LLFMYA==
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@vocdoni/chakra-components/-/chakra-components-1.0.0-beta.4.tgz#eb666148dd61075c039e5e6e18b7f616d1a700eb"
+  integrity sha512-4optuqdxBht8JYfNHP4ta2QuxkWcuNn/WUp+b3+iA80dm2zWNvHCjpAhQRtbw9s9VFuCJk+W/VRSEO2sgrKwAA==
   dependencies:
     "@vocdoni/react-providers" "^1.0.0-beta.3"
 
