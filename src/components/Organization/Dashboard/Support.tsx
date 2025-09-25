@@ -61,7 +61,7 @@ const OrganizationSupport = () => {
         <SupportTicketForm />
         {import.meta.env.PRIORITY_SUPPORT_PHONE && (
           <SubscriptionLockedContent permissionType={SubscriptionPermission.PhoneSupport}>
-            {({ isLocked }: { isLocked: boolean }) => <PhoneSupportCard isLocked={isLocked} />}
+            {({ isLocked }) => <PhoneSupportCard isLocked={isLocked} />}
           </SubscriptionLockedContent>
         )}
       </SimpleGrid>

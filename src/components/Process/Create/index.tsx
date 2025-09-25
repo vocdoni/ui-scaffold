@@ -240,7 +240,7 @@ const LiveStreamingInput = () => {
 
         <AccordionPanel px={0} display='flex' flexDirection='column' gap={4}>
           <SubscriptionLockedContent permissionType={SubscriptionPermission.LiveStreaming}>
-            {({ isLocked }: { isLocked: boolean }) => (
+            {({ isLocked }) => (
               <>
                 <FormControl isInvalid={!!errors.streamUri}>
                   <FormLabel>
