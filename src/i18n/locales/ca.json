@@ -321,6 +321,7 @@
     "multiple": "Elecció múltiple",
     "overwrite": "Sobre-escriptura del vot",
     "personalization": "Personalització",
+    "phone_support": "Suport telefònic",
     "ranked": "Votació ordenada",
     "section": {
       "features": "Funcionalitats",
@@ -1117,14 +1118,11 @@
       "description": "Disponible només per als subscriptors del pla Personalitzat.",
       "id": "ID",
       "info": "Tingues a mà l'ID de la teva organització quan truquis.",
-      "locked": "El suport telefònic està disponible amb el pla Personalitzat",
-      "locked_description": "Passa't al nostre pla Personalitzat per obtenir suport telefònic prioritari amb agents dedicats.",
       "organization_id": "ID de la teva organització",
       "organization_id_description": "Si us plau, facilita aquest ID quan contactis amb el suport",
       "priority_support_line": "Línia de suport prioritari",
       "priority_support_line_description": "Disponible de dilluns a divendres, de 9:00 a 18:00 CET",
-      "title": "Suport telefònic",
-      "unlock": "Desbloqueja el suport telefònic"
+      "title": "Suport telefònic"
     },
     "subtitle": "Gestiona la teva organització, els membres de l'equip i el teu pla de subscripció",
     "support": {
@@ -1613,6 +1611,12 @@
   "start_time": "Hora d'inici",
   "subscribe": "Subscriu-te",
   "subscription": {
+    "locked_content": {
+      "available_in": "Disponible a:",
+      "description": "Actualitza el teu pla per obtenir {{ permissionName }} i més.",
+      "title": "El teu pla actual {{ plan }} no inclou {{ permissionName }}",
+      "unlock": "Desbloqueja {{ permissionName }}"
+    },
     "title": "Subscripció"
   },
   "subscription_plan": {

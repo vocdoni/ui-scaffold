@@ -318,6 +318,7 @@
     "multiple": "Multiple choice voting",
     "overwrite": "Vote overwrite",
     "personalization": "Personalization",
+    "phone_support": "Phone support",
     "ranked": "Ranked voting",
     "section": {
       "features": "Features",
@@ -1099,14 +1100,11 @@
       "description": "Available for Custom plan subscribers only.",
       "id": "ID",
       "info": "Please have your organization ID ready when calling.",
-      "locked": "Phone Support is available with a Custom plan",
-      "locked_description": "Upgrade to our Custom plan to get priority phone support with dedicated agents.",
       "organization_id": "Your Organization ID",
       "organization_id_description": "Please provide this ID when contacting support",
       "priority_support_line": "Priority Support Line",
       "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
-      "title": "Phone Support",
-      "unlock": "Unlock Phone Support"
+      "title": "Phone Support"
     },
     "subtitle": "Manage your organization, team members and your subscription plan",
     "support": {
@@ -1593,6 +1591,12 @@
   "start_time": "Start time",
   "subscribe": "Subscribe",
   "subscription": {
+    "locked_content": {
+      "available_in": "Available in:",
+      "description": "Upgrade your plan to get {{ permissionName }} and more.",
+      "title": "Your current {{ plan }} plan does not include {{ permissionName }}",
+      "unlock": "Unlock {{ permissionName }}"
+    },
     "title": "Subscription Plan"
   },
   "subscription_plan": {
