@@ -42,7 +42,6 @@ const viteconfig = ({ mode }) => {
     define: {
       'import.meta.env.VOCDONI_ENVIRONMENT': JSON.stringify(vocdoniEnvironment),
       'import.meta.env.CUSTOM_ORGANIZATION_DOMAINS': JSON.parse(process.env.CUSTOM_ORGANIZATION_DOMAINS || '{}'),
-      'import.meta.env.CUSTOM_FAUCET_URL': JSON.stringify(process.env.CUSTOM_FAUCET_URL),
       'import.meta.env.CSP_PUBKEY': JSON.stringify(process.env.CSP_PUBKEY),
       'import.meta.env.CSP_URL': JSON.stringify(process.env.CSP_URL),
       'import.meta.env.DEFAULT_CENSUS_SIZE': JSON.stringify(defaultCensusSize),
