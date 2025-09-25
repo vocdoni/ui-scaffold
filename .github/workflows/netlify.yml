@@ -86,13 +86,13 @@ jobs:
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
           STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
-          SAAS_URL: https://saas-api-lts.vocdoni.net
+          SAAS_URL: https://saas-api-stg.vocdoni.net
 
       - name: Deploy to Netlify (stg)
         uses: nwtgck/actions-netlify@v2.0
         with:
           publish-dir: './dist'
-          production-branch: develop
+          production-branch: stage
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: Vocdoni stg deploy from GitHub Actions
           enable-pull-request-comment: true
