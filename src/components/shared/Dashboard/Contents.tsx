@@ -66,34 +66,32 @@ export type SidebarProps = BoxProps & {
   show: boolean
 }
 
-export const Sidebar = ({ show, ...props }: SidebarProps) => {
-  return (
-    <Slide
-      direction='right'
-      in={show}
-      style={{
-        position: 'fixed',
-        right: 0,
-        top: 65,
-        bottom: 0,
-        width: undefined,
-        zIndex: 10,
-      }}
-    >
-      <Box
-        height='100%'
-        width={{ base: '100%', md: 'sidebar' }}
-        bg='chakra.body.bg'
-        borderLeft='1px solid'
-        borderColor='table.border'
-        as='aside'
-        display='flex'
-        flexDirection='column'
-        {...props}
-      />
-    </Slide>
-  )
-}
+export const Sidebar = ({ show, ...props }: SidebarProps) => (
+  <Slide
+    direction='right'
+    in={show}
+    style={{
+      position: 'fixed',
+      right: 0,
+      top: 65,
+      bottom: 0,
+      width: null, // to override chakra's default width
+      zIndex: 10,
+    }}
+  >
+    <Box
+      height='100%'
+      width={{ base: '100%', md: 'sidebar' }}
+      bg='chakra.body.bg'
+      borderLeft='1px solid'
+      borderColor='table.border'
+      as='aside'
+      display='flex'
+      flexDirection='column'
+      {...props}
+    />
+  </Slide>
+)
 
 export const SidebarContents = (props: BoxProps) => <Box px={4} pb={4} {...props} />
 
