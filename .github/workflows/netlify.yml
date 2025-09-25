@@ -4,25 +4,17 @@ on:
   push:
     branches:
       - develop
+      - stage
       - d/**
   pull_request:
 
 jobs:
-  build-and-deploy:
-    name: Build & Deploy (${{ matrix.target.name }})
+  build-and-deploy-dev:
+    name: Build & Deploy (dev)
     runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        target:
-          - name: dev
-            voc_env: dev
-            stripe_public_key: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
-            netlify_site_id: 5bddb63a-3f70-4de9-9fa8-89afc6f813a8
-          - name: stg
-            voc_env: prod
-            stripe_public_key: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
-            netlify_site_id: 5f9bd529-1b25-49af-acde-818bbd33109b
-            saas_url: https://saas-api-lts.vocdoni.net
+    if: >
+      (github.event_name == 'push' && (github.ref == 'refs/heads/develop')) ||
+      (github.event_name == 'pull_request' && github.base_ref == 'develop')
 
     steps:
       - name: Checkout
@@ -39,27 +31,72 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Build vocdoni app (${{ matrix.target.name }})
+      - name: Build vocdoni app (dev)
         run: yarn build
         env:
-          VOCDONI_ENVIRONMENT: ${{ matrix.target.voc_env }}
+          VOCDONI_ENVIRONMENT: dev
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
-          STRIPE_PUBLIC_KEY: ${{ matrix.target.stripe_public_key }}
+          STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
-          # Only set when present in matrix (stg)
-          SAAS_URL: ${{ matrix.target.saas_url || '' }}
 
-      - name: Deploy to Netlify (${{ matrix.target.name }})
+      - name: Deploy to Netlify (dev)
         uses: nwtgck/actions-netlify@v2.0
         with:
           publish-dir: './dist'
           production-branch: develop
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: Vocdoni ${{ matrix.target.name }} deploy from Github Actions
+          deploy-message: Vocdoni dev deploy from Github Actions
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ matrix.target.netlify_site_id }}
+          NETLIFY_SITE_ID: 5bddb63a-3f70-4de9-9fa8-89afc6f813a8
+        timeout-minutes: 1
+
+  build-and-deploy-stg:
+    name: Build & Deploy (stg)
+    runs-on: ubuntu-22.04
+    # Only run for pushes/PRs to stage branch or d/** branches
+    if: >
+      (github.event_name == 'push' && (github.ref == 'refs/heads/stage' || startsWith(github.ref, 'refs/heads/d/'))) ||
+      (github.event_name == 'pull_request' && (github.base_ref == 'stage' || startsWith(github.base_ref, 'd/')))
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Install
+        run: yarn install --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Build vocdoni app (stg)
+        run: yarn build
+        env:
+          VOCDONI_ENVIRONMENT: prod
+          CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
+          STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
+          CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
+          SAAS_URL: https://saas-api-lts.vocdoni.net
+
+      - name: Deploy to Netlify (stg)
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './dist'
+          production-branch: develop
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: Vocdoni stg deploy from Github Actions
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: 5f9bd529-1b25-49af-acde-818bbd33109b
         timeout-minutes: 1
