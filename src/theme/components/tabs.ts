@@ -87,12 +87,13 @@ const settings = definePartsStyle({
     py: 1.5,
     px: 3,
     borderRadius: 'sm',
-    fontWeight: 'normal',
+    fontWeight: 'medium',
     color: 'tabs.tab.color',
     fontSize: 'sm',
     _selected: {
       bgColor: 'tabs.tab.active.bg',
       color: 'tabs.tab.active.color',
+      boxShadow: '0 1px 3px 0 #0000001a,0 1px 2px -1px #0000001a',
     },
   },
   tabpanel: {
