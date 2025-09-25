@@ -104,6 +104,7 @@ const RootElements = (client: VocdoniSDKClient) => [
   },
   {
     path: '*',
+    handle: { hideNavbar: true },
     element: (
       <SuspenseLoader>
         <NotFound />
