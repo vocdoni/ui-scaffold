@@ -252,9 +252,8 @@
   },
   "delete": {
     "cancel_button": "Cancel·la",
-    "confirm_description": "Per eliminar el teu compte, si us plau contacta amb el nostre equip de suport per correu electrònic.",
+    "confirm_description": "Per eliminar el teu compte, si us plau contacta amb el nostre equip de suport.",
     "confirm_title": "Elimina el teu compte",
-    "copy_email": "Copia el correu de suport",
     "delete_subtitle": "Elimina permanentment el teu compte i totes les dades associades",
     "delete_title": "Elimina el compte"
   },

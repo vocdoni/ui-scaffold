@@ -252,9 +252,8 @@
   },
   "delete": {
     "cancel_button": "Cancelar",
-    "confirm_description": "Para eliminar tu cuenta, ponte en contacto con nuestro equipo de soporte por correo electrónico.",
+    "confirm_description": "Para eliminar tu cuenta, ponte en contacto con nuestro equipo de soporte.",
     "confirm_title": "Eliminar tu cuenta",
-    "copy_email": "Copiar correo de soporte",
     "delete_subtitle": "Elimina tu cuenta y todos los datos asociados de forma permanente",
     "delete_title": "Eliminar cuenta"
   },

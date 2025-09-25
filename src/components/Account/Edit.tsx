@@ -1,9 +1,8 @@
-import { Button, Flex, HStack, Icon, IconButton, Text, useDisclosure } from '@chakra-ui/react'
-import { useCopyToClipboard } from '@uidotdev/usehooks'
-import { useState } from 'react'
+import { Button, Flex, Text, useDisclosure } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuCheck, LuCopy } from 'react-icons/lu'
+import { Link } from 'react-router-dom'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
+import { Routes } from '~routes'
 import { DashboardBox } from '~shared/Dashboard/Contents'
 import { useProfile } from '~src/queries/account'
 import AccountForm from './Form'
@@ -12,18 +11,6 @@ export const AccountEdit = () => {
   const { t } = useTranslation()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { data: profile } = useProfile()
-  const [, copyToClipboard] = useCopyToClipboard()
-  const [showCheck, setShowCheck] = useState(false)
-  const supportEmail = import.meta.env.SUPPORT_EMAIL
-
-  const handleCopy = () => {
-    copyToClipboard(supportEmail)
-    setShowCheck(true)
-
-    setTimeout(() => {
-      setShowCheck(false)
-    }, 2000)
-  }
 
   return (
     <Flex flexDirection='column' gap={6}>
@@ -50,27 +37,18 @@ export const AccountEdit = () => {
           <Flex flexDirection='column' gap={2}>
             <Text fontSize='sm'>
               {t('delete.confirm_description', {
-                defaultValue: 'To delete your account, please contact our support team via email.',
+                defaultValue: 'To delete your account, please contact our support team.',
               })}
             </Text>
-            <HStack py={4}>
-              <Text fontFamily='mono' colorScheme='black' fontWeight='extrabold'>
-                {supportEmail}
-              </Text>
-              <IconButton
-                icon={<Icon as={showCheck ? LuCheck : LuCopy} />}
-                aria-label={t('delete.copy_email', { defaultValue: 'Copy support email' })}
-                onClick={handleCopy}
-                variant='ghost'
-                size='sm'
-              />
-            </HStack>
           </Flex>
         }
       >
-        <Flex flexDirection='column'>
+        <Flex justifyContent='flex-end' gap={3}>
           <Button variant='outline' alignSelf='flex-end' onClick={onClose}>
             {t('delete.cancel_button', { defaultValue: 'Cancel' })}
+          </Button>
+          <Button as={Link} to={Routes.dashboard.settings.support} colorScheme='black'>
+            <Trans i18nKey='contact_us'>Contact us</Trans>
           </Button>
         </Flex>
       </DeleteModal>
