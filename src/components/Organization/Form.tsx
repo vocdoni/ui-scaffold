@@ -1,13 +1,14 @@
-import { Box, FormControl, FormLabel, Text, Textarea, VStack } from '@chakra-ui/react'
-import { useFormContext } from 'react-hook-form'
+import { Box, FormControl, FormLabel, Text, VStack } from '@chakra-ui/react'
+import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
+import Editor from '~components/Editor'
 import { CountrySelector } from '~shared/Form/CountrySelector'
 import InputBasic from '~shared/Form/InputBasic'
 import { MembershipSizeSelector, OrganizationTypeSelector, SelectOptionType } from '~shared/Layout/SaasSelector'
 
 export const PublicOrgForm = ({ minified }: { minified?: boolean }) => {
   const { t } = useTranslation()
-  const { register } = useFormContext()
+  const { control, register } = useFormContext()
 
   return (
     <VStack spacing={4} flex={1}>
@@ -23,7 +24,18 @@ export const PublicOrgForm = ({ minified }: { minified?: boolean }) => {
         <>
           <FormControl>
             <FormLabel>{t('description', { defaultValue: 'Description' })}</FormLabel>
-            <Textarea {...register('description')} placeholder={t('form.account_create.description_placeholder')} />
+            <Controller
+              name='description'
+              control={control}
+              render={({ field }) => (
+                <Editor
+                  onChange={field.onChange}
+                  variant='outline'
+                  padding={4}
+                  placeholder={t('form.account_create.description_placeholder')}
+                />
+              )}
+            />
           </FormControl>
           <InputBasic
             formValue='website'
