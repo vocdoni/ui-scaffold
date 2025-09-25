@@ -12,6 +12,7 @@ jobs:
   build-and-deploy-dev:
     name: Build & Deploy (dev)
     runs-on: ubuntu-22.04
+    environment: develop
     if: >
       (github.event_name == 'push' && (github.ref == 'refs/heads/develop')) ||
       (github.event_name == 'pull_request' && github.base_ref == 'develop')
@@ -36,7 +37,7 @@ jobs:
         env:
           VOCDONI_ENVIRONMENT: dev
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
-          STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
+          STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
 
       - name: Deploy to Netlify (dev)
@@ -45,18 +46,19 @@ jobs:
           publish-dir: './dist'
           production-branch: develop
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: Vocdoni dev deploy from Github Actions
+          deploy-message: Vocdoni dev deploy from GitHub Actions
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: 5bddb63a-3f70-4de9-9fa8-89afc6f813a8
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
 
   build-and-deploy-stg:
     name: Build & Deploy (stg)
     runs-on: ubuntu-22.04
+    environment: stage
     # Only run for pushes/PRs to stage branch or d/** branches
     if: >
       (github.event_name == 'push' && (github.ref == 'refs/heads/stage' || startsWith(github.ref, 'refs/heads/d/'))) ||
@@ -82,7 +84,7 @@ jobs:
         env:
           VOCDONI_ENVIRONMENT: prod
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
-          STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
+          STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
           SAAS_URL: https://saas-api-lts.vocdoni.net
 
@@ -92,11 +94,11 @@ jobs:
           publish-dir: './dist'
           production-branch: develop
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: Vocdoni stg deploy from Github Actions
+          deploy-message: Vocdoni stg deploy from GitHub Actions
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: 5f9bd529-1b25-49af-acde-818bbd33109b
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1
