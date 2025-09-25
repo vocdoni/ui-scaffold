@@ -86,6 +86,7 @@ const settings = definePartsStyle({
   tab: {
     py: 1.5,
     px: 3,
+    whiteSpace: 'nowrap',
     borderRadius: 'sm',
     fontWeight: 'medium',
     color: 'tabs.tab.color',
