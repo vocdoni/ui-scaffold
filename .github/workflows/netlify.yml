@@ -1,13 +1,22 @@
 name: Build and Deploy to Netlify
+
 on:
   push:
     branches:
-    - develop
-    - d/**
+      - develop
+      - stage
+      - d/**
   pull_request:
+
 jobs:
-  build-dev-vocdoni:
+  build-and-deploy-dev:
+    name: Build & Deploy (dev)
     runs-on: ubuntu-22.04
+    environment: develop
+    if: >
+      (github.event_name == 'push' && (github.ref == 'refs/heads/develop')) ||
+      (github.event_name == 'pull_request' && github.base_ref == 'develop')
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -23,26 +32,73 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      - name: Build vocdoni app dev
+      - name: Build vocdoni app (dev)
         run: yarn build
         env:
           VOCDONI_ENVIRONMENT: dev
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
-          STRIPE_PUBLIC_KEY: pk_test_51PNuOtDW6VLep8WG8WFS7KZocugbzYbkuNn94WAxuGZUa1maPK7kv5BnEPN3x5bXLaCYhHRkBmmGJVVvcDkbbnbS00V4LExTPD
-          CUSTOM_FAUCET_URL: https://api-dev.faucet.vocdoni.net/v2
+          STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
 
-      - name: Deploy to Netlify
+      - name: Deploy to Netlify (dev)
         uses: nwtgck/actions-netlify@v2.0
         with:
           publish-dir: './dist'
           production-branch: develop
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Vocdoni dev Deploy from GitHub Actions'
+          deploy-message: Vocdoni dev deploy from GitHub Actions
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: 5bddb63a-3f70-4de9-9fa8-89afc6f813a8
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 1
+
+  build-and-deploy-stg:
+    name: Build & Deploy (stg)
+    runs-on: ubuntu-22.04
+    environment: stage
+    # Only run for pushes/PRs to stage branch or d/** branches
+    if: >
+      (github.event_name == 'push' && (github.ref == 'refs/heads/stage' || startsWith(github.ref, 'refs/heads/d/'))) ||
+      (github.event_name == 'pull_request' && (github.base_ref == 'stage' || startsWith(github.base_ref, 'd/')))
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Install
+        run: yarn install --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Build vocdoni app (stg)
+        run: yarn build
+        env:
+          VOCDONI_ENVIRONMENT: prod
+          CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
+          STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
+          CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
+          SAAS_URL: https://saas-api-stg.vocdoni.net
+
+      - name: Deploy to Netlify (stg)
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './dist'
+          production-branch: stage
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: Vocdoni stg deploy from GitHub Actions
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 1

@@ -57,7 +57,6 @@ export const AppProviders = () => {
         signer={signer as Signer}
         locale={translations(t)}
         datesLocale={datesLocale(i18n.language)}
-        options={{ faucet_url: import.meta.env.CUSTOM_FAUCET_URL }}
       >
         <SaasProviders>
           <ColorModeScript />
