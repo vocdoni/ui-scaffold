@@ -290,7 +290,6 @@
   "end_time": "End time",
   "end_vote": "End vote",
   "error": {
-    "go_back": "Go back",
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
     "invalid_row_length": "Correct document lines {{rows,list(style: short)}} and load it again",
     "invalid_weight_type": "Expecting weight in first column at lines {{rows,list(style:short)}}, but found unexpected data",
@@ -299,8 +298,9 @@
     "loading_types": "",
     "missing_data": "Spreadsheet has no data.",
     "missing_header": "Spreadsheet has no header.",
-    "not_found": "We can't find that page",
-    "return_to_home": "Go to home",
+    "not_found": "Page Not Found",
+    "not_found_description": "The page you're looking for does not exist or has been moved.",
+    "return_to_home": "Back to home",
     "title": "Error"
   },
   "error_text": "Sorry, the page you were looking for was not found",

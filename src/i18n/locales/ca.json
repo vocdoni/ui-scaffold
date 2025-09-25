@@ -293,7 +293,6 @@
   "end_time": "End time",
   "end_vote": "End vote",
   "error": {
-    "go_back": "Torna enrere",
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
     "invalid_row_length": "Corregeix les línies {{rows, list}} del document i torna a carregar-lo",
     "invalid_weight_type": "S'esperava trobar el pes a la primera col·lumna a les línies {{rows, list}}, però s'han trobat dades inesperades",
@@ -302,8 +301,9 @@
     "loading_types": "",
     "missing_data": "El full de càlcul no té dades.",
     "missing_header": "El full de càlcul no té capçalera.",
-    "not_found": "No podem trobar aquesta pàgina",
-    "return_to_home": "Ves a l'inici",
+    "not_found": "Pàgina No Trobada",
+    "not_found_description": "La pàgina que cerques no existeix o ha estat moguda.",
+    "return_to_home": "Torna a l'inici",
     "title": "Error"
   },
   "error_text": "Ho sentim, no s'ha trobat la pàgina que cerqueu",

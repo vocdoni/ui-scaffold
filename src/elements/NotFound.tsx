@@ -1,49 +1,33 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Button, Flex, Icon, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import { LuHouse } from 'react-icons/lu'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '~components/Auth/useAuth'
+import { Heading, SubHeading } from '~components/shared/Dashboard/Contents'
 import { Routes } from '~src/router/routes'
 
 const NotFound = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const { isAuthenticated } = useAuth()
 
-  const { idx } = window.history.state ?? false
+  const redirectToDashboardOrHome = () => navigate(isAuthenticated ? Routes.dashboard.base : Routes.root)
 
   return (
-    <Flex flexGrow={1} position={'relative'} minH={'70vh'}>
-      <Text
-        position={'absolute'}
-        left={'50%'}
-        top={'50%'}
-        transform='translate(-50%, -50%)'
-        fontSize={{ base: '200px', md: '350px', lg: '450px' }}
-        color={'#E1E8F0'}
-        _dark={{
-          color: '#22262f',
-        }}
-      >
+    <Flex direction='column' align='center' justify='center' textAlign='center' gap={3} minH='30vh'>
+      <Text as='div' fontSize='6xl' fontWeight='extrabold' lineHeight='1'>
         404
       </Text>
-      <Box position={'absolute'} left={'50%'} top={'50%'} transform='translate(-50%, -50%)'>
-        <Text
-          textAlign='center'
-          fontWeight='bold'
-          fontSize={{ base: '24px', md: '46px', lg: '60px' }}
-          mb={{ base: 4, lg: 14 }}
-          whiteSpace={'nowrap'}
-        >
-          {t('error.not_found')}
-        </Text>
+      <Heading size='lg'>{t('error.not_found')}</Heading>
+      <SubHeading m={0} maxW='45ch'>
+        {t('error.not_found_description', {
+          defaultValue: "The page you're looking for does not exist or has been moved.",
+        })}
+      </SubHeading>
 
-        <Flex gap={2} justifyContent={'center'} mt={'150px'}>
-          {!idx && (
-            <Button variant='outline' onClick={() => navigate(-1)}>
-              {t('error.go_back')}
-            </Button>
-          )}
-          <Button onClick={() => navigate(Routes.root)}>{t('error.return_to_home')}</Button>
-        </Flex>
-      </Box>
+      <Button colorScheme='black' leftIcon={<Icon as={LuHouse} />} onClick={redirectToDashboardOrHome}>
+        {t('error.return_to_home')}
+      </Button>
     </Flex>
   )
 }
