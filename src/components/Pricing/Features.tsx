@@ -34,6 +34,7 @@ export const PlanFeaturesTranslationKeys = {
   [SubscriptionPermission.Anonymous]: 'features.anonymous',
   [SubscriptionPermission.Overwrite]: 'features.overwrite',
   [SubscriptionPermission.LiveResults]: 'features.live_results',
+  [SubscriptionPermission.PhoneSupport]: 'features.phone_support',
 }
 
 // Translation keys for the subscription features in the comparison table
@@ -141,6 +142,7 @@ const UnusedComponentButRequiredToNotLoseTranslations = () => {
   t('features.anonymous_voting', { defaultValue: 'Anonymous voting' })
   t('features.overwrite', { defaultValue: 'Vote overwrite' })
   t('features.live_results', { defaultValue: 'Live results' })
+  t('features.phone_support', { defaultValue: 'Phone support' })
   // Section titles
   t('features.section.voting_types', { defaultValue: 'Voting Types' })
   t('features.section.features', { defaultValue: 'Features' })

@@ -321,6 +321,7 @@
     "multiple": "Votación de elección múltiple",
     "overwrite": "Sobrescribir voto",
     "personalization": "Personalización",
+    "phone_support": "Soporte telefónico",
     "ranked": "Votación por rango",
     "section": {
       "features": "Características",
@@ -1117,14 +1118,11 @@
       "description": "Disponible solo para suscriptores del plan Personalizado.",
       "id": "ID",
       "info": "Ten preparado el ID de tu organización al llamar.",
-      "locked": "El soporte telefónico está disponible con un plan Personalizado",
-      "locked_description": "Actualiza a nuestro plan Personalizado para obtener soporte telefónico prioritario con agentes dedicados.",
       "organization_id": "ID de tu organización",
       "organization_id_description": "Facilita este ID al ponerte en contacto con soporte",
       "priority_support_line": "Línea de soporte prioritario",
       "priority_support_line_description": "Disponible de lunes a viernes, de 9:00 a 18:00 CET",
-      "title": "Soporte telefónico",
-      "unlock": "Desbloquear soporte telefónico"
+      "title": "Soporte telefónico"
     },
     "subtitle": "Gestiona tu organización, los miembros del equipo y tu plan de suscripción",
     "support": {
@@ -1613,7 +1611,13 @@
   "start_time": "Hora de inicio",
   "subscribe": "Suscribirse",
   "subscription": {
-    "title": "Plan de suscripción"
+    "locked_content": {
+      "available_in": "Disponible en:",
+      "description": "Actualiza tu plan para obtener {{ permissionName }} y más.",
+      "title": "Tu plan actual {{ plan }} no incluye {{ permissionName }}",
+      "unlock": "Desbloquear {{ permissionName }}"
+    },
+    "title": "Suscripción"
   },
   "subscription_plan": {
     "subtitle": "Gestiona tu plan de suscripción y el ciclo de facturación.",

@@ -45,12 +45,15 @@ import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import ReactPlayer from 'react-player'
 import { createPath, generatePath, useBlocker, useNavigate, useParams } from 'react-router-dom'
 import { useAnalytics } from '~components/AnalyticsProvider'
+import { useSubscription } from '~components/Auth/Subscription'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import Editor from '~components/Editor'
 import { Web3Address } from '~components/Process/Census/Web3'
 import { DashboardContents } from '~components/shared/Dashboard/Contents'
+import { SubscriptionLockedContent } from '~components/shared/Layout/SubscriptionLockedContent'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
+import { SubscriptionPermission } from '~constants'
 import { Routes } from '~routes'
 import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
 import { AnalyticsEvent } from '~utils/analytics'
@@ -214,6 +217,65 @@ export const useFormDraftSaver = (isDirty: boolean, getValues: () => any, storeF
 
     return () => clearInterval(interval)
   }, [isDirty])
+}
+
+const LiveStreamingInput = () => {
+  const { t } = useTranslation()
+  const methods = useFormContext<Process>()
+  const { errors } = methods.formState
+  const streamUri = methods.watch('streamUri')
+
+  return (
+    <Accordion allowToggle>
+      <AccordionItem border='none'>
+        <AccordionButton px={0}>
+          <Box textAlign='left'>
+            <Text fontSize='sm' color='texts.subtle'>
+              {t('process_create.youtube.accordion_title', {
+                defaultValue: 'Attach video (optional)',
+              })}
+            </Text>
+          </Box>
+          <AccordionIcon />
+        </AccordionButton>
+
+        <AccordionPanel px={0} display='flex' flexDirection='column' gap={4}>
+          <SubscriptionLockedContent permissionType={SubscriptionPermission.LiveStreaming}>
+            {({ isLocked }) => (
+              <>
+                <FormControl isInvalid={!!errors.streamUri}>
+                  <FormLabel>
+                    <Trans i18nKey='process_create.youtube.title'>Live streaming video</Trans>
+                  </FormLabel>
+                  <Controller
+                    control={methods.control}
+                    name='streamUri'
+                    rules={{
+                      pattern: {
+                        value: /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/).+$/,
+                        message: t('form.error.invalid_youtube_url', 'Please enter a valid YouTube URL'),
+                      },
+                    }}
+                    render={({ field }) => (
+                      <Input
+                        {...field}
+                        type='url'
+                        placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                        tabIndex={isLocked ? -1 : 0}
+                      />
+                    )}
+                  />
+                  <FormErrorMessage>{errors.streamUri?.message?.toString()}</FormErrorMessage>
+                </FormControl>
+                {/* Video Preview */}
+                {streamUri && <ReactPlayer src={streamUri} controls />}
+              </>
+            )}
+          </SubscriptionLockedContent>
+        </AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  )
 }
 
 const TemplateButtons = () => {
@@ -400,58 +462,6 @@ const useProcessBundle = () => {
   })
 }
 
-const formToElectionMapper = (form: Process, census: Census): UnpublishedElection | MultiChoiceElection => {
-  let base: IElectionParameters = {
-    census,
-    title: form.title,
-    description: form.description,
-    electionType: {
-      secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
-    },
-    maxCensusSize: form.addresses?.length > 0 ? form.addresses.length : form.census.size,
-    questions: form.questions.map(
-      (question) =>
-        ({
-          title: { default: question.title },
-          description: { default: question.description },
-          choices: question.options.map((q: Option, i: number) => ({
-            title: { default: q.option },
-            value: i,
-            meta: {
-              description: q.description,
-              image: { default: q.image },
-            },
-          })),
-        }) as IQuestion
-    ),
-    startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`),
-    endDate: new Date(`${form.endDate}T${form.endTime}`),
-    voteType: {
-      maxVoteOverwrites: 10,
-    },
-    temporarySecretIdentity: form.censusType === CensusTypes.Spreadsheet && Boolean(form.voterPrivacy === 'anonymous'),
-    meta: {
-      generated: 'ui-scaffold',
-      app: 'vocdoni',
-      census: {
-        type: form.censusType,
-        fields: form.spreadsheet?.header ?? undefined,
-      } as CensusMeta,
-    },
-  }
-
-  if (form.questionType === SelectorTypes.Multiple) {
-    return MultiChoiceElection.from({
-      ...base,
-      canAbstain: form.minNumberOfChoices === 0,
-      maxNumberOfChoices: form.maxNumberOfChoices > 0 ? form.maxNumberOfChoices : form.questions[0].options.length,
-      minNumberOfChoices: form.minNumberOfChoices ?? 0,
-    })
-  }
-
-  return Election.from(base)
-}
-
 export const ProcessCreate = () => {
   const { t } = useTranslation()
   const toast = useToast()
@@ -472,11 +482,65 @@ export const ProcessCreate = () => {
   const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
   const { organization } = useOrganization()
   const { client } = useClient()
+  const { permission } = useSubscription()
   const { isSubmitting, isSubmitSuccessful, isDirty, errors } = methods.formState
   const { setStepDoneAsync } = useOrganizationSetup()
   const processBundleMutation = useProcessBundle()
-  const streamUri = methods.watch('streamUri')
   const { trackPlausibleEvent } = useAnalytics()
+
+  const formToElectionMapper = (form: Process, census: Census): UnpublishedElection | MultiChoiceElection => {
+    let base: IElectionParameters = {
+      census,
+      title: form.title,
+      description: form.description,
+      electionType: {
+        secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
+      },
+      maxCensusSize: form.addresses?.length > 0 ? form.addresses.length : form.census.size,
+      questions: form.questions.map(
+        (question) =>
+          ({
+            title: { default: question.title },
+            description: { default: question.description },
+            choices: question.options.map((q: Option, i: number) => ({
+              title: { default: q.option },
+              value: i,
+              meta: {
+                description: q.description,
+                image: { default: q.image },
+              },
+            })),
+          }) as IQuestion
+      ),
+      startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`),
+      endDate: new Date(`${form.endDate}T${form.endTime}`),
+      voteType: {
+        maxVoteOverwrites: 10,
+      },
+      streamUri: permission(SubscriptionPermission.LiveStreaming) ? form.streamUri : undefined,
+      temporarySecretIdentity:
+        form.censusType === CensusTypes.Spreadsheet && Boolean(form.voterPrivacy === 'anonymous'),
+      meta: {
+        generated: 'ui-scaffold',
+        app: 'vocdoni',
+        census: {
+          type: form.censusType,
+          fields: form.spreadsheet?.header ?? undefined,
+        } as CensusMeta,
+      },
+    }
+
+    if (form.questionType === SelectorTypes.Multiple) {
+      return MultiChoiceElection.from({
+        ...base,
+        canAbstain: form.minNumberOfChoices === 0,
+        maxNumberOfChoices: form.maxNumberOfChoices > 0 ? form.maxNumberOfChoices : form.questions[0].options.length,
+        minNumberOfChoices: form.minNumberOfChoices ?? 0,
+      })
+    }
+
+    return Election.from(base)
+  }
 
   useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
 
@@ -699,45 +763,7 @@ export const ProcessCreate = () => {
             </FormControl>
 
             {/* Live streaming video URL */}
-            <Accordion allowToggle>
-              <AccordionItem border='none'>
-                <AccordionButton px={0}>
-                  <Box textAlign='left'>
-                    <Text fontSize='sm' color='texts.subtle'>
-                      {t('process_create.youtube.accordion_title', {
-                        defaultValue: 'Attach video (optional)',
-                      })}
-                    </Text>
-                  </Box>
-                  <AccordionIcon />
-                </AccordionButton>
-
-                <AccordionPanel px={0}>
-                  <FormControl isInvalid={!!errors.streamUri}>
-                    <FormLabel>
-                      <Trans i18nKey='process_create.youtube.title'>Live streaming video</Trans>
-                    </FormLabel>
-                    <Controller
-                      control={methods.control}
-                      name='streamUri'
-                      rules={{
-                        pattern: {
-                          value: /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/).+$/,
-                          message: t('form.error.invalid_youtube_url', 'Please enter a valid YouTube URL'),
-                        },
-                      }}
-                      render={({ field }) => (
-                        <Input {...field} type='url' placeholder='https://www.youtube.com/watch?v=dQw4w9WgXcQ' />
-                      )}
-                    />
-                    <FormErrorMessage>{errors.streamUri?.message?.toString()}</FormErrorMessage>
-
-                    {/* Video Preview */}
-                    {streamUri && <ReactPlayer src={streamUri} controls />}
-                  </FormControl>
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
+            <LiveStreamingInput />
             <Controller
               name='description'
               control={methods.control}
