@@ -97,16 +97,7 @@ export const ProcessView = () => {
   return (
     <DashboardContents display='flex' flexDirection='row' position='relative'>
       {/* Main content area */}
-      <Box
-        flex={1}
-        marginRight={showSidebar ? '350px' : 0}
-        transition='margin-right 0.3s'
-        display='flex'
-        flexDirection='column'
-        gap={8}
-        paddingRight={4}
-        paddingBottom={4}
-      >
+      <Box flex={1} display='flex' flexDirection='column' gap={8} paddingRight={4} paddingBottom={4}>
         {/* Title, schedule, and description */}
         <HStack justifyContent={'space-between'}>
           <ElectionStatusBadge />

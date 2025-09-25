@@ -90,7 +90,7 @@ const UserProfile = () => {
           )}
         </Button>
       </PopoverTrigger>
-      <PopoverContent maxW='250px'>
+      <PopoverContent w='max-content' minW='280px'>
         <PopoverHeader>
           <Box display={'flex'} gap={2} alignItems={'center'} justifyContent={'start'} px={1} py={1.5} mb={1}>
             <Avatar
