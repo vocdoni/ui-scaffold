@@ -16,11 +16,11 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
-import { useOrganization } from '@vocdoni/react-providers'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuBuilding, LuChevronLeft, LuChevronRight, LuChevronsUpDown, LuLogOut, LuUserPen } from 'react-icons/lu'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { useSaasAccount } from '~components/Account/SaasAccountProvider'
 import { useAuth } from '~components/Auth/useAuth'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
@@ -33,7 +33,7 @@ const UserProfile = () => {
   const { t } = useTranslation()
   const { logout } = useAuth()
   const { data: profile } = useProfile()
-  const { organization } = useOrganization()
+  const { organization } = useSaasAccount()
   const { reduced } = useContext(DashboardLayoutContext)
   const variant = useBreakpointValue({
     base: false,
@@ -52,9 +52,9 @@ const UserProfile = () => {
           leftIcon={
             <Avatar
               name={`${profile.firstName} ${profile.lastName}`}
-              src={profile.organizations[0]?.organization.logo || ''}
+              src={organization?.account?.avatar || ''}
               size='sm'
-              borderRadius={'8px'}
+              borderRadius='md'
             />
           }
           rightIcon={!reduced && <Icon as={LuChevronsUpDown} color='dashboard.chevron' />}
@@ -95,9 +95,9 @@ const UserProfile = () => {
           <Box display={'flex'} gap={2} alignItems={'center'} justifyContent={'start'} px={1} py={1.5} mb={1}>
             <Avatar
               name={`${profile.firstName} ${profile.lastName}`}
-              src={profile.organizations[0]?.organization.logo || ''}
+              src={organization?.account?.avatar || ''}
               size='sm'
-              borderRadius={'md'}
+              borderRadius='md'
             />
             <Flex flexDirection={'column'} justifyContent={'start'} gap={0.5}>
               <Text size='sm' lineHeight={'14px'} textAlign={'start'} fontWeight={500} maxW={'170px'} isTruncated>
