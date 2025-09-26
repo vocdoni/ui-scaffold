@@ -95,7 +95,7 @@
       "approval_title": "Votación aprobatoria",
       "approval_tooltip": "La votación aprobatoria permite votar tantas opciones como se desee. Gana la opción con más votos. Es una forma sencilla de mostrar apoyo a todas las alternativas que apruebes.",
       "multichoice_cannot_abstain": "Has seleccionado demasiadas opciones",
-      "multichoice_desc": "Selecciona hasta {{maxcount}} opciones",
+      "multichoice_desc": "Has seleccionado {{selected}} opciones de un máximo de {{maxcount}}",
       "multichoice_desc_abstain": " (o abstenerse)",
       "multichoice_title": "Votación de elección múltiple {{ weighted }}",
       "multichoice_tooltip": "La votación de elección múltiple permite seleccionar hasta {{maxcount}} opciones (definidas por la persona organizadora). Gana la opción con más votos.",
