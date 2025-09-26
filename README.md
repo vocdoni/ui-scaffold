@@ -38,8 +38,6 @@
     |
     <a href="https://github.com/vocdoni/ui-components">UI Components</a>
     |
-    <a href="https://github.com/vocdoni/ui-scaffold">Application UI</a>
-    |
     <a href="https://github.com/vocdoni/census3">Census3</a>
   </div>
 
@@ -114,13 +112,12 @@ files. The best way to work with translations is:
 
 Three branches are linked to deploys:
 
-- `develop`, deployed to [app-dev.vocdoni.io] and [dev.onvote.app], and linked to api-dev.
-- `stage`, deployed to [app-stg.vocdoni.io] and [stg.onvote.app], and linked to api-stg.
-- `main`, deployed to [app.vocdoni.io] and [onvote.app], and linked to LTS api (formerly prod).
+- `develop`, deployed to [app-dev.vocdoni.io], and linked to SaaS api-dev and vochain dev.
+- `stage`, deployed to [app-stg.vocdoni.io], and linked to SaaS api-stg and vochain LTS.
+- `main`, deployed to [app.vocdoni.io], and linked to SaaS api-lts and vochain LTS.
 
-Also, all pushes to develop are deployed three times to netlify (one for [vocdoni app dev][netlify dev],
-[another for stage][netlify stg] and also one for [onvote stg][netlify onvote stg]). You can easily access these deploys
-on each commit to develop, or directly in pull requests.
+Also, all pushes to develop and stage are deployed to netlify. You can easily
+access these deploys on each commit to develop, or directly in pull requests.
 
 The common flow to follow when deploying to `main` is passing through all the
 other stages:
@@ -132,11 +129,6 @@ such case, a hotfix should be created from the desired branch to be updated:
 
     branch from stage (i.e. h/sdk-0.4.1) => PR to stage
     branch from main (i.e. h/sdk-0.5.0) => PR to main
-
-
-## Preview
-
-The site is deployed using legacy branch at https://app.vocdoni.io/ and https://onvote.app/.
 
 ## Contributing
 
@@ -158,12 +150,8 @@ Copyright © 2025 Vocdoni.
 [app-dev.vocdoni.io]: https://app-dev.vocdoni.io
 [app-stg.vocdoni.io]: https://app-stg.vocdoni.io
 [app.vocdoni.io]: https://app.vocdoni.io
-[dev.onvote.app]: https://dev.onvote.app
-[stg.onvote.app]: https://stg.onvote.app
-[onvote.app]: https://onvote.app
 [netlify dev]: https://vocdoni-app-dev.netlify.app/
 [netlify stg]: https://vocdoni-app-stg.netlify.app/
-[netlify onvote stg]: https://onvote-stg.netlify.app/
 
 [vocdoni logo]: https://docs.vocdoni.io/Logotype.svg
 [commit activity badge]: https://img.shields.io/github/commit-activity/m/vocdoni/ui-scaffold
