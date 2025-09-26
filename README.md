@@ -9,7 +9,7 @@
 <p align="center" width="100%">
     <a href="https://github.com/vocdoni/ui-scaffold/commits/main/"><img src="https://img.shields.io/github/commit-activity/m/vocdoni/ui-scaffold" /></a>
     <a href="https://github.com/vocdoni/ui-scaffold/issues"><img src="https://img.shields.io/github/issues/vocdoni/ui-scaffold" /></a>
-    <a href="https://discord.gg/xFTh8Np2ga"><img src="https://img.shields.io/badge/discord-join%20chat-blue.svg" /></a>
+    <a href="https://chat.vocdoni.io"><img src="https://img.shields.io/badge/discord-join%20chat-blue.svg" /></a>
     <a href="https://twitter.com/vocdoni"><img src="https://img.shields.io/twitter/follow/vocdoni.svg?style=social&label=Follow" /></a>
 </p>
 
@@ -112,9 +112,9 @@ files. The best way to work with translations is:
 
 Three branches are linked to deploys:
 
-- `develop`, deployed to [app-dev.vocdoni.io], and linked to SaaS api-dev and vochain dev.
-- `stage`, deployed to [app-stg.vocdoni.io], and linked to SaaS api-stg and vochain LTS.
-- `main`, deployed to [app.vocdoni.io], and linked to SaaS api-lts and vochain LTS.
+- [![GitHub Actions Workflow Status][build badge develop]][app-dev.vocdoni.io] linked to SaaS api-dev and vochain dev.
+- [![GitHub Actions Workflow Status][build badge stage]][app-stg.vocdoni.io] linked to SaaS api-stg and vochain LTS.
+- [![GitHub Actions Workflow Status][build badge main]][app.vocdoni.io] linked to SaaS api-lts and vochain LTS.
 
 Also, all pushes to develop and stage are deployed to netlify. You can easily
 access these deploys on each commit to develop, or directly in pull requests.
@@ -158,8 +158,11 @@ Copyright © 2025 Vocdoni.
 [discord badge]: https://img.shields.io/badge/discord-join%20chat-blue.svg
 [github issues badge]: https://img.shields.io/github/issues/vocdoni/ui-scaffold
 [twitter badge]: https://img.shields.io/twitter/follow/vocdoni?style=social&label=Follow
+[build badge develop]: https://img.shields.io/github/actions/workflow/status/vocdoni/ui-scaffold/netlify.yml?branch=develop&label=develop
+[build badge stage]: https://img.shields.io/github/actions/workflow/status/vocdoni/ui-scaffold/netlify.yml?branch=stage&label=stage
+[build badge main]: https://img.shields.io/github/actions/workflow/status/vocdoni/ui-scaffold/netlify.yml?branch=main&label=main
 
-[discord invite]: https://discord.gg/xFTh8Np2ga
+[discord invite]: https://chat.vocdoni.io
 [twitter follow]: https://twitter.com/intent/user?screen_name=vocdoni
 [github issues]: https://github.com/vocdoni/ui-scaffold/issues
 [github commits]: https://github.com/vocdoni/ui-scaffold/commits/main
