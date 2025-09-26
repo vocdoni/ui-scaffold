@@ -62,6 +62,7 @@ export const BookerModalButton = (props: ButtonProps) => {
         leftIcon={<Icon as={LuCalendar} boxSize={4} />}
         colorScheme='gray'
         variant='outline'
+        whiteSpace='wrap'
         size='md'
         onClick={onOpen}
         children={<Trans i18nKey='home.support.btn_watch' />}
