@@ -95,7 +95,7 @@
       "approval_title": "Vot d'aprovació",
       "approval_tooltip": "El vot d'aprovació et permet votar tantes opcions com vulguis. Guanya la que rep més vots. És una manera senzilla de mostrar suport a totes les opcions que aproves.",
       "multichoice_cannot_abstain": "S'han seleccionat massa opcions",
-      "multichoice_desc": "Selecciona fins a {{maxcount}} opcions",
+      "multichoice_desc": "Has seleccionat {{selected}} opcions d'un màxim de {{maxcount}}",
       "multichoice_desc_abstain": " (o abstenir-se)",
       "multichoice_title": "Vot multiresposta {{ weighted }}",
       "multichoice_tooltip": "El vot multiresposta et permet votar fins a {{maxcount}} opcions (definit per l'organitzador de la votació). Guanya la que rep més vots.",
