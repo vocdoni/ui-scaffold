@@ -23,6 +23,7 @@ import { LuLogOut } from 'react-icons/lu'
 import { RiContactsBook3Line } from 'react-icons/ri'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch, useMatches } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
+import ContactLink from '~shared/ContactLink'
 import { ColorModeSwitcher, ColorModeSwitcherDetailed } from '~shared/Layout/ColorModeSwitcher'
 import Logo from '~shared/Layout/Logo'
 import { Routes } from '~src/router/routes'
@@ -32,6 +33,7 @@ type MenuItem = {
   icon: any
   label: string
   route?: string
+  component?: React.ReactNode
 }
 
 type RouteHandle = {
@@ -173,7 +175,11 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
     {
       icon: <RiContactsBook3Line />,
       label: t('navbar.contact', { defaultValue: 'Contact Us' }),
-      route: Routes.contact,
+      component: (
+        <ContactLink variant='navbar' leftIcon={isMobile ? <RiContactsBook3Line /> : undefined}>
+          {t('navbar.contact', { defaultValue: 'Contact Us' })}
+        </ContactLink>
+      ),
     },
     {
       icon: <RiContactsBook3Line />,
@@ -187,20 +193,18 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
         <>
           {menuItems.map((item, index) => (
             <ListItem key={index}>
-              <Button
-                as={ReactRouterLink}
-                to={item.route}
-                variant='unstyled'
-                fontWeight='semibold'
-                display='flex'
-                alignItems='center'
-                justifyContent={'start'}
-                fontSize={'md'}
-                h={'fit-content'}
-                leftIcon={isMobile ? item.icon : undefined}
-              >
-                {item.label}
-              </Button>
+              {item.component ? (
+                item.component
+              ) : (
+                <Button
+                  as={ReactRouterLink}
+                  to={item.route}
+                  variant='navbar'
+                  leftIcon={isMobile ? item.icon : undefined}
+                >
+                  {item.label}
+                </Button>
+              )}
             </ListItem>
           ))}
         </>

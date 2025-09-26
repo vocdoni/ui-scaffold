@@ -16,6 +16,7 @@ import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCheck } from 'react-icons/lu'
 import { Routes } from '~src/router/routes'
+import ContactLink from '~shared/ContactLink'
 import type { Plan } from './Plans'
 
 type PricingCardProps = {
@@ -53,6 +54,12 @@ const PricingCard = ({
     } else {
       window.open(Routes.plans + '?compare')
     }
+  }
+
+  const commonButtonProps = {
+    variant: popular ? 'solid' : 'outline',
+    colorScheme: 'gray',
+    isDisabled: isDisabled || isCurrentPlan,
   }
 
   return (
@@ -99,18 +106,24 @@ const PricingCard = ({
         </Flex>
       </CardBody>
       <CardFooter>
-        <Button
-          isDisabled={isDisabled || isCurrentPlan}
-          onClick={() => setValue('planId', plan.id)}
-          type='submit'
-          variant={popular ? 'solid' : 'outline'}
-          aria-label={isCurrentPlan ? t('current_plan') : t('subscribe')}
-          colorScheme='gray'
-        >
-          {isCurrentPlan
-            ? t('current_plan', { defaultValue: 'Current Plan' })
-            : t('subscribe', { defaultValue: 'Subscribe' })}
-        </Button>
+        {plan.organization.customPlan ? (
+          <ContactLink {...commonButtonProps} w='full' aria-label={isCurrentPlan ? t('current_plan') : t('contact_us')}>
+            {isCurrentPlan
+              ? t('current_plan', { defaultValue: 'Current Plan' })
+              : t('contact_us', { defaultValue: 'Contact us' })}
+          </ContactLink>
+        ) : (
+          <Button
+            {...commonButtonProps}
+            onClick={() => setValue('planId', plan.id)}
+            type='submit'
+            aria-label={isCurrentPlan ? t('current_plan') : t('subscribe')}
+          >
+            {isCurrentPlan
+              ? t('current_plan', { defaultValue: 'Current Plan' })
+              : t('subscribe', { defaultValue: 'Subscribe' })}
+          </Button>
+        )}
       </CardFooter>
       {popular && (
         <Box

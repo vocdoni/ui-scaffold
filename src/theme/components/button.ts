@@ -37,6 +37,16 @@ const unstyled = defineStyle(() => ({
   textAlign: 'left',
 }))
 
+const navbar = defineStyle(() => ({
+  textAlign: 'left',
+  fontWeight: 'semibold',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'start',
+  fontSize: 'md',
+  h: 'fit-content',
+}))
+
 const sizes = {
   lg: defineStyle({
     py: 7,
@@ -93,6 +103,7 @@ export const Button = defineStyleConfig({
   variants: {
     ...theme.components.Button.variants,
     unstyled,
+    navbar,
     listmenu,
     outline,
     profilemenu,
