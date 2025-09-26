@@ -236,7 +236,7 @@ export const useOrganizationSetup = () => {
     {
       id: SetupStepIds.firstVoteCreation,
       label: t('organization_setup.setup_steps.first_vote_creation', { defaultValue: 'Create your first vote' }),
-      to: Routes.processes.create,
+      to: generatePath(Routes.processes.create),
       type: CheckboxTypes.route,
       icon: LuVote,
     },
