@@ -43,6 +43,7 @@ export type Plan = {
     maxDuration: string
     customURL: boolean
     drafts: boolean
+    customPlan: boolean
   }
   votingTypes: {
     single: boolean

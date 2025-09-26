@@ -59,6 +59,7 @@ const viteconfig = ({ mode }) => {
       ),
       'import.meta.env.GTM_CONTAINER_ID': JSON.stringify(process.env.GTM_CONTAINER_ID),
       'import.meta.env.PLAUSIBLE_DOMAIN': JSON.stringify(process.env.PLAUSIBLE_DOMAIN),
+      'import.meta.env.VOCDONI_CONTACT_EMAIL': JSON.stringify(process.env.VOCDONI_CONTACT_EMAIL || 'hello@vocdoni.io'),
     },
     plugins: [
       tsconfigPaths(),
