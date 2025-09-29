@@ -1,5 +1,5 @@
 import { Box, Button, Flex, Link, Text } from '@chakra-ui/react'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { VoteButton as CVoteButton, environment, SpreadsheetAccess, VoteWeight } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
 import { CensusType, dotobject, ElectionStatus, formatUnits, InvalidElection, PublishedElection } from '@vocdoni/sdk'
@@ -7,7 +7,8 @@ import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount, useDisconnect } from 'wagmi'
-import { CensusMeta } from './Census/CensusType'
+import { useAuth } from '~components/Auth/useAuth'
+import { CensusMeta, CensusTypes } from './Census/CensusType'
 import { CspAuth } from './CSP/CSPAuthModal'
 
 const results = (result: number, decimals?: number) =>
@@ -15,17 +16,15 @@ const results = (result: number, decimals?: number) =>
 
 const ProcessAside = () => {
   const { t } = useTranslation()
-  const { disconnect } = useDisconnect()
   const {
     election,
-    connected,
     isInCensus,
     voted,
     votesLeft,
     loading: { voting },
   } = useElection()
   const { isConnected } = useAccount()
-  const { env, clear } = useClient()
+  const { env } = useClient()
 
   if (election instanceof InvalidElection) return null
 
@@ -53,7 +52,6 @@ const ProcessAside = () => {
   }
 
   const votersCount = election?.voteCount
-  const isCSP = election.census.type === CensusType.CSP
 
   return (
     <Flex direction='column' border='1px solid' borderRadius='lg' borderColor='table.border' p={4} gap={2}>
@@ -114,26 +112,14 @@ const ProcessAside = () => {
           </Flex>
         )}
       </Flex>
-      {isCSP && !connected && <CspAuth />}
-      {census?.type !== 'spreadsheet' &&
-        !isConnected &&
-        !connected &&
-        !isCSP &&
-        election?.status !== ElectionStatus.CANCELED && (
-          <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
-            <Box display={{ base: 'none', md: 'block' }}>
-              <ConnectButton chainStatus='none' showBalance={false} label={t('menu.connect').toString()} />
-            </Box>
-            <Text textAlign='center' fontSize='sm'>
-              {t('aside.not_connected')}
-            </Text>
-          </Flex>
-        )}
+      <CensusConnectButton />
       {isConnected && !['spreadsheet', 'csp'].includes(census?.type) && !isInCensus && (
         <Text textAlign='center' fontSize='sm'>
           {t('aside.is_not_in_census')}
         </Text>
       )}
+
+      {/* Vote menu: verify vote, votes left, voting anonymous advice... */}
       {renderVoteMenu && (
         <Flex flexDirection='column' alignItems='center' gap={3} w='full'>
           {voted !== null && voted.length > 0 && (
@@ -172,45 +158,84 @@ const ProcessAside = () => {
           )}
         </Flex>
       )}
-      {(connected || isConnected) && (
-        <Box alignSelf='center' mb={{ base: 10, md: 0 }}>
-          {connected && (
-            <SpreadsheetAccess
-              sx={{
-                color: 'red',
-                button: {
-                  bg: 'transparent',
-                  border: 'none',
-                  color: 'red !important',
-                  textDecoration: 'underline',
-                  _hover: { textDecoration: 'none' },
-                },
-              }}
-            />
-          )}
 
-          {isConnected && election?.get('census.type') !== 'spreadsheet' && (
-            <Button
-              variant='link'
-              onClick={() => {
-                disconnect()
-                clear()
-              }}
-            >
-              {t('cc.spreadsheet.logout')}
-            </Button>
-          )}
-        </Box>
-      )}
+      {/* Logout buttons for Census spreadsheet, CSP and Wagmi (web3) */}
+      <LogoutButton />
     </Flex>
   )
 }
 
-export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () => void }) => {
+export const LogoutButton = () => {
+  const { t } = useTranslation()
+  const { disconnect } = useDisconnect()
+  const { election, connected, clearClient } = useElection()
+  const { isConnected } = useAccount()
+  const { logout } = useAuth()
+  const { clear } = useClient()
+
+  if (election instanceof InvalidElection) return null
+
+  const census: CensusMeta = dotobject(election?.meta || {}, 'census')
+
+  const isCSP = election.census.type === CensusType.CSP
+  const isSpreadsheet = census?.type === CensusTypes.Spreadsheet
+  const isWeb3 = census?.type === CensusTypes.Web3
+
+  if (!connected && !isConnected) return null
+
+  return (
+    <>
+      <Box alignSelf='center' mb={{ base: 10, md: 0 }}>
+        {connected && isSpreadsheet && (
+          <SpreadsheetAccess
+            sx={{
+              color: 'red',
+              button: {
+                bg: 'transparent',
+                border: 'none',
+                color: 'red !important',
+                textDecoration: 'underline',
+                _hover: { textDecoration: 'none' },
+              },
+            }}
+          />
+        )}
+        {connected && isCSP && (
+          <Button
+            variant='link'
+            onClick={() => {
+              clearClient()
+            }}
+          >
+            {t('logout')}
+          </Button>
+        )}
+        {isWeb3 && (
+          <Button
+            variant='link'
+            onClick={() => {
+              if (isConnected) {
+                disconnect()
+                clear()
+              } else {
+                // If not connected with web3 wallet, but connected we logout from APP
+                logout()
+              }
+            }}
+          >
+            {t('logout')}
+          </Button>
+        )}
+      </Box>
+    </>
+  )
+}
+
+export const CensusConnectButton = () => {
   const { t } = useTranslation()
 
-  const { election, connected, isAbleToVote, isInCensus } = useElection()
-  const { isConnected } = useAccount()
+  const { election, connected } = useElection()
+  const { openConnectModal } = useConnectModal()
 
   if (election instanceof InvalidElection || election?.status === ElectionStatus.CANCELED) {
     return null
@@ -218,6 +243,31 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
 
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
   const isCSP = election.census.type === CensusType.CSP
+  const isSpreadsheet = census?.type === CensusTypes.Spreadsheet
+  const isWeb3 = census?.type === CensusTypes.Web3
+
+  return (
+    <>
+      {isWeb3 && !connected && (
+        <Button colorScheme='black' onClick={openConnectModal} w='full'>
+          {t('menu.connect').toString()}
+        </Button>
+      )}
+      {isCSP && !connected && <CspAuth />}
+      {isSpreadsheet && !connected && <SpreadsheetAccess />}
+    </>
+  )
+}
+
+export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () => void }) => {
+  const { election, isAbleToVote, isInCensus } = useElection()
+  const { isConnected } = useAccount()
+
+  if (election instanceof InvalidElection || election?.status === ElectionStatus.CANCELED) {
+    return null
+  }
+
+  const census: CensusMeta = dotobject(election?.meta || {}, 'census')
 
   if (isConnected && !isInCensus && !['spreadsheet', 'csp'].includes(census?.type)) {
     return null
@@ -235,40 +285,7 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       px={{ base: 3, lg2: 0 }}
       {...props}
     >
-      {!isCSP && census?.type !== 'spreadsheet' && !connected && (
-        <ConnectButton.Custom>
-          {({ account, chain, openConnectModal, authenticationStatus, mounted }) => {
-            const ready = mounted && authenticationStatus !== 'loading'
-            const connected =
-              ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
-            return (
-              <Box
-                {...(!ready && {
-                  'aria-hidden': true,
-                  style: {
-                    opacity: 0,
-                    pointerEvents: 'none',
-                    userSelect: 'none',
-                  },
-                })}
-                w='full'
-              >
-                {(() => {
-                  if (!connected) {
-                    return (
-                      <Button colorScheme='black' onClick={openConnectModal} w='full'>
-                        {t('menu.connect').toString()}
-                      </Button>
-                    )
-                  }
-                })()}
-              </Box>
-            )
-          }}
-        </ConnectButton.Custom>
-      )}
-      {isCSP && !connected && <CspAuth />}
-      {census?.type === 'spreadsheet' && !connected && <SpreadsheetAccess />}
+      <CensusConnectButton />
       {isAbleToVote && (
         <>
           <CVoteButton

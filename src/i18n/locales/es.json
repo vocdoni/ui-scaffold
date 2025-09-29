@@ -35,7 +35,6 @@
   "aside": {
     "has_already_voted": "Tu voto se ha emitido correctamente",
     "is_not_in_census": "No figuras en el censo",
-    "not_connected": "No estás conectado",
     "overwrite_votes_left_one": "Puedes corregir tu voto una vez.",
     "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Puedes corregir tu voto hasta {{ count }} veces.",
@@ -120,7 +119,6 @@
       "anon_sik_helper": "Esto garantiza que el voto sea anónimo",
       "anon_sik_label": "Define una contraseña para tu voto",
       "close": "Cerrar",
-      "logout": "Cerrar sesión",
       "modal_title": "Autenticación"
     },
     "statuses": {
