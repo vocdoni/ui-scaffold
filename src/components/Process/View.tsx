@@ -229,15 +229,10 @@ export const ProcessView = () => {
   return (
     <Grid templateColumns={{ base: '1fr', xl: 'minmax(0,1fr) 360px' }} gap={6} alignItems='start' mx='auto'>
       <GridItem>
-        <Box>
+        <Flex direction='column' gap={4}>
           <Header />
 
-          <ElectionVideo
-            ref={videoRef}
-            maxW='800px'
-            position={{ base: 'unset', lg: 'sticky' }}
-            top={{ base: 0, xl2: 20 }}
-          />
+          <ElectionVideo ref={videoRef} position={{ base: 'unset', lg: 'sticky' }} top={{ base: 0, xl2: 20 }} />
 
           <Tabs
             isFitted
@@ -282,7 +277,7 @@ export const ProcessView = () => {
               </TabPanel>
             </TabPanels>
           </Tabs>
-        </Box>
+        </Flex>
       </GridItem>
       <GridItem display='grid' gap={6}>
         <ProcessInfoPanel />
