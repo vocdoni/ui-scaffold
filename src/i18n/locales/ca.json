@@ -422,9 +422,11 @@
     "select_language": "Idioma",
     "support": {
       "billing_issue": "Problema de facturació",
+      "custom_request": "Sol·licitud personalitzada",
       "description": "Descripció",
       "description_placeholder": "Descriu el teu problema amb detall",
       "open_ticket": "Obre una sol·licitud de suport",
+      "other": "Altres",
       "selector_label": "Tipus de problema",
       "submit_ticket": "Envia la sol·licitud",
       "subtitle": "Envia una sol·licitud i el nostre equip de suport es posarà en contacte amb tu tan aviat com sigui possible.",
