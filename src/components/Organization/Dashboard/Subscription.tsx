@@ -1,12 +1,15 @@
-import { Button, Flex, Heading, Progress, Text } from '@chakra-ui/react'
+import { Button, Flex, Heading, Link, Progress, Text } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { isBefore, isValid, parseISO } from 'date-fns'
-import { useTranslation } from 'react-i18next'
+import { useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
+import { ComparisonTable } from '~components/Pricing/ComparisonTable'
 import { SubscriptionPlans } from '~components/Pricing/Plans'
 import { DashboardBox } from '~shared/Dashboard/Contents'
 
@@ -26,6 +29,7 @@ const SubscriptionPage = () => {
   const { t } = useTranslation()
   const { subscription, loading } = useSubscription()
   const { mutateAsync } = usePortalSession()
+  const [showComparisonTable, setShowComparisonTable] = useState(false)
 
   const handleChangeClick = () =>
     mutateAsync()
@@ -33,6 +37,8 @@ const SubscriptionPage = () => {
         window.open(res.portalURL, '_blank')
       })
       .catch((e) => console.error('Error fetching portal URL', e))
+
+  const toggleComparisonTable = () => setShowComparisonTable((prev) => !prev)
 
   if (loading) return <Progress isIndeterminate />
 
@@ -58,7 +64,28 @@ const SubscriptionPage = () => {
           </Button>
         )}
       </Flex>
-      <SubscriptionPlans hidePlanActions={false} />
+      <SubscriptionPlans />
+      <Flex justifyContent='center'>
+        <Button colorScheme='black' variant='outline' onClick={toggleComparisonTable} mb={6}>
+          {showComparisonTable
+            ? t('subscription_plan.hide_comparison_table', { defaultValue: 'Show less features' })
+            : t('subscription_plan.show_comparison_table', { defaultValue: 'View all features' })}
+        </Button>
+      </Flex>
+      {showComparisonTable && <ComparisonTable />}
+      <Flex justifyContent='center' alignItems='center' flexDirection='column'>
+        <Text fontSize='sm' color='texts.subtle' textAlign='center'>
+          <Trans i18nKey='subscription_plan.gdpr_compliance'>All plans include GDPR compliance.</Trans>
+        </Text>
+        <Flex gap={1}>
+          <Text fontSize='sm' color='texts.subtle' textAlign='center'>
+            <Trans i18nKey='subscription_plan.need_help'>Need help choosing?</Trans>
+          </Text>
+          <Link fontWeight='extrabold' fontSize='sm' as={ReactRouterLink}>
+            <Trans i18nKey='contact_sales'>Contact our sales team</Trans>
+          </Link>
+        </Flex>
+      </Flex>
     </DashboardBox>
   )
 }

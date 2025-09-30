@@ -74,8 +74,22 @@ const simple = definePartsStyle((props) => ({
     overflow: 'auto',
   },
   thead: {
+    backgroundColor: 'gray.100',
+    _dark: {
+      backgroundColor: 'black.800',
+    },
+
+    '&#section-header': {
+      backgroundColor: 'gray.50',
+      _dark: {
+        backgroundColor: 'black.700',
+      },
+    },
+
     th: {
       px: 4,
+      color: 'black',
+      _dark: { color: 'white' },
       fontWeight: '500',
       '&[data-is-numeric=true]': {
         textAlign: 'right',
@@ -87,13 +101,6 @@ const simple = definePartsStyle((props) => ({
     ['td,th']: {
       borderBottom: '1px solid',
       borderColor: 'table.border',
-    },
-  },
-  tbody: {
-    tr: {
-      _hover: {
-        bgColor: props.colorMode === 'dark' ? 'black.700' : 'gray.50',
-      },
     },
   },
   td: {
