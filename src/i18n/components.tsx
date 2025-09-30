@@ -92,7 +92,7 @@ export const translations = (t: TFunction<string, string>) => ({
     anon_sik_label: t('cc.spreadsheet.anon_sik_label').toString(),
     anon_sik_helper: t('cc.spreadsheet.anon_sik_helper').toString(),
     close: t('cc.spreadsheet.close').toString(),
-    logout: t('cc.spreadsheet.logout').toString(),
+    logout: t('logout').toString(),
     modal_title: t('cc.spreadsheet.modal_title').toString(),
   },
   // status badge
