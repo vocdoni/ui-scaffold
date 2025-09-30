@@ -1,6 +1,8 @@
+import { Flex, Tag, Text } from '@chakra-ui/react'
 import { dotobject } from '@vocdoni/sdk'
-import { useTranslation } from 'react-i18next'
-import { SubscriptionPermission } from '~constants'
+import { Trans, useTranslation } from 'react-i18next'
+import { BooleanIcon } from '~components/shared/Layout/BooleanIcon'
+import { PlanId, SubscriptionPermission } from '~constants'
 import type { Plan } from './Plans'
 
 export type FeaturesKeys =
@@ -13,6 +15,22 @@ export type FeaturesKeys =
   | 'anonymous'
   | 'overwrite'
   | 'liveResults'
+
+export type PlanFeatureSpec = {
+  kind: 'plan'
+  path: string
+  labelKey: string
+}
+
+export type StaticFeatureSpec = {
+  kind: 'static'
+  id: string
+  labelKey: string
+  render?: (plan: Plan) => React.ReactNode | number | boolean
+  available?: (plan: Plan) => boolean
+}
+
+export type FeatureSpec = PlanFeatureSpec | StaticFeatureSpec
 
 // Translation keys for the subscription features
 export const PlanFeaturesTranslationKeys = {
@@ -35,6 +53,9 @@ export const PlanFeaturesTranslationKeys = {
   [SubscriptionPermission.Overwrite]: 'features.overwrite',
   [SubscriptionPermission.LiveResults]: 'features.live_results',
   [SubscriptionPermission.PhoneSupport]: 'features.phone_support',
+
+  [SubscriptionPermission.MaxCensus]: 'organization.max_census',
+  [SubscriptionPermission.MaxProcesses]: 'organization.max_processes',
 }
 
 // Translation keys for the subscription features in the comparison table
@@ -45,15 +66,172 @@ export const PlanTableFeaturesTranslationKeys = {
 }
 
 export const CategorizedFeatureKeys = {
-  votingTypes: ['single', 'multiple', 'approval', 'weighted'],
-  organization: ['teamMembers'],
-  features: ['2FAsms', '2FAemail', 'liveStreaming', 'anonymous', 'overwrite', 'liveResults'],
+  generalLimits: [SubscriptionPermission.MaxCensus, SubscriptionPermission.MaxProcesses, SubscriptionPermission.Users],
+  votingTypes: [SubscriptionPermission.SingleVoting, SubscriptionPermission.MultipleVoting],
+  memberbaseManagement: [],
+  authenticationSecurity: [
+    SubscriptionPermission.TwoFASms,
+    SubscriptionPermission.TwoFAEmail,
+    SubscriptionPermission.Anonymous,
+    SubscriptionPermission.Overwrite,
+  ],
+  customization: [
+    SubscriptionPermission.Personalization,
+    SubscriptionPermission.WhiteLabel,
+    SubscriptionPermission.CustomURL,
+  ],
+  extraFeatures: [
+    SubscriptionPermission.LiveResults,
+    SubscriptionPermission.EmailReminder,
+    SubscriptionPermission.LiveStreaming,
+  ],
+  analyticsAndReporting: [],
+  support: [SubscriptionPermission.PhoneSupport],
+  complianceAndSecurity: [],
 }
 
 export const CategoryTitleKeys = {
+  generalLimits: 'features.section.general_limits',
+  memberbaseManagement: 'features.section.memberbase_management',
   votingTypes: 'features.section.voting_types',
-  organization: 'features.section.organization',
-  features: 'features.section.features',
+  authenticationSecurity: 'features.section.authentication_security',
+  customization: 'features.section.customization',
+  extraFeatures: 'features.section.extra_features',
+  analyticsAndReporting: 'features.section.analytics_and_reporting',
+  support: 'features.section.support',
+  complianceAndSecurity: 'features.section.compliance_and_security',
+}
+
+// Helpers para crear specs rápidamente
+export const planFeature = (path: string, labelKey: string): PlanFeatureSpec => ({
+  kind: 'plan',
+  path,
+  labelKey,
+})
+
+export const staticFeature = (
+  id: string,
+  labelKey: string,
+  options?: {
+    render?: StaticFeatureSpec['render']
+    available?: StaticFeatureSpec['available']
+  }
+): StaticFeatureSpec => ({
+  kind: 'static',
+  id,
+  labelKey,
+  ...options,
+})
+
+const OnDemandTag = () => (
+  <Tag size='sm'>
+    <Trans i18nKey='features.on_demand'>On demand</Trans>
+  </Tag>
+)
+
+export const CategorizedSpecs: Record<string, FeatureSpec[]> = {
+  generalLimits: [
+    planFeature(SubscriptionPermission.MaxCensus, 'organization.max_census'),
+    planFeature(SubscriptionPermission.MaxProcesses, 'organization.max_processes'),
+    planFeature(SubscriptionPermission.Users, 'features.team_members'),
+  ],
+  votingTypes: [
+    planFeature(SubscriptionPermission.SingleVoting, 'features.single'),
+    planFeature(SubscriptionPermission.MultipleVoting, 'features.multiple'),
+    staticFeature('participatoryBudgeting', 'features.participatory_budgeting', {
+      available: () => true,
+    }),
+    staticFeature('templates', 'features.vote_templates', {
+      available: () => true,
+    }),
+  ],
+  memberbaseManagement: [
+    staticFeature('allInOneManagement', 'features.memberbase_all_in_one_management', {
+      available: () => true,
+    }),
+  ],
+  authenticationSecurity: [
+    planFeature(SubscriptionPermission.TwoFAEmail, 'features.email_notification'),
+    planFeature(SubscriptionPermission.Anonymous, 'features.anonymous'),
+    planFeature(SubscriptionPermission.Overwrite, 'features.overwrite'),
+  ],
+  customization: [
+    staticFeature('basicBranding', 'features.basic_branding', {
+      render: (plan) => (plan.id === PlanId.Premium ? <OnDemandTag /> : false),
+    }),
+    planFeature(SubscriptionPermission.WhiteLabel, 'features.white_label'),
+    planFeature(SubscriptionPermission.Personalization, 'features.personalization'),
+    planFeature(SubscriptionPermission.CustomURL, 'features.custom_url'),
+  ],
+  extraFeatures: [
+    planFeature(SubscriptionPermission.LiveResults, 'features.live_results'),
+    staticFeature('emailNotifications', 'features.email_notifications', {
+      render: (plan) => (plan.id === PlanId.Premium ? <OnDemandTag /> : false),
+    }),
+    staticFeature('smsNotifications', 'features.sms_notifications', {
+      render: (plan) => (plan.id === PlanId.Premium ? <OnDemandTag /> : false),
+    }),
+    planFeature(SubscriptionPermission.LiveStreaming, 'features.live_streaming'),
+  ],
+  analyticsAndReporting: [
+    staticFeature('basicAnalytics', 'features.basic_analytics', {
+      available: () => true,
+    }),
+    staticFeature('customReports', 'features.custom_reports', {
+      available: () => false,
+    }),
+  ],
+  support: [
+    staticFeature('prioritySupport', 'features.priority_support', {
+      available: (plan) => (plan.id === PlanId.Premium ? true : false),
+    }),
+    staticFeature('emailSupport', 'features.email_support', {
+      available: () => true,
+      render: (plan) => {
+        const { t } = useTranslation()
+        return (
+          <Flex flexDirection='column' alignItems='center' gap={1}>
+            <BooleanIcon value={true} />
+            <Text>
+              {plan.id === PlanId.Premium
+                ? t('features.email_support_premium', { defaultValue: '(24h resp.)' })
+                : plan.id === PlanId.Essential
+                  ? t('features.email_support_essential', { defaultValue: '(48h resp.)' })
+                  : t('features.email_support_basic', { defaultValue: '(72h resp.)' })}
+            </Text>
+          </Flex>
+        )
+      },
+    }),
+    planFeature(SubscriptionPermission.PhoneSupport, 'features.phone_support'),
+    staticFeature('dedicatedAccountManager', 'features.dedicated_account_manager', {
+      available: () => false,
+    }),
+  ],
+  complianceAndSecurity: [
+    staticFeature('GDPRCompliance', 'features.GDPR_compliance', {
+      available: () => true,
+    }),
+    staticFeature('uptime', 'features.uptime', {
+      render: (plan) => {
+        const { t } = useTranslation()
+        return (
+          <Flex alignItems='center' justifyContent='center' gap={1}>
+            <BooleanIcon value={true} />
+            <Text fontSize='xs' color='texts.subtle'>
+              {t('features.uptime_guaranteed', {
+                suffix:
+                  plan.id === PlanId.Premium
+                    ? t('features.generic_sla', { defaultValue: 'Generic SLA' })
+                    : t('features.basic_sla', { defaultValue: 'Best-effort' }),
+                defaultValue: 'Guaranteed ({{suffix}})',
+              })}
+            </Text>
+          </Flex>
+        )
+      },
+    }),
+  ],
 }
 
 /**
@@ -122,31 +300,59 @@ export const isFeatureAvailable = (
 // note this component does not need to (and should never) be included in the app
 const UnusedComponentButRequiredToNotLoseTranslations = () => {
   const { t } = useTranslation()
-  t('features.users', { defaultValue: 'Up to {{ count }} users' })
+  t('features.team_members', { defaultValue: 'Team members' })
   t('features.total_users', { defaultValue: 'Total available users' })
   t('features.sub_orgs', { defaultValue: 'Up to {{ count }} sub-organizations' })
   t('features.total_orgs', { defaultValue: 'Total available sub-organizations' })
-  t('features.custom_url', { defaultValue: 'Custom URL' })
+  t('features.custom_url', { defaultValue: 'Custom domain' })
   t('features.single', { defaultValue: 'Single choice voting' })
   t('features.multiple', { defaultValue: 'Multiple choice voting' })
   t('features.approval', { defaultValue: 'Approval voting' })
   t('features.cumulative', { defaultValue: 'Cumulative voting' })
   t('features.ranked', { defaultValue: 'Ranked voting' })
   t('features.weighted', { defaultValue: 'Weighted voting' })
-  t('features.personalization', { defaultValue: 'Personalization' })
+  t('features.personalization', { defaultValue: 'Full customization' })
   t('features.email_reminder', { defaultValue: 'Email reminder' })
   t('features.sms_notification', { defaultValue: '2FA SMS' })
   t('features.email_notification', { defaultValue: '2FA Email' })
-  t('features.white_label', { defaultValue: 'White label' })
-  t('features.live_streaming', { defaultValue: 'Live streaming' })
+  t('features.white_label', { defaultValue: 'White-label (no vocdoni branding)' })
+  t('features.live_streaming', { defaultValue: 'Live streaming integration' })
   t('features.anonymous_voting', { defaultValue: 'Anonymous voting' })
   t('features.overwrite', { defaultValue: 'Vote overwrite' })
   t('features.live_results', { defaultValue: 'Live results' })
-  t('features.phone_support', { defaultValue: 'Phone support' })
+  t('features.phone_support', { defaultValue: 'Phone' })
+  t('organization.max_census', { defaultValue: 'Max census per vote' })
+  t('organization.max_processes', { defaultValue: 'Votes per year¹' })
+  t('features.participatory_budgeting', { defaultValue: 'Participatory budgeting' })
+  t('features.vote_templates', { defaultValue: 'Easy-to-use templates for all voting methods' })
+  t('features.memberbase_all_in_one_management', { defaultValue: 'All-in-one memberbase management' })
+  t('features.basic_branding', { defaultValue: 'Basic branding' })
+  t('features.email_notifications', { defaultValue: 'Email notifications to voters' })
+  t('features.sms_notifications', { defaultValue: 'SMS notifications to voters' })
+  t('features.basic_analytics', { defaultValue: 'Basic Analytics' })
+  t('features.custom_reports', { defaultValue: 'Custom Reports' })
+  t('features.priority_support', { defaultValue: 'Priority support' })
+  t('features.email_support', { defaultValue: 'Email' })
+  t('features.email_support_premium', { defaultValue: '(24h resp.)' })
+  t('features.email_support_essential', { defaultValue: '(48h resp.)' })
+  t('features.email_support_basic', { defaultValue: '(72h resp.)' })
+  t('features.dedicated_account_manager', { defaultValue: 'Dedicated Account Manager' })
+  t('features.GDPR_compliance', { defaultValue: 'GDPR Compliance' })
+  t('features.uptime', { defaultValue: '99.99% Uptime' })
+  t('features.uptime_guaranteed', { defaultValue: 'Guaranteed ({{suffix}})' })
+  t('features.generic_sla', { defaultValue: 'Generic SLA' })
+  t('features.basic_sla', { defaultValue: 'Best-effort' })
   // Section titles
   t('features.section.voting_types', { defaultValue: 'Voting Types' })
   t('features.section.features', { defaultValue: 'Features' })
   t('features.section.organization', { defaultValue: 'Organization' })
-
+  t('features.section.general_limits', { defaultValue: 'General Limits' })
+  t('features.section.memberbase_management', { defaultValue: 'Memberbase Management' })
+  t('features.section.authentication_security', { defaultValue: 'Authentication & Security' })
+  t('features.section.customization', { defaultValue: 'Customization' })
+  t('features.section.extra_features', { defaultValue: 'Extra Features' })
+  t('features.section.analytics_and_reporting', { defaultValue: 'Analytics & Reporting' })
+  t('features.section.support', { defaultValue: 'Support' })
+  t('features.section.compliance_and_security', { defaultValue: 'Compliance & Security' })
   return null
 }

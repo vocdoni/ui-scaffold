@@ -17,6 +17,7 @@ import { useQuery } from '@tanstack/react-query'
 import { MutableRefObject, ReactNode, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { LuChartColumn, LuCircleCheckBig, LuMail, LuShield, LuUserCheck, LuUsers, LuVote } from 'react-icons/lu'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
@@ -83,87 +84,174 @@ export const usePlans = () => {
   })
 }
 
-export const usePlanTranslations = () => {
+export const usePlanTranslations = (plans?: Plan[]) => {
   const { t } = useTranslation()
+
+  const byId = useMemo(() => {
+    const m = new Map<PlanId, Plan>()
+    plans?.forEach((p) => m.set(p.id, p))
+    return m
+  }, [plans])
+
+  const getMembers = (id: PlanId, fallback = 100) => byId.get(id)?.organization?.maxCensus ?? fallback
+
+  const getProcesses = (id: PlanId, fallback = 10) => byId.get(id)?.organization?.maxProcesses ?? fallback
+
+  const getTeamMembers = (id: PlanId, fallback = 1) => byId.get(id)?.organization?.teamMembers ?? fallback
+
+  const get2FAsms = (id: PlanId, fallback = 0) => byId.get(id)?.features?.['2FAsms'] ?? fallback
+  const get2FAemail = (id: PlanId, fallback = 0) => byId.get(id)?.features?.['2FAemail'] ?? fallback
+
+  const get2FA = (id: PlanId) => {
+    const hasEmail = Number(get2FAemail(id)) > 0
+    const hasSms = Number(get2FAsms(id)) > 0
+
+    const suffix =
+      hasSms && hasEmail
+        ? t('pricing.2fa_suffix_both', { defaultValue: 'Email & SMS' })
+        : hasEmail
+          ? t('pricing.2fa_suffix_email', { defaultValue: 'Email' })
+          : t('pricing.2fa_suffix_sms', { defaultValue: 'SMS' })
+
+    return suffix
+  }
+
   const translations = {
     [PlanId.Free]: {
       title: t('pricing.free_title', { defaultValue: 'Free' }),
       subtitle: t('pricing.free_subtitle', {
-        defaultValue: 'Small organizations or community groups with basic voting needs.',
+        defaultValue: 'Perfect for getting started',
       }),
       features: [
-        t('pricing.core_voting', { defaultValue: 'Core voting features' }),
-        t('pricing.up_to_admins', {
-          defaultValue: 'Up to {{ admin }} admin and {{ org }} org',
-          admin: 1,
-          org: 1,
-        }),
-        t('pricing.yearly_processes', { defaultValue: '{{ count }} yearly voting process', count: 1 }),
-        t('pricing.basic_analytics', { defaultValue: 'Basic reporting and analytics' }),
-        t('pricing.ticket_support', { defaultValue: 'Ticket support' }),
-        t('pricing.gpdr_compilance', { defaultValue: 'GDPR compliance' }),
+        {
+          icon: LuUsers,
+          text: t('pricing.core_voting', {
+            defaultValue: 'Up to {{ count }} members',
+            count: getMembers(PlanId.Free, 100),
+          }),
+        },
+        {
+          icon: LuVote,
+          text: t('pricing.yearly_processes', {
+            defaultValue: '{{ count }} votes per year¹',
+            count: getProcesses(PlanId.Free, 10),
+          }),
+        },
+        {
+          icon: LuUserCheck,
+          text: t('pricing.up_to_admins', {
+            defaultValue: '{{ count }} team members',
+            count: getTeamMembers(PlanId.Free, 1),
+          }),
+        },
+        {
+          icon: LuCircleCheckBig,
+          text: t('pricing.different_voting_methods', { defaultValue: 'Different voting methods' }),
+        },
+        {
+          icon: LuShield,
+          text: t('pricing.2fa', {
+            suffix: get2FA(PlanId.Free),
+            defaultValue: '2FA authentication ({{suffix}})',
+          }),
+        },
+        { icon: LuChartColumn, text: t('pricing.basic_analytics', { defaultValue: 'Basic analytics' }) },
+        { icon: LuMail, text: t('pricing.ticket_support_72', { defaultValue: 'Email support (72h)' }) },
       ],
     },
     [PlanId.Essential]: {
       title: t('pricing.essential_title', { defaultValue: 'Essential' }),
       subtitle: t('pricing.essential_subtitle', {
-        defaultValue: 'Small or medium-sized orgs or community groups with basic voting needs.',
+        defaultValue: 'For growing organizations',
       }),
       features: [
-        t('pricing.core_voting'),
-        t('pricing.up_to_admins', { admin: 1, org: 1 }),
-        t('pricing.yearly_processes', { count: 5 }),
-        t('pricing.basic_analytics'),
-        t('pricing.ticket_support'),
-        t('pricing.gpdr_compilance'),
+        {
+          icon: LuUsers,
+          text: t('pricing.core_voting', {
+            defaultValue: 'Up to {{ count }} members',
+            count: getMembers(PlanId.Essential, 500),
+          }),
+        },
+        {
+          icon: LuVote,
+          text: t('pricing.yearly_processes', {
+            defaultValue: '{{ count }} votes per year¹',
+            count: getProcesses(PlanId.Essential, 20),
+          }),
+        },
+        {
+          icon: LuUserCheck,
+          text: t('pricing.up_to_admins', {
+            defaultValue: '{{ count }} team members',
+            count: getTeamMembers(PlanId.Essential, 1),
+          }),
+        },
+        { icon: LuCircleCheckBig, text: t('pricing.different_voting_methods') },
+        {
+          icon: LuShield,
+          text: t('pricing.2fa', {
+            suffix: get2FA(PlanId.Essential),
+            defaultValue: '2FA authentication ({{suffix}})',
+          }),
+        },
+        { icon: LuChartColumn, text: t('pricing.basic_analytics', { defaultValue: 'Basic analytics' }) },
+        { icon: LuMail, text: t('pricing.ticket_support_48', { defaultValue: 'Email support (48h)' }) },
       ],
     },
     [PlanId.Premium]: {
       title: t('pricing.premium_title', { defaultValue: 'Premium' }),
       subtitle: t('pricing.premium_subtitle', {
-        defaultValue: 'Larger amount that require more advanced features.',
+        defaultValue: 'For established organizations',
       }),
       features: [
-        t('pricing.core_voting', { defaultValue: 'Core voting features' }),
-        t('pricing.up_to_admins', { admin: 5, org: 1 }),
-        t('pricing.unlimited_yearly_processes', { defaultValue: 'Unlimited yearly voting processes' }),
-        t('pricing.advanced_analytitcs', { defaultValue: 'Advanced reporting and analytics' }),
-        t('pricing.priority_support', { defaultValue: 'Priority ticket support' }),
-        t('pricing.gpdr_compilance'),
+        {
+          icon: LuUsers,
+          text: t('pricing.core_voting', {
+            defaultValue: 'Up to {{ count }} members',
+            count: getMembers(PlanId.Premium, 2000),
+          }),
+        },
+        {
+          icon: LuVote,
+          text: t('pricing.yearly_processes', {
+            defaultValue: '{{ count }} votes per year¹',
+            count: getProcesses(PlanId.Premium, 50),
+          }),
+        },
+        {
+          icon: LuUserCheck,
+          text: t('pricing.up_to_admins', {
+            defaultValue: '{{ count }} team members',
+            count: getTeamMembers(PlanId.Premium, 5),
+          }),
+        },
+        { icon: LuCircleCheckBig, text: t('pricing.different_voting_methods') },
+        {
+          icon: LuShield,
+          text: t('pricing.2fa', {
+            suffix: get2FA(PlanId.Premium),
+            defaultValue: '2FA authentication ({{suffix}})',
+          }),
+        },
+        { icon: LuChartColumn, text: t('pricing.advanced_analytitcs', { defaultValue: 'Advanced analytics' }) },
+        { icon: LuMail, text: t('pricing.priority_support', { defaultValue: 'Priority email support (24h)' }) },
       ],
     },
     [PlanId.Custom]: {
       title: t('pricing.custom_title', { defaultValue: 'Custom' }),
       subtitle: t('pricing.custom_subtitle', {
-        defaultValue:
-          'Large organizations, enterprises, and institutions requiring extensive customization and support',
+        defaultValue: 'Tailored for your needs',
       }),
-      features: [
-        t('pricing.all_features', { defaultValue: 'All features & voting types' }),
-        t('pricing.up_to_admins', { admin: 10, org: 5 }),
-        t('pricing.unlimited_yearly_processes', { defaultValue: 'Unlimited yearly voting processes' }),
-        t('pricing.white_label', { defaultValue: 'White label solution' }),
-        t('pricing.advanced_analytitcs', { defaultValue: 'Advanced reporting and analytics' }),
-        t('pricing.dedicated_manager', { defaultValue: 'Dedicated account manager' }),
-        t('pricing.priority_support', { defaultValue: 'Priority ticket support' }),
-        t('pricing.gpdr_compilance'),
-      ],
     },
   }
 
   return translations
 }
 
-export const SubscriptionPlans = ({
-  featuresRef,
-  hidePlanActions,
-}: {
-  featuresRef?: MutableRefObject<HTMLDivElement>
-  hidePlanActions?: boolean
-}) => {
+export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObject<HTMLDivElement> }) => {
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
-  const translations = usePlanTranslations()
+  const translations = usePlanTranslations(plans)
   const { openModal } = usePricingModal()
 
   const methods = useForm<FormValues>({
@@ -185,7 +273,7 @@ export const SubscriptionPlans = ({
 
     return plans.map((plan) => {
       return {
-        popular: plan.id === PlanId.Essential,
+        popular: plan.id === PlanId.Premium,
         title: translations[plan.id]?.title || plan.name,
         subtitle: translations[plan.id]?.subtitle || '',
         price: currency(plan.startingPrice),
@@ -203,13 +291,7 @@ export const SubscriptionPlans = ({
           {isLoading && <Progress isIndeterminate />}
           <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} spacing={6}>
             {cards.map((card, idx) => (
-              <PricingCard
-                key={idx}
-                plan={plans[idx]}
-                {...card}
-                hidePlanActions={hidePlanActions}
-                featuresRef={featuresRef}
-              />
+              <PricingCard key={idx} plan={plans[idx]} {...card} />
             ))}
           </SimpleGrid>
         </Flex>

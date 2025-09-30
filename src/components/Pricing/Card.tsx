@@ -5,17 +5,18 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Divider,
   Flex,
+  Link,
   ListIcon,
   ListItem,
   Text,
   UnorderedList,
 } from '@chakra-ui/react'
-import { RefObject } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuCheck } from 'react-icons/lu'
-import { Routes } from '~src/router/routes'
+import { Link as ReactRouterLink } from 'react-router-dom'
+import { PlanId } from '~constants'
 import ContactLink from '~shared/ContactLink'
 import type { Plan } from './Plans'
 
@@ -24,13 +25,11 @@ type PricingCardProps = {
   title: string
   subtitle: string
   price: string
-  features: string[]
+  features: { icon: React.ElementType; text: string }[]
   isDisabled: boolean
   isCurrentPlan: boolean
-  hidePlanActions?: boolean
   width?: string
   plan: Plan
-  featuresRef: RefObject<HTMLDivElement>
 }
 
 const PricingCard = ({
@@ -41,26 +40,18 @@ const PricingCard = ({
   features,
   isDisabled,
   isCurrentPlan,
-  hidePlanActions,
   plan,
-  featuresRef,
 }: PricingCardProps) => {
   const { t } = useTranslation()
   const { setValue } = useFormContext()
 
-  const handleViewFeatures = () => {
-    if (featuresRef && featuresRef.current) {
-      featuresRef.current.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      window.open(Routes.plans + '?compare')
-    }
-  }
-
   const commonButtonProps = {
-    variant: popular ? 'solid' : 'outline',
-    colorScheme: 'gray',
+    variant: isCurrentPlan ? 'outline' : 'solid',
+    colorScheme: 'black',
     isDisabled: isDisabled || isCurrentPlan,
   }
+
+  const isCustomPlan = plan?.organization?.customPlan || plan.id === PlanId.Custom
 
   return (
     <Card
@@ -69,49 +60,74 @@ const PricingCard = ({
       variant='pricing-card'
       align='stretch'
       border='1px solid'
-      bgColor={isCurrentPlan ? 'card.pricing.current.bg' : 'card.pricing.bg'}
+      bgColor='card.pricing.bg'
       borderColor={popular ? 'card.pricing.featured.border' : 'card.pricing.border'}
     >
       <CardHeader>
         <Text>{title}</Text>
-        <Text>{subtitle}</Text>
+        <Text color='texts.subtle'>{subtitle}</Text>
       </CardHeader>
       <CardBody>
-        <Flex direction='column'>
+        <Flex direction='column' gap={4}>
           <Flex align='center'>
-            <Trans
-              i18nKey='pricing_card.from'
-              values={{ price }}
-              components={{
-                price: <Text size='2xl' fontWeight='bold' />,
-                time: <Text size='sm' color='texts.subtle' />,
-              }}
-            >
-              {{ price }}/year
-            </Trans>
+            {isCustomPlan ? (
+              <Text fontSize='3xl' fontWeight='extrabold'>
+                <Trans i18nKey='pricing_card.custom_plan'>Price on request</Trans>
+              </Text>
+            ) : (
+              <Trans
+                i18nKey='pricing_card.from'
+                values={{ price }}
+                components={{
+                  price: <Text fontSize='3xl' fontWeight='extrabold' />,
+                  time: <Text size='sm' color='texts.subtle' />,
+                }}
+              >
+                {{ price }}/year
+              </Trans>
+            )}
           </Flex>
-          <UnorderedList>
-            {features.map((feature, idx) => (
-              <ListItem key={idx}>
-                <ListIcon as={LuCheck} color='green.500' />
-                {feature}
-              </ListItem>
-            ))}
-          </UnorderedList>
-          {!hidePlanActions && (
-            <Button onClick={handleViewFeatures} variant='link' mt={3}>
-              <Trans i18nKey='pricing_card.view_features'>View All features</Trans>
-            </Button>
+          {isCustomPlan ? (
+            <Text fontSize='sm'>
+              <Trans i18nKey='pricing_card.custom_plan_description'>
+                Do you have special governance requirements? We can adapt to your needs with a fully customized
+                solution. A dedicated account manager will support you throughout the entire collaboration.
+              </Trans>
+            </Text>
+          ) : (
+            <UnorderedList spacing={3}>
+              {features.map((feature, idx) => (
+                <ListItem key={idx}>
+                  <ListIcon as={feature.icon} />
+                  {feature.text}
+                </ListItem>
+              ))}
+            </UnorderedList>
           )}
         </Flex>
       </CardBody>
+      <Divider />
       <CardFooter>
-        {plan.organization.customPlan ? (
-          <ContactLink {...commonButtonProps} w='full' aria-label={isCurrentPlan ? t('current_plan') : t('contact_us')}>
-            {isCurrentPlan
-              ? t('current_plan', { defaultValue: 'Current Plan' })
-              : t('contact_us', { defaultValue: 'Contact us' })}
-          </ContactLink>
+        {isCustomPlan ? (
+          <Flex direction='column' gap={2} w='full' alignItems='center'>
+            <Flex gap={1} alignItems='center'>
+              <Link fontWeight='extrabold' fontSize='sm' as={ReactRouterLink}>
+                <Trans i18nKey='contact_sales'>Contact our sales team</Trans>
+              </Link>
+              <Text fontSize='sm' color='texts.subtle' textAlign='center'>
+                <Trans i18nKey='pricing_card.custom_plan_or'>or</Trans>
+              </Text>
+            </Flex>
+            <ContactLink
+              {...commonButtonProps}
+              w='full'
+              aria-label={isCurrentPlan ? t('current_plan') : t('contact_us')}
+            >
+              {isCurrentPlan
+                ? t('current_plan', { defaultValue: 'Current Plan' })
+                : t('home.support.btn_watch', { defaultValue: 'Schedule a call' })}
+            </ContactLink>
+          </Flex>
         ) : (
           <Button
             {...commonButtonProps}

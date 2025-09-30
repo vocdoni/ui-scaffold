@@ -5,14 +5,17 @@ const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpe
 
 const pricingCard = definePartsStyle({
   container: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 4,
     position: 'relative',
     borderRadius: 'md',
     bgColor: 'card.pricing.bd',
-    p: 4,
+    p: 6,
   },
   header: {
     p: 0,
-    minH: 28,
+    // minH: 28,
     '& > p:first-of-type': {
       pt: 1.5,
       fontWeight: 'bold',
@@ -22,7 +25,6 @@ const pricingCard = definePartsStyle({
     '& > p:nth-of-type(2)': {
       fontSize: 'sm',
       lineHeight: 1.2,
-      // color: 'pricing_card.subtitle.light',
     },
   },
   body: {
@@ -32,6 +34,7 @@ const pricingCard = definePartsStyle({
     p: 0,
     '& > div > ul': {
       m: 0,
+      mt: 4,
       maxW: 'fit-content',
       fontSize: 'sm',
       listStyleType: 'none',

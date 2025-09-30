@@ -1,10 +1,25 @@
-import { Box, Flex, Progress, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import {
+  Box,
+  Divider,
+  Flex,
+  Icon,
+  Progress,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
+} from '@chakra-ui/react'
 import { dotobject } from '@vocdoni/sdk'
-import { forwardRef } from 'react'
+import { forwardRef, isValidElement } from 'react'
 import { Trans } from 'react-i18next'
+import { LuChartColumn, LuFileCheck, LuHeadset, LuPalette, LuShield, LuUsers, LuVote, LuZap } from 'react-icons/lu'
+import { PlanId } from '~constants'
 import { BooleanIcon } from '~shared/Layout/BooleanIcon'
-import { currency } from '~utils/numbers'
-import { CategorizedFeatureKeys, CategoryTitleKeys, PlanTableFeaturesTranslationKeys } from './Features'
+import { CategorizedSpecs, CategoryTitleKeys, FeatureSpec } from './Features'
 import { Plan, usePlans, usePlanTranslations } from './Plans'
 
 type ComparisonTableProps = {}
@@ -12,107 +27,142 @@ type ComparisonTableProps = {}
 type ComparisonSectionTableProps = {
   titleKey: string
   plans: Plan[]
-  features: string[]
+  specs: FeatureSpec[]
   category: string
-  idx: number
 }
 
-const ComparisonSectionTable = ({ titleKey, plans, features, category, idx }: ComparisonSectionTableProps) => {
-  const translations = usePlanTranslations()
+const renderValue = (value: React.ReactNode | number | boolean) => {
+  if (typeof value === 'boolean') return <BooleanIcon value={value} />
+  if (isValidElement(value) || typeof value === 'number') return value
+  return '-'
+}
 
+const SubcategoryIcon: Record<string, React.ElementType> = {
+  generalLimits: LuChartColumn,
+  votingTypes: LuVote,
+  memberbaseManagement: LuUsers,
+  authenticationSecurity: LuShield,
+  customization: LuPalette,
+  extraFeatures: LuZap,
+  analyticsAndReporting: LuChartColumn,
+  support: LuHeadset,
+  complianceAndSecurity: LuFileCheck,
+}
+
+const ComparisonSectionTable = ({ titleKey, plans, category, specs }: ComparisonSectionTableProps) => {
   return (
-    <Box mb={8}>
-      <TableContainer>
-        <Table variant='striped' borderWidth={1}>
-          <Thead>
-            <Tr>
-              <Th>
-                <Text as={'span'} color='comparisons_table_title'>
-                  <Trans i18nKey={titleKey} />
-                </Text>
-              </Th>
+    <>
+      <Thead id='section-header'>
+        <Tr>
+          <Th colSpan={4}>
+            <Flex alignItems='center' gap={2}>
+              <Icon boxSize={4} as={SubcategoryIcon[category]} />
+              <Text as={'span'} textTransform='uppercase' fontSize='sm'>
+                <Trans i18nKey={titleKey} />
+              </Text>
+            </Flex>
+          </Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        {specs.map((spec) => {
+          const rowKey = spec.kind === 'plan' ? spec.path : spec.id
+          return (
+            <Tr key={rowKey}>
+              <Td fontWeight='medium'>
+                <Trans i18nKey={spec.labelKey} />
+              </Td>
 
-              <>
-                {plans.map((plan) => (
-                  <Th key={plan.id} textAlign='center'>
-                    {!idx && (
-                      <Flex flexDirection={'column'} justifyContent={'center'}>
-                        <Text as={'span'} textAlign={'center'}>
-                          {translations[plan.id].title}
-                        </Text>
-                        <Text as={'span'} textAlign={'center'} fontWeight={'normal'}>
-                          <Trans
-                            i18nKey='pricing_card.comparison_table_from'
-                            values={{ price: currency(plan.startingPrice) }}
-                          >
-                            From {{ price: plan.startingPrice }}/year
-                          </Trans>
-                        </Text>
-                      </Flex>
-                    )}
-                  </Th>
-                ))}
-              </>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {features.map((key) => {
-              const featurePath = `${category}.${key}`
-              const translationKey = PlanTableFeaturesTranslationKeys[featurePath]
-              return (
-                <Tr key={key}>
-                  <Td fontWeight='medium'>
-                    <Trans i18nKey={translationKey} />
+              {plans.map((plan) => {
+                let cell: React.ReactNode = '-'
+
+                if (spec.kind === 'plan') {
+                  const v = dotobject(plan, spec.path)
+                  cell = renderValue(v)
+                } else {
+                  // static
+                  if (spec.render) {
+                    cell = renderValue(spec.render(plan))
+                  } else if (spec.available) {
+                    cell = renderValue(Boolean(spec.available(plan)))
+                  } else {
+                    cell = '-'
+                  }
+                }
+
+                return (
+                  <Td key={plan.id} textAlign='center' w={40}>
+                    <Flex alignItems='center' justifyContent='center'>
+                      {cell}
+                    </Flex>
                   </Td>
-                  {plans.map((plan) => {
-                    const value = dotobject(plan, featurePath)
-                    return (
-                      <Td key={plan.id} textAlign='center' w={40}>
-                        {typeof value === 'boolean' ? (
-                          <BooleanIcon value={value} />
-                        ) : typeof value === 'number' ? (
-                          value
-                        ) : (
-                          '-'
-                        )}
-                      </Td>
-                    )
-                  })}
-                </Tr>
-              )
-            })}
-          </Tbody>
-        </Table>
-      </TableContainer>
-    </Box>
+                )
+              })}
+            </Tr>
+          )
+        })}
+      </Tbody>
+    </>
   )
 }
 
 export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>((props, ref) => {
   const { data: plans, isLoading } = usePlans()
+  const translations = usePlanTranslations()
 
   if (isLoading) {
     return <Progress size='sm' isIndeterminate />
   }
 
+  const filteredPlans = plans.filter((plan) => !(plan?.organization?.customPlan || plan.id === PlanId.Custom))
+
   return (
     <Flex ref={ref} justifyContent={'center'}>
-      <Box maxW='950px' overflowX={'scroll'}>
+      <Box w='full' overflowX={'scroll'}>
         <Box width={'full'} overflowX='auto'>
-          <Text fontSize='2xl' mb={4} textAlign='center'>
-            <Trans i18nKey='pricing.compare_features'>Compare all features</Trans>
-          </Text>
+          <TableContainer>
+            <Table borderWidth={1} variant='simple'>
+              <Thead>
+                <Tr>
+                  <Th>
+                    <Text as={'span'}>
+                      <Trans i18nKey='features.section.features'>Features</Trans>
+                    </Text>
+                  </Th>
 
-          {Object.entries(CategorizedFeatureKeys).map(([category, features], idx) => (
-            <ComparisonSectionTable
-              key={category}
-              titleKey={CategoryTitleKeys[category]}
-              plans={plans}
-              features={features}
-              category={category}
-              idx={idx}
-            />
-          ))}
+                  {filteredPlans.map((plan) => {
+                    return (
+                      <Th key={plan.id} textAlign='center'>
+                        <Flex flexDirection={'column'} justifyContent={'center'}>
+                          <Text as={'span'} textAlign={'center'}>
+                            {translations[plan.id].title}
+                          </Text>
+                        </Flex>
+                      </Th>
+                    )
+                  })}
+                </Tr>
+              </Thead>
+              {Object.entries(CategorizedSpecs).map(([category, specs]) => (
+                <ComparisonSectionTable
+                  key={category}
+                  titleKey={CategoryTitleKeys[category]}
+                  category={category}
+                  plans={filteredPlans}
+                  specs={specs}
+                />
+              ))}
+            </Table>
+          </TableContainer>
+          <Divider mt={6} />
+          <Flex textAlign='left' color='texts.subtle' fontSize='xs' flexDirection='column' gap={2}>
+            <Box>
+              <Trans i18nKey='pricing.comparison_table.footnote_1'>
+                ¹ Votes with fewer than 10 participants are treated as test runs and don't count towards your plan
+                limits.
+              </Trans>
+            </Box>
+          </Flex>
         </Box>
       </Box>
     </Flex>
