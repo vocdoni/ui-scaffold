@@ -35,7 +35,6 @@
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
-    "not_connected": "No estàs connectat",
     "overwrite_votes_left_one": "Pots corregir el teu vot una vegada.",
     "overwrite_votes_left_many": "",
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
@@ -120,7 +119,6 @@
       "anon_sik_helper": "Això garanteix que el teu vot sigui anònim",
       "anon_sik_label": "Defineix una contrasenya per al teu vot",
       "close": "Tanca",
-      "logout": "Tanca la sessió",
       "modal_title": "Autenticació"
     },
     "statuses": {
