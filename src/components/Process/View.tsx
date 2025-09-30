@@ -232,7 +232,7 @@ export const ProcessView = () => {
         <Flex direction='column' gap={4}>
           <Header />
 
-          <ElectionVideo ref={videoRef} position={{ base: 'unset', lg: 'sticky' }} top={{ base: 0, xl2: 20 }} />
+          <ElectionVideo ref={videoRef} />
 
           <Tabs
             isFitted
