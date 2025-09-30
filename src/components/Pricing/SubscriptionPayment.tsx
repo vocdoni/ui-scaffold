@@ -1,29 +1,16 @@
-import {
-  Box,
-  Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalOverlay,
-  Text,
-  useToast,
-} from '@chakra-ui/react'
+import { Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, useToast } from '@chakra-ui/react'
 import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
 import { loadStripe, Stripe } from '@stripe/stripe-js'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { ApiEndpoints } from '~components/Auth/api'
 import { SubscriptionType, useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { QueryKeys } from '~src/queries/keys'
-import { Routes } from '~src/router/routes'
 import { AnalyticsEvent } from '~utils/analytics'
 import { usePricingModal } from './use-pricing-modal'
 
@@ -68,7 +55,6 @@ export const SubscriptionPayment = ({ lookupKey }: SubscriptionPaymentData) => {
       locale: i18n.resolvedLanguage as any,
     })
   )
-  const [subscriptionCompleted, setSubscriptionCompleted] = useState<boolean>(false)
   const queryClient = useQueryClient()
 
   const fetchClientSecret = useCallback(async () => {
@@ -89,7 +75,7 @@ export const SubscriptionPayment = ({ lookupKey }: SubscriptionPaymentData) => {
         .catch((e) => {
           toast({
             status: 'error',
-            title: i18n.t('pricing.error'),
+            title: t('pricing.error'),
             description: e.message,
           })
           closeModal()
@@ -104,7 +90,6 @@ export const SubscriptionPayment = ({ lookupKey }: SubscriptionPaymentData) => {
     let nsub = await checkSubscription()
     while (
       nsub.plan.id === subscription.plan.id &&
-      nsub.subscriptionDetails.maxCensusSize === subscription.subscriptionDetails.maxCensusSize &&
       nsub.subscriptionDetails.renewalDate === subscription.subscriptionDetails.renewalDate
     ) {
       await new Promise((resolve) => {
@@ -112,7 +97,6 @@ export const SubscriptionPayment = ({ lookupKey }: SubscriptionPaymentData) => {
       })
       nsub = await checkSubscription()
     }
-    setSubscriptionCompleted(true)
     await queryClient.invalidateQueries({ queryKey: QueryKeys.organization.subscription() })
     trackPlausibleEvent({
       name: AnalyticsEvent.SubscriptionSuccessful,
@@ -126,41 +110,22 @@ export const SubscriptionPayment = ({ lookupKey }: SubscriptionPaymentData) => {
   }
 
   return (
-    <Box id='checkout' mt={10} mb={24}>
+    <Box id='checkout' mt={{ base: '24rem', sm: '15rem', lg: '5rem', xl: 0 }}>
       <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
         <EmbeddedCheckout />
       </EmbeddedCheckoutProvider>
-      <Button
-        onClick={() => closeModal()}
-        type='submit'
-        aria-label={t('close', { defaultValue: 'Close' })}
-        isDisabled={!subscriptionCompleted}
-      >
-        <Trans i18nKey='close'>Close</Trans>
-      </Button>
     </Box>
   )
 }
 
-export const SubscriptionPaymentModal = ({ isOpen, onClose, ...props }: ModalProps & SubscriptionPaymentData) => {
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} variant='payment-modal' size='full'>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalCloseButton />
-        <ModalBody>
-          <SubscriptionPayment {...props} />
-        </ModalBody>
-
-        <ModalFooter>
-          <Text>
-            <Trans i18nKey='pricing.help'>Need some help?</Trans>
-          </Text>
-          <Button as={ReactRouterLink} to={Routes.contact}>
-            <Trans i18nKey='contact_us'>Contact us</Trans>
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
-  )
-}
+export const SubscriptionPaymentModal = ({ isOpen, onClose, ...props }: ModalProps & SubscriptionPaymentData) => (
+  <Modal isOpen={isOpen} onClose={onClose} variant='payment-modal' size='full'>
+    <ModalOverlay />
+    <ModalContent>
+      <ModalCloseButton />
+      <ModalBody>
+        <SubscriptionPayment {...props} />
+      </ModalBody>
+    </ModalContent>
+  </Modal>
+)
