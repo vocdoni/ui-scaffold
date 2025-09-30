@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Link, Text } from '@chakra-ui/react'
+import { Button, Flex, Link, Text } from '@chakra-ui/react'
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { VoteButton as CVoteButton, environment, SpreadsheetAccess, VoteWeight } from '@vocdoni/chakra-components'
 import { useClient, useElection } from '@vocdoni/react-providers'
@@ -6,10 +6,10 @@ import { CensusType, dotobject, ElectionStatus, formatUnits, InvalidElection, Pu
 import { TFunction } from 'i18next'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { useAccount, useDisconnect } from 'wagmi'
-import { useAuth } from '~components/Auth/useAuth'
+import { useAccount } from 'wagmi'
 import { CensusMeta, CensusTypes } from './Census/CensusType'
 import { CspAuth } from './CSP/CSPAuthModal'
+import LogoutButton from './LogoutButton'
 
 const results = (result: number, decimals?: number) =>
   decimals ? parseInt(formatUnits(BigInt(result), decimals), 10) : result
@@ -162,72 +162,6 @@ const ProcessAside = () => {
       {/* Logout buttons for Census spreadsheet, CSP and Wagmi (web3) */}
       <LogoutButton />
     </Flex>
-  )
-}
-
-export const LogoutButton = () => {
-  const { t } = useTranslation()
-  const { disconnect } = useDisconnect()
-  const { election, connected, clearClient } = useElection()
-  const { isConnected } = useAccount()
-  const { logout } = useAuth()
-  const { clear } = useClient()
-
-  if (election instanceof InvalidElection) return null
-
-  const census: CensusMeta = dotobject(election?.meta || {}, 'census')
-
-  const isCSP = election.census.type === CensusType.CSP
-  const isSpreadsheet = census?.type === CensusTypes.Spreadsheet
-  const isWeb3 = census?.type === CensusTypes.Web3
-
-  if (!connected && !isConnected) return null
-
-  return (
-    <>
-      <Box alignSelf='center' mb={{ base: 10, md: 0 }}>
-        {connected && isSpreadsheet && (
-          <SpreadsheetAccess
-            sx={{
-              color: 'red',
-              button: {
-                bg: 'transparent',
-                border: 'none',
-                color: 'red !important',
-                textDecoration: 'underline',
-                _hover: { textDecoration: 'none' },
-              },
-            }}
-          />
-        )}
-        {connected && isCSP && (
-          <Button
-            variant='link'
-            onClick={() => {
-              clearClient()
-            }}
-          >
-            {t('logout')}
-          </Button>
-        )}
-        {isWeb3 && (
-          <Button
-            variant='link'
-            onClick={() => {
-              if (isConnected) {
-                disconnect()
-                clear()
-              } else {
-                // If not connected with web3 wallet, but connected we logout from APP
-                logout()
-              }
-            }}
-          >
-            {t('logout')}
-          </Button>
-        )}
-      </Box>
-    </>
   )
 }
 
