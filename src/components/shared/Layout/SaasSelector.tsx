@@ -137,6 +137,8 @@ export const IssueTypeSelector = ({ defaultValue, ...props }: Omit<SelectCustomP
     { label: t('form.support.voting_issue', { defaultValue: 'Voting issue' }), value: 'voting-issue' },
     { label: t('form.support.billing_issue', { defaultValue: 'Billing issue' }), value: 'billing-issue' },
     { label: t('form.support.technical_issue', { defaultValue: 'Technical issue' }), value: 'technical-issue' },
+    { label: t('form.support.custom_request', { defaultValue: 'Custom request' }), value: 'custom-request' },
+    { label: t('form.support.other', { defaultValue: 'Other' }), value: 'other' },
   ]
 
   return (
