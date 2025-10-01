@@ -30,7 +30,7 @@ export const ClientsGrid = (props: GridProps) => {
   return (
     <Grid
       as='section'
-      maxWidth={'1400px'}
+      maxWidth='1400px'
       mx='auto'
       mb={{ base: '40px', lg: '80px' }}
       px={{
@@ -39,7 +39,7 @@ export const ClientsGrid = (props: GridProps) => {
         lg: 6,
       }}
       gridTemplateColumns={{ base: 'repeat(5, 1fr)', md: 'repeat(10, 1fr)' }}
-      justifyContent={'end'}
+      justifyContent='end'
       w='full'
       {...props}
     >
