@@ -94,11 +94,8 @@ export const usePlanTranslations = (plans?: Plan[]) => {
   }, [plans])
 
   const getMembers = (id: PlanId, fallback = 100) => byId.get(id)?.organization?.maxCensus ?? fallback
-
   const getProcesses = (id: PlanId, fallback = 10) => byId.get(id)?.organization?.maxProcesses ?? fallback
-
   const getTeamMembers = (id: PlanId, fallback = 1) => byId.get(id)?.organization?.teamMembers ?? fallback
-
   const get2FAsms = (id: PlanId, fallback = 0) => byId.get(id)?.features?.['2FAsms'] ?? fallback
   const get2FAemail = (id: PlanId, fallback = 0) => byId.get(id)?.features?.['2FAemail'] ?? fallback
 

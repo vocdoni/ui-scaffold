@@ -40,7 +40,11 @@ const useUpdateSubscription = () => {
   })
 }
 
-export const SubscriptionPayment = ({ lookupKey }: SubscriptionPaymentData) => {
+type SubscriptionPaymentProps = SubscriptionPaymentData & {
+  onClose: () => void
+}
+
+export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentProps) => {
   const { bearedFetch } = useAuth()
   const { signer } = useClient()
   const { t, i18n } = useTranslation()
@@ -101,6 +105,7 @@ export const SubscriptionPayment = ({ lookupKey }: SubscriptionPaymentData) => {
     trackPlausibleEvent({
       name: AnalyticsEvent.SubscriptionSuccessful,
     })
+    onClose()
   }
 
   const options = {
@@ -124,7 +129,7 @@ export const SubscriptionPaymentModal = ({ isOpen, onClose, ...props }: ModalPro
     <ModalContent>
       <ModalCloseButton />
       <ModalBody>
-        <SubscriptionPayment {...props} />
+        <SubscriptionPayment {...props} onClose={onClose} />
       </ModalBody>
     </ModalContent>
   </Modal>

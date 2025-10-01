@@ -23,7 +23,7 @@ import { LuLogOut } from 'react-icons/lu'
 import { RiContactsBook3Line } from 'react-icons/ri'
 import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch, useMatches } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
-import ContactLink from '~shared/ContactLink'
+import ContactButton from '~shared/ContactLink'
 import { ColorModeSwitcher, ColorModeSwitcherDetailed } from '~shared/Layout/ColorModeSwitcher'
 import Logo from '~shared/Layout/Logo'
 import { Routes } from '~src/router/routes'
@@ -176,9 +176,9 @@ const NavMenu = ({ display, children }: { display?: any; children?: any }) => {
       icon: <RiContactsBook3Line />,
       label: t('navbar.contact', { defaultValue: 'Contact Us' }),
       component: (
-        <ContactLink variant='navbar' leftIcon={isMobile ? <RiContactsBook3Line /> : undefined}>
+        <ContactButton variant='navbar' leftIcon={isMobile ? <RiContactsBook3Line /> : undefined}>
           {t('navbar.contact', { defaultValue: 'Contact Us' })}
-        </ContactLink>
+        </ContactButton>
       ),
     },
     {

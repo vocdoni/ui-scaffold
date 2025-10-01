@@ -162,7 +162,6 @@
   },
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
-  "contact_sales": "Contact our sales team",
   "contact_us": "Contact us",
   "control_panel": "Control panel",
   "copy": {
@@ -352,6 +351,17 @@
     "sms_notifications": "SMS notifications to voters",
     "sub_orgs": "Up to {{ count }} sub-organizations",
     "team_members": "Team members",
+    "tooltips": {
+      "anonymous": "This is an optional feature that organizers can choose. When enabled, votes are completely anonymous - not even we can know who voted for a specific option. Alternatively, organizers can choose to encrypt results until the vote ends, or make the vote completely public.",
+      "live_results": "This is an optional feature that organizers can choose. Results can be displayed in real-time as votes are cast, or organizers can choose to keep results encrypted and hidden until the voting period ends.",
+      "memberbase_all_in_one": "Import your memberbase to create groups of eligible voters and manage voting permissions in a really easy way.",
+      "multiple": "Voters can select multiple options from the available choices. Ideal for surveys and decisions where multiple selections are allowed.",
+      "overwrite": "Voters can change their vote before the voting period ends. This feature helps avoid mistakes and prevents coercion by allowing voters to correct their choices.",
+      "single": "Voters can select only one option from the available choices. Perfect for elections and simple yes/no decisions.",
+      "team_members": "Invite team members and assign role-based permissions so you can effortlessly manage your organization",
+      "templates": "With our templates, it's so easy to start with ready-made setups for AGMs, Elections, and Participatory budgeting (and much more to come).",
+      "uptime": "We guarantee a 99.99% uptime, but only in the paid plans these are enforced by contract with warranties."
+    },
     "total_orgs": "Total available sub-organizations",
     "total_users": "Total available users",
     "uptime": "99.99% Uptime",
@@ -1234,6 +1244,7 @@
     "your_plan": "You're currently subscribed to the {{plan}} plan. Upgrade now, and you'll only pay the difference for the remaining time in your billing period. Starting from your next billing cycle on dd/mm/yy, you'll be charged the full price for your new plan."
   },
   "pricing_card": {
+    "contact_sales": "<0>Contact our sales team</0> <1>or</1>",
     "custom_plan": "Price on request",
     "custom_plan_description": "Do you have special governance requirements? We can adapt to your needs with a fully customized solution. A dedicated account manager will support you throughout the entire collaboration.",
     "custom_plan_or": "or",
@@ -1638,7 +1649,7 @@
   "subscription_plan": {
     "gdpr_compliance": "All plans include GDPR compliance.",
     "hide_comparison_table": "Show less features",
-    "need_help": "Need help choosing?",
+    "need_help": "<0>Need help choosing?</0> <1>Contact our sales team</1>",
     "show_comparison_table": "View all features",
     "subtitle": "Manage your subscription plan and billing cycle.",
     "title": "Subscription Plan"
@@ -1762,6 +1773,7 @@
   "theme": "Theme",
   "total_votes": "Total votes",
   "turnout": "Turnout",
+  "upgrade_plan": "Upgrade to {{plan}}",
   "uploader": {
     "click_or_drag_and_drop": "<click>Click to upload or drag and drop</click><formats>(Allowed formats: {{ formats, list }})</formats>",
     "click_or_drag_and_drop_image": "Upload Image",
