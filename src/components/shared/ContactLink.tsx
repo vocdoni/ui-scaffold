@@ -9,7 +9,7 @@ export type ContactLinkProps = {
   leftIcon?: ReactNode
 } & Omit<ButtonProps, 'onClick' | 'as'>
 
-const ContactLink = ({ children, leftIcon, ...buttonProps }: ContactLinkProps) => {
+const ContactButton = ({ children, leftIcon, ...buttonProps }: ContactLinkProps) => {
   const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
 
@@ -28,4 +28,4 @@ const ContactLink = ({ children, leftIcon, ...buttonProps }: ContactLinkProps) =
   )
 }
 
-export default ContactLink
+export default ContactButton

@@ -1,13 +1,13 @@
 import {
   Box,
   Button,
+  ButtonProps,
   Card,
   CardBody,
   CardFooter,
   CardHeader,
   Divider,
   Flex,
-  Link,
   ListIcon,
   ListItem,
   Text,
@@ -15,10 +15,10 @@ import {
 } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { BookerModalButton } from '~components/shared/Dashboard/Booker'
 import { PlanId } from '~constants'
-import ContactLink from '~shared/ContactLink'
-import type { Plan } from './Plans'
+import ContactButton from '~shared/ContactLink'
+import { usePlanTranslations, type Plan } from './Plans'
 
 type PricingCardProps = {
   popular: boolean
@@ -43,12 +43,14 @@ const PricingCard = ({
   plan,
 }: PricingCardProps) => {
   const { t } = useTranslation()
+  const translations = usePlanTranslations()
   const { setValue } = useFormContext()
 
-  const commonButtonProps = {
+  const commonButtonProps: ButtonProps = {
     variant: isCurrentPlan ? 'outline' : 'solid',
     colorScheme: 'black',
     isDisabled: isDisabled || isCurrentPlan,
+    size: 'sm',
   }
 
   const isCustomPlan = plan?.organization?.customPlan || plan.id === PlanId.Custom
@@ -110,15 +112,17 @@ const PricingCard = ({
       <CardFooter>
         {isCustomPlan ? (
           <Flex direction='column' gap={2} w='full' alignItems='center'>
-            <Flex gap={1} alignItems='center'>
-              <Link fontWeight='extrabold' fontSize='sm' as={ReactRouterLink}>
-                <Trans i18nKey='contact_sales'>Contact our sales team</Trans>
-              </Link>
-              <Text fontSize='sm' color='texts.subtle' textAlign='center'>
-                <Trans i18nKey='pricing_card.custom_plan_or'>or</Trans>
-              </Text>
-            </Flex>
-            <ContactLink
+            <Box fontSize='sm'>
+              <Trans i18nKey='pricing_card.contact_sales'>
+                <ContactButton variant='link' fontWeight='extrabold'>
+                  Contact our sales team
+                </ContactButton>
+                <Text fontSize='sm' color='texts.subtle' textAlign='center'>
+                  or
+                </Text>
+              </Trans>
+            </Box>
+            <BookerModalButton
               {...commonButtonProps}
               w='full'
               aria-label={isCurrentPlan ? t('current_plan') : t('contact_us')}
@@ -126,7 +130,7 @@ const PricingCard = ({
               {isCurrentPlan
                 ? t('current_plan', { defaultValue: 'Current Plan' })
                 : t('home.support.btn_watch', { defaultValue: 'Schedule a call' })}
-            </ContactLink>
+            </BookerModalButton>
           </Flex>
         ) : (
           <Button
@@ -137,7 +141,10 @@ const PricingCard = ({
           >
             {isCurrentPlan
               ? t('current_plan', { defaultValue: 'Current Plan' })
-              : t('subscribe', { defaultValue: 'Subscribe' })}
+              : t('upgrade_plan', {
+                  defaultValue: 'Upgrade to {{plan}}',
+                  plan: translations[plan.id]?.title || plan.name,
+                })}
           </Button>
         )}
       </CardFooter>

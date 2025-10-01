@@ -20,12 +20,14 @@ export type PlanFeatureSpec = {
   kind: 'plan'
   path: string
   labelKey: string
+  tooltip?: string
 }
 
 export type StaticFeatureSpec = {
   kind: 'static'
   id: string
   labelKey: string
+  tooltip?: string
   render?: (plan: Plan) => React.ReactNode | number | boolean
   available?: (plan: Plan) => boolean
 }
@@ -102,11 +104,12 @@ export const CategoryTitleKeys = {
   complianceAndSecurity: 'features.section.compliance_and_security',
 }
 
-// Helpers para crear specs rápidamente
-export const planFeature = (path: string, labelKey: string): PlanFeatureSpec => ({
+// Helper to quickly create specs
+export const planFeature = (path: string, labelKey: string, tooltip?: string): PlanFeatureSpec => ({
   kind: 'plan',
   path,
   labelKey,
+  tooltip,
 })
 
 export const staticFeature = (
@@ -115,11 +118,13 @@ export const staticFeature = (
   options?: {
     render?: StaticFeatureSpec['render']
     available?: StaticFeatureSpec['available']
-  }
+  },
+  tooltip?: string
 ): StaticFeatureSpec => ({
   kind: 'static',
   id,
   labelKey,
+  tooltip,
   ...options,
 })
 
@@ -133,27 +138,35 @@ export const CategorizedSpecs: Record<string, FeatureSpec[]> = {
   generalLimits: [
     planFeature(SubscriptionPermission.MaxCensus, 'organization.max_census'),
     planFeature(SubscriptionPermission.MaxProcesses, 'organization.max_processes'),
-    planFeature(SubscriptionPermission.Users, 'features.team_members'),
+    planFeature(SubscriptionPermission.Users, 'features.team_members', 'features.tooltips.team_members'),
   ],
   votingTypes: [
-    planFeature(SubscriptionPermission.SingleVoting, 'features.single'),
-    planFeature(SubscriptionPermission.MultipleVoting, 'features.multiple'),
-    staticFeature('participatoryBudgeting', 'features.participatory_budgeting', {
-      available: () => true,
-    }),
-    staticFeature('templates', 'features.vote_templates', {
-      available: () => true,
-    }),
+    planFeature(SubscriptionPermission.SingleVoting, 'features.single', 'features.tooltips.single'),
+    planFeature(SubscriptionPermission.MultipleVoting, 'features.multiple', 'features.tooltips.multiple'),
+    staticFeature(
+      'templates',
+      'features.vote_templates',
+      {
+        available: () => true,
+      },
+      'features.tooltips.templates'
+    ),
   ],
   memberbaseManagement: [
-    staticFeature('allInOneManagement', 'features.memberbase_all_in_one_management', {
-      available: () => true,
-    }),
+    staticFeature(
+      'allInOneManagement',
+      'features.memberbase_all_in_one_management',
+      {
+        available: () => true,
+      },
+      'features.tooltips.memberbase_all_in_one'
+    ),
   ],
   authenticationSecurity: [
     planFeature(SubscriptionPermission.TwoFAEmail, 'features.email_notification'),
-    planFeature(SubscriptionPermission.Anonymous, 'features.anonymous'),
-    planFeature(SubscriptionPermission.Overwrite, 'features.overwrite'),
+    planFeature(SubscriptionPermission.TwoFASms, 'features.sms_notification'),
+    planFeature(SubscriptionPermission.Anonymous, 'features.anonymous', 'features.tooltips.anonymous'),
+    planFeature(SubscriptionPermission.Overwrite, 'features.overwrite', 'features.tooltips.overwrite'),
   ],
   customization: [
     staticFeature('basicBranding', 'features.basic_branding', {
@@ -164,7 +177,7 @@ export const CategorizedSpecs: Record<string, FeatureSpec[]> = {
     planFeature(SubscriptionPermission.CustomURL, 'features.custom_url'),
   ],
   extraFeatures: [
-    planFeature(SubscriptionPermission.LiveResults, 'features.live_results'),
+    planFeature(SubscriptionPermission.LiveResults, 'features.live_results', 'features.tooltips.live_results'),
     staticFeature('emailNotifications', 'features.email_notifications', {
       render: (plan) => (plan.id === PlanId.Premium ? <OnDemandTag /> : false),
     }),
@@ -212,25 +225,30 @@ export const CategorizedSpecs: Record<string, FeatureSpec[]> = {
     staticFeature('GDPRCompliance', 'features.GDPR_compliance', {
       available: () => true,
     }),
-    staticFeature('uptime', 'features.uptime', {
-      render: (plan) => {
-        const { t } = useTranslation()
-        return (
-          <Flex alignItems='center' justifyContent='center' gap={1}>
-            <BooleanIcon value={true} />
-            <Text fontSize='xs' color='texts.subtle'>
-              {t('features.uptime_guaranteed', {
-                suffix:
-                  plan.id === PlanId.Premium
-                    ? t('features.generic_sla', { defaultValue: 'Generic SLA' })
-                    : t('features.basic_sla', { defaultValue: 'Best-effort' }),
-                defaultValue: 'Guaranteed ({{suffix}})',
-              })}
-            </Text>
-          </Flex>
-        )
+    staticFeature(
+      'uptime',
+      'features.uptime',
+      {
+        render: (plan) => {
+          const { t } = useTranslation()
+          return (
+            <Flex alignItems='center' justifyContent='center' gap={1}>
+              <BooleanIcon value={true} />
+              <Text fontSize='xs' color='texts.subtle'>
+                {t('features.uptime_guaranteed', {
+                  suffix:
+                    plan.id === PlanId.Premium
+                      ? t('features.generic_sla', { defaultValue: 'Generic SLA' })
+                      : t('features.basic_sla', { defaultValue: 'Best-effort' }),
+                  defaultValue: 'Guaranteed ({{suffix}})',
+                })}
+              </Text>
+            </Flex>
+          )
+        },
       },
-    }),
+      'features.tooltips.uptime'
+    ),
   ],
 }
 
@@ -296,63 +314,67 @@ export const isFeatureAvailable = (
   throw new Error('Invalid expectedValue type')
 }
 
-// yeah, it's sad but we need to include all the translations in a way the extractor does not remove them...
-// note this component does not need to (and should never) be included in the app
-const UnusedComponentButRequiredToNotLoseTranslations = () => {
-  const { t } = useTranslation()
-  t('features.team_members', { defaultValue: 'Team members' })
-  t('features.total_users', { defaultValue: 'Total available users' })
-  t('features.sub_orgs', { defaultValue: 'Up to {{ count }} sub-organizations' })
-  t('features.total_orgs', { defaultValue: 'Total available sub-organizations' })
-  t('features.custom_url', { defaultValue: 'Custom domain' })
-  t('features.single', { defaultValue: 'Single choice voting' })
-  t('features.multiple', { defaultValue: 'Multiple choice voting' })
-  t('features.approval', { defaultValue: 'Approval voting' })
-  t('features.cumulative', { defaultValue: 'Cumulative voting' })
-  t('features.ranked', { defaultValue: 'Ranked voting' })
-  t('features.weighted', { defaultValue: 'Weighted voting' })
-  t('features.personalization', { defaultValue: 'Full customization' })
-  t('features.email_reminder', { defaultValue: 'Email reminder' })
-  t('features.sms_notification', { defaultValue: '2FA SMS' })
-  t('features.email_notification', { defaultValue: '2FA Email' })
-  t('features.white_label', { defaultValue: 'White-label (no vocdoni branding)' })
-  t('features.live_streaming', { defaultValue: 'Live streaming integration' })
-  t('features.anonymous_voting', { defaultValue: 'Anonymous voting' })
-  t('features.overwrite', { defaultValue: 'Vote overwrite' })
-  t('features.live_results', { defaultValue: 'Live results' })
-  t('features.phone_support', { defaultValue: 'Phone' })
-  t('organization.max_census', { defaultValue: 'Max census per vote' })
-  t('organization.max_processes', { defaultValue: 'Votes per year¹' })
-  t('features.participatory_budgeting', { defaultValue: 'Participatory budgeting' })
-  t('features.vote_templates', { defaultValue: 'Easy-to-use templates for all voting methods' })
-  t('features.memberbase_all_in_one_management', { defaultValue: 'All-in-one memberbase management' })
-  t('features.basic_branding', { defaultValue: 'Basic branding' })
-  t('features.email_notifications', { defaultValue: 'Email notifications to voters' })
-  t('features.sms_notifications', { defaultValue: 'SMS notifications to voters' })
-  t('features.basic_analytics', { defaultValue: 'Basic Analytics' })
-  t('features.custom_reports', { defaultValue: 'Custom Reports' })
-  t('features.priority_support', { defaultValue: 'Priority support' })
-  t('features.email_support', { defaultValue: 'Email' })
-  t('features.email_support_premium', { defaultValue: '(24h resp.)' })
-  t('features.email_support_essential', { defaultValue: '(48h resp.)' })
-  t('features.email_support_basic', { defaultValue: '(72h resp.)' })
-  t('features.dedicated_account_manager', { defaultValue: 'Dedicated Account Manager' })
-  t('features.GDPR_compliance', { defaultValue: 'GDPR Compliance' })
-  t('features.uptime', { defaultValue: '99.99% Uptime' })
-  t('features.uptime_guaranteed', { defaultValue: 'Guaranteed ({{suffix}})' })
-  t('features.generic_sla', { defaultValue: 'Generic SLA' })
-  t('features.basic_sla', { defaultValue: 'Best-effort' })
-  // Section titles
-  t('features.section.voting_types', { defaultValue: 'Voting Types' })
-  t('features.section.features', { defaultValue: 'Features' })
-  t('features.section.organization', { defaultValue: 'Organization' })
-  t('features.section.general_limits', { defaultValue: 'General Limits' })
-  t('features.section.memberbase_management', { defaultValue: 'Memberbase Management' })
-  t('features.section.authentication_security', { defaultValue: 'Authentication & Security' })
-  t('features.section.customization', { defaultValue: 'Customization' })
-  t('features.section.extra_features', { defaultValue: 'Extra Features' })
-  t('features.section.analytics_and_reporting', { defaultValue: 'Analytics & Reporting' })
-  t('features.section.support', { defaultValue: 'Support' })
-  t('features.section.compliance_and_security', { defaultValue: 'Compliance & Security' })
-  return null
-}
+// We need to include all the translations in a way the extractor does not remove them, that's why this is here
+// i18next-extract-mark-ns:categories
+// t('features.team_members', { defaultValue: 'Team members' })
+// t('features.total_users', { defaultValue: 'Total available users' })
+// t('features.sub_orgs', { defaultValue: 'Up to {{ count }} sub-organizations' })
+// t('features.total_orgs', { defaultValue: 'Total available sub-organizations' })
+// t('features.custom_url', { defaultValue: 'Custom domain' })
+// t('features.single', { defaultValue: 'Single choice voting' })
+// t('features.multiple', { defaultValue: 'Multiple choice voting' })
+// t('features.approval', { defaultValue: 'Approval voting' })
+// t('features.cumulative', { defaultValue: 'Cumulative voting' })
+// t('features.ranked', { defaultValue: 'Ranked voting' })
+// t('features.weighted', { defaultValue: 'Weighted voting' })
+// t('features.personalization', { defaultValue: 'Full customization' })
+// t('features.email_reminder', { defaultValue: 'Email reminder' })
+// t('features.sms_notification', { defaultValue: '2FA SMS' })
+// t('features.email_notification', { defaultValue: '2FA Email' })
+// t('features.white_label', { defaultValue: 'White-label (no vocdoni branding)' })
+// t('features.live_streaming', { defaultValue: 'Live streaming integration' })
+// t('features.anonymous_voting', { defaultValue: 'Anonymous voting' })
+// t('features.overwrite', { defaultValue: 'Vote overwrite' })
+// t('features.live_results', { defaultValue: 'Live results' })
+// t('features.phone_support', { defaultValue: 'Phone' })
+// t('organization.max_census', { defaultValue: 'Max census per vote' })
+// t('organization.max_processes', { defaultValue: 'Votes per year¹' })
+// t('features.participatory_budgeting', { defaultValue: 'Participatory budgeting' })
+// t('features.vote_templates', { defaultValue: 'Easy-to-use templates for all voting methods' })
+// t('features.memberbase_all_in_one_management', { defaultValue: 'All-in-one memberbase management' })
+// t('features.basic_branding', { defaultValue: 'Basic branding' })
+// t('features.email_notifications', { defaultValue: 'Email notifications to voters' })
+// t('features.sms_notifications', { defaultValue: 'SMS notifications to voters' })
+// t('features.basic_analytics', { defaultValue: 'Basic Analytics' })
+// t('features.custom_reports', { defaultValue: 'Custom Reports' })
+// t('features.priority_support', { defaultValue: 'Priority support' })
+// t('features.email_support', { defaultValue: 'Email' })
+// t('features.email_support_premium', { defaultValue: '(24h resp.)' })
+// t('features.email_support_essential', { defaultValue: '(48h resp.)' })
+// t('features.email_support_basic', { defaultValue: '(72h resp.)' })
+// t('features.dedicated_account_manager', { defaultValue: 'Dedicated Account Manager' })
+// t('features.GDPR_compliance', { defaultValue: 'GDPR Compliance' })
+// t('features.uptime', { defaultValue: '99.99% Uptime' })
+// t('features.uptime_guaranteed', { defaultValue: 'Guaranteed ({{suffix}})' })
+// t('features.generic_sla', { defaultValue: 'Generic SLA' })
+// t('features.basic_sla', { defaultValue: 'Best-effort' })
+// t('features.section.voting_types', { defaultValue: 'Voting Types' })
+// t('features.section.features', { defaultValue: 'Features' })
+// t('features.section.organization', { defaultValue: 'Organization' })
+// t('features.section.general_limits', { defaultValue: 'General Limits' })
+// t('features.section.memberbase_management', { defaultValue: 'Memberbase Management' })
+// t('features.section.authentication_security', { defaultValue: 'Authentication & Security' })
+// t('features.section.customization', { defaultValue: 'Customization' })
+// t('features.section.extra_features', { defaultValue: 'Extra Features' })
+// t('features.section.analytics_and_reporting', { defaultValue: 'Analytics & Reporting' })
+// t('features.section.support', { defaultValue: 'Support' })
+// t('features.section.compliance_and_security', { defaultValue: 'Compliance & Security' })
+// t('features.tooltips.team_members', { defaultValue: 'Invite team members and assign role-based permissions so you can effortlessly manage your organization's governance.'})
+// t('features.tooltips.single', { defaultValue: 'Voters can select only one option from the available choices. Perfect for elections and simple yes/no decisions.'})
+// t('features.tooltips.multiple', { defaultValue: 'Voters can select multiple options from the available choices. Ideal for surveys and decisions where multiple selections are allowed.'})
+// t('features.tooltips.templates', { defaultValue: 'With our templates, it\'s so easy to start with ready-made setups for AGMs, Elections, and Participatory budgeting (and much more to come).'})
+// t('features.tooltips.memberbase_all_in_one', { defaultValue: 'Import your memberbase to create groups of eligible voters and manage voting permissions in a really easy way.'})
+// t('features.tooltips.anonymous', { defaultValue: 'This is an optional feature that organizers can choose. When enabled, votes are completely anonymous - not even we can know who voted for a specific option. Alternatively, organizers can choose to encrypt results until the vote ends, or make the vote completely public.'})
+// t('features.tooltips.overwrite', { defaultValue: 'Voters can change their vote before the voting period ends. This feature helps avoid mistakes and prevents coercion by allowing voters to correct their choices.'})
+// t('features.tooltips.live_results', { defaultValue: 'This is an optional feature that organizers can choose. Results can be displayed in real-time as votes are cast, or organizers can choose to keep results encrypted and hidden until the voting period ends.'})
+// t('features.tooltips.uptime', { defaultValue: 'We guarantee a 99.99% uptime, but only in the paid plans these are enforced by contract with warranties.'})

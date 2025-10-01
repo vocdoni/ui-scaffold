@@ -11,6 +11,7 @@ import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { ComparisonTable } from '~components/Pricing/ComparisonTable'
 import { SubscriptionPlans } from '~components/Pricing/Plans'
+import { Routes } from '~routes'
 import { DashboardBox } from '~shared/Dashboard/Contents'
 
 export const usePortalSession = () => {
@@ -78,12 +79,14 @@ const SubscriptionPage = () => {
           <Trans i18nKey='subscription_plan.gdpr_compliance'>All plans include GDPR compliance.</Trans>
         </Text>
         <Flex gap={1}>
-          <Text fontSize='sm' color='texts.subtle' textAlign='center'>
-            <Trans i18nKey='subscription_plan.need_help'>Need help choosing?</Trans>
-          </Text>
-          <Link fontWeight='extrabold' fontSize='sm' as={ReactRouterLink}>
-            <Trans i18nKey='contact_sales'>Contact our sales team</Trans>
-          </Link>
+          <Trans i18nKey='subscription_plan.need_help'>
+            <Text fontSize='sm' color='texts.subtle' textAlign='center'>
+              Need help choosing?
+            </Text>
+            <Link fontWeight='extrabold' fontSize='sm' as={ReactRouterLink} to={Routes.dashboard.settings.support}>
+              Contact our sales team
+            </Link>
+          </Trans>
         </Flex>
       </Flex>
     </DashboardBox>
