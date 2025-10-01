@@ -16,11 +16,14 @@ import {
 import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { LuCalendar } from 'react-icons/lu'
-import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
+import { SetupStepIds, useOrganizationSetup } from '~queries/organization'
 
-export const Booker = () => {
+type BookerProps = {
+  callback?: () => void
+}
+
+export const Booker = ({ callback }: BookerProps) => {
   const { colorMode } = useColorMode()
-  const { setStepDone } = useOrganizationSetup()
 
   useEffect(() => {
     ;(async function () {
@@ -28,9 +31,7 @@ export const Booker = () => {
       cal('ui', { hideEventTypeDetails: false, layout: 'month_view', theme: colorMode })
       cal('on', {
         action: 'bookingSuccessfulV2',
-        callback: () => {
-          setStepDone(SetupStepIds.expertCallBooking)
-        },
+        callback,
       })
     })()
   }, [])
@@ -53,7 +54,9 @@ export const Booker = () => {
   )
 }
 
-export const BookerModalButton = (props: ButtonProps) => {
+export type BookerModalButtonProps = ButtonProps & BookerProps
+
+export const BookerModalButton = ({ callback, ...props }: BookerModalButtonProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -73,10 +76,23 @@ export const BookerModalButton = (props: ButtonProps) => {
         <ModalContent>
           <ModalCloseButton />
           <ModalBody>
-            <Booker />
+            <Booker callback={callback} />
           </ModalBody>
         </ModalContent>
       </Modal>
     </>
+  )
+}
+
+export const DashboardBookerModalButton = (props: ButtonProps) => {
+  const { setStepDone } = useOrganizationSetup()
+
+  return (
+    <BookerModalButton
+      callback={() => {
+        setStepDone(SetupStepIds.expertCallBooking)
+      }}
+      {...props}
+    />
   )
 }
