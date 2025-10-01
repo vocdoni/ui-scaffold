@@ -134,10 +134,6 @@ export const Card = defineMultiStyleConfig({
         alignItems: 'center',
         filter: 'grayscale(100%)',
         h: { base: '35px', lg: '45px' },
-
-        _dark: {
-          filter: 'grayscale(0%)',
-        },
       },
       body: {
         p: 0,
