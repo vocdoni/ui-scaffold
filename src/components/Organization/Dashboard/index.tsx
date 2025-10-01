@@ -29,7 +29,7 @@ import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
 import { usePlanTranslations } from '~components/Pricing/Plans'
 import { Routes } from '~routes'
-import { BookerModalButton } from '~shared/Dashboard/Booker'
+import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
 import { DashboardBox, Heading, SubHeading } from '~shared/Dashboard/Contents'
 import InvertedAccordionIcon from '~shared/Layout/InvertedAccordionIcon'
 import { useProfile } from '~src/queries/account'
@@ -118,7 +118,7 @@ const Tutorial = () => {
           >
             <Trans i18nKey='new_voting'>New vote</Trans>
           </Button>
-          <BookerModalButton size='sm' />
+          <DashboardBookerModalButton size='sm' />
         </Flex>
       </Box>
       <Flex display={{ base: 'none', lg: 'flex' }} flex='1 1 33%' flexDirection='column'>
@@ -215,9 +215,15 @@ const Setup = () => {
                   if (type === CheckboxTypes.modal) {
                     return (
                       <Checkbox key={checkbox.id} colorScheme='gray' isChecked={checkbox.completed} size='sm' p={2}>
-                        <BookerModalButton variant='unstyled' ml={1} height='auto' display='flex' fontWeight='normal'>
+                        <DashboardBookerModalButton
+                          variant='unstyled'
+                          ml={1}
+                          height='auto'
+                          display='flex'
+                          fontWeight='normal'
+                        >
                           {checkbox.label}
-                        </BookerModalButton>
+                        </DashboardBookerModalButton>
                       </Checkbox>
                     )
                   }

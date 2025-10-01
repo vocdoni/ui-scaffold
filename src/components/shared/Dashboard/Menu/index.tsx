@@ -19,7 +19,7 @@ import { DashboardBox } from '~shared/Dashboard/Contents'
 import { VocdoniLogo } from '~shared/Layout/Logo'
 import { useTutorials } from '~src/queries/organization'
 import { Routes } from '~src/router/routes'
-import { BookerModalButton } from '../Booker'
+import { DashboardBookerModalButton } from '../Booker'
 import { DashboardMenuOptions } from './Options'
 import UserProfile from './UserProfile'
 
@@ -94,7 +94,7 @@ const SidebarTutorial = () => {
           defaultValue: 'Do you need some help with your first voting process? Watch this tutorial or schedule a call.',
         })}
       </Text>
-      <BookerModalButton variant='solid' colorScheme='gray' w='full' size={'sm'} fontSize={'12px'} />
+      <DashboardBookerModalButton variant='solid' colorScheme='gray' w='full' size={'sm'} fontSize={'12px'} />
     </DashboardBox>
   )
 }

@@ -7,7 +7,7 @@ import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
 import { MaxWindowWidth } from '~constants'
 import { Routes } from '~routes'
-import { BookerModalButton } from '~shared/Dashboard/Booker'
+import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
 import Breadcrumb, { BreadcrumbItem } from '~shared/Dashboard/Breadcrumb'
 import DashboardMenu from '~shared/Dashboard/Menu'
 
@@ -71,7 +71,7 @@ const LayoutDashboard: React.FC = () => {
               <Breadcrumb breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />
 
               <Flex gap={2} ml='auto' alignItems='center'>
-                <BookerModalButton
+                <DashboardBookerModalButton
                   leftIcon={<Icon as={LuCircleHelp} />}
                   iconSpacing={{ base: 0, lg: 2 }}
                   colorScheme='gray'
@@ -81,7 +81,7 @@ const LayoutDashboard: React.FC = () => {
                   <Text as='span' display={{ base: 'none', lg: 'flex' }} fontSize='sm'>
                     <Trans i18nKey='do_you_need_help'>Do you need help?</Trans>
                   </Text>
-                </BookerModalButton>
+                </DashboardBookerModalButton>
                 <Button
                   as={ReactRouterLink}
                   to={generatePath(Routes.processes.create)}
