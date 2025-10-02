@@ -324,7 +324,7 @@
     "live_streaming": "Live streaming integration",
     "memberbase_all_in_one_management": "All-in-one memberbase management",
     "multiple": "Multiple choice",
-    "on_demand": "On demand",
+    "on_demand": "On demand*",
     "overwrite": "Vote overwrite",
     "participatory_budgeting": "Participatory budgeting",
     "personalization": "Full customization",
@@ -1045,7 +1045,7 @@
       "delete": "Delete",
       "delete_all": "Delete (All)",
       "edit": "Edit",
-      "group_description": "Description (Optional)",
+      "group_description": "Description (optional)",
       "group_description_placeholder": "Enter a brief description of the group",
       "group_members": "Selected Members",
       "group_members_count_one": "{{count}} members selected",
@@ -1100,7 +1100,7 @@
     "description1": "Set up your <span>organization for free</span> and start creating voting processes to engage with your community.",
     "onboarding": "If your organization is already on Vocdoni, ask its administrator to invite you."
   },
-  "new_password": "New Password",
+  "new_password": "New password",
   "new_password_placeholder": "Enter your new password",
   "new_vote": "New vote",
   "new_voting": "New vote",
@@ -1111,11 +1111,11 @@
   "open_in_explorer": "Open in explorer",
   "or_continue_with": "or continue with",
   "org_type_selector": {
-    "selector_label": "Organization Type"
+    "selector_label": "Organization type"
   },
   "organization": {
     "avatar_alt": "Avatar image of {{ name }} organization",
-    "create_org": "Create Organization",
+    "create_org": "Create organization",
     "dashboard": "Dashboard",
     "date_format": "d MMM y",
     "elections": "Votings",
@@ -1128,7 +1128,7 @@
     "max_census": "Max census per vote",
     "max_processes": "Votes per year¹",
     "no_organization_title": "You don't belong to any organization yet!",
-    "organization": "Organization Details",
+    "organization": "Organization details",
     "title": {
       "read_more": "Expand title"
     }
@@ -1141,7 +1141,7 @@
       "organization_id": "Your Organization ID",
       "organization_id_description": "Please provide this ID when contacting support",
       "priority_support_line": "Priority Support Line",
-      "priority_support_line_description": "Available Monday–Friday, 9:00–18:00 CET",
+      "priority_support_line_description": "Available Monday-Friday, 9:00-18:00 CET",
       "title": "Phone Support"
     },
     "subtitle": "Manage your organization, team members and your subscription plan",
@@ -1215,31 +1215,29 @@
     "advanced_analytitcs": "Advanced analytics",
     "basic_analytics": "Basic analytics",
     "comparison_table": {
-      "footnote_1": "¹ Votes with fewer than 10 participants are treated as test runs and don't count towards your plan limits."
+      "footnote_1": "¹ Votes with fewer than 10 participants are treated as test runs and don't count towards your plan limits.",
+      "footnote_2": "² 2FA credits are only consumed when a user actually requests verification in a voting process. You'll never unexpectedly run out: if you exceed your included credits during a vote, each additional code will be charged at €0.015 as it's sent. You can also pre-purchase extra credits in convenient packages.",
+      "footnote_on_demand": "* Requested features will be evaluated individually and may incur additional fees."
     },
     "core_voting_one": "Up to {{ count }} members",
     "core_voting_other": "Up to {{ count }} members",
     "custom_subtitle": "Tailored for your needs",
     "custom_title": "Custom",
-    "date_format": "dd/mm/yy",
     "different_voting_methods": "Different voting methods",
     "error": "",
     "essential_subtitle": "For growing organizations",
     "essential_title": "Essential",
     "free_subtitle": "Perfect for getting started",
     "free_title": "Free",
-    "help": "Need some help?",
     "premium_subtitle": "For established organizations",
     "premium_title": "Premium",
     "priority_support": "Priority email support (24h)",
     "ticket_support_48": "Email support (48h)",
     "ticket_support_72": "Email support (72h)",
-    "up_to_admins_one": "{{ count }} team members",
-    "up_to_admins_other": "{{ count }} team members",
-    "upgrade_title": "Upgrade your subscription",
+    "up_to_admins_one": "One admin",
+    "up_to_admins_other": "{{ count }} admins",
     "yearly_processes_one": "{{ count }} vote per year¹",
-    "yearly_processes_other": "{{ count }} votes per year¹",
-    "your_plan": "You're currently subscribed to the {{plan}} plan. Upgrade now, and you'll only pay the difference for the remaining time in your billing period. Starting from your next billing cycle on dd/mm/yy, you'll be charged the full price for your new plan."
+    "yearly_processes_other": "{{ count }} votes per year¹"
   },
   "pricing_card": {
     "contact_sales": "<0>Contact our sales team</0> <1>or</1>",
@@ -1396,7 +1394,7 @@
       "confirm": {
         "blank_vote": "No choices selected, sending blank vote",
         "description": "Before casting your vote review that everything is correct.",
-        "election_title": "Your vote has been recorded for:",
+        "election_title": "Your vote will been recorded for:",
         "your_selections": "Your Selections:"
       }
     },

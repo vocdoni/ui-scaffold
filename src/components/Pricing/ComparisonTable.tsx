@@ -1,5 +1,4 @@
 import {
-  Box,
   chakra,
   Divider,
   Flex,
@@ -136,7 +135,7 @@ export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
   const filteredPlans = plans.filter((plan) => !(plan?.organization?.customPlan || plan.id === PlanId.Custom))
 
   return (
-    <Flex ref={ref} justifyContent='center' w='full' display='column'>
+    <Flex ref={ref} justifyContent='center' w='full' display='block'>
       <TableContainer>
         <Table borderWidth={1} variant='simple'>
           <Thead>
@@ -171,13 +170,25 @@ export const ComparisonTable = forwardRef<HTMLDivElement, ComparisonTableProps>(
           ))}
         </Table>
       </TableContainer>
-      <Divider mt={6} />
-      <Flex textAlign='left' color='texts.subtle' fontSize='xs' flexDirection='column' gap={2}>
-        <Box>
+      <Divider mt={6} mb={1} />
+      <Flex textAlign='left' color='texts.subtle' flexDirection='column'>
+        <Text fontSize='xs'>
           <Trans i18nKey='pricing.comparison_table.footnote_1'>
             ¹ Votes with fewer than 10 participants are treated as test runs and don't count towards your plan limits.
           </Trans>
-        </Box>
+        </Text>
+        <Text fontSize='xs'>
+          <Trans i18nKey='pricing.comparison_table.footnote_2'>
+            ² 2FA credits are only consumed when a user actually requests verification in a voting process. You'll never
+            unexpectedly run out: if you exceed your included credits during a vote, each additional code will be
+            charged at €0.015 as it's sent. You can also pre-purchase extra credits in convenient packages.
+          </Trans>
+        </Text>
+        <Text fontSize='xs'>
+          <Trans i18nKey='pricing.comparison_table.footnote_on_demand'>
+            * Requested features will be evaluated individually and may incur additional fees.
+          </Trans>
+        </Text>
       </Flex>
     </Flex>
   )
