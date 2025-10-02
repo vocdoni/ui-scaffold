@@ -3,7 +3,7 @@ import { PlanUpgradeData } from './Modals'
 import type { SubscriptionPaymentData } from './SubscriptionPayment'
 
 // Define types for the context
-export type PricingModalType = 'planUpgrade' | 'subscription' | 'subscriptionPayment' | null
+export type PricingModalType = 'planUpgrade' | 'subscriptionPayment' | null
 
 export type PricingModalContextState = {
   openModal: (type: PricingModalType, modalData?: PlanUpgradeData | SubscriptionPaymentData | null) => void

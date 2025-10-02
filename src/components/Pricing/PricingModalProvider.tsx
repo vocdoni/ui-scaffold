@@ -1,7 +1,6 @@
 import { useDisclosure } from '@chakra-ui/hooks'
 import React, { ReactNode, useState } from 'react'
 import { PlanUpgradeData, PlanUpgradeModal } from './Modals'
-import { SubscriptionModal } from './Plans'
 import { SubscriptionPaymentData, SubscriptionPaymentModal } from './SubscriptionPayment'
 import { PricingModalProviderContext, PricingModalType } from './use-pricing-modal'
 
@@ -32,7 +31,6 @@ export const PricingModalProvider: React.FC<{ children?: ReactNode }> = ({ child
       {modalType === 'planUpgrade' && isOpen && (
         <PlanUpgradeModal isOpen onClose={closeModal} {...(modalData as PlanUpgradeData)} />
       )}
-      {modalType === 'subscription' && isOpen && <SubscriptionModal isOpen onClose={closeModal} />}
       {modalType === 'subscriptionPayment' && isOpen && (
         <SubscriptionPaymentModal isOpen onClose={closeModal} {...(modalData as SubscriptionPaymentData)} />
       )}
