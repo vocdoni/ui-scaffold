@@ -25,7 +25,7 @@ const viteconfig = ({ mode }) => {
     defaultCensusSize = 5000
   }
 
-  const title = process.env.APP_TITLE || 'Vocdoni - The voice of digital voting'
+  const title = process.env.APP_TITLE || 'Vocdoni - Digital voting SaaS platform'
 
   let saasUrl = process.env.SAAS_URL || 'https://saas-api-dev.vocdoni.net'
   if (saasUrl.endsWith('/')) {
