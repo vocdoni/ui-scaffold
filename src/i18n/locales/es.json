@@ -1876,15 +1876,15 @@
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Añade una capa adicional de seguridad exigiendo a los votantes que verifiquen su identidad",
-    "2fa_email": "Verificación por correo electrónico",
+    "2fa_email": "<email /> Verificación por correo electrónico",
     "2fa_email_description": "Los votantes recibirán un código de verificación por correo electrónico",
     "2fa_enable": "Habilitar la autenticación en dos pasos",
     "2fa_method_title": "Seleccionar método de verificación",
     "2fa_security_description": "La autenticación en dos pasos incrementa significativamente la seguridad del proceso de votación, garantizando que solo los miembros autorizados puedan votar.",
     "2fa_security_title": "Seguridad reforzada",
-    "2fa_sms": "Verificación por SMS",
+    "2fa_sms": "<phone /> Verificación por SMS",
     "2fa_sms_description": "Los votantes recibirán un código de verificación por SMS",
-    "2fa_voter_choice": "Elección del votante",
+    "2fa_voter_choice": "<email /> o <phone /> Elección del votante",
     "2fa_voter_choice_description": "Los votantes pueden elegir su método de verificación preferido",
     "button": {
       "configure": "Configurar autenticación de votantes",

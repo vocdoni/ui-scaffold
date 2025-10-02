@@ -7,6 +7,7 @@ import {
   FormControl,
   FormLabel,
   HStack,
+  Icon,
   Radio,
   RadioGroup,
   Stack,
@@ -16,32 +17,40 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
-import { LuLock } from 'react-icons/lu'
+import { Trans, useTranslation } from 'react-i18next'
+import { LuLock, LuMail, LuPhone } from 'react-icons/lu'
 
 export const TwoFactorForm = () => {
   const { t } = useTranslation()
   const { control, watch } = useFormContext()
   const use2FA = watch('use2FA')
+  const email = <Icon as={LuMail} />
+  const phone = <Icon as={LuPhone} />
 
   const TwoFactorMethods = [
     {
       value: 'email',
-      label: t('voter_auth.2fa_email', { defaultValue: 'Email verification' }),
+      label: <Trans i18nKey='voter_auth.2fa_email' defaults='<email /> Email verification' components={{ email }} />,
       description: t('voter_auth.2fa_email_description', {
         defaultValue: 'Voters will receive a verification code via email',
       }),
     },
     {
       value: 'sms',
-      label: t('voter_auth.2fa_sms', { defaultValue: 'SMS verification' }),
+      label: <Trans i18nKey='voter_auth.2fa_sms' defaults='<phone /> SMS verification' components={{ phone }} />,
       description: t('voter_auth.2fa_sms_description', {
         defaultValue: 'Voters will receive a verification code via SMS',
       }),
     },
     {
       value: 'voter_choice',
-      label: t('voter_auth.2fa_voter_choice', { defaultValue: "Voter's choice" }),
+      label: (
+        <Trans
+          i18nKey='voter_auth.2fa_voter_choice'
+          defaults="<email /> or <phone /> Voter's choice"
+          components={{ email, phone }}
+        />
+      ),
       description: t('voter_auth.2fa_voter_choice_description', {
         defaultValue: 'Voters can choose their preferred verification method',
       }),
