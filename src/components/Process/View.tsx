@@ -180,13 +180,9 @@ export const ProcessView = () => {
   const [tabIndex, setTabIndex] = useState(0)
   const [formErrors, setFormErrors] = useState<any>(null)
 
-  const handleTabsChange = (index: number) => {
-    setTabIndex(index)
-  }
-
   const setQuestionsTab = () => setTabIndex(0)
 
-  // If the election is finished show the results tab
+  // If the election is finished, show the results tab
   useEffect(() => {
     if (election instanceof PublishedElection && election?.status === ElectionStatus.RESULTS) {
       setTabIndex(1)
@@ -220,6 +216,7 @@ export const ProcessView = () => {
     }
   }, [formErrors])
 
+  // If the user has voted, move the focus to the top of the election
   useEffect(() => {
     if (voted) {
       electionRef?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -238,7 +235,7 @@ export const ProcessView = () => {
             isFitted
             order={{ base: 2, xl2: 1 }}
             index={tabIndex}
-            onChange={handleTabsChange}
+            onChange={setTabIndex}
             flex={{ xl2: '0 0 75%' }}
             w='full'
           >
