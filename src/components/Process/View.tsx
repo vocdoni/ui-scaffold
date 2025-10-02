@@ -224,7 +224,13 @@ export const ProcessView = () => {
   }, [voted])
 
   return (
-    <Grid templateColumns={{ base: '1fr', xl: 'minmax(0,1fr) 360px' }} gap={6} alignItems='start' mx='auto'>
+    <Grid
+      templateColumns={{ base: '1fr', xl: 'minmax(0,1fr) 360px' }}
+      gap={6}
+      alignItems='start'
+      mx='auto'
+      maxW='voting-page'
+    >
       <GridItem>
         <Flex direction='column' gap={4}>
           <Header />

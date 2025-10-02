@@ -47,6 +47,7 @@ export const theme = extendTheme(vtheme, {
     sidebar: sidebarWidth,
     'modal-stretch': 'calc(100% + var(--chakra-space-5)*2 + var(--chakra-space-6)*2)',
     'modal-stretch-lg': 'calc(100% + var(--chakra-space-10)*2 + var(--chakra-space-6)*2)',
+    'voting-page': '1200px',
   },
   zIndices: {
     background: 0,
