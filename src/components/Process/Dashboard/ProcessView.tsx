@@ -347,7 +347,9 @@ const ProcessViewSidebar = (props: SidebarProps) => {
                 <Icon as={LuUsers} />
                 <Trans i18nKey='census_size'>Census size</Trans>
               </Text>
-              <Text fontSize='inherit'>{election instanceof PublishedElection && election.census.size}</Text>
+              <Text fontSize='inherit'>
+                {election instanceof PublishedElection && (election.census.size || election.maxCensusSize)}
+              </Text>
             </Box>
           </DashboardBox>
 
