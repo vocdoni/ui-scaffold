@@ -1854,15 +1854,15 @@
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Add an extra layer of security by requiring voters to verify their identity",
-    "2fa_email": "Email verification",
+    "2fa_email": "<email /> Email verification",
     "2fa_email_description": "Voters will receive a verification code via email",
     "2fa_enable": "Enable Two-Factor Authentication",
     "2fa_method_title": "Select verification method",
     "2fa_security_description": "Two-factor authentication significantly increases the security of your voting process by ensuring only authorized members can vote.",
     "2fa_security_title": "Enhanced Security",
-    "2fa_sms": "SMS verification",
+    "2fa_sms": "<phone /> SMS verification",
     "2fa_sms_description": "Voters will receive a verification code via SMS",
-    "2fa_voter_choice": "Voter's choice",
+    "2fa_voter_choice": "<email /> or <phone /> Voter's choice",
     "2fa_voter_choice_description": "Voters can choose their preferred verification method",
     "button": {
       "configure": "Configure Voter Authentication",

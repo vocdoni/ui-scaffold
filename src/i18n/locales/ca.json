@@ -1876,15 +1876,15 @@
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Afegeix una capa extra de seguretat requerint que els votants verifiquin la seva identitat",
-    "2fa_email": "Verificació per correu electrònic",
+    "2fa_email": "<email /> Verificació per correu electrònic",
     "2fa_email_description": "Els votants rebran un codi de verificació per correu electrònic",
     "2fa_enable": "Habilita l'autenticació en dos passos",
     "2fa_method_title": "Selecciona el mètode de verificació",
     "2fa_security_description": "L'autenticació en dos passos augmenta significativament la seguretat del teu procés de votació assegurant que només els membres autoritzats puguin votar.",
     "2fa_security_title": "Seguretat millorada",
-    "2fa_sms": "Verificació per SMS",
+    "2fa_sms": "<phone /> Verificació per SMS",
     "2fa_sms_description": "Els votants rebran un codi de verificació per SMS",
-    "2fa_voter_choice": "Elecció del votant",
+    "2fa_voter_choice": "<email /> o <phone /> Elecció del votant",
     "2fa_voter_choice_description": "Els votants poden escollir el mètode de verificació que prefereixin",
     "button": {
       "configure": "Configura l'autenticació dels votants",
