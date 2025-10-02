@@ -2,7 +2,7 @@ import { Box, Button, Flex, Link, Text, useToast } from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { useEffect, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { NavLink, useNavigate, useOutletContext } from 'react-router-dom'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { api, ApiEndpoints, UnverifiedApiError } from '~components/Auth/api'
@@ -150,25 +150,6 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
       </Text>
       <FormSubmitMessage isError={isError} error={error} />
     </>
-  )
-}
-
-export const HSeparator = (props: { variant?: string; [x: string]: any }) => {
-  const { variant, ...rest } = props
-  return <Flex h='px' w='full' bg='rgba(135, 140, 189, 0.3)' {...rest} />
-}
-
-export const OrSeparator = () => {
-  const { t } = useTranslation()
-
-  return (
-    <Flex align='center' mb={4}>
-      <HSeparator />
-      <Text color='gray.500' fontWeight='bold' mx={3.5} whiteSpace='nowrap' size='xs' textTransform='uppercase'>
-        <Trans i18nKey='or_continue_with'>or continue with</Trans>
-      </Text>
-      <HSeparator />
-    </Flex>
   )
 }
 

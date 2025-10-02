@@ -13,8 +13,6 @@ import { useSignupFromInvite } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
 import { AnalyticsEvent } from '~utils/analytics'
 import { default as InputBasic } from '../shared/Form/InputBasic'
-import GoogleAuth from './GoogleAuth'
-import { OrSeparator } from './SignIn'
 
 export type InviteFields = {
   code: string
@@ -151,11 +149,8 @@ const SignUp = ({ invite }: SignupProps) => {
           <Button isLoading={isPending} type='submit' w='100%' colorScheme='black'>
             {t('signup_create_account')}
           </Button>
-          <OrSeparator />
         </Flex>
       </FormProvider>
-
-      <GoogleAuth />
 
       <Text
         color='account.description'
