@@ -11,7 +11,8 @@ import {
   ModalOverlay,
 } from '@chakra-ui/react'
 import { Trans } from 'react-i18next'
-import { usePricingModal } from './use-pricing-modal'
+import { Link } from 'react-router-dom'
+import { Routes } from '~routes'
 
 type ModalProps = {
   isOpen: boolean
@@ -23,7 +24,6 @@ export type PlanUpgradeData = {
 }
 
 export const PlanUpgradeModal = ({ isOpen, onClose, ...props }: ModalProps & PlanUpgradeData) => {
-  const { openModal } = usePricingModal()
   const { memberLimit } = props
 
   return (
@@ -49,7 +49,13 @@ export const PlanUpgradeModal = ({ isOpen, onClose, ...props }: ModalProps & Pla
             <Button variant='outline' onClick={onClose}>
               <Trans i18nKey='plan_upgrade.cancel'>Cancel</Trans>
             </Button>
-            <Button variant='solid' colorScheme='black' onClick={() => openModal('subscription')}>
+            <Button
+              variant='solid'
+              colorScheme='black'
+              as={Link}
+              to={Routes.dashboard.settings.subscription}
+              onClick={onClose}
+            >
               <Trans i18nKey='plan_upgrade.see_plans'>See Plans</Trans>
             </Button>
           </Flex>

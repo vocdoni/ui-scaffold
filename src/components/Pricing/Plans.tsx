@@ -1,30 +1,14 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  Progress,
-  SimpleGrid,
-  Text,
-} from '@chakra-ui/react'
+import { Flex, Progress, SimpleGrid, Text } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { MutableRefObject, ReactNode, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { LuChartColumn, LuCircleCheckBig, LuMail, LuShield, LuUserCheck, LuUsers, LuVote } from 'react-icons/lu'
-import { Link as ReactRouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
 import { QueryKeys } from '~src/queries/keys'
-import { Routes } from '~src/router/routes'
 import { currency } from '~utils/numbers'
 import PricingCard from './Card'
 import { usePricingModal } from './use-pricing-modal'
@@ -294,60 +278,6 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
         </Flex>
       </form>
     </FormProvider>
-  )
-}
-
-export const SubscriptionModal = ({
-  isOpen,
-  onClose,
-  title,
-}: {
-  isOpen: boolean
-  onClose: () => void
-  title?: ReactNode
-}) => {
-  const { t } = useTranslation()
-  const { subscription } = useSubscription()
-  const translations = usePlanTranslations()
-
-  if (!subscription) return null
-
-  const plan = translations[subscription.plan.id].title
-  const billing = new Date(subscription.subscriptionDetails.renewalDate)
-  // the date format used by the billing date
-  const format = t('pricing.date_format', { defaultValue: 'dd/mm/yy' })
-
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} variant='pricing-modal' size='full'>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>{title || <Trans i18nKey='pricing.upgrade_title'>Upgrade your subscription</Trans>}</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody>
-          <SubscriptionPlans />
-        </ModalBody>
-
-        <ModalFooter>
-          {subscription.plan.id !== PlanId.Free && (
-            <Text>
-              <Trans i18nKey='pricing.your_plan' values={{ plan, billing, format }} components={{ plan: <PlanText /> }}>
-                You're currently subscribed to the {{ plan }} plan. Upgrade now, and you'll only pay the difference for
-                the remaining time in your billing period. Starting from your next billing cycle on dd/mm/yy, you'll be
-                charged the full price for your new plan.
-              </Trans>
-            </Text>
-          )}
-          <Box>
-            <Text>
-              <Trans i18nKey='pricing.help'>Need some help?</Trans>
-            </Text>
-            <Button as={ReactRouterLink} to={Routes.contact} target='_blank' colorScheme='black'>
-              <Trans i18nKey='contact_us'>Contact us</Trans>
-            </Button>
-          </Box>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
   )
 }
 
