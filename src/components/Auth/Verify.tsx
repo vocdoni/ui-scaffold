@@ -48,7 +48,7 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
   return (
     <>
       <HStack width='100%' justifyContent='space-between'>
-        <PinInput value={code} onChange={setCode} isDisabled={autoSubmit} type='alphanumeric'>
+        <PinInput value={code} onChange={setCode} isDisabled={autoSubmit} type='alphanumeric' autoFocus>
           <PinInputField />
           <PinInputField />
           <PinInputField />
