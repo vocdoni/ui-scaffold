@@ -2,7 +2,7 @@ import { Box, Flex, Heading, Icon, Link, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuArrowLeft } from 'react-icons/lu'
-import { Outlet, Link as RouterLink, To } from 'react-router-dom'
+import { Outlet, Link as RouterLink, To, useLocation } from 'react-router-dom'
 import { Routes } from '~routes'
 
 export type NavigationFunctionParams = To | number
@@ -58,13 +58,21 @@ const LayoutAuth = () => {
   const [title, setTitle] = useState<string | null>(null)
   const [subtitle, setSubtitle] = useState<string | null>(null)
   const { testimonial } = useTestimonials()
+  const { pathname } = useLocation()
+  const isSignin = pathname === Routes.auth.signIn
 
   return (
     <Flex justifyContent='center' alignItems='center' minH='100vh' p={{ base: 6, md: 10 }}>
       <Flex w='full' maxW={{ base: 'sm', md: '3xl' }} flexDir='column' gap={2}>
-        <Link as={RouterLink} to={Routes.root} display='flex' alignItems='center' alignSelf='start'>
+        <Link
+          as={RouterLink}
+          to={isSignin ? Routes.root : Routes.auth.signIn}
+          display='flex'
+          alignItems='center'
+          alignSelf='start'
+        >
           <Icon as={LuArrowLeft} />
-          <Trans i18nKey='auth.go_home'>Home</Trans>
+          {isSignin ? <Trans i18nKey='common.home'>Home</Trans> : <Trans i18nKey='common.back'>Back</Trans>}
         </Link>
         <Flex
           w='full'

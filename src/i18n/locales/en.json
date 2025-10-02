@@ -45,9 +45,6 @@
     "votes_weight_other": "<span>{{ count }}</span> <text>votes</text>",
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
-  "auth": {
-    "go_home": "Home"
-  },
   "avatar": {
     "label": "Organization Avatar"
   },
@@ -158,6 +155,7 @@
     "confirm": "Confirm",
     "disable": "Disable",
     "enable": "Enable",
+    "home": "Home",
     "next": "Next"
   },
   "confirm_password": "Confirm Password",
