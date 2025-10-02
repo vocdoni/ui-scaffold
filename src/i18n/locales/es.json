@@ -327,7 +327,7 @@
     "live_streaming": "Transmisión en directo",
     "memberbase_all_in_one_management": "Gestión integral de miembros",
     "multiple": "Votación de elección múltiple",
-    "on_demand": "Bajo demanda",
+    "on_demand": "Bajo demanda*",
     "overwrite": "Sobrescribir voto",
     "participatory_budgeting": "Presupuesto participativo",
     "personalization": "Personalización",
@@ -1233,34 +1233,32 @@
     "advanced_analytitcs": "Informes y analíticas avanzadas",
     "basic_analytics": "Informes y analíticas básicas",
     "comparison_table": {
-      "footnote_1": "¹ Las votaciones con menos de 10 participantes se tratan como pruebas y no cuentan para los límites de tu plan."
+      "footnote_1": "¹ Las votaciones con menos de 10 participantes se tratan como pruebas y no cuentan para los límites de tu plan.",
+      "footnote_2": "² Los créditos 2FA sólo se consumen cuando un usuario hace la petición de verificación en un proceso de votación. Nunca te quedarás sin inesperadamente: si excedes los créditos incluídos durante una votación, cada código mandado se cargará a 0,015€ en el momento del envío. También puedes pre-comprar créditos adicionales en convenientes paquetes.",
+      "footnote_on_demand": "* Las funcionalidades solicitadas se evaluarán individualmente y pueden conllevar costes adicionales."
     },
     "core_voting_one": "Un único miembro",
     "core_voting_many": "Hasta {{ count }} miembros",
     "core_voting_other": "Hasta {{ count }} miembros",
     "custom_subtitle": "Adaptado a tus necesidades",
     "custom_title": "Personalizado",
-    "date_format": "dd/mm/aa",
     "different_voting_methods": "Diferentes métodos de votación",
     "error": "Error",
     "essential_subtitle": "Perfecto para organizaciones medianas o grupos con necesidades básicas de votación.",
     "essential_title": "Básico",
     "free_subtitle": "Para organizaciones pequeñas o grupos comunitarios de hasta 50 miembros.",
     "free_title": "Gratuito",
-    "help": "¿Necesitas ayuda?",
     "premium_subtitle": "Grandes organizaciones, empresas e instituciones que requieran una amplia personalización y soporte.",
     "premium_title": "Profesional",
-    "priority_support": "Soporte prioritario por ticket",
-    "ticket_support_48": "Email support (48h)",
-    "ticket_support_72": "Email support (72h)",
-    "up_to_admins_one": "{{ count }} team members",
-    "up_to_admins_many": "{{ count }} team members",
-    "up_to_admins_other": "{{ count }} team members",
-    "upgrade_title": "Actualiza tu plan",
+    "priority_support": "Soporte prioritario por correo electrónico (24h)",
+    "ticket_support_48": "Soporte por correo electrónico (48h)",
+    "ticket_support_72": "Soporte por correo electrónico (72h)",
+    "up_to_admins_one": "Un único administrador",
+    "up_to_admins_many": "{{ count }} administradores",
+    "up_to_admins_other": "{{ count }} administradores",
     "yearly_processes_one": "{{ count }} proceso de votación anual",
     "yearly_processes_many": "",
-    "yearly_processes_other": "{{ count }} procesos de votación anuales",
-    "your_plan": "Actualmente estás suscrito al plan <plan>{{ plan }}</plan>. Actualiza ahora y solo pagarás la diferencia por el tiempo restante de tu periodo de facturación. A partir del próximo ciclo de facturación el <plan>{{ billing, format }}</plan>, se te cobrará el precio completo de tu nuevo plan."
+    "yearly_processes_other": "{{ count }} procesos de votación anuales"
   },
   "pricing_card": {
     "contact_sales": "<0>Contacta con nuestros comerciales</0> <1>o</1>",
@@ -1418,7 +1416,7 @@
       "confirm": {
         "blank_vote": "No se han seleccionado opciones, enviando voto en blanco",
         "description": "Antes de emitir tu voto, revisa que todo sea correcto.",
-        "election_title": "Tu voto ha sido registrado para:",
+        "election_title": "Tu voto será registrado para:",
         "your_selections": "Tus selecciones:"
       }
     },

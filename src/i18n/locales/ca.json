@@ -327,7 +327,7 @@
     "live_streaming": "Streaming en directe",
     "memberbase_all_in_one_management": "Gestió integral de membres",
     "multiple": "Elecció múltiple",
-    "on_demand": "Sota demanda",
+    "on_demand": "Sota demanda*",
     "overwrite": "Sobre-escriptura del vot",
     "participatory_budgeting": "Pressupost participatiu",
     "personalization": "Personalització",
@@ -424,7 +424,7 @@
       },
       "error_title": "Error creant el procés",
       "spreadsheet": {
-        "download_template": "No tens un fitxer CSV? <a>Descarrega la plantilla.csv</a>, omple-la i puja-la.",
+        "download_template": "No tens un fitxer CSV? <a>Descarrega template.csv</a>, omple'l i puja'l.",
         "download_template_btn": "Descarrega la plantilla",
         "download_template_description": "Descarrega la plantilla original per completar la teva llista de votants",
         "preview": {
@@ -1233,34 +1233,32 @@
     "advanced_analytitcs": "Informes i anàlisis avançades",
     "basic_analytics": "Informes i anàlisis bàsiques",
     "comparison_table": {
-      "footnote_1": "¹ Les votacions amb menys de 10 participants es tracten com a proves i no compten per als límits del teu pla."
+      "footnote_1": "¹ Les votacions amb menys de 10 participants es tracten com a proves i no compten per als límits del teu pla.",
+      "footnote_2": "² Els crèdits de 2FA només es consumeixen en el moment que un usuari sol·licita la verificació en un procés de votació. No et quedaràs mai sense avís: si superes els crèdits inclosos durant una votació, cada codi addicional es cobrarà a 0,015 € en el moment de l'enviament. També pots comprar crèdits addicionals per avançat en paquets còmodes.",
+      "footnote_on_demand": "* Les funcionalitats sol·licitades s'avaluaran individualment i poden comportar costos addicionals."
     },
     "core_voting_one": "Un únic membre",
     "core_voting_many": "Fins a {{ count }} membres",
     "core_voting_other": "Fins a {{ count }} membres",
     "custom_subtitle": "Adaptat a les teves necessitats",
     "custom_title": "Personalitzat",
-    "date_format": "dd/mm/yy",
     "different_voting_methods": "Diferents mètodes de votació",
     "error": "Error",
     "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
     "essential_title": "Bàsic",
     "free_subtitle": "Organitzacions petites o grups comunitaris amb necessitats bàsiques de votació.",
     "free_title": "Gratuït",
-    "help": "Necessites ajuda?",
     "premium_subtitle": "Un volum més gran que requereix funcions més avançades.",
     "premium_title": "Professional",
-    "priority_support": "Suport prioritari per tiquets",
-    "ticket_support_48": "Email support (48h)",
-    "ticket_support_72": "Email support (72h)",
-    "up_to_admins_one": "{{ count }} team members",
-    "up_to_admins_many": "{{ count }} team members",
-    "up_to_admins_other": "{{ count }} team members",
-    "upgrade_title": "Actualitza el teu pla",
+    "priority_support": "Suport prioritari per correu electrònic (24h)",
+    "ticket_support_48": "Suport per correu electrònic (48h)",
+    "ticket_support_72": "Suport per correu electrònic (72h)",
+    "up_to_admins_one": "Un únic administrador",
+    "up_to_admins_many": "{{ count }} administradors",
+    "up_to_admins_other": "{{ count }} administradors",
     "yearly_processes_one": "{{ count }} procés anual",
     "yearly_processes_many": "",
-    "yearly_processes_other": "{{ count }} processos anuals",
-    "your_plan": "Actualment estàs subscrit al pla <plan>{{ plan }}</plan>. Si actualitzes, només et cobrarem la diferència anual. En el següent període de facturació, que comença el <plan>{{ billing, format }}</plan>, pagaràs íntegrament pel nou pla seleccionat."
+    "yearly_processes_other": "{{ count }} processos anuals"
   },
   "pricing_card": {
     "contact_sales": "<0>Contacta amb els nostres comercials</0> <1>o</1>",
@@ -1418,8 +1416,8 @@
       "confirm": {
         "blank_vote": "No s'han seleccionat opcions, enviant vot en blanc",
         "description": "Abans de votar, reviseu que tot sigui correcte.",
-        "election_title": "Your vote has been recorded for:",
-        "your_selections": "Your Selections:"
+        "election_title": "El teu vot quedarà enregistrat així:",
+        "your_selections": "Les teves seleccions:"
       }
     },
     "state": "ESTAT",

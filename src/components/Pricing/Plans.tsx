@@ -121,7 +121,7 @@ export const usePlanTranslations = (plans?: Plan[]) => {
         {
           icon: LuUserCheck,
           text: t('pricing.up_to_admins', {
-            defaultValue: '{{ count }} team members',
+            defaultValue: '{{ count }} admins',
             count: getTeamMembers(PlanId.Free, 1),
           }),
         },
@@ -149,21 +149,18 @@ export const usePlanTranslations = (plans?: Plan[]) => {
         {
           icon: LuUsers,
           text: t('pricing.core_voting', {
-            defaultValue: 'Up to {{ count }} members',
             count: getMembers(PlanId.Essential, 500),
           }),
         },
         {
           icon: LuVote,
           text: t('pricing.yearly_processes', {
-            defaultValue: '{{ count }} votes per year¹',
             count: getProcesses(PlanId.Essential, 20),
           }),
         },
         {
           icon: LuUserCheck,
           text: t('pricing.up_to_admins', {
-            defaultValue: '{{ count }} team members',
             count: getTeamMembers(PlanId.Essential, 1),
           }),
         },
@@ -172,7 +169,6 @@ export const usePlanTranslations = (plans?: Plan[]) => {
           icon: LuShield,
           text: t('pricing.2fa', {
             suffix: get2FA(PlanId.Essential),
-            defaultValue: '2FA authentication ({{suffix}})',
           }),
         },
         { icon: LuChartColumn, text: t('pricing.basic_analytics', { defaultValue: 'Basic analytics' }) },
@@ -188,21 +184,18 @@ export const usePlanTranslations = (plans?: Plan[]) => {
         {
           icon: LuUsers,
           text: t('pricing.core_voting', {
-            defaultValue: 'Up to {{ count }} members',
             count: getMembers(PlanId.Premium, 2000),
           }),
         },
         {
           icon: LuVote,
           text: t('pricing.yearly_processes', {
-            defaultValue: '{{ count }} votes per year¹',
             count: getProcesses(PlanId.Premium, 50),
           }),
         },
         {
           icon: LuUserCheck,
           text: t('pricing.up_to_admins', {
-            defaultValue: '{{ count }} team members',
             count: getTeamMembers(PlanId.Premium, 5),
           }),
         },
@@ -211,7 +204,6 @@ export const usePlanTranslations = (plans?: Plan[]) => {
           icon: LuShield,
           text: t('pricing.2fa', {
             suffix: get2FA(PlanId.Premium),
-            defaultValue: '2FA authentication ({{suffix}})',
           }),
         },
         { icon: LuChartColumn, text: t('pricing.advanced_analytitcs', { defaultValue: 'Advanced analytics' }) },
