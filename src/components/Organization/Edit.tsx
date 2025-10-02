@@ -99,15 +99,19 @@ const EditOrganization = () => {
   return (
     <DashboardBox p={6}>
       <FormProvider {...methods}>
-        <Flex as='form' id='process-create-form' onSubmit={handleSubmit(onSubmit)} flexDirection='column'>
-          <Heading size='md'>{t('create_org.organization_details', { defaultValue: 'Organization Details' })}</Heading>
-          <Text mb={6} color='texts.subtle' size='sm'>
-            {t('create_org.organization_details_description', {
-              defaultValue: "Manage your organization's profile and configuration settings.",
-            })}
-          </Text>
-          <Box me='auto'>
-            <Text fontWeight='bold' mb={4} size='lg'>
+        <Flex as='form' id='process-create-form' onSubmit={handleSubmit(onSubmit)} flexDirection='column' gap={6}>
+          <Flex flexDir='column'>
+            <Heading size='md'>
+              {t('create_org.organization_details', { defaultValue: 'Organization Details' })}
+            </Heading>
+            <Text color='texts.subtle' size='sm'>
+              {t('create_org.organization_details_description', {
+                defaultValue: "Manage your organization's profile and configuration settings.",
+              })}
+            </Text>
+          </Flex>
+          <Box>
+            <Text fontWeight='bold' size='lg'>
               {t('create_org.public_info', { defaultValue: 'Public Profile' })}
             </Text>
             <Text color='texts.subtle' size='sm' mb={4}>
@@ -120,7 +124,7 @@ const EditOrganization = () => {
             <AvatarUploader w='fit-content' />
             <PublicOrgForm />
           </Flex>
-          <Flex align='center' my={6}>
+          <Flex align='center'>
             <HSeparator />
             <Text
               color='texts.subtle'
