@@ -48,9 +48,6 @@
     "votes_weight_other": "<span>{{ count }}</span> <text>votos</text>",
     "voting_anonymous_advice": "Por favor, espera mientras se realiza la magia 🪄.\nEste proceso puede tardar varios minutos; no cierres la ventana."
   },
-  "auth": {
-    "go_home": "Inicio"
-  },
   "avatar": {
     "label": "Avatar de la organización"
   },
@@ -161,6 +158,7 @@
     "confirm": "Confirmar",
     "disable": "Desactivar",
     "enable": "Activar",
+    "home": "Inicio",
     "next": "Siguiente"
   },
   "confirm_password": "Confirmar contraseña",

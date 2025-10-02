@@ -48,9 +48,6 @@
     "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
     "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra."
   },
-  "auth": {
-    "go_home": "Inici"
-  },
   "avatar": {
     "label": "Avatar de l'organització"
   },
@@ -161,6 +158,7 @@
     "confirm": "Confirma",
     "disable": "Desactiva",
     "enable": "Activa",
+    "home": "Inici",
     "next": "Següent"
   },
   "confirm_password": "Confirma la contrasenya",
