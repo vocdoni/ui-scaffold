@@ -83,6 +83,7 @@ export const Step1Base = ({ election }: { election: PublishedElection }) => {
                         handleSubmit(onSubmit)()
                       }
                     }}
+                    autoFocus
                   >
                     <PinInputField />
                     <PinInputField />
