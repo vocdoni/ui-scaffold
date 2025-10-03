@@ -1,6 +1,6 @@
-import { Flex, Progress, SimpleGrid, Text } from '@chakra-ui/react'
+import { Flex, Progress, SimpleGrid } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { MutableRefObject, ReactNode, useMemo } from 'react'
+import { MutableRefObject, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { LuChartColumn, LuCircleCheckBig, LuMail, LuShield, LuUserCheck, LuUsers, LuVote } from 'react-icons/lu'
@@ -272,9 +272,3 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
     </FormProvider>
   )
 }
-
-const PlanText = ({ children }: { children?: ReactNode }) => (
-  <Text as='span' fontWeight='bold' display='inline'>
-    "{children}"
-  </Text>
-)

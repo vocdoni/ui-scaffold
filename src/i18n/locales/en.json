@@ -303,6 +303,8 @@
     "anonymous": "Anonymous voting",
     "anonymous_voting": "Anonymous voting",
     "approval": "Approval voting",
+    "audit": "Audit",
+    "audit_blockchain": "100% blockchain-auditable",
     "basic_analytics": "Basic Analytics",
     "basic_branding": "Basic branding",
     "basic_sla": "Best-effort",
