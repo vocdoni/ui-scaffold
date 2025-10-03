@@ -13,6 +13,8 @@ const baseStyle = definePartsStyle({
     w: '100%',
     h: '100%',
     borderTopRadius: 'lg',
+    objectFit: 'cover',
+    objectPosition: 'center',
   },
 
   label: {
