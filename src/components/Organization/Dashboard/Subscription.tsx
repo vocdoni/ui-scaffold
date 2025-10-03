@@ -54,9 +54,13 @@ const SubscriptionPage = () => {
         <Flex flex={1} direction='column'>
           <Heading size='md'>{t('subscription_plan.title', { defaultValue: 'Subscription Plan' })}</Heading>
           <Text mb={6} color='texts.subtle' size='sm'>
-            {t('subscription_plan.subtitle', {
-              defaultValue: 'Manage your subscription plan and billing cycle.',
-            })}
+            <Trans i18nKey='subscription_plan.subtitle'>
+              With our yearly subscriptions, you get more than a plan. You gain access to the most innovative governance
+              platform. Thanks to this model, we can offer the best price in the market: whether you need 1, 5, or 20
+              votes per year, you'll always benefit from the most competitive costs and unmatched guarantees. The
+              platform is fully self-service, yet our team is always available to provide assistance or tailor solutions
+              to your specific needs.
+            </Trans>
           </Text>
         </Flex>
         {!isFree && (

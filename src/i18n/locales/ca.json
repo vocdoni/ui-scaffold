@@ -1267,7 +1267,7 @@
     "custom_plan": "Preu sota consulta",
     "custom_plan_description": "Tens requisits de governança especials? Ens podem adaptar a les teves necessitats amb una solució personalitzada. Contacta'ns.",
     "custom_plan_or": "o",
-    "from": "<price>{{ price }}</price><time>/any</time>",
+    "from": "<price>{{ price }}</price><time>/any+IVA</time>",
     "most_popular_plan": "Recomanat"
   },
   "privacy_policy": "Política de Privacitat",
@@ -1671,7 +1671,7 @@
     "hide_comparison_table": "Mostra menys funcionalitats",
     "need_help": "<0>Necessites ajuda per triar?</0> <1>Contacta amb el nostre equip comercial</1>",
     "show_comparison_table": "Veure totes les funcionalitats",
-    "subtitle": "Gestiona el teu pla de subscripció i el cicle de facturació.",
+    "subtitle": "Amb les nostres subscripcions anuals, obtens més que un pla. Aconsegueixes accés a la plataforma de governança més innovadora. Gràcies a aquest model, podem oferir el millor preu del mercat: tant si necessites 1, 5 o 20 votacions a l’any, sempre gaudiràs dels costos més competitius i de garanties incomparables. La plataforma és totalment d’autoservei, però el nostre equip està sempre disponible per oferir-te assistència o adaptar solucions a les teves necessitats específiques.",
     "title": "Pla de subscripció"
   },
   "support": "Suport",
