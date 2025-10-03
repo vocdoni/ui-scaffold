@@ -205,7 +205,7 @@ export const CategorizedSpecs: Record<string, FeatureSpec[]> = {
         return (
           <Flex flexDirection='column' alignItems='center' gap={1}>
             <BooleanIcon value={true} />
-            <Text>
+            <Text fontSize='xs'>
               {plan.id === PlanId.Premium
                 ? t('features.email_support_premium', { defaultValue: '(24h resp.)' })
                 : plan.id === PlanId.Essential
@@ -225,6 +225,14 @@ export const CategorizedSpecs: Record<string, FeatureSpec[]> = {
     staticFeature('GDPRCompliance', 'features.GDPR_compliance', {
       available: () => true,
     }),
+    staticFeature('audit', 'features.audit', {
+      available: () => true,
+      render: () => (
+        <Text fontSize='xs'>
+          <Trans i18nKey='features.audit_blockchain'>Fully auditable on blockchain</Trans>
+        </Text>
+      ),
+    }),
     staticFeature(
       'uptime',
       'features.uptime',
@@ -234,7 +242,7 @@ export const CategorizedSpecs: Record<string, FeatureSpec[]> = {
           return (
             <Flex alignItems='center' justifyContent='center' gap={1}>
               <BooleanIcon value={true} />
-              <Text fontSize='xs' color='texts.subtle'>
+              <Text fontSize='xs'>
                 {t('features.uptime_guaranteed', {
                   suffix:
                     plan.id === PlanId.Premium
@@ -378,3 +386,4 @@ export const isFeatureAvailable = (
 // t('features.tooltips.overwrite', { defaultValue: 'Voters can change their vote before the voting period ends. This feature helps avoid mistakes and prevents coercion by allowing voters to correct their choices.'})
 // t('features.tooltips.live_results', { defaultValue: 'This is an optional feature that organizers can choose. Results can be displayed in real-time as votes are cast, or organizers can choose to keep results encrypted and hidden until the voting period ends.'})
 // t('features.tooltips.uptime', { defaultValue: 'We guarantee a 99.99% uptime, but only in the paid plans these are enforced by contract with warranties.'})
+// t('features.audit', { defaultValue: 'Audit' })
