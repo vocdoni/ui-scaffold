@@ -1246,7 +1246,7 @@
     "custom_plan": "Price on request",
     "custom_plan_description": "Do you have special governance requirements? We can adapt to your needs with a fully customized solution. A dedicated account manager will support you throughout the entire collaboration.",
     "custom_plan_or": "or",
-    "from": "<price>{{ price }}</price><time>/year</time>",
+    "from": "<price>{{ price }}</price><time>/year+VAT</time>",
     "most_popular_plan": "Most Popular"
   },
   "privacy_policy": "Privacy policy",
@@ -1649,7 +1649,7 @@
     "hide_comparison_table": "Show less features",
     "need_help": "<0>Need help choosing?</0> <1>Contact our sales team</1>",
     "show_comparison_table": "View all features",
-    "subtitle": "Manage your subscription plan and billing cycle.",
+    "subtitle": "With our yearly subscriptions, you get more than a plan. You gain access to the most innovative governance platform. Thanks to this model, we can offer the best price in the market: whether you need 1, 5, or 20 votes per year, you'll always benefit from the most competitive costs and unmatched guarantees. The platform is fully self-service, yet our team is always available to provide assistance or tailor solutions to your specific needs.",
     "title": "Subscription Plan"
   },
   "support": "Support",

@@ -1267,7 +1267,7 @@
     "custom_plan": "Precio bajo consulta",
     "custom_plan_description": "¿Tienes requisitos de gobernanza especiales? Nos podemos adaptar a tus necesidades con una solución personalizada. Contáctanos.",
     "custom_plan_or": "o",
-    "from": "<price>{{ price }}</price><time>/año</time>",
+    "from": "<price>{{ price }}</price><time>/año+IVA</time>",
     "most_popular_plan": "Más popular"
   },
   "privacy_policy": "Política de privacidad",
@@ -1671,7 +1671,7 @@
     "hide_comparison_table": "Mostrar menos funcionalidades",
     "need_help": "<0>¿Necesitas ayuda para elegir?</0> <1>Contacta con nuestro equipo comercial</1>",
     "show_comparison_table": "Ver todas las funcionalidades",
-    "subtitle": "Gestiona tu plan de suscripción y el ciclo de facturación.",
+    "subtitle": "Con nuestras suscripciones anuales, obtienes más que un plan. Consigues acceso a la plataforma de gobernanza más innovadora. Gracias a este modelo, podemos ofrecer el mejor precio del mercado: tanto si necesitas 1, 5 o 20 votaciones al año, siempre disfrutarás de los costes más competitivos y de garantías incomparables. La plataforma es totalmente de autoservicio, pero nuestro equipo siempre está disponible para ofrecerte asistencia o adaptar soluciones a tus necesidades específicas.",
     "title": "Plan de suscripción"
   },
   "support": "Soporte",
