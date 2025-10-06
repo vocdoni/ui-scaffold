@@ -1210,11 +1210,10 @@
   "preferences": "Preferences",
   "preview": "Preview",
   "pricing": {
-    "2fa": "2FA authentication ({{suffix}})",
+    "2fa": "2FA authentication² ({{suffix}})",
     "2fa_suffix_both": "Email & SMS",
     "2fa_suffix_email": "Email",
     "2fa_suffix_sms": "SMS",
-    "advanced_analytitcs": "Advanced analytics",
     "basic_analytics": "Basic analytics",
     "comparison_table": {
       "footnote_1": "¹ Votes with fewer than 10 participants are treated as test runs and don't count towards your plan limits.",
@@ -1223,6 +1222,7 @@
     },
     "core_voting_one": "Up to {{ count }} members",
     "core_voting_other": "Up to {{ count }} members",
+    "custom_branding": "Custom branding*",
     "custom_subtitle": "Tailored for your needs",
     "custom_title": "Custom",
     "different_voting_methods": "Different voting methods",

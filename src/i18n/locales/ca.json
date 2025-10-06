@@ -1228,11 +1228,10 @@
   "preferences": "Preferències",
   "preview": "Vista prèvia",
   "pricing": {
-    "2fa": "Autenticació 2FA ({{suffix}})",
+    "2fa": "Autenticació 2FA² ({{suffix}})",
     "2fa_suffix_both": "Correu i SMS",
     "2fa_suffix_email": "Correu electrònic",
     "2fa_suffix_sms": "SMS",
-    "advanced_analytitcs": "Informes i anàlisis avançades",
     "basic_analytics": "Informes i anàlisis bàsiques",
     "comparison_table": {
       "footnote_1": "¹ Les votacions amb menys de 10 participants es tracten com a proves i no compten per als límits del teu pla.",
@@ -1242,6 +1241,7 @@
     "core_voting_one": "Un únic membre",
     "core_voting_many": "Fins a {{ count }} membres",
     "core_voting_other": "Fins a {{ count }} membres",
+    "custom_branding": "Marca personalitzada*",
     "custom_subtitle": "Adaptat a les teves necessitats",
     "custom_title": "Personalitzat",
     "different_voting_methods": "Diferents mètodes de votació",
