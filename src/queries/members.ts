@@ -47,6 +47,11 @@ type JobResponse = {
   errors?: string[]
 }
 
+type MembersData = {
+  ids?: string[]
+  all?: boolean
+}
+
 export const useUrlPagination = () => {
   const params = useParams()
   const [searchParams] = useSearchParams()
@@ -113,15 +118,13 @@ export const useDeleteMembers = () => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
 
-  return useMutation<void, Error, string[]>({
+  return useMutation<void, Error, MembersData>({
     mutationKey: QueryKeys.organization.members(organization?.address),
-    mutationFn: async (ids: string[]) =>
+    mutationFn: async (body: MembersData) =>
       await bearedFetch<void>(
         ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address)),
         {
-          body: {
-            ids,
-          },
+          body,
           method: 'DELETE',
         }
       ),

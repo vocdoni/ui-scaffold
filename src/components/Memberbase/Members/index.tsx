@@ -82,6 +82,7 @@ type DeleteMemberModalProps = {
 
 type CreateGroupButtonProps = {
   members?: Member[]
+  includeAllMembers?: boolean
 } & ButtonProps
 
 type MembersListProps = {
@@ -307,7 +308,7 @@ const MemberFilters = ({ onDelete }: MemberFiltersProps) => {
           <IconButton size='xs' aria-label='search' type='submit' icon={<Icon as={LuSearch} />} />
         </InputRightElement>
       </InputGroup>
-      <CreateGroupButton members={data?.members ?? []}>
+      <CreateGroupButton includeAllMembers members={data?.members ?? []}>
         {t('members.table.create_group_all', { defaultValue: 'Create group (All)' })}
       </CreateGroupButton>
       <Button leftIcon={<Icon as={LuTrash2} />} variant='outline' colorScheme='red' onClick={onDelete}>
@@ -319,7 +320,7 @@ const MemberFilters = ({ onDelete }: MemberFiltersProps) => {
   )
 }
 
-const CreateGroupButton = ({ children, members, ...rest }: CreateGroupButtonProps) => {
+const CreateGroupButton = ({ children, members, includeAllMembers = false, ...rest }: CreateGroupButtonProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false })
@@ -338,10 +339,11 @@ const CreateGroupButton = ({ children, members, ...rest }: CreateGroupButtonProp
   const remainingCount = selectedMembers.length - visible.length
 
   const createGroup = (data) => {
-    const memberIDs = selectedMembers.map((row) => row.id)
+    const memberIDs = selectedRows.map((row) => row.id)
     const group = {
       ...data,
-      memberIDs,
+      includeAllMembers,
+      ...(memberIDs.length > 0 && { memberIDs }),
     }
     createGroupMutation.mutate(group, {
       onSuccess: () => {
@@ -583,20 +585,22 @@ const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModa
   const { selectedRows, resetSelectedRows } = useTable()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
-  const memberIds =
-    mode === DeleteModes.SELECTED
-      ? selectedRows.map((selectedRow) => selectedRow.id)
-      : (allMembersData?.members ?? []).map((member) => member.id)
+  const selectedMembers = mode === DeleteModes.SELECTED ? selectedRows : allMembersData?.members
+  const ids = selectedRows.map((member) => member.id)
 
   const handleDelete = async () => {
     try {
-      await deleteMutation.mutateAsync(memberIds)
+      const members = {
+        ...(ids.length > 0 && { ids }),
+        ...(mode === DeleteModes.ALL && { all: true }),
+      }
+      await deleteMutation.mutateAsync(members)
       if (mode === DeleteModes.SELECTED) resetSelectedRows()
       toast({
         title: t('memberbase.delete_member.success', {
           defaultValue: 'Member deleted successfully',
           defaultValue_other: 'Members deleted successfully',
-          count: memberIds.length,
+          count: selectedMembers.length,
         }),
         status: 'success',
         duration: 3000,
@@ -613,7 +617,7 @@ const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModa
         title: t('memberbase.delete_member.error', {
           defaultValue: 'Error deleting member',
           defaultValue_other: 'Error deleting members',
-          count: memberIds.length,
+          count: selectedMembers.length,
         }),
         description: error.message,
         status: 'error',
@@ -634,7 +638,7 @@ const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModa
           : t('memberbase.delete_member.subtitle', {
               defaultValue: 'Are you sure you want to delete {{count}} member? This action cannot be undone.',
               defaultValue_other: 'Are you sure you want to delete {{count}} members? This action cannot be undone.',
-              count: memberIds.length,
+              count: selectedMembers.length,
             })
       }
       isOpen={isOpen}
@@ -649,7 +653,7 @@ const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModa
           isLoading={deleteMutation.isPending || isFetchingAll}
           colorScheme='red'
           onClick={handleDelete}
-          disabled={isFetchingAll || memberIds.length === 0}
+          disabled={isFetchingAll || selectedMembers.length === 0}
         >
           {t('memberbase.delete_member.delete', { defaultValue: 'Delete' })}
         </Button>
