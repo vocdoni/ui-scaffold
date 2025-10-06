@@ -63,6 +63,7 @@ export const colors = {
         },
       },
       featured: {
+        bg: 'gray.800',
         badge: {
           bg: {
             default: 'black',

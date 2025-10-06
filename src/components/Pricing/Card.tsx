@@ -15,9 +15,12 @@ import {
 } from '@chakra-ui/react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { Link as RouterLink } from 'react-router-dom'
+import { useAuth } from '~components/Auth/useAuth'
+import ContactButton from '~components/shared/ContactLink'
 import { BookerModalButton } from '~components/shared/Dashboard/Booker'
 import { PlanId } from '~constants'
-import ContactButton from '~shared/ContactLink'
+import { Routes } from '~routes'
 import { usePlanTranslations, type Plan } from './Plans'
 
 type PricingCardProps = {
@@ -45,32 +48,25 @@ const PricingCard = ({
   const { t } = useTranslation()
   const translations = usePlanTranslations()
   const { setValue } = useFormContext()
-
+  const { isAuthenticated } = useAuth()
   const commonButtonProps: ButtonProps = {
     variant: isCurrentPlan ? 'outline' : 'solid',
     colorScheme: 'black',
     isDisabled: isDisabled || isCurrentPlan,
     size: 'sm',
+    w: 'full',
   }
 
   const isCustomPlan = plan?.organization?.customPlan || plan.id === PlanId.Custom
 
   return (
-    <Card
-      position='relative'
-      flex={1}
-      variant='pricing-card'
-      align='stretch'
-      border='1px solid'
-      bgColor='card.pricing.bg'
-      borderColor={popular ? 'card.pricing.featured.border' : 'card.pricing.border'}
-    >
+    <Card variant={isCustomPlan ? 'custom-pricing-card' : 'pricing-card'}>
       <CardHeader>
         <Text>{title}</Text>
         <Text color='texts.subtle'>{subtitle}</Text>
       </CardHeader>
       <CardBody>
-        <Flex direction='column' gap={4}>
+        <Flex direction='column' h='full' gap={4}>
           <Flex align='center'>
             {isCustomPlan ? (
               <Text fontSize='3xl' fontWeight='extrabold'>
@@ -108,45 +104,50 @@ const PricingCard = ({
           )}
         </Flex>
       </CardBody>
-      <Divider />
+      {!isCustomPlan && <Divider />}
       <CardFooter>
-        {isCustomPlan ? (
-          <Flex direction='column' gap={2} w='full' alignItems='center'>
-            <Box fontSize='sm'>
-              <Trans i18nKey='pricing_card.contact_sales'>
-                <ContactButton variant='link' fontWeight='extrabold'>
-                  Contact our sales team
-                </ContactButton>
-                <Text fontSize='sm' color='texts.subtle' textAlign='center'>
-                  or
-                </Text>
-              </Trans>
-            </Box>
-            <BookerModalButton
+        <Flex flexDirection='column' w='full' gap={2} alignItems='center' justifyContent='flex-end'>
+          {isCustomPlan ? (
+            <>
+              <Flex gap={1}>
+                <Trans i18nKey='pricing_card.contact_sales'>
+                  <ContactButton variant='link' fontWeight='extrabold'>
+                    Contact our sales team
+                  </ContactButton>
+                  <Text as='span' fontSize='sm' color='texts.subtle' textAlign='center'>
+                    or
+                  </Text>
+                </Trans>
+              </Flex>
+              <BookerModalButton
+                {...commonButtonProps}
+                aria-label={isCurrentPlan ? t('current_plan') : t('contact_us')}
+              >
+                {isCurrentPlan
+                  ? t('current_plan', { defaultValue: 'Current Plan' })
+                  : t('home.support.btn_watch', { defaultValue: 'Schedule a call' })}
+              </BookerModalButton>
+            </>
+          ) : isAuthenticated ? (
+            <Button
               {...commonButtonProps}
-              w='full'
-              aria-label={isCurrentPlan ? t('current_plan') : t('contact_us')}
+              onClick={() => setValue('planId', plan.id)}
+              type='submit'
+              aria-label={isCurrentPlan ? t('current_plan') : t('subscribe')}
             >
               {isCurrentPlan
                 ? t('current_plan', { defaultValue: 'Current Plan' })
-                : t('home.support.btn_watch', { defaultValue: 'Schedule a call' })}
-            </BookerModalButton>
-          </Flex>
-        ) : (
-          <Button
-            {...commonButtonProps}
-            onClick={() => setValue('planId', plan.id)}
-            type='submit'
-            aria-label={isCurrentPlan ? t('current_plan') : t('subscribe')}
-          >
-            {isCurrentPlan
-              ? t('current_plan', { defaultValue: 'Current Plan' })
-              : t('upgrade_plan', {
-                  defaultValue: 'Upgrade to {{plan}}',
-                  plan: translations[plan.id]?.title || plan.name,
-                })}
-          </Button>
-        )}
+                : t('upgrade_plan', {
+                    defaultValue: 'Upgrade to {{plan}}',
+                    plan: translations[plan.id]?.title || plan.name,
+                  })}
+            </Button>
+          ) : (
+            <Button {...commonButtonProps} w='full' as={RouterLink} to={Routes.auth.signIn}>
+              <Trans i18nKey='upgrade_plan' values={{ plan: translations[plan.id]?.title || plan.name }} />
+            </Button>
+          )}
+        </Flex>
       </CardFooter>
       {popular && (
         <Box
