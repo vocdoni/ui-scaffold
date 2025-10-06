@@ -9,9 +9,11 @@ const pricingCard = definePartsStyle({
     flexDirection: 'column',
     gap: 4,
     position: 'relative',
+    border: '1px solid',
     borderRadius: 'md',
     bgColor: 'card.pricing.bd',
     p: 6,
+    flex: 1,
   },
   header: {
     p: 0,
@@ -56,6 +58,16 @@ const pricingCard = definePartsStyle({
   },
 })
 
+const customPricingCard = definePartsStyle({
+  ...pricingCard,
+  container: {
+    ...pricingCard.container,
+    bgColor: 'card.pricing.featured.bg',
+    borderColor: 'card.pricing.featured.border',
+    color: 'chakra.body.bg',
+  },
+})
+
 export const Card = defineMultiStyleConfig({
   variants: {
     calendar: {
@@ -95,6 +107,7 @@ export const Card = defineMultiStyleConfig({
     },
 
     'pricing-card': pricingCard,
+    'custom-pricing-card': customPricingCard,
     'web3-addresses': {
       container: {
         flexDirection: 'column',
