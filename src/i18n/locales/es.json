@@ -1228,11 +1228,10 @@
   "preferences": "Preferencias",
   "preview": "Vista previa",
   "pricing": {
-    "2fa": "Autenticación 2FA ({{suffix}})",
+    "2fa": "Autenticación 2FA² ({{suffix}})",
     "2fa_suffix_both": "Correo y SMS",
     "2fa_suffix_email": "Correo electrónico",
     "2fa_suffix_sms": "SMS",
-    "advanced_analytitcs": "Informes y analíticas avanzadas",
     "basic_analytics": "Informes y analíticas básicas",
     "comparison_table": {
       "footnote_1": "¹ Las votaciones con menos de 10 participantes se tratan como pruebas y no cuentan para los límites de tu plan.",
@@ -1242,6 +1241,7 @@
     "core_voting_one": "Un único miembro",
     "core_voting_many": "Hasta {{ count }} miembros",
     "core_voting_other": "Hasta {{ count }} miembros",
+    "custom_branding": "Marca personalizada*",
     "custom_subtitle": "Adaptado a tus necesidades",
     "custom_title": "Personalizado",
     "different_voting_methods": "Diferentes métodos de votación",

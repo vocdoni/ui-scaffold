@@ -3,7 +3,16 @@ import { useQuery } from '@tanstack/react-query'
 import { MutableRefObject, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { LuChartColumn, LuCircleCheckBig, LuMail, LuShield, LuUserCheck, LuUsers, LuVote } from 'react-icons/lu'
+import {
+  LuChartColumn,
+  LuCircleCheckBig,
+  LuMail,
+  LuPalette,
+  LuShield,
+  LuUserCheck,
+  LuUsers,
+  LuVote,
+} from 'react-icons/lu'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
@@ -133,7 +142,7 @@ export const usePlanTranslations = (plans?: Plan[]) => {
           icon: LuShield,
           text: t('pricing.2fa', {
             suffix: get2FA(PlanId.Free),
-            defaultValue: '2FA authentication ({{suffix}})',
+            defaultValue: '2FA authentication² ({{suffix}})',
           }),
         },
         { icon: LuChartColumn, text: t('pricing.basic_analytics', { defaultValue: 'Basic analytics' }) },
@@ -206,7 +215,7 @@ export const usePlanTranslations = (plans?: Plan[]) => {
             suffix: get2FA(PlanId.Premium),
           }),
         },
-        { icon: LuChartColumn, text: t('pricing.advanced_analytitcs', { defaultValue: 'Advanced analytics' }) },
+        { icon: LuPalette, text: t('pricing.custom_branding', { defaultValue: 'Custom branding*' }) },
         { icon: LuMail, text: t('pricing.priority_support', { defaultValue: 'Priority email support (24h)' }) },
       ],
     },
