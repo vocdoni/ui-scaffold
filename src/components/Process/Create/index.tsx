@@ -548,6 +548,7 @@ export const ProcessCreate = () => {
   useEffect(() => {
     if (formDraft) {
       Object.entries(formDraft).forEach(([key, value]) => {
+        if (key === 'groupId' && groupId) return
         methods.setValue(key as keyof Process, value as Process[keyof Process], { shouldDirty: true })
       })
     }
