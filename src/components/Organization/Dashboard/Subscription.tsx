@@ -11,6 +11,9 @@ import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { ComparisonTable } from '~components/Pricing/ComparisonTable'
 import { SubscriptionPlans } from '~components/Pricing/Plans'
+import { SubscriptionCheckoutProvider } from '~components/Pricing/SubscriptionCheckoutProvider'
+import { SubscriptionPayment } from '~components/Pricing/SubscriptionPayment'
+import { useSubscriptionCheckout } from '~components/Pricing/use-subscription-checkout'
 import { Routes } from '~routes'
 import { DashboardBox } from '~shared/Dashboard/Contents'
 
@@ -26,11 +29,12 @@ export const usePortalSession = () => {
   })
 }
 
-const SubscriptionPage = () => {
+const SubscriptionPageContent = () => {
   const { t } = useTranslation()
   const { subscription, loading } = useSubscription()
   const { mutateAsync } = usePortalSession()
   const [showComparisonTable, setShowComparisonTable] = useState(false)
+  const { view, selectedPlanId, showPlans } = useSubscriptionCheckout()
 
   const handleChangeClick = () =>
     mutateAsync()
@@ -63,21 +67,27 @@ const SubscriptionPage = () => {
             </Trans>
           </Text>
         </Flex>
-        {!isFree && (
+        {!isFree && view === 'plans' && (
           <Button onClick={() => handleChangeClick()}>
             {t('billing_details', { defaultValue: 'Billing Details' })}
           </Button>
         )}
       </Flex>
-      <SubscriptionPlans />
-      <Flex justifyContent='center'>
-        <Button colorScheme='black' variant='outline' onClick={toggleComparisonTable} mb={6}>
-          {showComparisonTable
-            ? t('subscription_plan.hide_comparison_table', { defaultValue: 'Show less features' })
-            : t('subscription_plan.show_comparison_table', { defaultValue: 'View all features' })}
-        </Button>
-      </Flex>
-      {showComparisonTable && <ComparisonTable />}
+      {view === 'plans' ? (
+        <>
+          <SubscriptionPlans />
+          <Flex justifyContent='center'>
+            <Button colorScheme='black' variant='outline' onClick={toggleComparisonTable} mb={6}>
+              {showComparisonTable
+                ? t('subscription_plan.hide_comparison_table', { defaultValue: 'Show less features' })
+                : t('subscription_plan.show_comparison_table', { defaultValue: 'View all features' })}
+            </Button>
+          </Flex>
+          {showComparisonTable && <ComparisonTable />}
+        </>
+      ) : (
+        <SubscriptionPayment lookupKey={selectedPlanId!} onClose={showPlans} />
+      )}
       <Flex justifyContent='center' alignItems='center' flexDirection='column'>
         <Text fontSize='sm' color='texts.subtle' textAlign='center'>
           <Trans i18nKey='subscription_plan.gdpr_compliance'>All plans include GDPR compliance.</Trans>
@@ -96,5 +106,11 @@ const SubscriptionPage = () => {
     </DashboardBox>
   )
 }
+
+const SubscriptionPage = () => (
+  <SubscriptionCheckoutProvider>
+    <SubscriptionPageContent />
+  </SubscriptionCheckoutProvider>
+)
 
 export default SubscriptionPage

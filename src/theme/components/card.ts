@@ -64,7 +64,7 @@ const customPricingCard = definePartsStyle({
     ...pricingCard.container,
     bgColor: 'card.pricing.featured.bg',
     borderColor: 'card.pricing.featured.border',
-    color: 'chakra.body.bg',
+    color: 'white',
   },
 })
 

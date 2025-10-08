@@ -20,7 +20,7 @@ import { PlanId } from '~constants'
 import { QueryKeys } from '~src/queries/keys'
 import { currency } from '~utils/numbers'
 import PricingCard from './Card'
-import { usePricingModal } from './use-pricing-modal'
+import { useSubscriptionCheckout } from './use-subscription-checkout'
 
 export type Plan = {
   id: number
@@ -234,7 +234,7 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations(plans)
-  const { openModal } = usePricingModal()
+  const { showCheckout } = useSubscriptionCheckout()
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -245,9 +245,9 @@ export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObj
   const { handleSubmit } = methods
 
   const onSubmit = (data: FormValues) => {
-    openModal('subscriptionPayment', {
-      lookupKey: data.planId,
-    })
+    if (data.planId !== null) {
+      showCheckout(data.planId)
+    }
   }
 
   const cards = useMemo(() => {
