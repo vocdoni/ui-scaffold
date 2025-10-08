@@ -12,7 +12,6 @@ import { SubscriptionType, useSubscription } from '~components/Auth/Subscription
 import { useAuth } from '~components/Auth/useAuth'
 import { QueryKeys } from '~src/queries/keys'
 import { AnalyticsEvent } from '~utils/analytics'
-import { usePricingModal } from './use-pricing-modal'
 
 const stripePublicKey = import.meta.env.STRIPE_PUBLIC_KEY
 
@@ -50,7 +49,6 @@ export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentP
   const { t, i18n } = useTranslation()
   const { subscription } = useSubscription()
   const { mutateAsync: checkSubscription } = useUpdateSubscription()
-  const { closeModal } = usePricingModal()
   const toast = useToast()
   const { trackPlausibleEvent } = useAnalytics()
 
@@ -82,7 +80,7 @@ export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentP
             title: t('pricing.error'),
             description: e.message,
           })
-          closeModal()
+          onClose()
 
           return null
         })
