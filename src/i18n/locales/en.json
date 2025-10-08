@@ -32,6 +32,7 @@
       "ticanoia": "TIC Anoia logo"
     }
   },
+  "apply": "Apply",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
@@ -146,6 +147,7 @@
     "title": "Change Password"
   },
   "close": "Close",
+  "code_applied": "Code \"{{appliedCode}}\" applied",
   "color_mode_switcher": "Color mode switcher",
   "common": {
     "back": "Back",
@@ -252,6 +254,7 @@
   },
   "delete_my_account": "Delete my account",
   "description": "Description",
+  "discount": "Discount",
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
   "drawer": {
@@ -284,6 +287,7 @@
   "end_date": "End date",
   "end_time": "End time",
   "end_vote": "End vote",
+  "enter_promo_code": "Enter code",
   "error": {
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
     "invalid_row_length": "Correct document lines {{rows,list(style: short)}} and load it again",
@@ -295,9 +299,9 @@
     "missing_header": "Spreadsheet has no header.",
     "not_found": "Page Not Found",
     "not_found_description": "The page you're looking for does not exist or has been moved.",
-    "return_to_home": "Back to home",
-    "title": "Error"
+    "return_to_home": "Back to home"
   },
+  "error_removing_code": "Error removing code",
   "error_text": "Sorry, the page you were looking for was not found",
   "features": {
     "anonymous": "Anonymous voting",
@@ -469,6 +473,8 @@
       "voting_issue": "Voting issue"
     }
   },
+  "free_trial_days_one": "{{count}} free days",
+  "free_trial_days_other": "{{count}} free days",
   "go_back": "go back",
   "google_oauth_error": "Google OAuth Error",
   "google_oauth_error_description": "Google OAuth error, please try again",
@@ -900,6 +906,7 @@
     "view_errors_other": "View {{count}} errors"
   },
   "internal_server_error": "Internal server error",
+  "invalid_promo_code": "Invalid promotion code",
   "invite": {
     "account_not_verified": "Your account is not verified. Please verify your account to continue.",
     "create_account_subtitle": "You need an account first, in order to accept your invite",
@@ -1088,6 +1095,7 @@
     "terms": "Terms",
     "wallet": "Wallet"
   },
+  "month": "month",
   "name": "Name",
   "navbar": {
     "contact": "Contact Us",
@@ -1112,6 +1120,7 @@
   "number_of_members_other": "{{ count }} team members",
   "open_in_explorer": "Open in explorer",
   "or_continue_with": "or continue with",
+  "order_summary": "Order Summary",
   "org_type_selector": {
     "selector_label": "Organization type"
   },
@@ -1226,7 +1235,6 @@
     "custom_subtitle": "Tailored for your needs",
     "custom_title": "Custom",
     "different_voting_methods": "Different voting methods",
-    "error": "",
     "essential_subtitle": "For growing organizations",
     "essential_title": "Essential",
     "free_subtitle": "Perfect for getting started",
@@ -1546,6 +1554,8 @@
     "success": "Profile updated successfully",
     "title": "Profile"
   },
+  "promo_code": "Promotion Code",
+  "promo_code_required": "Promotion code is required",
   "questions_and_results": "Questions and results",
   "rainbow": {
     "group": {
@@ -1553,6 +1563,7 @@
     },
     "recovery": ""
   },
+  "remove": "Remove",
   "remove_avatar": "Remove avatar",
   "reset_password_button": "Reset Password",
   "result_visibility": "Results visibility",
@@ -1652,10 +1663,12 @@
     "subtitle": "With our yearly subscriptions, you get more than a plan. You gain access to the most innovative governance platform. Thanks to this model, we can offer the best price in the market: whether you need 1, 5, or 20 votes per year, you'll always benefit from the most competitive costs and unmatched guarantees. The platform is fully self-service, yet our team is always available to provide assistance or tailor solutions to your specific needs.",
     "title": "Subscription Plan"
   },
+  "subtotal": "Subtotal",
   "support": "Support",
   "switch_mode": "Switch to {{ mode }} mode",
   "switch_organization": "Switch organization",
   "system": "System",
+  "tax": "Tax ({{percent}}%)",
   "team": {
     "actions": {
       "cancel_invitation": "Cancel Invitation",
@@ -1769,6 +1782,9 @@
     }
   },
   "theme": "Theme",
+  "then_price_per_period": "Then {{price}}/{{period}}",
+  "total_after_trial": "Total after trial",
+  "total_due_today": "Total due today",
   "total_votes": "Total votes",
   "turnout": "Turnout",
   "upgrade_plan": "Upgrade to {{plan}}",
@@ -1922,5 +1938,7 @@
   "voting_processes_description": "Manage and monitor your voting processes",
   "voting_settings": "Voting settings",
   "voting_status": "Voting status",
-  "website": "Website"
+  "wallet_not_connected": "Wallet not connected",
+  "website": "Website",
+  "year": "year"
 }

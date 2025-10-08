@@ -32,6 +32,7 @@
       "ticanoia": "Logotipo de TIC Anoia"
     }
   },
+  "apply": "Aplicar",
   "aside": {
     "has_already_voted": "Tu voto se ha emitido correctamente",
     "is_not_in_census": "No figuras en el censo",
@@ -149,6 +150,7 @@
     "title": "Cambiar contraseña"
   },
   "close": "Cerrar",
+  "code_applied": "Código \"{{appliedCode}}\" aplicado",
   "color_mode_switcher": "Cambiar modo de color",
   "common": {
     "back": "Atrás",
@@ -255,6 +257,7 @@
   },
   "delete_my_account": "Eliminar mi cuenta",
   "description": "Descripción",
+  "discount": "Descuento",
   "do_it_later": "Hacerlo más tarde",
   "do_you_need_help": "¿Necesitas ayuda?",
   "drawer": {
@@ -287,6 +290,7 @@
   "end_date": "Fecha de finalización",
   "end_time": "Hora de finalización",
   "end_vote": "Finalizar votación",
+  "enter_promo_code": "Introduce el código promocional",
   "error": {
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
     "invalid_row_length": "Corrige las líneas {{rows, list}} del documento  y vuelve a cargarlo",
@@ -298,9 +302,9 @@
     "missing_header": "La hoja de cálculo no tiene encabezado.",
     "not_found": "Página No Encontrada",
     "not_found_description": "La página que buscas no existe o ha sido movida.",
-    "return_to_home": "Volver al inicio",
-    "title": "Error"
+    "return_to_home": "Volver al inicio"
   },
+  "error_removing_code": "Error eliminando el código",
   "error_text": "Lo sentimos, la página que buscabas no se ha encontrado",
   "features": {
     "anonymous": "Votación anónima",
@@ -473,6 +477,9 @@
       "voting_issue": "Problema de votación"
     }
   },
+  "free_trial_days_one": "Un día gratis",
+  "free_trial_days_many": "",
+  "free_trial_days_other": "{{count}} días gratis",
   "go_back": "Volver",
   "google_oauth_error": "Error de Google OAuth",
   "google_oauth_error_description": "Error de Google OAuth, inténtalo de nuevo",
@@ -907,6 +914,7 @@
     "view_errors_other": "Ver {{count}} errores"
   },
   "internal_server_error": "Error interno del servidor",
+  "invalid_promo_code": "Código promocional no válido",
   "invite": {
     "account_not_verified": "Tu cuenta no está verificada. Verifícala para continuar.",
     "create_account_subtitle": "Primero necesitas una cuenta para poder aceptar la invitación",
@@ -1105,6 +1113,7 @@
     "terms": "Términos",
     "wallet": "Monedero"
   },
+  "month": "month",
   "name": "Nombre",
   "navbar": {
     "contact": "Contáctanos",
@@ -1130,6 +1139,7 @@
   "number_of_members_other": "{{ count }} miembros del equipo",
   "open_in_explorer": "Abrir en el explorador",
   "or_continue_with": "o continuar con",
+  "order_summary": "Order Summary",
   "org_type_selector": {
     "selector_label": "Tipo de organización"
   },
@@ -1245,7 +1255,6 @@
     "custom_subtitle": "Adaptado a tus necesidades",
     "custom_title": "Personalizado",
     "different_voting_methods": "Diferentes métodos de votación",
-    "error": "Error",
     "essential_subtitle": "Perfecto para organizaciones medianas o grupos con necesidades básicas de votación.",
     "essential_title": "Básico",
     "free_subtitle": "Para organizaciones pequeñas o grupos comunitarios de hasta 50 miembros.",
@@ -1568,6 +1577,8 @@
     "success": "Perfil actualizado correctamente",
     "title": "Perfil"
   },
+  "promo_code": "Código promocional",
+  "promo_code_required": "El código es obligatorio",
   "questions_and_results": "Preguntas y resultados",
   "rainbow": {
     "group": {
@@ -1575,6 +1586,7 @@
     },
     "recovery": ""
   },
+  "remove": "Eliminar",
   "remove_avatar": "Eliminar avatar",
   "reset_password_button": "Restablecer contraseña",
   "result_visibility": "Visibilidad de los resultados",
@@ -1674,10 +1686,12 @@
     "subtitle": "Con nuestras suscripciones anuales, obtienes más que un plan. Consigues acceso a la plataforma de gobernanza más innovadora. Gracias a este modelo, podemos ofrecer el mejor precio del mercado: tanto si necesitas 1, 5 o 20 votaciones al año, siempre disfrutarás de los costes más competitivos y de garantías incomparables. La plataforma es totalmente de autoservicio, pero nuestro equipo siempre está disponible para ofrecerte asistencia o adaptar soluciones a tus necesidades específicas.",
     "title": "Plan de suscripción"
   },
+  "subtotal": "Subtotal",
   "support": "Soporte",
   "switch_mode": "Cambiar a modo {{ mode }}",
   "switch_organization": "Cambiar de organización",
   "system": "Sistema",
+  "tax": "Impuestos ({{percent}}%)",
   "team": {
     "actions": {
       "cancel_invitation": "Cancelar invitación",
@@ -1791,6 +1805,9 @@
     }
   },
   "theme": "Tema",
+  "then_price_per_period": "Entonces {{price}}/{{period}}",
+  "total_after_trial": "Total tras la prueba",
+  "total_due_today": "Total a pagar hoy",
   "total_votes": "Total de votos",
   "turnout": "Participación",
   "upgrade_plan": "Actualizar al plan {{plan}}",
@@ -1949,5 +1966,7 @@
   "voting_processes_description": "Gestiona y supervisa tus procesos de votación",
   "voting_settings": "Ajustes de votación",
   "voting_status": "Estado de la votación",
-  "website": "Sitio web"
+  "wallet_not_connected": "Cartera no conectada",
+  "website": "Sitio web",
+  "year": "year"
 }

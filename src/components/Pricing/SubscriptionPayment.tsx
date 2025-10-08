@@ -1,17 +1,36 @@
-import { Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, useToast } from '@chakra-ui/react'
-import { EmbeddedCheckout, EmbeddedCheckoutProvider } from '@stripe/react-stripe-js'
-import { loadStripe, Stripe } from '@stripe/stripe-js'
+import {
+  Alert,
+  AlertDescription,
+  Box,
+  Button,
+  Flex,
+  Grid,
+  IconButton,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
+  useColorMode,
+  useToast,
+} from '@chakra-ui/react'
+import { BillingAddressElement, CheckoutProvider, PaymentElement, useCheckout } from '@stripe/react-stripe-js/checkout'
+import { loadStripe, Stripe, StripeCheckoutOptions } from '@stripe/stripe-js'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { ensure0x } from '@vocdoni/sdk'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { LuArrowLeft } from 'react-icons/lu'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { ApiEndpoints } from '~components/Auth/api'
 import { SubscriptionType, useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { QueryKeys } from '~src/queries/keys'
 import { AnalyticsEvent } from '~utils/analytics'
+import { OrderSummary } from './OrderSummary'
+import { PromotionCodeInput } from './PromotionCodeInput'
+import { useSubscriptionCheckout } from './use-subscription-checkout'
 
 const stripePublicKey = import.meta.env.STRIPE_PUBLIC_KEY
 
@@ -43,6 +62,115 @@ type SubscriptionPaymentProps = SubscriptionPaymentData & {
   onClose: () => void
 }
 
+type CheckoutFormProps = {
+  onClose: () => void
+  onComplete: () => Promise<void>
+  sessionId: string | null
+}
+
+const CheckoutForm = ({ onComplete, sessionId }: CheckoutFormProps) => {
+  const { t } = useTranslation()
+  const checkoutState = useCheckout()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const { showPlans } = useSubscriptionCheckout()
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (checkoutState.type !== 'success') return
+
+    setIsSubmitting(true)
+    setError(null)
+
+    const result = await checkoutState.checkout.confirm({
+      returnUrl: sessionId
+        ? `${window.location.origin}${window.location.pathname}?session_id=${sessionId}`
+        : window.location.href,
+    })
+
+    if (result.type === 'error') {
+      setError(result.error.message)
+      setIsSubmitting(false)
+    } else {
+      // Payment successful, trigger completion callback
+      await onComplete()
+    }
+  }
+
+  if (checkoutState.type === 'loading') {
+    return (
+      <Box textAlign='center' py={8}>
+        {t('loading', { defaultValue: 'Loading...' })}
+      </Box>
+    )
+  }
+
+  if (checkoutState.type === 'error') {
+    return (
+      <Box>
+        <Flex justifyContent='flex-start' mb={4}>
+          <IconButton
+            aria-label={t('back', { defaultValue: 'Back' })}
+            icon={<LuArrowLeft />}
+            onClick={showPlans}
+            variant='ghost'
+          />
+        </Flex>
+        <Box color='red.500' textAlign='center'>
+          {t('error', { defaultValue: 'Error' })}: {checkoutState.error.message}
+        </Box>
+      </Box>
+    )
+  }
+
+  const { checkout } = checkoutState
+
+  return (
+    <Box as='form' onSubmit={handleSubmit}>
+      <Flex justifyContent='flex-start' mb={6}>
+        <IconButton
+          aria-label={t('back', { defaultValue: 'Back' })}
+          icon={<LuArrowLeft />}
+          onClick={showPlans}
+          variant='ghost'
+        />
+      </Flex>
+
+      <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={6}>
+        {/* Left Column: Order Summary + Promo Code */}
+        <Flex as='section' flexDirection='column' gap={5}>
+          <OrderSummary checkout={checkout} />
+          <PromotionCodeInput />
+        </Flex>
+
+        {/* Right Column: Payment Element + Submit */}
+        <Flex as='section' flexDirection='column' gap={5}>
+          <BillingAddressElement options={{ display: { name: 'split' } }} />
+          <PaymentElement />
+
+          {error && (
+            <Alert status='error'>
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+
+          <Button
+            type='submit'
+            colorScheme='black'
+            w='full'
+            mt={6}
+            isLoading={isSubmitting}
+            isDisabled={checkoutState.type !== 'success'}
+          >
+            {t('subscribe', { defaultValue: 'Subscribe' })}
+          </Button>
+        </Flex>
+      </Grid>
+    </Box>
+  )
+}
+
 export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentProps) => {
   const { bearedFetch } = useAuth()
   const { signer } = useClient()
@@ -51,15 +179,27 @@ export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentP
   const { mutateAsync: checkSubscription } = useUpdateSubscription()
   const toast = useToast()
   const { trackPlausibleEvent } = useAnalytics()
+  const { colorMode } = useColorMode()
 
   const [stripePromise] = useState<Promise<Stripe | null>>(
     loadStripe(stripePublicKey, {
       locale: i18n.resolvedLanguage as any,
     })
   )
+  const [sessionId, setSessionId] = useState<string | null>(null)
   const queryClient = useQueryClient()
 
   const fetchClientSecret = useCallback(async () => {
+    if (!signer) {
+      toast({
+        status: 'error',
+        title: t('error', { defaultValue: 'Error' }),
+        description: t('wallet_not_connected', { defaultValue: 'Wallet not connected' }),
+      })
+      onClose()
+      return null
+    }
+
     const signerAddress = await signer.getAddress()
     if (signerAddress) {
       const body = {
@@ -72,12 +212,16 @@ export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentP
         method: 'POST',
         body,
       })
-        // Return the client secret, required by stripe.js
-        .then((data) => data.clientSecret)
+        .then((data) => {
+          // Store session ID for use in return URL
+          setSessionId(data.sessionId)
+          // Return the client secret, required by stripe.js
+          return data.clientSecret
+        })
         .catch((e) => {
           toast({
             status: 'error',
-            title: t('pricing.error'),
+            title: t('error', { defaultValue: 'Error' }),
             description: e.message,
           })
           onClose()
@@ -86,7 +230,7 @@ export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentP
         })
     }
     return await Promise.resolve('')
-  }, [signer])
+  }, [signer, bearedFetch, lookupKey, i18n.resolvedLanguage, toast, t, onClose])
 
   const onComplete = async () => {
     let nsub = await checkSubscription()
@@ -106,17 +250,23 @@ export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentP
     onClose()
   }
 
-  const options = {
+  const options: StripeCheckoutOptions = {
     fetchClientSecret,
-    clientSecret: '',
-    onComplete,
+    elementsOptions: {
+      appearance: {
+        theme: colorMode === 'dark' ? ('night' as const) : ('stripe' as const),
+        variables: {
+          colorBackground: colorMode === 'dark' ? '#0a0a0a' : 'white',
+        },
+      },
+    },
   }
 
   return (
-    <Box id='checkout' mt={{ base: '24rem', sm: '15rem', lg: '5rem', xl: 0 }}>
-      <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
-        <EmbeddedCheckout />
-      </EmbeddedCheckoutProvider>
+    <Box id='checkout' p={4}>
+      <CheckoutProvider stripe={stripePromise} options={options}>
+        <CheckoutForm onClose={onClose} onComplete={onComplete} sessionId={sessionId} />
+      </CheckoutProvider>
     </Box>
   )
 }

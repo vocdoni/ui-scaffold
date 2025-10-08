@@ -32,6 +32,7 @@
       "ticanoia": "logo TIC Anoia"
     }
   },
+  "apply": "Aplica",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
@@ -149,6 +150,7 @@
     "title": "Canvia la contrasenya"
   },
   "close": "Tanca",
+  "code_applied": "Codi \"{{appliedCode}}\" aplicat",
   "color_mode_switcher": "Commutador de mode de color",
   "common": {
     "back": "Enrere",
@@ -255,6 +257,7 @@
   },
   "delete_my_account": "Elimina el meu compte",
   "description": "Descripció",
+  "discount": "Descompte",
   "do_it_later": "Fes-ho més tard",
   "do_you_need_help": "Necessites ajuda?",
   "drawer": {
@@ -287,6 +290,7 @@
   "end_date": "Data de finalització",
   "end_time": "Hora de finalització",
   "end_vote": "Finalitza votació",
+  "enter_promo_code": "Introdueix el codi",
   "error": {
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
     "invalid_row_length": "Corregeix les línies {{rows, list}} del document i torna a carregar-lo",
@@ -298,9 +302,9 @@
     "missing_header": "El full de càlcul no té capçalera.",
     "not_found": "Pàgina No Trobada",
     "not_found_description": "La pàgina que cerques no existeix o ha estat moguda.",
-    "return_to_home": "Torna a l'inici",
-    "title": "Error"
+    "return_to_home": "Torna a l'inici"
   },
+  "error_removing_code": "Hi ha hagut un error eliminant el codi",
   "error_text": "Ho sentim, no s'ha trobat la pàgina que cerqueu",
   "features": {
     "anonymous": "Votacions anònimes",
@@ -473,6 +477,9 @@
       "voting_issue": "Problema de votació"
     }
   },
+  "free_trial_days_one": "Un dia gratuït",
+  "free_trial_days_many": "",
+  "free_trial_days_other": "{{count}} dies gratuïts",
   "go_back": "torna enrere",
   "google_oauth_error": "Error d'OAuth de Google",
   "google_oauth_error_description": "Error d'OAuth de Google, si us plau torna-ho a provar",
@@ -907,6 +914,7 @@
     "view_errors_other": "Mostra {{count}} errors"
   },
   "internal_server_error": "Error intern del servidor",
+  "invalid_promo_code": "Codi de promoció no vàlid",
   "invite": {
     "account_not_verified": "El teu compte no està verificat. Si us plau, verifica'l per continuar.",
     "create_account_subtitle": "Primer necessites un compte per poder acceptar la invitació",
@@ -1105,6 +1113,7 @@
     "terms": "Termes",
     "wallet": "Cartera"
   },
+  "month": "mes",
   "name": "Nom",
   "navbar": {
     "contact": "Contacta'ns",
@@ -1130,6 +1139,7 @@
   "number_of_members_other": "{{ count }} membres de l'equip",
   "open_in_explorer": "Obre a l'explorador",
   "or_continue_with": "o continua amb",
+  "order_summary": "Resum de la comanda",
   "org_type_selector": {
     "selector_label": "Selecciona el tipus d'organització"
   },
@@ -1239,13 +1249,12 @@
       "footnote_on_demand": "* Les funcionalitats sol·licitades s'avaluaran individualment i poden comportar costos addicionals."
     },
     "core_voting_one": "Un únic membre",
-    "core_voting_many": "Fins a {{ count }} membres",
+    "core_voting_many": "",
     "core_voting_other": "Fins a {{ count }} membres",
     "custom_branding": "Marca personalitzada*",
     "custom_subtitle": "Adaptat a les teves necessitats",
     "custom_title": "Personalitzat",
     "different_voting_methods": "Diferents mètodes de votació",
-    "error": "Error",
     "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
     "essential_title": "Bàsic",
     "free_subtitle": "Organitzacions petites o grups comunitaris amb necessitats bàsiques de votació.",
@@ -1256,7 +1265,7 @@
     "ticket_support_48": "Suport per correu electrònic (48h)",
     "ticket_support_72": "Suport per correu electrònic (72h)",
     "up_to_admins_one": "Un únic administrador",
-    "up_to_admins_many": "{{ count }} administradors",
+    "up_to_admins_many": "",
     "up_to_admins_other": "{{ count }} administradors",
     "yearly_processes_one": "{{ count }} procés anual",
     "yearly_processes_many": "",
@@ -1568,6 +1577,8 @@
     "success": "Perfil actualitzat correctament",
     "title": "Perfil"
   },
+  "promo_code": "Codi promocional",
+  "promo_code_required": "Cal introduir un codi",
   "questions_and_results": "Preguntes i resultats",
   "rainbow": {
     "group": {
@@ -1575,6 +1586,7 @@
     },
     "recovery": ""
   },
+  "remove": "Elimina",
   "remove_avatar": "Elimina l'avatar",
   "reset_password_button": "Restableix la contrasenya",
   "result_visibility": "Visibilitat dels resultats",
@@ -1674,10 +1686,12 @@
     "subtitle": "Amb les nostres subscripcions anuals, obtens més que un pla. Aconsegueixes accés a la plataforma de governança més innovadora. Gràcies a aquest model, podem oferir el millor preu del mercat: tant si necessites 1, 5 o 20 votacions a l’any, sempre gaudiràs dels costos més competitius i de garanties incomparables. La plataforma és totalment d’autoservei, però el nostre equip està sempre disponible per oferir-te assistència o adaptar solucions a les teves necessitats específiques.",
     "title": "Pla de subscripció"
   },
+  "subtotal": "Subtotal",
   "support": "Suport",
   "switch_mode": "Canvia al mode {{ mode }}",
   "switch_organization": "Canvia d'organització",
   "system": "Sistema",
+  "tax": "IVA ({{percent}}%)",
   "team": {
     "actions": {
       "cancel_invitation": "Cancel·la la invitació",
@@ -1791,9 +1805,12 @@
     }
   },
   "theme": "Tema",
+  "then_price_per_period": "Llavors {{price}}/{{period}}",
+  "total_after_trial": "Total després de la prova",
+  "total_due_today": "Total a pagar avui",
   "total_votes": "Total de vots",
   "turnout": "Participació",
-  "upgrade_plan": "Upgrade to {{plan}}",
+  "upgrade_plan": "Canvia a {{plan}}",
   "uploader": {
     "click_or_drag_and_drop": "<click>Fes clic per pujar</click><formats>(Formats permesos: {{ formats, list }})</formats>",
     "click_or_drag_and_drop_image": "Puja una imatge",
@@ -1949,5 +1966,7 @@
   "voting_processes_description": "Gestiona i supervisa els teus processos de votació",
   "voting_settings": "Configuració de la votació",
   "voting_status": "Estat de la votació",
-  "website": "Lloc web"
+  "wallet_not_connected": "Cartera no connectada",
+  "website": "Lloc web",
+  "year": "any"
 }
