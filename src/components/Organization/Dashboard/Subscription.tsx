@@ -32,7 +32,7 @@ export const usePortalSession = () => {
 const SubscriptionPageContent = () => {
   const { t } = useTranslation()
   const { subscription, loading } = useSubscription()
-  const { mutateAsync } = usePortalSession()
+  const { mutateAsync, isPending } = usePortalSession()
   const [showComparisonTable, setShowComparisonTable] = useState(false)
   const { view, selectedPlanId, showPlans } = useSubscriptionCheckout()
 
@@ -68,7 +68,7 @@ const SubscriptionPageContent = () => {
           </Text>
         </Flex>
         {!isFree && view === 'plans' && (
-          <Button onClick={() => handleChangeClick()}>
+          <Button onClick={() => handleChangeClick()} isLoading={isPending}>
             {t('billing_details', { defaultValue: 'Billing Details' })}
           </Button>
         )}
