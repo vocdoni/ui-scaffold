@@ -284,7 +284,7 @@ export const SubscriptionPlans = () => {
               <Tab>
                 <Trans i18nKey='annual'>
                   Annual
-                  <Tag colorScheme='green' ml={2} size='sm'>
+                  <Tag colorScheme='green' ml={2} size='sm' fontWeight='extrabold'>
                     Save 40%
                   </Tag>
                 </Trans>
