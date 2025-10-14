@@ -1,22 +1,23 @@
 import React, { ReactNode, useState } from 'react'
+import { SubscriptionCheckoutFormValues } from './Plans'
 import { CheckoutView, SubscriptionCheckoutProviderContext } from './use-subscription-checkout'
 
 export const SubscriptionCheckoutProvider: React.FC<{ children?: ReactNode }> = ({ children }) => {
   const [view, setView] = useState<CheckoutView>('plans')
-  const [selectedPlanId, setSelectedPlanId] = useState<number | null>(null)
+  const [checkout, setCheckout] = useState<SubscriptionCheckoutFormValues>()
 
-  const showCheckout = (planId: number) => {
-    setSelectedPlanId(planId)
+  const showCheckout = (checkout: SubscriptionCheckoutFormValues) => {
+    setCheckout(checkout)
     setView('checkout')
   }
 
   const showPlans = () => {
-    setSelectedPlanId(null)
+    setCheckout(undefined)
     setView('plans')
   }
 
   return (
-    <SubscriptionCheckoutProviderContext value={{ view, selectedPlanId, showCheckout, showPlans }}>
+    <SubscriptionCheckoutProviderContext value={{ view, checkout, showCheckout, showPlans }}>
       {children}
     </SubscriptionCheckoutProviderContext>
   )

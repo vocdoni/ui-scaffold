@@ -1,8 +1,8 @@
-import { Flex, Progress, SimpleGrid } from '@chakra-ui/react'
+import { Flex, Progress, SimpleGrid, Tab, TabList, Tabs, Tag } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { MutableRefObject, useMemo } from 'react'
+import { useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
   LuChartColumn,
   LuCircleCheckBig,
@@ -18,15 +18,15 @@ import { useSubscription } from '~components/Auth/Subscription'
 import { useAuth } from '~components/Auth/useAuth'
 import { PlanId } from '~constants'
 import { QueryKeys } from '~src/queries/keys'
-import { currency } from '~utils/numbers'
 import PricingCard from './Card'
 import { useSubscriptionCheckout } from './use-subscription-checkout'
 
 export type Plan = {
   id: number
   name: string
-  stripeId: string
-  startingPrice: number
+  stripeID: string
+  yearlyPrice: number
+  monthlyPrice: number
   default: boolean
   organization: {
     teamMembers: number
@@ -61,7 +61,8 @@ export type Plan = {
   }
 }
 
-type FormValues = {
+export type SubscriptionCheckoutFormValues = {
+  billingPeriod: 'month' | 'year'
   planId: number | null
 }
 
@@ -71,7 +72,7 @@ export const usePlans = () => {
     queryKey: QueryKeys.plans,
     queryFn: () => bearedFetch<Plan[]>(ApiEndpoints.Plans),
     // Sort by price
-    select: (data) => data.sort((a, b) => a.startingPrice - b.startingPrice),
+    select: (data) => data.sort((a, b) => a.yearlyPrice - b.yearlyPrice),
     // Cache for 20 minutes
     staleTime: 20 * 60 * 1000,
   })
@@ -236,18 +237,18 @@ export const SubscriptionPlans = () => {
   const translations = usePlanTranslations(plans)
   const { showCheckout } = useSubscriptionCheckout()
 
-  const methods = useForm<FormValues>({
+  const methods = useForm<SubscriptionCheckoutFormValues>({
     defaultValues: {
+      billingPeriod: 'year',
       planId: null,
     },
   })
 
   const { handleSubmit } = methods
+  const period = methods.watch('billingPeriod')
 
-  const onSubmit = (data: FormValues) => {
-    if (data.planId !== null) {
-      showCheckout(data.planId)
-    }
+  const onSubmit = (data: SubscriptionCheckoutFormValues) => {
+    showCheckout(data)
   }
 
   const cards = useMemo(() => {
@@ -258,19 +259,38 @@ export const SubscriptionPlans = () => {
         popular: plan.id === PlanId.Premium,
         title: translations[plan.id]?.title || plan.name,
         subtitle: translations[plan.id]?.subtitle || '',
-        price: currency(plan.startingPrice),
+        price: period === 'year' ? plan.yearlyPrice / 12 : plan.monthlyPrice,
         features: translations[plan.id]?.features || [],
         isCurrentPlan: subscription && plan.id === subscription?.plan.id,
-        isDisabled: false,
       }
     })
-  }, [plans, subscription, translations])
+  }, [plans, subscription, translations, period])
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Flex flexDir='column' gap={4}>
           {isLoading && <Progress isIndeterminate />}
+          <Tabs
+            variant='settings'
+            alignSelf='center'
+            onChange={(index) => methods.setValue('billingPeriod', index === 0 ? 'month' : 'year')}
+            defaultIndex={1}
+          >
+            <TabList>
+              <Tab>
+                <Trans i18nKey='monthly'>Monthly</Trans>
+              </Tab>
+              <Tab>
+                <Trans i18nKey='annual'>
+                  Annual
+                  <Tag colorScheme='green' ml={2} size='sm'>
+                    Save 40%
+                  </Tag>
+                </Trans>
+              </Tab>
+            </TabList>
+          </Tabs>
           <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} spacing={6}>
             {cards.map((card, idx) => (
               <PricingCard key={idx} plan={plans[idx]} {...card} />
