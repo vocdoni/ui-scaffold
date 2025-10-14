@@ -9,6 +9,7 @@ import {
   CardHeader,
   Divider,
   Flex,
+  Icon,
   ListIcon,
   ListItem,
   Text,
@@ -19,6 +20,7 @@ import gsap from 'gsap'
 import { useRef } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { LuCircleCheckBig } from 'react-icons/lu'
 import { Link as RouterLink } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import ContactButton from '~components/shared/ContactLink'
@@ -137,6 +139,16 @@ const PricingCard = ({
                 </Text>
               ))}
             <Divider />
+            {!isCustomPlan && price > 0 && plan.freeTrialDays > 0 && (
+              <Text fontWeight='extrabold' display='flex' flexDir='row' alignItems='center' mt={1}>
+                <Icon as={LuCircleCheckBig} mr={1} />
+                <Trans
+                  i18nKey='pricing_card.free_trial'
+                  defaults='{{ freeDays }}-day free trial'
+                  values={{ freeDays: plan.freeTrialDays }}
+                />
+              </Text>
+            )}
           </Box>
           {isCustomPlan ? (
             <Text fontSize='sm'>

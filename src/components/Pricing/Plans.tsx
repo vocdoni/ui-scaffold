@@ -28,6 +28,7 @@ export type Plan = {
   yearlyPrice: number
   monthlyPrice: number
   default: boolean
+  freeTrialDays: number
   organization: {
     teamMembers: number
     subOrgs: number
