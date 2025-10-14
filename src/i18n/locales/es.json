@@ -1280,6 +1280,7 @@
     "custom_plan": "Precio bajo consulta",
     "custom_plan_description": "¿Tienes requisitos de gobernanza especiales? Nos podemos adaptar a tus necesidades con una solución personalizada. Contáctanos.",
     "custom_plan_or": "o",
+    "free_trial": "{{ freeDays }} días gratis",
     "from": "<price>{{ price }}</price><time>/mes+IVA</time>",
     "most_popular_plan": "Más popular"
   },

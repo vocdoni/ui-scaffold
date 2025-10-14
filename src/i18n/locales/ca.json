@@ -1280,6 +1280,7 @@
     "custom_plan": "Preu sota consulta",
     "custom_plan_description": "Tens requisits de governança especials? Ens podem adaptar a les teves necessitats amb una solució personalitzada. Contacta'ns.",
     "custom_plan_or": "o",
+    "free_trial": "{{ freeDays }} dies gratuïts",
     "from": "<price>{{ price }}</price><time>/mes+IVA</time>",
     "most_popular_plan": "Recomanat"
   },
