@@ -32,6 +32,7 @@
       "ticanoia": "logo TIC Anoia"
     }
   },
+  "annual": "Anual<1>40% d'estalvi</1>",
   "apply": "Aplica",
   "aside": {
     "has_already_voted": "El teu vot s'ha registrat correctament",
@@ -1114,6 +1115,7 @@
     "wallet": "Cartera"
   },
   "month": "mes",
+  "monthly": "Mensual",
   "name": "Nom",
   "navbar": {
     "contact": "Contacta'ns",
@@ -1272,6 +1274,8 @@
     "yearly_processes_other": "{{ count }} processos anuals"
   },
   "pricing_card": {
+    "annual_savings": "Estalvia {{ savings }}/any amb l'anual",
+    "annual_total_cost": "{{ price }} facturats anualment",
     "contact_sales": "<0>Contacta amb els nostres comercials</0> <1>o</1>",
     "custom_plan": "Preu sota consulta",
     "custom_plan_description": "Tens requisits de governança especials? Ens podem adaptar a les teves necessitats amb una solució personalitzada. Contacta'ns.",

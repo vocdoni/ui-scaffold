@@ -32,6 +32,7 @@
       "ticanoia": "TIC Anoia logo"
     }
   },
+  "annual": "Annual<1>Save 40%</1>",
   "apply": "Apply",
   "aside": {
     "has_already_voted": "Your vote is properly cast",
@@ -1096,6 +1097,7 @@
     "wallet": "Wallet"
   },
   "month": "month",
+  "monthly": "Monthly",
   "name": "Name",
   "navbar": {
     "contact": "Contact Us",
@@ -1250,6 +1252,8 @@
     "yearly_processes_other": "{{ count }} votes per year¹"
   },
   "pricing_card": {
+    "annual_savings": "",
+    "annual_total_cost": "{{ price }} billed annually",
     "contact_sales": "<0>Contact our sales team</0> <1>or</1>",
     "custom_plan": "Price on request",
     "custom_plan_description": "Do you have special governance requirements? We can adapt to your needs with a fully customized solution. A dedicated account manager will support you throughout the entire collaboration.",
