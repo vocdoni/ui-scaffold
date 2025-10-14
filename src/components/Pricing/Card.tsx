@@ -21,15 +21,16 @@ import ContactButton from '~components/shared/ContactLink'
 import { BookerModalButton } from '~components/shared/Dashboard/Booker'
 import { PlanId } from '~constants'
 import { Routes } from '~routes'
+import { currency } from '~utils/numbers'
 import { usePlanTranslations, type Plan } from './Plans'
 
 type PricingCardProps = {
   popular: boolean
   title: string
   subtitle: string
-  price: string
+  price: number
   features: { icon: React.ElementType; text: string }[]
-  isDisabled: boolean
+  isDisabled?: boolean
   isCurrentPlan: boolean
   width?: string
   plan: Plan
@@ -47,7 +48,7 @@ const PricingCard = ({
 }: PricingCardProps) => {
   const { t } = useTranslation()
   const translations = usePlanTranslations()
-  const { setValue } = useFormContext()
+  const { setValue, watch } = useFormContext()
   const { isAuthenticated } = useAuth()
   const commonButtonProps: ButtonProps = {
     variant: isCurrentPlan ? 'outline' : 'solid',
@@ -58,6 +59,7 @@ const PricingCard = ({
   }
 
   const isCustomPlan = plan?.organization?.customPlan || plan.id === PlanId.Custom
+  const period = watch('billingPeriod', 'year')
 
   return (
     <Card variant={isCustomPlan ? 'custom-pricing-card' : 'pricing-card'}>
@@ -75,16 +77,38 @@ const PricingCard = ({
             ) : (
               <Trans
                 i18nKey='pricing_card.from'
-                values={{ price }}
+                values={{ price: currency(price) }}
                 components={{
                   price: <Text fontSize='3xl' fontWeight='extrabold' />,
                   time: <Text size='sm' color='texts.subtle' />,
                 }}
               >
-                {{ price }}/year
+                {{ price }}/month
               </Trans>
             )}
           </Flex>
+          <Box>
+            {!isCustomPlan &&
+              price > 0 &&
+              (period === 'month' ? (
+                <Text fontSize='sm' color='green' fontWeight='bold'>
+                  <Trans
+                    i18nKey='pricing_card.annual_savings'
+                    defaultValue='Save {{ savings }}/year with annual'
+                    values={{ savings: currency(plan.monthlyPrice * 12 - plan.yearlyPrice) }}
+                  />
+                </Text>
+              ) : (
+                <Text fontSize='sm' color='texts.subtle'>
+                  <Trans
+                    i18nKey='pricing_card.annual_total_cost'
+                    defaults='{{ price }}/year billed annually'
+                    values={{ price: currency(plan.yearlyPrice) }}
+                  />
+                </Text>
+              ))}
+            <Divider />
+          </Box>
           {isCustomPlan ? (
             <Text fontSize='sm'>
               <Trans i18nKey='pricing_card.custom_plan_description'>

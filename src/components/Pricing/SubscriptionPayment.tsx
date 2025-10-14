@@ -41,6 +41,7 @@ import { useSubscriptionCheckout } from './use-subscription-checkout'
 const stripePublicKey = import.meta.env.STRIPE_PUBLIC_KEY
 
 export type SubscriptionPaymentData = {
+  billingPeriod: 'month' | 'year'
   lookupKey: number
 }
 
@@ -182,7 +183,7 @@ const CheckoutForm = ({ onComplete, sessionId }: CheckoutFormProps) => {
   )
 }
 
-export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentProps) => {
+export const SubscriptionPayment = ({ lookupKey, billingPeriod, onClose }: SubscriptionPaymentProps) => {
   const { bearedFetch } = useAuth()
   const { signer } = useClient()
   const { t, i18n } = useTranslation()
@@ -216,6 +217,7 @@ export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentP
     if (signerAddress) {
       const body = {
         lookupKey,
+        billingPeriod,
         address: signerAddress,
         locale: i18n.resolvedLanguage,
       }

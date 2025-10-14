@@ -34,7 +34,7 @@ const SubscriptionPageContent = () => {
   const { subscription, loading } = useSubscription()
   const { mutateAsync, isPending } = usePortalSession()
   const [showComparisonTable, setShowComparisonTable] = useState(false)
-  const { view, selectedPlanId, showPlans } = useSubscriptionCheckout()
+  const { view, checkout, showPlans } = useSubscriptionCheckout()
 
   const handleChangeClick = () =>
     mutateAsync()
@@ -49,7 +49,7 @@ const SubscriptionPageContent = () => {
 
   const lastPaymentDate = parseISO(subscription?.subscriptionDetails.lastPaymentDate)
   const isFree =
-    subscription?.plan.startingPrice === 0 &&
+    subscription?.plan.yearlyPrice === 0 &&
     (!isValid(lastPaymentDate) || isBefore(lastPaymentDate, new Date('1971-01-01')))
 
   return (
@@ -59,7 +59,7 @@ const SubscriptionPageContent = () => {
           <Heading size='md'>{t('subscription_plan.title', { defaultValue: 'Subscription Plan' })}</Heading>
           <Text mb={6} color='texts.subtle' size='sm'>
             <Trans i18nKey='subscription_plan.subtitle'>
-              With our yearly subscriptions, you get more than a plan. You gain access to the most innovative governance
+              With our subscriptions, you get more than a plan. You gain access to the most innovative governance
               platform. Thanks to this model, we can offer the best price in the market: whether you need 1, 5, or 20
               votes per year, you'll always benefit from the most competitive costs and unmatched guarantees. The
               platform is fully self-service, yet our team is always available to provide assistance or tailor solutions
@@ -86,7 +86,7 @@ const SubscriptionPageContent = () => {
           {showComparisonTable && <ComparisonTable />}
         </>
       ) : (
-        <SubscriptionPayment lookupKey={selectedPlanId!} onClose={showPlans} />
+        <SubscriptionPayment lookupKey={checkout?.planId} billingPeriod={checkout?.billingPeriod} onClose={showPlans} />
       )}
       <Flex justifyContent='center' alignItems='center' flexDirection='column'>
         <Text fontSize='sm' color='texts.subtle' textAlign='center'>
