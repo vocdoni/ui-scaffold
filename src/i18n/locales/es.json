@@ -32,6 +32,7 @@
       "ticanoia": "Logotipo de TIC Anoia"
     }
   },
+  "annual": "Anual<1>40% de ahorro</1>",
   "apply": "Aplicar",
   "aside": {
     "has_already_voted": "Tu voto se ha emitido correctamente",
@@ -1114,6 +1115,7 @@
     "wallet": "Monedero"
   },
   "month": "month",
+  "monthly": "Mensual",
   "name": "Nombre",
   "navbar": {
     "contact": "Contáctanos",
@@ -1272,6 +1274,8 @@
     "yearly_processes_other": "{{ count }} procesos de votación anuales"
   },
   "pricing_card": {
+    "annual_savings": "Ahorra {{ savings }}/año con anual",
+    "annual_total_cost": "{{ price }} facturado anualmente",
     "contact_sales": "<0>Contacta con nuestros comerciales</0> <1>o</1>",
     "custom_plan": "Precio bajo consulta",
     "custom_plan_description": "¿Tienes requisitos de gobernanza especiales? Nos podemos adaptar a tus necesidades con una solución personalizada. Contáctanos.",

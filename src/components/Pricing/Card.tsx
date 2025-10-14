@@ -131,7 +131,7 @@ const PricingCard = ({
                 <Text fontSize='sm' color='texts.subtle'>
                   <Trans
                     i18nKey='pricing_card.annual_total_cost'
-                    defaults='{{ price }}/year billed annually'
+                    defaults='{{ price }} billed annually'
                     values={{ price: currency(plan.yearlyPrice) }}
                   />
                 </Text>
