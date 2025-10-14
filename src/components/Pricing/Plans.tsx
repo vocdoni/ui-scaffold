@@ -230,7 +230,7 @@ export const usePlanTranslations = (plans?: Plan[]) => {
   return translations
 }
 
-export const SubscriptionPlans = ({ featuresRef }: { featuresRef?: MutableRefObject<HTMLDivElement> }) => {
+export const SubscriptionPlans = () => {
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations(plans)
