@@ -13,6 +13,9 @@ import {
   Text,
   UnorderedList,
 } from '@chakra-ui/react'
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { useRef } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link as RouterLink } from 'react-router-dom'
@@ -23,6 +26,8 @@ import { PlanId } from '~constants'
 import { Routes } from '~routes'
 import { currency } from '~utils/numbers'
 import { usePlanTranslations, type Plan } from './Plans'
+
+gsap.registerPlugin(useGSAP)
 
 type PricingCardProps = {
   popular: boolean
@@ -50,6 +55,7 @@ const PricingCard = ({
   const translations = usePlanTranslations()
   const { setValue, watch } = useFormContext()
   const { isAuthenticated } = useAuth()
+  const container = useRef<HTMLDivElement>(null)
   const commonButtonProps: ButtonProps = {
     variant: isCurrentPlan ? 'outline' : 'solid',
     colorScheme: 'black',
@@ -61,8 +67,30 @@ const PricingCard = ({
   const isCustomPlan = plan?.organization?.customPlan || plan.id === PlanId.Custom
   const period = watch('billingPeriod', 'year')
 
+  useGSAP(
+    () => {
+      if (!isCustomPlan && price > 0) {
+        const priceElement = container.current?.querySelector('.pricing-card-price')
+
+        if (priceElement) {
+          const targetPrice = price
+          const obj = { val: period === 'month' ? plan.yearlyPrice / 12 : plan.monthlyPrice }
+
+          gsap.to(obj, {
+            val: targetPrice,
+            duration: 0.3,
+            onUpdate: () => {
+              priceElement.textContent = currency(Math.round(obj.val))
+            },
+          })
+        }
+      }
+    },
+    { scope: container, dependencies: [price, isCustomPlan] }
+  )
+
   return (
-    <Card variant={isCustomPlan ? 'custom-pricing-card' : 'pricing-card'}>
+    <Card ref={container} variant={isCustomPlan ? 'custom-pricing-card' : 'pricing-card'}>
       <CardHeader>
         <Text>{title}</Text>
         <Text color='texts.subtle'>{subtitle}</Text>
@@ -79,7 +107,7 @@ const PricingCard = ({
                 i18nKey='pricing_card.from'
                 values={{ price: currency(price) }}
                 components={{
-                  price: <Text fontSize='3xl' fontWeight='extrabold' />,
+                  price: <Text fontSize='3xl' fontWeight='extrabold' className='pricing-card-price' />,
                   time: <Text size='sm' color='texts.subtle' />,
                 }}
               >
