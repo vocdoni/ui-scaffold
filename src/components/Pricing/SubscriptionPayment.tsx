@@ -14,7 +14,13 @@ import {
   useColorMode,
   useToast,
 } from '@chakra-ui/react'
-import { BillingAddressElement, CheckoutProvider, PaymentElement, useCheckout } from '@stripe/react-stripe-js/checkout'
+import {
+  BillingAddressElement,
+  CheckoutProvider,
+  PaymentElement,
+  TaxIdElement,
+  useCheckout,
+} from '@stripe/react-stripe-js/checkout'
 import { loadStripe, Stripe, StripeCheckoutOptions } from '@stripe/stripe-js'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
@@ -147,6 +153,11 @@ const CheckoutForm = ({ onComplete, sessionId }: CheckoutFormProps) => {
         {/* Right Column: Payment Element + Submit */}
         <Flex as='section' flexDirection='column' gap={5}>
           <BillingAddressElement options={{ display: { name: 'split' } }} />
+          <TaxIdElement
+            options={{
+              visibility: 'auto',
+            }}
+          />
           <PaymentElement />
 
           {error && (
@@ -184,6 +195,7 @@ export const SubscriptionPayment = ({ lookupKey, onClose }: SubscriptionPaymentP
   const [stripePromise] = useState<Promise<Stripe | null>>(
     loadStripe(stripePublicKey, {
       locale: i18n.resolvedLanguage as any,
+      betas: ['custom_checkout_tax_id_1'],
     })
   )
   const [sessionId, setSessionId] = useState<string | null>(null)
