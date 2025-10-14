@@ -1,4 +1,5 @@
 import {
+  Badge,
   Box,
   Button,
   ButtonProps,
@@ -119,7 +120,7 @@ const PricingCard = ({
             {!isCustomPlan &&
               price > 0 &&
               (period === 'month' ? (
-                <Text fontSize='sm' color='green' fontWeight='bold'>
+                <Text fontSize='sm'>
                   <Trans
                     i18nKey='pricing_card.annual_savings'
                     defaultValue='Save {{ savings }}/year with annual'
@@ -202,22 +203,20 @@ const PricingCard = ({
         </Flex>
       </CardFooter>
       {popular && (
-        <Box
+        <Badge
           position='absolute'
           top={0}
           left='50%'
           transform='translate(-50%, -50%)'
-          fontSize='sm'
-          w='min-content'
-          whiteSpace='nowrap'
-          py={1}
+          py={0}
           px={3}
-          borderRadius='full'
+          size='xs'
           backgroundColor='card.pricing.featured.badge.bg'
           color='card.pricing.featured.badge.color'
+          fontWeight='extrabold'
         >
           <Trans i18nKey='pricing_card.most_popular_plan'>Most popular plan</Trans>
-        </Box>
+        </Badge>
       )}
     </Card>
   )
