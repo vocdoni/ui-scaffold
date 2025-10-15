@@ -1467,7 +1467,7 @@
   },
   "process_create": {
     "auto_start": "Start immediately",
-    "basic_configuration": "Basic Configuration",
+    "basic_configuration": "Basic configuration",
     "census": {
       "extra_methods": {
         "disable_description": "Do you want to disable extra census methods? This will hide the Spreadsheet and Web3 options and show only the Group method.",
@@ -1489,11 +1489,11 @@
         "label": "Web3"
       }
     },
-    "census_creation": "Census Creation",
+    "census_creation": "Census creation",
     "census_missing": "Census data is missing for Memberbase census type",
     "census_type_not_allowed": "Census type {{type}} not allowed",
     "end_datetime": "End date and time",
-    "extra_configuration": "Extra Configuration",
+    "extra_configuration": "Extra configuration",
     "group": {
       "select": "Select group"
     },
