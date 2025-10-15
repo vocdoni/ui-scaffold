@@ -10,6 +10,7 @@ import {
   Divider,
   Flex,
   Icon,
+  Link,
   ListIcon,
   ListItem,
   Text,
@@ -21,8 +22,7 @@ import { useRef } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCircleCheckBig } from 'react-icons/lu'
-import { Link as RouterLink } from 'react-router-dom'
-import { useAuth } from '~components/Auth/useAuth'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
 import ContactButton from '~components/shared/ContactLink'
 import { BookerModalButton } from '~components/shared/Dashboard/Booker'
 import { PlanId } from '~constants'
@@ -57,8 +57,8 @@ const PricingCard = ({
   const { t } = useTranslation()
   const translations = usePlanTranslations()
   const { setValue, watch } = useFormContext()
-  const { isAuthenticated } = useAuth()
   const container = useRef<HTMLDivElement>(null)
+  const { pathname } = useLocation()
   const commonButtonProps: ButtonProps = {
     variant: isCurrentPlan ? 'outline' : 'solid',
     colorScheme: 'black',
@@ -69,6 +69,7 @@ const PricingCard = ({
 
   const isCustomPlan = plan?.organization?.customPlan || plan.id === PlanId.Custom
   const period = watch('billingPeriod', 'year')
+  const isDashboard = pathname.startsWith(Routes.dashboard.base)
 
   useGSAP(
     () => {
@@ -139,7 +140,7 @@ const PricingCard = ({
                 </Text>
               ))}
             <Divider />
-            {!isCustomPlan && price > 0 && plan.freeTrialDays > 0 && (
+            {!isCustomPlan && price > 0 && plan.freeTrialDays > 0 && period === 'year' && (
               <Text fontWeight='extrabold' display='flex' flexDir='row' alignItems='center' mt={1}>
                 <Icon as={LuCircleCheckBig} mr={1} />
                 <Trans
@@ -169,14 +170,24 @@ const PricingCard = ({
           )}
         </Flex>
       </CardBody>
-      {!isCustomPlan && <Divider />}
+      {plan.id === PlanId.Premium && (
+        <Text size='xs' fontStyle='italic' textAlign='center'>
+          <Trans i18nKey='pricing_card.need_more_members'>
+            Need more members?{' '}
+            <Link to={Routes.dashboard.settings.support} as={RouterLink}>
+              Contact us
+            </Link>
+          </Trans>
+        </Text>
+      )}
+      {!isCustomPlan && isDashboard && <Divider />}
       <CardFooter>
         <Flex flexDirection='column' w='full' gap={2} alignItems='center' justifyContent='flex-end'>
           {isCustomPlan ? (
             <>
-              <Flex gap={1}>
+              <Flex gap={1} flexWrap='wrap' flexDir='column' w='full'>
                 <Trans i18nKey='pricing_card.contact_sales'>
-                  <ContactButton variant='link' fontWeight='extrabold'>
+                  <ContactButton variant='link' fontWeight='extrabold' whiteSpace='unset' textAlign='center'>
                     Contact our sales team
                   </ContactButton>
                   <Text as='span' fontSize='sm' color='texts.subtle' textAlign='center'>
@@ -193,24 +204,22 @@ const PricingCard = ({
                   : t('home.support.btn_watch', { defaultValue: 'Schedule a call' })}
               </BookerModalButton>
             </>
-          ) : isAuthenticated ? (
-            <Button
-              {...commonButtonProps}
-              onClick={() => setValue('planId', plan.id)}
-              type='submit'
-              aria-label={isCurrentPlan ? t('current_plan') : t('subscribe')}
-            >
-              {isCurrentPlan
-                ? t('current_plan', { defaultValue: 'Current Plan' })
-                : t('upgrade_plan', {
-                    defaultValue: 'Upgrade to {{plan}}',
-                    plan: translations[plan.id]?.title || plan.name,
-                  })}
-            </Button>
           ) : (
-            <Button {...commonButtonProps} w='full' as={RouterLink} to={Routes.auth.signIn}>
-              <Trans i18nKey='upgrade_plan' values={{ plan: translations[plan.id]?.title || plan.name }} />
-            </Button>
+            isDashboard && (
+              <Button
+                {...commonButtonProps}
+                onClick={() => setValue('planId', plan.id)}
+                type='submit'
+                aria-label={isCurrentPlan ? t('current_plan') : t('subscribe')}
+              >
+                {isCurrentPlan
+                  ? t('current_plan', { defaultValue: 'Current Plan' })
+                  : t('upgrade_plan', {
+                      defaultValue: 'Upgrade to {{plan}}',
+                      plan: translations[plan.id]?.title || plan.name,
+                    })}
+              </Button>
+            )
           )}
         </Flex>
       </CardFooter>
