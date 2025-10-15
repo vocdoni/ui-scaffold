@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { FaFingerprint } from 'react-icons/fa'
 import { MdDesignServices } from 'react-icons/md'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { Routes } from '~routes'
 import advFeature from '/assets/vocdoni.jpeg'
 
 const ContactUs = () => {
@@ -107,7 +108,7 @@ const ContactUs = () => {
             w={{ base: 'full', sm: 'fit-content', xl: 'full' }}
             mx='auto'
             as={ReactRouterLink}
-            to='mailto:info@vocdoni.org'
+            to={Routes.dashboard.settings.support}
             aria-label={t('home.contactus.btn')}
             colorScheme='black'
             title={t('home.contactus.btn')}

@@ -2,6 +2,7 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import { Routes } from '~routes'
 
 const Support = () => {
   const { t } = useTranslation()
@@ -85,7 +86,7 @@ const Support = () => {
         >
           <Button
             as={ReactRouterLink}
-            to='mailto:info@vocdoni.org'
+            to={Routes.dashboard.settings.support}
             variant='outline'
             colorScheme='black'
             aria-label={t('home.support.btn_contact')}

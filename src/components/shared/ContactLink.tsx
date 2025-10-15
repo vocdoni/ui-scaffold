@@ -1,7 +1,6 @@
 import { Button, ButtonProps } from '@chakra-ui/react'
 import { ReactNode } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useAuth } from '~components/Auth/useAuth'
+import { Link as RouterLink } from 'react-router-dom'
 import { Routes } from '~src/router/routes'
 
 export type ContactLinkProps = {
@@ -9,23 +8,10 @@ export type ContactLinkProps = {
   leftIcon?: ReactNode
 } & Omit<ButtonProps, 'onClick' | 'as'>
 
-const ContactButton = ({ children, leftIcon, ...buttonProps }: ContactLinkProps) => {
-  const { isAuthenticated } = useAuth()
-  const navigate = useNavigate()
-
-  const handleContact = () => {
-    if (isAuthenticated) {
-      navigate(Routes.dashboard.settings.support)
-    } else {
-      window.location.href = `mailto:${import.meta.env.VOCDONI_CONTACT_EMAIL}`
-    }
-  }
-
-  return (
-    <Button onClick={handleContact} leftIcon={leftIcon} {...buttonProps}>
-      {children}
-    </Button>
-  )
-}
+const ContactButton = ({ children, leftIcon, ...buttonProps }: ContactLinkProps) => (
+  <Button leftIcon={leftIcon} {...buttonProps} as={RouterLink} to={Routes.dashboard.settings.support}>
+    {children}
+  </Button>
+)
 
 export default ContactButton

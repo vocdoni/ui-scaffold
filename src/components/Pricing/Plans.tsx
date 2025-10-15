@@ -236,7 +236,7 @@ export const SubscriptionPlans = () => {
   const { subscription } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations(plans)
-  const { showCheckout } = useSubscriptionCheckout()
+  const scheckout = useSubscriptionCheckout()
 
   const methods = useForm<SubscriptionCheckoutFormValues>({
     defaultValues: {
@@ -249,7 +249,7 @@ export const SubscriptionPlans = () => {
   const period = methods.watch('billingPeriod')
 
   const onSubmit = (data: SubscriptionCheckoutFormValues) => {
-    showCheckout(data)
+    scheckout.showCheckout(data)
   }
 
   const cards = useMemo(() => {
