@@ -75,7 +75,9 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
     await login(data)
       .then(() => {
         trackPlausibleEvent({ name: AnalyticsEvent.UserLoggedIn })
-        navigate(Routes.dashboard.base)
+        const redirect = localStorage.getItem('redirectTo')
+        localStorage.removeItem('redirectTo')
+        navigate(redirect || Routes.dashboard.base)
       })
       .catch(async (e) => {
         if (e instanceof UnverifiedApiError && email) {
