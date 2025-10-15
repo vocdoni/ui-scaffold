@@ -1114,7 +1114,7 @@
     "terms": "Términos",
     "wallet": "Monedero"
   },
-  "month": "month",
+  "month": "mes",
   "monthly": "Mensual",
   "name": "Nombre",
   "navbar": {
@@ -1282,7 +1282,8 @@
     "custom_plan_or": "o",
     "free_trial": "{{ freeDays }} días gratis",
     "from": "<price>{{ price }}</price><time>/mes+IVA</time>",
-    "most_popular_plan": "Más popular"
+    "most_popular_plan": "Más popular",
+    "need_more_members": "¿Necesitas más miembros? <2>Contáctanos</2>"
   },
   "privacy_policy": "Política de privacidad",
   "privacyPolicy": {
@@ -1973,5 +1974,5 @@
   "voting_status": "Estado de la votación",
   "wallet_not_connected": "Cartera no conectada",
   "website": "Sitio web",
-  "year": "year"
+  "year": "año"
 }

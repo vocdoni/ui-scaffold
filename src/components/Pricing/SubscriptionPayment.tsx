@@ -1,19 +1,4 @@
-import {
-  Alert,
-  AlertDescription,
-  Box,
-  Button,
-  Flex,
-  Grid,
-  IconButton,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalOverlay,
-  useColorMode,
-  useToast,
-} from '@chakra-ui/react'
+import { Alert, AlertDescription, Box, Button, Flex, Grid, IconButton, useColorMode, useToast } from '@chakra-ui/react'
 import {
   BillingAddressElement,
   CheckoutProvider,
@@ -43,11 +28,6 @@ const stripePublicKey = import.meta.env.STRIPE_PUBLIC_KEY
 export type SubscriptionPaymentData = {
   billingPeriod: 'month' | 'year'
   lookupKey: number
-}
-
-type ModalProps = {
-  isOpen: boolean
-  onClose: () => void
 }
 
 type CheckoutResponse = {
@@ -90,18 +70,29 @@ const CheckoutForm = ({ onComplete, sessionId }: CheckoutFormProps) => {
     setIsSubmitting(true)
     setError(null)
 
-    const result = await checkoutState.checkout.confirm({
-      returnUrl: sessionId
-        ? `${window.location.origin}${window.location.pathname}?session_id=${sessionId}`
-        : window.location.href,
-    })
-
-    if (result.type === 'error') {
-      setError(result.error.message)
+    try {
+      const result = await checkoutState.checkout.confirm({
+        redirect: 'if_required',
+        // Ensure we return to the same locale after the checkout process
+        returnUrl: (() => {
+          const url = new URL(window.location.href)
+          if (sessionId) {
+            url.searchParams.set('session_id', sessionId)
+          }
+          url.hash = '' // Remove hash if present, to match original behavior
+          return url.toString()
+        })(),
+      })
+      if (result.type === 'error') {
+        setError(result.error.message)
+        setIsSubmitting(false)
+      } else {
+        // Payment successful, trigger completion callback
+        await onComplete()
+      }
+    } catch (err: any) {
+      setError(err.message)
       setIsSubmitting(false)
-    } else {
-      // Payment successful, trigger completion callback
-      await onComplete()
     }
   }
 
@@ -284,15 +275,3 @@ export const SubscriptionPayment = ({ lookupKey, billingPeriod, onClose }: Subsc
     </Box>
   )
 }
-
-export const SubscriptionPaymentModal = ({ isOpen, onClose, ...props }: ModalProps & SubscriptionPaymentData) => (
-  <Modal isOpen={isOpen} onClose={onClose} variant='payment-modal' size='full'>
-    <ModalOverlay />
-    <ModalContent>
-      <ModalCloseButton />
-      <ModalBody>
-        <SubscriptionPayment {...props} onClose={onClose} />
-      </ModalBody>
-    </ModalContent>
-  </Modal>
-)

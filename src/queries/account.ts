@@ -13,6 +13,15 @@ export interface Organization {
   timezone: string
   active: boolean
   parent?: any
+  subscription?: Subscription
+}
+
+export interface Subscription {
+  planId: number
+  startDate: string
+  renewalDate: string
+  lastPaymentDate: string
+  active: boolean
 }
 
 export interface UserRole {

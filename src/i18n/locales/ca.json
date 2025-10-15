@@ -1282,7 +1282,8 @@
     "custom_plan_or": "o",
     "free_trial": "{{ freeDays }} dies gratuïts",
     "from": "<price>{{ price }}</price><time>/mes+IVA</time>",
-    "most_popular_plan": "Recomanat"
+    "most_popular_plan": "Recomanat",
+    "need_more_members": "Necessites més membres? <2>Contacta'ns</2>"
   },
   "privacy_policy": "Política de Privacitat",
   "privacyPolicy": {
