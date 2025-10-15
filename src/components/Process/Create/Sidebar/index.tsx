@@ -13,8 +13,10 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useLocalStorage } from '@uidotdev/usehooks'
+import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuSettings, LuX } from 'react-icons/lu'
+import { CensusTypes } from '~components/Process/Census/CensusType'
 import {
   Sidebar,
   SidebarContents,
@@ -22,6 +24,7 @@ import {
   SidebarSubtitle,
   SidebarTitle,
 } from '~components/shared/Dashboard/Contents'
+import { Process } from '../common'
 import { BasicConfig } from './BasicConfig'
 import CensusCreation from './CensusCreation'
 import { ExtraConfig } from './ExtraConfig'
@@ -35,8 +38,13 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
   const isMobile = useBreakpointValue({ base: true, md: false })
   const [showExtraCensusMethods, setShowExtraCensusMethods] = useLocalStorage('showExtraCensusMethods', false)
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { setValue } = useFormContext<Process>()
 
   const handleToggleExtraMethods = () => {
+    if (showExtraCensusMethods) {
+      // make sure we switch back to Group census if we are disabling extra methods
+      setValue('censusType', CensusTypes.CSP)
+    }
     setShowExtraCensusMethods(!showExtraCensusMethods)
     onClose()
   }
