@@ -18,8 +18,7 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
   const billingInterval = checkout.recurring.interval || 'month'
   const billingPeriod =
     billingInterval === 'month' ? t('month', { defaultValue: 'month' }) : t('year', { defaultValue: 'year' })
-
-  const taxPercent = (dueNext.taxExclusive.minorUnitsAmount / dueNext.subtotal.minorUnitsAmount) * 100
+  const taxPercent = ((dueNext.taxExclusive.minorUnitsAmount / dueNext.subtotal.minorUnitsAmount) * 100).toPrecision(2)
 
   return (
     <Box borderWidth={1} borderRadius='md' p={6} bg='card.bg'>

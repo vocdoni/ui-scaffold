@@ -26,6 +26,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom'
 import ContactButton from '~components/shared/ContactLink'
 import { BookerModalButton } from '~components/shared/Dashboard/Booker'
 import { PlanId } from '~constants'
+import { useProfile } from '~queries/account'
 import { Routes } from '~routes'
 import { currency } from '~utils/numbers'
 import { usePlanTranslations, type Plan } from './Plans'
@@ -57,6 +58,7 @@ const PricingCard = ({
   const { t } = useTranslation()
   const translations = usePlanTranslations()
   const { setValue, watch } = useFormContext()
+  const { data: me } = useProfile()
   const container = useRef<HTMLDivElement>(null)
   const { pathname } = useLocation()
   const commonButtonProps: ButtonProps = {
@@ -70,6 +72,9 @@ const PricingCard = ({
   const isCustomPlan = plan?.organization?.customPlan || plan.id === PlanId.Custom
   const period = watch('billingPeriod', 'year')
   const isDashboard = pathname.startsWith(Routes.dashboard.base)
+  const hadSubscribed =
+    typeof me?.organizations.find(({ organization }) => organization.subscription?.planId !== PlanId.Free) !==
+    'undefined'
 
   useGSAP(
     () => {
@@ -90,7 +95,7 @@ const PricingCard = ({
         }
       }
     },
-    { scope: container, dependencies: [price, isCustomPlan] }
+    { scope: container, dependencies: [price, isCustomPlan, period, plan.monthlyPrice, plan.yearlyPrice] }
   )
 
   return (
@@ -140,7 +145,7 @@ const PricingCard = ({
                 </Text>
               ))}
             <Divider />
-            {!isCustomPlan && price > 0 && plan.freeTrialDays > 0 && period === 'year' && (
+            {!isCustomPlan && plan.freeTrialDays > 0 && !hadSubscribed && period === 'year' && (
               <Text fontWeight='extrabold' display='flex' flexDir='row' alignItems='center' mt={1}>
                 <Icon as={LuCircleCheckBig} mr={1} />
                 <Trans
