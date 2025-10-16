@@ -50,6 +50,10 @@ export enum PlanId {
   Custom = 4,
 }
 
+export const LocalStorageKeys = {
+  DashboardMenuReduced: 'dashboard.menu.reduced',
+} as const
+
 export const AppTitle = import.meta.env.title
 export const VocdoniEnvironment = import.meta.env.VOCDONI_ENVIRONMENT
 export const CensusPreviewRowsLimit = 10
