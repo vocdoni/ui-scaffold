@@ -27,15 +27,15 @@ const Footer = () => {
         </Box>
         <Flex
           flex='1 1 67%'
-          flexDirection={{ base: 'column', sm2: 'row' }}
-          justifyContent={{ sm2: 'space-between', lg: 'space-between' }}
-          gap={{ base: '30px', sm2: 0 }}
+          flexDirection={{ base: 'column', sm: 'row' }}
+          justifyContent={{ sm: 'space-between', lg: 'space-between' }}
+          gap={{ base: '30px', sm: 0 }}
           mt={1}
           ml={{ xl: 10 }}
           w='full'
         >
           <Flex
-            flexDirection={{ base: 'column', sm2: 'row' }}
+            flexDirection={{ base: 'column', sm: 'row' }}
             justifyContent='space-between'
             gap={{ base: '0px', xl: '90px' }}
             w='full'

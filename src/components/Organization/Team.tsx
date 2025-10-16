@@ -671,8 +671,8 @@ const UsersEmpty = () => {
   const { t } = useTranslation()
 
   return (
-    <Flex alignItems='center' direction='column' p={10} gap={6}>
-      <Flex alignItems='center' direction='column'>
+    <Flex alignItems='center' p={10} gap={6}>
+      <Flex alignItems='center'>
         <Icon as={LuUserPlus} boxSize={20} color='texts.subtle' />
         <Text fontSize='lg' fontWeight='bold'>
           {t('team.only_one_member.title', { defaultValue: "You're the only team member of this organization" })}

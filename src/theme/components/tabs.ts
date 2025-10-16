@@ -82,6 +82,8 @@ const settings = definePartsStyle({
     bgColor: 'tabs.bg',
     borderRadius: 'sm',
     w: 'fit-content',
+    maxWidth: 'full',
+    overflowX: 'auto',
   },
   tab: {
     py: 1.5,

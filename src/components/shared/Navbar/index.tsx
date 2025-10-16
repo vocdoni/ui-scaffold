@@ -90,7 +90,7 @@ const DesktopNav = ({ display }: { display?: any }) => {
 
 const Mobile = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { logout } = useAuth()
+  const { logout, isAuthenticated } = useAuth()
   const { t } = useTranslation()
   const isBreakpointSize = useBreakpointValue({
     base: false,
@@ -132,15 +132,26 @@ const Mobile = () => {
                 <ColorModeSwitcherDetailed />
               </ListItem>
               <Divider />
-              <ListItem>
-                <Button variant='unstyled' onClick={logout} display='flex' alignItems='center' gap={2} h='fit-content'>
-                  <Icon as={LuLogOut} />
-                  <Text as={'span'} fontWeight={'semibold'}>
-                    <Trans i18nKey='logout'>Logout</Trans>
-                  </Text>
-                </Button>
-              </ListItem>
-              <Divider />
+              {isAuthenticated && (
+                <>
+                  <ListItem>
+                    <Button
+                      variant='unstyled'
+                      onClick={logout}
+                      display='flex'
+                      alignItems='center'
+                      gap={2}
+                      h='fit-content'
+                    >
+                      <Icon as={LuLogOut} />
+                      <Text as={'span'} fontWeight={'semibold'}>
+                        <Trans i18nKey='logout'>Logout</Trans>
+                      </Text>
+                    </Button>
+                  </ListItem>
+                  <Divider />
+                </>
+              )}
               <ListItem>
                 <Text fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.terms}>
                   <Trans i18nKey='menu.terms'>Terms</Trans>
