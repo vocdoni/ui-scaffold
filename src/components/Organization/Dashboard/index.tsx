@@ -27,22 +27,22 @@ import { LuArrowUpRight, LuCheck, LuPlus, LuUsers, LuVote, LuX } from 'react-ico
 import ReactPlayer from 'react-player'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
-import { usePlanTranslations } from '~components/Pricing/Plans'
+import { PlanId } from '~constants'
 import { Routes } from '~routes'
 import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
 import { DashboardBox, Heading, SubHeading } from '~shared/Dashboard/Contents'
 import InvertedAccordionIcon from '~shared/Layout/InvertedAccordionIcon'
 import { useProfile } from '~src/queries/account'
-import { CheckboxTypes, paginatedElectionsQuery, useOrganizationSetup, useTutorials } from '~src/queries/organization'
+import { CheckboxTypes, paginatedElectionsQuery, useOrganizationSetup } from '~src/queries/organization'
 
 const OrganizationDashboard = () => {
   const { t } = useTranslation()
 
   return (
     <>
-      <Heading>{t('dashboard_empty_processes.title', { defaultValue: 'Welcome to Vocdoni Coop' })}</Heading>
+      <Heading>{t('dashboard.welcome.title', { defaultValue: 'Dashboard' })}</Heading>
       <SubHeading>
-        {t('dashboard_empty_processes.subtitle', {
+        {t('dashboard.welcome.subtitle', {
           defaultValue: "Here's an overview of your organization's voting activities",
         })}
       </SubHeading>
@@ -56,58 +56,46 @@ const OrganizationDashboard = () => {
 const Tutorial = () => {
   const { t } = useTranslation()
   const { data: profile, isLoading } = useProfile()
-  const translations = usePlanTranslations()
   const { subscription, loading } = useSubscription()
-  const { isDashboardTutorialClosed, isLoading: isDashboardTutorialLoading, closeDashboardTutorial } = useTutorials()
-  const plan = subscription ? translations[subscription.plan.id] : undefined
-
-  if (isDashboardTutorialLoading) return <Progress isIndeterminate />
-
-  if (isDashboardTutorialClosed) return null
 
   return (
     <DashboardBox p={6} mb={12} display='flex' gap={10} position='relative' flexDirection='row'>
-      <IconButton
-        aria-label={t('common.close', { defaultValue: 'Close' })}
-        icon={<Icon as={LuX} />}
-        size='sm'
-        variant='ghost'
-        colorScheme='white'
-        position='absolute'
-        top={2}
-        right={2}
-        onClick={closeDashboardTutorial}
-      />
       <Box flex='1 1 60%'>
-        <Text fontWeight='bold' mb={2} fontSize='2xl'>
-          <Trans
-            i18nKey='dashboard_empty_processes.hello'
-            defaultValue='👋 Hello {{name}}!'
-            values={{ name: profile?.firstName }}
-          />
+        <Text fontWeight='bold' mb={2} size='2xl'>
+          {t('dashboard.welcome.hello', {
+            name: profile?.firstName,
+            defaultValue: 'Welcome to Vocdoni, {{name}}!',
+          })}
         </Text>
         {loading || isLoading ? (
           <Progress isIndeterminate mb={4} />
         ) : !subscription ? (
           <Text color='gray.500' mb={4}>
-            {t('dashboard_empty_processes.no_subscription', {
+            {t('dashboard.welcome.no_subscription', {
               defaultValue: 'No subscription available. Please create an organization to activate your plan.',
             })}
           </Text>
         ) : (
-          <Text color='gray.500' mb={4}>
-            <Trans
-              i18nKey='plan.details'
-              values={{ title: plan.title, subtitle: plan.subtitle }}
-              defaultValue="You're currently on the {{ title }} plan, {{ subtitle }}"
-            />
-          </Text>
+          subscription &&
+          subscription.plan.id === PlanId.Free && (
+            <Text color='gray.500' mb={4}>
+              <Trans i18nKey='plan.free'>
+                <strong>You're on the Free Plan</strong>, which already lets you launch votes. If you need more
+                features, higher limits or specific options, explore the paid plans and try them for free.
+              </Trans>
+            </Text>
+          )
         )}
         <Text color='gray.500' mb={4}>
           <Trans i18nKey='plan.encouragement'>
-            So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance
-            can be! But if you need help, just schedule a call with our experts!
+            Launching a vote is simple, and participants can join from anywhere. Strong guarantees at a lower cost have
+            made Vocdoni a trusted choice for hundreds of municipalities, associations, political parties and companies.
           </Trans>
+        </Text>
+        <Text color='gray.500' mb={4}>
+          {t('plan.special_needs', {
+            defaultValue: 'Need help or something specific? Schedule a call.',
+          })}
         </Text>
         <Flex gap={3} flexDirection={{ base: 'column', sm: 'row' }}>
           <Button
@@ -123,7 +111,7 @@ const Tutorial = () => {
       </Box>
       <Flex display={{ base: 'none', lg: 'flex' }} flex='1 1 33%' flexDirection='column'>
         <Text size='lg' fontWeight='bold' textAlign='center' mb={2}>
-          {t('dashboard_empty_processes.how_first_vote', {
+          {t('dashboard.welcome.how_first_vote', {
             defaultValue: 'How to create your first vote',
           })}
         </Text>
@@ -262,10 +250,10 @@ const OrganizationProcesses = () => {
       <DashboardBox p={6} minH='324px' flex='1 1 66%' display='flex' flexWrap='unset'>
         <Box mb={4}>
           <Text fontWeight='bold' mb={1.5} fontSize='2xl'>
-            {t('dashboard_empty_processes.recent_voting_title', { defaultValue: 'Recent Voting Processes' })}
+            {t('dashboard.welcome.recent_voting_title', { defaultValue: 'Recent Voting Processes' })}
           </Text>
           <Text color='gray.500' fontSize='sm'>
-            {t('dashboard_empty_processes.recent_voting_description', {
+            {t('dashboard.welcome.recent_voting_description', {
               defaultValue: "Your organization's latest voting activities",
             })}
           </Text>
@@ -304,7 +292,7 @@ const Processes = () => {
     return (
       <Flex flexGrow={1} flexDir='column' justify='center' align='center' gap={4}>
         <Text color='texts.subtle'>
-          {t('dashboard_empty_processes.error_loading_processes', {
+          {t('dashboard.welcome.error_loading_processes', {
             defaultValue: 'Error loading voting processes',
           })}
         </Text>
@@ -316,7 +304,7 @@ const Processes = () => {
     return (
       <Flex flexGrow={1} flexDir='column' justify='center' align='center' gap={4}>
         <Text color='texts.subtle'>
-          {t('dashboard_empty_processes.no_organization', { defaultValue: 'No organization found' })}
+          {t('dashboard.welcome.no_organization', { defaultValue: 'No organization found' })}
         </Text>
         <Button
           as={ReactRouterLink}
@@ -324,7 +312,7 @@ const Processes = () => {
           colorScheme='gray'
           variant='outline'
         >
-          {t('dashboard_empty_processes.create_first_organization', {
+          {t('dashboard.welcome.create_first_organization', {
             defaultValue: 'Create your first organization',
           })}
         </Button>
@@ -336,12 +324,12 @@ const Processes = () => {
     return (
       <Flex flexGrow={1} flexDir='column' justify='center' align='center' gap={4}>
         <Text color='gray.500'>
-          {t('dashboard_empty_processes.empty', {
+          {t('dashboard.welcome.empty', {
             defaultValue: 'No voting processes found',
           })}
         </Text>
         <Button as={ReactRouterLink} to={generatePath(Routes.processes.create)} colorScheme='gray' variant='outline'>
-          {t('dashboard_empty_processes.create_first_vote', {
+          {t('dashboard.welcome.create_first_vote', {
             defaultValue: 'Create your first vote',
           })}
         </Button>
@@ -415,12 +403,12 @@ const QuickActions = () => {
   return (
     <DashboardBox p={6} flex='1 1 33%' justifyContent='normal' gap={0}>
       <Text fontWeight='bold' mb={1.5} size='2xl'>
-        {t('dashboard_empty_processes.quick_actions', {
+        {t('dashboard.welcome.quick_actions', {
           defaultValue: 'Quick Actions',
         })}
       </Text>
       <Text color='gray.500' size='sm' mb={6}>
-        {t('dashboard_empty_processes.common_tasks_actions', {
+        {t('dashboard.welcome.common_tasks_actions', {
           defaultValue: 'Common tasks and actions',
         })}
       </Text>

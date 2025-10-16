@@ -23,8 +23,7 @@ const sizes = {
   }),
   '2xl': defineStyle({
     fontSize: '24px',
-    lineHeight: '24px',
-    letterSpacing: '-0.6%',
+    lineHeight: 1.3,
   }),
 }
 

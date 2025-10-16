@@ -230,24 +230,23 @@
     "process_view": {
       "date_format": "MMMM do, y",
       "time_format": "p"
+    },
+    "welcome": {
+      "common_tasks_actions": "Tareas y acciones comunes",
+      "create_first_organization": "Crea tu primera organización",
+      "create_first_vote": "Crea tu primera votación",
+      "empty": "No se han encontrado procesos de votación",
+      "error_loading_processes": "Error al cargar los procesos de votación",
+      "hello": "¡Bienvenido a Vocdoni, {{ name }}!",
+      "how_first_vote": "Cómo crear tu primera votación",
+      "no_organization": "No se ha encontrado ninguna organización",
+      "no_subscription": "No hay ninguna suscripción disponible. Crea una organización para activar tu plan.",
+      "quick_actions": "Acciones rápidas",
+      "recent_voting_description": "Los procesos de votación más recientes de tu organización",
+      "recent_voting_title": "Procesos de votación recientes",
+      "subtitle": "Aquí tienes una visión general de los procesos de votación de tu organización",
+      "title": "Panel"
     }
-  },
-  "dashboard_empty_processes": {
-    "common_tasks_actions": "Tareas y acciones comunes",
-    "create_first_organization": "Crea tu primera organización",
-    "create_first_vote": "Crea tu primera votación",
-    "empty": "No se han encontrado procesos de votación",
-    "error_loading_processes": "Error al cargar los procesos de votación",
-    "hello": "👋 ¡Hola {{name}}!",
-    "hello_description": "",
-    "how_first_vote": "Cómo crear tu primera votación",
-    "no_organization": "No se ha encontrado ninguna organización",
-    "no_subscription": "No hay ninguna suscripción disponible. Crea una organización para activar tu plan.",
-    "quick_actions": "Acciones rápidas",
-    "recent_voting_description": "Los procesos de votación más recientes de tu organización",
-    "recent_voting_title": "Procesos de votación recientes",
-    "subtitle": "Aquí tienes una visión general de los procesos de votación de tu organización",
-    "title": "Aquí tienes una visión general de los procesos de votación de tu organización"
   },
   "delete": {
     "cancel_button": "Cancelar",
@@ -1228,8 +1227,9 @@
   "passwords_do_not_match": "Las contraseñas no coinciden",
   "pause_vote": "Pausar votación",
   "plan": {
-    "details": "Actualmente estás en el plan {{ title }}, {{ subtitle }}",
-    "encouragement": "Así que adelante: explora la plataforma, crea tu primera votación y comprueba lo fácil que puede ser la gobernanza digital segura. Y si necesitas ayuda, simplemente programa una llamada con nuestros expertos."
+    "encouragement": "Lanzar una votación es sencillo, y los participantes pueden unirse desde cualquier lugar. Las sólidas garantías a un menor coste han convertido a Vocdoni en una opción de confianza para cientos de ayuntamientos, asociaciones, partidos políticos y empresas.",
+    "free": "<0>Estás en el Plan Gratuito</0>, que ya te permite lanzar votaciones. Si necesitas más funcionalidades, límites más altos u opciones específicas, explora los planes de pago y pruébalos gratis.",
+    "special_needs": "¿Necesitas ayuda o algo específico? Programa una llamada."
   },
   "plan_upgrade": {
     "cancel": "Cancelar",
@@ -1261,7 +1261,7 @@
     "essential_title": "Básico",
     "free_subtitle": "Para organizaciones pequeñas o grupos comunitarios de hasta 50 miembros.",
     "free_title": "Gratuito",
-    "premium_subtitle": "Grandes organizaciones, empresas e instituciones que requieran una amplia personalización y soporte.",
+    "premium_subtitle": "grandes organizaciones, empresas e instituciones que requieran una amplia personalización y soporte.",
     "premium_title": "Profesional",
     "priority_support": "Soporte prioritario por correo electrónico (24h)",
     "ticket_support_48": "Soporte por correo electrónico (48h)",
