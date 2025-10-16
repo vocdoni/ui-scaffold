@@ -331,7 +331,7 @@ const TemplateButtons = () => {
       <Text fontSize='sm' color='texts.subtle'>
         {t('process.create.template.title', { defaultValue: 'Get started with a template...' })}
       </Text>
-      <HStack spacing={2}>
+      <HStack spacing={2} flexWrap='wrap'>
         <Button
           variant='outline'
           size='sm'

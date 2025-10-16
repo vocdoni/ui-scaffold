@@ -74,6 +74,7 @@ export const MemberbaseTabs = () => {
           const item = menuItems[index]
           navigate(item.route)
         }}
+        isLazy
       >
         <TabList mb={6}>
           {menuItems.map((item, index) => (

@@ -9,7 +9,7 @@ const OrganizationTeam = () => {
   const { t } = useTranslation()
   return (
     <DashboardBox p={6}>
-      <Flex>
+      <Flex direction={{ base: 'column', md: 'row' }} gap={4}>
         <Flex flex={1} direction='column'>
           <Heading size='md'>{t('organization_settings.team.title', { defaultValue: 'Team Members' })}</Heading>
           <Text color='texts.subtle' size='sm'>

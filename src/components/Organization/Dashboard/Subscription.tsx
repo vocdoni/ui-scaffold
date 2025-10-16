@@ -38,7 +38,7 @@ const SubscriptionPageContent = () => {
 
   return (
     <DashboardBox p={6}>
-      <Flex>
+      <Flex direction={{ base: 'column', md: 'row' }}>
         <Flex flex={1} direction='column'>
           <Heading size='md'>{t('subscription_plan.title', { defaultValue: 'Subscription Plan' })}</Heading>
           <Text mb={6} color='texts.subtle' size='sm'>

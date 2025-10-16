@@ -296,7 +296,7 @@ const MemberFilters = ({ onDelete }: MemberFiltersProps) => {
   }
 
   return (
-    <Flex gap={2}>
+    <Flex gap={2} flexDir={{ base: 'column', md: 'row' }}>
       <InputGroup maxW='300px' as='form' onSubmit={handleSubmit}>
         <Input
           placeholder={t('members.table.search', { defaultValue: 'Search members...' })}
@@ -319,7 +319,7 @@ const MemberFilters = ({ onDelete }: MemberFiltersProps) => {
   )
 }
 
-const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
+const CreateGroupButton = ({ children, members, ...rest }: CreateGroupButtonProps) => {
   const { t } = useTranslation()
   const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure({ defaultIsOpen: false })
@@ -372,7 +372,7 @@ const CreateGroupButton = ({ children, members }: CreateGroupButtonProps) => {
 
   return (
     <>
-      <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray' onClick={onOpen}>
+      <Button leftIcon={<Icon as={LuUsers} />} variant='outline' colorScheme='gray' onClick={onOpen} {...rest}>
         {children}
       </Button>
       <Drawer isOpen={isOpen} placement='right' onClose={onClose} size='sm'>
@@ -469,7 +469,13 @@ const MemberBulkActions = ({ onDelete, onAddToGroup }: MemberBulkActionsProps) =
   const { selectedRows } = useTable()
 
   return (
-    <Flex gap={4} align='center' minH='42px'>
+    <Flex
+      gap={4}
+      align='center'
+      minH='42px'
+      flexDir={{ base: 'column', md: 'row' }}
+      alignItems={{ base: 'stretch', md: 'center' }}
+    >
       {selectedRows.length > 0 ? (
         <>
           <Text fontSize='sm' color='texts.subtle'>
@@ -687,7 +693,7 @@ const MembersTable = () => {
     <>
       <ImportProgress />
       <Box border='1px' borderRadius='sm' borderColor='table.border'>
-        <Flex direction={{ base: 'column', xl: 'row' }} px={4} pt={4}>
+        <Flex direction={{ base: 'column', lg: 'row' }} p={4} gap={2}>
           <Flex direction='column' flex={1} gap={2}>
             <MemberFilters onDelete={openDeleteAll} />
             <MemberBulkActions onDelete={openDeleteSelected} onAddToGroup={openAddToGroup} />
