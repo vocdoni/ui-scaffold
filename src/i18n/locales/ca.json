@@ -230,24 +230,23 @@
     "process_view": {
       "date_format": "d 'de' MMMM, y",
       "time_format": "p"
+    },
+    "welcome": {
+      "common_tasks_actions": "Tasques i accions comunes",
+      "create_first_organization": "Crea la teva primera organització",
+      "create_first_vote": "Crea la teva primera votació",
+      "empty": "No s'ha trobat cap procés de votació",
+      "error_loading_processes": "Error en carregar els processos de votació",
+      "hello": "Benvingut a Vocdoni, {{name}}!",
+      "how_first_vote": "Com crear la teva primera votació",
+      "no_organization": "No s'ha trobat cap organització",
+      "no_subscription": "No hi ha cap subscripció disponible. Crea una organització per activar el teu pla.",
+      "quick_actions": "Accions ràpides",
+      "recent_voting_description": "Les darreres activitats de votació de la teva organització",
+      "recent_voting_title": "Processos de votació recents",
+      "subtitle": "Aquí tens una visió general de les activitats de votació de la teva organització",
+      "title": "Tauler de control"
     }
-  },
-  "dashboard_empty_processes": {
-    "common_tasks_actions": "Tasques i accions comunes",
-    "create_first_organization": "Crea la teva primera organització",
-    "create_first_vote": "Crea la teva primera votació",
-    "empty": "No s'ha trobat cap procés de votació",
-    "error_loading_processes": "Error en carregar els processos de votació",
-    "hello": "👋 Hola {{name}}!",
-    "hello_description": "",
-    "how_first_vote": "Com crear la teva primera votació",
-    "no_organization": "No s'ha trobat cap organització",
-    "no_subscription": "No hi ha cap subscripció disponible. Crea una organització per activar el teu pla.",
-    "quick_actions": "Accions ràpides",
-    "recent_voting_description": "Les darreres activitats de votació de la teva organització",
-    "recent_voting_title": "Processos de votació recents",
-    "subtitle": "Aquí tens una visió general de les activitats de votació de la teva organització",
-    "title": "Aquí tens una visió general de les activitats de votació de la teva organització"
   },
   "delete": {
     "cancel_button": "Cancel·la",
@@ -1228,8 +1227,9 @@
   "passwords_do_not_match": "Les contrasenyes no coincideixen",
   "pause_vote": "Pausa votació",
   "plan": {
-    "details": "Actualment estàs al pla {{ title }}, {{ subtitle }}",
-    "encouragement": "Endavant, explora la plataforma, crea la teva primera votació i comprova com de fàcil pot ser la governança digital segura! I si necessites ajuda, simplement programa una trucada amb els nostres experts!"
+    "encouragement": "Llançar una votació és senzill, i els participants poden unir-s'hi des de qualsevol lloc. Les fortes garanties a un cost més baix han convertit Vocdoni en una opció de confiança per a centenars d'ajuntaments, associacions, partits polítics i empreses.",
+    "free": "<0>Estàs al Pla Gratuït</0>, que ja et permet llançar votacions. Si necessites més funcionalitats, límits més alts o opcions específiques, explora els plans de pagament i prova'ls gratuïtament.",
+    "special_needs": "Necessites ajuda o alguna cosa específica? Programa una trucada."
   },
   "plan_upgrade": {
     "cancel": "Cancel·la",
@@ -1261,7 +1261,7 @@
     "essential_title": "Bàsic",
     "free_subtitle": "Organitzacions petites o grups comunitaris amb necessitats bàsiques de votació.",
     "free_title": "Gratuït",
-    "premium_subtitle": "Un volum més gran que requereix funcions més avançades.",
+    "premium_subtitle": "un volum més gran que requereix funcions més avançades.",
     "premium_title": "Professional",
     "priority_support": "Suport prioritari per correu electrònic (24h)",
     "ticket_support_48": "Suport per correu electrònic (48h)",
@@ -1689,7 +1689,7 @@
     "hide_comparison_table": "Mostra menys funcionalitats",
     "need_help": "<0>Necessites ajuda per triar?</0> <1>Contacta amb el nostre equip comercial</1>",
     "show_comparison_table": "Veure totes les funcionalitats",
-    "subtitle": "Amb les nostres subscripcions, obtens més que un pla. Aconsegueixes accés a la plataforma de governança més innovadora. Gràcies a aquest model, podem oferir el millor preu del mercat: tant si necessites 1, 5 o 20 votacions a l’any, sempre gaudiràs dels costos més competitius i de garanties incomparables. La plataforma és totalment d’autoservei, però el nostre equip està sempre disponible per oferir-te assistència o adaptar solucions a les teves necessitats específiques.",
+    "subtitle": "Amb les nostres subscripcions, obtens més que un pla. Aconsegueixes accés a la plataforma de governança més innovadora. Gràcies a aquest model, podem oferir el millor preu del mercat: tant si necessites 1, 5 o 20 votacions a l'any, sempre gaudiràs dels costos més competitius i de garanties incomparables. La plataforma és totalment d'autoservei, però el nostre equip està sempre disponible per oferir-te assistència o adaptar solucions a les teves necessitats específiques.",
     "title": "Pla de subscripció"
   },
   "subtotal": "Subtotal",

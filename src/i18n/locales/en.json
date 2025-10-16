@@ -227,24 +227,23 @@
     "process_view": {
       "date_format": "MMMM do, y",
       "time_format": "p"
+    },
+    "welcome": {
+      "common_tasks_actions": "Common tasks and actions",
+      "create_first_organization": "Create your first organization",
+      "create_first_vote": "Create your first vote",
+      "empty": "No voting processes found",
+      "error_loading_processes": "Error loading voting processes",
+      "hello": "Welcome to Vocdoni, {{name}}!",
+      "how_first_vote": "How to create your first vote",
+      "no_organization": "No organization found",
+      "no_subscription": "No subscription available. Please create an organization to activate your plan.",
+      "quick_actions": "Quick Actions",
+      "recent_voting_description": "Your organization's latest voting activities",
+      "recent_voting_title": "Recent Voting Processes",
+      "subtitle": "Here's an overview of your organization's voting activities",
+      "title": "Here's an overview of your organization's voting activities"
     }
-  },
-  "dashboard_empty_processes": {
-    "common_tasks_actions": "Common tasks and actions",
-    "create_first_organization": "Create your first organization",
-    "create_first_vote": "Create your first vote",
-    "empty": "No voting processes found",
-    "error_loading_processes": "Error loading voting processes",
-    "hello": "👋 Hello {{name}}!",
-    "hello_description": "",
-    "how_first_vote": "How to create your first vote",
-    "no_organization": "No organization found",
-    "no_subscription": "No subscription available. Please create an organization to activate your plan.",
-    "quick_actions": "Quick Actions",
-    "recent_voting_description": "Your organization's latest voting activities",
-    "recent_voting_title": "Recent Voting Processes",
-    "subtitle": "Here's an overview of your organization's voting activities",
-    "title": "Here's an overview of your organization's voting activities"
   },
   "delete": {
     "cancel_button": "Cancel",
@@ -1209,8 +1208,9 @@
   "passwords_do_not_match": "Passwords doesn't match",
   "pause_vote": "Pause vote",
   "plan": {
-    "details": "You're currently on the {{ title }} plan, {{ subtitle }}",
-    "encouragement": "So go ahead, explore the platform, create your first vote, and see just how easy secure digital governance\n              can be! But if you need help, just schedule a call with our experts!"
+    "encouragement": "Launching a vote is simple, and participants can join from anywhere. Strong guarantees at a lower cost have made Vocdoni a trusted choice for hundreds of municipalities, associations, political parties and companies.",
+    "free": "<0>You're on the Free Plan</0>, which already lets you launch votes. If you need more features, higher limits or specific options, explore the paid plans and try them for free.",
+    "special_needs": "Need help or something specific? Schedule a call."
   },
   "plan_upgrade": {
     "cancel": "Cancel",
