@@ -1,11 +1,12 @@
 import { Box, Button, Flex, Icon, IconButton, Text, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
+import { useLocalStorage } from '@uidotdev/usehooks'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCircleHelp, LuPanelLeft, LuPlus } from 'react-icons/lu'
 import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
-import { MaxWindowWidth } from '~constants'
+import { LocalStorageKeys, MaxWindowWidth } from '~constants'
 import { Routes } from '~routes'
 import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
 import Breadcrumb, { BreadcrumbItem } from '~shared/Dashboard/Breadcrumb'
@@ -25,17 +26,16 @@ const LayoutDashboard: React.FC = () => {
   const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItem[]>([])
   const { isOpen, onOpen, onClose } = useDisclosure()
   const isMobile = useBreakpointValue({ base: true, md: false })
-  const [reduced, setReduced] = useState(false)
+  const [reduced, setReduced] = useLocalStorage(LocalStorageKeys.DashboardMenuReduced, false)
   const { t } = useTranslation()
 
-  // Close/reduce the sidebar when the screen size changes
+  // Close the mobile drawer when the screen size changes
   useEffect(() => {
-    if (isMobile) setReduced(false)
     if (!isMobile) onClose()
   }, [isMobile])
 
   return (
-    <DashboardLayoutContext.Provider value={{ reduced }}>
+    <DashboardLayoutContext.Provider value={{ reduced: reduced && !isMobile }}>
       <DashboardLayoutProviders>
         <Flex minH='100svh' w='full' _dark={{ bg: 'black.650' }} maxW={MaxWindowWidth} margin='0 auto'>
           {/* Sidebar for large screens */}
