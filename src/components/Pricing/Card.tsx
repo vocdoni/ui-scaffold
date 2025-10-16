@@ -23,10 +23,12 @@ import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCircleCheckBig } from 'react-icons/lu'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { useSubscription } from '~components/Auth/Subscription'
 import ContactButton from '~components/shared/ContactLink'
 import { BookerModalButton } from '~components/shared/Dashboard/Booker'
 import { PlanId } from '~constants'
 import { useProfile } from '~queries/account'
+import { usePortalSession } from '~queries/stripe'
 import { Routes } from '~routes'
 import { currency } from '~utils/numbers'
 import { usePlanTranslations, type Plan } from './Plans'
@@ -57,6 +59,8 @@ const PricingCard = ({
 }: PricingCardProps) => {
   const { t } = useTranslation()
   const translations = usePlanTranslations()
+  const { subscription } = useSubscription()
+  const { mutateAsync, isPending } = usePortalSession()
   const { setValue, watch } = useFormContext()
   const { data: me } = useProfile()
   const container = useRef<HTMLDivElement>(null)
@@ -75,6 +79,7 @@ const PricingCard = ({
   const hadSubscribed =
     typeof me?.organizations.find(({ organization }) => organization.subscription?.planId !== PlanId.Free) !==
     'undefined'
+  const hasActiveSubscription = subscription?.plan.id !== PlanId.Free && !!subscription?.subscriptionDetails.active
 
   useGSAP(
     () => {
@@ -213,8 +218,20 @@ const PricingCard = ({
             isDashboard && (
               <Button
                 {...commonButtonProps}
-                onClick={() => setValue('planId', plan.id)}
-                type='submit'
+                onClick={async () => {
+                  if (hasActiveSubscription) {
+                    try {
+                      const { portalURL } = await mutateAsync()
+                      window.open(portalURL, '_blank', 'noopener,noreferrer')
+                    } catch (error) {
+                      console.error('Error fetching portal URL', error)
+                    }
+                  } else {
+                    setValue('planId', plan.id)
+                  }
+                }}
+                type={hasActiveSubscription ? 'button' : 'submit'}
+                isLoading={isPending}
                 aria-label={isCurrentPlan ? t('current_plan') : t('subscribe')}
               >
                 {isCurrentPlan
