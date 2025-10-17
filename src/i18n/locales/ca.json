@@ -302,7 +302,8 @@
     "missing_header": "El full de càlcul no té capçalera.",
     "not_found": "Pàgina No Trobada",
     "not_found_description": "La pàgina que cerques no existeix o ha estat moguda.",
-    "return_to_home": "Torna a l'inici"
+    "return_to_home": "Torna a l'inici",
+    "title": "Error"
   },
   "error_removing_code": "Hi ha hagut un error eliminant el codi",
   "error_text": "Ho sentim, no s'ha trobat la pàgina que cerqueu",

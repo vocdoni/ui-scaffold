@@ -116,7 +116,7 @@ const CheckoutForm = ({ onComplete, sessionId }: CheckoutFormProps) => {
           />
         </Flex>
         <Box color='red.500' textAlign='center'>
-          {t('error', { defaultValue: 'Error' })}: {checkoutState.error.message}
+          {t('error.title', { defaultValue: 'Error' })}: {checkoutState.error.message}
         </Box>
       </Box>
     )
@@ -197,7 +197,7 @@ export const SubscriptionPayment = ({ lookupKey, billingPeriod, onClose }: Subsc
     if (!signer) {
       toast({
         status: 'error',
-        title: t('error', { defaultValue: 'Error' }),
+        title: t('error.title', { defaultValue: 'Error' }),
         description: t('wallet_not_connected', { defaultValue: 'Wallet not connected' }),
       })
       onClose()
@@ -226,7 +226,7 @@ export const SubscriptionPayment = ({ lookupKey, billingPeriod, onClose }: Subsc
         .catch((e) => {
           toast({
             status: 'error',
-            title: t('error', { defaultValue: 'Error' }),
+            title: t('error.title', { defaultValue: 'Error' }),
             description: e.message,
           })
           onClose()
