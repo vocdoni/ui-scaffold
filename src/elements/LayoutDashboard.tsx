@@ -6,6 +6,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { LuCircleHelp, LuPanelLeft, LuPlus } from 'react-icons/lu'
 import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
+import AnnouncementBanner from '~components/shared/Layout/AnnouncementBanner'
 import { LocalStorageKeys, MaxWindowWidth } from '~constants'
 import { Routes } from '~routes'
 import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
@@ -42,6 +43,7 @@ const LayoutDashboard: React.FC = () => {
           <DashboardMenu isOpen={isOpen} onClose={onClose} />
 
           <Flex flex='1 1 0' flexDirection='column' minW={0}>
+            <AnnouncementBanner />
             {/* Top Menu */}
             <Box
               position='sticky'
