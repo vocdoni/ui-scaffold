@@ -7,9 +7,6 @@ interface ImportMeta {
     CUSTOM_ORGANIZATION_DOMAINS: {
       [key: string]: string
     }
-    EMAILJS_SERVICE_ID: string
-    EMAILJS_TEMPLATE_ID: string
-    EMAILJS_PUBLIC_ID: string
     theme: string
     title: string
     CSP_URL: string
