@@ -299,7 +299,8 @@
     "missing_header": "Spreadsheet has no header.",
     "not_found": "Page Not Found",
     "not_found_description": "The page you're looking for does not exist or has been moved.",
-    "return_to_home": "Back to home"
+    "return_to_home": "Back to home",
+    "title": "Error"
   },
   "error_removing_code": "Error removing code",
   "error_text": "Sorry, the page you were looking for was not found",
