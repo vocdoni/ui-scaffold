@@ -24,5 +24,6 @@ interface ImportMeta {
     GTM_CONTAINER_ID: string
     PLAUSIBLE_DOMAIN: string
     VOCDONI_CONTACT_EMAIL: string
+    ANNOUNCEMENT: string
   }
 }
