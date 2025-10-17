@@ -1,3 +1,5 @@
+import i18n from '~i18n'
+
 type MethodTypes = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export enum ApiEndpoints {
@@ -90,6 +92,11 @@ export const api = <T>(
   }
   // Format body if it's an object (and not FormData)
   const formatted = isFormData || typeof body === 'string' ? body : JSON.stringify(body)
+  // Append lang query param
+  const [basePath, queryString] = path.split('?', 2)
+  const params = new URLSearchParams(queryString || '')
+  params.set('lang', i18n.language)
+  path = `${basePath}?${params.toString()}`
 
   return fetch(`${import.meta.env.SAAS_URL}/${path}`, {
     method,
