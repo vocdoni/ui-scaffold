@@ -590,10 +590,7 @@ const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModa
 
   const handleDelete = async () => {
     try {
-      const members = {
-        ...(ids.length > 0 && { ids }),
-        ...(mode === DeleteModes.ALL && { all: true }),
-      }
+      const members = mode === DeleteModes.ALL ? { all: true } : ids.length > 0 ? { ids } : {}
       await deleteMutation.mutateAsync(members)
       if (mode === DeleteModes.SELECTED) resetSelectedRows()
       toast({
