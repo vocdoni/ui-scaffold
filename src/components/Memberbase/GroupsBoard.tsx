@@ -368,7 +368,7 @@ const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMemb
               })} • ${t('group.members', {
                 defaultValue: '{{count}} member',
                 defaultValue_other: '{{count}} members',
-                count: group.membersCount,
+                count: group.membersCount || 0,
               })}`}
             </Text>
           </Flex>
@@ -432,8 +432,8 @@ const GroupMembersWithPagination = ({ group, isOpen }: GroupMembersProps) => {
       data={members}
       isLoading={isLoading}
       initialColumns={[
-        { id: 'name', label: t('group.members.name', { defaultValue: 'Name' }) },
-        { id: 'email', label: t('group.members.email', { defaultValue: 'Email' }) },
+        { id: 'name', label: t('group.name', { defaultValue: 'Name' }) },
+        { id: 'email', label: t('group.email', { defaultValue: 'Email' }) },
       ]}
     >
       <GroupMembersTable groupId={group.id} />
@@ -541,7 +541,7 @@ const GroupCard = ({ group }: GroupCardProps) => {
                 {t('group.members', {
                   defaultValue: '{{count}} member',
                   defaultValue_other: '{{count}} members',
-                  count: group.membersCount,
+                  count: group.membersCount || 0,
                 })}
               </Text>
             </Flex>

@@ -507,13 +507,11 @@
       "subtitle_other": "¿Seguro que quieres eliminar {{count}} miembros?",
       "title": "Eliminar miembros"
     },
-    "members": {
-      "email": "Correo electrónico",
-      "name": "Nombre"
-    },
+    "email": "Correo electrónico",
     "members_one": "Un miembro",
     "members_many": "",
-    "members_other": "{{count}} miembros"
+    "members_other": "{{count}} miembros",
+    "name": "Nombre"
   },
   "groups_board": {
     "create_group": "Crea un nuevo grupo para empezar.",
