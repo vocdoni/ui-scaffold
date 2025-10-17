@@ -507,13 +507,11 @@
       "subtitle_other": "Segur que vols eliminar {{ count }} membres?",
       "title": "Elimina membres"
     },
-    "members": {
-      "email": "Correu electrònic",
-      "name": "Nom"
-    },
+    "email": "Correu electrònic",
     "members_one": "un únic membre",
     "members_many": "",
-    "members_other": "{{ count }} membres"
+    "members_other": "{{ count }} membres",
+    "name": "Nom"
   },
   "groups_board": {
     "create_group": "Crea un grup nou per començar.",
