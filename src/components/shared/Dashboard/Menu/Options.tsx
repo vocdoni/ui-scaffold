@@ -21,7 +21,7 @@ export const DashboardMenuOptions = () => {
     {
       label: t('voting_processes'),
       icon: LuVote,
-      route: Routes.dashboard.processes,
+      route: Routes.dashboard.processes.base,
     },
     {
       label: t('memberbase.title', { defaultValue: 'Memberbase' }),
