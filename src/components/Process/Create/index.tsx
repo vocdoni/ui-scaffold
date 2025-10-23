@@ -18,7 +18,6 @@ import {
   Progress,
   Spacer,
   Text,
-  useBreakpointValue,
   useDisclosure,
   useToast,
   VStack,
@@ -33,18 +32,20 @@ import {
   CspCensus,
   Election,
   ElectionCreationSteps,
+  ensure0x,
   IElectionParameters,
   IQuestion,
   MultiChoiceElection,
   PlainCensus,
   UnpublishedElection,
 } from '@vocdoni/sdk'
+import { addDays, parse } from 'date-fns'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import ReactPlayer from 'react-player'
-import { createPath, generatePath, useBlocker, useNavigate, useParams } from 'react-router-dom'
+import { createPath, generatePath, useBlocker, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { useSubscription } from '~components/Auth/Subscription'
 import { ApiEndpoints } from '~components/Auth/api'
@@ -97,7 +98,8 @@ export const useConfirmOnNavigate = ({
   const isOpenRef = useRef(false)
   const isProceedingRef = useRef(false)
 
-  const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`
+  const routerLocation = useLocation()
+  const currentPath = createPath(routerLocation)
   const nextPath = blocker.location ? createPath(blocker.location) : null
   const isSamePath = nextPath === currentPath
 
@@ -180,10 +182,32 @@ export const useSafeReset = (externalReset?) => {
   )
 }
 
-export const useFormDraftSaver = (isDirty: boolean, getValues: () => any, storeFormDraft: (value: any) => void) => {
+export function toBase64(input: string): string {
+  const bytes = new TextEncoder().encode(input) // UTF-8
+  let binary = ''
+  for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i])
+  return btoa(binary)
+}
+
+export const useFormDraftSaver = (
+  isDirty: boolean,
+  getValues: () => any,
+  createProcess: { mutate: (process) => void }
+) => {
+  const { account } = useClient()
+  const formToElectionMapper = useFormToElectionMapper()
+  const [draftId, storeDraftId] = useLocalStorage('draft-id', null)
+
   const saveDraft = () => {
     if (!isDirty) return
-    storeFormDraft(getValues())
+    const form = getValues()
+    const election = formToElectionMapper(form, new CspCensus('0x23', document.location.href))
+    const draftProcessId = createProcess.mutate({
+      metadata: election.generateMetadata(),
+      draft: true,
+      orgAddress: ensure0x(account?.address),
+    })
+    storeDraftId(draftProcessId)
   }
 
   // Save when the user accidentally closes the tab, navigates away, or refreshes the page
@@ -463,34 +487,33 @@ const useProcessBundle = () => {
   })
 }
 
-export const ProcessCreate = () => {
-  const { t } = useTranslation()
-  const toast = useToast()
-  const [formDraftLoaded, setFormDraftLoaded] = useState(false)
-  const [formDraft, storeFormDraft] = useLocalStorage('form-draft', null)
-  const { groupId } = useParams()
-  const navigate = useNavigate()
-  const isDesktop = useBreakpointValue({ base: false, md: true })
-  const [showSidebar, setShowSidebar] = useState(false)
-  const methods = useForm<Process>({
-    defaultValues: {
-      ...defaultProcessValues,
-      groupId,
+const useCreateProcess = () => {
+  const { bearedFetch } = useAuth()
+
+  return useMutation({
+    mutationFn: async (body) => {
+      return await bearedFetch(ApiEndpoints.OrganizationProcesses, {
+        method: 'POST',
+        body,
+      })
     },
   })
-  const reset = useSafeReset(methods.reset)
-  const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
-  const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
-  const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
-  const { organization } = useOrganization()
-  const { client } = useClient()
-  const { permission } = useSubscription()
-  const { isSubmitting, isSubmitSuccessful, isDirty, errors } = methods.formState
-  const { setStepDoneAsync } = useOrganizationSetup()
-  const processBundleMutation = useProcessBundle()
-  const { trackPlausibleEvent } = useAnalytics()
+}
 
-  const formToElectionMapper = (form: Process, census: Census): UnpublishedElection | MultiChoiceElection => {
+const useFormToElectionMapper = () => {
+  const { permission } = useSubscription()
+
+  const parseLocalDateTime = (dateStr?: string, timeStr?: string) => {
+    if (!dateStr || !timeStr) return undefined
+
+    return parse(`${dateStr} ${timeStr}`, 'yyyy-MM-dd HH:mm', new Date())
+  }
+
+  return (form: Process, census: Census): UnpublishedElection | MultiChoiceElection => {
+    const start = form.autoStart ? new Date() : parseLocalDateTime(form.startDate, form.startTime)
+    const startDate = form.autoStart ? undefined : parseLocalDateTime(form.startDate, form.startTime)
+    const endDate = form.endDate && form.endTime ? parseLocalDateTime(form.endDate, form.endTime) : addDays(start, 1)
+
     let base: IElectionParameters = {
       census,
       title: form.title,
@@ -514,8 +537,8 @@ export const ProcessCreate = () => {
             })),
           }) as IQuestion
       ),
-      startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`),
-      endDate: new Date(`${form.endDate}T${form.endTime}`),
+      startDate,
+      endDate,
       voteType: {
         maxVoteOverwrites: 10,
       },
@@ -543,8 +566,37 @@ export const ProcessCreate = () => {
 
     return Election.from(base)
   }
+}
 
-  useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
+export const ProcessCreate = () => {
+  const { t } = useTranslation()
+  const toast = useToast()
+  const [formDraftLoaded, setFormDraftLoaded] = useState(false)
+  const [formDraft, storeFormDraft] = useLocalStorage('form-draft', null)
+  const createProcess = useCreateProcess()
+  const { groupId } = useParams()
+  const navigate = useNavigate()
+  const [showSidebar, setShowSidebar] = useState(true)
+  const methods = useForm<Process>({
+    defaultValues: {
+      ...defaultProcessValues,
+      groupId,
+    },
+  })
+  const reset = useSafeReset(methods.reset)
+  const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
+  const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
+  const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
+  const { organization } = useOrganization()
+  const { client } = useClient()
+  const { isSubmitting, isSubmitSuccessful, isDirty } = methods.formState
+  const { setStepDoneAsync } = useOrganizationSetup()
+  const processBundleMutation = useProcessBundle()
+  const { trackPlausibleEvent } = useAnalytics()
+
+  const formToElectionMapper = useFormToElectionMapper()
+
+  useFormDraftSaver(isDirty, methods.getValues, createProcess)
 
   useEffect(() => {
     setShowSidebar(isDesktop)
