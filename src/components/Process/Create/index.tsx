@@ -18,6 +18,7 @@ import {
   Progress,
   Spacer,
   Text,
+  useBreakpointValue,
   useDisclosure,
   useToast,
   VStack,
@@ -469,7 +470,8 @@ export const ProcessCreate = () => {
   const [formDraft, storeFormDraft] = useLocalStorage('form-draft', null)
   const { groupId } = useParams()
   const navigate = useNavigate()
-  const [showSidebar, setShowSidebar] = useState(true)
+  const isDesktop = useBreakpointValue({ base: false, md: true })
+  const [showSidebar, setShowSidebar] = useState(false)
   const methods = useForm<Process>({
     defaultValues: {
       ...defaultProcessValues,
@@ -543,6 +545,12 @@ export const ProcessCreate = () => {
   }
 
   useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
+
+  useEffect(() => {
+    if (isDesktop) {
+      setShowSidebar(isDesktop)
+    }
+  }, [isDesktop])
 
   // Apply form draft if it exists
   useEffect(() => {
