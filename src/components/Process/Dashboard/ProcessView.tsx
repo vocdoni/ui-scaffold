@@ -16,6 +16,7 @@ import {
   Progress,
   Text,
   Tooltip,
+  useBreakpointValue,
   useClipboard,
   useStyleConfig,
   VStack,
@@ -34,7 +35,7 @@ import {
 import { useElection } from '@vocdoni/react-providers'
 import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { format as formatDate } from 'date-fns'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import {
   LuCalendar,
@@ -52,6 +53,7 @@ import {
   LuTrash2,
   LuUsers,
   LuVote,
+  LuX,
 } from 'react-icons/lu'
 import ReactPlayer from 'react-player'
 import { generatePath } from 'react-router-dom'
@@ -66,6 +68,10 @@ import {
   SidebarTitle,
 } from '~shared/Dashboard/Contents'
 import { Routes } from '~src/router/routes'
+
+type ProcessViewSidebarProps = {
+  onClose: () => void
+} & SidebarProps
 
 export const ElectionVideo = forwardRef<BoxProps, 'div'>((props, ref) => {
   const { election } = useElection()
@@ -88,11 +94,18 @@ export const ElectionVideo = forwardRef<BoxProps, 'div'>((props, ref) => {
 
 export const ProcessView = () => {
   const { t } = useTranslation()
-  const [showSidebar, setShowSidebar] = useState(true)
+  const isDesktop = useBreakpointValue({ base: false, md: true })
+  const [showSidebar, setShowSidebar] = useState(false)
   const { id, election } = useElection()
 
   const votingLink = `${document.location.origin}${generatePath(Routes.processes.view, { id })}`
   const { onCopy } = useClipboard(votingLink)
+
+  useEffect(() => {
+    if (isDesktop) {
+      setShowSidebar(isDesktop)
+    }
+  }, [isDesktop])
 
   return (
     <DashboardContents display='flex' flexDirection='row' position='relative'>
@@ -214,7 +227,7 @@ export const ProcessView = () => {
         </DashboardBox>
       </Box>
 
-      <ProcessViewSidebar show={showSidebar} />
+      <ProcessViewSidebar show={showSidebar} onClose={() => setShowSidebar(false)} />
     </DashboardContents>
   )
 }
@@ -258,9 +271,10 @@ const ResultsStateBadge = (props: BadgeProps) => {
   return null
 }
 
-const ProcessViewSidebar = (props: SidebarProps) => {
+const ProcessViewSidebar = (props: ProcessViewSidebarProps) => {
   const { election, participation, client } = useElection()
   const { t } = useTranslation()
+  const isMobile = useBreakpointValue({ base: true, md: false })
 
   const resultTypesNames = {
     [ElectionResultsTypeNames.BUDGET]: t('results_type.budget', 'Budget allocation'),
@@ -280,6 +294,18 @@ const ProcessViewSidebar = (props: SidebarProps) => {
         <SidebarTitle>
           <Trans i18nKey='vote_information'>Vote information</Trans>
         </SidebarTitle>
+        {isMobile && (
+          <IconButton
+            aria-label={t('drawer.close', { defaultValue: 'Close drawer' })}
+            icon={<Icon as={LuX} />}
+            variant='ghost'
+            size='sm'
+            position='absolute'
+            top={2}
+            right={2}
+            onClick={() => props.onClose?.()}
+          />
+        )}
       </SidebarContents>
       <SidebarContents flex='1' overflowY='auto'>
         <VStack align='stretch'>
