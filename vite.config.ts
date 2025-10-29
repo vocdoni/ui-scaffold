@@ -34,6 +34,16 @@ const viteconfig = ({ mode }) => {
 
   let oauthUrl = process.env.OAUTH_URL || 'https://oauth.vocdoni.io'
 
+  let privacyPolicyUrl = process.env.PRIVACY_POLICY_URL || 'https://vocdoni.io/privacy'
+  if (privacyPolicyUrl.endsWith('/')) {
+    privacyPolicyUrl = privacyPolicyUrl.slice(0, -1)
+  }
+
+  let termsOfServiceUrl = process.env.TERMS_OF_SERVICE_URL || 'https://vocdoni.io/terms'
+  if (termsOfServiceUrl.endsWith('/')) {
+    termsOfServiceUrl = termsOfServiceUrl.slice(0, -1)
+  }
+
   return defineConfig({
     base,
     build: {
@@ -61,6 +71,8 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.PLAUSIBLE_DOMAIN': JSON.stringify(process.env.PLAUSIBLE_DOMAIN),
       'import.meta.env.VOCDONI_CONTACT_EMAIL': JSON.stringify(process.env.VOCDONI_CONTACT_EMAIL || 'hello@vocdoni.io'),
       'import.meta.env.ANNOUNCEMENT': JSON.stringify(process.env.ANNOUNCEMENT),
+      'import.meta.env.PRIVACY_POLICY_URL': JSON.stringify(privacyPolicyUrl),
+      'import.meta.env.TERMS_OF_SERVICE_URL': JSON.stringify(termsOfServiceUrl),
     },
     plugins: [
       tsconfigPaths(),

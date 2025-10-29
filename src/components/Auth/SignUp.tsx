@@ -2,7 +2,7 @@ import { Button, Checkbox, Flex, FormControl, FormErrorMessage, Link, Text } fro
 import { useEffect } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { Navigate, NavLink, Link as ReactRouterLink, useOutletContext } from 'react-router-dom'
+import { Navigate, NavLink, useOutletContext } from 'react-router-dom'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
@@ -53,6 +53,9 @@ const SignUp = ({ invite }: SignupProps) => {
   const isPending = signup.isPending || inviteSignup.isPending
   const isError = signup.isError || inviteSignup.isError
   const error = signup.error || inviteSignup.error
+
+  const privacyPolicyUrl = import.meta.env.PRIVACY_POLICY_URL
+  const termsOfServiceUrl = import.meta.env.TERMS_OF_SERVICE_URL
 
   useEffect(() => {
     // set SignUp title and description
@@ -137,8 +140,8 @@ const SignUp = ({ invite }: SignupProps) => {
                   <Trans
                     i18nKey='signup_agree_terms'
                     components={{
-                      termsLink: <Link isExternal as={ReactRouterLink} to={Routes.terms} fontSize={'14px'} />,
-                      privacyLink: <Link isExternal as={ReactRouterLink} to={Routes.privacy} fontSize={'14px'} />,
+                      termsLink: <Link href={termsOfServiceUrl} isExternal fontSize={'14px'} />,
+                      privacyLink: <Link href={privacyPolicyUrl} isExternal fontSize={'14px'} />,
                     }}
                   />
                 </Text>

@@ -20,6 +20,9 @@ const MenuDropdown = () => {
 
   const [isOpenMenuLanguages, setIsOpenMenuLanguages] = useState(false)
 
+  const privacyPolicyUrl = import.meta.env.PRIVACY_POLICY_URL
+  const termsOfServiceUrl = import.meta.env.TERMS_OF_SERVICE_URL
+
   return (
     <MenuList
       py={4}
@@ -117,10 +120,10 @@ const MenuDropdown = () => {
         <Icon as={MdOutlineLogout} mr={1} />
         {t('menu.logout')}
       </MenuItem>
-      <MenuItem fontSize='xs' color='blackAlpha.700' as={ReactRouterLink} to={Routes.terms}>
+      <MenuItem fontSize='xs' color='blackAlpha.700' as={Link} href={termsOfServiceUrl} isExternal>
         {t('menu.terms')}
       </MenuItem>
-      <MenuItem fontSize='xs' color='blackAlpha.700' as={ReactRouterLink} to={Routes.privacy}>
+      <MenuItem fontSize='xs' color='blackAlpha.700' as={Link} href={privacyPolicyUrl} isExternal>
         {t('menu.privacy')}
       </MenuItem>
     </MenuList>
