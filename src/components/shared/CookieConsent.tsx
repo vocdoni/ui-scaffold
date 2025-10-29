@@ -44,7 +44,7 @@ export function CookieConsent() {
   return (
     <Box
       role='dialog'
-      aria-label={t('cookies.aria_label', 'Cookies consent banner')}
+      aria-label={t('cookies.aria_label', { defaultValue: 'Cookie consent banner' })}
       position='fixed'
       bottom={{ base: 4, md: 6 }}
       left='50%'
