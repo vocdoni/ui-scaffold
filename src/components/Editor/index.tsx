@@ -69,6 +69,7 @@ const theme = {
 const MarkdownEditor = (props: EditorProps) => {
   const [editor] = useLexicalComposerContext()
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
+  const [isLinkEditMode, setIsLinkEditMode] = useState(false)
   const hasInitialized = useRef(false)
 
   useEffect(() => {
@@ -119,10 +120,10 @@ const MarkdownEditor = (props: EditorProps) => {
         <>
           <FloatingLinkEditorPlugin
             anchorElem={floatingAnchorElem}
-            isLinkEditMode={false}
-            setIsLinkEditMode={() => {}}
+            isLinkEditMode={isLinkEditMode}
+            setIsLinkEditMode={setIsLinkEditMode}
           />
-          <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} setIsLinkEditMode={() => {}} />
+          <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} setIsLinkEditMode={setIsLinkEditMode} />
         </>
       )}
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
