@@ -19,8 +19,9 @@
 .vscode
 .idea
 
-# we use yarn here
+# we use pnpm here
 package-lock.json
+yarn.lock
 
 # logs
 *-debug.log*
