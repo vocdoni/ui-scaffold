@@ -26,14 +26,17 @@ jobs:
         with:
           node-version: 22.x
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
       - name: Build vocdoni app (dev)
-        run: yarn build
+        run: pnpm build
         env:
           VOCDONI_ENVIRONMENT: dev
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
@@ -73,14 +76,17 @@ jobs:
         with:
           node-version: 22.x
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
       - name: Build vocdoni app (stg)
-        run: yarn build
+        run: pnpm build
         env:
           VOCDONI_ENVIRONMENT: prod
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
