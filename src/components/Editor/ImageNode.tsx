@@ -30,8 +30,8 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     return div
   }
 
-  update(): boolean {
-    return false
+  updateDOM(prevNode: ImageNode): boolean {
+    return prevNode.__src !== this.__src || prevNode.__alt !== this.__alt
   }
 
   decorate(): JSX.Element {
@@ -54,6 +54,16 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
 
   getAltText(): string {
     return this.__alt
+  }
+
+  setSrc(src: string): void {
+    const writable = this.getWritable()
+    writable.__src = src
+  }
+
+  setAlt(alt: string): void {
+    const writable = this.getWritable()
+    writable.__alt = alt
   }
 
   static importJSON(json: SerializedImageNode): ImageNode {

@@ -130,7 +130,7 @@ function TextFormatFloatingToolbar({
     } else {
       editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
     }
-  }, [editor, isLink])
+  }, [editor, isLink, setIsLinkEditMode])
 
   function mouseMoveListener(e: MouseEvent) {
     if (popupCharStylesEditorRef?.current && (e.buttons === 1 || e.buttons === 3)) {
