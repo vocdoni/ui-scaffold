@@ -25,5 +25,7 @@ interface ImportMeta {
     PLAUSIBLE_DOMAIN: string
     VOCDONI_CONTACT_EMAIL: string
     ANNOUNCEMENT: string
+    PRIVACY_POLICY_URL: string
+    TERMS_OF_SERVICE_URL: string
   }
 }

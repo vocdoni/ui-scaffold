@@ -168,6 +168,14 @@
   "confirm_password_placeholder": "Confirma tu nueva contraseña",
   "contact_us": "Contacta con nosotros",
   "control_panel": "Panel de control",
+  "cookies": {
+    "accept": "Aceptar",
+    "aria_label": "Banner de consentimiento de cookies",
+    "description": "Utilizamos cookies y herramientas de análisis para mejorar tu experiencia y comprender cómo interactúas con nuestro sitio web. Puedes elegir aceptar o rechazar las cookies.",
+    "learnMore": "Más información",
+    "reject": "Rechazar",
+    "title": "Consentimiento de Cookies"
+  },
   "copy": {
     "address": "Copiar dirección",
     "copied_title": "¡Copiado!",
@@ -1285,40 +1293,6 @@
     "need_more_members": "¿Necesitas más miembros? <2>Contáctanos</2>"
   },
   "privacy_policy": "Política de privacidad",
-  "privacyPolicy": {
-    "description": "Este documento describe las prácticas de privacidad de la Asociación Vocdoni («Vocdoni») en relación con el uso de sus sitios web y servicios.",
-    "section1": {
-      "item1": "Vocdoni puede recopilar datos personales de los usuarios, como nombre, nombre de la organización, tamaño, tipo y direcciones de correo electrónico, cuando se faciliten como correo de contacto de la organización, aunque no se recomienda el uso de correos personales con este fin.",
-      "item2": "Puede requerirse el consentimiento del usuario para el uso de determinados datos personales, el cual podrá retirarse en cualquier momento utilizando los datos de contacto de Vocdoni que se facilitan a continuación.",
-      "item3": "Podrán recopilarse y tratarse datos personales adicionales cuando sea necesario para prestar servicios, cumplir obligaciones contractuales o requisitos legales."
-    },
-    "section1Title": "1. Recogida de información",
-    "section2": {
-      "description": "Vocdoni trata la información personal proporcionada directamente por los usuarios a través de diversos medios, como el registro en cualquier sitio web de Vocdoni, la contratación de servicios o las comunicaciones."
-    },
-    "section2Title": "2. Método de recogida",
-    "section3": {
-      "description": "La información recopilada se utiliza para prestar y gestionar servicios, llevar a cabo actividades comerciales y de marketing, y apoyar la atención al cliente y las acciones de marketing."
-    },
-    "section3Title": "3. Uso de la información",
-    "section4": {
-      "description": "Vocdoni podrá compartir información personal con otras entidades de la Asociación Vocdoni o con proveedores externos que colaboren en la prestación de nuestros servicios."
-    },
-    "section4Title": "4. Compartición de información",
-    "section5": {
-      "description": "Vocdoni se compromete a proteger la información personal recopilada mediante medidas adecuadas."
-    },
-    "section5Title": "5. Seguridad de la información",
-    "section6": {
-      "description": "Los usuarios tienen derecho a acceder, rectificar, suprimir y limitar el tratamiento de sus datos, entre otros derechos recogidos en este documento."
-    },
-    "section6Title": "6. Derechos de los usuarios",
-    "section7": {
-      "description": "Para más detalles sobre nuestras prácticas de datos o para ejercer tus derechos, ponte en contacto con nosotros en privacy@vocdoni.org."
-    },
-    "section7Title": "7. Contacto con Vocdoni",
-    "title": "Política de privacidad"
-  },
   "process": {
     "census": "Censo",
     "census_strategies": {
@@ -1732,65 +1706,6 @@
       "title": "¿Estás seguro?"
     },
     "title": "Equipo"
-  },
-  "terms": {
-    "section1": {
-      "description1": "La Asociación Vocdoni, con sede en Suiza, opera las plataformas app.vocdoni.io y onvote.app.",
-      "description2": "Estas plataformas priorizan la privacidad y la seguridad de los datos de los usuarios, garantizando el cumplimiento del Reglamento General de Protección de Datos (RGPD) de la Unión Europea."
-    },
-    "section1Title": "1. Información general",
-    "section2": {
-      "description": "Priorizamos la seguridad de los datos de los usuarios. Aquí tienes un resumen:",
-      "item1": "Recopilamos y tratamos los datos personales necesarios para la prestación del servicio.",
-      "item2": "Todos los datos personales se almacenan cifrados, garantizando que no se guarden en texto plano.",
-      "item3": "Los metadatos enviados por los organizadores de las votaciones pueden ser accesibles públicamente en IPFS.",
-      "item4": "Podemos recopilar datos adicionales para cumplir con obligaciones legales o prestar servicios especializados."
-    },
-    "section2Title": "2. Recogida y almacenamiento de datos",
-    "section3": {
-      "item1": "Los datos personales se tratan únicamente para prestar y mejorar nuestros servicios.",
-      "item2": "Solicitamos el consentimiento expreso de los usuarios para las actividades de tratamiento de datos.",
-      "item3": "No utilizamos los datos recopilados con fines comerciales sin el consentimiento expreso del usuario."
-    },
-    "section3Title": "3. Uso de los datos y cumplimiento",
-    "section4": {
-      "item1": "Los datos personales no se comparten con terceros salvo en los casos exigidos por la ley.",
-      "item2": "Los encargados del tratamiento de datos están sujetos a acuerdos de confidencialidad.",
-      "item3": "Las transferencias internacionales de datos incluyen medidas de protección adecuadas."
-    },
-    "section4Title": "4. Compartición de datos",
-    "section5": {
-      "description1": "La Asociación Vocdoni aplica medidas de seguridad sólidas para proteger los datos personales.",
-      "description2": "En caso de producirse una violación de datos, notificaremos de inmediato a las personas afectadas."
-    },
-    "section5Title": "5. Medidas de seguridad",
-    "section6": {
-      "description": "Para ejercer estos derechos, ponte en contacto con nosotros a través de los datos que figuran más abajo.",
-      "item1": "Acceso: obtener información sobre el tratamiento de los datos personales.",
-      "item2": "Rectificación: solicitar la corrección de datos personales inexactos.",
-      "item3": "Supresión: solicitar la eliminación de los datos personales en determinadas circunstancias.",
-      "item4": "Limitación: solicitar que restrinjamos el tratamiento de los datos personales.",
-      "item5": "Portabilidad: recibir los datos personales en un formato estructurado.",
-      "item6": "Oposición: oponerse al tratamiento basado en intereses legítimos.",
-      "item7": "Reclamación: presentar una reclamación ante la autoridad de protección de datos competente."
-    },
-    "section6Title": "6. Derechos de los usuarios",
-    "section7": {
-      "description1": "La Asociación Vocdoni no se hace responsable de la información enviada por los usuarios.",
-      "description2": "No rastreamos los datos de los usuarios más allá de lo estrictamente necesario."
-    },
-    "section7Title": "7. Exención de responsabilidad",
-    "section8": {
-      "item1": "Daños indirectos: La Asociación Vocdoni no será responsable de los daños indirectos.",
-      "item2": "Fuerza mayor: La Asociación Vocdoni no se hace responsable de los retrasos provocados por acontecimientos fuera de nuestro control."
-    },
-    "section8Title": "8. Limitación de responsabilidad",
-    "section9": {
-      "description1": "Para cualquier consulta relativa a estos Términos y Condiciones, ponte en contacto con nosotros en info (at) vocdoni.org.",
-      "description2": "Al seguir utilizando nuestros servicios, confirmas tu aceptación de estos términos."
-    },
-    "section9Title": "9. Información de contacto",
-    "title": "Términos y condiciones de la Asociación Vocdoni"
   },
   "terms_of_service": "Términos del servicio",
   "testimonials": {
