@@ -19,7 +19,12 @@ import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import { useEffect, useRef, useState } from 'react'
 
 import { IMAGE, ImageNode } from './ImageNode'
-import { FloatingLinkEditorPlugin, FloatingTextFormatToolbarPlugin } from './plugins'
+import {
+  FloatingImageEditorPlugin,
+  FloatingInsertToolbarPlugin,
+  FloatingLinkEditorPlugin,
+  FloatingTextFormatToolbarPlugin,
+} from './plugins'
 import OnChangeMarkdown from './plugins/OnChangeMarkdown'
 import ReadOnlyPlugin from './plugins/ReadOnlyPlugin'
 
@@ -70,6 +75,7 @@ const MarkdownEditor = (props: EditorProps) => {
   const [editor] = useLexicalComposerContext()
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
   const [isLinkEditMode, setIsLinkEditMode] = useState(false)
+  const [isImageEditMode, setIsImageEditMode] = useState(false)
   const hasInitialized = useRef(false)
 
   useEffect(() => {
@@ -123,6 +129,12 @@ const MarkdownEditor = (props: EditorProps) => {
             isLinkEditMode={isLinkEditMode}
             setIsLinkEditMode={setIsLinkEditMode}
           />
+          <FloatingImageEditorPlugin
+            anchorElem={floatingAnchorElem}
+            isImageEditMode={isImageEditMode}
+            setIsImageEditMode={setIsImageEditMode}
+          />
+          <FloatingInsertToolbarPlugin anchorElem={floatingAnchorElem} setIsImageEditMode={setIsImageEditMode} />
           <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} setIsLinkEditMode={setIsLinkEditMode} />
         </>
       )}
