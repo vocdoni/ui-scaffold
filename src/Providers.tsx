@@ -10,6 +10,7 @@ import { SaasAccountProvider } from '~components/Account/SaasAccountProvider'
 import { AnalyticsProvider } from '~components/AnalyticsProvider'
 import { AuthProvider } from '~components/Auth/AuthContext'
 import { SubscriptionProvider } from '~components/Auth/Subscription'
+import { CookieConsent } from '~components/shared/CookieConsent'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
 import { wagmiConfig } from './constants/rainbow'
@@ -61,6 +62,7 @@ export const AppProviders = () => {
         <SaasProviders>
           <ColorModeScript />
           <AnalyticsProvider>
+            <CookieConsent />
             <RoutesProvider />
           </AnalyticsProvider>
         </SaasProviders>

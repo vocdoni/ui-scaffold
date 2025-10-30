@@ -17,10 +17,6 @@ const PlansPublicPage = lazy(() => import('~elements/plans'))
 const UseCases = lazy(() => import('~components/UseCases'))
 const UseCase = lazy(() => import('~components/UseCases/view'))
 
-// others
-const Terms = lazy(() => import('~components/TermsAndPrivacy/Terms'))
-const Privacy = lazy(() => import('~components/TermsAndPrivacy/Privacy'))
-
 const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
 
 const RootElements = (client: VocdoniSDKClient) => [
@@ -60,22 +56,6 @@ const RootElements = (client: VocdoniSDKClient) => [
     element: (
       <SuspenseLoader>
         <PlansPublicPage />
-      </SuspenseLoader>
-    ),
-  },
-  {
-    path: Routes.terms,
-    element: (
-      <SuspenseLoader>
-        <Terms />
-      </SuspenseLoader>
-    ),
-  },
-  {
-    path: Routes.privacy,
-    element: (
-      <SuspenseLoader>
-        <Privacy />
       </SuspenseLoader>
     ),
   },

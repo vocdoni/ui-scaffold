@@ -2,13 +2,13 @@ import { Box, Flex, Icon, Image, Link, Text, useColorModeValue } from '@chakra-u
 import { Trans, useTranslation } from 'react-i18next'
 import { FaDiscord, FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
-import { Link as ReactRouterLink } from 'react-router-dom'
-import { Routes } from '~src/router/routes'
 import vcdLogo from '/assets/logo-classic.svg'
 
 const Footer = () => {
   const { t } = useTranslation()
   const invert = useColorModeValue('invert(0%)', 'invert(100%)')
+  const privacyPolicyUrl = import.meta.env.PRIVACY_POLICY_URL
+  const termsOfServiceUrl = import.meta.env.TERMS_OF_SERVICE_URL
 
   return (
     <>
@@ -43,34 +43,22 @@ const Footer = () => {
             <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>
               {t('footer.company')}
             </Text>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io' target='_blank'>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io' isExternal>
               Vocdoni
             </Link>
-            <Link
-              fontWeight='bold'
-              variant='footer'
-              href='https://www.vocdoni.io/about'
-              whiteSpace='nowrap'
-              target='_blank'
-            >
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/about' whiteSpace='nowrap' isExternal>
               {t('footer.about_us')}
             </Link>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/contact' target='_blank'>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/contact' isExternal>
               {t('footer.contact')}
             </Link>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/api' target='_blank'>
+            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/api' isExternal>
               SDK
             </Link>
-            <Link
-              fontWeight='bold'
-              variant='footer'
-              href='https://developer.vocdoni.io'
-              whiteSpace='nowrap'
-              target='_blank'
-            >
+            <Link fontWeight='bold' variant='footer' href='https://developer.vocdoni.io' whiteSpace='nowrap' isExternal>
               {t('footer.developer_portal')}
             </Link>
-            <Link fontWeight='bold' variant='footer' href='https://blog.vocdoni.io' target='_blank'>
+            <Link fontWeight='bold' variant='footer' href='https://blog.vocdoni.io' isExternal>
               Blog
             </Link>
           </Flex>
@@ -90,21 +78,21 @@ const Footer = () => {
           <Trans
             i18nKey='footer.terms_and_privacy'
             components={{
-              link1: <ReactRouterLink to={Routes.terms} color='gray' />,
-              link2: <ReactRouterLink to={Routes.privacy} color='gray' />,
+              link1: <Link href={termsOfServiceUrl} isExternal color='gray' />,
+              link2: <Link href={privacyPolicyUrl} isExternal color='gray' />,
             }}
           />
         </Text>
         <Flex gap='10px'>
-          <Link variant='icon' href='https://twitter.com/vocdoni' target='_blank'>
+          <Link variant='icon' href='https://twitter.com/vocdoni' isExternal>
             <Icon aria-label={t('link.twitter').toString()} as={FaXTwitter} />
           </Link>
 
-          <Link variant='icon' href='https://chat.vocdoni.io/' target='_blank'>
+          <Link variant='icon' href='https://chat.vocdoni.io/' isExternal>
             <Icon aria-label={t('link.discord').toString()} as={FaDiscord} />
           </Link>
 
-          <Link variant='icon' href='https://github.com/vocdoni' target='_blank'>
+          <Link variant='icon' href='https://github.com/vocdoni' isExternal>
             <Icon aria-label={t('link.github').toString()} as={FaGithub} />
           </Link>
         </Flex>
