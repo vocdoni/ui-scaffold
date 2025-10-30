@@ -1,11 +1,11 @@
-FROM node:18 as builder
+FROM node:22 as builder
 ARG VOCDONI_ENVIRONMENT
 WORKDIR /app
-COPY package.json .
-COPY yarn.lock .
-RUN yarn install
+COPY package.json pnpm-lock.yaml .
+RUN corepack enable && corepack prepare pnpm@10.16.1 --activate
+RUN pnpm install
 COPY . .
-RUN yarn build
+RUN pnpm build
 
 FROM nginx
 WORKDIR /usr/share/nginx/html
