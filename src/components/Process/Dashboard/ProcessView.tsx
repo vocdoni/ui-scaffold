@@ -102,9 +102,7 @@ export const ProcessView = () => {
   const { onCopy } = useClipboard(votingLink)
 
   useEffect(() => {
-    if (isDesktop) {
-      setShowSidebar(isDesktop)
-    }
+    setShowSidebar(isDesktop)
   }, [isDesktop])
 
   return (
