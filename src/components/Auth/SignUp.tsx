@@ -6,6 +6,7 @@ import { Navigate, NavLink, useOutletContext } from 'react-router-dom'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { IRegisterParams } from '~components/Auth/authQueries'
 import { useAuth } from '~components/Auth/useAuth'
+import { OrSeparator } from '~components/shared/Layout/Separators'
 import { AuthOutletContextType } from '~elements/LayoutAuth'
 import InputPassword from '~shared/Form/InputPassword'
 import FormSubmitMessage from '~shared/Layout/FormSubmitMessage'
@@ -13,6 +14,7 @@ import { useSignupFromInvite } from '~src/queries/account'
 import { Routes } from '~src/router/routes'
 import { AnalyticsEvent } from '~utils/analytics'
 import { default as InputBasic } from '../shared/Form/InputBasic'
+import GoogleAuth from './GoogleAuth'
 
 export type InviteFields = {
   code: string
@@ -152,8 +154,10 @@ const SignUp = ({ invite }: SignupProps) => {
           <Button isLoading={isPending} type='submit' w='100%' colorScheme='black'>
             {t('signup_create_account')}
           </Button>
+          <OrSeparator />
         </Flex>
       </FormProvider>
+      <GoogleAuth />
 
       <Text
         color='account.description'
