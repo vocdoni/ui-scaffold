@@ -671,8 +671,8 @@ const UsersEmpty = () => {
   const { t } = useTranslation()
 
   return (
-    <Flex alignItems='center' p={10} gap={6}>
-      <Flex alignItems='center'>
+    <Flex alignItems='center' p={10} gap={6} flexDirection='column'>
+      <Flex alignItems='center' flexDirection='column'>
         <Icon as={LuUserPlus} boxSize={20} color='texts.subtle' />
         <Text fontSize='lg' fontWeight='bold'>
           {t('team.only_one_member.title', { defaultValue: "You're the only team member of this organization" })}
@@ -683,7 +683,7 @@ const UsersEmpty = () => {
           })}
         </Text>
       </Flex>
-      <InviteToTeamModal leftIcon={<Icon mr={2} as={LuPlus} />}>
+      <InviteToTeamModal leftIcon={<Icon mr={2} as={LuPlus} />} whiteSpace='normal'>
         {t('team.only_one_member.add_team_member', { defaultValue: 'Add team member' })}
       </InviteToTeamModal>
     </Flex>
