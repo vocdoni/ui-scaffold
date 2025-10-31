@@ -375,7 +375,7 @@ const Processes = () => {
       <Flex justify='flex-end' mt={4}>
         <Link
           as={ReactRouterLink}
-          to={generatePath(Routes.dashboard.processes)}
+          to={generatePath(Routes.dashboard.processes.base)}
           display='inline-flex'
           alignItems='center'
           gap={3}
@@ -428,7 +428,7 @@ const QuickActions = () => {
         </Button>
         <Button
           as={ReactRouterLink}
-          to={generatePath(Routes.dashboard.processes)}
+          to={generatePath(Routes.dashboard.processes.base)}
           colorScheme='gray'
           variant='outline'
           justifyContent='start'
