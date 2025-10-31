@@ -24,6 +24,7 @@ export enum ApiEndpoints {
   OrganizationGroupMembers = 'organizations/{address}/groups/{groupId}/members',
   OrganizationGroupValidate = 'organizations/{address}/groups/{groupId}/validate',
   OrganizationProcesses = 'process',
+  OrganizationProcess = 'process/{processId}',
   OrganizationDrafts = 'organizations/{address}/processes/drafts',
   OrganizationCensuses = 'census',
   OrganizationCensus = 'census/{censusId}',
