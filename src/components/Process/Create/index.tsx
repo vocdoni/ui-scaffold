@@ -547,9 +547,7 @@ export const ProcessCreate = () => {
   useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
 
   useEffect(() => {
-    if (isDesktop) {
-      setShowSidebar(isDesktop)
-    }
+    setShowSidebar(isDesktop)
   }, [isDesktop])
 
   // Apply form draft if it exists
