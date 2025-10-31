@@ -17,15 +17,19 @@ import {
   Th,
   Thead,
   Tr,
+  useToast,
 } from '@chakra-ui/react'
-import { useQuery } from '@tanstack/react-query'
-import { RoutedPaginationProvider, useOrganization } from '@vocdoni/react-providers'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { RoutedPaginationProvider, useClient, useOrganization } from '@vocdoni/react-providers'
+import { ensure0x } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { LuCopy, LuEllipsisVertical, LuPencil, LuTrash } from 'react-icons/lu'
 import { createSearchParams, generatePath, Link as RouterLink } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import { useCreateProcess } from '~components/Process/Create'
 import RoutedPaginatedTableFooter from '~components/shared/Pagination/PaginatedTableFooter'
+import { QueryKeys } from '~queries/keys'
 import { useUrlPagination } from '~queries/members'
 import { Routes } from '~routes'
 
@@ -38,39 +42,55 @@ const useDrafts = () => {
   const fetchUrl = `${baseUrl}?page=${page}`
 
   return useQuery({
-    queryKey: ['organization', organization?.address, 'drafts'],
+    queryKey: [...QueryKeys.organization.drafts(organization?.address), page],
     enabled: !!organization?.address,
     queryFn: () => bearedFetch<any>(fetchUrl),
     select: (data) => {
-      const currentPage = data.currentPage
-      const lastPage = data.totalPages
-
       return {
-        processes: data.processes,
+        ...data,
         pagination: {
-          totalItems: data.processes.length,
-          currentPage,
-          lastPage,
-          previousPage: currentPage > 1 ? currentPage - 1 : null,
-          nextPage: currentPage < lastPage ? currentPage + 1 : null,
+          ...data.pagination,
+          currentPage: data.pagination.currentPage - 1,
         },
       }
     },
   })
 }
 
-const DraftsTable = (props) => {
+const useDeleteDraft = () => {
   const { t } = useTranslation()
-  const drafts = [
-    { id: 'draft1', title: 'Draft Election 1', startDate: '2024-07-01', endDate: '2024-07-10', type: 'Single Choice' },
-    {
-      id: 'draft2',
-      title: 'Draft Election 2',
-      startDate: '2024-08-01',
-      endDate: '2024-08-10',
-      type: 'Multiple Choice',
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+  const queryClient = useQueryClient()
+  const toast = useToast()
+
+  return useMutation({
+    mutationKey: QueryKeys.organization.drafts(organization?.address),
+    mutationFn: (draftId: string) => {
+      const deleteUrl = ApiEndpoints.OrganizationProcess.replace('{processId}', draftId)
+      return bearedFetch<void>(deleteUrl, {
+        method: 'DELETE',
+      })
     },
-  ]
+    onSuccess: () => {
+      toast({
+        title: t('drafts.deleted_draft', {
+          defaultValue: 'Draft deleted successfully',
+        }),
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      queryClient.invalidateQueries({
+        queryKey: QueryKeys.organization.drafts(organization?.address),
+        exact: false,
+      })
+    },
+  })
+}
+
+const DraftsTable = ({ drafts }) => {
+  const { t } = useTranslation()
 
   return (
     <Box border='1px solid' borderColor='table.border' borderRadius='sm' w='full'>
@@ -112,21 +132,36 @@ const DraftsRow = ({ draft }) => {
           _hover={{ textDecoration: 'underline' }}
           fontWeight='medium'
         >
-          {draft.title}
+          {draft.metadata?.title}
         </Link>
       </Td>
-      <Td>{draft.startDate}</Td>
-      <Td>{draft.endDate}</Td>
-      <Td>{draft.type}</Td>
+      <Td>{draft.metadata?.startDate}</Td>
+      <Td>{draft.metadata?.endDate}</Td>
+      <Td>{draft.metadata?.questionType}</Td>
       <Td isNumeric>
-        <DraftsContextMenu draftId={draft.id} />
+        <DraftsContextMenu draft={draft} />
       </Td>
     </Tr>
   )
 }
 
-const DraftsContextMenu = ({ draftId }) => {
+const DraftsContextMenu = ({ draft }) => {
   const { t } = useTranslation()
+  const deleteDraftMutation = useDeleteDraft()
+  const createProcess = useCreateProcess()
+  const { account } = useClient()
+
+  const cloneDraft = () => {
+    createProcess.mutate({
+      metadata: draft.metadata,
+      orgAddress: ensure0x(account?.address),
+    })
+  }
+
+  const deleteDraft = () => {
+    deleteDraftMutation.mutate(draft.id)
+  }
+
   return (
     <Menu>
       <MenuButton as={IconButton} icon={<Icon as={LuEllipsisVertical} />} variant='ghost' size='sm' />
@@ -136,17 +171,17 @@ const DraftsContextMenu = ({ draftId }) => {
             as={RouterLink}
             to={{
               pathname: generatePath(Routes.processes.create),
-              search: createSearchParams({ draft: draftId }).toString(),
+              search: createSearchParams({ draft: draft.id }).toString(),
             }}
             icon={<Icon as={LuPencil} boxSize={4} />}
           >
             {t('drafts.edit', { defaultValue: 'Edit Draft' })}
           </MenuItem>
-          <MenuItem onClick={() => console.log('delete')} icon={<Icon as={LuCopy} boxSize={4} />}>
+          <MenuItem onClick={cloneDraft} icon={<Icon as={LuCopy} boxSize={4} />}>
             {t('drafts.clone', { defaultValue: 'Clone Draft' })}
           </MenuItem>
           <MenuDivider />
-          <MenuItem color='red.400' onClick={() => console.log('delete')} icon={<Icon as={LuTrash} boxSize={4} />}>
+          <MenuItem color='red.400' onClick={deleteDraft} icon={<Icon as={LuTrash} boxSize={4} />}>
             {t('drafts.delete', { defaultValue: 'Delete Draft' })}
           </MenuItem>
         </MenuList>
@@ -170,7 +205,7 @@ const Drafts = (props) => {
 
   return (
     <RoutedPaginationProvider path={Routes.dashboard.processes.drafts} pagination={pagination}>
-      <DraftsTable {...props} />
+      <DraftsTable drafts={data.processes ?? []} {...props} />
     </RoutedPaginationProvider>
   )
 }
