@@ -57,7 +57,7 @@ const useDrafts = () => {
   })
 }
 
-const useDeleteDraft = () => {
+export const useDeleteDraft = () => {
   const { t } = useTranslation()
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
@@ -127,7 +127,7 @@ const DraftsRow = ({ draft }) => {
           as={RouterLink}
           to={{
             pathname: generatePath(Routes.processes.create),
-            search: createSearchParams({ draft: draft.id }).toString(),
+            search: createSearchParams({ draftId: draft.id }).toString(),
           }}
           _hover={{ textDecoration: 'underline' }}
           fontWeight='medium'
@@ -171,7 +171,7 @@ const DraftsContextMenu = ({ draft }) => {
             as={RouterLink}
             to={{
               pathname: generatePath(Routes.processes.create),
-              search: createSearchParams({ draft: draft.id }).toString(),
+              search: createSearchParams({ draftId: draft.id }).toString(),
             }}
             icon={<Icon as={LuPencil} boxSize={4} />}
           >
