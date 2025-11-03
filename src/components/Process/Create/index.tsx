@@ -23,7 +23,7 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import {
@@ -33,7 +33,6 @@ import {
   CspCensus,
   Election,
   ElectionCreationSteps,
-  ElectionMetadata,
   ensure0x,
   IElectionParameters,
   IQuestion,
@@ -45,9 +44,17 @@ import { addDays, parse } from 'date-fns'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuRotateCcw, LuSettings } from 'react-icons/lu'
+import { LuSettings } from 'react-icons/lu'
 import ReactPlayer from 'react-player'
-import { createPath, generatePath, useBlocker, useLocation, useNavigate, useParams } from 'react-router-dom'
+import {
+  createPath,
+  generatePath,
+  useBlocker,
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { useSubscription } from '~components/Auth/Subscription'
 import { ApiEndpoints } from '~components/Auth/api'
@@ -58,6 +65,7 @@ import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import { SubscriptionLockedContent } from '~components/shared/Layout/SubscriptionLockedContent'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
 import { SubscriptionPermission } from '~constants'
+import { useDeleteDraft } from '~elements/dashboard/processes/drafts'
 import { Routes } from '~routes'
 import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
 import { AnalyticsEvent } from '~utils/analytics'
@@ -85,7 +93,7 @@ type LeaveConfirmationModalProps = {
 }
 
 type CreateProcessRequest = {
-  metadata: ElectionMetadata
+  metadata: Process
   orgAddress: string
 }
 
@@ -111,9 +119,9 @@ export const useConfirmOnNavigate = ({
   const isProceedingRef = useRef(false)
 
   const routerLocation = useLocation()
-  const currentPath = createPath(routerLocation)
+  const currentPath = routerLocation.pathname
   const nextPath = blocker.location ? createPath(blocker.location) : null
-  const isSamePath = nextPath === currentPath
+  const isSamePath = nextPath === null || nextPath === currentPath
 
   useEffect(() => {
     if (!shouldBlock) {
@@ -465,30 +473,6 @@ const LeaveConfirmationModal = ({
   )
 }
 
-const ResetFormModal = ({ isOpen, onClose, onReset }) => {
-  const { t } = useTranslation()
-
-  return (
-    <DeleteModal
-      title={t('process.create.reset_form.title', { defaultValue: 'Reset Form' })}
-      subtitle={t('process.create.reset_form.message', {
-        defaultValue: 'Are you sure you want to reset the form? This action cannot be undone.',
-      })}
-      isOpen={isOpen}
-      onClose={onClose}
-    >
-      <Flex justifyContent='flex-end' mt={4} gap={2}>
-        <Button variant='outline' onClick={onClose}>
-          {t('process.create.reset_form.cancel', { defaultValue: 'Cancel' })}
-        </Button>
-        <Button colorScheme='red' onClick={onReset}>
-          {t('process.create.reset_form.reset', { defaultValue: 'Reset Form' })}
-        </Button>
-      </Flex>
-    </DeleteModal>
-  )
-}
-
 const useProcessBundle = () => {
   const { bearedFetch } = useAuth()
   return useMutation({
@@ -597,24 +581,32 @@ export const useFormToElectionMapper = () => {
   }
 }
 
-const useDraft = () => {
+export const useDraft = (draftId?: string | null) => {
   const { bearedFetch } = useAuth()
-  return useMutation<any, Error, string>({
-    mutationFn: async (draftId) => {
-      return await bearedFetch(ApiEndpoints.OrganizationProcess.replace('{processId}', draftId), {
-        method: 'GET',
-      })
+
+  return useQuery<{ metadata: Process }, Error>({
+    queryKey: ['draft', draftId],
+    enabled: !!draftId,
+    queryFn: async () => {
+      return bearedFetch(ApiEndpoints.OrganizationProcess.replace('{processId}', draftId!))
     },
+    refetchOnWindowFocus: false,
   })
 }
 
 export const ProcessCreate = () => {
   const { t } = useTranslation()
   const toast = useToast()
+  const { account } = useClient()
   const [formDraftLoaded, setFormDraftLoaded] = useState(false)
-  const [draftId, storeDraftId] = useLocalStorage('draft-id', null)
-  const isDesktop = useBreakpointValue({ base: false, md: true })
+  const updateProcess = useUpdateProcess()
+  const createProcess = useCreateProcess()
   const { groupId } = useParams()
+  const [searchParams] = useSearchParams()
+  const draftId = searchParams.get('draftId')
+  const [storedDraftId, storeDraftId] = useLocalStorage('draft-id', null)
+  const isDesktop = useBreakpointValue({ base: false, md: true })
+  const deleteDraft = useDeleteDraft()
   const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(true)
   const methods = useForm<Process>({
@@ -626,34 +618,38 @@ export const ProcessCreate = () => {
   const reset = useSafeReset(methods.reset)
   const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
   const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
-  const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
   const { organization } = useOrganization()
   const { client } = useClient()
   const { isSubmitting, isSubmitSuccessful, isDirty } = methods.formState
   const { setStepDoneAsync } = useOrganizationSetup()
   const processBundleMutation = useProcessBundle()
   const { trackPlausibleEvent } = useAnalytics()
-  const draftMutation = useDraft()
-
   const formToElectionMapper = useFormToElectionMapper()
+  const effectiveDraftId = draftId ?? storedDraftId
 
-  useFormDraftSaver(isDirty, methods.getValues, draftId, storeDraftId)
+  useFormDraftSaver(isDirty, methods.getValues, effectiveDraftId, storeDraftId)
 
+  const { data: formDraft, isSuccess } = useDraft(effectiveDraftId)
+
+  // Show sidebar by default on desktop
   useEffect(() => {
     setShowSidebar(isDesktop)
   }, [isDesktop])
 
   // Apply form draft if it exists
   useEffect(() => {
-    const loadDraft = async () => {
-      if (draftId) {
-        const draft = await draftMutation.mutate(draftId)
-        console.log('Loaded draft:', draft)
-        setFormDraftLoaded(true)
-      }
-    }
-    loadDraft()
-  }, [])
+    setFormDraftLoaded(true)
+    if (!isSuccess || !formDraft) return
+
+    methods.reset(
+      {
+        ...defaultProcessValues,
+        ...formDraft.metadata,
+        ...(groupId ? { groupId } : {}),
+      },
+      { keepDirty: false, keepTouched: false }
+    )
+  }, [isSuccess, formDraft, groupId, methods])
 
   // Confirm navigation if form is dirty
   const { isSamePath, cancel, proceed, resetSamePath } = useConfirmOnNavigate({
@@ -667,17 +663,33 @@ export const ProcessCreate = () => {
   const resetForm = () => {
     setActiveTemplate(null)
     reset()
-    onResetFormModalClose()
+    queueMicrotask(() => {
+      navigate(location.pathname, { replace: true })
+      storeDraftId(null)
+    })
   }
 
-  const handleLeaveWithoutSaving = () => {
+  const handleLeaveWithoutSaving = async () => {
     reset()
-    // TODO: Delete draft and clear draftId from localStorage
+    storeDraftId(null)
+    await deleteDraft.mutateAsync(effectiveDraftId as string)
     proceed()
   }
 
-  const handleSaveAndLeave = () => {
+  const handleSaveAndLeave = async () => {
     const form = methods.getValues()
+    if (effectiveDraftId) {
+      await updateProcess.mutateAsync({
+        processId: effectiveDraftId,
+        body: { metadata: form, orgAddress: ensure0x(account?.address) },
+      })
+    } else {
+      const draftProcessId = await createProcess.mutateAsync({
+        metadata: form,
+        orgAddress: ensure0x(account?.address),
+      })
+      storeDraftId(draftProcessId)
+    }
     proceed()
   }
 
@@ -817,14 +829,6 @@ export const ProcessCreate = () => {
             )}
             <Spacer />
             <ButtonGroup size='sm'>
-              {methods.formState.isDirty && (
-                <IconButton
-                  aria-label={t('form.reset', { defaultValue: 'Reset form' })}
-                  icon={<Icon as={LuRotateCcw} />}
-                  variant='outline'
-                  onClick={onResetFormModalOpen}
-                />
-              )}
               <IconButton
                 aria-label={t('dashboard.actions.toggle_sidebar', {
                   defaultValue: 'Toggle sidebar',
@@ -888,11 +892,10 @@ export const ProcessCreate = () => {
         isOpen={isOpen}
         onCancel={cancel}
         onLeave={handleLeaveWithoutSaving}
-        onResetSamePath={() => resetSamePath(() => reset())}
+        onResetSamePath={() => resetSamePath(() => resetForm())}
         onSaveAndLeave={handleSaveAndLeave}
         isSamePath={isSamePath}
       />
-      <ResetFormModal isOpen={isResetFormModalOpen} onClose={onResetFormModalClose} onReset={resetForm} />
     </FormProvider>
   )
 }

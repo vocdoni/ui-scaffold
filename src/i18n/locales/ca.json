@@ -1323,12 +1323,12 @@
       },
       "leave_confirmation": {
         "cancel": "Cancel·la",
-        "leave": "Surt sense desar",
-        "message": "Tens canvis no desats. Segur que vols sortir?",
+        "leave": "Eliminar esborrany i sortir",
+        "message": "Vols desar l’esborrany?",
         "reset": "Restableix",
         "reset_message": "Això restablirà el formulari. Vols continuar?",
-        "save_and_leave": "Desa i surt",
-        "title": "Canvis no desats"
+        "save_and_leave": "Desar esborrany i sortir",
+        "title": "Desant esborrany"
       },
       "question": {
         "add": "Afegeix una pregunta",

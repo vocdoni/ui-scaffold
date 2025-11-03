@@ -1323,12 +1323,12 @@
       },
       "leave_confirmation": {
         "cancel": "Cancelar",
-        "leave": "Salir sin guardar",
-        "message": "Tienes cambios sin guardar. ¿Seguro que quieres salir?",
+        "leave": "Eliminar borrador y salir",
+        "message": "¿Quieres guardar tu borrador?",
         "reset": "Restablecer",
         "reset_message": "Esto reiniciará el formulario. ¿Quieres continuar?",
-        "save_and_leave": "Guardar y salir",
-        "title": "Cambios sin guardar"
+        "save_and_leave": "Guardar borrador y salir",
+        "title": "Guardando borrador"
       },
       "question": {
         "add": "Añadir pregunta",
