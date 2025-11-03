@@ -18,6 +18,7 @@ import {
   Progress,
   Spacer,
   Text,
+  useBreakpointValue,
   useDisclosure,
   useToast,
   VStack,
@@ -612,6 +613,7 @@ export const ProcessCreate = () => {
   const toast = useToast()
   const [formDraftLoaded, setFormDraftLoaded] = useState(false)
   const [draftId, storeDraftId] = useLocalStorage('draft-id', null)
+  const isDesktop = useBreakpointValue({ base: false, md: true })
   const { groupId } = useParams()
   const navigate = useNavigate()
   const [showSidebar, setShowSidebar] = useState(true)
