@@ -1,9 +1,8 @@
-import { Box, Button, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Card, CardBody, Flex, Image, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { FaFingerprint } from 'react-icons/fa'
 import { MdDesignServices } from 'react-icons/md'
-import { Link as ReactRouterLink } from 'react-router-dom'
-import { Routes } from '~routes'
+import ContactButton from '~components/shared/ContactLink'
 import advFeature from '/assets/vocdoni.jpeg'
 
 const ContactUs = () => {
@@ -104,21 +103,18 @@ const ContactUs = () => {
             </CardBody>
           </Card>
 
-          <Button
+          <ContactButton
             w={{ base: 'full', sm: 'fit-content', xl: 'full' }}
             mx='auto'
-            as={ReactRouterLink}
-            to={Routes.dashboard.settings.support}
             aria-label={t('home.contactus.btn')}
             colorScheme='black'
             title={t('home.contactus.btn')}
-            target='_blank'
             height='52px'
             fontSize='20px'
             px={{ md: '130px' }}
           >
             {t('home.contactus.btn')}
-          </Button>
+          </ContactButton>
         </Flex>
       </Flex>
     </Flex>

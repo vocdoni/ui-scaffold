@@ -1,8 +1,8 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
-import { FaPhoneVolume, FaRegCheckCircle } from 'react-icons/fa'
-import { Link as ReactRouterLink } from 'react-router-dom'
-import { Routes } from '~routes'
+import { FaRegCheckCircle } from 'react-icons/fa'
+import ContactButton from '~components/shared/ContactLink'
+import { BookerModalButton } from '~components/shared/Dashboard/Booker'
 
 const Support = () => {
   const { t } = useTranslation()
@@ -84,32 +84,25 @@ const Support = () => {
           mb='40px'
           gap={'15px'}
         >
-          <Button
-            as={ReactRouterLink}
-            to={Routes.dashboard.settings.support}
+          <ContactButton
             variant='outline'
             colorScheme='black'
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
-            target='_blank'
             height='60px'
           >
             {t('home.support.btn_contact')}
-          </Button>
-          <Button
-            as={ReactRouterLink}
+          </ContactButton>
+          <BookerModalButton
             colorScheme='black'
-            to='https://calendly.com/vocdoni-app/30min'
             aria-label={t('home.support.btn_watch')}
             title={t('home.support.btn_watch')}
-            target='_blank'
             height='60px'
           >
-            <FaPhoneVolume size={30} />
             <Text as='span' ml='10px'>
               {t('home.support.btn_watch')}
             </Text>
-          </Button>
+          </BookerModalButton>
         </Flex>
         <Flex gap='20px' flexDirection={{ base: 'column', md2: 'row' }} justifyContent='center'>
           <Flex justifyContent='center' alignItems='center' gap='2' color='home.support.helper' opacity='.8'>
