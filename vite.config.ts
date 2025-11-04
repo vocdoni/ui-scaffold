@@ -73,6 +73,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.ANNOUNCEMENT': JSON.stringify(process.env.ANNOUNCEMENT),
       'import.meta.env.PRIVACY_POLICY_URL': JSON.stringify(privacyPolicyUrl),
       'import.meta.env.TERMS_OF_SERVICE_URL': JSON.stringify(termsOfServiceUrl),
+      'import.meta.env.WHATSAPP_PHONE_NUMBER': JSON.stringify(process.env.WHATSAPP_PHONE_NUMBER || '+34 621 501 155'),
     },
     plugins: [
       tsconfigPaths(),

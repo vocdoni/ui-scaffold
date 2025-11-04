@@ -27,5 +27,6 @@ interface ImportMeta {
     ANNOUNCEMENT: string
     PRIVACY_POLICY_URL: string
     TERMS_OF_SERVICE_URL: string
+    WHATSAPP_PHONE_NUMBER: string
   }
 }
