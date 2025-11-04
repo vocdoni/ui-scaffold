@@ -78,21 +78,6 @@ export const usePaginatedMembers = ({ search = '', showAll = false }: PaginatedM
     queryKey: [...QueryKeys.organization.members(organization?.address), effectivePage, effectiveLimit, search],
     enabled: !!organization?.address,
     queryFn: () => bearedFetch<MembersResponse>(fetchUrl),
-    select: (data) => {
-      const currentPage = data.page
-      const lastPage = data.pages
-
-      return {
-        members: data.members,
-        pagination: {
-          totalItems: data.members.length,
-          currentPage,
-          lastPage,
-          previousPage: currentPage > 1 ? currentPage - 1 : null,
-          nextPage: currentPage < lastPage ? currentPage + 1 : null,
-        },
-      }
-    },
   })
 }
 
