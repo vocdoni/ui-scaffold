@@ -278,6 +278,8 @@
   "draft_processes": "Borradores",
   "drafts": {
     "clone": "Clonar borrador",
+    "cloned_draft": "Borrador clonado correctamente",
+    "cloned_draft_error": "Error clonando el borrador",
     "delete": "Eliminar borrador",
     "deleted_draft": "Borrador eliminado correctamente",
     "edit": "Editar borrador"

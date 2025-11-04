@@ -275,6 +275,8 @@
   "draft_processes": "Drafts",
   "drafts": {
     "clone": "Clone Draft",
+    "cloned_draft": "Draft cloned successfully",
+    "cloned_draft_error": "Error cloning draft",
     "delete": "Delete Draft",
     "deleted_draft": "Draft deleted successfully",
     "edit": "Edit Draft"

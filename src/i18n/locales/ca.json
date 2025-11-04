@@ -278,6 +278,8 @@
   "draft_processes": "Esborranys",
   "drafts": {
     "clone": "Clonar esborrany",
+    "cloned_draft": "Esborrany clonat correctament",
+    "cloned_draft_error": "Error clonant l'esborrany",
     "delete": "Eliminar esborrany",
     "deleted_draft": "Esborrany eliminat correctament",
     "edit": "Editar esborrany"

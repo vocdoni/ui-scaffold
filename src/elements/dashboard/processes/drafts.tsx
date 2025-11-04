@@ -24,7 +24,7 @@ import { RoutedPaginationProvider, useClient, useOrganization } from '@vocdoni/r
 import { ensure0x } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { LuCopy, LuEllipsisVertical, LuPencil, LuTrash } from 'react-icons/lu'
-import { createSearchParams, generatePath, Link as RouterLink } from 'react-router-dom'
+import { createSearchParams, generatePath, Link as RouterLink, useNavigate } from 'react-router-dom'
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { useCreateProcess } from '~components/Process/Create'
@@ -147,15 +147,48 @@ const DraftsRow = ({ draft }) => {
 
 const DraftsContextMenu = ({ draft }) => {
   const { t } = useTranslation()
+  const queryClient = useQueryClient()
+  const toast = useToast()
   const deleteDraftMutation = useDeleteDraft()
   const createProcess = useCreateProcess()
   const { account } = useClient()
+  const navigate = useNavigate()
 
-  const cloneDraft = () => {
-    createProcess.mutate({
-      metadata: draft.metadata,
-      orgAddress: ensure0x(account?.address),
-    })
+  const cloneDraft = async () => {
+    try {
+      const clonedDraftId = await createProcess.mutateAsync({
+        metadata: draft.metadata,
+        orgAddress: ensure0x(account?.address),
+      })
+      toast({
+        title: t('drafts.cloned_draft', {
+          defaultValue: 'Draft cloned successfully',
+        }),
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      queryClient.invalidateQueries({
+        queryKey: QueryKeys.organization.drafts(account?.address),
+        exact: false,
+      })
+      navigate(
+        {
+          pathname: generatePath(Routes.processes.create, { page: 1 }),
+          search: createSearchParams({ draftId: clonedDraftId }).toString(),
+        },
+        { replace: true }
+      )
+    } catch (error) {
+      toast({
+        title: t('drafts.cloned_draft_error', {
+          defaultValue: 'Error cloning draft',
+        }),
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
   }
 
   const deleteDraft = () => {
