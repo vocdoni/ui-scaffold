@@ -17,6 +17,7 @@
   "add_new_org": "Añadir una nueva organización",
   "additional_actions": "Acciones adicionales",
   "all": "Todo",
+  "all_processes": "Todos",
   "already_member": "¿Ya tienes una cuenta?",
   "alt": {
     "images": {
@@ -274,6 +275,13 @@
   "discount": "Descuento",
   "do_it_later": "Hacerlo más tarde",
   "do_you_need_help": "¿Necesitas ayuda?",
+  "draft_processes": "Borradores",
+  "drafts": {
+    "clone": "Clonar borrador",
+    "delete": "Eliminar borrador",
+    "deleted_draft": "Borrador eliminado correctamente",
+    "edit": "Editar borrador"
+  },
   "drawer": {
     "close": "Cerrar panel"
   },
@@ -304,6 +312,7 @@
   "end_date": "Fecha de finalización",
   "end_time": "Hora de finalización",
   "end_vote": "Finalizar votación",
+  "ended_processes": "Ended",
   "enter_promo_code": "Introduce el código promocional",
   "error": {
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
@@ -474,7 +483,6 @@
         "wallet_addresses": "Direcciones Web3"
       }
     },
-    "reset": "Restablecer formulario",
     "select_language": "Idioma",
     "support": {
       "billing_issue": "Problema de facturación",
@@ -1348,12 +1356,6 @@
           "placeholder": "Añade aquí la descripción de la pregunta (opcional)..."
         },
         "question_number": "Pregunta {{index}} de {{total}}"
-      },
-      "reset_form": {
-        "cancel": "Cancelar",
-        "message": "¿Seguro que quieres restablecer el formulario? Esta acción no se puede deshacer.",
-        "reset": "Restablecer formulario",
-        "title": "Restablecer formulario"
       },
       "selectionLimits": {
         "full": "Los votantes deben seleccionar al menos <min /> y como máximo <max /> opciones.",

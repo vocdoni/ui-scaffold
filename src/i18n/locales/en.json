@@ -17,6 +17,7 @@
   "add_new_org": "Add a new organization",
   "additional_actions": "Additional actions",
   "all": "All",
+  "all_processes": "All",
   "already_member": "Already have an account?",
   "alt": {
     "images": {
@@ -271,6 +272,13 @@
   "discount": "Discount",
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
+  "draft_processes": "Drafts",
+  "drafts": {
+    "clone": "Clone Draft",
+    "delete": "Delete Draft",
+    "deleted_draft": "Draft deleted successfully",
+    "edit": "Edit Draft"
+  },
   "drawer": {
     "close": "Close drawer"
   },
@@ -301,6 +309,7 @@
   "end_date": "End date",
   "end_time": "End time",
   "end_vote": "End vote",
+  "ended_processes": "Ended",
   "enter_promo_code": "Enter code",
   "error": {
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
@@ -470,7 +479,6 @@
         "wallet_addresses": "Wallet Addresses"
       }
     },
-    "reset": "Reset form",
     "select_language": "Language",
     "support": {
       "billing_issue": "Billing issue",
@@ -1326,12 +1334,6 @@
           "placeholder": "Add the description of the question here (optional)..."
         },
         "question_number": "Question {{index}} of {{total}}"
-      },
-      "reset_form": {
-        "cancel": "Cancel",
-        "message": "Are you sure you want to reset the form? This action cannot be undone.",
-        "reset": "Reset Form",
-        "title": "Reset Form"
       },
       "selectionLimits": {
         "full": "Voters must select at least  <min />  and at most  <max />  options.",

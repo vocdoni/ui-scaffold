@@ -17,6 +17,7 @@
   "add_new_org": "Afegeix una nova organització",
   "additional_actions": "Accions addicionals",
   "all": "Tots",
+  "all_processes": "Tots",
   "already_member": "Ja tens un compte?",
   "alt": {
     "images": {
@@ -274,6 +275,13 @@
   "discount": "Descompte",
   "do_it_later": "Fes-ho més tard",
   "do_you_need_help": "Necessites ajuda?",
+  "draft_processes": "Esborranys",
+  "drafts": {
+    "clone": "Clonar esborrany",
+    "delete": "Eliminar esborrany",
+    "deleted_draft": "Esborrany eliminat correctament",
+    "edit": "Editar esborrany"
+  },
   "drawer": {
     "close": "Tanca el panell lateral"
   },
@@ -304,6 +312,7 @@
   "end_date": "Data de finalització",
   "end_time": "Hora de finalització",
   "end_vote": "Finalitza votació",
+  "ended_processes": "Acabats",
   "enter_promo_code": "Introdueix el codi",
   "error": {
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
@@ -474,7 +483,6 @@
         "wallet_addresses": "Adreces de cartera"
       }
     },
-    "reset": "Reinicia formulari",
     "select_language": "Idioma",
     "support": {
       "billing_issue": "Problema de facturació",
@@ -1348,12 +1356,6 @@
           "placeholder": "Afegeix aquí la descripció de la pregunta (opcional)..."
         },
         "question_number": "Pregunta {{index}} de {{total}}"
-      },
-      "reset_form": {
-        "cancel": "Cancel·la",
-        "message": "Segur que vols restablir el formulari? Aquesta acció no es pot desfer.",
-        "reset": "Restableix el formulari",
-        "title": "Restablir formulari"
       },
       "selectionLimits": {
         "full": "Els votants han de seleccionar com a mínim <min /> i com a màxim <max /> opcions.",
