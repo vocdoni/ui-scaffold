@@ -18,7 +18,7 @@ export const Routes = {
     processes: {
       base: '/admin/processes',
       all: '/admin/processes/all/:page?/:status?',
-      ended: '/admin/processes/ended/:page?/ENDED',
+      ended: '/admin/processes/ended/:page?/:status?',
       drafts: '/admin/processes/drafts/:page?',
     },
     profile: '/admin/profile',
