@@ -36,13 +36,13 @@ import { Routes } from '~routes'
 const useDrafts = () => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
-  const { page } = useUrlPagination()
+  const { page, limit } = useUrlPagination()
 
   const baseUrl = ApiEndpoints.OrganizationDrafts.replace('{address}', organization?.address)
-  const fetchUrl = `${baseUrl}?page=${page}`
+  const fetchUrl = `${baseUrl}?page=${page}&limit=${limit}`
 
   return useQuery({
-    queryKey: [...QueryKeys.organization.drafts(organization?.address), page],
+    queryKey: [...QueryKeys.organization.drafts(organization?.address), page, limit],
     enabled: !!organization?.address,
     queryFn: () => bearedFetch<any>(fetchUrl),
     select: (data) => {
@@ -204,7 +204,7 @@ const Drafts = (props) => {
   if (isLoading) return <Progress size='xs' isIndeterminate colorScheme='gray' />
 
   return (
-    <RoutedPaginationProvider path={Routes.dashboard.processes.drafts} pagination={pagination}>
+    <RoutedPaginationProvider initialPage={1} path={Routes.dashboard.processes.drafts} pagination={pagination}>
       <DraftsTable drafts={data.processes ?? []} {...props} />
     </RoutedPaginationProvider>
   )
