@@ -210,7 +210,13 @@ const DraftsContextMenu = ({ draft }) => {
 
   return (
     <Menu>
-      <MenuButton as={IconButton} icon={<Icon as={LuEllipsisVertical} />} variant='ghost' size='sm' />
+      <MenuButton
+        as={IconButton}
+        isLoading={deleteDraftMutation.isPending}
+        icon={<Icon as={LuEllipsisVertical} />}
+        variant='ghost'
+        size='sm'
+      />
       <Portal>
         <MenuList>
           <MenuItem
