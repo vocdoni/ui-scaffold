@@ -1313,7 +1313,8 @@
     },
     "create": {
       "action": {
-        "publish": "Publicar"
+        "publish": "Publicar",
+        "save_draft": "Guardar"
       },
       "change_template": {
         "cancel": "Cancelar",

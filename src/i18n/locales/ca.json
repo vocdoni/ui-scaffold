@@ -1313,7 +1313,8 @@
     },
     "create": {
       "action": {
-        "publish": "Publica"
+        "publish": "Publica",
+        "save_draft": "Guarda"
       },
       "change_template": {
         "cancel": "Cancel·la",
