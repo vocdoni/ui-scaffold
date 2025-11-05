@@ -1321,7 +1321,7 @@
     "create": {
       "action": {
         "publish": "Publica",
-        "save_draft": "Guarda"
+        "save_draft": "Desa"
       },
       "change_template": {
         "cancel": "Cancel·la",
@@ -1335,11 +1335,11 @@
       },
       "leave_confirmation": {
         "cancel": "Cancel·la",
-        "leave": "Eliminar esborrany i sortir",
+        "leave": "Elimina i surt",
         "message": "Vols desar l’esborrany?",
         "reset": "Restableix",
         "reset_message": "Això restablirà el formulari. Vols continuar?",
-        "save_and_leave": "Desar esborrany i sortir",
+        "save_and_leave": "Desa i surt",
         "title": "Desant esborrany"
       },
       "question": {
