@@ -1764,6 +1764,7 @@
   "verification_code_resent": "Verification code resent!",
   "verify": {
     "account_created_succesfully": "Account created successfully!",
+    "check_spam_folder": "Please check your spam folder if you don't see the email in your inbox.",
     "email_sent": "Email sent successfully",
     "enter_code": "Enter the code below to activate your account",
     "enter_verification_code": "We've sent you a verification email. Please follow the instructions to activate your account.",
