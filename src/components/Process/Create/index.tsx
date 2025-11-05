@@ -874,7 +874,7 @@ export const ProcessCreate = () => {
                     placeholders[activeTemplate]?.description ??
                     t('process.create.description.placeholder', 'Add a description...')
                   }
-                  defaultValue={field.value}
+                  value={field.value}
                 />
               )}
             />
