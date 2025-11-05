@@ -767,7 +767,8 @@ export const ProcessCreate = () => {
 
       methods.reset(defaultProcessValues)
 
-      // TODO: Delete draft and clear draftId from localStorage here
+      await deleteDraft.mutateAsync(effectiveDraftId as string)
+      localStorage.removeItem('draftId')
       navigate(generatePath(Routes.dashboard.process, { id: electionId }))
     } catch (error) {
       console.error('Error creating election:', error)
