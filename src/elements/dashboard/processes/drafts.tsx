@@ -33,6 +33,27 @@ import { QueryKeys } from '~queries/keys'
 import { useUrlPagination } from '~queries/members'
 import { Routes } from '~routes'
 
+type Draft = {
+  id: string
+  metadata: {
+    title: string
+    startDate: string
+    endDate: string
+    questionType: string
+  }
+}
+
+type DraftsResponse = {
+  processes: Draft[]
+  pagination: {
+    totalItems: number
+    currentPage: number
+    lastPage: number
+    previousPage: number | null
+    nextPage: number | null
+  }
+}
+
 const useDrafts = () => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
@@ -44,16 +65,7 @@ const useDrafts = () => {
   return useQuery({
     queryKey: [...QueryKeys.organization.drafts(organization?.address), page, limit],
     enabled: !!organization?.address,
-    queryFn: () => bearedFetch<any>(fetchUrl),
-    select: (data) => {
-      return {
-        ...data,
-        pagination: {
-          ...data.pagination,
-          currentPage: data.pagination.currentPage - 1,
-        },
-      }
-    },
+    queryFn: () => bearedFetch<DraftsResponse>(fetchUrl),
   })
 }
 
@@ -120,6 +132,7 @@ const DraftsTable = ({ drafts }) => {
 }
 
 const DraftsRow = ({ draft }) => {
+  const { t } = useTranslation()
   return (
     <Tr key={draft.id} position='relative'>
       <Td>
@@ -132,12 +145,12 @@ const DraftsRow = ({ draft }) => {
           _hover={{ textDecoration: 'underline' }}
           fontWeight='medium'
         >
-          {draft.metadata?.title}
+          {draft.metadata?.title || t('drafts.not_defined', { defaultValue: 'Not defined yet' })}
         </Link>
       </Td>
-      <Td>{draft.metadata?.startDate}</Td>
-      <Td>{draft.metadata?.endDate}</Td>
-      <Td>{draft.metadata?.questionType}</Td>
+      <Td>{draft.metadata?.startDate || t('drafts.not_defined', { defaultValue: 'Not defined yet' })}</Td>
+      <Td>{draft.metadata?.endDate || t('drafts.not_defined', { defaultValue: 'Not defined yet' })}</Td>
+      <Td>{draft.metadata?.questionType || t('drafts.not_defined', { defaultValue: 'Not defined yet' })}</Td>
       <Td isNumeric>
         <DraftsContextMenu draft={draft} />
       </Td>

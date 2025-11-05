@@ -282,7 +282,8 @@
     "cloned_draft_error": "Error clonando el borrador",
     "delete": "Eliminar borrador",
     "deleted_draft": "Borrador eliminado correctamente",
-    "edit": "Editar borrador"
+    "edit": "Editar borrador",
+    "not_defined": "No definido aún"
   },
   "drawer": {
     "close": "Cerrar panel"

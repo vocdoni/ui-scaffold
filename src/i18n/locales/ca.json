@@ -282,7 +282,8 @@
     "cloned_draft_error": "Error clonant l'esborrany",
     "delete": "Eliminar esborrany",
     "deleted_draft": "Esborrany eliminat correctament",
-    "edit": "Editar esborrany"
+    "edit": "Editar esborrany",
+    "not_defined": "No definit encara"
   },
   "drawer": {
     "close": "Tanca el panell lateral"

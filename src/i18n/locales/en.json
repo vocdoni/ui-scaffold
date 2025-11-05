@@ -279,7 +279,8 @@
     "cloned_draft_error": "Error cloning draft",
     "delete": "Delete Draft",
     "deleted_draft": "Draft deleted successfully",
-    "edit": "Edit Draft"
+    "edit": "Edit Draft",
+    "not_defined": "Not defined yet"
   },
   "drawer": {
     "close": "Close drawer"
