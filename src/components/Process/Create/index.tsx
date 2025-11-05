@@ -213,6 +213,10 @@ export const useFormDraftSaver = (
   const updateProcess = useUpdateProcess()
   const savingRef = useRef(false)
 
+  const isCreating = createProcess.isPending
+  const isUpdating = updateProcess.isPending
+  const isSaving = savingRef.current || isCreating || isUpdating
+
   const saveDraft = useCallback(async () => {
     if (!isDirty || savingRef.current) return
     savingRef.current = true
@@ -267,6 +271,8 @@ export const useFormDraftSaver = (
     }, 30000)
     return () => clearInterval(id)
   }, [saveDraft])
+
+  return { saveDraft, isSaving }
 }
 
 const LiveStreamingInput = () => {
@@ -627,7 +633,7 @@ export const ProcessCreate = () => {
   const formToElectionMapper = useFormToElectionMapper()
   const effectiveDraftId = draftId ?? storedDraftId
 
-  useFormDraftSaver(isDirty, methods.getValues, effectiveDraftId, storeDraftId)
+  const { saveDraft, isSaving } = useFormDraftSaver(isDirty, methods.getValues, effectiveDraftId, storeDraftId)
 
   const { data: formDraft, isSuccess } = useDraft(effectiveDraftId)
 
@@ -677,19 +683,7 @@ export const ProcessCreate = () => {
   }
 
   const handleSaveAndLeave = async () => {
-    const form = methods.getValues()
-    if (effectiveDraftId) {
-      await updateProcess.mutateAsync({
-        processId: effectiveDraftId,
-        body: { metadata: form, orgAddress: ensure0x(account?.address) },
-      })
-    } else {
-      const draftProcessId = await createProcess.mutateAsync({
-        metadata: form,
-        orgAddress: ensure0x(account?.address),
-      })
-      storeDraftId(draftProcessId)
-    }
+    saveDraft()
     proceed()
   }
 
@@ -839,6 +833,9 @@ export const ProcessCreate = () => {
               />
               <Button type='submit' colorScheme='black' alignSelf='flex-end' isLoading={methods.formState.isSubmitting}>
                 <Trans i18nKey='process.create.action.publish'>Publish</Trans>
+              </Button>
+              <Button type='button' colorScheme='black' variant='outline' onClick={saveDraft} isLoading={isSaving}>
+                <Trans i18nKey='process.create.action.save_draft'>Save</Trans>
               </Button>
             </ButtonGroup>
           </HStack>

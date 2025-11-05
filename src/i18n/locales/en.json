@@ -1297,7 +1297,8 @@
     },
     "create": {
       "action": {
-        "publish": "Publish"
+        "publish": "Publish",
+        "save_draft": "Save"
       },
       "change_template": {
         "cancel": "Cancel",
