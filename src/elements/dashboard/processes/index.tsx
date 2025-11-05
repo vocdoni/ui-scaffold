@@ -2,7 +2,7 @@ import { Tab, TabList, Tabs } from '@chakra-ui/react'
 import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { generatePath, Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
+import { generatePath, matchPath, Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { Routes } from '~routes'
 import { DashboardContents, Heading, SubHeading } from '~shared/Dashboard/Contents'
@@ -26,7 +26,10 @@ const OrganizationVotings = () => {
       route: generatePath(Routes.dashboard.processes.drafts, { page: 1 }),
     },
   ]
-  const currentTabIndex = menuItems.findIndex((item) => location.pathname.endsWith(item.route))
+
+  const isDrafts = !!matchPath(Routes.dashboard.processes.drafts, location.pathname)
+  const isEnded = !!matchPath(Routes.dashboard.processes.ended, location.pathname)
+  const currentTabIndex = isDrafts ? 2 : isEnded ? 1 : 0
 
   // Set page title
   useEffect(() => {
@@ -43,7 +46,7 @@ const OrganizationVotings = () => {
       <SubHeading>{t('voting_processes_description')}</SubHeading>
       <Tabs
         variant='settings'
-        index={currentTabIndex === -1 ? 0 : currentTabIndex}
+        index={currentTabIndex}
         onChange={(index) => {
           const item = menuItems[index]
           navigate(item.route)
