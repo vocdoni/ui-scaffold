@@ -1787,6 +1787,7 @@
   "verification_code_resent": "¡Código de verificación reenviado!",
   "verify": {
     "account_created_succesfully": "¡Cuenta creada con éxito!",
+    "check_spam_folder": "Si no ves el correo en tu bandeja de entrada, por favor, revisa la carpeta de spam.",
     "email_sent": "Correo enviado correctamente",
     "enter_code": "Introduce el código a continuación para activar tu cuenta",
     "enter_verification_code": "Te hemos enviado un correo de verificación. Sigue las instrucciones para activar tu cuenta.",

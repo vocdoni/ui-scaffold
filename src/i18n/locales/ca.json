@@ -1787,6 +1787,7 @@
   "verification_code_resent": "Codi de verificació reenviat!",
   "verify": {
     "account_created_succesfully": "Compte creat correctament!",
+    "check_spam_folder": "Si no veus el correu a la safata d'entrada, si us plau, revisa la carpeta de correu brossa.",
     "email_sent": "Correu enviat correctament",
     "enter_code": "Introdueix el codi a continuació per activar el teu compte",
     "enter_verification_code": "T'hem enviat un correu de verificació. Si us plau, segueix les instruccions per activar el teu compte.",
