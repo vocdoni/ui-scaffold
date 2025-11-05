@@ -28,6 +28,7 @@ import { createSearchParams, generatePath, Link as RouterLink, useNavigate } fro
 import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { useCreateProcess } from '~components/Process/Create'
+import { Process } from '~components/Process/Create/common'
 import RoutedPaginatedTableFooter from '~components/shared/Pagination/PaginatedTableFooter'
 import { QueryKeys } from '~queries/keys'
 import { useUrlPagination } from '~queries/members'
@@ -35,12 +36,7 @@ import { Routes } from '~routes'
 
 type Draft = {
   id: string
-  metadata: {
-    title: string
-    startDate: string
-    endDate: string
-    questionType: string
-  }
+  metadata: Process
 }
 
 type DraftsResponse = {
@@ -101,7 +97,7 @@ export const useDeleteDraft = () => {
   })
 }
 
-const DraftsTable = ({ drafts }) => {
+const DraftsTable = ({ drafts }: { drafts: Draft[] }) => {
   const { t } = useTranslation()
 
   return (
@@ -131,7 +127,7 @@ const DraftsTable = ({ drafts }) => {
   )
 }
 
-const DraftsRow = ({ draft }) => {
+const DraftsRow = ({ draft }: { draft: Draft }) => {
   const { t } = useTranslation()
   return (
     <Tr key={draft.id} position='relative'>
@@ -158,7 +154,7 @@ const DraftsRow = ({ draft }) => {
   )
 }
 
-const DraftsContextMenu = ({ draft }) => {
+const DraftsContextMenu = ({ draft }: { draft: Draft }) => {
   const { t } = useTranslation()
   const queryClient = useQueryClient()
   const toast = useToast()
