@@ -309,7 +309,7 @@
   "end_date": "Fecha de finalización",
   "end_time": "Hora de finalización",
   "end_vote": "Finalizar votación",
-  "ended_processes": "Ended",
+  "ended_processes": "Finalizados",
   "enter_promo_code": "Introduce el código promocional",
   "error": {
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
