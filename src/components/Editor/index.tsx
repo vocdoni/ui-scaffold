@@ -16,6 +16,7 @@ import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPl
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
+import { $getRoot } from 'lexical'
 import { useEffect, useRef, useState } from 'react'
 
 import { FloatingLinkEditorPlugin, FloatingTextFormatToolbarPlugin } from './plugins'
@@ -28,6 +29,7 @@ type EditorProps = {
   onChange?: (value: string) => void
   placeholder?: string
   defaultValue?: string
+  value?: string
   variant?: TextareaProps['variant']
   padding?: ChakraProps['padding']
 }
@@ -68,26 +70,20 @@ const MarkdownEditor = (props: EditorProps) => {
   const [editor] = useLexicalComposerContext()
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
   const [isLinkEditMode, setIsLinkEditMode] = useState(false)
-  const hasInitialized = useRef(false)
+  const lastAppliedRef = useRef<string | undefined>(undefined)
 
   useEffect(() => {
     if (!editor) return
 
-    // Initialize the editor with the default value if provided
-    if (!hasInitialized.current && props.defaultValue !== undefined) {
-      editor.update(() => {
-        $convertFromMarkdownString(props.defaultValue ?? '', TRANSFORMERS)
-      })
-      hasInitialized.current = true
-    }
+    const next = props.value !== undefined ? (props.value ?? '') : (props.defaultValue ?? '')
+    if (lastAppliedRef.current === next) return
 
-    // If the value is cleared, reset the editor content
-    if (hasInitialized.current && !props.defaultValue) {
-      editor.update(() => {
-        $convertFromMarkdownString('', TRANSFORMERS)
-      })
-    }
-  }, [editor, props.defaultValue])
+    editor.update(() => {
+      $convertFromMarkdownString(next, TRANSFORMERS)
+      $getRoot().selectEnd()
+    })
+    lastAppliedRef.current = next
+  }, [editor, props.value, props.defaultValue])
 
   return (
     <>
