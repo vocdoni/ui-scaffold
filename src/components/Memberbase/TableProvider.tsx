@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
 
-type TableColumn = {
+export type TableColumn = {
   id: string
   label: string
   visible?: boolean
@@ -8,29 +8,28 @@ type TableColumn = {
 
 type TableProviderProps = {
   data?: any[]
+  error?: Error | null
   isLoading?: boolean
   isFetching?: boolean
   initialColumns: TableColumn[]
   children: ReactNode
 }
 
-type SelectedRow = {
+export type SelectedRow = {
   id: string
   name: string
   surname: string
 }
 
-const TableContext = createContext(undefined)
-
 const STORAGE_KEY = 'table_columns_visibility'
 
-export function TableProvider({
+const useTableProvider = ({
   data = [],
+  error = null,
   isLoading = false,
   isFetching = false,
   initialColumns,
-  children,
-}: TableProviderProps) {
+}: Omit<TableProviderProps, 'children'>) => {
   const [selectedRows, setSelectedRows] = useState<SelectedRow[]>([])
   const [columns, setColumnsState] = useState<TableColumn[]>(() => {
     try {
@@ -90,29 +89,41 @@ export function TableProvider({
 
   const resetSelectedRows = () => setSelectedRows([])
 
-  return (
-    <TableContext.Provider
-      value={{
-        data,
-        isLoading,
-        isFetching,
-        selectedRows,
-        allVisibleSelected,
-        someSelected,
-        resetSelectedRows,
-        isSelected,
-        toggleAll,
-        toggleOne,
-        columns,
-        setColumns,
-      }}
-    >
-      {children}
-    </TableContext.Provider>
-  )
+  return {
+    data,
+    error,
+    isLoading,
+    isFetching,
+    selectedRows,
+    allVisibleSelected,
+    someSelected,
+    resetSelectedRows,
+    isSelected,
+    toggleAll,
+    toggleOne,
+    columns,
+    setColumns,
+  }
 }
 
-export function useTable() {
+type TableContextType = ReturnType<typeof useTableProvider>
+
+const TableContext = createContext<TableContextType>(undefined)
+
+export const TableProvider = ({
+  data = [],
+  error = null,
+  isLoading = false,
+  isFetching = false,
+  initialColumns,
+  children,
+}: TableProviderProps) => {
+  const value = useTableProvider({ data, error, isLoading, isFetching, initialColumns })
+
+  return <TableContext.Provider value={value}>{children}</TableContext.Provider>
+}
+
+export const useTable = () => {
   const context = useContext(TableContext)
   if (!context) {
     throw new Error('useTable must be used within a TableProvider')

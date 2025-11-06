@@ -535,8 +535,9 @@ const MembersList = ({ openDeleteSelected, onAddToGroup }: MembersListProps) => 
 
 const EmptyMembers = () => {
   const { t } = useTranslation()
-  const { columns } = useTable()
+  const { columns, error } = useTable()
   const { debouncedSearch } = useOutletContext<MemberbaseTabsContext>()
+
   return (
     <Tr>
       <Td colSpan={columns.filter((c) => c.visible).length + 2}>
@@ -546,9 +547,11 @@ const EmptyMembers = () => {
               ? t('members.table.no_filter_results', {
                   defaultValue: 'No members matching these attributes',
                 })
-              : t('members.table.no_results', {
-                  defaultValue: 'No members found',
-                })}
+              : error
+                ? error.message.toString()
+                : t('members.table.no_results', {
+                    defaultValue: 'No members found',
+                  })}
           </Text>
         </Flex>
       </Td>

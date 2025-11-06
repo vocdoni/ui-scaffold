@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next'
 import { useAccount, useWalletClient, WagmiProvider } from 'wagmi'
 import { SaasAccountProvider } from '~components/Account/SaasAccountProvider'
 import { AnalyticsProvider } from '~components/AnalyticsProvider'
+import { UnauthorizedApiError } from '~components/Auth/api'
 import { AuthProvider } from '~components/Auth/AuthContext'
 import { SubscriptionProvider } from '~components/Auth/Subscription'
 import { CookieConsent } from '~components/shared/CookieConsent'
@@ -19,7 +20,19 @@ import { datesLocale } from './i18n/locales'
 import { RoutesProvider } from './router/Router'
 import { RainbowKitTheme, Theme } from './Theme'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: (failureCount, error) => {
+        // Never retry on 401 unauthorized errors - let each view handle them
+        if (error instanceof UnauthorizedApiError) return false
+        // Default retry logic for other errors (max 3 attempts)
+        return failureCount < 3
+      },
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 export const Providers = () => {
   return (
