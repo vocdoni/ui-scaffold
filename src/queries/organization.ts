@@ -99,7 +99,8 @@ export const useOrganizationMeta = () => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
   const queryClient = useQueryClient()
-  const hasOrganization = Boolean(organization?.address)
+  const address = organization?.address
+  const hasOrganization = Boolean(address)
 
   const query = useQuery<OrganizationMeta>({
     queryKey: QueryKeys.organization.meta(organization?.address),
@@ -145,7 +146,7 @@ export const useOrganizationMeta = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: QueryKeys.organization.meta(organization.address),
+        queryKey: QueryKeys.organization.meta(enforceHexPrefix(organization.address)),
       })
     },
   })
@@ -153,6 +154,7 @@ export const useOrganizationMeta = () => {
   return {
     meta: query.data,
     metaIsLoading: query.isLoading,
+    metaIsError: query.isError,
     hasOrganization,
     // Update meta
     updateMeta: updateMeta.mutate,
@@ -166,26 +168,38 @@ export const useOrganizationMeta = () => {
 }
 
 export const useTutorials = () => {
-  const { meta, metaIsLoading, hasOrganization, updateMeta, deleteMeta } = useOrganizationMeta()
-  const shouldDefaultToClosed = !hasOrganization
+  const { meta, metaIsLoading, metaIsError, hasOrganization, updateMeta, deleteMeta } = useOrganizationMeta()
+
+  const canUseMeta = hasOrganization && !metaIsLoading && !metaIsError && Boolean(meta)
+  const shouldDefaultToClosed = !hasOrganization || metaIsLoading || metaIsError || !meta
 
   const isSidebarTutorialClosed = meta?.[OrganizationMetaKeys.sidebarTutorial] ?? shouldDefaultToClosed
   const isDashboardTutorialClosed = meta?.[OrganizationMetaKeys.dashboardTutorial] ?? shouldDefaultToClosed
 
-  const closeSidebarTutorial = () => updateMeta({ [OrganizationMetaKeys.sidebarTutorial]: true })
+  const closeSidebarTutorial = () => {
+    if (!canUseMeta) return
+    updateMeta({ [OrganizationMetaKeys.sidebarTutorial]: true })
+  }
 
-  const closeDashboardTutorial = () => updateMeta({ [OrganizationMetaKeys.dashboardTutorial]: true })
+  const closeDashboardTutorial = () => {
+    if (!canUseMeta) return
+    updateMeta({ [OrganizationMetaKeys.dashboardTutorial]: true })
+  }
 
-  const resetTutorials = () =>
+  const resetTutorials = () => {
+    if (!canUseMeta) return
     deleteMeta([OrganizationMetaKeys.sidebarTutorial, OrganizationMetaKeys.dashboardTutorial])
+  }
 
   return {
     isLoading: metaIsLoading,
+    isError: metaIsError,
     isSidebarTutorialClosed,
     isDashboardTutorialClosed,
     closeSidebarTutorial,
     closeDashboardTutorial,
     resetTutorials,
+    canUseMeta,
   }
 }
 

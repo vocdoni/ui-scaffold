@@ -12,6 +12,7 @@ type PermissionsContextType = {
   permission: (key: string) => any
   subscription: SubscriptionType
   loading: boolean
+  error: Error | null
 }
 
 export type SubscriptionType = {
@@ -45,7 +46,11 @@ const SubscriptionProviderComponent: React.FC<{ children: ReactNode }> = ({ chil
 
   // Fetch organization subscription details
   // TODO: In the future, this may be merged with the role permissions (not yet defined)
-  const { data: subscription, isFetching } = useQuery({
+  const {
+    data: subscription,
+    isFetching,
+    error,
+  } = useQuery({
     queryKey: QueryKeys.organization.subscription(enforceHexPrefix(account?.address)),
     queryFn: () =>
       bearedFetch<SubscriptionType>(
@@ -64,7 +69,7 @@ const SubscriptionProviderComponent: React.FC<{ children: ReactNode }> = ({ chil
     }
   }, [subscription])
 
-  const value = { permission, subscription, loading: isFetching }
+  const value = { permission, subscription, loading: isFetching, error }
 
   return <SubscriptionProvider value={value} children={children} />
 }
