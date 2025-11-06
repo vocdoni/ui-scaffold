@@ -540,7 +540,7 @@ export const useFormToElectionMapper = () => {
       electionType: {
         secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
       },
-      maxCensusSize: form.addresses?.length > 0 ? form.addresses.length : (form.census?.size ?? 1),
+      maxCensusSize: form.addresses?.length > 0 ? form.addresses.length : form.census.size,
       questions: form.questions.map(
         (question) =>
           ({
@@ -614,7 +614,7 @@ export const ProcessCreate = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true })
   const deleteDraft = useDeleteDraft()
   const navigate = useNavigate()
-  const [showSidebar, setShowSidebar] = useState(true)
+  const [showSidebar, setShowSidebar] = useState(isDesktop ?? false)
   const methods = useForm<Process>({
     defaultValues: {
       ...defaultProcessValues,
