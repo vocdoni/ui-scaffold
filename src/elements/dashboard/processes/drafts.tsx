@@ -238,7 +238,7 @@ const DraftsContextMenu = ({ draft }: { draft: Draft }) => {
   )
 }
 
-const Drafts = (props) => {
+const Drafts = () => {
   const { data, isLoading } = useDrafts()
 
   const pagination = data?.pagination || {
@@ -253,7 +253,7 @@ const Drafts = (props) => {
 
   return (
     <RoutedPaginationProvider initialPage={1} path={Routes.dashboard.processes.drafts} pagination={pagination}>
-      <DraftsTable drafts={data.processes ?? []} {...props} />
+      <DraftsTable drafts={data.processes ?? []} />
     </RoutedPaginationProvider>
   )
 }
