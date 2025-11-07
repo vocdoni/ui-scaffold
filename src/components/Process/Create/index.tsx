@@ -112,7 +112,10 @@ export const useConfirmOnNavigate = ({
   onOpen,
   onClose,
 }: ConfirmOnNavigateOptions) => {
-  const shouldBlock = isDirty && !isSubmitting && !isSubmitSuccessful
+  const [snoozeUntil, setSnoozeUntil] = useState<number | null>(null)
+  const isSnoozed = snoozeUntil !== null && Date.now() < snoozeUntil
+
+  const shouldBlock = isDirty && !isSubmitting && !isSubmitSuccessful && !isSnoozed
   const blocker = useBlocker(shouldBlock)
 
   const isOpenRef = useRef(false)
@@ -146,6 +149,15 @@ export const useConfirmOnNavigate = ({
     }
   }, [blocker.state, shouldBlock, onOpen, onClose])
 
+  // Reset snooze when time is up
+  useEffect(() => {
+    if (snoozeUntil === null) return
+
+    const msLeft = Math.max(0, snoozeUntil - Date.now())
+    const id = setTimeout(() => setSnoozeUntil(null), msLeft)
+    return () => clearTimeout(id)
+  }, [snoozeUntil])
+
   const closeAll = () => {
     isProceedingRef.current = false
     isOpenRef.current = false
@@ -173,7 +185,11 @@ export const useConfirmOnNavigate = ({
     cancel()
   }
 
-  return { isSamePath, cancel, proceed, resetSamePath }
+  const saveCooldown = (ms: number) => {
+    setSnoozeUntil(Date.now() + Math.max(0, ms))
+  }
+
+  return { isSamePath, cancel, proceed, resetSamePath, saveCooldown }
 }
 
 export const useSafeReset = (externalReset?) => {
@@ -206,7 +222,8 @@ export const useFormDraftSaver = (
   isDirty: boolean,
   getValues: () => any,
   draftId: string | null,
-  storeDraftId: (id: string | null) => void
+  storeDraftId: (id: string | null) => void,
+  saveCooldown?: (ms: number) => void
 ) => {
   const { account } = useClient()
   const createProcess = useCreateProcess()
@@ -218,11 +235,13 @@ export const useFormDraftSaver = (
   const isSaving = savingRef.current || isCreating || isUpdating
 
   const saveDraft = useCallback(async () => {
+    saveCooldown?.(30000)
+
     if (!isDirty || savingRef.current) return
+
     savingRef.current = true
     try {
       const form = getValues()
-
       if (draftId) {
         await updateProcess.mutateAsync({
           processId: draftId,
@@ -240,9 +259,9 @@ export const useFormDraftSaver = (
     } finally {
       savingRef.current = false
     }
-  }, [isDirty, draftId, getValues, account?.address, createProcess, updateProcess, storeDraftId])
+  }, [isDirty, getValues, draftId, account?.address, updateProcess, createProcess, storeDraftId, saveCooldown])
 
-  // Save on page unload
+  // beforeunload y focusout y 30s interval -> igual que ya tenías
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (!isDirty) return
@@ -250,12 +269,10 @@ export const useFormDraftSaver = (
       e.returnValue = ''
       saveDraft()
     }
-
     window.addEventListener('beforeunload', handleBeforeUnload)
     return () => window.removeEventListener('beforeunload', handleBeforeUnload)
   }, [isDirty, saveDraft])
 
-  // Save on focus out
   useEffect(() => {
     const handleFocusOut = () => {
       saveDraft()
@@ -264,7 +281,6 @@ export const useFormDraftSaver = (
     return () => window.removeEventListener('focusout', handleFocusOut)
   }, [saveDraft])
 
-  // Save every 30 seconds while dirty
   useEffect(() => {
     const id = setInterval(() => {
       saveDraft()
@@ -603,10 +619,7 @@ export const useDraft = (draftId?: string | null) => {
 export const ProcessCreate = () => {
   const { t } = useTranslation()
   const toast = useToast()
-  const { account } = useClient()
   const [formDraftLoaded, setFormDraftLoaded] = useState(false)
-  const updateProcess = useUpdateProcess()
-  const createProcess = useCreateProcess()
   const { groupId } = useParams()
   const [searchParams] = useSearchParams()
   const draftId = searchParams.get('draftId')
@@ -632,9 +645,21 @@ export const ProcessCreate = () => {
   const { trackPlausibleEvent } = useAnalytics()
   const formToElectionMapper = useFormToElectionMapper()
   const effectiveDraftId = draftId ?? storedDraftId
-
-  const { saveDraft, isSaving } = useFormDraftSaver(isDirty, methods.getValues, effectiveDraftId, storeDraftId)
-
+  // Confirm navigation if form is dirty
+  const { isSamePath, cancel, proceed, resetSamePath, saveCooldown } = useConfirmOnNavigate({
+    isDirty,
+    isSubmitting,
+    isSubmitSuccessful,
+    onOpen: openConfirmationModal,
+    onClose,
+  })
+  const { saveDraft, isSaving } = useFormDraftSaver(
+    isDirty,
+    methods.getValues,
+    effectiveDraftId,
+    storeDraftId,
+    saveCooldown
+  )
   const { data: formDraft, isSuccess } = useDraft(effectiveDraftId)
 
   // Show sidebar by default on desktop
@@ -657,15 +682,6 @@ export const ProcessCreate = () => {
     )
   }, [isSuccess, formDraft, groupId, methods])
 
-  // Confirm navigation if form is dirty
-  const { isSamePath, cancel, proceed, resetSamePath } = useConfirmOnNavigate({
-    isDirty,
-    isSubmitting,
-    isSubmitSuccessful,
-    onOpen: openConfirmationModal,
-    onClose,
-  })
-
   const resetForm = () => {
     setActiveTemplate(null)
     reset()
@@ -676,10 +692,10 @@ export const ProcessCreate = () => {
   }
 
   const handleLeaveWithoutSaving = async () => {
+    proceed()
     reset()
     storeDraftId(null)
     await deleteDraft.mutateAsync(effectiveDraftId as string)
-    proceed()
   }
 
   const handleSaveAndLeave = async () => {
