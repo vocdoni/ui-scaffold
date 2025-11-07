@@ -102,6 +102,8 @@ type UpdateProcessRequest = {
   body: CreateProcessRequest
 }
 
+export const saveTimeoutMs = 30000
+
 export const isAccountData = (account: AccountData | ArchivedAccountData): account is AccountData =>
   'electionIndex' in account
 
@@ -235,7 +237,7 @@ export const useFormDraftSaver = (
   const isSaving = savingRef.current || isCreating || isUpdating
 
   const saveDraft = useCallback(async () => {
-    saveCooldown?.(30000)
+    saveCooldown?.(saveTimeoutMs)
 
     if (!isDirty || savingRef.current) return
 
@@ -284,7 +286,7 @@ export const useFormDraftSaver = (
   useEffect(() => {
     const id = setInterval(() => {
       saveDraft()
-    }, 30000)
+    }, saveTimeoutMs)
     return () => clearInterval(id)
   }, [saveDraft])
 
