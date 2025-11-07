@@ -13,10 +13,8 @@
     "save_changes": "Desa els canvis",
     "view_active_votes": "Mostra les votacions actives"
   },
-  "active": "Actiu",
   "add_new_org": "Afegeix una nova organització",
   "additional_actions": "Accions addicionals",
-  "all": "Tots",
   "all_processes": "Tots",
   "already_member": "Ja tens un compte?",
   "alt": {
@@ -404,7 +402,6 @@
     "weighted": "Amb pes",
     "white_label": "Marca blanca"
   },
-  "finished": "Finalitzat",
   "footer": {
     "about_us": "Sobre Nosaltres",
     "company": "Empresa",

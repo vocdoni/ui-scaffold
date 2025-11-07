@@ -13,10 +13,8 @@
     "save_changes": "Save Changes",
     "view_active_votes": "View active votes"
   },
-  "active": "Active",
   "add_new_org": "Add a new organization",
   "additional_actions": "Additional actions",
-  "all": "All",
   "all_processes": "All",
   "already_member": "Already have an account?",
   "alt": {
@@ -401,7 +399,6 @@
     "weighted": "Weighted voting",
     "white_label": "White-label (no vocdoni branding)"
   },
-  "finished": "Finished",
   "footer": {
     "about_us": "About Us",
     "company": "Company",

@@ -13,10 +13,8 @@
     "save_changes": "Guardar cambios",
     "view_active_votes": "Ver votaciones activas"
   },
-  "active": "Activo",
   "add_new_org": "Añadir una nueva organización",
   "additional_actions": "Acciones adicionales",
-  "all": "Todo",
   "all_processes": "Todos",
   "already_member": "¿Ya tienes una cuenta?",
   "alt": {
@@ -404,7 +402,6 @@
     "weighted": "Votación ponderada",
     "white_label": "Marca blanca"
   },
-  "finished": "Finalizado",
   "footer": {
     "about_us": "Sobre nosotros",
     "company": "Compañía",
