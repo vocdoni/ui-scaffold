@@ -202,6 +202,7 @@ const DraftsContextMenu = ({ draft }: { draft: Draft }) => {
 
   const deleteDraft = () => {
     deleteDraftMutation.mutate(draft.id)
+    localStorage.removeItem('draft-id')
   }
 
   return (
