@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { Alert, AlertDescription, AlertTitle, Box, Button, HStack, Link, Stack } from '@chakra-ui/react'
-import { getCookieConsent, hasCookieConsent, initializeGTM, setCookieConsent } from './cookieConsent'
+import { getCookieConsent, hasCookieConsent, initializeGTM, setCookieConsent } from './utils'
 
 export function CookieConsent() {
   const { t } = useTranslation()
