@@ -235,6 +235,7 @@
   "dark_mode": "Dark mode",
   "dashboard": {
     "actions": {
+      "reset_form": "Reset form",
       "toggle_sidebar": "Toggle sidebar"
     },
     "process_view": {
@@ -449,6 +450,7 @@
         "add_button": "Add",
         "remove_address": "Remove address"
       },
+      "error_saving_draft_title": "Error saving draft",
       "error_title": "Error creating process",
       "spreadsheet": {
         "download_template": "You don't have a CSV file? <a>Download template.csv</a>, fill it and upload it.",

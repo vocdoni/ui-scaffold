@@ -238,6 +238,7 @@
   "dark_mode": "Modo oscuro",
   "dashboard": {
     "actions": {
+      "reset_form": "Restablecer formulario",
       "toggle_sidebar": "Alternar barra lateral"
     },
     "process_view": {
@@ -452,6 +453,7 @@
         "add_button": "Añadir",
         "remove_address": "Eliminar dirección"
       },
+      "error_saving_draft_title": "Error al guardar el borrador",
       "error_title": "Error al crear el proceso",
       "spreadsheet": {
         "download_template": "¿No tienes un archivo CSV? <a>Descarga template.csv</a>, complétalo y súbelo.",

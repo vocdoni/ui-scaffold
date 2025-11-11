@@ -238,6 +238,7 @@
   "dark_mode": "Mode fosc",
   "dashboard": {
     "actions": {
+      "reset_form": "Restableix el formulari",
       "toggle_sidebar": "Commuta la barra lateral"
     },
     "process_view": {
@@ -452,6 +453,7 @@
         "add_button": "Afegir",
         "remove_address": "Elimina l'adreça"
       },
+      "error_saving_draft_title": "Error desant l'esborrany",
       "error_title": "Error creant el procés",
       "spreadsheet": {
         "download_template": "No tens un fitxer CSV? <a>Descarrega template.csv</a>, omple'l i puja'l.",
