@@ -44,7 +44,7 @@ import { addDays, parse } from 'date-fns'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuSettings } from 'react-icons/lu'
+import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import ReactPlayer from 'react-player'
 import {
   createPath,
@@ -237,8 +237,6 @@ export const useFormDraftSaver = (
   const isSaving = savingRef.current || isCreating || isUpdating
 
   const saveDraft = useCallback(async () => {
-    saveCooldown?.(saveTimeoutMs)
-
     if (!isDirty || savingRef.current) return
 
     savingRef.current = true
@@ -256,14 +254,15 @@ export const useFormDraftSaver = (
         })
         storeDraftId(draftProcessId)
       }
+      saveCooldown?.(saveTimeoutMs)
     } catch (e) {
       console.error('Error saving draft', e)
+      throw e
     } finally {
       savingRef.current = false
     }
   }, [isDirty, getValues, draftId, account?.address, updateProcess, createProcess, storeDraftId, saveCooldown])
 
-  // beforeunload y focusout y 30s interval -> igual que ya tenías
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (!isDirty) return
@@ -672,17 +671,13 @@ export const ProcessCreate = () => {
   // Apply form draft if it exists
   useEffect(() => {
     setFormDraftLoaded(true)
-    if (!isSuccess || !formDraft) return
+    if (!formDraft) return
 
-    methods.reset(
-      {
-        ...defaultProcessValues,
-        ...formDraft.metadata,
-        ...(groupId ? { groupId } : {}),
-      },
-      { keepDirty: false, keepTouched: false }
-    )
-  }, [isSuccess, formDraft, groupId, methods])
+    Object.entries(formDraft.metadata).forEach(([key, value]) => {
+      if (key === 'groupId' && groupId) return
+      methods.setValue(key as keyof Process, value as Process[keyof Process], { shouldDirty: true })
+    })
+  }, [formDraft, groupId, methods])
 
   const resetForm = () => {
     setActiveTemplate(null)
@@ -701,8 +696,17 @@ export const ProcessCreate = () => {
   }
 
   const handleSaveAndLeave = async () => {
-    saveDraft()
-    proceed()
+    try {
+      await saveDraft()
+      proceed()
+    } catch (e) {
+      toast({
+        title: t('form.process_create.error_saving_draft_title', { defaultValue: 'Error saving draft' }),
+        description: e instanceof Error ? e.message : String(e),
+        status: 'error',
+        duration: 3000,
+      })
+    }
   }
 
   const getCensus = async (form: Process, salt: string): Promise<Census> => {
@@ -842,6 +846,16 @@ export const ProcessCreate = () => {
             )}
             <Spacer />
             <ButtonGroup size='sm'>
+              {isDirty && (
+                <IconButton
+                  onClick={openConfirmationModal}
+                  icon={<Icon as={LuRotateCcw} />}
+                  variant='outline'
+                  aria-label={t('dashboard.actions.reset_form', {
+                    defaultValue: 'Reset form',
+                  })}
+                />
+              )}
               <IconButton
                 aria-label={t('dashboard.actions.toggle_sidebar', {
                   defaultValue: 'Toggle sidebar',
