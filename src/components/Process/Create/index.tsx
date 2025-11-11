@@ -901,7 +901,16 @@ export const ProcessCreate = () => {
   }
 
   const onError = (errors) => {
-    const sidebarFieldKeys = ['groupId', 'census', 'resultVisibility', 'endDate', 'endTime', 'startDate', 'startTime']
+    const sidebarFieldKeys = [
+      'groupId',
+      'census',
+      'resultVisibility',
+      'weightedVote',
+      'endDate',
+      'endTime',
+      'startDate',
+      'startTime',
+    ]
 
     const hasSidebarErrors = sidebarFieldKeys.some((key) => key in errors)
 

@@ -194,7 +194,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
                             value={field.value}
                             onChange={(val) => field.onChange(val === '' ? '' : Number(val))}
                           >
-                            <NumberInputField inputMode='decimal' />
+                            <NumberInputField />
                             <NumberInputStepper>
                               <NumberIncrementStepper />
                               <NumberDecrementStepper />
