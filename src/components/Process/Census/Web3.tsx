@@ -11,12 +11,17 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Text,
 } from '@chakra-ui/react'
 import { enforceHexPrefix, errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { useFieldArray, useFormContext } from 'react-hook-form'
+import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCheck, LuPlus, LuTrash2, LuWallet } from 'react-icons/lu'
 import { DashboardSection, SidebarSubtitle } from '~components/shared/Dashboard/Contents'
@@ -42,6 +47,7 @@ export const CensusWeb3Addresses = () => {
     formState: { errors },
     watch,
     setValue,
+    control,
   } = useFormContext()
 
   const { fields, remove, append } = useFieldArray({
@@ -54,7 +60,7 @@ export const CensusWeb3Addresses = () => {
 
   useEffect(() => {
     if (account?.address && addresses.length === 0) {
-      setValue('addresses', [{ address: enforceHexPrefix(account.address) }])
+      setValue('addresses', [{ address: enforceHexPrefix(account.address), weighted: 1 }])
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account?.address, addresses, censusType])
@@ -146,6 +152,19 @@ export const CensusWeb3Addresses = () => {
                 </InputGroup>
                 <FormErrorMessage>{fieldMapErrorMessage(errors, `addresses.${index}.address`)}</FormErrorMessage>
               </FormControl>
+              <Controller
+                name={`addresses.${index}.weight`}
+                control={control}
+                render={({ field }) => (
+                  <NumberInput value={field.value} onChange={(val) => field.onChange(val === '' ? '' : Number(val))}>
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                )}
+              />
               <IconButton
                 disabled={fields.length <= 1}
                 variant='outline'
@@ -167,7 +186,7 @@ export const CensusWeb3Addresses = () => {
         type='button'
         ml='none'
         onClick={() => {
-          append({ address: '' })
+          append({ address: '', weight: 1 })
         }}
       >
         {t('form.process_create.census.add_button')}
