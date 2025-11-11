@@ -453,6 +453,7 @@
         "add_button": "Añadir",
         "remove_address": "Eliminar dirección"
       },
+      "error_deleting_draft_title": "Error eliminando el borrador",
       "error_saving_draft_title": "Error al guardar el borrador",
       "error_title": "Error al crear el proceso",
       "spreadsheet": {

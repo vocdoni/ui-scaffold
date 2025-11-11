@@ -450,6 +450,7 @@
         "add_button": "Add",
         "remove_address": "Remove address"
       },
+      "error_deleting_draft_title": "Error deleting draft",
       "error_saving_draft_title": "Error saving draft",
       "error_title": "Error creating process",
       "spreadsheet": {

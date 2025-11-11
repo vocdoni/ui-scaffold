@@ -453,6 +453,7 @@
         "add_button": "Afegir",
         "remove_address": "Elimina l'adreça"
       },
+      "error_deleting_draft_title": "Error eliminant l'esborrany",
       "error_saving_draft_title": "Error desant l'esborrany",
       "error_title": "Error creant el procés",
       "spreadsheet": {
