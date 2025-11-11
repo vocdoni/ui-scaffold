@@ -75,7 +75,7 @@ const MarkdownEditor = (props: EditorProps) => {
   useEffect(() => {
     if (!editor) return
 
-    const next = props.value !== undefined ? (props.value ?? '') : (props.defaultValue ?? '')
+    const next = props.value !== undefined ? props.value : (props.defaultValue ?? '')
     if (lastAppliedRef.current === next) return
 
     editor.update(() => {
