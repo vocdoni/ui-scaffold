@@ -123,8 +123,7 @@ export const useConfirmOnNavigate = ({
   const isOpenRef = useRef(false)
   const isProceedingRef = useRef(false)
 
-  const routerLocation = useLocation()
-  const currentPath = routerLocation.pathname
+  const { pathname: currentPath } = useLocation()
   const nextPath = blocker.location ? createPath(blocker.location) : null
   const isSamePath = nextPath === null || nextPath === currentPath
 
@@ -799,7 +798,7 @@ export const ProcessCreate = () => {
 
       methods.reset(defaultProcessValues)
 
-      await deleteDraft.mutateAsync(effectiveDraftId as string)
+      await deleteDraft.mutateAsync(effectiveDraftId)
       localStorage.removeItem('draft-id')
       navigate(generatePath(Routes.dashboard.process, { id: electionId }))
     } catch (error) {
