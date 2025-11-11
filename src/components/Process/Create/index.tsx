@@ -689,10 +689,19 @@ export const ProcessCreate = () => {
   }
 
   const handleLeaveWithoutSaving = async () => {
-    proceed()
-    reset()
-    storeDraftId(null)
-    await deleteDraft.mutateAsync(effectiveDraftId as string)
+    try {
+      await deleteDraft.mutateAsync(effectiveDraftId)
+      proceed()
+      reset()
+      storeDraftId(null)
+    } catch (error) {
+      toast({
+        title: t('form.process_create.error_deleting_draft_title', { defaultValue: 'Error deleting draft' }),
+        description: error instanceof Error ? error.message : String(error),
+        status: 'error',
+        duration: 3000,
+      })
+    }
   }
 
   const handleSaveAndLeave = async () => {
