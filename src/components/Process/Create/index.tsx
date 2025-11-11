@@ -628,6 +628,7 @@ export const ProcessCreate = () => {
   const isDesktop = useBreakpointValue({ base: false, md: true })
   const deleteDraft = useDeleteDraft()
   const navigate = useNavigate()
+  const location = useLocation()
   const [showSidebar, setShowSidebar] = useState(isDesktop ?? false)
   const methods = useForm<Process>({
     defaultValues: {
