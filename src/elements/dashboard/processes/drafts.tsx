@@ -254,7 +254,7 @@ const Drafts = () => {
 
   return (
     <RoutedPaginationProvider initialPage={1} path={Routes.dashboard.processes.drafts} pagination={pagination}>
-      <DraftsTable drafts={data.processes ?? []} />
+      <DraftsTable drafts={data?.processes ?? []} />
     </RoutedPaginationProvider>
   )
 }
