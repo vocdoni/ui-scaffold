@@ -455,7 +455,6 @@
         "remove_address": "Eliminar dirección"
       },
       "error_deleting_draft_title": "Error eliminando el borrador",
-      "error_saving_draft_title": "Error al guardar el borrador",
       "error_title": "Error al crear el proceso",
       "spreadsheet": {
         "download_template": "¿No tienes un archivo CSV? <a>Descarga template.csv</a>, complétalo y súbelo.",
@@ -1336,11 +1335,14 @@
       },
       "leave_confirmation": {
         "cancel": "Cancelar",
-        "leave": "Eliminar borrador y salir",
-        "message": "¿Quieres guardar tu borrador?",
+        "leave": "Descartar y salir",
+        "message": "You’ve reached your limit of {{ limit }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
+        "message_one": "Has alcanzado el límite de {{ count }} borrador. Para guardar este borrador, elimina un borrador existente o actualiza tu plan.",
+        "message_many": "",
+        "message_other": "Has alcanzado el límite de {{ count }} borradores. Para guardar este borrador, elimina un borrador existente o actualiza tu plan.",
         "reset": "Restablecer",
         "reset_message": "Esto reiniciará el formulario. ¿Quieres continuar?",
-        "save_and_leave": "Guardar borrador y salir",
+        "save_and_leave": "Actualizar plan",
         "title": "Guardando borrador"
       },
       "question": {
@@ -1361,6 +1363,9 @@
           "placeholder": "Añade aquí la descripción de la pregunta (opcional)..."
         },
         "question_number": "Pregunta {{index}} de {{total}}"
+      },
+      "save_draft_error": {
+        "title": "Error al guardar el borrador"
       },
       "selectionLimits": {
         "full": "Los votantes deben seleccionar al menos <min /> y como máximo <max /> opciones.",

@@ -452,7 +452,6 @@
         "remove_address": "Remove address"
       },
       "error_deleting_draft_title": "Error deleting draft",
-      "error_saving_draft_title": "Error saving draft",
       "error_title": "Error creating process",
       "spreadsheet": {
         "download_template": "You don't have a CSV file? <a>Download template.csv</a>, fill it and upload it.",
@@ -1314,11 +1313,13 @@
       },
       "leave_confirmation": {
         "cancel": "Cancel",
-        "leave": "Delete draft and leave",
-        "message": "Do you want to save your draft?",
+        "leave": "Discard and leave",
+        "message": "You’ve reached your limit of {{ limit }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
+        "message_one": "You’ve reached your limit of {{ count }} draft. To save this draft, delete an existing draft or upgrade your plan.",
+        "message_other": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
         "reset": "Reset",
         "reset_message": "This will reset the form. Do you want to continue?",
-        "save_and_leave": "Save draft and leave",
+        "save_and_leave": "Upgrade Plan",
         "title": "Saving Draft"
       },
       "question": {
@@ -1339,6 +1340,9 @@
           "placeholder": "Add the description of the question here (optional)..."
         },
         "question_number": "Question {{index}} of {{total}}"
+      },
+      "save_draft_error": {
+        "title": "Error saving draft"
       },
       "selectionLimits": {
         "full": "Voters must select at least  <min />  and at most  <max />  options.",

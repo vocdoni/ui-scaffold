@@ -455,7 +455,6 @@
         "remove_address": "Elimina l'adreça"
       },
       "error_deleting_draft_title": "Error eliminant l'esborrany",
-      "error_saving_draft_title": "Error desant l'esborrany",
       "error_title": "Error creant el procés",
       "spreadsheet": {
         "download_template": "No tens un fitxer CSV? <a>Descarrega template.csv</a>, omple'l i puja'l.",
@@ -1336,11 +1335,14 @@
       },
       "leave_confirmation": {
         "cancel": "Cancel·la",
-        "leave": "Elimina i surt",
-        "message": "Vols desar l’esborrany?",
+        "leave": "Descarta i surt",
+        "message": "You’ve reached your limit of {{ limit }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
+        "message_one": "Has arribat al límit de {{ count }} esborrany. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla.",
+        "message_many": "",
+        "message_other": "Has arribat al límit de {{ count }} esborranys. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla.",
         "reset": "Restableix",
         "reset_message": "Això restablirà el formulari. Vols continuar?",
-        "save_and_leave": "Desa i surt",
+        "save_and_leave": "Actualitza el pla",
         "title": "Desant esborrany"
       },
       "question": {
@@ -1361,6 +1363,9 @@
           "placeholder": "Afegeix aquí la descripció de la pregunta (opcional)..."
         },
         "question_number": "Pregunta {{index}} de {{total}}"
+      },
+      "save_draft_error": {
+        "title": "Error al desar l'esborrany"
       },
       "selectionLimits": {
         "full": "Els votants han de seleccionar com a mínim <min /> i com a màxim <max /> opcions.",
