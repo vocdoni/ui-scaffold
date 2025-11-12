@@ -1072,7 +1072,8 @@
       "member_number": "Número de miembro",
       "national_id": "DNI/NIE",
       "phone": "Teléfono",
-      "surname": "Apellidos"
+      "surname": "Apellidos",
+      "weight": "Poder de voto (Peso)"
     },
     "table": {
       "add_to_group": "Añadir al grupo",
@@ -1485,7 +1486,17 @@
     "total_census_size": "{{maxCensusSize}} votantes permitidos de un total de {{censusSize}} en el censo",
     "total_census_size_tooltip": "El número máximo de votantes permitido está limitado a {{maxCensusSize}} de un censo de {{censusSize}} ({{percent}}% del total). Solo los primeros {{maxCensusSize}} podrán votar.",
     "voters": "Votantes",
-    "voting": "Estamos procesando tu voto. Este proceso tardará unos segundos. No cierres ni actualices esta página."
+    "voting": "Estamos procesando tu voto. Este proceso tardará unos segundos. No cierres ni actualices esta página.",
+    "voting_method": {
+      "unknown": "Desconocido",
+      "single_choice_multiquestion": "Elección simple con múltiples preguntas",
+      "multiple_choice":"Elección múltiple",
+      "approval": "Aprobación",
+      "quadratic": "Cuadrática",
+      "budget": "Asignación presupuestaria",
+      "weighted_format": "{{base}} y votación ponderada"
+    },
+    "voting_type": "Método de votación"
   },
   "process_actions": {
     "cancel": "Cancelar proceso",
@@ -1560,6 +1571,11 @@
     },
     "settings": "Configuración",
     "start_datetime": "Fecha y hora de inicio",
+    "weight": {
+      "equal": "Una persona, un voto",
+      "title": "Poder de voto",
+      "weighted": "Ponderado por poder de voto"
+    },
     "youtube": {
       "accordion_title": "Adjuntar vídeo (opcional)",
       "title": "Vídeo en directo"

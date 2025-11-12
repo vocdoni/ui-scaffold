@@ -1059,7 +1059,8 @@
       "member_number": "Member Number",
       "national_id": "National ID",
       "phone": "Phone",
-      "surname": "Last Name"
+      "surname": "Last Name",
+      "weight": "Voting power (Weight)"
     },
     "table": {
       "add_to_group": "Add to Group",
@@ -1461,7 +1462,17 @@
     "total_census_size": "{{maxCensusSize}} allowed voters of {{censusSize}} total in census",
     "total_census_size_tooltip": "The maximum number of voters allowed is limited to {{maxCensusSize}} from a census of {{censusSize}} ({{percent}}% of the total). Only the first {{maxCensusSize}} voters can vote.",
     "voters": "Voters",
-    "voting": "We are processing your vote. This process will take a few seconds. Please do not close or refresh this page."
+    "voting": "We are processing your vote. This process will take a few seconds. Please do not close or refresh this page.",
+    "voting_method": {
+      "unknown": "Unknown",
+      "single_choice_multiquestion": "Single choice with multiple questions",
+      "multiple_choice":"Multiple choice",
+      "approval": "Approval",
+      "quadratic": "Quadratic",
+      "budget": "Budget allocation",
+      "weighted_format": "{{base}} and weighted voting"
+    },
+    "voting_type": "Voting method"
   },
   "process_actions": {
     "cancel": "Cancel process",
@@ -1536,6 +1547,11 @@
     },
     "settings": "Settings",
     "start_datetime": "Start date and time",
+    "weight": {
+      "equal": "One person, one vote",
+      "title": "Voting power",
+      "weighted": "Weighted by voting power"
+    },
     "youtube": {
       "accordion_title": "Attach video (optional)",
       "title": "Live streaming video"
