@@ -49,6 +49,7 @@ import ReactPlayer from 'react-player'
 import {
   createPath,
   generatePath,
+  Link,
   useBlocker,
   useLocation,
   useNavigate,
@@ -88,7 +89,6 @@ type LeaveConfirmationModalProps = {
   onCancel: () => void
   onLeave: () => void
   onResetSamePath: () => void
-  onSaveAndLeave: () => void
   isSamePath: boolean
 }
 
@@ -103,6 +103,7 @@ type UpdateProcessRequest = {
 }
 
 export const saveTimeoutMs = 30000
+export const saveDraftErrorToastId = 'draft-save-error'
 
 export const isAccountData = (account: AccountData | ArchivedAccountData): account is AccountData =>
   'electionIndex' in account
@@ -227,18 +228,20 @@ export const useFormDraftSaver = (
   saveCooldown?: (ms: number) => void
 ) => {
   const { account } = useClient()
+  const { t } = useTranslation()
+  const { permission } = useSubscription()
+  const limit = permission(SubscriptionPermission.Drafts)
+  const toast = useToast()
   const createProcess = useCreateProcess()
   const updateProcess = useUpdateProcess()
-  const savingRef = useRef(false)
 
   const isCreating = createProcess.isPending
   const isUpdating = updateProcess.isPending
-  const isSaving = savingRef.current || isCreating || isUpdating
+  const isSaving = isCreating || isUpdating
 
   const saveDraft = useCallback(async () => {
-    if (!isDirty || savingRef.current) return
+    if (!isDirty) return 'skipped'
 
-    savingRef.current = true
     try {
       const form = getValues()
       if (draftId) {
@@ -254,11 +257,23 @@ export const useFormDraftSaver = (
         storeDraftId(draftProcessId)
       }
       saveCooldown?.(saveTimeoutMs)
+      return 'saved'
     } catch (e) {
-      console.error('Error saving draft', e)
+      if (!toast.isActive(saveDraftErrorToastId)) {
+        toast({
+          id: saveDraftErrorToastId,
+          title: t('process.create.save_draft_error.title', { defaultValue: 'Error saving draft' }),
+          description: t('process.create.leave_confirmation.message', {
+            defaultValue:
+              'You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
+            count: limit,
+          }),
+          status: 'error',
+          duration: 10000,
+          isClosable: true,
+        })
+      }
       throw e
-    } finally {
-      savingRef.current = false
     }
   }, [isDirty, getValues, draftId, account?.address, updateProcess, createProcess, storeDraftId, saveCooldown])
 
@@ -451,10 +466,11 @@ const LeaveConfirmationModal = ({
   onCancel,
   onLeave,
   onResetSamePath,
-  onSaveAndLeave,
   isSamePath,
 }: LeaveConfirmationModalProps) => {
   const { t } = useTranslation()
+  const { permission } = useSubscription()
+  const limit = permission(SubscriptionPermission.Drafts)
 
   return (
     <DeleteModal
@@ -465,7 +481,9 @@ const LeaveConfirmationModal = ({
               defaultValue: 'This will reset the form. Do you want to continue?',
             })
           : t('process.create.leave_confirmation.message', {
-              defaultValue: 'You have unsaved changes. Are you sure you want to leave?',
+              defaultValue:
+                'You’ve reached your limit of {{ limit }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
+              limit,
             })
       }
       isOpen={isOpen}
@@ -485,7 +503,13 @@ const LeaveConfirmationModal = ({
             <Button colorScheme='red' onClick={onLeave}>
               {t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
             </Button>
-            <Button colorScheme='black' onClick={onSaveAndLeave}>
+            <Button
+              as={Link}
+              to={Routes.dashboard.settings.subscription}
+              colorScheme='black'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save and leave' })}
             </Button>
           </>
@@ -688,9 +712,8 @@ export const ProcessCreate = () => {
     })
   }
 
-  const handleLeaveWithoutSaving = async () => {
+  const discardAndLeave = async () => {
     try {
-      await deleteDraft.mutateAsync(effectiveDraftId)
       proceed()
       reset()
       storeDraftId(null)
@@ -698,20 +721,6 @@ export const ProcessCreate = () => {
       toast({
         title: t('form.process_create.error_deleting_draft_title', { defaultValue: 'Error deleting draft' }),
         description: error instanceof Error ? error.message : String(error),
-        status: 'error',
-        duration: 3000,
-      })
-    }
-  }
-
-  const handleSaveAndLeave = async () => {
-    try {
-      await saveDraft()
-      proceed()
-    } catch (e) {
-      toast({
-        title: t('form.process_create.error_saving_draft_title', { defaultValue: 'Error saving draft' }),
-        description: e instanceof Error ? e.message : String(e),
         status: 'error',
         duration: 3000,
       })
@@ -930,9 +939,8 @@ export const ProcessCreate = () => {
       <LeaveConfirmationModal
         isOpen={isOpen}
         onCancel={cancel}
-        onLeave={handleLeaveWithoutSaving}
+        onLeave={discardAndLeave}
         onResetSamePath={() => resetSamePath(() => resetForm())}
-        onSaveAndLeave={handleSaveAndLeave}
         isSamePath={isSamePath}
       />
     </FormProvider>
