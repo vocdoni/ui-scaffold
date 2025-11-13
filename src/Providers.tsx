@@ -13,6 +13,7 @@ import { AuthProvider } from '~components/Auth/AuthContext'
 import { SubscriptionProvider } from '~components/Auth/Subscription'
 import { CookieConsent } from '~components/shared/CookieConsent'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
+import { useFarcasterSDK } from '~utils/farcaster'
 import { VocdoniEnvironment } from './constants'
 import { wagmiConfig } from './constants/rainbow'
 import { translations } from './i18n/components'
@@ -58,6 +59,9 @@ export const AppProviders = () => {
   const { data } = useWalletClient()
   const { address } = useAccount()
   const { t, i18n } = useTranslation()
+
+  // Initialize Farcaster SDK early (if in Farcaster miniapp)
+  useFarcasterSDK()
 
   let signer = null
   if (data && address && data.account.address === address) {

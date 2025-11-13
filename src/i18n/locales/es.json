@@ -315,6 +315,9 @@
   },
   "error_removing_code": "Error eliminando el código",
   "error_text": "Lo sentimos, la página que buscabas no se ha encontrado",
+  "farcaster": {
+    "connecting": "Conectando con la cartera de Farcaster..."
+  },
   "features": {
     "anonymous": "Votación anónima",
     "anonymous_voting": "Votación anónima",

@@ -9,6 +9,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { useAccount } from 'wagmi'
 import { CensusMeta, CensusTypes } from './Census/CensusType'
 import { CspAuth } from './CSP/CSPAuthModal'
+import { isFarcasterMiniapp } from '~utils/farcaster'
 import LogoutButton from './LogoutButton'
 
 const results = (result: number, decimals?: number) =>
@@ -179,13 +180,25 @@ export const CensusConnectButton = () => {
   const isCSP = election.census.type === CensusType.CSP
   const isSpreadsheet = census?.type === CensusTypes.Spreadsheet
   const isWeb3 = census?.type === CensusTypes.Web3
+  const isInFarcaster = isFarcasterMiniapp()
 
   return (
     <>
       {isWeb3 && !connected && (
-        <Button colorScheme='black' onClick={openConnectModal} w='full'>
-          {t('menu.connect').toString()}
-        </Button>
+        <>
+          {isInFarcaster ? (
+            // In Farcaster miniapp: show status message
+            // The connection happens automatically in FarcasterAwareClientProvider
+            <Text fontSize='sm' textAlign='center' color='texts.subtle'>
+              {t('farcaster.connecting')}
+            </Text>
+          ) : (
+            // Not in Farcaster: show RainbowKit connect button
+            <Button colorScheme='black' onClick={openConnectModal} w='full'>
+              {t('menu.connect').toString()}
+            </Button>
+          )}
+        </>
       )}
       {isCSP && !connected && <CspAuth />}
       {isSpreadsheet && !connected && <SpreadsheetAccess />}
