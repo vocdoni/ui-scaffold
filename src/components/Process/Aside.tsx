@@ -178,11 +178,10 @@ export const CensusConnectButton = () => {
   const census: CensusMeta = dotobject(election?.meta || {}, 'census')
   const isCSP = election.census.type === CensusType.CSP
   const isSpreadsheet = census?.type === CensusTypes.Spreadsheet
-  const isWeb3 = census?.type === CensusTypes.Web3
 
   return (
     <>
-      {isWeb3 && !connected && (
+      {!isCSP && !isSpreadsheet && !connected && (
         <Button colorScheme='black' onClick={openConnectModal} w='full'>
           {t('menu.connect').toString()}
         </Button>
