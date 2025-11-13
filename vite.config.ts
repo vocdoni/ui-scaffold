@@ -4,6 +4,7 @@ import { defineConfig, loadEnv } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import svgr from 'vite-plugin-svgr'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { buildFarcasterData, buildFarcasterEmbedTag, farcasterManifestPlugin } from './vite/plugin-farcaster-manifest'
 
 // https://vitejs.dev/config/
 const viteconfig = ({ mode }) => {
@@ -44,6 +45,9 @@ const viteconfig = ({ mode }) => {
     termsOfServiceUrl = termsOfServiceUrl.slice(0, -1)
   }
 
+  const appDomain = process.env.APP_DOMAIN
+  const fcAccountAssociation = process.env.FC_ACCOUNT_ASSOCIATION
+
   return defineConfig({
     base,
     build: {
@@ -74,11 +78,14 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.PRIVACY_POLICY_URL': JSON.stringify(privacyPolicyUrl),
       'import.meta.env.TERMS_OF_SERVICE_URL': JSON.stringify(termsOfServiceUrl),
       'import.meta.env.WHATSAPP_PHONE_NUMBER': JSON.stringify(process.env.WHATSAPP_PHONE_NUMBER || '+34 621 501 155'),
+      'import.meta.env.APP_DOMAIN': JSON.stringify(appDomain),
+      'import.meta.env.FC_ACCOUNT_ASSOCIATION': JSON.stringify(fcAccountAssociation),
     },
     plugins: [
       tsconfigPaths(),
-      react(),
       svgr(),
+      react(),
+      farcasterManifestPlugin(),
       createHtmlPlugin({
         template: `index.html`,
         minify: {
@@ -90,6 +97,19 @@ const viteconfig = ({ mode }) => {
             commit: commit.trim(),
             title,
           },
+          tags:
+            appDomain && fcAccountAssociation
+              ? [
+                  {
+                    tag: 'meta',
+                    attrs: {
+                      name: 'fc:miniapp',
+                      content: JSON.stringify(buildFarcasterEmbedTag(buildFarcasterData(appDomain))),
+                    },
+                    injectTo: 'head',
+                  },
+                ]
+              : [],
         },
       }),
     ],

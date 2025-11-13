@@ -315,6 +315,9 @@
   },
   "error_removing_code": "Hi ha hagut un error eliminant el codi",
   "error_text": "Ho sentim, no s'ha trobat la pàgina que cerqueu",
+  "farcaster": {
+    "connecting": "Connectant amb la cartera de Farcaster..."
+  },
   "features": {
     "anonymous": "Votacions anònimes",
     "anonymous_voting": "Votació anònima",
