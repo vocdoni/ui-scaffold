@@ -83,28 +83,28 @@ const ProcessAside = () => {
           </Flex>
         )}
 
-        {showVotes && (
+        {showVoters && votersCount !== votes && (
           <Flex direction='column' justifyContent='center' alignItems='center' gap={2}>
             <Flex direction={'row'} justifyContent='center' alignItems='center' gap={2}>
               <Trans
-                i18nKey='aside.votes_weight'
+                i18nKey='aside.votes'
                 components={{
                   span: <Text as='span' fontWeight='bold' fontSize='3xl' lineHeight={1} />,
                   text: <Text fontSize='xl' lineHeight={1.3} />,
                 }}
-                count={votes}
+                count={election?.voteCount}
               />
             </Flex>
-            {showVoters && votersCount !== votes && (
+            {showVotes && (
               <Flex direction={'row'} justifyContent='center' alignItems='center'>
                 {'('}
                 <Trans
-                  i18nKey='aside.votes'
+                  i18nKey='aside.votes_weight'
                   components={{
                     span: <Text as='span' fontWeight='bold' fontSize='md' lineHeight={1} mr={2} />,
                     text: <Text fontSize='md' lineHeight={1.3} />,
                   }}
-                  count={election?.voteCount}
+                  count={votes}
                 />
                 {')'}
               </Flex>
