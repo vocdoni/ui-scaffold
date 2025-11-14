@@ -13,14 +13,22 @@ const SelectionLimits = ({ index }) => {
   const fields = watch(`questions.${index}.options`)
   const min = watch('minNumberOfChoices')
   const max = watch('maxNumberOfChoices')
+  const total = fields.length
   const options = [{ value: 0, label: '0' }, ...fields.map((_, i) => ({ value: i + 1, label: `${i + 1}` }))]
 
-  // Ensure max is not less than min
   useEffect(() => {
+    // Ensure max is not less than min
     if (min && max && max < min) {
       setValue(`maxNumberOfChoices`, min)
     }
-  }, [min, max, index, setValue])
+    // Ensure min and max do not exceed total options
+    if (min > total) {
+      setValue('minNumberOfChoices', total)
+    }
+    if (max > total) {
+      setValue('maxNumberOfChoices', total)
+    }
+  }, [min, max, total, index, setValue])
 
   if (questionType === SelectorTypes.Single) return null
 
