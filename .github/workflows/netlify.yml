@@ -42,6 +42,8 @@ jobs:
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
           STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
+          APP_DOMAIN: vocdoni-app-dev.netlify.app
+          FC_ACCOUNT_ASSOCIATION: ${{ secrets.FC_ACCOUNT_ASSOCIATION }}
 
       - name: Deploy to Netlify (dev)
         uses: nwtgck/actions-netlify@v2.0
@@ -93,6 +95,8 @@ jobs:
           STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
           SAAS_URL: https://saas-api-stg.vocdoni.net
+          APP_DOMAIN: vocdoni-app-stg.netlify.app
+          FC_ACCOUNT_ASSOCIATION: ${{ secrets.FC_ACCOUNT_ASSOCIATION }}
 
       - name: Deploy to Netlify (stg)
         uses: nwtgck/actions-netlify@v2.0

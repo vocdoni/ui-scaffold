@@ -312,6 +312,9 @@
   },
   "error_removing_code": "Error removing code",
   "error_text": "Sorry, the page you were looking for was not found",
+  "farcaster": {
+    "connecting": "Connecting with Farcaster wallet..."
+  },
   "features": {
     "anonymous": "Anonymous voting",
     "anonymous_voting": "Anonymous voting",

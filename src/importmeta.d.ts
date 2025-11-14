@@ -28,5 +28,7 @@ interface ImportMeta {
     PRIVACY_POLICY_URL: string
     TERMS_OF_SERVICE_URL: string
     WHATSAPP_PHONE_NUMBER: string
+    APP_DOMAIN: string
+    FC_ACCOUNT_ASSOCIATION: string
   }
 }

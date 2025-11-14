@@ -21,6 +21,8 @@
     "@ethersproject/abstract-signer": "^5.7.0",
     "@ethersproject/address": "^5.7.0",
     "@ethersproject/providers": "^5.7.0",
+    "@farcaster/miniapp-sdk": "^0.2.1",
+    "@farcaster/miniapp-wagmi-connector": "^1.1.0",
     "@fontsource/inter": "^5.2.5",
     "@gsap/react": "^2.1.2",
     "@lexical/code": "^0.34.0",
