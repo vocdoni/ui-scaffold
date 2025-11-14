@@ -535,8 +535,9 @@ const MembersList = ({ openDeleteSelected, onAddToGroup }: MembersListProps) => 
 
 const EmptyMembers = () => {
   const { t } = useTranslation()
-  const { columns } = useTable()
+  const { columns, error } = useTable()
   const { debouncedSearch } = useOutletContext<MemberbaseTabsContext>()
+
   return (
     <Tr>
       <Td colSpan={columns.filter((c) => c.visible).length + 2}>
@@ -546,9 +547,11 @@ const EmptyMembers = () => {
               ? t('members.table.no_filter_results', {
                   defaultValue: 'No members matching these attributes',
                 })
-              : t('members.table.no_results', {
-                  defaultValue: 'No members found',
-                })}
+              : error
+                ? error.message.toString()
+                : t('members.table.no_results', {
+                    defaultValue: 'No members found',
+                  })}
           </Text>
         </Flex>
       </Td>
@@ -587,17 +590,18 @@ const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModa
   const navigate = useNavigate()
   const selectedMembers = mode === DeleteModes.SELECTED ? selectedRows : allMembersData?.members
   const ids = selectedRows.map((member) => member.id)
+  const isDeleteAllMode = mode === DeleteModes.ALL
 
   const handleDelete = async () => {
     try {
-      const members = mode === DeleteModes.ALL ? { all: true } : ids.length > 0 ? { ids } : {}
+      const members = isDeleteAllMode ? { all: true } : ids.length > 0 ? { ids } : {}
       await deleteMutation.mutateAsync(members)
       if (mode === DeleteModes.SELECTED) resetSelectedRows()
       toast({
         title: t('memberbase.delete_member.success', {
           defaultValue: 'Member deleted successfully',
           defaultValue_other: 'Members deleted successfully',
-          count: selectedMembers.length,
+          count: isDeleteAllMode ? allMembersData?.pagination.totalItems : selectedMembers.length,
         }),
         status: 'success',
         duration: 3000,
@@ -635,7 +639,7 @@ const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModa
           : t('memberbase.delete_member.subtitle', {
               defaultValue: 'Are you sure you want to delete {{count}} member? This action cannot be undone.',
               defaultValue_other: 'Are you sure you want to delete {{count}} members? This action cannot be undone.',
-              count: selectedMembers.length,
+              count: isDeleteAllMode ? allMembersData?.pagination.totalItems : selectedMembers.length,
             })
       }
       isOpen={isOpen}

@@ -125,12 +125,12 @@ export const ExportMembers = () => {
                     {t('memberbase.exporter.columns', { defaultValue: 'Columns to Export' })}
                   </Text>
                   <Box border='1px solid' borderColor='gray.700' borderRadius='md' px={4} py={2}>
-                    <Stack spacing={3}>
-                      <Controller
-                        name='exportedColumns'
-                        control={methods.control}
-                        render={({ field }) =>
-                          columns
+                    <Controller
+                      name='exportedColumns'
+                      control={methods.control}
+                      render={({ field }) => (
+                        <Stack spacing={3}>
+                          {columns
                             .filter((col) => col.visible)
                             .map((col) => (
                               <Checkbox
@@ -148,10 +148,10 @@ export const ExportMembers = () => {
                               >
                                 {col.label}
                               </Checkbox>
-                            ))
-                        }
-                      />
-                    </Stack>
+                            ))}
+                        </Stack>
+                      )}
+                    />
                   </Box>
                 </Box>
               </ModalBody>

@@ -18,7 +18,6 @@ import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import { useEffect, useRef, useState } from 'react'
 
-import { IMAGE, ImageNode } from './ImageNode'
 import { FloatingLinkEditorPlugin, FloatingTextFormatToolbarPlugin } from './plugins'
 import OnChangeMarkdown from './plugins/OnChangeMarkdown'
 import ReadOnlyPlugin from './plugins/ReadOnlyPlugin'
@@ -33,7 +32,7 @@ type EditorProps = {
   padding?: ChakraProps['padding']
 }
 
-const TRANSFORMERS = [IMAGE, ...DEFAULT_TRANSFORMERS]
+const TRANSFORMERS = DEFAULT_TRANSFORMERS
 
 const ChakraContentEditable = chakra(ContentEditable, {
   baseStyle: {
@@ -62,13 +61,13 @@ const theme = {
     h4: 'lexical-h4',
     h5: 'lexical-h5',
   },
-  image: 'lexical-image',
   paragraph: 'lexical-paragraph',
 }
 
 const MarkdownEditor = (props: EditorProps) => {
   const [editor] = useLexicalComposerContext()
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
+  const [isLinkEditMode, setIsLinkEditMode] = useState(false)
   const hasInitialized = useRef(false)
 
   useEffect(() => {
@@ -119,10 +118,10 @@ const MarkdownEditor = (props: EditorProps) => {
         <>
           <FloatingLinkEditorPlugin
             anchorElem={floatingAnchorElem}
-            isLinkEditMode={false}
-            setIsLinkEditMode={() => {}}
+            isLinkEditMode={isLinkEditMode}
+            setIsLinkEditMode={setIsLinkEditMode}
           />
-          <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} setIsLinkEditMode={() => {}} />
+          <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} setIsLinkEditMode={setIsLinkEditMode} />
         </>
       )}
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
@@ -150,7 +149,6 @@ const Editor = (props: EditorProps) => {
       AutoLinkNode,
       LinkNode,
       OverflowNode,
-      ImageNode,
     ],
   }
 

@@ -41,6 +41,9 @@ const UserProfile = () => {
   })
   const [switchOrg, setSwitchOrg] = useState(false)
 
+  const privacyPolicyUrl = import.meta.env.PRIVACY_POLICY_URL
+  const termsOfServiceUrl = import.meta.env.TERMS_OF_SERVICE_URL
+
   const placement = variant ? 'right-end' : 'auto'
 
   if (!profile) return
@@ -167,11 +170,11 @@ const UserProfile = () => {
             </PopoverBody>
             <PopoverFooter pt={1}>
               <Flex gap={2} alignItems='center' justifyContent='center'>
-                <Link as={ReactRouterLink} to={Routes.privacy} fontSize='xs' color='dashboard.support_link'>
+                <Link href={privacyPolicyUrl} isExternal fontSize='xs' color='dashboard.support_link'>
                   <Trans i18nKey='privacy_policy'>Privacy policy</Trans>
                 </Link>
                 <Text fontSize='xs'>•</Text>
-                <Link as={ReactRouterLink} to={Routes.terms} fontSize='xs' color='dashboard.support_link'>
+                <Link href={termsOfServiceUrl} isExternal fontSize='xs' color='dashboard.support_link'>
                   <Trans i18nKey='terms_of_service'>Terms of Service</Trans>
                 </Link>
               </Flex>

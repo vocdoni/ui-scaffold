@@ -29,6 +29,7 @@ import { Tag } from './tag'
 import { Text } from './text'
 import { Textarea } from './textarea'
 import { Tooltip } from './tooltip'
+import { Voted } from './voted'
 
 const components = {
   Badge,
@@ -64,6 +65,7 @@ const components = {
   ConfirmModal,
   QuestionsConfirmation,
   QuestionChoice,
+  Voted,
 }
 
 export default components

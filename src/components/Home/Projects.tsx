@@ -1,7 +1,6 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as ReactRouterLink } from 'react-router-dom'
-import { Routes } from '~routes'
+import ContactButton from '~components/shared/ContactLink'
 
 const Support = () => {
   const { t } = useTranslation()
@@ -62,14 +61,11 @@ const Support = () => {
         >
           <Trans i18nKey='home.projects.expertise'>We are experts in digital voting</Trans>
         </Text>
-        <Button
-          as={ReactRouterLink}
-          to={Routes.dashboard.settings.support}
+        <ContactButton
           variant='outline'
           colorScheme='whiteAlpha'
           aria-label={t('home.support.btn_contact')}
           title={t('home.support.btn_contact')}
-          target='_blank'
           height='60px'
           color='white'
           mx='auto'
@@ -81,7 +77,7 @@ const Support = () => {
           fontWeight='900'
         >
           {t('home.support.btn_contact')}
-        </Button>
+        </ContactButton>
       </Flex>
     </Box>
   )

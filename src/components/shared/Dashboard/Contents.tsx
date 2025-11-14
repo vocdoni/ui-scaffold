@@ -81,7 +81,7 @@ export const Sidebar = ({ show, ...props }: SidebarProps) => (
   >
     <Box
       height='100%'
-      width={{ base: '100%', md: 'sidebar' }}
+      width={{ base: '100vw', md: 'sidebar' }}
       bg='chakra.body.bg'
       borderLeft='1px solid'
       borderColor='table.border'

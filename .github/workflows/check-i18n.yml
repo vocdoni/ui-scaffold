@@ -20,11 +20,14 @@ jobs:
         with:
           node-version: 22.x
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Generate translations
-        run: yarn translations
+        run: pnpm translations
 
       - name: Fail if translations changed
         shell: bash
@@ -38,7 +41,7 @@ jobs:
           UNTRACKED="$(git ls-files --others --exclude-standard -- src/i18n/locales/*.json || true)"
 
           if [ -n "${MODIFIED}${UNTRACKED}" ]; then
-            echo "::error::Translation files are out of date. Run 'yarn translations' locally and commit the changes."
+            echo "::error::Translation files are out of date. Run 'pnpm translations' locally and commit the changes."
             echo "Changed files:"
             [ -n "$MODIFIED" ] && echo "$MODIFIED"
             [ -n "$UNTRACKED" ] && echo "$UNTRACKED"

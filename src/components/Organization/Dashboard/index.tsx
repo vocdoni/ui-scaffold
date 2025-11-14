@@ -27,6 +27,7 @@ import { LuArrowUpRight, LuCheck, LuPlus, LuUsers, LuVote, LuX } from 'react-ico
 import ReactPlayer from 'react-player'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
+import { WhatsAppButton } from '~components/shared/Layout/WhatsappButton'
 import { PlanId } from '~constants'
 import { Routes } from '~routes'
 import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
@@ -106,7 +107,7 @@ const Tutorial = () => {
           >
             <Trans i18nKey='new_voting'>New vote</Trans>
           </Button>
-          <DashboardBookerModalButton size='sm' />
+          <WhatsAppButton />
         </Flex>
       </Box>
       <Flex display={{ base: 'none', lg: 'flex' }} flex='1 1 33%' flexDirection='column'>

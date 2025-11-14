@@ -32,12 +32,10 @@ export const Routes = {
   },
   plans: '/plans',
   organization: '/organization/:address',
-  privacy: '/privacy',
   processes: {
     create: '/admin/processes/create/:groupId?',
     view: '/processes/:id',
   },
-  terms: '/terms',
   usecases: {
     base: '/use-cases',
     view: '/use-cases/:lang?/:case?',
