@@ -128,8 +128,8 @@ importers:
         specifier: ^1.0.0-beta.1
         version: 1.0.0-beta.5(@chakra-ui/react@2.10.9(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(react-markdown@8.0.7(@types/react@18.3.26)(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)(remark-gfm@3.0.1)
       '@vocdoni/rainbowkit-wallets':
-        specifier: ^1.0.0-beta.1
-        version: 1.0.0-beta.1(96b377a8f476d4016f3699391f59b943)
+        specifier: ^1.0.0-beta.3
+        version: 1.0.0-beta.3(2c4fbcd58f21141de0dafdc32338c940)
       '@vocdoni/react-providers':
         specifier: 1.0.0-beta.3
         version: 1.0.0-beta.3(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
@@ -1900,13 +1900,16 @@ packages:
   '@vocdoni/proto@1.15.9':
     resolution: {integrity: sha512-ud0UrkJJwMmJ5+7wCgaiV2x9UhLLDg52dpBG5dYaf4ZB4dTeXDipgANjl/AFFJWcfJGlEQkAVc92gEJKwd3JGA==}
 
-  '@vocdoni/rainbowkit-wallets@1.0.0-beta.1':
-    resolution: {integrity: sha512-R7x7mh9AoEeNbkrAMqiRsurL7DnhM9ihIRx0VZ1bQmH5ag4ZQywKm49DKxVmGPd1zSRQLniBtZ+G5EYZ+kQ+eQ==}
+  '@vocdoni/rainbowkit-wallets@1.0.0-beta.3':
+    resolution: {integrity: sha512-YEngCrFNf4oMbNDDXDwbnUzlQo5NQbhWycNuu1sR+BT8EPn1coH6ZtHN8Z1wwGr0sJXZZtUXeg/gmK2KiMPHdw==}
     peerDependencies:
       '@rainbow-me/rainbowkit': ^2.0.0
       '@tanstack/react-query': ^5.0.0
-      viem: 2.x
-      wagmi: '2'
+      react: '>=17.0.0 <19.0.0'
+      react-dom: '>=17.0.0 <19.0.0'
+      react-modal: ^3.16.1
+      viem: ^2.37.1
+      wagmi: ^2.16.9
 
   '@vocdoni/react-providers@1.0.0-beta.3':
     resolution: {integrity: sha512-yVuaklhzflgH6P1BwA0nw0sUqqCae1axxGtUcICdwl7bqUOLPCTJYnGRTUUteYXWxnTOffWNpYEH0hTHBK8hmQ==}
@@ -2949,6 +2952,9 @@ packages:
   events@3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
+
+  exenv@1.2.2:
+    resolution: {integrity: sha512-Z+ktTxTwv9ILfgKCk32OX3n/doe+OcLTRtqK9pcL+JsP3J1/VW8Uvl4ZjLlKqeW4rzK4oesDOGMEMRIZqtP4Iw==}
 
   expect@29.7.0:
     resolution: {integrity: sha512-2Zks0hf1VLFYI1kbh0I5jP3KHHyCHpkfyHBzsSXRFgl/Bg9mWYfMW8oD+PdMPlEwy5HNsR9JutYy6pMeOh61nw==}
@@ -4341,11 +4347,20 @@ packages:
   react-is@18.3.1:
     resolution: {integrity: sha512-/LLMVyas0ljjAtoYiPqYiL8VWXzUUdThrmU5+n20DZv+a+ClRoevUzw5JxU+Ieh5/c87ytoTBV9G1FiKfNJdmg==}
 
+  react-lifecycles-compat@3.0.4:
+    resolution: {integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==}
+
   react-markdown@8.0.7:
     resolution: {integrity: sha512-bvWbzG4MtOU62XqBx3Xx+zB2raaFFsq4mYiAzfjXJMEz2sixgeAfraA3tvzULF02ZdOMUOKTBFFaZJDDrq+BJQ==}
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
+
+  react-modal@3.16.3:
+    resolution: {integrity: sha512-yCYRJB5YkeQDQlTt17WGAgFJ7jr2QYcWa1SHqZ3PluDmnKJ/7+tVU+E6uKyZ0nODaeEj+xCpK4LcSnKXLMC0Nw==}
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18 || ^19
+      react-dom: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18 || ^19
 
   react-player@3.3.3:
     resolution: {integrity: sha512-6U2ziVohA3WLdKI/WEQ7v27CIive0TCNIro55lJZka06fjB2kC4lJqBrvddG0yBvTDcn1owiUf2hRNaIzHAjIg==}
@@ -5194,6 +5209,9 @@ packages:
   walk-sync@2.2.0:
     resolution: {integrity: sha512-IC8sL7aB4/ZgFcGI2T1LczZeFWZ06b3zoHH7jBPyHxOtIIz1jppWHjjEXkOFvFojBVAK9pV7g47xOZ4LW3QLfg==}
     engines: {node: 8.* || >= 10.*}
+
+  warning@4.0.3:
+    resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
 
   wasmbuilder@0.0.16:
     resolution: {integrity: sha512-Qx3lEFqaVvp1cEYW7Bfi+ebRJrOiwz2Ieu7ZG2l7YyeSJIok/reEQCQCuicj/Y32ITIJuGIM9xZQppGx5LrQdA==}
@@ -7917,11 +7935,15 @@ snapshots:
       long: 5.3.2
       protobufjs: 7.5.4
 
-  '@vocdoni/rainbowkit-wallets@1.0.0-beta.1(96b377a8f476d4016f3699391f59b943)':
+  '@vocdoni/rainbowkit-wallets@1.0.0-beta.3(2c4fbcd58f21141de0dafdc32338c940)':
     dependencies:
       '@rainbow-me/rainbowkit': 2.2.9(@tanstack/react-query@5.90.5(react@18.3.1))(@types/react@18.3.26)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(typescript@5.9.3)(viem@2.38.5(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@4.1.12))(wagmi@2.19.1(@tanstack/query-core@5.90.5)(@tanstack/react-query@5.90.5(react@18.3.1))(@types/react@18.3.26)(bufferutil@4.0.9)(encoding@0.1.13)(fastestsmallesttextencoderdecoder@1.0.22)(react@18.3.1)(typescript@5.9.3)(utf-8-validate@5.0.10)(viem@2.38.5(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@4.1.12))(ws@8.18.3(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@4.1.12))
       '@tanstack/react-query': 5.90.5(react@18.3.1)
+      buffer: 6.0.3
       crypto-js: 4.2.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-modal: 3.16.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       viem: 2.38.5(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@4.1.12)
       wagmi: 2.19.1(@tanstack/query-core@5.90.5)(@tanstack/react-query@5.90.5(react@18.3.1))(@types/react@18.3.26)(bufferutil@4.0.9)(encoding@0.1.13)(fastestsmallesttextencoderdecoder@1.0.22)(react@18.3.1)(typescript@5.9.3)(utf-8-validate@5.0.10)(viem@2.38.5(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@4.1.12))(ws@8.18.3(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@4.1.12)
 
@@ -9553,6 +9575,8 @@ snapshots:
       - bare-abort-controller
 
   events@3.3.0: {}
+
+  exenv@1.2.2: {}
 
   expect@29.7.0:
     dependencies:
@@ -11224,6 +11248,8 @@ snapshots:
 
   react-is@18.3.1: {}
 
+  react-lifecycles-compat@3.0.4: {}
+
   react-markdown@8.0.7(@types/react@18.3.26)(react@18.3.1):
     dependencies:
       '@types/hast': 2.3.10
@@ -11245,6 +11271,15 @@ snapshots:
       vfile: 5.3.7
     transitivePeerDependencies:
       - supports-color
+
+  react-modal@3.16.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      exenv: 1.2.2
+      prop-types: 15.8.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-lifecycles-compat: 3.0.4
+      warning: 4.0.3
 
   react-player@3.3.3(@types/react-dom@18.3.7(@types/react@18.3.26))(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
@@ -12219,6 +12254,10 @@ snapshots:
       ensure-posix-path: 1.1.1
       matcher-collection: 2.0.1
       minimatch: 3.1.2
+
+  warning@4.0.3:
+    dependencies:
+      loose-envify: 1.4.0
 
   wasmbuilder@0.0.16: {}
 
