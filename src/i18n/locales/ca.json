@@ -13,10 +13,9 @@
     "save_changes": "Desa els canvis",
     "view_active_votes": "Mostra les votacions actives"
   },
-  "active": "Actiu",
   "add_new_org": "Afegeix una nova organització",
   "additional_actions": "Accions addicionals",
-  "all": "Tots",
+  "all_processes": "Tots",
   "already_member": "Ja tens un compte?",
   "alt": {
     "images": {
@@ -196,6 +195,7 @@
     "subtitle": "Aquesta informació ens ajuda a personalitzar la teva experiència",
     "title": "Crea la teva organització"
   },
+  "create_process": "Crea un procés",
   "csp": {
     "authenticate": "Identifica't",
     "code_info": "Rebràs un codi únic al mitjà seleccionat per verificar la teva identitat i completar l'autenticació",
@@ -233,6 +233,7 @@
   "dark_mode": "Mode fosc",
   "dashboard": {
     "actions": {
+      "reset_form": "Restableix el formulari",
       "toggle_sidebar": "Commuta la barra lateral"
     },
     "process_view": {
@@ -268,6 +269,16 @@
   "discount": "Descompte",
   "do_it_later": "Fes-ho més tard",
   "do_you_need_help": "Necessites ajuda?",
+  "draft_processes": "Esborranys",
+  "drafts": {
+    "clone": "Clonar esborrany",
+    "cloned_draft": "Esborrany clonat correctament",
+    "cloned_draft_error": "Error clonant l'esborrany",
+    "delete": "Eliminar esborrany",
+    "deleted_draft": "Esborrany eliminat correctament",
+    "edit": "Editar esborrany",
+    "not_defined": "No definit encara"
+  },
   "drawer": {
     "close": "Tanca el panell lateral"
   },
@@ -298,6 +309,7 @@
   "end_date": "Data de finalització",
   "end_time": "Hora de finalització",
   "end_vote": "Finalitza votació",
+  "ended_processes": "Acabats",
   "enter_promo_code": "Introdueix el codi",
   "error": {
     "invalid_cell_data": "Algunes fileres no contenen adreces correctes: {{rows, list}}",
@@ -386,7 +398,6 @@
     "weighted": "Amb pes",
     "white_label": "Marca blanca"
   },
-  "finished": "Finalitzat",
   "footer": {
     "about_us": "Sobre Nosaltres",
     "company": "Empresa",
@@ -437,6 +448,7 @@
         "add_button": "Afegir",
         "remove_address": "Elimina l'adreça"
       },
+      "error_deleting_draft_title": "Error eliminant l'esborrany",
       "error_title": "Error creant el procés",
       "spreadsheet": {
         "download_template": "No tens un fitxer CSV? <a>Descarrega template.csv</a>, omple'l i puja'l.",
@@ -468,7 +480,6 @@
         "wallet_addresses": "Adreces de cartera"
       }
     },
-    "reset": "Reinicia formulari",
     "select_language": "Idioma",
     "support": {
       "billing_issue": "Problema de facturació",
@@ -1303,7 +1314,8 @@
     },
     "create": {
       "action": {
-        "publish": "Publica"
+        "publish": "Publica",
+        "save_draft": "Desa"
       },
       "change_template": {
         "cancel": "Cancel·la",
@@ -1317,12 +1329,15 @@
       },
       "leave_confirmation": {
         "cancel": "Cancel·la",
-        "leave": "Surt sense desar",
-        "message": "Tens canvis no desats. Segur que vols sortir?",
+        "leave": "Descarta i surt",
+        "message": "You’ve reached your limit of {{ limit }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
+        "message_one": "Has arribat al límit de {{ count }} esborrany. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla.",
+        "message_many": "",
+        "message_other": "Has arribat al límit de {{ count }} esborranys. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla.",
         "reset": "Restableix",
         "reset_message": "Això restablirà el formulari. Vols continuar?",
-        "save_and_leave": "Desa i surt",
-        "title": "Canvis no desats"
+        "save_and_leave": "Actualitza el pla",
+        "title": "Desant esborrany"
       },
       "question": {
         "add": "Afegeix una pregunta",
@@ -1343,11 +1358,8 @@
         },
         "question_number": "Pregunta {{index}} de {{total}}"
       },
-      "reset_form": {
-        "cancel": "Cancel·la",
-        "message": "Segur que vols restablir el formulari? Aquesta acció no es pot desfer.",
-        "reset": "Restableix el formulari",
-        "title": "Restablir formulari"
+      "save_draft_error": {
+        "title": "Error al desar l'esborrany"
       },
       "selectionLimits": {
         "full": "Els votants han de seleccionar com a mínim <min /> i com a màxim <max /> opcions.",
