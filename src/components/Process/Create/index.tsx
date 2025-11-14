@@ -38,6 +38,7 @@ import {
   MultiChoiceElection,
   PlainCensus,
   UnpublishedElection,
+  WeightedCensus,
 } from '@vocdoni/sdk'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
@@ -615,12 +616,20 @@ export const ProcessCreate = () => {
         return census
       case CensusTypes.Spreadsheet:
       case CensusTypes.Web3:
-        census = new PlainCensus()
-        if (form.addresses && form.addresses.length > 0) {
-          form.addresses.forEach(({ address }) => {
-            if (address) census.add(address)
-          })
+        if (form.weightedVote) {
+          census = new WeightedCensus()
+          const addresses = form.addresses.map(({ address, weight }) => ({
+            key: address,
+            weight: BigInt(weight),
+          }))
+
+          census.add(addresses)
+
+          return census
         }
+        census = new PlainCensus()
+        const addresses = form.addresses.map(({ address }) => address)
+        census.add(addresses)
 
         return census
       default:
@@ -684,7 +693,16 @@ export const ProcessCreate = () => {
   }
 
   const onError = (errors) => {
-    const sidebarFieldKeys = ['groupId', 'census', 'resultVisibility', 'endDate', 'endTime', 'startDate', 'startTime']
+    const sidebarFieldKeys = [
+      'groupId',
+      'census',
+      'resultVisibility',
+      'weightedVote',
+      'endDate',
+      'endTime',
+      'startDate',
+      'startTime',
+    ]
 
     const hasSidebarErrors = sidebarFieldKeys.some((key) => key in errors)
 
