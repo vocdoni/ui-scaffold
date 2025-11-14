@@ -42,12 +42,12 @@
     "overwrite_votes_left_other": "Pots corregir el teu vot {{ count }} vegades.",
     "submitting": "Enviant",
     "verify_vote_on_explorer": "Verifica el vot a l'explorador",
-    "votes_one": "<span>1</span> <text>votant</text>",
+    "votes_one": "<span>1</span><text>vot</text>",
     "votes_many": "",
-    "votes_other": "<span>{{ count }}</span> <text>votants</text>",
-    "votes_weight_one": "<span>1</span> <text>vot</text>",
+    "votes_other": "<span>{{ count }}</span><text>vots</text>",
+    "votes_weight_one": "<span>1</span><text>participació</text>",
     "votes_weight_many": "",
-    "votes_weight_other": "<span>{{ count }}</span> <text>vots</text>",
+    "votes_weight_other": "<span>{{ count }}</span><text>participacions</text>",
     "voting_anonymous_advice": "Si us plau, espera mentre la màgia té lloc 🪄.\nAixò pot trigar uns minuts; no tanquis la finestra."
   },
   "avatar": {
