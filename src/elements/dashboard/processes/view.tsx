@@ -34,7 +34,13 @@ const DashboardProcessViewElement = () => {
 
   return (
     <OrganizationProvider id={election.organizationId}>
-      <ElectionProvider election={election} ConnectButton={ConnectButton} fetchCensus autoUpdate>
+      <ElectionProvider
+        election={election}
+        ConnectButton={ConnectButton}
+        fetchCensus
+        autoUpdate
+        autoUpdateInterval={15000}
+      >
         <ProcessView />
       </ElectionProvider>
     </OrganizationProvider>
