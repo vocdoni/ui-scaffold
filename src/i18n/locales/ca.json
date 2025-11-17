@@ -1489,6 +1489,7 @@
     "start": "Inicia/Continua"
   },
   "process_context": {
+    "clone_as_draft": "Clona com a esborrany",
     "explorer": "Explorador",
     "more_info": "Més informació",
     "public_voting_page": "Pàgina pública de votació"

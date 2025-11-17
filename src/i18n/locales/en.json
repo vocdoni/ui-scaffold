@@ -1465,6 +1465,7 @@
     "start": "Start/Resume"
   },
   "process_context": {
+    "clone_as_draft": "Clone as draft",
     "explorer": "Explorer",
     "more_info": "More info",
     "public_voting_page": "Public voting page"

@@ -1489,6 +1489,7 @@
     "start": "Iniciar/Reanudar"
   },
   "process_context": {
+    "clone_as_draft": "Clonar como borrador",
     "explorer": "Explorador",
     "more_info": "Más información",
     "public_voting_page": "Página pública de votación"
