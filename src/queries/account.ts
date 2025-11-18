@@ -1,6 +1,8 @@
 import { DefinedInitialDataOptions, QueryKey, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { api, ApiEndpoints } from '~components/Auth/api'
+import { useEffect, useRef } from 'react'
+import { api, ApiEndpoints, UnauthorizedApiError } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
+import { useConnectionToast } from '~components/shared/Layout/ConnectionToast'
 import { QueryKeys } from './keys'
 
 export interface Organization {
@@ -51,13 +53,55 @@ export const useProfile = (
   options?: Omit<DefinedInitialDataOptions<User, Error, User, QueryKey>, 'queryKey' | 'queryFn'>
 ) => {
   const { bearedFetch } = useAuth()
+  const { recordFailure, recordSuccess } = useConnectionToast()
 
-  return useQuery<User>({
+  const query = useQuery<User>({
     ...options,
     queryKey: QueryKeys.profile,
     refetchOnWindowFocus: false,
     queryFn: () => bearedFetch<User>(ApiEndpoints.Me),
+    // Use default retry (3 attempts) so query can fail and enter error state
+    retry: (_failureCount, error) => {
+      // Don't retry auth errors - those won't fix themselves
+      if (error instanceof UnauthorizedApiError) return false
+      // Allow up to 3 retries for other errors, then fail
+      return _failureCount < 3
+    },
   })
+
+  // Manual retry logic with connection status tracking
+  const retryIntervalRef = useRef<NodeJS.Timeout | null>(null)
+
+  useEffect(() => {
+    if (query.isError) {
+      recordFailure()
+
+      // Start manual retry loop if not already running
+      if (!retryIntervalRef.current) {
+        retryIntervalRef.current = setInterval(() => {
+          if (!query.isFetching) query.refetch()
+        }, 5_000) // Retry every 5 seconds
+      }
+    } else if (query.isSuccess) {
+      recordSuccess()
+
+      // Stop manual retries when successful
+      if (retryIntervalRef.current) {
+        clearInterval(retryIntervalRef.current)
+        retryIntervalRef.current = null
+      }
+    }
+
+    // Cleanup on unmount
+    return () => {
+      if (retryIntervalRef.current) {
+        clearInterval(retryIntervalRef.current)
+        retryIntervalRef.current = null
+      }
+    }
+  }, [query.isError, query.isSuccess, query.refetch, recordFailure, recordSuccess])
+
+  return query
 }
 
 export const useUpdateProfile = () => {

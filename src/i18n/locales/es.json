@@ -166,6 +166,12 @@
   },
   "confirm_password": "Confirmar contraseña",
   "confirm_password_placeholder": "Confirma tu nueva contraseña",
+  "connection": {
+    "error_description": "No se puede conectar con el servidor. Comprueba tu conexión.",
+    "error_title": "Problemas de conexión detectados",
+    "restored_description": "Ya estás en línea de nuevo.",
+    "restored_title": "Conexión restablecida"
+  },
   "contact_us": "Contacta con nosotros",
   "control_panel": "Panel de control",
   "cookies": {
