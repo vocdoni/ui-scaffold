@@ -308,14 +308,18 @@ const MemberFilters = ({ onDelete }: MemberFiltersProps) => {
           <IconButton size='xs' aria-label='search' type='submit' icon={<Icon as={LuSearch} />} />
         </InputRightElement>
       </InputGroup>
-      <CreateGroupButton includeAllMembers members={data?.members ?? []}>
-        {t('members.table.create_group_all', { defaultValue: 'Create group (All)' })}
-      </CreateGroupButton>
-      <Button leftIcon={<Icon as={LuTrash2} />} variant='outline' colorScheme='red' onClick={onDelete}>
-        {t('members.table.delete_all', {
-          defaultValue: 'Delete (All)',
-        })}
-      </Button>
+      {data?.members?.length >= 1 && (
+        <>
+          <CreateGroupButton includeAllMembers members={data?.members ?? []}>
+            {t('members.table.create_group_all', { defaultValue: 'Create group (All)' })}
+          </CreateGroupButton>
+          <Button leftIcon={<Icon as={LuTrash2} />} variant='outline' colorScheme='red' onClick={onDelete}>
+            {t('members.table.delete_all', {
+              defaultValue: 'Delete (All)',
+            })}
+          </Button>
+        </>
+      )}
     </Flex>
   )
 }
