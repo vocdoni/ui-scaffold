@@ -166,6 +166,12 @@
   },
   "confirm_password": "Confirma la contrasenya",
   "confirm_password_placeholder": "Confirma la teva nova contrasenya",
+  "connection": {
+    "error_description": "No s'ha pogut connectar amb el servidor. Comprova la teva connexió.",
+    "error_title": "Problemes de connexió detectats",
+    "restored_description": "Ja estàs en línia de nou.",
+    "restored_title": "Connexió restablerta"
+  },
   "contact_us": "Contacta amb nosaltres",
   "control_panel": "Panell de control",
   "cookies": {

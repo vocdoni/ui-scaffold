@@ -12,6 +12,7 @@ import { UnauthorizedApiError } from '~components/Auth/api'
 import { AuthProvider } from '~components/Auth/AuthContext'
 import { SubscriptionProvider } from '~components/Auth/Subscription'
 import { CookieConsent } from '~components/shared/CookieConsent'
+import { ConnectionToastProvider } from '~components/shared/Layout/ConnectionToast'
 import { walletClientToSigner } from '~constants/wagmi-adapters'
 import { VocdoniEnvironment } from './constants'
 import { wagmiConfig } from './constants/rainbow'
@@ -72,13 +73,15 @@ export const AppProviders = () => {
         locale={translations(t)}
         datesLocale={datesLocale(i18n.language)}
       >
-        <SaasProviders>
-          <ColorModeScript />
-          <AnalyticsProvider>
-            <CookieConsent />
-            <RoutesProvider />
-          </AnalyticsProvider>
-        </SaasProviders>
+        <ConnectionToastProvider>
+          <SaasProviders>
+            <ColorModeScript />
+            <AnalyticsProvider>
+              <CookieConsent />
+              <RoutesProvider />
+            </AnalyticsProvider>
+          </SaasProviders>
+        </ConnectionToastProvider>
       </ClientProvider>
     </RainbowKitTheme>
   )

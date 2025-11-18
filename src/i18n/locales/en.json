@@ -163,6 +163,12 @@
   },
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
+  "connection": {
+    "error_description": "Unable to reach the server. Please check your connection.",
+    "error_title": "Connection issues detected",
+    "restored_description": "You are back online.",
+    "restored_title": "Connection restored"
+  },
   "contact_us": "Contact us",
   "control_panel": "Control panel",
   "cookies": {
