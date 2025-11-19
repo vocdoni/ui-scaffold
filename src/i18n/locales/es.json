@@ -1336,7 +1336,6 @@
       "leave_confirmation": {
         "cancel": "Cancelar",
         "leave": "Descartar y salir",
-        "message": "You’ve reached your limit of {{ limit }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
         "message_one": "Has alcanzado el límite de {{ count }} borrador. Para guardar este borrador, elimina un borrador existente o actualiza tu plan.",
         "message_many": "",
         "message_other": "Has alcanzado el límite de {{ count }} borradores. Para guardar este borrador, elimina un borrador existente o actualiza tu plan.",

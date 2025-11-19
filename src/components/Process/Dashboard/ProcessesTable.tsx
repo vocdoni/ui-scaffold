@@ -174,7 +174,7 @@ const ProcessContextMenu = () => {
       )
     } catch (error) {
       toast({
-        title: t('drafts.cloned_draft_error', { defaultValue: 'Error saving draft' }),
+        title: t('drafts.cloned_draft_error', { defaultValue: 'Error cloning draft' }),
         description: t('process.create.leave_confirmation.message', {
           defaultValue:
             'You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
