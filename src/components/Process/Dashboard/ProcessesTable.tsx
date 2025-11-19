@@ -24,6 +24,8 @@ import { ElectionStatus, ensure0x, InvalidElection, PublishedElection } from '@v
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCopy, LuEllipsisVertical, LuExternalLink, LuInfo, LuSearch } from 'react-icons/lu'
 import { createSearchParams, generatePath, Link as RouterLink, useNavigate } from 'react-router-dom'
+import { useSubscription } from '~components/Auth/Subscription'
+import { SubscriptionPermission } from '~constants'
 import { useDateFns } from '~i18n/use-date-fns'
 import RoutedPaginatedTableFooter from '~shared/Pagination/PaginatedTableFooter'
 import { Routes } from '~src/router/routes'
@@ -127,6 +129,8 @@ const ProcessContextMenu = () => {
   const toast = useToast()
   const { election, client } = useElection()
   const createProcess = useCreateProcess()
+  const { permission } = useSubscription()
+  const limit = permission(SubscriptionPermission.Drafts)
 
   if (!election || election instanceof InvalidElection) return null
 
@@ -170,11 +174,14 @@ const ProcessContextMenu = () => {
       )
     } catch (error) {
       toast({
-        title: t('drafts.cloned_draft_error', {
-          defaultValue: 'Error cloning draft',
+        title: t('drafts.cloned_draft_error', { defaultValue: 'Error saving draft' }),
+        description: t('process.create.leave_confirmation.message', {
+          defaultValue:
+            'You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
+          count: limit,
         }),
         status: 'error',
-        duration: 3000,
+        duration: 10000,
         isClosable: true,
       })
     }
