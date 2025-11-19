@@ -13,10 +13,9 @@
     "save_changes": "Guardar cambios",
     "view_active_votes": "Ver votaciones activas"
   },
-  "active": "Activo",
   "add_new_org": "Añadir una nueva organización",
   "additional_actions": "Acciones adicionales",
-  "all": "Todo",
+  "all_processes": "Todos",
   "already_member": "¿Ya tienes una cuenta?",
   "alt": {
     "images": {
@@ -202,6 +201,7 @@
     "subtitle": "Reduce costes, ahorra tiempo: seguro, privado y conforme al RGPD",
     "title": "Cuéntanos sobre tu organización"
   },
+  "create_process": "Crear proceso",
   "csp": {
     "authenticate": "Identificarse",
     "code_info": "Recibirás un código único en el medio seleccionado para verificar tu identidad y completar la autenticación.",
@@ -239,6 +239,7 @@
   "dark_mode": "Modo oscuro",
   "dashboard": {
     "actions": {
+      "reset_form": "Restablecer formulario",
       "toggle_sidebar": "Alternar barra lateral"
     },
     "process_view": {
@@ -274,6 +275,16 @@
   "discount": "Descuento",
   "do_it_later": "Hacerlo más tarde",
   "do_you_need_help": "¿Necesitas ayuda?",
+  "draft_processes": "Borradores",
+  "drafts": {
+    "clone": "Clonar borrador",
+    "cloned_draft": "Borrador clonado correctamente",
+    "cloned_draft_error": "Error clonando el borrador",
+    "delete": "Eliminar borrador",
+    "deleted_draft": "Borrador eliminado correctamente",
+    "edit": "Editar borrador",
+    "not_defined": "No definido aún"
+  },
   "drawer": {
     "close": "Cerrar panel"
   },
@@ -304,6 +315,7 @@
   "end_date": "Fecha de finalización",
   "end_time": "Hora de finalización",
   "end_vote": "Finalizar votación",
+  "ended_processes": "Finalizados",
   "enter_promo_code": "Introduce el código promocional",
   "error": {
     "invalid_cell_data": "Algunas filas no contienen direcciones correctas: {{rows, list}}",
@@ -392,7 +404,6 @@
     "weighted": "Votación ponderada",
     "white_label": "Marca blanca"
   },
-  "finished": "Finalizado",
   "footer": {
     "about_us": "Sobre nosotros",
     "company": "Compañía",
@@ -443,6 +454,7 @@
         "add_button": "Añadir",
         "remove_address": "Eliminar dirección"
       },
+      "error_deleting_draft_title": "Error eliminando el borrador",
       "error_title": "Error al crear el proceso",
       "spreadsheet": {
         "download_template": "¿No tienes un archivo CSV? <a>Descarga template.csv</a>, complétalo y súbelo.",
@@ -474,7 +486,6 @@
         "wallet_addresses": "Direcciones Web3"
       }
     },
-    "reset": "Restablecer formulario",
     "select_language": "Idioma",
     "support": {
       "billing_issue": "Problema de facturación",
@@ -1309,7 +1320,8 @@
     },
     "create": {
       "action": {
-        "publish": "Publicar"
+        "publish": "Publicar",
+        "save_draft": "Guardar"
       },
       "change_template": {
         "cancel": "Cancelar",
@@ -1323,12 +1335,17 @@
       },
       "leave_confirmation": {
         "cancel": "Cancelar",
-        "leave": "Salir sin guardar",
+        "leave": "Descartar y salir",
         "message": "Tienes cambios sin guardar. ¿Seguro que quieres salir?",
         "reset": "Restablecer",
         "reset_message": "Esto reiniciará el formulario. ¿Quieres continuar?",
         "save_and_leave": "Guardar y salir",
-        "title": "Cambios sin guardar"
+        "title": "Guardando borrador"
+      },
+      "limit_reached": {
+        "message_one": "Has alcanzado tu límite de {{ count }} borrador. Para guardar este borrador, elimina un borrador existente o actualiza tu plan.",
+        "message_many": "",
+        "message_other": "Has alcanzado tu límite de {{ count }} borradores. Para guardar este borrador, elimina un borrador existente o actualiza tu plan."
       },
       "question": {
         "add": "Añadir pregunta",
@@ -1349,11 +1366,8 @@
         },
         "question_number": "Pregunta {{index}} de {{total}}"
       },
-      "reset_form": {
-        "cancel": "Cancelar",
-        "message": "¿Seguro que quieres restablecer el formulario? Esta acción no se puede deshacer.",
-        "reset": "Restablecer formulario",
-        "title": "Restablecer formulario"
+      "save_draft_error": {
+        "title": "Error al guardar el borrador"
       },
       "selectionLimits": {
         "full": "Los votantes deben seleccionar al menos <min /> y como máximo <max /> opciones.",
@@ -1477,6 +1491,7 @@
     "start": "Iniciar/Reanudar"
   },
   "process_context": {
+    "clone_as_draft": "Clonar como borrador",
     "explorer": "Explorador",
     "more_info": "Más información",
     "public_voting_page": "Página pública de votación"

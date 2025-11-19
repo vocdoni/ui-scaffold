@@ -23,7 +23,7 @@ import {
   useToast,
   VStack,
 } from '@chakra-ui/react'
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { useClient, useOrganization } from '@vocdoni/react-providers'
 import {
@@ -33,21 +33,31 @@ import {
   CspCensus,
   Election,
   ElectionCreationSteps,
+  ensure0x,
   IElectionParameters,
   IQuestion,
   MultiChoiceElection,
   PlainCensus,
   UnpublishedElection,
 } from '@vocdoni/sdk'
+import { addDays, parse } from 'date-fns'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuRotateCcw, LuSettings } from 'react-icons/lu'
 import ReactPlayer from 'react-player'
-import { createPath, generatePath, useBlocker, useNavigate, useParams } from 'react-router-dom'
+import {
+  createPath,
+  generatePath,
+  useBlocker,
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { useSubscription } from '~components/Auth/Subscription'
-import { ApiEndpoints } from '~components/Auth/api'
+import { ApiEndpoints, ApiError } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import Editor from '~components/Editor'
 import { Web3Address } from '~components/Process/Census/Web3'
@@ -55,6 +65,7 @@ import { DashboardContents } from '~components/shared/Dashboard/Contents'
 import { SubscriptionLockedContent } from '~components/shared/Layout/SubscriptionLockedContent'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
 import { SubscriptionPermission } from '~constants'
+import { useDeleteDraft } from '~elements/dashboard/processes/drafts'
 import { Routes } from '~routes'
 import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
 import { AnalyticsEvent } from '~utils/analytics'
@@ -75,11 +86,24 @@ type ConfirmOnNavigateOptions = {
 type LeaveConfirmationModalProps = {
   isOpen: boolean
   onCancel: () => void
+  onSaveAndLeave: () => void
   onLeave: () => void
   onResetSamePath: () => void
-  onSaveAndLeave: () => void
   isSamePath: boolean
 }
+
+type CreateProcessRequest = {
+  metadata: Process
+  orgAddress: string
+}
+
+type UpdateProcessRequest = {
+  processId: string
+  body: CreateProcessRequest
+}
+
+export const saveTimeoutMs = 30000
+export const saveDraftErrorToastId = 'draft-save-error'
 
 export const isAccountData = (account: AccountData | ArchivedAccountData): account is AccountData =>
   'electionIndex' in account
@@ -91,15 +115,18 @@ export const useConfirmOnNavigate = ({
   onOpen,
   onClose,
 }: ConfirmOnNavigateOptions) => {
-  const shouldBlock = isDirty && !isSubmitting && !isSubmitSuccessful
+  const [snoozeUntil, setSnoozeUntil] = useState<number | null>(null)
+  const isSnoozed = snoozeUntil !== null && Date.now() < snoozeUntil
+
+  const shouldBlock = isDirty && !isSubmitting && !isSubmitSuccessful && !isSnoozed
   const blocker = useBlocker(shouldBlock)
 
   const isOpenRef = useRef(false)
   const isProceedingRef = useRef(false)
 
-  const currentPath = `${window.location.pathname}${window.location.search}${window.location.hash}`
+  const { pathname: currentPath } = useLocation()
   const nextPath = blocker.location ? createPath(blocker.location) : null
-  const isSamePath = nextPath === currentPath
+  const isSamePath = nextPath === null || nextPath === currentPath
 
   useEffect(() => {
     if (!shouldBlock) {
@@ -123,6 +150,15 @@ export const useConfirmOnNavigate = ({
       onClose()
     }
   }, [blocker.state, shouldBlock, onOpen, onClose])
+
+  // Reset snooze when time is up
+  useEffect(() => {
+    if (snoozeUntil === null) return
+
+    const msLeft = Math.max(0, snoozeUntil - Date.now())
+    const id = setTimeout(() => setSnoozeUntil(null), msLeft)
+    return () => clearTimeout(id)
+  }, [snoozeUntil])
 
   const closeAll = () => {
     isProceedingRef.current = false
@@ -151,7 +187,11 @@ export const useConfirmOnNavigate = ({
     cancel()
   }
 
-  return { isSamePath, cancel, proceed, resetSamePath }
+  const saveCooldown = (ms: number) => {
+    setSnoozeUntil(Date.now() + Math.max(0, ms))
+  }
+
+  return { isSamePath, cancel, proceed, resetSamePath, saveCooldown }
 }
 
 export const useSafeReset = (externalReset?) => {
@@ -180,13 +220,72 @@ export const useSafeReset = (externalReset?) => {
   )
 }
 
-export const useFormDraftSaver = (isDirty: boolean, getValues: () => any, storeFormDraft: (value: any) => void) => {
-  const saveDraft = () => {
-    if (!isDirty) return
-    storeFormDraft(getValues())
+export const useFormDraftSaver = (
+  isDirty: boolean,
+  getValues: () => any,
+  draftId: string | null,
+  storeDraftId: (id: string | null) => void,
+  saveCooldown?: (ms: number) => void
+) => {
+  const { account } = useClient()
+  const { t } = useTranslation()
+  const { permission } = useSubscription()
+  const limit = permission(SubscriptionPermission.Drafts)
+  const toast = useToast()
+  const createProcess = useCreateProcess()
+  const updateProcess = useUpdateProcess()
+  const skipNextSaveRef = useRef(false)
+
+  const isCreating = createProcess.isPending
+  const isUpdating = updateProcess.isPending
+  const isSaving = isCreating || isUpdating
+
+  const skipSave = (skip) => {
+    skipNextSaveRef.current = skip
   }
 
-  // Save when the user accidentally closes the tab, navigates away, or refreshes the page
+  const saveDraft = useCallback(async () => {
+    if (!isDirty || skipNextSaveRef.current) return 'skipped'
+
+    try {
+      const form = getValues()
+      if (draftId) {
+        await updateProcess.mutateAsync({
+          processId: draftId,
+          body: { metadata: form, orgAddress: ensure0x(account?.address) },
+        })
+      } else {
+        const draftProcessId = await createProcess.mutateAsync({
+          metadata: form,
+          orgAddress: ensure0x(account?.address),
+        })
+        storeDraftId(draftProcessId)
+      }
+      saveCooldown?.(saveTimeoutMs)
+      return 'saved'
+    } catch (e) {
+      if (e instanceof ApiError && e.apiError?.code === 40031) {
+        if (!toast.isActive(saveDraftErrorToastId)) {
+          toast({
+            id: saveDraftErrorToastId,
+            title: t('process.create.save_draft_error.title', {
+              defaultValue: 'Error saving draft',
+            }),
+            description: t('process.create.limit_reached.message', {
+              defaultValue:
+                'You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
+              count: limit,
+            }),
+            status: 'error',
+            duration: 10000,
+            isClosable: true,
+          })
+        }
+      }
+      throw e
+    }
+  }, [isDirty, getValues, draftId, account?.address, updateProcess, createProcess, storeDraftId, saveCooldown])
+
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (!isDirty) return
@@ -194,30 +293,26 @@ export const useFormDraftSaver = (isDirty: boolean, getValues: () => any, storeF
       e.returnValue = ''
       saveDraft()
     }
-
     window.addEventListener('beforeunload', handleBeforeUnload)
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload)
-    }
-  }, [isDirty])
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload)
+  }, [isDirty, saveDraft])
 
-  // Save on focus out on every field
   useEffect(() => {
-    const handleFocusOut = () => saveDraft()
-
+    const handleFocusOut = () => {
+      saveDraft()
+    }
     window.addEventListener('focusout', handleFocusOut)
+    return () => window.removeEventListener('focusout', handleFocusOut)
+  }, [saveDraft])
 
-    return () => {
-      window.removeEventListener('focusout', handleFocusOut)
-    }
-  }, [isDirty])
-
-  // Save every 30 seconds if the form is dirty
   useEffect(() => {
-    const interval = setInterval(() => saveDraft(), 30000)
+    const id = setInterval(() => {
+      saveDraft()
+    }, saveTimeoutMs)
+    return () => clearInterval(id)
+  }, [saveDraft])
 
-    return () => clearInterval(interval)
-  }, [isDirty])
+  return { saveDraft, isSaving, skipSave }
 }
 
 const LiveStreamingInput = () => {
@@ -424,30 +519,6 @@ const LeaveConfirmationModal = ({
   )
 }
 
-const ResetFormModal = ({ isOpen, onClose, onReset }) => {
-  const { t } = useTranslation()
-
-  return (
-    <DeleteModal
-      title={t('process.create.reset_form.title', { defaultValue: 'Reset Form' })}
-      subtitle={t('process.create.reset_form.message', {
-        defaultValue: 'Are you sure you want to reset the form? This action cannot be undone.',
-      })}
-      isOpen={isOpen}
-      onClose={onClose}
-    >
-      <Flex justifyContent='flex-end' mt={4} gap={2}>
-        <Button variant='outline' onClick={onClose}>
-          {t('process.create.reset_form.cancel', { defaultValue: 'Cancel' })}
-        </Button>
-        <Button colorScheme='red' onClick={onReset}>
-          {t('process.create.reset_form.reset', { defaultValue: 'Reset Form' })}
-        </Button>
-      </Flex>
-    </DeleteModal>
-  )
-}
-
 const useProcessBundle = () => {
   const { bearedFetch } = useAuth()
   return useMutation({
@@ -463,34 +534,45 @@ const useProcessBundle = () => {
   })
 }
 
-export const ProcessCreate = () => {
-  const { t } = useTranslation()
-  const toast = useToast()
-  const [formDraftLoaded, setFormDraftLoaded] = useState(false)
-  const [formDraft, storeFormDraft] = useLocalStorage('form-draft', null)
-  const { groupId } = useParams()
-  const navigate = useNavigate()
-  const isDesktop = useBreakpointValue({ base: false, md: true })
-  const [showSidebar, setShowSidebar] = useState(false)
-  const methods = useForm<Process>({
-    defaultValues: {
-      ...defaultProcessValues,
-      groupId,
+export const useCreateProcess = () => {
+  const { bearedFetch } = useAuth()
+
+  return useMutation<string, Error, CreateProcessRequest>({
+    mutationFn: async (body) => {
+      return await bearedFetch(ApiEndpoints.OrganizationProcesses, {
+        method: 'POST',
+        body,
+      })
     },
   })
-  const reset = useSafeReset(methods.reset)
-  const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
-  const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
-  const { isOpen: isResetFormModalOpen, onOpen: onResetFormModalOpen, onClose: onResetFormModalClose } = useDisclosure()
-  const { organization } = useOrganization()
-  const { client } = useClient()
-  const { permission } = useSubscription()
-  const { isSubmitting, isSubmitSuccessful, isDirty, errors } = methods.formState
-  const { setStepDoneAsync } = useOrganizationSetup()
-  const processBundleMutation = useProcessBundle()
-  const { trackPlausibleEvent } = useAnalytics()
+}
 
-  const formToElectionMapper = (form: Process, census: Census): UnpublishedElection | MultiChoiceElection => {
+const useUpdateProcess = () => {
+  const { bearedFetch } = useAuth()
+  return useMutation<void, Error, UpdateProcessRequest>({
+    mutationFn: async ({ processId, body }) => {
+      return await bearedFetch(ApiEndpoints.OrganizationProcess.replace('{processId}', processId), {
+        method: 'PUT',
+        body,
+      })
+    },
+  })
+}
+
+export const useFormToElectionMapper = () => {
+  const { permission } = useSubscription()
+
+  const parseLocalDateTime = (dateStr?: string, timeStr?: string) => {
+    if (!dateStr || !timeStr) return undefined
+
+    return parse(`${dateStr} ${timeStr}`, 'yyyy-MM-dd HH:mm', new Date())
+  }
+
+  return (form: Process, census: Census): UnpublishedElection | MultiChoiceElection => {
+    const start = form.autoStart ? new Date() : parseLocalDateTime(form.startDate, form.startTime)
+    const startDate = form.autoStart ? undefined : parseLocalDateTime(form.startDate, form.startTime)
+    const endDate = form.endDate && form.endTime ? parseLocalDateTime(form.endDate, form.endTime) : addDays(start, 1)
+
     let base: IElectionParameters = {
       census,
       title: form.title,
@@ -514,8 +596,8 @@ export const ProcessCreate = () => {
             })),
           }) as IQuestion
       ),
-      startDate: form.autoStart ? undefined : new Date(`${form.startDate}T${form.startTime}`),
-      endDate: new Date(`${form.endDate}T${form.endTime}`),
+      startDate,
+      endDate,
       voteType: {
         maxVoteOverwrites: 10,
       },
@@ -543,50 +625,124 @@ export const ProcessCreate = () => {
 
     return Election.from(base)
   }
+}
 
-  useFormDraftSaver(isDirty, methods.getValues, storeFormDraft)
+export const useDraft = (draftId?: string | null) => {
+  const { bearedFetch } = useAuth()
 
-  useEffect(() => {
-    setShowSidebar(isDesktop)
-  }, [isDesktop])
+  return useQuery<{ metadata: Process }, Error>({
+    queryKey: ['draft', draftId],
+    enabled: !!draftId,
+    queryFn: async () => {
+      return bearedFetch(ApiEndpoints.OrganizationProcess.replace('{processId}', draftId!))
+    },
+    refetchOnWindowFocus: false,
+  })
+}
 
-  // Apply form draft if it exists
-  useEffect(() => {
-    if (formDraft) {
-      Object.entries(formDraft).forEach(([key, value]) => {
-        if (key === 'groupId' && groupId) return
-        methods.setValue(key as keyof Process, value as Process[keyof Process], { shouldDirty: true })
-      })
-    }
-    setFormDraftLoaded(true)
-  }, [])
-
+export const ProcessCreate = () => {
+  const { t } = useTranslation()
+  const toast = useToast()
+  const [formDraftLoaded, setFormDraftLoaded] = useState(false)
+  const [nextId, setNextId] = useState('')
+  const { groupId } = useParams()
+  const [searchParams] = useSearchParams()
+  const draftId = searchParams.get('draftId')
+  const [storedDraftId, storeDraftId] = useLocalStorage('draft-id', null)
+  const isDesktop = useBreakpointValue({ base: false, md: true })
+  const deleteDraft = useDeleteDraft()
+  const navigate = useNavigate()
+  const location = useLocation()
+  const [showSidebar, setShowSidebar] = useState(isDesktop || false)
+  const methods = useForm<Process>({
+    defaultValues: {
+      ...defaultProcessValues,
+      groupId,
+    },
+  })
+  const reset = useSafeReset(methods.reset)
+  const { activeTemplate, placeholders, setActiveTemplate } = useProcessTemplates()
+  const { isOpen, onOpen: openConfirmationModal, onClose } = useDisclosure()
+  const { organization } = useOrganization()
+  const { client } = useClient()
+  const { isSubmitting, isSubmitSuccessful, isDirty } = methods.formState
+  const { setStepDoneAsync } = useOrganizationSetup()
+  const processBundleMutation = useProcessBundle()
+  const { trackPlausibleEvent } = useAnalytics()
+  const formToElectionMapper = useFormToElectionMapper()
+  const effectiveDraftId = draftId ?? storedDraftId
   // Confirm navigation if form is dirty
-  const { isSamePath, cancel, proceed, resetSamePath } = useConfirmOnNavigate({
+  const { isSamePath, cancel, proceed, resetSamePath, saveCooldown } = useConfirmOnNavigate({
     isDirty,
     isSubmitting,
     isSubmitSuccessful,
     onOpen: openConfirmationModal,
     onClose,
   })
+  const { saveDraft, isSaving, skipSave } = useFormDraftSaver(
+    isDirty,
+    methods.getValues,
+    effectiveDraftId,
+    storeDraftId,
+    saveCooldown
+  )
+  const { data: formDraft, isSuccess } = useDraft(effectiveDraftId)
+
+  // Show sidebar by default on desktop
+  useEffect(() => {
+    setShowSidebar(isDesktop)
+  }, [isDesktop])
+
+  // Apply form draft if it exists
+  useEffect(() => {
+    setFormDraftLoaded(true)
+    setNextId(Date.now().toString())
+    if (!formDraft) return
+
+    Object.entries(formDraft.metadata).forEach(([key, value]) => {
+      if (key === 'groupId' && groupId) return
+      methods.setValue(key as keyof Process, value as Process[keyof Process], { shouldDirty: true })
+    })
+  }, [formDraft, groupId, methods])
 
   const resetForm = () => {
     setActiveTemplate(null)
     reset()
-    storeFormDraft(null)
-    onResetFormModalClose()
+    skipSave(true)
+    queueMicrotask(() => {
+      navigate(location.pathname, { replace: true })
+      storeDraftId(null)
+      skipSave(false)
+    })
   }
 
-  const handleLeaveWithoutSaving = () => {
-    storeFormDraft(null)
-    reset()
-    proceed()
+  const handleSaveAndLeave = async () => {
+    try {
+      await saveDraft()
+      proceed()
+    } catch (error) {
+      toast({
+        title: t('process.create.save_draft_error.title', { defaultValue: 'Error saving draft' }),
+        description: error instanceof Error ? error.message : String(error),
+        status: 'error',
+        duration: 3000,
+      })
+    }
   }
 
-  const handleSaveAndLeave = () => {
-    const form = methods.getValues()
-    storeFormDraft(form)
-    proceed()
+  const discardAndLeave = () => {
+    try {
+      proceed()
+      reset()
+      storeDraftId(null)
+    } catch (error) {
+      toast({
+        title: t('form.process_create.error_deleting_draft_title', { defaultValue: 'Error deleting draft' }),
+        description: error instanceof Error ? error.message : String(error),
+        status: 'error',
+        duration: 3000,
+      })
+    }
   }
 
   const getCensus = async (form: Process, salt: string): Promise<Census> => {
@@ -669,7 +825,8 @@ export const ProcessCreate = () => {
 
       methods.reset(defaultProcessValues)
 
-      storeFormDraft(null)
+      await deleteDraft.mutateAsync(effectiveDraftId)
+      localStorage.removeItem('draft-id')
       navigate(generatePath(Routes.dashboard.process, { id: electionId }))
     } catch (error) {
       console.error('Error creating election:', error)
@@ -718,19 +875,21 @@ export const ProcessCreate = () => {
         >
           {/* Top bar with draft status and sidebar toggle */}
           <HStack position='sticky' top='64px' p={2} bg='chakra.body.bg' zIndex='contents'>
-            {formDraft && (
+            {effectiveDraftId && (
               <Box px={3} py={1} borderRadius='full' bg='gray.100' _dark={{ bg: 'whiteAlpha.200' }} fontSize='sm'>
                 <Trans i18nKey='process.create.status.draft'>Draft</Trans>
               </Box>
             )}
             <Spacer />
             <ButtonGroup size='sm'>
-              {methods.formState.isDirty && (
+              {isDirty && (
                 <IconButton
-                  aria-label={t('form.reset', { defaultValue: 'Reset form' })}
+                  onClick={openConfirmationModal}
                   icon={<Icon as={LuRotateCcw} />}
                   variant='outline'
-                  onClick={onResetFormModalOpen}
+                  aria-label={t('dashboard.actions.reset_form', {
+                    defaultValue: 'Reset form',
+                  })}
                 />
               )}
               <IconButton
@@ -743,6 +902,9 @@ export const ProcessCreate = () => {
               />
               <Button type='submit' colorScheme='black' alignSelf='flex-end' isLoading={methods.formState.isSubmitting}>
                 <Trans i18nKey='process.create.action.publish'>Publish</Trans>
+              </Button>
+              <Button type='button' colorScheme='black' variant='outline' onClick={saveDraft} isLoading={isSaving}>
+                <Trans i18nKey='process.create.action.save_draft'>Save</Trans>
               </Button>
             </ButtonGroup>
           </HStack>
@@ -776,6 +938,7 @@ export const ProcessCreate = () => {
               control={methods.control}
               render={({ field }) => (
                 <Editor
+                  key={nextId}
                   onChange={field.onChange}
                   placeholder={
                     placeholders[activeTemplate]?.description ??
@@ -795,12 +958,11 @@ export const ProcessCreate = () => {
       <LeaveConfirmationModal
         isOpen={isOpen}
         onCancel={cancel}
-        onLeave={handleLeaveWithoutSaving}
-        onResetSamePath={() => resetSamePath(() => reset())}
+        onLeave={discardAndLeave}
         onSaveAndLeave={handleSaveAndLeave}
+        onResetSamePath={() => resetSamePath(() => resetForm())}
         isSamePath={isSamePath}
       />
-      <ResetFormModal isOpen={isResetFormModalOpen} onClose={onResetFormModalClose} onReset={resetForm} />
     </FormProvider>
   )
 }
