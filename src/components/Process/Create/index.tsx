@@ -658,7 +658,7 @@ export const ProcessCreate = () => {
   const deleteDraft = useDeleteDraft()
   const navigate = useNavigate()
   const location = useLocation()
-  const [showSidebar, setShowSidebar] = useState(isDesktop ?? false)
+  const [showSidebar, setShowSidebar] = useState(isDesktop || false)
   const methods = useForm<Process>({
     defaultValues: {
       ...defaultProcessValues,
@@ -714,11 +714,9 @@ export const ProcessCreate = () => {
     setActiveTemplate(null)
     reset()
     skipSave(true)
-    queueMicrotask(() => {
-      navigate(location.pathname, { replace: true })
-      storeDraftId(null)
-      skipSave(false)
-    })
+    navigate(location.pathname, { replace: true })
+    storeDraftId(null)
+    skipSave(false)
   }
 
   const discardAndLeave = () => {
