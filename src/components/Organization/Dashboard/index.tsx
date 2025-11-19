@@ -55,9 +55,12 @@ const OrganizationDashboard = () => {
 }
 
 const Tutorial = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { data: profile, isLoading } = useProfile()
   const { subscription, loading } = useSubscription()
+  const videoTutorials = import.meta.env.VIDEO_TUTORIAL
+  const language = i18n.resolvedLanguage || i18n.language || 'en'
+  const videoTutorialSrc = videoTutorials[language] ?? videoTutorials.en
 
   return (
     <DashboardBox p={6} mb={12} display='flex' gap={10} position='relative' flexDirection='row'>
@@ -117,10 +120,7 @@ const Tutorial = () => {
           })}
         </Text>
         <AspectRatio ratio={16 / 9}>
-          <ReactPlayer
-            src={import.meta.env.VIDEO_TUTORIAL}
-            style={{ width: '100%', height: 'auto', aspectRatio: '16/9' }}
-          />
+          <ReactPlayer src={videoTutorialSrc} style={{ width: '100%', height: 'auto', aspectRatio: '16/9' }} />
         </AspectRatio>
       </Flex>
     </DashboardBox>
