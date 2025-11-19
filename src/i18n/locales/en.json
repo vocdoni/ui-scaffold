@@ -1314,12 +1314,10 @@
       "leave_confirmation": {
         "cancel": "Cancel",
         "leave": "Discard and leave",
-        "message": "You’ve reached your limit of {{ limit }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
-        "message_one": "You’ve reached your limit of {{ count }} draft. To save this draft, delete an existing draft or upgrade your plan.",
-        "message_other": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
+        "message": "You have unsaved changes. Are you sure you want to leave?",
         "reset": "Reset",
         "reset_message": "This will reset the form. Do you want to continue?",
-        "save_and_leave": "Upgrade Plan",
+        "save_and_leave": "Save and leave",
         "title": "Saving Draft"
       },
       "question": {

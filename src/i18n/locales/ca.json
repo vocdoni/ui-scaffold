@@ -1336,13 +1336,10 @@
       "leave_confirmation": {
         "cancel": "Cancel·la",
         "leave": "Descarta i surt",
-        "message": "Has arribat al límit de {{ count }} esborrany. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla.",
-        "message_one": "Has arribat al límit de {{ count }} esborrany. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla.",
-        "message_many": "",
-        "message_other": "Has arribat al límit de {{ count }} esborranys. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla.",
+        "message": "Tens canvis sense desar. Segur que vols sortir?",
         "reset": "Restableix",
         "reset_message": "Això restablirà el formulari. Vols continuar?",
-        "save_and_leave": "Actualitza el pla",
+        "save_and_leave": "Desa i surt",
         "title": "Desant esborrany"
       },
       "question": {

@@ -49,7 +49,6 @@ import ReactPlayer from 'react-player'
 import {
   createPath,
   generatePath,
-  Link,
   useBlocker,
   useLocation,
   useNavigate,
@@ -58,7 +57,7 @@ import {
 } from 'react-router-dom'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { useSubscription } from '~components/Auth/Subscription'
-import { ApiEndpoints } from '~components/Auth/api'
+import { ApiEndpoints, ApiError } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import Editor from '~components/Editor'
 import { Web3Address } from '~components/Process/Census/Web3'
@@ -84,9 +83,10 @@ type ConfirmOnNavigateOptions = {
   onClose: () => void
 }
 
-type DraftLimitReachedModalProps = {
+type LeaveConfirmationModalProps = {
   isOpen: boolean
   onCancel: () => void
+  onSaveAndLeave: () => void
   onLeave: () => void
   onResetSamePath: () => void
   isSamePath: boolean
@@ -264,19 +264,23 @@ export const useFormDraftSaver = (
       saveCooldown?.(saveTimeoutMs)
       return 'saved'
     } catch (e) {
-      if (!toast.isActive(saveDraftErrorToastId)) {
-        toast({
-          id: saveDraftErrorToastId,
-          title: t('process.create.save_draft_error.title', { defaultValue: 'Error saving draft' }),
-          description: t('process.create.leave_confirmation.message', {
-            defaultValue:
-              'You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
-            count: limit,
-          }),
-          status: 'error',
-          duration: 10000,
-          isClosable: true,
-        })
+      if (e instanceof ApiError && e.apiError?.code === 40031) {
+        if (!toast.isActive(saveDraftErrorToastId)) {
+          toast({
+            id: saveDraftErrorToastId,
+            title: t('process.create.save_draft_error.title', {
+              defaultValue: 'Error saving draft',
+            }),
+            description: t('process.create.leave_confirmation.message', {
+              defaultValue:
+                'You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
+              count: limit,
+            }),
+            status: 'error',
+            duration: 10000,
+            isClosable: true,
+          })
+        }
       }
       throw e
     }
@@ -466,16 +470,15 @@ const TemplateButtons = () => {
   )
 }
 
-const DraftLimitReachedModal = ({
+const LeaveConfirmationModal = ({
   isOpen,
   onCancel,
   onLeave,
   onResetSamePath,
+  onSaveAndLeave,
   isSamePath,
-}: DraftLimitReachedModalProps) => {
+}: LeaveConfirmationModalProps) => {
   const { t } = useTranslation()
-  const { permission } = useSubscription()
-  const limit = permission(SubscriptionPermission.Drafts)
 
   return (
     <DeleteModal
@@ -486,9 +489,7 @@ const DraftLimitReachedModal = ({
               defaultValue: 'This will reset the form. Do you want to continue?',
             })
           : t('process.create.leave_confirmation.message', {
-              defaultValue:
-                'You’ve reached your limit of {{ limit }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
-              limit,
+              defaultValue: 'You have unsaved changes. Are you sure you want to leave?',
             })
       }
       isOpen={isOpen}
@@ -506,16 +507,10 @@ const DraftLimitReachedModal = ({
         ) : (
           <>
             <Button colorScheme='red' onClick={onLeave}>
-              {t('process.create.leave_confirmation.leave', { defaultValue: 'Discard and leave' })}
+              {t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
             </Button>
-            <Button
-              as={Link}
-              to={Routes.dashboard.settings.subscription}
-              colorScheme='black'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Upgrade Plan' })}
+            <Button colorScheme='black' onClick={onSaveAndLeave}>
+              {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save and leave' })}
             </Button>
           </>
         )}
@@ -714,9 +709,25 @@ export const ProcessCreate = () => {
     setActiveTemplate(null)
     reset()
     skipSave(true)
-    navigate(location.pathname, { replace: true })
-    storeDraftId(null)
-    skipSave(false)
+    queueMicrotask(() => {
+      navigate(location.pathname, { replace: true })
+      storeDraftId(null)
+      skipSave(false)
+    })
+  }
+
+  const handleSaveAndLeave = async () => {
+    try {
+      await saveDraft()
+      proceed()
+    } catch (error) {
+      toast({
+        title: t('process.create.save_draft_error.title', { defaultValue: 'Error saving draft' }),
+        description: error instanceof Error ? error.message : String(error),
+        status: 'error',
+        duration: 3000,
+      })
+    }
   }
 
   const discardAndLeave = () => {
@@ -944,10 +955,11 @@ export const ProcessCreate = () => {
 
         <CreateSidebar show={showSidebar} onClose={() => setShowSidebar(false)} />
       </DashboardContents>
-      <DraftLimitReachedModal
+      <LeaveConfirmationModal
         isOpen={isOpen}
         onCancel={cancel}
         onLeave={discardAndLeave}
+        onSaveAndLeave={handleSaveAndLeave}
         onResetSamePath={() => resetSamePath(() => resetForm())}
         isSamePath={isSamePath}
       />
