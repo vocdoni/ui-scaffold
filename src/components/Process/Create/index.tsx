@@ -234,13 +234,18 @@ export const useFormDraftSaver = (
   const toast = useToast()
   const createProcess = useCreateProcess()
   const updateProcess = useUpdateProcess()
+  const skipNextSaveRef = useRef(false)
 
   const isCreating = createProcess.isPending
   const isUpdating = updateProcess.isPending
   const isSaving = isCreating || isUpdating
 
+  const skipSave = (skip) => {
+    skipNextSaveRef.current = skip
+  }
+
   const saveDraft = useCallback(async () => {
-    if (!isDirty) return 'skipped'
+    if (!isDirty || skipNextSaveRef.current) return 'skipped'
 
     try {
       const form = getValues()
@@ -303,7 +308,7 @@ export const useFormDraftSaver = (
     return () => clearInterval(id)
   }, [saveDraft])
 
-  return { saveDraft, isSaving }
+  return { saveDraft, isSaving, skipSave }
 }
 
 const LiveStreamingInput = () => {
@@ -679,7 +684,7 @@ export const ProcessCreate = () => {
     onOpen: openConfirmationModal,
     onClose,
   })
-  const { saveDraft, isSaving } = useFormDraftSaver(
+  const { saveDraft, isSaving, skipSave } = useFormDraftSaver(
     isDirty,
     methods.getValues,
     effectiveDraftId,
@@ -708,9 +713,11 @@ export const ProcessCreate = () => {
   const resetForm = () => {
     setActiveTemplate(null)
     reset()
+    skipSave(true)
     queueMicrotask(() => {
       navigate(location.pathname, { replace: true })
       storeDraftId(null)
+      skipSave(false)
     })
   }
 
