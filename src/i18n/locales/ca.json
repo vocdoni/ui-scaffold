@@ -1342,6 +1342,11 @@
         "save_and_leave": "Desa i surt",
         "title": "Desant esborrany"
       },
+      "limit_reached": {
+        "message_one": "Has arribat al límit de {{ count }} esborrany. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla.",
+        "message_many": "",
+        "message_other": "Has arribat al límit de {{ count }} esborranys. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla."
+      },
       "question": {
         "add": "Afegeix una pregunta",
         "add_multiple": {

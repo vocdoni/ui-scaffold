@@ -1320,6 +1320,10 @@
         "save_and_leave": "Save and leave",
         "title": "Saving Draft"
       },
+      "limit_reached": {
+        "message_one": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
+        "message_other": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan."
+      },
       "question": {
         "add": "Add question",
         "add_multiple": {

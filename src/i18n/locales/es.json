@@ -1342,6 +1342,11 @@
         "save_and_leave": "Guardar y salir",
         "title": "Guardando borrador"
       },
+      "limit_reached": {
+        "message_one": "Has alcanzado tu límite de {{ count }} borrador. Para guardar este borrador, elimina un borrador existente o actualiza tu plan.",
+        "message_many": "",
+        "message_other": "Has alcanzado tu límite de {{ count }} borradores. Para guardar este borrador, elimina un borrador existente o actualiza tu plan."
+      },
       "question": {
         "add": "Añadir pregunta",
         "add_multiple": {

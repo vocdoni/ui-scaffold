@@ -271,7 +271,7 @@ export const useFormDraftSaver = (
             title: t('process.create.save_draft_error.title', {
               defaultValue: 'Error saving draft',
             }),
-            description: t('process.create.leave_confirmation.message', {
+            description: t('process.create.limit_reached.message', {
               defaultValue:
                 'You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
               count: limit,
