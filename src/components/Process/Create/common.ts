@@ -59,6 +59,7 @@ export type Process = {
   censusType: CensusTypes
   streamUri?: string
   addresses?: Web3Address[]
+  draft?: boolean
   spreadsheet?: CensusSpreadsheetManager | null
 }
 

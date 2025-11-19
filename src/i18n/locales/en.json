@@ -13,10 +13,9 @@
     "save_changes": "Save Changes",
     "view_active_votes": "View active votes"
   },
-  "active": "Active",
   "add_new_org": "Add a new organization",
   "additional_actions": "Additional actions",
-  "all": "All",
+  "all_processes": "All",
   "already_member": "Already have an account?",
   "alt": {
     "images": {
@@ -199,6 +198,7 @@
     "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
     "title": "Tell us about your organization"
   },
+  "create_process": "Create process",
   "csp": {
     "authenticate": "Identify",
     "code_info": "You will receive a unique code on the selected medium to verify your identity and complete authentication",
@@ -236,6 +236,7 @@
   "dark_mode": "Dark mode",
   "dashboard": {
     "actions": {
+      "reset_form": "Reset form",
       "toggle_sidebar": "Toggle sidebar"
     },
     "process_view": {
@@ -271,6 +272,16 @@
   "discount": "Discount",
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
+  "draft_processes": "Drafts",
+  "drafts": {
+    "clone": "Clone Draft",
+    "cloned_draft": "Draft cloned successfully",
+    "cloned_draft_error": "Error cloning draft",
+    "delete": "Delete Draft",
+    "deleted_draft": "Draft deleted successfully",
+    "edit": "Edit Draft",
+    "not_defined": "Not defined yet"
+  },
   "drawer": {
     "close": "Close drawer"
   },
@@ -301,6 +312,7 @@
   "end_date": "End date",
   "end_time": "End time",
   "end_vote": "End vote",
+  "ended_processes": "Ended",
   "enter_promo_code": "Enter code",
   "error": {
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
@@ -389,7 +401,6 @@
     "weighted": "Weighted voting",
     "white_label": "White-label (no vocdoni branding)"
   },
-  "finished": "Finished",
   "footer": {
     "about_us": "About Us",
     "company": "Company",
@@ -440,6 +451,7 @@
         "add_button": "Add",
         "remove_address": "Remove address"
       },
+      "error_deleting_draft_title": "Error deleting draft",
       "error_title": "Error creating process",
       "spreadsheet": {
         "download_template": "You don't have a CSV file? <a>Download template.csv</a>, fill it and upload it.",
@@ -470,7 +482,6 @@
         "wallet_addresses": "Wallet Addresses"
       }
     },
-    "reset": "Reset form",
     "select_language": "Language",
     "support": {
       "billing_issue": "Billing issue",
@@ -1287,7 +1298,8 @@
     },
     "create": {
       "action": {
-        "publish": "Publish"
+        "publish": "Publish",
+        "save_draft": "Save"
       },
       "change_template": {
         "cancel": "Cancel",
@@ -1301,12 +1313,16 @@
       },
       "leave_confirmation": {
         "cancel": "Cancel",
-        "leave": "Leave without saving",
+        "leave": "Discard and leave",
         "message": "You have unsaved changes. Are you sure you want to leave?",
         "reset": "Reset",
         "reset_message": "This will reset the form. Do you want to continue?",
         "save_and_leave": "Save and leave",
-        "title": "Unsaved Changes"
+        "title": "Saving Draft"
+      },
+      "limit_reached": {
+        "message_one": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
+        "message_other": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan."
       },
       "question": {
         "add": "Add question",
@@ -1327,11 +1343,8 @@
         },
         "question_number": "Question {{index}} of {{total}}"
       },
-      "reset_form": {
-        "cancel": "Cancel",
-        "message": "Are you sure you want to reset the form? This action cannot be undone.",
-        "reset": "Reset Form",
-        "title": "Reset Form"
+      "save_draft_error": {
+        "title": "Error saving draft"
       },
       "selectionLimits": {
         "full": "Voters must select at least  <min />  and at most  <max />  options.",
@@ -1454,6 +1467,7 @@
     "start": "Start/Resume"
   },
   "process_context": {
+    "clone_as_draft": "Clone as draft",
     "explorer": "Explorer",
     "more_info": "More info",
     "public_voting_page": "Public voting page"

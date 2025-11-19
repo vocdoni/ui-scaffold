@@ -5,10 +5,10 @@ import { lazy } from 'react'
 import { generatePath, LoaderFunctionArgs, Navigate, Params } from 'react-router-dom'
 import Error from '~elements/Error'
 import LayoutDashboard from '~elements/LayoutDashboard'
-import { paginatedElectionsQuery } from '~src/queries/organization'
+import { paginatedElectionsQuery } from '~queries/organization'
 import OrganizationProtectedRoute from '~src/router/OrganizationProtectedRoute'
 import ProtectedRoutes from '~src/router/ProtectedRoutes'
-import { getPaginationParams } from '~src/utils/pagination'
+import { getPaginationParams } from '~utils/pagination'
 import { Routes } from '.'
 import AccountProtectedRoute from '../AccountProtectedRoute'
 import { SuspenseLoader } from '../SuspenseLoader'
@@ -16,6 +16,9 @@ import { SuspenseLoader } from '../SuspenseLoader'
 // elements/pages
 const DashboardCreateOrg = lazy(() => import('~elements/dashboard/organization/create'))
 const DashboardProcesses = lazy(() => import('~elements/dashboard/processes'))
+const AllProcesses = lazy(() => import('~elements/dashboard/processes/all'))
+const EndedProcesses = lazy(() => import('~elements/dashboard/processes/ended'))
+const Drafts = lazy(() => import('~elements/dashboard/processes/drafts'))
 const DashboardProcessView = lazy(() => import('~elements/dashboard/processes/view'))
 const ProcessCreate = lazy(() => import('~elements/dashboard/processes/create'))
 const OrganizationEdit = lazy(() => import('~components/Organization/Dashboard/Organization'))
@@ -93,20 +96,59 @@ export const useDashboardRoutes = () => {
                 errorElement: <Error />,
               },
               {
-                path: Routes.dashboard.processes,
+                path: Routes.dashboard.processes.base,
                 element: (
                   <SuspenseLoader>
                     <DashboardProcesses />
                   </SuspenseLoader>
                 ),
-                loader: async ({ params, request }: LoaderFunctionArgs) => {
-                  const url = new URL(request.url)
-                  const queryParams = getPaginationParams(url.searchParams)
-                  // we want our route params to override the query params
-                  const mergedParams = { ...queryParams, ...params }
+                children: [
+                  {
+                    index: true,
+                    element: <Navigate to={generatePath(Routes.dashboard.processes.all)} replace />,
+                  },
+                  {
+                    path: Routes.dashboard.processes.all,
+                    element: (
+                      <SuspenseLoader>
+                        <AllProcesses />
+                      </SuspenseLoader>
+                    ),
+                    loader: async ({ params, request }: LoaderFunctionArgs) => {
+                      const url = new URL(request.url)
+                      const queryParams = getPaginationParams(url.searchParams)
+                      // we want our route params to override the query params
+                      const mergedParams = { ...queryParams, ...params }
 
-                  return await queryClient.ensureQueryData(paginatedElectionsQuery(account, client, mergedParams))
-                },
+                      return await queryClient.ensureQueryData(paginatedElectionsQuery(account, client, mergedParams))
+                    },
+                  },
+                  {
+                    path: Routes.dashboard.processes.ended,
+                    element: (
+                      <SuspenseLoader>
+                        <EndedProcesses />
+                      </SuspenseLoader>
+                    ),
+                    loader: async ({ params, request }: LoaderFunctionArgs) => {
+                      const url = new URL(request.url)
+                      const queryParams = getPaginationParams(url.searchParams)
+                      // we want our route params to override the query params
+                      const mergedParams = { ...queryParams, ...params }
+
+                      return await queryClient.ensureQueryData(paginatedElectionsQuery(account, client, mergedParams))
+                    },
+                  },
+                  {
+                    path: Routes.dashboard.processes.drafts,
+                    element: (
+                      <SuspenseLoader>
+                        <Drafts />
+                      </SuspenseLoader>
+                    ),
+                  },
+                ],
+
                 errorElement: <Error />,
               },
               {

@@ -24,7 +24,7 @@ const DashboardProcessViewElement = () => {
     setBreadcrumb([
       {
         title: t('voting_processes', { defaultValue: 'Voting processes' }),
-        route: Routes.dashboard.processes,
+        route: Routes.dashboard.processes.base,
       },
       {
         title: election.title.default,
