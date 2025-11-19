@@ -6,7 +6,6 @@ import { $convertFromMarkdownString, TRANSFORMERS as DEFAULT_TRANSFORMERS } from
 import { OverflowNode } from '@lexical/overflow'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
@@ -17,7 +16,7 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import { $getRoot } from 'lexical'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 
 import { FloatingLinkEditorPlugin, FloatingTextFormatToolbarPlugin } from './plugins'
 import OnChangeMarkdown from './plugins/OnChangeMarkdown'
@@ -67,23 +66,8 @@ const theme = {
 }
 
 const MarkdownEditor = (props: EditorProps) => {
-  const [editor] = useLexicalComposerContext()
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
   const [isLinkEditMode, setIsLinkEditMode] = useState(false)
-  const lastAppliedRef = useRef<string | undefined>(undefined)
-
-  useEffect(() => {
-    if (!editor) return
-
-    const next = props.value !== undefined ? props.value : (props.defaultValue ?? '')
-    if (lastAppliedRef.current === next) return
-
-    editor.update(() => {
-      $convertFromMarkdownString(next, TRANSFORMERS)
-      $getRoot().selectEnd()
-    })
-    lastAppliedRef.current = next
-  }, [editor, props.value, props.defaultValue])
 
   return (
     <>
@@ -126,6 +110,8 @@ const MarkdownEditor = (props: EditorProps) => {
 }
 
 const Editor = (props: EditorProps) => {
+  const initialMarkdown = props.defaultValue ?? ''
+
   const settings = {
     namespace: '',
     theme,
@@ -146,6 +132,12 @@ const Editor = (props: EditorProps) => {
       LinkNode,
       OverflowNode,
     ],
+    editorState(editor: any) {
+      editor.update(() => {
+        $convertFromMarkdownString(initialMarkdown, TRANSFORMERS)
+        $getRoot().selectEnd()
+      })
+    },
   }
 
   return (

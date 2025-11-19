@@ -644,6 +644,7 @@ export const ProcessCreate = () => {
   const { t } = useTranslation()
   const toast = useToast()
   const [formDraftLoaded, setFormDraftLoaded] = useState(false)
+  const [nextId, setNextId] = useState('')
   const { groupId } = useParams()
   const [searchParams] = useSearchParams()
   const draftId = searchParams.get('draftId')
@@ -695,6 +696,7 @@ export const ProcessCreate = () => {
   // Apply form draft if it exists
   useEffect(() => {
     setFormDraftLoaded(true)
+    setNextId(Date.now().toString())
     if (!formDraft) return
 
     Object.entries(formDraft.metadata).forEach(([key, value]) => {
@@ -920,12 +922,13 @@ export const ProcessCreate = () => {
               control={methods.control}
               render={({ field }) => (
                 <Editor
+                  key={nextId}
                   onChange={field.onChange}
                   placeholder={
                     placeholders[activeTemplate]?.description ??
                     t('process.create.description.placeholder', 'Add a description...')
                   }
-                  value={field.value}
+                  defaultValue={field.value}
                 />
               )}
             />
