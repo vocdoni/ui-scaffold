@@ -84,7 +84,7 @@ type ConfirmOnNavigateOptions = {
   onClose: () => void
 }
 
-type LeaveConfirmationModalProps = {
+type DraftLimitReachedModalProps = {
   isOpen: boolean
   onCancel: () => void
   onLeave: () => void
@@ -461,13 +461,13 @@ const TemplateButtons = () => {
   )
 }
 
-const LeaveConfirmationModal = ({
+const DraftLimitReachedModal = ({
   isOpen,
   onCancel,
   onLeave,
   onResetSamePath,
   isSamePath,
-}: LeaveConfirmationModalProps) => {
+}: DraftLimitReachedModalProps) => {
   const { t } = useTranslation()
   const { permission } = useSubscription()
   const limit = permission(SubscriptionPermission.Drafts)
@@ -501,7 +501,7 @@ const LeaveConfirmationModal = ({
         ) : (
           <>
             <Button colorScheme='red' onClick={onLeave}>
-              {t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
+              {t('process.create.leave_confirmation.leave', { defaultValue: 'Discard and leave' })}
             </Button>
             <Button
               as={Link}
@@ -510,7 +510,7 @@ const LeaveConfirmationModal = ({
               target='_blank'
               rel='noopener noreferrer'
             >
-              {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save and leave' })}
+              {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Upgrade Plan' })}
             </Button>
           </>
         )}
@@ -939,7 +939,7 @@ export const ProcessCreate = () => {
 
         <CreateSidebar show={showSidebar} onClose={() => setShowSidebar(false)} />
       </DashboardContents>
-      <LeaveConfirmationModal
+      <DraftLimitReachedModal
         isOpen={isOpen}
         onCancel={cancel}
         onLeave={discardAndLeave}
