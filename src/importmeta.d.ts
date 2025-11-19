@@ -20,7 +20,7 @@ interface ImportMeta {
     OAUTH_URL: string
     PRIORITY_SUPPORT_PHONE: string
     CALCOM_EVENT_SLUG: string
-    VIDEO_TUTORIAL: string
+    VIDEO_TUTORIAL: Record<string, string>
     GTM_CONTAINER_ID: string
     PLAUSIBLE_DOMAIN: string
     VOCDONI_CONTACT_EMAIL: string
