@@ -3,12 +3,13 @@ import { saasOAuthWallet } from '@vocdoni/rainbowkit-wallets'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BsGoogle } from 'react-icons/bs'
-import { useAccount, useConnect } from 'wagmi'
+import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { useAuth } from './useAuth'
 
 const GoogleAuth = () => {
   const { setBearer, updateSigner } = useAuth()
   const { isConnected, connector } = useAccount()
+  const { disconnect } = useDisconnect()
   const { t } = useTranslation()
   const toast = useToast()
 
@@ -17,12 +18,17 @@ const GoogleAuth = () => {
   useEffect(() => {
     if (isError) {
       console.error('Google OAuth error', error?.message || '')
+      const isOAuthConflictError = error?.message.indexOf('OAuthAccountConflictError') !== -1
       toast({
         status: 'error',
         title: t('google_oauth_error', { defaultValue: 'Google OAuth Error' }),
-        description: t('google_oauth_error_description', {
-          defaultValue: 'Google OAuth error, please try again',
-        }),
+        description: isOAuthConflictError
+          ? t('google_oauth_conflict_error', {
+              defaultValue: 'An account with this email already exists. Please sign in using your existing method.',
+            })
+          : t('google_oauth_error_description', {
+              defaultValue: 'Google OAuth error, please try again',
+            }),
       })
       return
     }
@@ -30,6 +36,7 @@ const GoogleAuth = () => {
       const token = localStorage.getItem('authToken')
       setBearer(token)
       updateSigner(token)
+      disconnect() // Disconnect the wallet after successful authentication (session is maintained via token)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isConnected, isError, connector])
