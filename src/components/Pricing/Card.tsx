@@ -124,9 +124,8 @@ const PricingCard = ({
                   price: <Text fontSize='3xl' fontWeight='extrabold' className='pricing-card-price' />,
                   time: <Text size='sm' color='texts.subtle' />,
                 }}
-              >
-                {{ price }}/month
-              </Trans>
+                defaults='<price>{{ price }}</price>/<time>month</time>'
+              />
             )}
           </Flex>
           <Box>

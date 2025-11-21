@@ -1,4 +1,4 @@
-import { Box, Button, Flex, HStack, PinInput, PinInputField, Text } from '@chakra-ui/react'
+import { Alert, AlertIcon, Box, Button, Flex, HStack, PinInput, PinInputField, Text } from '@chakra-ui/react'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate, useOutletContext } from 'react-router-dom'
@@ -116,6 +116,14 @@ export const VerificationPending = ({ email, code }: { email: string; code?: str
             Email sent to {{ email }}
           </Trans>
         </Text>
+        <Alert status='info'>
+          <AlertIcon />
+          <Text fontSize='sm' fontStyle='italic'>
+            {t('verify.check_spam_folder', {
+              defaultValue: "Please check your spam folder if you don't see the email in your inbox.",
+            })}
+          </Text>
+        </Alert>
         <Text fontWeight='bold' fontSize='sm'>
           {t('verify.enter_code', {
             defaultValue: 'Enter the code below to activate your account',

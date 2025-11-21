@@ -26,19 +26,23 @@ jobs:
         with:
           node-version: 22.x
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
       - name: Build vocdoni app (dev)
-        run: yarn build
+        run: pnpm build
         env:
           VOCDONI_ENVIRONMENT: dev
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}
           STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
+          VIDEO_TUTORIAL: '{"en": "https://www.youtube.com/watch?v=OQRF_4-zGSk", "es": "https://www.youtube.com/watch?v=zk6yIq3-SHw"}'
 
       - name: Deploy to Netlify (dev)
         uses: nwtgck/actions-netlify@v2.0
@@ -73,14 +77,17 @@ jobs:
         with:
           node-version: 22.x
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Install
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
       - name: Build vocdoni app (stg)
-        run: yarn build
+        run: pnpm build
         env:
           VOCDONI_ENVIRONMENT: prod
           CUSTOM_ORGANIZATION_DOMAINS: ${{ secrets.CUSTOM_ORGANIZATION_DOMAINS }}

@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Link, Progress, Text } from '@chakra-ui/react'
+import { Alert, AlertDescription, Button, Flex, Heading, Link, Progress, Text } from '@chakra-ui/react'
 import { isBefore, isValid, parseISO } from 'date-fns'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -15,7 +15,7 @@ import { DashboardBox } from '~shared/Dashboard/Contents'
 
 const SubscriptionPageContent = () => {
   const { t } = useTranslation()
-  const { subscription, loading } = useSubscription()
+  const { subscription, loading, error } = useSubscription()
   const { mutateAsync, isPending } = usePortalSession()
   const [showComparisonTable, setShowComparisonTable] = useState(false)
   const { view, checkout, showPlans } = useSubscriptionCheckout()
@@ -30,6 +30,13 @@ const SubscriptionPageContent = () => {
   const toggleComparisonTable = () => setShowComparisonTable((prev) => !prev)
 
   if (loading) return <Progress isIndeterminate />
+  if (error) {
+    return (
+      <Alert status='error'>
+        <AlertDescription>{error.message.toString()}</AlertDescription>
+      </Alert>
+    )
+  }
 
   const lastPaymentDate = parseISO(subscription?.subscriptionDetails.lastPaymentDate)
   const isFree =

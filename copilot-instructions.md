@@ -111,14 +111,14 @@ Where `SaasProviders` wraps: `AuthProvider → SubscriptionProvider → SaasAcco
 ## Development Workflow
 
 ### Commands
-- `yarn dev` or `yarn start` - Development server (http://localhost:5173)
-- `yarn build` - Production build
-- `yarn lint` - TypeScript compiler and Prettier checks
-- `yarn lint:fix` - Fix formatting with Prettier
-- `yarn translations` - Extract i18n strings
+- `pnpm dev` or `pnpm start` - Development server (http://localhost:5173)
+- `pnpm build` - Production build
+- `pnpm lint` - TypeScript compiler and Prettier checks
+- `pnpm lint:fix` - Fix formatting with Prettier
+- `pnpm translations` - Extract i18n strings
 
 ### Quality Assurance
-- Always run `yarn lint` after making changes
+- Always run `pnpm lint` after making changes
 - Ensure TypeScript compilation passes
 - Test manually (no automated test runner configured)
 - Verify responsive design and accessibility

@@ -34,6 +34,42 @@ const viteconfig = ({ mode }) => {
 
   let oauthUrl = process.env.OAUTH_URL || 'https://oauth.vocdoni.io'
 
+  let privacyPolicyUrl = process.env.PRIVACY_POLICY_URL || 'https://vocdoni.io/privacy'
+  if (privacyPolicyUrl.endsWith('/')) {
+    privacyPolicyUrl = privacyPolicyUrl.slice(0, -1)
+  }
+
+  let termsOfServiceUrl = process.env.TERMS_OF_SERVICE_URL || 'https://vocdoni.io/terms'
+  if (termsOfServiceUrl.endsWith('/')) {
+    termsOfServiceUrl = termsOfServiceUrl.slice(0, -1)
+  }
+
+  const defaultVideoTutorial = {
+    en: 'https://www.youtube.com/watch?v=bIKxUTS4X8E',
+  }
+
+  const resolveVideoTutorials = () => {
+    const rawValue = process.env.VIDEO_TUTORIAL
+
+    if (!rawValue) {
+      return defaultVideoTutorial
+    }
+
+    try {
+      const parsed = JSON.parse(rawValue)
+
+      if (typeof parsed !== 'object' || parsed === null || !parsed.en) {
+        console.warn('VIDEO_TUTORIAL must be a JSON object containing at least the "en" key. Falling back to default.')
+        return defaultVideoTutorial
+      }
+
+      return parsed
+    } catch (error) {
+      console.warn('Invalid JSON format for VIDEO_TUTORIAL. Falling back to default "en" video.')
+      return defaultVideoTutorial
+    }
+  }
+
   return defineConfig({
     base,
     build: {
@@ -54,13 +90,14 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.OAUTH_URL': JSON.stringify(oauthUrl),
       'import.meta.env.PRIORITY_SUPPORT_PHONE': JSON.stringify(process.env.PRIORITY_SUPPORT_PHONE),
       'import.meta.env.CALCOM_EVENT_SLUG': JSON.stringify(process.env.CALCOM_EVENT_SLUG),
-      'import.meta.env.VIDEO_TUTORIAL': JSON.stringify(
-        process.env.VIDEO_TUTORIAL || 'https://www.youtube.com/watch?v=bIKxUTS4X8E'
-      ),
+      'import.meta.env.VIDEO_TUTORIAL': JSON.stringify(resolveVideoTutorials()),
       'import.meta.env.GTM_CONTAINER_ID': JSON.stringify(process.env.GTM_CONTAINER_ID),
       'import.meta.env.PLAUSIBLE_DOMAIN': JSON.stringify(process.env.PLAUSIBLE_DOMAIN),
       'import.meta.env.VOCDONI_CONTACT_EMAIL': JSON.stringify(process.env.VOCDONI_CONTACT_EMAIL || 'hello@vocdoni.io'),
       'import.meta.env.ANNOUNCEMENT': JSON.stringify(process.env.ANNOUNCEMENT),
+      'import.meta.env.PRIVACY_POLICY_URL': JSON.stringify(privacyPolicyUrl),
+      'import.meta.env.TERMS_OF_SERVICE_URL': JSON.stringify(termsOfServiceUrl),
+      'import.meta.env.WHATSAPP_PHONE_NUMBER': JSON.stringify(process.env.WHATSAPP_PHONE_NUMBER || '+34 621 501 155'),
     },
     plugins: [
       tsconfigPaths(),

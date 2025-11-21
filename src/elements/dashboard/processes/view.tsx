@@ -24,7 +24,7 @@ const DashboardProcessViewElement = () => {
     setBreadcrumb([
       {
         title: t('voting_processes', { defaultValue: 'Voting processes' }),
-        route: Routes.dashboard.processes,
+        route: Routes.dashboard.processes.base,
       },
       {
         title: election.title.default,
@@ -34,7 +34,13 @@ const DashboardProcessViewElement = () => {
 
   return (
     <OrganizationProvider id={election.organizationId}>
-      <ElectionProvider election={election} ConnectButton={ConnectButton} fetchCensus autoUpdate>
+      <ElectionProvider
+        election={election}
+        ConnectButton={ConnectButton}
+        fetchCensus
+        autoUpdate
+        autoUpdateInterval={15000}
+      >
         <ProcessView />
       </ElectionProvider>
     </OrganizationProvider>

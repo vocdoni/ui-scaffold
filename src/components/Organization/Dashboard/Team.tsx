@@ -18,7 +18,7 @@ const OrganizationTeam = () => {
             })}
           </Text>
         </Flex>
-        <InviteToTeamModal leftIcon={<Icon mr={2} as={LuUserPlus} />}>
+        <InviteToTeamModal leftIcon={<Icon mr={2} as={LuUserPlus} />} whiteSpace='normal'>
           {t('organization_settings.team.add_team_member', { defaultValue: 'Add team member' })}
         </InviteToTeamModal>
       </Flex>

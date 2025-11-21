@@ -35,10 +35,10 @@ export type Step1Response = {
 export type TwoFactorResponse<T extends number> = T extends 0 ? Step0Response : T extends 1 ? Step1Response : unknown
 
 export const useTwoFactorAuth = <T extends number>(process: PublishedElection, step: T) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   return useMutation<TwoFactorResponse<T>, Error, Record<string, any>>({
     mutationFn: async (payload: Record<string, any>) => {
-      const response = await fetch(`${process.census.censusURI}/auth/${step}`, {
+      const response = await fetch(`${process.census.censusURI}/auth/${step}?lang=${i18n.language}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

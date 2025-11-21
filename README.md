@@ -71,9 +71,9 @@ You can also start the app by prefixing these vars instead of defining your
 custom `.env` file:
 
 ```bash
-VOCDONI_ENVIRONMENT=dev yarn start
+VOCDONI_ENVIRONMENT=dev pnpm start
 # or an example using many of them...
-BUILD_PATH=build/dev BASE_URL=/ui-scaffold/dev VOCDONI_ENVIRONMENT=dev yarn build
+BUILD_PATH=build/dev BASE_URL=/ui-scaffold/dev VOCDONI_ENVIRONMENT=dev pnpm build
 ```
 
 ### Custom domain names
@@ -82,7 +82,7 @@ The custom domain names environment variable allows to map custom domains to org
 rendered will be the mapped organization profile.
 
 ~~~bash
-CUSTOM_ORGANIZATION_DOMAINS='{"deadcorp.com":"0x000000000000000000000000000000000000dead"}' yarn build
+CUSTOM_ORGANIZATION_DOMAINS='{"deadcorp.com":"0x000000000000000000000000000000000000dead"}' pnpm build
 ~~~
 
 With the example above, accessing the app via the `deadcorp.com` domain would render the profile of the organization
@@ -92,18 +92,18 @@ with id `0x000000000000000000000000000000000000dead` as the homepage of the app.
 
 In the project directory, you can run:
 
-#### `yarn start`
+#### `pnpm start`
 
 Runs the app in the development mode.<br /> Open
 [http://localhost:5173](http://localhost:5173) to view it in the browser (note
 the port may change if already used).
 
-#### `yarn build`
+#### `pnpm build`
 
 Builds the app for production to the `dist` folder.<br /> It correctly bundles
 React in production mode and optimizes the build for the best performance.
 
-#### `yarn translations`
+#### `pnpm translations`
 
 Extracts all i18n strings from the code and puts them in the `i18n/locales` json
 files. The best way to work with translations is:

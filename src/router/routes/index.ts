@@ -15,7 +15,12 @@ export const Routes = {
     organization: '/admin/organization',
     organizationCreate: '/admin/organization/create', // Organization create with dashboard layout
     process: '/admin/process/:id',
-    processes: '/admin/processes/:page?/:status?',
+    processes: {
+      base: '/admin/processes',
+      all: '/admin/processes/all/:page?/:status?',
+      ended: '/admin/processes/ended/:page?/:status?',
+      drafts: '/admin/processes/drafts/:page?',
+    },
     profile: '/admin/profile',
     memberbase: {
       base: '/admin/memberbase',
@@ -32,12 +37,10 @@ export const Routes = {
   },
   plans: '/plans',
   organization: '/organization/:address',
-  privacy: '/privacy',
   processes: {
     create: '/admin/processes/create/:groupId?',
     view: '/processes/:id',
   },
-  terms: '/terms',
   usecases: {
     base: '/use-cases',
     view: '/use-cases/:lang?/:case?',

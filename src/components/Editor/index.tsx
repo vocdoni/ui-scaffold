@@ -6,7 +6,6 @@ import { $convertFromMarkdownString, TRANSFORMERS as DEFAULT_TRANSFORMERS } from
 import { OverflowNode } from '@lexical/overflow'
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin'
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
 import { ContentEditable } from '@lexical/react/LexicalContentEditable'
 import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
@@ -16,9 +15,9 @@ import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPl
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
-import { useEffect, useRef, useState } from 'react'
+import { $getRoot } from 'lexical'
+import { useState } from 'react'
 
-import { IMAGE, ImageNode } from './ImageNode'
 import { FloatingLinkEditorPlugin, FloatingTextFormatToolbarPlugin } from './plugins'
 import OnChangeMarkdown from './plugins/OnChangeMarkdown'
 import ReadOnlyPlugin from './plugins/ReadOnlyPlugin'
@@ -29,11 +28,12 @@ type EditorProps = {
   onChange?: (value: string) => void
   placeholder?: string
   defaultValue?: string
+  value?: string
   variant?: TextareaProps['variant']
   padding?: ChakraProps['padding']
 }
 
-const TRANSFORMERS = [IMAGE, ...DEFAULT_TRANSFORMERS]
+const TRANSFORMERS = DEFAULT_TRANSFORMERS
 
 const ChakraContentEditable = chakra(ContentEditable, {
   baseStyle: {
@@ -62,33 +62,12 @@ const theme = {
     h4: 'lexical-h4',
     h5: 'lexical-h5',
   },
-  image: 'lexical-image',
   paragraph: 'lexical-paragraph',
 }
 
 const MarkdownEditor = (props: EditorProps) => {
-  const [editor] = useLexicalComposerContext()
   const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null)
-  const hasInitialized = useRef(false)
-
-  useEffect(() => {
-    if (!editor) return
-
-    // Initialize the editor with the default value if provided
-    if (!hasInitialized.current && props.defaultValue !== undefined) {
-      editor.update(() => {
-        $convertFromMarkdownString(props.defaultValue ?? '', TRANSFORMERS)
-      })
-      hasInitialized.current = true
-    }
-
-    // If the value is cleared, reset the editor content
-    if (hasInitialized.current && !props.defaultValue) {
-      editor.update(() => {
-        $convertFromMarkdownString('', TRANSFORMERS)
-      })
-    }
-  }, [editor, props.defaultValue])
+  const [isLinkEditMode, setIsLinkEditMode] = useState(false)
 
   return (
     <>
@@ -119,10 +98,10 @@ const MarkdownEditor = (props: EditorProps) => {
         <>
           <FloatingLinkEditorPlugin
             anchorElem={floatingAnchorElem}
-            isLinkEditMode={false}
-            setIsLinkEditMode={() => {}}
+            isLinkEditMode={isLinkEditMode}
+            setIsLinkEditMode={setIsLinkEditMode}
           />
-          <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} setIsLinkEditMode={() => {}} />
+          <FloatingTextFormatToolbarPlugin anchorElem={floatingAnchorElem} setIsLinkEditMode={setIsLinkEditMode} />
         </>
       )}
       <MarkdownShortcutPlugin transformers={TRANSFORMERS} />
@@ -131,6 +110,8 @@ const MarkdownEditor = (props: EditorProps) => {
 }
 
 const Editor = (props: EditorProps) => {
+  const initialMarkdown = props.defaultValue ?? ''
+
   const settings = {
     namespace: '',
     theme,
@@ -150,8 +131,13 @@ const Editor = (props: EditorProps) => {
       AutoLinkNode,
       LinkNode,
       OverflowNode,
-      ImageNode,
     ],
+    editorState(editor: any) {
+      editor.update(() => {
+        $convertFromMarkdownString(initialMarkdown, TRANSFORMERS)
+        $getRoot().selectEnd()
+      })
+    },
   }
 
   return (

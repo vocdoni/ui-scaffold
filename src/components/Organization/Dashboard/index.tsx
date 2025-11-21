@@ -27,6 +27,7 @@ import { LuArrowUpRight, LuCheck, LuPlus, LuUsers, LuVote, LuX } from 'react-ico
 import ReactPlayer from 'react-player'
 import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
+import { WhatsAppButton } from '~components/shared/Layout/WhatsappButton'
 import { PlanId } from '~constants'
 import { Routes } from '~routes'
 import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
@@ -54,9 +55,12 @@ const OrganizationDashboard = () => {
 }
 
 const Tutorial = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { data: profile, isLoading } = useProfile()
   const { subscription, loading } = useSubscription()
+  const videoTutorials = import.meta.env.VIDEO_TUTORIAL
+  const language = i18n.resolvedLanguage || i18n.language || 'en'
+  const videoTutorialSrc = videoTutorials[language] ?? videoTutorials.en
 
   return (
     <DashboardBox p={6} mb={12} display='flex' gap={10} position='relative' flexDirection='row'>
@@ -106,7 +110,7 @@ const Tutorial = () => {
           >
             <Trans i18nKey='new_voting'>New vote</Trans>
           </Button>
-          <DashboardBookerModalButton size='sm' />
+          <WhatsAppButton />
         </Flex>
       </Box>
       <Flex display={{ base: 'none', lg: 'flex' }} flex='1 1 33%' flexDirection='column'>
@@ -116,10 +120,7 @@ const Tutorial = () => {
           })}
         </Text>
         <AspectRatio ratio={16 / 9}>
-          <ReactPlayer
-            src={import.meta.env.VIDEO_TUTORIAL}
-            style={{ width: '100%', height: 'auto', aspectRatio: '16/9' }}
-          />
+          <ReactPlayer src={videoTutorialSrc} style={{ width: '100%', height: 'auto', aspectRatio: '16/9' }} />
         </AspectRatio>
       </Flex>
     </DashboardBox>
@@ -375,7 +376,7 @@ const Processes = () => {
       <Flex justify='flex-end' mt={4}>
         <Link
           as={ReactRouterLink}
-          to={generatePath(Routes.dashboard.processes)}
+          to={generatePath(Routes.dashboard.processes.base)}
           display='inline-flex'
           alignItems='center'
           gap={3}
@@ -428,7 +429,7 @@ const QuickActions = () => {
         </Button>
         <Button
           as={ReactRouterLink}
-          to={generatePath(Routes.dashboard.processes)}
+          to={generatePath(Routes.dashboard.processes.base)}
           colorScheme='gray'
           variant='outline'
           justifyContent='start'

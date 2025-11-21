@@ -1,4 +1,4 @@
-import { Flex, Progress, SimpleGrid, Tab, TabList, Tabs, Tag } from '@chakra-ui/react'
+import { Alert, AlertDescription, Flex, Progress, SimpleGrid, Tab, TabList, Tabs, Tag } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -233,7 +233,7 @@ export const usePlanTranslations = (plans?: Plan[]) => {
 }
 
 export const SubscriptionPlans = () => {
-  const { subscription } = useSubscription()
+  const { subscription, error } = useSubscription()
   const { data: plans, isLoading } = usePlans()
   const translations = usePlanTranslations(plans)
   const scheckout = useSubscriptionCheckout()
@@ -266,6 +266,14 @@ export const SubscriptionPlans = () => {
       }
     })
   }, [plans, subscription, translations, period])
+
+  if (error) {
+    return (
+      <Alert status='error'>
+        <AlertDescription>{error.message.toString()}</AlertDescription>
+      </Alert>
+    )
+  }
 
   return (
     <FormProvider {...methods}>

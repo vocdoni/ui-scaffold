@@ -13,10 +13,9 @@
     "save_changes": "Save Changes",
     "view_active_votes": "View active votes"
   },
-  "active": "Active",
   "add_new_org": "Add a new organization",
   "additional_actions": "Additional actions",
-  "all": "All",
+  "all_processes": "All",
   "already_member": "Already have an account?",
   "alt": {
     "images": {
@@ -163,8 +162,22 @@
   },
   "confirm_password": "Confirm Password",
   "confirm_password_placeholder": "Confirm your new password",
+  "connection": {
+    "error_description": "Unable to reach the server. Please check your connection.",
+    "error_title": "Connection issues detected",
+    "restored_description": "You are back online.",
+    "restored_title": "Connection restored"
+  },
   "contact_us": "Contact us",
   "control_panel": "Control panel",
+  "cookies": {
+    "accept": "Accept",
+    "aria_label": "Cookies consent banner",
+    "description": "We use cookies and analytics tools to improve your experience and understand how you interact with our website. You can choose to accept or reject cookies.",
+    "learnMore": "Learn more",
+    "reject": "Reject",
+    "title": "Cookie Consent"
+  },
   "copy": {
     "address": "Copy address",
     "copied_title": "Copied!",
@@ -185,6 +198,7 @@
     "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
     "title": "Tell us about your organization"
   },
+  "create_process": "Create process",
   "csp": {
     "authenticate": "Identify",
     "code_info": "You will receive a unique code on the selected medium to verify your identity and complete authentication",
@@ -222,6 +236,7 @@
   "dark_mode": "Dark mode",
   "dashboard": {
     "actions": {
+      "reset_form": "Reset form",
       "toggle_sidebar": "Toggle sidebar"
     },
     "process_view": {
@@ -257,6 +272,16 @@
   "discount": "Discount",
   "do_it_later": "Do it later",
   "do_you_need_help": "Do you need help?",
+  "draft_processes": "Drafts",
+  "drafts": {
+    "clone": "Clone Draft",
+    "cloned_draft": "Draft cloned successfully",
+    "cloned_draft_error": "Error cloning draft",
+    "delete": "Delete Draft",
+    "deleted_draft": "Draft deleted successfully",
+    "edit": "Edit Draft",
+    "not_defined": "Not defined yet"
+  },
   "drawer": {
     "close": "Close drawer"
   },
@@ -287,6 +312,7 @@
   "end_date": "End date",
   "end_time": "End time",
   "end_vote": "End vote",
+  "ended_processes": "Ended",
   "enter_promo_code": "Enter code",
   "error": {
     "invalid_cell_data": "Some rows do not contain correct addresses: {{rows,list(style:short)}}",
@@ -375,7 +401,6 @@
     "weighted": "Weighted voting",
     "white_label": "White-label (no vocdoni branding)"
   },
-  "finished": "Finished",
   "footer": {
     "about_us": "About Us",
     "company": "Company",
@@ -426,6 +451,7 @@
         "add_button": "Add",
         "remove_address": "Remove address"
       },
+      "error_deleting_draft_title": "Error deleting draft",
       "error_title": "Error creating process",
       "spreadsheet": {
         "download_template": "You don't have a CSV file? <a>Download template.csv</a>, fill it and upload it.",
@@ -456,7 +482,6 @@
         "wallet_addresses": "Wallet Addresses"
       }
     },
-    "reset": "Reset form",
     "select_language": "Language",
     "support": {
       "billing_issue": "Billing issue",
@@ -1263,40 +1288,6 @@
     "need_more_members": "Need more members? <2>Contact us</2>"
   },
   "privacy_policy": "Privacy policy",
-  "privacyPolicy": {
-    "description": "This document outlines the privacy practices for Vocdoni Association (\"Vocdoni\") concerning the use of its websites and services.",
-    "section1": {
-      "item1": "Vocdoni may collect user personal data such as name, organization name, size, type and email addresses when provided as the organization's contact email, though using personal email addresses for this purpose is not recommended.",
-      "item2": "User consent may be required for the use of certain personal data, which can be withdrawn at any time using Vocdoni's contact details provided below.",
-      "item3": "Additional personal information may be collected and processed as necessary to deliver services, fulfill contractual obligations, or comply with legal requirements."
-    },
-    "section1Title": "1. Information Collection",
-    "section2": {
-      "description": "Vocdoni processes personal information provided directly by users through various means, including registration on any Vocdoni website, service procurement, or communications."
-    },
-    "section2Title": "2. Method of Collection",
-    "section3": {
-      "description": "The collected information is used to provide and manage services, conduct marketing and business activities, and support customer service and marketing efforts."
-    },
-    "section3Title": "3. Use of Information",
-    "section4": {
-      "description": "Vocdoni may share personal information with other companies within the Vocdoni Association or third-party service providers assisting with our services."
-    },
-    "section4Title": "4. Information Sharing",
-    "section5": {
-      "description": "Vocdoni commits to securing collected personal information with appropriate measures."
-    },
-    "section5Title": "5. Information Security",
-    "section6": {
-      "description": "Users have rights to access, correct, delete, and restrict the processing of their data, among other rights outlined herein."
-    },
-    "section6Title": "6. Rights of Users",
-    "section7": {
-      "description": "For further details on our data practices or to exercise your rights, please contact us at privacy@vocdoni.org."
-    },
-    "section7Title": "7. Contacting Vocdoni",
-    "title": "Privacy Policy"
-  },
   "process": {
     "census": "Census",
     "census_strategies": {
@@ -1307,7 +1298,8 @@
     },
     "create": {
       "action": {
-        "publish": "Publish"
+        "publish": "Publish",
+        "save_draft": "Save"
       },
       "change_template": {
         "cancel": "Cancel",
@@ -1321,12 +1313,16 @@
       },
       "leave_confirmation": {
         "cancel": "Cancel",
-        "leave": "Leave without saving",
+        "leave": "Discard and leave",
         "message": "You have unsaved changes. Are you sure you want to leave?",
         "reset": "Reset",
         "reset_message": "This will reset the form. Do you want to continue?",
         "save_and_leave": "Save and leave",
-        "title": "Unsaved Changes"
+        "title": "Saving Draft"
+      },
+      "limit_reached": {
+        "message_one": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
+        "message_other": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan."
       },
       "question": {
         "add": "Add question",
@@ -1347,11 +1343,8 @@
         },
         "question_number": "Question {{index}} of {{total}}"
       },
-      "reset_form": {
-        "cancel": "Cancel",
-        "message": "Are you sure you want to reset the form? This action cannot be undone.",
-        "reset": "Reset Form",
-        "title": "Reset Form"
+      "save_draft_error": {
+        "title": "Error saving draft"
       },
       "selectionLimits": {
         "full": "Voters must select at least  <min />  and at most  <max />  options.",
@@ -1474,6 +1467,7 @@
     "start": "Start/Resume"
   },
   "process_context": {
+    "clone_as_draft": "Clone as draft",
     "explorer": "Explorer",
     "more_info": "More info",
     "public_voting_page": "Public voting page"
@@ -1710,65 +1704,6 @@
     },
     "title": "Team"
   },
-  "terms": {
-    "section1": {
-      "description1": "The Vocdoni Association, headquartered in Switzerland, operates the app.vocdoni.io and onvote.app platforms.",
-      "description2": "These platforms prioritize user privacy and data security, ensuring compliance with the European Union's General Data Protection Regulation (GDPR)."
-    },
-    "section1Title": "1. General Information",
-    "section2": {
-      "description": "We prioritize user data security. Here's the summary:",
-      "item1": "We collect and process personal data necessary for service provision.",
-      "item2": "All personal data is stored in encrypted form, ensuring that no personal data is stored in plain text.",
-      "item3": "Metadata submitted by voting organizers may be publicly accessible on IPFS.",
-      "item4": "Additional data may be collected to fulfill legal obligations or provide specialized services."
-    },
-    "section2Title": "2. Data Collection and Storage",
-    "section3": {
-      "item1": "Personal data is processed solely for providing and improving our services.",
-      "item2": "We seek explicit user consent for data processing activities.",
-      "item3": "We do not use collected data for marketing purposes without explicit user consent."
-    },
-    "section3Title": "3. Data Use and Compliance",
-    "section4": {
-      "item1": "Personal data is not shared with third parties except where required by law.",
-      "item2": "Third-party data processors are bound by confidentiality agreements.",
-      "item3": "Any cross-border data transfers include adequate protection measures."
-    },
-    "section4Title": "4. Data Sharing",
-    "section5": {
-      "description1": "The Vocdoni Association employs strong security measures to protect personal data.",
-      "description2": "In the event of a data breach, we will promptly notify affected individuals."
-    },
-    "section5Title": "5. Security Measures",
-    "section6": {
-      "description": "To exercise these rights, contact us using the details below.",
-      "item1": "Access: Obtain information on the processing of personal data.",
-      "item2": "Correction: Request the correction of inaccurate personal data.",
-      "item3": "Deletion: Request the deletion of personal data under certain circumstances.",
-      "item4": "Restriction: Request that we restrict processing of personal data.",
-      "item5": "Portability: Receive personal data in a structured format.",
-      "item6": "Objection: Object to processing based on legitimate interests.",
-      "item7": "Complaint: Lodge a complaint with the relevant data authority."
-    },
-    "section6Title": "6. User Rights",
-    "section7": {
-      "description1": "The Vocdoni Association is not responsible for information submitted by users.",
-      "description2": "We do not track user data beyond what is essential."
-    },
-    "section7Title": "7. Disclaimer",
-    "section8": {
-      "item1": "Indirect Damages: The Vocdoni Association shall not be liable for indirect damages.",
-      "item2": "Force Majeure: The Vocdoni Association is not responsible for delays caused by events beyond our control."
-    },
-    "section8Title": "8. Limitation of Liability",
-    "section9": {
-      "description1": "For any queries regarding these Terms and Conditions, please contact us at info (at) vocdoni.org.",
-      "description2": "By continuing to use our services, you confirm your acceptance of these terms."
-    },
-    "section9Title": "9. Contact Information",
-    "title": "Terms and Conditions for Vocdoni Association"
-  },
   "terms_of_service": "Terms of Service",
   "testimonials": {
     "bellpuig": {
@@ -1849,6 +1784,7 @@
   "verification_code_resent": "Verification code resent!",
   "verify": {
     "account_created_succesfully": "Account created successfully!",
+    "check_spam_folder": "Please check your spam folder if you don't see the email in your inbox.",
     "email_sent": "Email sent successfully",
     "enter_code": "Enter the code below to activate your account",
     "enter_verification_code": "We've sent you a verification email. Please follow the instructions to activate your account.",
@@ -1945,5 +1881,6 @@
   "voting_status": "Voting status",
   "wallet_not_connected": "Wallet not connected",
   "website": "Website",
+  "whatsapp_contact": "Talk with us!",
   "year": "year"
 }

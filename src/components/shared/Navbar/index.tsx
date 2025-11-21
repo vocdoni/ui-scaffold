@@ -10,6 +10,7 @@ import {
   Flex,
   Icon,
   IconButton,
+  Link,
   List,
   ListItem,
   Text,
@@ -21,7 +22,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { IoPricetagOutline } from 'react-icons/io5'
 import { LuLogOut } from 'react-icons/lu'
 import { RiContactsBook3Line } from 'react-icons/ri'
-import { generatePath, Link as ReactRouterLink, Link as RouterLink, useMatch, useMatches } from 'react-router-dom'
+import { generatePath, Link as ReactRouterLink, useMatch, useMatches } from 'react-router-dom'
 import { useAuth } from '~components/Auth/useAuth'
 import ContactButton from '~shared/ContactLink'
 import { ColorModeSwitcher, ColorModeSwitcherDetailed } from '~shared/Layout/ColorModeSwitcher'
@@ -97,6 +98,8 @@ const Mobile = () => {
     [BREAKPOINT]: true,
   })
   const hideNavbar = useHideNavbar()
+  const privacyPolicyUrl = import.meta.env.PRIVACY_POLICY_URL
+  const termsOfServiceUrl = import.meta.env.TERMS_OF_SERVICE_URL
 
   useEffect(() => {
     if (isBreakpointSize) onClose()
@@ -153,14 +156,14 @@ const Mobile = () => {
                 </>
               )}
               <ListItem>
-                <Text fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.terms}>
+                <Link fontSize={'xs'} fontWeight={'semibold'} href={termsOfServiceUrl} isExternal>
                   <Trans i18nKey='menu.terms'>Terms</Trans>
-                </Text>
+                </Link>
               </ListItem>
               <ListItem>
-                <Text fontSize={'xs'} fontWeight={'semibold'} as={RouterLink} to={Routes.privacy}>
+                <Link fontSize={'xs'} fontWeight={'semibold'} href={privacyPolicyUrl} isExternal>
                   <Trans i18nKey='menu.privacy'>Privacy</Trans>
-                </Text>
+                </Link>
               </ListItem>
             </NavMenu>
           </Box>

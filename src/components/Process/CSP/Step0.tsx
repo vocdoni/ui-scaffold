@@ -17,8 +17,6 @@ import { useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link as RouterLink } from 'react-router-dom'
-import { Routes } from '~routes'
 import { useCspAuthContext } from './CSPStepsProvider'
 import { CSPStep0FormData, CSPStep0RequestData, useTwoFactorAuth } from './basics'
 
@@ -35,6 +33,9 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
   } = useForm<CSPStep0FormData>()
   const auth = useTwoFactorAuth<0>(election, 0)
   const is2Factor = twoFaFields.length > 0
+
+  const privacyPolicyUrl = import.meta.env.PRIVACY_POLICY_URL
+  const termsOfServiceUrl = import.meta.env.TERMS_OF_SERVICE_URL
 
   const onSubmit = async (values: CSPStep0FormData) => {
     const form: CSPStep0RequestData = {}
@@ -147,11 +148,11 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
             <Checkbox size='sm' variant='inline' colorScheme='black'>
               <Trans i18nKey='csp.terms_acceptance'>
                 I have read and accept the{' '}
-                <Link as={RouterLink} to={Routes.terms} isExternal>
+                <Link href={termsOfServiceUrl} isExternal>
                   Terms and Conditions
                 </Link>{' '}
                 and the{' '}
-                <Link as={RouterLink} to={Routes.privacy} isExternal>
+                <Link href={privacyPolicyUrl} isExternal>
                   Privacy Policy
                 </Link>
                 .

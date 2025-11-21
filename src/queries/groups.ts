@@ -120,21 +120,6 @@ export const useGroupMembers = (groupId: string, page, isOpen: boolean = false) 
     enabled: !!organization?.address && !!groupId && isOpen,
     queryKey: [...QueryKeys.organization.groups(organization?.address), groupId, page],
     queryFn: () => bearedFetch<GroupMembers>(fetchUrl),
-    select: (data) => {
-      const currentPage = data.currentPage
-      const lastPage = data.totalPages
-
-      return {
-        members: data.members,
-        pagination: {
-          totalItems: data.members.length,
-          currentPage,
-          lastPage,
-          previousPage: currentPage > 1 ? currentPage - 1 : null,
-          nextPage: currentPage < lastPage ? currentPage + 1 : null,
-        },
-      }
-    },
     refetchOnWindowFocus: false,
   })
 }

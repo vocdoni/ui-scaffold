@@ -13,6 +13,7 @@ export const QueryKeys = {
     members: (address?: string) => ['organizations', 'members', address].filter(Boolean),
     membersImportProgress: (address?: string, jobID?: string) =>
       ['organizations', 'members', address, 'importJobProgress', jobID].filter(Boolean),
+    drafts: (address?: string) => ['organizations', 'drafts', address].filter(Boolean),
     groups: (address?: string) => ['organizations', 'groups', address].filter(Boolean),
   },
   census: {
