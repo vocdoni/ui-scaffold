@@ -142,6 +142,9 @@ importers:
       chakra-react-select:
         specifier: ^5.0.1
         version: 5.0.5(@chakra-ui/react@2.10.9(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      country-flag-emoji-json:
+        specifier: ^2.0.0
+        version: 2.0.0
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -2546,6 +2549,10 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  country-flag-emoji-json@2.0.0:
+    resolution: {integrity: sha512-Ky1HU6jJRVQXrfgoutJ+7rTCzRnoPfD/75FIPVorXFI+/WurK0lgdUZBoxBE63hTFpKUbGWXN03IixPQGlk1Iw==}
+    engines: {node: '>=14.0.0'}
 
   crc-32@1.2.2:
     resolution: {integrity: sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==}
@@ -9093,6 +9100,8 @@ snapshots:
       path-type: 4.0.0
     optionalDependencies:
       typescript: 5.9.3
+
+  country-flag-emoji-json@2.0.0: {}
 
   crc-32@1.2.2: {}
 
