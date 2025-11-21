@@ -46,6 +46,7 @@
     "@vocdoni/sdk": "~0.9.1",
     "@wagmi/core": "^2.22.1",
     "chakra-react-select": "^5.0.1",
+    "country-flag-emoji-json": "^2.0.0",
     "date-fns": "^4.1.0",
     "framer-motion": "^10.12.18",
     "gsap": "^3.13.0",

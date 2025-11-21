@@ -1,6 +1,6 @@
 import { DefinedInitialDataOptions, QueryKey, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef } from 'react'
-import { api, ApiEndpoints, UnauthorizedApiError } from '~components/Auth/api'
+import { api, ApiEndpoints, ApiError, UnauthorizedApiError } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import { useConnectionToast } from '~components/shared/Layout/ConnectionToast'
 import { QueryKeys } from './keys'
@@ -72,15 +72,40 @@ export const useProfile = (
   // Manual retry logic with connection status tracking
   const retryIntervalRef = useRef<NodeJS.Timeout | null>(null)
 
+  const isConnectionIssue = (error: unknown) => {
+    if (error instanceof ApiError) {
+      // Treat missing response as connectivity failure, otherwise only 404 counts
+      return !error.response || error.response.status === 404
+    }
+
+    // Native fetch errors (TypeError) don't include a response when the network is down
+    if (error instanceof Error && !(error as { response?: unknown }).response) {
+      return true
+    }
+
+    return false
+  }
+
   useEffect(() => {
     if (query.isError) {
-      recordFailure()
+      const connectionIssue = isConnectionIssue(query.error)
 
-      // Start manual retry loop if not already running
-      if (!retryIntervalRef.current) {
-        retryIntervalRef.current = setInterval(() => {
-          if (!query.isFetching) query.refetch()
-        }, 5_000) // Retry every 5 seconds
+      if (connectionIssue) {
+        recordFailure()
+
+        // Start manual retry loop if not already running
+        if (!retryIntervalRef.current) {
+          retryIntervalRef.current = setInterval(() => {
+            if (!query.isFetching) query.refetch()
+          }, 5_000) // Retry every 5 seconds
+        }
+      } else {
+        // Not a connection problem: mark connection as healthy and stop retrying
+        recordSuccess()
+        if (retryIntervalRef.current) {
+          clearInterval(retryIntervalRef.current)
+          retryIntervalRef.current = null
+        }
       }
     } else if (query.isSuccess) {
       recordSuccess()
@@ -99,7 +124,7 @@ export const useProfile = (
         retryIntervalRef.current = null
       }
     }
-  }, [query.isError, query.isSuccess, query.refetch, recordFailure, recordSuccess])
+  }, [query.isError, query.isSuccess, query.error, query.refetch, recordFailure, recordSuccess])
 
   return query
 }
