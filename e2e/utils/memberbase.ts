@@ -53,6 +53,12 @@ export const addMember = async (page: Page, data: MemberData): Promise<MemberDat
 }
 
 export const deleteMember = async (page: Page, email: string) => {
+  const originUrl = page.url()
+  const membersUrl = '/admin/memberbase/members/1'
+  if (originUrl !== membersUrl) {
+    await page.goto(membersUrl)
+  }
+
   const row = page.locator('tr', { hasText: email })
   await row.getByRole('button').last().click()
 
@@ -70,4 +76,17 @@ export const deleteMember = async (page: Page, email: string) => {
   })
 
   await expect(page.getByText(email)).not.toBeVisible({ timeout: 10000 })
+
+  if (originUrl !== membersUrl) {
+    await page.goto(originUrl)
+  }
+}
+
+export const clickMemberCheckbox = async (page: Page, email: string) => {
+  const checkboxControl = page
+    .locator('tr', { hasText: email })
+    .locator('.chakra-checkbox__control')
+    .first()
+  await expect(checkboxControl).toBeVisible({ timeout: 5000 })
+  await checkboxControl.click()
 }
