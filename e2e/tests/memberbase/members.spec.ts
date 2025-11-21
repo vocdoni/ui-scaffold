@@ -1,5 +1,5 @@
 import { expect, test } from '../../fixtures/auth'
-import { addMember, deleteMember, makeMemberData } from '../../utils/memberbase'
+import { addMember, clickMemberCheckbox, deleteMember, makeMemberData } from '../../utils/memberbase'
 
 test.describe('Memberbase', () => {
   test('delete a single member via the context menu', async ({ page }) => {
@@ -23,17 +23,9 @@ test.describe('Memberbase', () => {
     await expect(page.getByText(memberB.email)).toBeVisible({ timeout: 5000 })
     await expect(page.getByText(memberC.email)).toBeVisible({ timeout: 5000 })
 
-    const clickTableCheckbox = async (email: string) => {
-      const checkboxControl = page
-        .locator('tr', { hasText: email })
-        .locator('.chakra-checkbox__control')
-        .first()
-      await checkboxControl.click()
-    }
-
     await page.goto('/admin/memberbase/members/1')
-    await clickTableCheckbox(memberA.email)
-    await clickTableCheckbox(memberB.email)
+    await clickMemberCheckbox(page, memberA.email)
+    await clickMemberCheckbox(page, memberB.email)
 
     await page.getByRole('button', { name: /^delete$/i }).click()
 
@@ -49,5 +41,7 @@ test.describe('Memberbase', () => {
     await expect(page.getByText(memberA.email)).not.toBeVisible()
     await expect(page.getByText(memberB.email)).not.toBeVisible()
     await expect(page.getByText(memberC.email)).toBeVisible()
+
+    await deleteMember(page, memberC.email)
   })
 })
