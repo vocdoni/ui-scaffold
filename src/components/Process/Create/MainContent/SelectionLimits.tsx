@@ -14,7 +14,7 @@ const SelectionLimits = ({ index }) => {
   const min = watch('minNumberOfChoices')
   const max = watch('maxNumberOfChoices')
   const total = fields.length
-  const options = [{ value: 0, label: '0' }, ...fields.map((_, i) => ({ value: i + 1, label: `${i + 1}` }))]
+  const options = fields.map((_, i) => ({ value: i + 1, label: `${i + 1}` }))
 
   useEffect(() => {
     // Ensure max is not less than min
