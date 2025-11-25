@@ -610,7 +610,7 @@ export const useFormToElectionMapper = () => {
       startDate,
       endDate,
       voteType: {
-        maxVoteOverwrites: 10,
+        maxVoteOverwrites: form.censusType === CensusTypes.CSP ? 0 : 10,
       },
       streamUri: permission(SubscriptionPermission.LiveStreaming) ? form.streamUri : undefined,
       temporarySecretIdentity:
