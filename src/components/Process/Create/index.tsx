@@ -568,6 +568,17 @@ export const useFormToElectionMapper = () => {
     return parse(`${dateStr} ${timeStr}`, 'yyyy-MM-dd HH:mm', new Date())
   }
 
+  const getMaxCensusSize = (form: Process, census: Census) => {
+    switch (form.censusType) {
+      case CensusTypes.Spreadsheet:
+      case CensusTypes.Web3:
+        return form.addresses?.length ?? census?.size
+      case CensusTypes.CSP:
+      default:
+        return form.census?.size ?? census?.size
+    }
+  }
+
   return (form: Process, census: Census): UnpublishedElection | MultiChoiceElection => {
     const start = form.autoStart ? new Date() : parseLocalDateTime(form.startDate, form.startTime)
     const startDate = form.autoStart ? undefined : parseLocalDateTime(form.startDate, form.startTime)
@@ -580,7 +591,7 @@ export const useFormToElectionMapper = () => {
       electionType: {
         secretUntilTheEnd: Boolean(form.resultVisibility === 'hidden'),
       },
-      maxCensusSize: form.addresses?.length > 0 ? form.addresses.length : form.census.size,
+      maxCensusSize: getMaxCensusSize(form, census),
       questions: form.questions.map(
         (question) =>
           ({
