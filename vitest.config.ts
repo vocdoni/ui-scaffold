@@ -1,6 +1,26 @@
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import path from 'path'
+import fs from 'fs'
+
+// Generate aliases from tsconfig.paths.json
+function getAliasesFromTsConfig() {
+  const tsconfigPath = path.resolve(__dirname, './tsconfig.paths.json')
+  const tsconfig = JSON.parse(fs.readFileSync(tsconfigPath, 'utf-8'))
+  const paths = tsconfig.compilerOptions.paths
+  const aliases: Record<string, string> = {}
+
+  Object.keys(paths).forEach((alias) => {
+    // Remove the /* suffix from the alias key
+    const aliasKey = alias.replace(/\/\*$/, '')
+    // Get the first path value (remove /* suffix and resolve)
+    const aliasPath = paths[alias][0].replace(/\/\*$/, '')
+    // Resolve to absolute path
+    aliases[aliasKey] = path.resolve(__dirname, './src', aliasPath)
+  })
+
+  return aliases
+}
 
 export default defineConfig({
   plugins: [react()],
@@ -21,17 +41,18 @@ export default defineConfig({
         '**/types/**',
       ],
     },
+    server: {
+      deps: {
+        inline: ['@plausible-analytics/tracker', 'react-gtm-module'],
+      },
+    },
   },
   resolve: {
     alias: {
-      '~components': path.resolve(__dirname, './src/components'),
-      '~queries': path.resolve(__dirname, './src/queries'),
-      '~utils': path.resolve(__dirname, './src/utils'),
-      '~theme': path.resolve(__dirname, './src/theme'),
-      '~i18n': path.resolve(__dirname, './src/i18n'),
-      '~constants': path.resolve(__dirname, './src/constants'),
-      '~routes': path.resolve(__dirname, './src/router/routes.tsx'),
-      '~elements': path.resolve(__dirname, './src/elements'),
+      ...getAliasesFromTsConfig(),
+      // Mock problematic packages for testing
+      '@plausible-analytics/tracker': path.resolve(__dirname, './src/__mocks__/@plausible-analytics/tracker.ts'),
+      'react-gtm-module': path.resolve(__dirname, './src/__mocks__/react-gtm-module.ts'),
     },
   },
 })

@@ -201,11 +201,11 @@ describe('useProfile', () => {
     // })
 
     it('should not refetch if already fetching', async () => {
-      let resolvePromise: (value: any) => void
+      let resolveFn: (value: any) => void
 
       // Create a promise that we can control
       const controlledPromise = new Promise((resolve) => {
-        resolvePromise = resolve
+        resolveFn = resolve
       })
 
       mockBearedFetch.mockReturnValue(controlledPromise)
@@ -223,7 +223,7 @@ describe('useProfile', () => {
       expect(mockBearedFetch.mock.calls.length).toBe(initialCallCount)
 
       // Resolve the promise to clean up
-      resolvePromise!({ id: '1' })
+      resolveFn!({ id: '1' })
     })
 
     // it('should cleanup interval on unmount', async () => {

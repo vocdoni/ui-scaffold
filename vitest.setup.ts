@@ -21,6 +21,6 @@ Object.defineProperty(window, 'matchMedia', {
     removeListener: () => {}, // deprecated
     addEventListener: () => {},
     removeEventListener: () => {},
-    dispatchEvent: () => {},
+    dispatchEvent: () => true,
   }),
 })
