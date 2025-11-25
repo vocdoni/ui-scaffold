@@ -38,28 +38,31 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
   const termsOfServiceUrl = import.meta.env.TERMS_OF_SERVICE_URL
 
   const onSubmit = async (values: CSPStep0FormData) => {
+    const trimmed: CSPStep0FormData = Object.fromEntries(
+      Object.entries(values).map(([key, value]) => [key, typeof value === 'string' ? value.trim() : value])
+    )
     const form: CSPStep0RequestData = {}
 
     // Add auth fields to the form
     authFields.forEach((field) => {
-      if (values[field]) {
-        form[field] = values[field]
+      if (trimmed[field]) {
+        form[field] = trimmed[field]
       }
     })
 
     // Handle 2FA field - process based on available methods
-    if (values.contact) {
+    if (trimmed.contact) {
       if (twoFaFields.includes('email') && twoFaFields.includes('phone')) {
         // Both are supported, determine based on content
-        if (values.contact.includes('@')) {
-          form.email = values.contact
+        if (trimmed.contact.includes('@')) {
+          form.email = trimmed.contact
         } else {
-          form.phone = values.contact
+          form.phone = trimmed.contact
         }
       } else if (twoFaFields.includes('email')) {
-        form.email = values.contact
+        form.email = trimmed.contact
       } else if (twoFaFields.includes('phone')) {
-        form.phone = values.contact
+        form.phone = trimmed.contact
       }
     }
 
