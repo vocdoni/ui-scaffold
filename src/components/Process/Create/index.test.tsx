@@ -446,11 +446,51 @@ describe('useFormToElectionMapper', () => {
       expect(election.electionType.secretUntilTheEnd).toBe(false)
     })
 
-    it('should set maxVoteOverwrites to 10', () => {
+    it('should set maxVoteOverwrites to 0 for CSP census', () => {
       const { result } = renderHook(() => useFormToElectionMapper())
       const mapper = result.current
 
-      const election = mapper(mockForm, mockCensus)
+      const form: Process = {
+        ...mockForm,
+        censusType: CensusTypes.CSP,
+        census: {
+          id: 'test',
+          credentials: [],
+          size: 50,
+          use2FA: false,
+          use2FAMethod: 'email',
+        },
+      }
+
+      const election = mapper(form, mockCensus)
+      expect(election.voteType.maxVoteOverwrites).toBe(0)
+    })
+
+    it('should set maxVoteOverwrites to 10 for Spreadsheet census', () => {
+      const { result } = renderHook(() => useFormToElectionMapper())
+      const mapper = result.current
+
+      const form: Process = {
+        ...mockForm,
+        censusType: CensusTypes.Spreadsheet,
+        addresses: [{ address: '0x123', weight: 1 }],
+      }
+
+      const election = mapper(form, mockCensus)
+      expect(election.voteType.maxVoteOverwrites).toBe(10)
+    })
+
+    it('should set maxVoteOverwrites to 10 for Web3 census', () => {
+      const { result } = renderHook(() => useFormToElectionMapper())
+      const mapper = result.current
+
+      const form: Process = {
+        ...mockForm,
+        censusType: CensusTypes.Web3,
+        addresses: [{ address: '0xabc', weight: 1 }],
+      }
+
+      const election = mapper(form, mockCensus)
       expect(election.voteType.maxVoteOverwrites).toBe(10)
     })
   })
