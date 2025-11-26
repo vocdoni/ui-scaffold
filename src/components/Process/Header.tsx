@@ -32,7 +32,7 @@ const ProcessHeader = () => {
                   <Text as='span' color='process.label.light' _dark={{ color: 'process.label.dark' }}>
                     {t('process.state')}
                   </Text>
-                  <ElectionStatusBadge />
+                  <ElectionStatusBadge whiteSpace='nowrap' />
                 </Flex>
                 <Box display={{ base: 'flex', xl: 'none' }}>
                   <ShareModalButton
