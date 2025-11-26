@@ -1757,6 +1757,7 @@
   "total_votes": "Total de votos",
   "turnout": "Participación",
   "upgrade_plan": "Actualizar al plan {{plan}}",
+  "uploaded_image_preview": "Vista previa de la imagen cargada",
   "uploader": {
     "click_or_drag_and_drop": "<click>Haz clic para subir o arrastra y suelta</click><formats>(Formatos permitidos: {{ formats, list }})</formats>",
     "click_or_drag_and_drop_image": "Subir imagen",

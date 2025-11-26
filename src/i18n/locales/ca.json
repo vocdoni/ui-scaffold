@@ -1757,6 +1757,7 @@
   "total_votes": "Total de vots",
   "turnout": "Participació",
   "upgrade_plan": "Canvia a {{plan}}",
+  "uploaded_image_preview": "Previsualització de la imatge carregada",
   "uploader": {
     "click_or_drag_and_drop": "<click>Fes clic per pujar</click><formats>(Formats permesos: {{ formats, list }})</formats>",
     "click_or_drag_and_drop_image": "Puja una imatge",

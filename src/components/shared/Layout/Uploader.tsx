@@ -10,6 +10,7 @@ import {
   FormLabel,
   Icon,
   IconButton,
+  Image,
   Spinner,
   Text,
 } from '@chakra-ui/react'
@@ -145,6 +146,7 @@ export const AvatarUploader = (props: FormControlProps) => {
 }
 
 export const ImageUploader = ({ name, borderTopRadius, w = 'full', h = '150px' }: ImageUploaderProps) => {
+  const { t } = useTranslation()
   const {
     watch,
     setValue,
@@ -160,7 +162,7 @@ export const ImageUploader = ({ name, borderTopRadius, w = 'full', h = '150px' }
     clearErrors(name)
     try {
       const url = await uploadFile(files[0])
-      setValue(name, url)
+      setValue(name, url, { shouldDirty: true })
     } catch (error) {
       setError(name, { message: error.message })
       console.error(error)
@@ -171,7 +173,7 @@ export const ImageUploader = ({ name, borderTopRadius, w = 'full', h = '150px' }
     onDrop: onUpload,
     multiple: false,
     accept: {
-      'image/png': ['.png', '.jpg', '.jpeg'],
+      'image/*': ['.png', '.jpg', '.jpeg'],
     },
   })
 
@@ -179,16 +181,24 @@ export const ImageUploader = ({ name, borderTopRadius, w = 'full', h = '150px' }
     <FormControl isInvalid={!!errors?.[name]}>
       <Flex direction='column' gap={2} align='center'>
         {value ? (
-          <Box
+          <Flex
+            {...getRootProps()}
             w={w}
             h={h}
-            bg='gray.700'
-            bgImage={`url(${value})`}
-            bgSize='cover'
-            bgPos='center'
-            borderTopRadius={borderTopRadius}
             position='relative'
-          />
+            overflow='hidden'
+            borderTopRadius={borderTopRadius}
+            cursor='pointer'
+          >
+            <input {...getInputProps()} />
+            <Image
+              src={value}
+              alt={t('uploaded_image_preview', { defaultValue: 'Preview of the uploaded image' })}
+              w='100%'
+              h='100%'
+              objectFit='cover'
+            />
+          </Flex>
         ) : (
           <Flex
             {...getRootProps()}

@@ -135,16 +135,25 @@ const ProcessContextMenu = () => {
   if (!election || election instanceof InvalidElection) return null
 
   const cloneAsDraft = async () => {
+    const extendedInfo = election.questions.some((question) =>
+      question.choices.some(
+        ({ meta }) => meta && ('description' in meta || 'image' in meta) && (meta.description || meta.image?.default)
+      )
+    )
+
     const metadata = {
       ...defaultProcessValues,
       title: election.title.default,
       description: election.description.default,
+      extendedInfo,
       questions: election.questions.map((question) => {
         return {
           title: question.title.default,
           description: question.description.default,
           options: question.choices.map((option) => ({
             option: option.title.default,
+            description: option.meta?.description,
+            image: option.meta?.image?.default,
           })),
         }
       }),
