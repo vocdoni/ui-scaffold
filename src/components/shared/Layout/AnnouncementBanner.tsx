@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertStatus, CloseButton } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertStatus, CloseButton, HStack } from '@chakra-ui/react'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { useTranslation } from 'react-i18next'
 
@@ -45,7 +45,7 @@ const parseAnnouncement = (raw: string | undefined): AnnouncementBannerContents 
 // Parsed once at module load:
 export const Announcement: AnnouncementBannerContents | null = parseAnnouncement(import.meta.env.ANNOUNCEMENT)
 
-const AnnouncementBanner = () => {
+const AnnouncementBanner = ({ limited = false }: { limited?: boolean }) => {
   const { i18n } = useTranslation()
   const [dismissed, setDismissed] = useLocalStorage(Announcement?.lsKey || 'announcement.banner_dismissed', false)
 
@@ -58,10 +58,18 @@ const AnnouncementBanner = () => {
 
   if (!message) return null
 
+  const limitStyles = {
+    mx: 'auto',
+    maxW: 'navbar',
+    px: { base: 0, md: 6, xl: 10 },
+  }
+
   return (
-    <Alert status={Announcement.status} justifyContent='space-between'>
-      <AlertDescription dangerouslySetInnerHTML={{ __html: message }} />
-      <CloseButton onClick={() => setDismissed(true)} />
+    <Alert status={Announcement.status}>
+      <HStack {...(limited ? limitStyles : {})} w='full' justifyContent='space-between'>
+        <AlertDescription dangerouslySetInnerHTML={{ __html: message }} />
+        <CloseButton onClick={() => setDismissed(true)} />
+      </HStack>
     </Alert>
   )
 }
