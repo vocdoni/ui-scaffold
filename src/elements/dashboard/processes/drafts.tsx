@@ -72,23 +72,25 @@ export const useDeleteDraft = () => {
   const queryClient = useQueryClient()
   const toast = useToast()
 
-  return useMutation({
+  return useMutation<void, unknown, { draftId: string; silent?: boolean }>({
     mutationKey: QueryKeys.organization.drafts(organization?.address),
-    mutationFn: (draftId: string) => {
+    mutationFn: ({ draftId }: { draftId: string; silent?: boolean }) => {
       const deleteUrl = ApiEndpoints.OrganizationProcess.replace('{processId}', draftId)
       return bearedFetch<void>(deleteUrl, {
         method: 'DELETE',
       })
     },
-    onSuccess: () => {
-      toast({
-        title: t('drafts.deleted_draft', {
-          defaultValue: 'Draft deleted successfully',
-        }),
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      })
+    onSuccess: (_data, variables) => {
+      if (!variables?.silent) {
+        toast({
+          title: t('drafts.deleted_draft', {
+            defaultValue: 'Draft deleted successfully',
+          }),
+          status: 'success',
+          duration: 3000,
+          isClosable: true,
+        })
+      }
       queryClient.invalidateQueries({
         queryKey: QueryKeys.organization.drafts(organization?.address),
         exact: false,
@@ -201,7 +203,7 @@ const DraftsContextMenu = ({ draft }: { draft: Draft }) => {
   }
 
   const deleteDraft = () => {
-    deleteDraftMutation.mutate(draft.id)
+    deleteDraftMutation.mutate({ draftId: draft.id })
     localStorage.removeItem('draft-id')
   }
 

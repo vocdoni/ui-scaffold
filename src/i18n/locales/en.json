@@ -1346,6 +1346,7 @@
       "save_draft_error": {
         "title": "Error saving draft"
       },
+      "save_draft_success": "Draft saved",
       "selectionLimits": {
         "full": "Voters must select at least  <min />  and at most  <max />  options.",
         "title": "Selection limits:"
