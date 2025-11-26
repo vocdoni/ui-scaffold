@@ -179,7 +179,7 @@ const PricingCard = ({
           )}
         </Flex>
       </CardBody>
-      {plan.id === PlanId.Premium && (
+      {(plan.id === PlanId.Premium || plan.id === PlanId.Essential) && (
         <Text size='xs' fontStyle='italic' textAlign='center'>
           <Trans i18nKey='pricing_card.need_more_members'>
             Need more members?{' '}
