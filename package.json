@@ -112,6 +112,7 @@
     "@types/react-gtm-module": "^2.0.4",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^4.3.2",
+    "@vitest/coverage-v8": "^4.0.14",
     "@vitest/ui": "^4.0.10",
     "i18next-parser": "^9.0.2",
     "jsdom": "^27.2.0",
