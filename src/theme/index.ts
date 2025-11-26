@@ -11,6 +11,7 @@ import '@fontsource/inter/300.css'
 import '@fontsource/inter/400.css'
 import '@fontsource/inter/500.css'
 import '@fontsource/inter/index.css'
+import { MaxNavbarWidth } from '~constants'
 
 const sidebarWidth = '350px'
 
@@ -45,6 +46,7 @@ export const theme = extendTheme(vtheme, {
   space: { sidebar: sidebarWidth },
   sizes: {
     sidebar: sidebarWidth,
+    navbar: MaxNavbarWidth,
     'modal-stretch': 'calc(100% + var(--chakra-space-5)*2 + var(--chakra-space-6)*2)',
     'modal-stretch-lg': 'calc(100% + var(--chakra-space-10)*2 + var(--chakra-space-6)*2)',
     'voting-page': '1200px',

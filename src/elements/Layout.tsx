@@ -18,13 +18,13 @@ const Layout = () => {
         backdropFilter='blur(40px)'
         zIndex={30}
         px={{ base: 4, md: 6, xl: 10 }}
-        maxW='1920px'
+        maxW='navbar'
         mx='auto'
       >
         <Navbar />
       </HStack>
       <ScrollRestoration />
-      {[Routes.root, Routes.plans].includes(location.pathname) && <AnnouncementBanner />}
+      {[Routes.root, Routes.plans].includes(location.pathname) && <AnnouncementBanner limited />}
       <Flex
         flexDirection='column'
         as='main'
