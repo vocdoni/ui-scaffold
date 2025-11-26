@@ -57,7 +57,7 @@ import {
 } from 'react-router-dom'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { useSubscription } from '~components/Auth/Subscription'
-import { ApiEndpoints } from '~components/Auth/api'
+import { ApiEndpoints, ApiError, ErrorCode } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import Editor from '~components/Editor'
 import { Web3Address } from '~components/Process/Census/Web3'
@@ -230,6 +230,7 @@ export const useFormDraftSaver = (
   const createProcess = useCreateProcess()
   const updateProcess = useUpdateProcess()
   const skipNextSaveRef = useRef(false)
+  const [draftLimitReached, setDraftLimitReached] = useState(false)
 
   const isCreating = createProcess.isPending
   const isUpdating = updateProcess.isPending
@@ -239,37 +240,66 @@ export const useFormDraftSaver = (
     skipNextSaveRef.current = skip
   }
 
-  const saveDraft = useCallback(async () => {
-    if (!isDirty || skipNextSaveRef.current) return 'skipped'
+  const saveDraft = useCallback(
+    async (isAutoSave = true) => {
+      if (!isDirty || skipNextSaveRef.current) return 'skipped'
+      // Prevent repeated auto-save attempts once the draft limit is reached
+      if (isAutoSave && draftLimitReached) return 'limit-reached'
 
-    try {
-      const form = getValues()
-      if (draftId) {
-        await updateProcess.mutateAsync({
-          processId: draftId,
-          body: { metadata: form, orgAddress: ensure0x(account?.address) },
-        })
-      } else {
-        const draftProcessId = await createProcess.mutateAsync({
-          metadata: form,
-          orgAddress: ensure0x(account?.address),
-        })
-        storeDraftId(draftProcessId)
+      try {
+        const form = getValues()
+        if (draftId) {
+          await updateProcess.mutateAsync({
+            processId: draftId,
+            body: { metadata: form, orgAddress: ensure0x(account?.address) },
+          })
+        } else {
+          const draftProcessId = await createProcess.mutateAsync({
+            metadata: form,
+            orgAddress: ensure0x(account?.address),
+          })
+          storeDraftId(draftProcessId)
+        }
+        saveCooldown?.(saveTimeoutMs)
+        setDraftLimitReached(false)
+        return 'saved'
+      } catch (e) {
+        // Check if it's a draft limit error
+        if (e instanceof ApiError && e.apiError?.code === ErrorCode.DraftLimitReached) {
+          setDraftLimitReached(true)
+          // Silently fail for auto-save, throw for manual save
+          if (isAutoSave) {
+            return 'limit-reached'
+          }
+          throw e
+        }
+        // For other errors, only log in auto-save mode
+        if (isAutoSave) {
+          console.error('Failed to save draft:', e)
+          return 'error'
+        }
+        throw e
       }
-      saveCooldown?.(saveTimeoutMs)
-      return 'saved'
-    } catch (e) {
-      console.error('Failed to save draft:', e)
-      throw e
-    }
-  }, [isDirty, getValues, draftId, account?.address, updateProcess, createProcess, storeDraftId, saveCooldown])
+    },
+    [
+      isDirty,
+      draftLimitReached,
+      getValues,
+      draftId,
+      account?.address,
+      updateProcess,
+      createProcess,
+      storeDraftId,
+      saveCooldown,
+    ]
+  )
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
       if (!isDirty) return
       e.preventDefault()
       e.returnValue = ''
-      saveDraft()
+      saveDraft(true)
     }
     window.addEventListener('beforeunload', handleBeforeUnload)
     return () => window.removeEventListener('beforeunload', handleBeforeUnload)
@@ -277,7 +307,7 @@ export const useFormDraftSaver = (
 
   useEffect(() => {
     const handleFocusOut = () => {
-      saveDraft()
+      saveDraft(true)
     }
     window.addEventListener('focusout', handleFocusOut)
     return () => window.removeEventListener('focusout', handleFocusOut)
@@ -285,12 +315,12 @@ export const useFormDraftSaver = (
 
   useEffect(() => {
     const id = setInterval(() => {
-      saveDraft()
+      saveDraft(true)
     }, saveTimeoutMs)
     return () => clearInterval(id)
   }, [saveDraft])
 
-  return { saveDraft, isSaving, skipSave }
+  return { saveDraft, isSaving, skipSave, draftLimitReached }
 }
 
 const LiveStreamingInput = () => {
@@ -675,7 +705,8 @@ export const ProcessCreate = () => {
     storeDraftId,
     saveCooldown
   )
-  const { data: formDraft, isSuccess } = useDraft(effectiveDraftId)
+  const { permission } = useSubscription()
+  const { data: formDraft } = useDraft(effectiveDraftId)
 
   // Show sidebar by default on desktop
   useEffect(() => {
@@ -705,17 +736,50 @@ export const ProcessCreate = () => {
     })
   }
 
+  const showDraftSaveError = (error: unknown) => {
+    const limit = permission(SubscriptionPermission.Drafts)
+    let description = error instanceof Error ? error.message : String(error)
+
+    if (error instanceof ApiError && error.apiError?.code === ErrorCode.DraftLimitReached) {
+      description = t('process.create.limit_reached.message', {
+        defaultValue:
+          "You've reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
+        count: limit,
+      })
+    }
+
+    toast({
+      title: t('process.create.save_draft_error.title', { defaultValue: 'Error saving draft' }),
+      description,
+      status: 'error',
+      duration: 10000,
+    })
+  }
+
   const handleSaveAndLeave = async () => {
     try {
-      await saveDraft()
-      proceed()
+      const result = await saveDraft(false)
+      // Only proceed if save was successful
+      if (result === 'saved') {
+        proceed()
+      }
     } catch (error) {
-      toast({
-        title: t('process.create.save_draft_error.title', { defaultValue: 'Error saving draft' }),
-        description: error instanceof Error ? error.message : String(error),
-        status: 'error',
-        duration: 3000,
-      })
+      showDraftSaveError(error)
+    }
+  }
+
+  const handleManualSave = async () => {
+    try {
+      const result = await saveDraft(false)
+      if (result === 'saved') {
+        toast({
+          title: t('process.create.save_draft_success', { defaultValue: 'Draft saved' }),
+          status: 'success',
+          duration: 3000,
+        })
+      }
+    } catch (error) {
+      showDraftSaveError(error)
     }
   }
 
@@ -814,9 +878,16 @@ export const ProcessCreate = () => {
 
       methods.reset(defaultProcessValues)
 
-      await deleteDraft.mutateAsync(effectiveDraftId)
-      localStorage.removeItem('draft-id')
-      navigate(generatePath(Routes.dashboard.process, { id: electionId }))
+      const targetPath = electionId
+        ? generatePath(Routes.dashboard.process, { id: electionId })
+        : Routes.dashboard.processes.all
+
+      if (effectiveDraftId) {
+        await deleteDraft.mutateAsync({ draftId: effectiveDraftId, silent: true })
+        localStorage.removeItem('draft-id')
+      }
+
+      navigate(targetPath)
     } catch (error) {
       console.error('Error creating election:', error)
 
@@ -892,7 +963,13 @@ export const ProcessCreate = () => {
               <Button type='submit' colorScheme='black' alignSelf='flex-end' isLoading={methods.formState.isSubmitting}>
                 <Trans i18nKey='process.create.action.publish'>Publish</Trans>
               </Button>
-              <Button type='button' colorScheme='black' variant='outline' onClick={saveDraft} isLoading={isSaving}>
+              <Button
+                type='button'
+                colorScheme='black'
+                variant='outline'
+                onClick={handleManualSave}
+                isLoading={isSaving}
+              >
                 <Trans i18nKey='process.create.action.save_draft'>Save</Trans>
               </Button>
             </ButtonGroup>

@@ -52,6 +52,7 @@ export enum ErrorCode {
   UserNotAuthorized = 40001,
   UserNotVerified = 40014,
   UserAlreadyVerified = 40015,
+  DraftLimitReached = 40031,
 }
 
 interface IApiError {
