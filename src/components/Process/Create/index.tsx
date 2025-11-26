@@ -57,7 +57,7 @@ import {
 } from 'react-router-dom'
 import { useAnalytics } from '~components/AnalyticsProvider'
 import { useSubscription } from '~components/Auth/Subscription'
-import { ApiEndpoints, ApiError } from '~components/Auth/api'
+import { ApiEndpoints } from '~components/Auth/api'
 import { useAuth } from '~components/Auth/useAuth'
 import Editor from '~components/Editor'
 import { Web3Address } from '~components/Process/Census/Web3'
@@ -103,7 +103,6 @@ type UpdateProcessRequest = {
 }
 
 export const saveTimeoutMs = 30000
-export const saveDraftErrorToastId = 'draft-save-error'
 
 export const isAccountData = (account: AccountData | ArchivedAccountData): account is AccountData =>
   'electionIndex' in account
@@ -228,10 +227,6 @@ export const useFormDraftSaver = (
   saveCooldown?: (ms: number) => void
 ) => {
   const { account } = useClient()
-  const { t } = useTranslation()
-  const { permission } = useSubscription()
-  const limit = permission(SubscriptionPermission.Drafts)
-  const toast = useToast()
   const createProcess = useCreateProcess()
   const updateProcess = useUpdateProcess()
   const skipNextSaveRef = useRef(false)
@@ -264,24 +259,7 @@ export const useFormDraftSaver = (
       saveCooldown?.(saveTimeoutMs)
       return 'saved'
     } catch (e) {
-      if (e instanceof ApiError && e.apiError?.code === 40031) {
-        if (!toast.isActive(saveDraftErrorToastId)) {
-          toast({
-            id: saveDraftErrorToastId,
-            title: t('process.create.save_draft_error.title', {
-              defaultValue: 'Error saving draft',
-            }),
-            description: t('process.create.limit_reached.message', {
-              defaultValue:
-                'You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
-              count: limit,
-            }),
-            status: 'error',
-            duration: 10000,
-            isClosable: true,
-          })
-        }
-      }
+      console.error('Failed to save draft:', e)
       throw e
     }
   }, [isDirty, getValues, draftId, account?.address, updateProcess, createProcess, storeDraftId, saveCooldown])
