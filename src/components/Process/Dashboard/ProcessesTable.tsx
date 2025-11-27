@@ -16,21 +16,17 @@ import {
   Th,
   Thead,
   Tr,
-  useToast,
 } from '@chakra-ui/react'
 import { ElectionStatusBadge, QuestionsTypeBadge } from '@vocdoni/chakra-components'
 import { ElectionProvider, useElection } from '@vocdoni/react-providers'
 import { ElectionStatus, ensure0x, InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCopy, LuEllipsisVertical, LuExternalLink, LuInfo, LuSearch } from 'react-icons/lu'
-import { createSearchParams, generatePath, Link as RouterLink, useNavigate } from 'react-router-dom'
-import { useSubscription } from '~components/Auth/Subscription'
-import { SubscriptionPermission } from '~constants'
+import { generatePath, Link as RouterLink } from 'react-router-dom'
 import { useDateFns } from '~i18n/use-date-fns'
 import RoutedPaginatedTableFooter from '~shared/Pagination/PaginatedTableFooter'
 import { Routes } from '~src/router/routes'
-import { useCreateProcess } from '../Create'
-import { defaultProcessValues } from '../Create/common'
+import { useCloneAsDraft } from './use-clone-as-draft'
 
 type Election = PublishedElection | InvalidElection
 
@@ -124,77 +120,10 @@ const ProcessRow = () => {
 }
 
 const ProcessContextMenu = () => {
-  const { t } = useTranslation()
-  const navigate = useNavigate()
-  const toast = useToast()
   const { election, client } = useElection()
-  const createProcess = useCreateProcess()
-  const { permission } = useSubscription()
-  const limit = permission(SubscriptionPermission.Drafts)
+  const { cloneAsDraft } = useCloneAsDraft()
 
   if (!election || election instanceof InvalidElection) return null
-
-  const cloneAsDraft = async () => {
-    const extendedInfo = election.questions.some((question) =>
-      question.choices.some(
-        ({ meta }) => meta && ('description' in meta || 'image' in meta) && (meta.description || meta.image?.default)
-      )
-    )
-
-    const metadata = {
-      ...defaultProcessValues,
-      title: election.title.default,
-      description: election.description.default,
-      extendedInfo,
-      questions: election.questions.map((question) => {
-        return {
-          title: question.title.default,
-          description: question.description.default,
-          options: question.choices.map((option) => ({
-            option: option.title.default,
-            description: option.meta?.description,
-            image: option.meta?.image?.default,
-          })),
-        }
-      }),
-    }
-
-    try {
-      const clonedDraftId = await createProcess.mutateAsync({
-        metadata,
-        orgAddress: ensure0x(election.organizationId),
-      })
-
-      toast({
-        title: t('drafts.cloned_draft', {
-          defaultValue: 'Draft cloned successfully',
-        }),
-        status: 'success',
-        duration: 3000,
-        isClosable: true,
-      })
-
-      navigate(
-        {
-          pathname: generatePath(Routes.processes.create, { page: 1 }),
-          search: createSearchParams({ draftId: clonedDraftId }).toString(),
-        },
-        { replace: true }
-      )
-    } catch (error) {
-      toast({
-        title: t('drafts.cloned_draft_error', { defaultValue: 'Error cloning draft' }),
-        description: t('process.create.limit_reached.message', {
-          defaultValue:
-            'You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.',
-          count: limit,
-        }),
-        status: 'error',
-        duration: 10000,
-        isClosable: true,
-      })
-    }
-  }
 
   return (
     <Menu>
