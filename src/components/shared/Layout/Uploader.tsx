@@ -82,7 +82,8 @@ export const AvatarUploader = (props: FormControlProps) => {
     onDrop: onUpload,
     multiple: false,
     accept: {
-      'image/png': ['.png', '.jpg', '.jpeg'],
+      'image/png': ['.png'],
+      'image/jpeg': ['.jpg', '.jpeg'],
     },
   })
 
@@ -173,7 +174,8 @@ export const ImageUploader = ({ name, borderTopRadius, w = 'full', h = '150px' }
     onDrop: onUpload,
     multiple: false,
     accept: {
-      'image/*': ['.png', '.jpg', '.jpeg'],
+      'image/png': ['.png'],
+      'image/jpeg': ['.jpg', '.jpeg'],
     },
   })
 
