@@ -1,5 +1,7 @@
 import { Box, Divider, Flex, Text, VStack } from '@chakra-ui/react'
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
+import { usePlanTranslations, usePlans } from './Plans'
 
 type OrderSummaryProps = {
   checkout: any
@@ -7,6 +9,8 @@ type OrderSummaryProps = {
 
 export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
   const { t } = useTranslation()
+  const { data: plans } = usePlans()
+  const planTranslations = usePlanTranslations()
 
   // Extract data from checkout
   const item = checkout.lineItems?.[0]
@@ -16,6 +20,19 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
   const discountAmounts = Array.isArray(checkout.discountAmounts) ? checkout.discountAmounts : []
   const [appliedDiscount] = discountAmounts
   const discountAmount = appliedDiscount?.amount
+  const planTitleByName = useMemo(() => {
+    if (!plans || plans.length === 0) return {}
+    return plans.reduce<Record<string, string>>((acc, plan) => {
+      const normalizedPlanName = plan.name?.trim().toLowerCase()
+      if (normalizedPlanName) {
+        acc[normalizedPlanName] = planTranslations[plan.id]?.title || plan.name
+      }
+      return acc
+    }, {})
+  }, [plans, planTranslations])
+  const normalizedItemName = item?.name?.trim().toLowerCase()
+  const translatedItemName =
+    (normalizedItemName && planTitleByName[normalizedItemName]) || item?.name || item?.description
 
   // Get billing period (monthly/yearly)
   const billingInterval = checkout.recurring.interval || 'month'
@@ -35,7 +52,7 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
         {/* Plan Name and Price/Trial */}
         <Flex justify='space-between' align='flex-start'>
           <Box>
-            <Text fontWeight='medium'>{item?.name || item?.description}</Text>
+            <Text fontWeight='medium'>{translatedItemName}</Text>
           </Box>
           <Box textAlign='right'>
             <Text>
