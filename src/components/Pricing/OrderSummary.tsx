@@ -13,6 +13,9 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
   const dueNext = checkout.recurring.dueNext
   const trial = checkout.recurring.trial
   const hasTrial = trial && trial.trialPeriodDays > 0
+  const discountAmounts = Array.isArray(checkout.discountAmounts) ? checkout.discountAmounts : []
+  const [appliedDiscount] = discountAmounts
+  const discountAmount = appliedDiscount?.amount
 
   // Get billing period (monthly/yearly)
   const billingInterval = checkout.recurring.interval || 'month'
@@ -73,10 +76,10 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
         )}
 
         {/* Discount */}
-        {dueNext.discount && dueNext.discount.minorUnitsAmount > 0 && (
+        {discountAmount && (
           <Flex justify='space-between' color='green.500'>
             <Text>{t('discount', { defaultValue: 'Discount' })}</Text>
-            <Text>-{dueNext.discount.amount}</Text>
+            <Text>-{discountAmount}</Text>
           </Flex>
         )}
 
