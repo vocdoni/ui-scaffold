@@ -18,8 +18,6 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
   const trial = checkout.recurring.trial
   const hasTrial = trial && trial.trialPeriodDays > 0
   const discountAmounts = Array.isArray(checkout.discountAmounts) ? checkout.discountAmounts : []
-  const [appliedDiscount] = discountAmounts
-  const discountAmount = appliedDiscount?.amount
   const planTitleByName = useMemo(() => {
     if (!plans || plans.length === 0) return {}
     return plans.reduce<Record<string, string>>((acc, plan) => {
@@ -93,12 +91,17 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
         )}
 
         {/* Discount */}
-        {discountAmount && (
-          <Flex justify='space-between' color='green.500'>
-            <Text>{t('discount', { defaultValue: 'Discount' })}</Text>
-            <Text>-{discountAmount}</Text>
-          </Flex>
-        )}
+        {discountAmounts &&
+          discountAmounts.length > 0 &&
+          discountAmounts.map((discount, index) => {
+            if (!discount || !discount.amount || discount.amount === 0) return null
+            return (
+              <Flex key={index} justify='space-between' color='green.500'>
+                <Text>{t('discount', { defaultValue: 'Discount' })}</Text>
+                <Text>-{discount.amount}</Text>
+              </Flex>
+            )
+          })}
 
         <Divider />
 
