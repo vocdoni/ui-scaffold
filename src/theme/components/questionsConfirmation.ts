@@ -7,6 +7,7 @@ const baseStyle = definePartsStyle({
   description: {
     color: 'texts.subtle',
     fontSize: 'sm',
+    whiteSpace: 'pre-line',
   },
 })
 

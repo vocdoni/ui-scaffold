@@ -63,11 +63,11 @@
   "cc": {
     "actions": {
       "cancel": "Cancelar el proceso de inmediato, sin permitir nuevos votos ni contabilizar los resultados (precaución: no se puede revertir).",
-      "cancel_description": "Cancelando «{{ election.title.default }}»...\nAtención: esta acción es irreversible y anulará todos los votos emitidos.",
+      "cancel_description": "Cancelando «{{ election.title.default }}»...\n\nAtención: esta acción es irreversible y anulará todos los votos emitidos.",
       "continue": "Reanudar el proceso de inmediato, en caso de que haya sido pausado.",
       "continue_description": "Reanudando el proceso de votación «{{ election.title.default }}»...",
       "end": "Finalizar el proceso de inmediato, impidiendo la emisión de nuevos votos y mostrando los resultados de la votación (precaución: no se puede revertir).",
-      "end_description": "Finalizando el proceso de votación «{{ election.title.default }}»...\nAtención: esta acción es irreversible y los electores ya no podrán votar.",
+      "end_description": "Finalizando el proceso de votación «{{ election.title.default }}»...\n\nAtención: esta acción es irreversible y los electores ya no podrán votar.",
       "error_title": "Se ha producido un error al ejecutar la transacción",
       "pause": "Pausar temporalmente el proceso de votación, hasta que se reanude manualmente. Mientras esté en pausa, los electores no podrán emitir su voto.",
       "pause_description": "Pausando el proceso de votación «{{ election.title.default }}»...",
@@ -76,7 +76,11 @@
     "confirm": {
       "cancel": "Cancelar",
       "cancel_button": "Cancelar",
+      "cancel_process_button": "Cancelar voto",
+      "cancel_process_title": "Cancelar voto",
       "confirm": "Confirmar voto",
+      "end_process_button": "Finalizar votación",
+      "end_process_title": "Finalizar votación",
       "title": "Confirmar"
     },
     "empty": "Aparentemente este proceso no tiene preguntas",

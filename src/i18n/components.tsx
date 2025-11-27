@@ -14,6 +14,10 @@ export const translations = (t: TFunction<string, string>) => ({
     waiting_title: t('cc.actions.waiting_title').toString(),
   },
   confirm: {
+    end_process_title: t('cc.confirm.end_process_title').toString(),
+    end_process_button: t('cc.confirm.end_process_button').toString(),
+    cancel_process_title: t('cc.confirm.cancel_process_title').toString(),
+    cancel_process_button: t('cc.confirm.cancel_process_button').toString(),
     title: t('cc.confirm.title').toString(),
     cancel: t('cc.confirm.cancel').toString(),
     confirm: t('cc.confirm.confirm').toString(),
