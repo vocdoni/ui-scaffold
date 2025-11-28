@@ -1,5 +1,5 @@
 import { Box, Divider, Flex, Text, VStack } from '@chakra-ui/react'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { usePlanTranslations, usePlans } from './Plans'
 
@@ -7,10 +7,46 @@ type OrderSummaryProps = {
   checkout: any
 }
 
-export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
-  const { t } = useTranslation()
+type NormalizeFn = (value?: string | null) => string | undefined
+
+type TranslateFn = (rawName?: string | null, fallback?: string | null) => string | undefined
+
+const normalizeName: NormalizeFn = (value) => value?.trim().toLowerCase() || undefined
+
+export const usePlanNameTranslator = () => {
   const { data: plans } = usePlans()
   const planTranslations = usePlanTranslations()
+
+  const planTitleByName = useMemo(() => {
+    if (!plans?.length) return {}
+
+    return plans.reduce<Record<string, string>>((acc, plan) => {
+      const normalizedPlanName = normalizeName(plan.name)
+      if (normalizedPlanName) {
+        acc[normalizedPlanName] = planTranslations[plan.id]?.title || plan.name
+      }
+      return acc
+    }, {})
+  }, [plans, planTranslations])
+
+  const translatePlanName = useCallback<TranslateFn>(
+    (rawName, fallback) => {
+      const normalizedName = normalizeName(rawName)
+      if (normalizedName && planTitleByName[normalizedName]) {
+        return planTitleByName[normalizedName]
+      }
+      if (fallback) return fallback
+      return rawName ?? undefined
+    },
+    [planTitleByName]
+  )
+
+  return translatePlanName
+}
+
+export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
+  const { t } = useTranslation()
+  const translatePlanName = usePlanNameTranslator()
 
   // Extract data from checkout
   const item = checkout.lineItems?.[0]
@@ -18,19 +54,7 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
   const trial = checkout.recurring.trial
   const hasTrial = trial && trial.trialPeriodDays > 0
   const discountAmounts = Array.isArray(checkout.discountAmounts) ? checkout.discountAmounts : []
-  const planTitleByName = useMemo(() => {
-    if (!plans || plans.length === 0) return {}
-    return plans.reduce<Record<string, string>>((acc, plan) => {
-      const normalizedPlanName = plan.name?.trim().toLowerCase()
-      if (normalizedPlanName) {
-        acc[normalizedPlanName] = planTranslations[plan.id]?.title || plan.name
-      }
-      return acc
-    }, {})
-  }, [plans, planTranslations])
-  const normalizedItemName = item?.name?.trim().toLowerCase()
-  const translatedItemName =
-    (normalizedItemName && planTitleByName[normalizedItemName]) || item?.name || item?.description
+  const translatedItemName = translatePlanName(item?.name, item?.name || item?.description)
 
   // Get billing period (monthly/yearly)
   const billingInterval = checkout.recurring.interval || 'month'
@@ -93,10 +117,10 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
         {/* Discount */}
         {discountAmounts &&
           discountAmounts.length > 0 &&
-          discountAmounts.map((discount, index) => {
-            if (!discount || !discount.amount || discount.amount === 0) return null
+          discountAmounts.map((discount) => {
+            if (!discount || !discount.amount || parseFloat(discount.amount) === 0) return null
             return (
-              <Flex key={index} justify='space-between' color='green.500'>
+              <Flex key={discount.displayName} justify='space-between' color='green.500'>
                 <Text>{t('discount', { defaultValue: 'Discount' })}</Text>
                 <Text>-{discount.amount}</Text>
               </Flex>
