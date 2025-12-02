@@ -46,13 +46,10 @@ const Footer = () => {
             <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io' isExternal>
               Vocdoni
             </Link>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/about' whiteSpace='nowrap' isExternal>
-              {t('footer.about_us')}
-            </Link>
             <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/contact' isExternal>
               {t('footer.contact')}
             </Link>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/api' isExternal>
+            <Link fontWeight='bold' variant='footer' href='https://developer.vocdoni.io/sdk' isExternal>
               SDK
             </Link>
             <Link fontWeight='bold' variant='footer' href='https://developer.vocdoni.io' whiteSpace='nowrap' isExternal>
