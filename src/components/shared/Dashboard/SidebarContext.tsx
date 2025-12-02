@@ -44,4 +44,3 @@ export const useSidebarVisibility = () => {
   }
   return context
 }
-
