@@ -17,12 +17,7 @@ import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuSettings, LuX } from 'react-icons/lu'
 import { CensusTypes } from '~components/Process/Census/CensusType'
-import {
-  Sidebar,
-  SidebarContents,
-  SidebarSubtitle,
-  SidebarTitle,
-} from '~components/shared/Dashboard/Contents'
+import { Sidebar, SidebarContents, SidebarSubtitle, SidebarTitle } from '~components/shared/Dashboard/Contents'
 import { useSidebarVisibility } from '~components/shared/Dashboard/SidebarContext'
 import { Process } from '../common'
 import { BasicConfig } from './BasicConfig'
