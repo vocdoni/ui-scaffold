@@ -20,25 +20,22 @@ import { CensusTypes } from '~components/Process/Census/CensusType'
 import {
   Sidebar,
   SidebarContents,
-  SidebarProps,
   SidebarSubtitle,
   SidebarTitle,
 } from '~components/shared/Dashboard/Contents'
+import { useSidebarVisibility } from '~components/shared/Dashboard/SidebarContext'
 import { Process } from '../common'
 import { BasicConfig } from './BasicConfig'
 import CensusCreation from './CensusCreation'
 import { ExtraConfig } from './ExtraConfig'
 
-type CreateSidebarProps = {
-  onClose?: () => void
-} & SidebarProps
-
-export const CreateSidebar = (props: CreateSidebarProps) => {
+export const CreateSidebar = () => {
   const { t } = useTranslation()
   const isMobile = useBreakpointValue({ base: true, md: false })
   const [showExtraCensusMethods, setShowExtraCensusMethods] = useLocalStorage('showExtraCensusMethods', false)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { setValue } = useFormContext<Process>()
+  const { showSidebar, closeSidebar } = useSidebarVisibility()
 
   const handleToggleExtraMethods = () => {
     if (showExtraCensusMethods) {
@@ -50,7 +47,7 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
   }
 
   return (
-    <Sidebar {...props}>
+    <Sidebar show={showSidebar}>
       <SidebarContents borderBottom='1px solid' borderColor='table.border'>
         <SidebarTitle>
           <Trans i18nKey='process_create.settings'>Settings</Trans>
@@ -64,7 +61,7 @@ export const CreateSidebar = (props: CreateSidebarProps) => {
             position='absolute'
             top={2}
             right={2}
-            onClick={() => props.onClose?.()}
+            onClick={closeSidebar}
           />
         )}
       </SidebarContents>
