@@ -1489,11 +1489,6 @@
     "voting": "Estamos procesando tu voto. Este proceso tardará unos segundos. No cierres ni actualices esta página.",
     "voting_method": {
       "unknown": "Desconocido",
-      "single_choice_multiquestion": "Elección simple con múltiples preguntas",
-      "multiple_choice":"Elección múltiple",
-      "approval": "Aprobación",
-      "quadratic": "Cuadrática",
-      "budget": "Asignación presupuestaria",
       "weighted_format": "{{base}} y votación ponderada"
     },
     "voting_type": "Método de votación"

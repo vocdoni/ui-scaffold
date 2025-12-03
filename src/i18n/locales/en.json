@@ -1465,11 +1465,6 @@
     "voting": "We are processing your vote. This process will take a few seconds. Please do not close or refresh this page.",
     "voting_method": {
       "unknown": "Unknown",
-      "single_choice_multiquestion": "Single choice with multiple questions",
-      "multiple_choice":"Multiple choice",
-      "approval": "Approval",
-      "quadratic": "Quadratic",
-      "budget": "Budget allocation",
       "weighted_format": "{{base}} and weighted voting"
     },
     "voting_type": "Voting method"

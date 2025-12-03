@@ -1489,11 +1489,6 @@
     "voting": "Estem processant el teu vot. Aquest procés trigarà uns segons. Si us plau, no tanquis ni actualitzis aquesta pàgina.",
     "voting_method": {
       "unknown": "Desconegut",
-      "single_choice_multiquestion": "Elecció simple amb diverses preguntes",
-      "multiple_choice":"Elecció múltiple",
-      "approval": "Aprovació",
-      "quadratic": "Quadràtic",
-      "budget": "Assignació pressupostària",
       "weighted_format": "{{base}} i votació ponderada"
     },
     "voting_type": "Mètode de votació"
