@@ -1,5 +1,6 @@
 import { Box, Divider, Flex, Text, VStack } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
+import { usePlanNameTranslator } from './Plans'
 
 type OrderSummaryProps = {
   checkout: any
@@ -7,12 +8,15 @@ type OrderSummaryProps = {
 
 export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
   const { t } = useTranslation()
+  const translatePlanName = usePlanNameTranslator()
 
   // Extract data from checkout
   const item = checkout.lineItems?.[0]
   const dueNext = checkout.recurring.dueNext
   const trial = checkout.recurring.trial
   const hasTrial = trial && trial.trialPeriodDays > 0
+  const discountAmounts = Array.isArray(checkout.discountAmounts) ? checkout.discountAmounts : []
+  const translatedItemName = translatePlanName(item?.name, item?.name || item?.description)
 
   // Get billing period (monthly/yearly)
   const billingInterval = checkout.recurring.interval || 'month'
@@ -32,7 +36,7 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
         {/* Plan Name and Price/Trial */}
         <Flex justify='space-between' align='flex-start'>
           <Box>
-            <Text fontWeight='medium'>{item?.name || item?.description}</Text>
+            <Text fontWeight='medium'>{translatedItemName}</Text>
           </Box>
           <Box textAlign='right'>
             <Text>
@@ -73,12 +77,17 @@ export const OrderSummary = ({ checkout }: OrderSummaryProps) => {
         )}
 
         {/* Discount */}
-        {dueNext.discount && dueNext.discount.minorUnitsAmount > 0 && (
-          <Flex justify='space-between' color='green.500'>
-            <Text>{t('discount', { defaultValue: 'Discount' })}</Text>
-            <Text>-{dueNext.discount.amount}</Text>
-          </Flex>
-        )}
+        {discountAmounts &&
+          discountAmounts.length > 0 &&
+          discountAmounts.map((discount) => {
+            if (!discount || !discount.amount || parseFloat(discount.amount) === 0) return null
+            return (
+              <Flex key={discount.displayName} justify='space-between' color='green.500'>
+                <Text>{t('discount', { defaultValue: 'Discount' })}</Text>
+                <Text>-{discount.amount}</Text>
+              </Flex>
+            )
+          })}
 
         <Divider />
 

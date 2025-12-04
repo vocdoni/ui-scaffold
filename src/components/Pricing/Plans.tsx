@@ -1,6 +1,6 @@
 import { Alert, AlertDescription, Flex, Progress, SimpleGrid, Tab, TabList, Tabs, Tag } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import {
@@ -230,6 +230,43 @@ export const usePlanTranslations = (plans?: Plan[]) => {
   }
 
   return translations
+}
+
+type NormalizeFn = (value?: string | null) => string | undefined
+
+type TranslateFn = (rawName?: string | null, fallback?: string | null) => string | undefined
+
+const normalizeName: NormalizeFn = (value) => value?.trim().toLowerCase() || undefined
+
+export const usePlanNameTranslator = () => {
+  const { data: plans } = usePlans()
+  const planTranslations = usePlanTranslations()
+
+  const planTitleByName = useMemo(() => {
+    if (!plans?.length) return {}
+
+    return plans.reduce<Record<string, string>>((acc, plan) => {
+      const normalizedPlanName = normalizeName(plan.name)
+      if (normalizedPlanName) {
+        acc[normalizedPlanName] = planTranslations[plan.id]?.title || plan.name
+      }
+      return acc
+    }, {})
+  }, [plans, planTranslations])
+
+  const translatePlanName = useCallback<TranslateFn>(
+    (rawName, fallback) => {
+      const normalizedName = normalizeName(rawName)
+      if (normalizedName && planTitleByName[normalizedName]) {
+        return planTitleByName[normalizedName]
+      }
+      if (fallback) return fallback
+      return rawName ?? undefined
+    },
+    [planTitleByName]
+  )
+
+  return translatePlanName
 }
 
 export const SubscriptionPlans = () => {
