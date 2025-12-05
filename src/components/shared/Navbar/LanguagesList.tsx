@@ -102,11 +102,10 @@ const LanguageOptionLabel = ({ value, label }, { context }) => {
 export const LanguageListDashboard = ({ ...props }) => {
   const { t, i18n } = useTranslation()
 
-  const languageOptions: LanguageOption[] = [
-    { value: 'en', label: t('language.english', { defaultValue: 'English' }) },
-    { value: 'ca', label: t('language.catalan', { defaultValue: 'Català' }) },
-    { value: 'es', label: t('language.spanish', { defaultValue: 'Castellano' }) },
-  ]
+  const languageOptions: LanguageOption[] = Object.entries(LanguagesSlice).map(([key, label]) => ({
+    value: key,
+    label: t(`language.${label.toLowerCase()}`, label),
+  }))
 
   const selectedLanguage = languageOptions.find((opt) => opt.value === i18n.language)
 

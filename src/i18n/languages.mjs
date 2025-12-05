@@ -12,6 +12,10 @@ export const LanguagesSlice = {
   ca: 'Catalan',
 }
 
+// t('language.english', 'English')
+// t('language.spanish', 'Spanish')
+// t('language.catalan', 'Catalan')
+
 const languages = Object.keys(LanguagesSlice)
 
 export default languages
