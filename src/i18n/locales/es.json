@@ -1282,11 +1282,11 @@
     "custom_subtitle": "Adaptado a tus necesidades",
     "custom_title": "Personalizado",
     "different_voting_methods": "Diferentes métodos de votación",
-    "essential_subtitle": "Perfecto para organizaciones medianas o grupos con necesidades básicas de votación.",
+    "essential_subtitle": "Para organizaciones con necesidades básicas de gobernanza",
     "essential_title": "Básico",
-    "free_subtitle": "Para organizaciones pequeñas o grupos comunitarios de hasta 50 miembros.",
+    "free_subtitle": "Ideal para empezar y para organizaciones pequeñas",
     "free_title": "Gratuito",
-    "premium_subtitle": "grandes organizaciones, empresas e instituciones que requieran una amplia personalización y soporte.",
+    "premium_subtitle": "Para organizaciones grandes",
     "premium_title": "Premium",
     "priority_support": "Soporte prioritario por correo electrónico (24h)",
     "ticket_support_48": "Soporte por correo electrónico (48h)",
@@ -1299,6 +1299,7 @@
     "yearly_processes_other": "{{ count }} procesos de votación anuales"
   },
   "pricing_card": {
+    "annual_free_plan": "Gratis para siempre",
     "annual_savings": "Ahorra {{ savings }}/año con anual",
     "annual_total_cost": "{{ price }} facturado anualmente",
     "contact_sales": "<0>Contacta con nuestros comerciales</0> <1>o</1>",
