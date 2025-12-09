@@ -38,6 +38,7 @@ const GoogleAuth = () => {
     <Button
       variant={'outline'}
       isLoading={isPending}
+      shouldWrapChildren
       onClick={() => {
         const wallet = saasOAuthWallet({
           id: 'google',

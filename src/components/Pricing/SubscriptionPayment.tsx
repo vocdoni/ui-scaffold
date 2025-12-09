@@ -164,6 +164,7 @@ const CheckoutForm = ({ onComplete, sessionId }: CheckoutFormProps) => {
             w='full'
             mt={6}
             isLoading={isSubmitting}
+            shouldWrapChildren
             isDisabled={checkoutState.type !== 'success'}
           >
             {t('subscribe', { defaultValue: 'Subscribe' })}

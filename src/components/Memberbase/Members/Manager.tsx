@@ -204,7 +204,13 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
               <Button variant='outline' colorScheme='black' onClick={handleClose}>
                 {t('memberbase.form.cancel', { defaultValue: 'Cancel' })}
               </Button>
-              <Button type='submit' isLoading={addMember.isPending} colorScheme='black' form='member-form'>
+              <Button
+                type='submit'
+                isLoading={addMember.isPending}
+                shouldWrapChildren
+                colorScheme='black'
+                form='member-form'
+              >
                 {t('memberbase.form.save', { defaultValue: 'Save Changes' })}
               </Button>
             </Flex>

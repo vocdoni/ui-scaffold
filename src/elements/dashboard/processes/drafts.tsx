@@ -212,6 +212,7 @@ const DraftsContextMenu = ({ draft }: { draft: Draft }) => {
       <MenuButton
         as={IconButton}
         isLoading={deleteDraftMutation.isPending}
+        shouldWrapChildren
         icon={<Icon as={LuEllipsisVertical} />}
         variant='ghost'
         size='sm'

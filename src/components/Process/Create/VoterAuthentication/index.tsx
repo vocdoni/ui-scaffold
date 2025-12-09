@@ -320,6 +320,7 @@ export const VoterAuthentication = () => {
               onClick={handleNext}
               colorScheme='black'
               isLoading={isLoading}
+              shouldWrapChildren
               isDisabled={activeTabIndex === 2 ? hasNoCredentialsSelected : false}
             >
               {activeTabIndex === 2 ? t('common.confirm', 'Confirm') : t('common.next', 'Next')}

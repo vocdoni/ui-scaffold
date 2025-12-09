@@ -80,6 +80,7 @@ export const ModalForm = ({ isOpen, onClose, title, subtitle, children, submitTe
               }}
               colorScheme='black'
               isLoading={isSubmitting}
+              shouldWrapChildren
             >
               {submitText || t('actions.save', { defaultValue: 'Save' })}
             </Button>

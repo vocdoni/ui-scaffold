@@ -410,7 +410,7 @@ const ChangeRoleForm = ({ user, onClose }: ChangeRoleFormProps) => {
           <Button variant='outline' onClick={onClose}>
             {t('role.update.cancel', { defaultValue: 'Cancel' })}
           </Button>
-          <Button isLoading={updateRole.isPending} type='submit' colorScheme='black'>
+          <Button isLoading={updateRole.isPending} shouldWrapChildren type='submit' colorScheme='black'>
             {t('role.update.save', {
               defaultValue: 'Update role',
             })}
@@ -490,7 +490,7 @@ const RemoveUserModal = ({ isOpen, onClose, user, ...props }: ActiveUserModalPro
         <Button variant='outline' onClick={onClose}>
           {t('team.remove_member.cancel', { defaultValue: 'Cancel' })}
         </Button>
-        <Button isLoading={removeUser.isPending} colorScheme='red' onClick={removeUserHandler}>
+        <Button isLoading={removeUser.isPending} shouldWrapChildren colorScheme='red' onClick={removeUserHandler}>
           {t('team.remove_member.confirm', { defaultValue: 'Remove' })}
         </Button>
       </Flex>
@@ -538,7 +538,12 @@ const CancelInvitationModal = ({ isOpen, onClose, user, ...props }: PendingUserM
         <Button variant='outline' onClick={onClose}>
           {t('team.cancel_invitation.cancel', { defaultValue: 'Cancel' })}
         </Button>
-        <Button isLoading={cancelInvitation.isPending} colorScheme='red' onClick={cancelInvitationHandler}>
+        <Button
+          isLoading={cancelInvitation.isPending}
+          shouldWrapChildren
+          colorScheme='red'
+          onClick={cancelInvitationHandler}
+        >
           {t('team.cancel_invitation.confirm', { defaultValue: 'Cancel invitation' })}
         </Button>
       </Flex>
@@ -639,6 +644,7 @@ const UserActions = ({ user }: UserActionsProps) => {
         <MenuButton
           as={IconButton}
           isLoading={isLoading}
+          shouldWrapChildren
           icon={<Icon as={LuEllipsis} />}
           ml='auto'
           variant='ghost'

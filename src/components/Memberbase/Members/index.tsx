@@ -656,6 +656,7 @@ const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModa
         </Button>
         <Button
           isLoading={deleteMutation.isPending || isFetchingAll}
+          shouldWrapChildren
           colorScheme='red'
           onClick={handleDelete}
           disabled={isFetchingAll || selectedMembers.length === 0}

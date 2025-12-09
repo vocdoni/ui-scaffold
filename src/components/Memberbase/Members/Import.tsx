@@ -439,7 +439,13 @@ const ImportDataPreview = ({ columnMapping, setColumnMapping }: ImportDataPrevie
         <Button type='button' variant='outline' colorScheme='black' onClick={resetImport}>
           {t('memberbase.importer.reset', { defaultValue: 'Reset Import' })}
         </Button>
-        <Button type='submit' colorScheme='black' form='import-members' isLoading={methods.formState.isSubmitting}>
+        <Button
+          type='submit'
+          colorScheme='black'
+          form='import-members'
+          isLoading={methods.formState.isSubmitting}
+          shouldWrapChildren
+        >
           {t('memberbase.importer.submit', { defaultValue: 'Import Data' })}
         </Button>
       </Flex>
