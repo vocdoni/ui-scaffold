@@ -1310,8 +1310,7 @@
     "custom_plan_or": "o",
     "free_trial": "{{ freeDays }} días gratis",
     "from": "<price>{{ price }}</price><time>/mes+IVA</time>",
-    "most_popular_plan": "Más popular",
-    "need_more_members": "¿Necesitas más miembros? <2>Contáctanos</2>"
+    "most_popular_plan": "Más popular"
   },
   "privacy_policy": "Política de privacidad",
   "process": {
