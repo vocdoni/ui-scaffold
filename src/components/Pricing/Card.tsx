@@ -193,10 +193,7 @@ const PricingCard = ({
       </CardBody>
       {(plan.id === PlanId.Premium || plan.id === PlanId.Essential) && (
         <Text size='xs' fontStyle='italic' textAlign='center'>
-          <Trans
-            i18nKey='pricing_card.free_trial'
-            values={{ freeDays: plan.freeTrialDays || 14 }}
-          >
+          <Trans i18nKey='pricing_card.free_trial' values={{ freeDays: plan.freeTrialDays || 14 }}>
             14-day free trial
           </Trans>
         </Text>
@@ -208,7 +205,13 @@ const PricingCard = ({
             <>
               <Flex gap={1} flexWrap='wrap' flexDir='column' w='full'>
                 <Trans i18nKey='pricing_card.contact_sales'>
-                  <ContactButton variant='link' fontWeight='extrabold' whiteSpace='unset' textAlign='center' color='#9CA3AF'>
+                  <ContactButton
+                    variant='link'
+                    fontWeight='extrabold'
+                    whiteSpace='unset'
+                    textAlign='center'
+                    color='#9CA3AF'
+                  >
                     Contact our sales team
                   </ContactButton>
                   <Text as='span' fontSize='sm' color='#9CA3AF' textAlign='center'>
@@ -252,9 +255,9 @@ const PricingCard = ({
                 {isCurrentPlan
                   ? t('current_plan', { defaultValue: 'Current Plan' })
                   : t('upgrade_plan', {
-                    defaultValue: 'Upgrade to {{plan}}',
-                    plan: translations[plan.id]?.title || plan.name,
-                  })}
+                      defaultValue: 'Upgrade to {{plan}}',
+                      plan: translations[plan.id]?.title || plan.name,
+                    })}
               </Button>
             )
           )}
