@@ -1284,11 +1284,11 @@
     "custom_subtitle": "Adaptat a les teves necessitats",
     "custom_title": "Personalitzat",
     "different_voting_methods": "Diferents mètodes de votació",
-    "essential_subtitle": "Organitzacions petites o mitjanes o grups comunitaris amb necessitats bàsiques de votació.",
+    "essential_subtitle": "Per a organitzacions amb necessitats de governança bàsiques",
     "essential_title": "Bàsic",
-    "free_subtitle": "Organitzacions petites o grups comunitaris amb necessitats bàsiques de votació.",
+    "free_subtitle": "Ideal per començar i per a organitzacions petites",
     "free_title": "Gratuït",
-    "premium_subtitle": "un volum més gran que requereix funcions més avançades.",
+    "premium_subtitle": "Per a organitzacions grans",
     "premium_title": "Prèmium",
     "priority_support": "Suport prioritari per correu electrònic (24h)",
     "ticket_support_48": "Suport per correu electrònic (48h)",
@@ -1301,6 +1301,7 @@
     "yearly_processes_other": "{{ count }} processos anuals"
   },
   "pricing_card": {
+    "annual_free_plan": "Gratuït per sempre",
     "annual_savings": "Estalvia {{ savings }}/any amb l'anual",
     "annual_total_cost": "{{ price }} facturats anualment",
     "contact_sales": "<0>Contacta amb els nostres comercials</0> <1>o</1>",

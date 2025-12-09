@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { useRef } from 'react'
+import { useRef, type ElementType, type ReactNode } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCircleCheckBig } from 'react-icons/lu'
@@ -40,7 +40,7 @@ type PricingCardProps = {
   title: string
   subtitle: string
   price: number
-  features: { icon: React.ElementType; text: string }[]
+  features: { icon: ElementType; content: ReactNode }[]
   isDisabled?: boolean
   isCurrentPlan: boolean
   width?: string
@@ -104,7 +104,14 @@ const PricingCard = ({
   )
 
   return (
-    <Card ref={container} variant={isCustomPlan ? 'custom-pricing-card' : 'pricing-card'}>
+    <Card
+      ref={container}
+      variant={isCustomPlan ? 'custom-pricing-card' : 'pricing-card'}
+      {...(popular && {
+        bg: '#FAFAFA',
+        boxShadow: 'lg',
+      })}
+    >
       <CardHeader>
         <Text>{title}</Text>
         <Text color='texts.subtle'>{subtitle}</Text>
@@ -130,22 +137,27 @@ const PricingCard = ({
           </Flex>
           <Box>
             {!isCustomPlan &&
-              price > 0 &&
-              (period === 'month' ? (
-                <Text fontSize='sm'>
-                  <Trans
-                    i18nKey='pricing_card.annual_savings'
-                    defaultValue='Save {{ savings }}/year with annual'
-                    values={{ savings: currency(plan.monthlyPrice * 12 - plan.yearlyPrice) }}
-                  />
-                </Text>
+              (price > 0 ? (
+                period === 'month' ? (
+                  <Text fontSize='sm'>
+                    <Trans
+                      i18nKey='pricing_card.annual_savings'
+                      defaultValue='Save {{ savings }}/year with annual'
+                      values={{ savings: currency(plan.monthlyPrice * 12 - plan.yearlyPrice) }}
+                    />
+                  </Text>
+                ) : (
+                  <Text fontSize='sm' color='texts.subtle'>
+                    <Trans
+                      i18nKey='pricing_card.annual_total_cost'
+                      defaults='{{ price }} billed annually'
+                      values={{ price: currency(plan.yearlyPrice) }}
+                    />
+                  </Text>
+                )
               ) : (
                 <Text fontSize='sm' color='texts.subtle'>
-                  <Trans
-                    i18nKey='pricing_card.annual_total_cost'
-                    defaults='{{ price }} billed annually'
-                    values={{ price: currency(plan.yearlyPrice) }}
-                  />
+                  <Trans i18nKey='pricing_card.annual_free_plan'>Free forever</Trans>
                 </Text>
               ))}
             <Divider />
@@ -170,9 +182,9 @@ const PricingCard = ({
           ) : (
             <UnorderedList spacing={3}>
               {features.map((feature, idx) => (
-                <ListItem key={idx}>
+                <ListItem key={idx} display='flex' alignItems='center'>
                   <ListIcon as={feature.icon} />
-                  {feature.text}
+                  {feature.content}
                 </ListItem>
               ))}
             </UnorderedList>
@@ -181,11 +193,11 @@ const PricingCard = ({
       </CardBody>
       {(plan.id === PlanId.Premium || plan.id === PlanId.Essential) && (
         <Text size='xs' fontStyle='italic' textAlign='center'>
-          <Trans i18nKey='pricing_card.need_more_members'>
-            Need more members?{' '}
-            <Link to={Routes.dashboard.settings.support} as={RouterLink}>
-              Contact us
-            </Link>
+          <Trans
+            i18nKey='pricing_card.free_trial'
+            values={{ freeDays: plan.freeTrialDays || 14 }}
+          >
+            14-day free trial
           </Trans>
         </Text>
       )}
@@ -196,10 +208,10 @@ const PricingCard = ({
             <>
               <Flex gap={1} flexWrap='wrap' flexDir='column' w='full'>
                 <Trans i18nKey='pricing_card.contact_sales'>
-                  <ContactButton variant='link' fontWeight='extrabold' whiteSpace='unset' textAlign='center'>
+                  <ContactButton variant='link' fontWeight='extrabold' whiteSpace='unset' textAlign='center' color='#9CA3AF'>
                     Contact our sales team
                   </ContactButton>
-                  <Text as='span' fontSize='sm' color='texts.subtle' textAlign='center'>
+                  <Text as='span' fontSize='sm' color='#9CA3AF' textAlign='center'>
                     or
                   </Text>
                 </Trans>
@@ -207,6 +219,9 @@ const PricingCard = ({
               <BookerModalButton
                 {...commonButtonProps}
                 aria-label={isCurrentPlan ? t('current_plan') : t('contact_us')}
+                bg='white'
+                color='gray.900'
+                _hover={{ bg: '#F3F4F6' }}
               >
                 {isCurrentPlan
                   ? t('current_plan', { defaultValue: 'Current Plan' })
@@ -237,9 +252,9 @@ const PricingCard = ({
                 {isCurrentPlan
                   ? t('current_plan', { defaultValue: 'Current Plan' })
                   : t('upgrade_plan', {
-                      defaultValue: 'Upgrade to {{plan}}',
-                      plan: translations[plan.id]?.title || plan.name,
-                    })}
+                    defaultValue: 'Upgrade to {{plan}}',
+                    plan: translations[plan.id]?.title || plan.name,
+                  })}
               </Button>
             )
           )}

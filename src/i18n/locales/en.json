@@ -1279,6 +1279,7 @@
     "yearly_processes_other": "{{ count }} votes per year¹"
   },
   "pricing_card": {
+    "annual_free_plan": "Free forever",
     "annual_savings": "Save {{ savings }}/year with annual",
     "annual_total_cost": "{{ price }} billed annually",
     "contact_sales": "<0>Contact our sales team</0> <1>or</1>",
