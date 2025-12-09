@@ -62,6 +62,7 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
           colorScheme='black'
           isDisabled={!code || (autoSubmit && isVerifyPending)}
           isLoading={isVerifyPending}
+          shouldWrapChildren
           onClick={verify}
           w='full'
         >
@@ -133,7 +134,7 @@ export const VerificationPending = ({ email, code }: { email: string; code?: str
       </Flex>
 
       {!code && (
-        <Button variant={'outline'} isLoading={isResendPending} onClick={resendMail} mt={6} w='full'>
+        <Button variant={'outline'} isLoading={isResendPending} shouldWrapChildren onClick={resendMail} mt={6} w='full'>
           <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
         </Button>
       )}

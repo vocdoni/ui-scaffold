@@ -231,6 +231,7 @@ const PricingCard = ({
                 }}
                 type={hasActiveSubscription ? 'button' : 'submit'}
                 isLoading={isPending}
+                shouldWrapChildren
                 aria-label={isCurrentPlan ? t('current_plan') : t('subscribe')}
               >
                 {isCurrentPlan

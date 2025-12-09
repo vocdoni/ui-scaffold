@@ -146,6 +146,7 @@ const EditOrganization = () => {
             <Button
               type='submit'
               isLoading={isPending}
+              shouldWrapChildren
               aria-label={t('actions.save', { defaultValue: 'Save' })}
               w='full'
             >

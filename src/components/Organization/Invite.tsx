@@ -82,7 +82,7 @@ const InviteForm = ({ onClose }: InviteFormProps) => {
           <Button onClick={onClose} colorScheme='gray' variant='outline'>
             <Trans i18nKey='cancel'>Cancel</Trans>
           </Button>
-          <Button colorScheme='black' type='submit' isLoading={mutation.isPending}>
+          <Button colorScheme='black' type='submit' isLoading={mutation.isPending} shouldWrapChildren>
             <Trans i18nKey='send_invitation'>Send invitation</Trans>
           </Button>
         </Flex>
@@ -118,6 +118,7 @@ export const InviteToTeamModal = (props: ButtonProps) => {
         }}
         {...props}
         isLoading={isLoading}
+        shouldWrapChildren
         loadingText={t('loading')}
       />
       <CallbackProvider success={() => onClose()}>

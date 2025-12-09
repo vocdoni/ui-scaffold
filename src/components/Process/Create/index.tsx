@@ -960,7 +960,13 @@ export const ProcessCreate = () => {
                 variant='outline'
                 onClick={() => setShowSidebar((prev) => !prev)}
               />
-              <Button type='submit' colorScheme='black' alignSelf='flex-end' isLoading={methods.formState.isSubmitting}>
+              <Button
+                type='submit'
+                colorScheme='black'
+                alignSelf='flex-end'
+                isLoading={methods.formState.isSubmitting}
+                shouldWrapChildren
+              >
                 <Trans i18nKey='process.create.action.publish'>Publish</Trans>
               </Button>
               <Button
@@ -969,6 +975,7 @@ export const ProcessCreate = () => {
                 variant='outline'
                 onClick={handleManualSave}
                 isLoading={isSaving}
+                shouldWrapChildren
               >
                 <Trans i18nKey='process.create.action.save_draft'>Save</Trans>
               </Button>

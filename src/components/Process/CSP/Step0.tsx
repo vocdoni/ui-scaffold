@@ -176,6 +176,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
             colorScheme='black'
             w='full'
             isLoading={auth.isPending}
+            shouldWrapChildren
             mt={2}
             aria-label={
               is2Factor

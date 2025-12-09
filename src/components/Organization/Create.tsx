@@ -162,6 +162,7 @@ export const OrganizationCreate = ({
           form='process-create-form'
           type='submit'
           isLoading={isPending}
+          shouldWrapChildren
           colorScheme='black'
           aria-label={t('organization.create_org', { defaultValue: 'Create organization' })}
         >

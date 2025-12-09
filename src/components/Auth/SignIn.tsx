@@ -138,7 +138,7 @@ const SignIn = ({ email: emailProp }: { email?: string }) => {
               </Link>
             </Flex>
           </Flex>
-          <Button type='submit' w='full' colorScheme='black' isLoading={isSubmitting}>
+          <Button type='submit' w='full' colorScheme='black' isLoading={isSubmitting} shouldWrapChildren>
             {t('signin')}
           </Button>
         </Box>

@@ -59,7 +59,7 @@ const SubscriptionPageContent = () => {
           </Text>
         </Flex>
         {!isFree && view === 'plans' && (
-          <Button onClick={() => handleChangeClick()} isLoading={isPending}>
+          <Button onClick={() => handleChangeClick()} isLoading={isPending} shouldWrapChildren>
             {t('billing_details', { defaultValue: 'Billing Details' })}
           </Button>
         )}

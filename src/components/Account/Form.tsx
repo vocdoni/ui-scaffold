@@ -107,6 +107,7 @@ const AccountForm = ({ profile }: { profile: User }) => {
             type='submit'
             size='lg'
             isLoading={isSubmitting || updateProfile.isPending}
+            shouldWrapChildren
             alignSelf={'start'}
             colorScheme='black'
           >

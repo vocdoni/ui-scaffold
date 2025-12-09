@@ -322,6 +322,7 @@ const GroupMembersTable = ({ groupId }: { groupId: string }) => {
           </Button>
           <Button
             isLoading={deleteGroupMembers.isPending}
+            shouldWrapChildren
             colorScheme='red'
             onClick={() => {
               onDeleteMember(selectedRows.map((row) => row.id))
@@ -611,6 +612,7 @@ const GroupsBoard = () => {
           alignSelf='center'
           onClick={() => fetchNextPage()}
           isLoading={isFetchingNextPage}
+          shouldWrapChildren
           colorScheme='black'
           variant='outline'
         >
