@@ -261,9 +261,9 @@ const PricingCard = ({
                 {isCurrentPlan
                   ? t('current_plan', { defaultValue: 'Current Plan' })
                   : t('upgrade_plan', {
-                    defaultValue: 'Upgrade to {{plan}}',
-                    plan: translations[plan.id]?.title || plan.name,
-                  })}
+                      defaultValue: 'Upgrade to {{plan}}',
+                      plan: translations[plan.id]?.title || plan.name,
+                    })}
               </Button>
             )
           )}
