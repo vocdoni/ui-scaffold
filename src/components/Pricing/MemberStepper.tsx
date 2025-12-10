@@ -68,7 +68,7 @@ export const MemberStepper = ({
         color='gray.800'
       />
 
-      <Text fontSize='sm' fontWeight='bold' color='gray.900' textAlign='center' mx={2}>
+      <Text fontSize='sm' textAlign='center' mx={2}>
         {label ? label(value) : value}
       </Text>
 
