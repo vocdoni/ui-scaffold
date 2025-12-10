@@ -112,12 +112,18 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
         cleanMember.phone = ''
         setHadPhone(true)
       }
-      methods.reset(cleanMember)
+      const stringifiedMember = Object.fromEntries(
+        Object.entries(cleanMember).map(([key, value]) => [
+          key,
+          value === undefined || value === null ? '' : value.toString(),
+        ])
+      )
+      methods.reset(stringifiedMember)
     }
   }, [member])
 
-  const onSubmit = (data: MemberFormData) => {
-    const { id, memberNumber, name, surname, email, phone, nationalId, birthDate } = data
+  const onSubmit = (data: Partial<Member>) => {
+    const { id, memberNumber, name, surname, email, phone, nationalId, birthDate, weight } = data
 
     const memberPayload: Partial<Member> = {
       id,
@@ -128,6 +134,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
       phone,
       nationalId,
       birthDate,
+      weight: weight ? weight.toString() : undefined,
     }
 
     addMember.mutate([memberPayload], {
