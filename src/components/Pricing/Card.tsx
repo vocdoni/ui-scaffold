@@ -107,14 +107,16 @@ const PricingCard = ({
     <Card
       ref={container}
       variant={isCustomPlan ? 'custom-pricing-card' : 'pricing-card'}
-      {...(popular && {
-        bg: '#FAFAFA',
-        boxShadow: 'lg',
+      {...(isCurrentPlan && {
+        bg: 'card.pricing.current.bg',
+        border: '2px solid',
+        borderColor: 'brand.500',
+        position: 'relative',
       })}
     >
       <CardHeader>
-        <Text>{title}</Text>
-        <Text color='texts.subtle'>{subtitle}</Text>
+        <Text color={isCurrentPlan ? 'card.pricing.current.color' : undefined}>{title}</Text>
+        <Text color={isCurrentPlan ? 'card.pricing.current.color' : 'texts.subtle'}>{subtitle}</Text>
       </CardHeader>
       <CardBody>
         <Flex direction='column' h='full' gap={4}>
@@ -129,7 +131,7 @@ const PricingCard = ({
                 values={{ price: currency(price) }}
                 components={{
                   price: <Text fontSize='3xl' fontWeight='extrabold' className='pricing-card-price' />,
-                  time: <Text size='sm' color='texts.subtle' />,
+                  time: <Text size='sm' color={isCurrentPlan ? 'card.pricing.current.color' : 'texts.subtle'} />,
                 }}
                 defaults='<price>{{ price }}</price>/<time>month</time>'
               />
@@ -147,7 +149,7 @@ const PricingCard = ({
                     />
                   </Text>
                 ) : (
-                  <Text fontSize='sm' color='texts.subtle'>
+                  <Text fontSize='sm' color={isCurrentPlan ? 'card.pricing.current.color' : 'texts.subtle'}>
                     <Trans
                       i18nKey='pricing_card.annual_total_cost'
                       defaults='{{ price }} billed annually'
@@ -156,7 +158,7 @@ const PricingCard = ({
                   </Text>
                 )
               ) : (
-                <Text fontSize='sm' color='texts.subtle'>
+                <Text fontSize='sm' color={isCurrentPlan ? 'card.pricing.current.color' : 'texts.subtle'}>
                   <Trans i18nKey='pricing_card.annual_free_plan'>Free forever</Trans>
                 </Text>
               ))}
@@ -235,6 +237,10 @@ const PricingCard = ({
             isDashboard && (
               <Button
                 {...commonButtonProps}
+                {...(isCurrentPlan && {
+                  border: 'none',
+                  leftIcon: <Icon as={LuCircleCheckBig} />,
+                })}
                 onClick={async () => {
                   if (hasActiveSubscription) {
                     try {
@@ -255,9 +261,9 @@ const PricingCard = ({
                 {isCurrentPlan
                   ? t('current_plan', { defaultValue: 'Current Plan' })
                   : t('upgrade_plan', {
-                      defaultValue: 'Upgrade to {{plan}}',
-                      plan: translations[plan.id]?.title || plan.name,
-                    })}
+                    defaultValue: 'Upgrade to {{plan}}',
+                    plan: translations[plan.id]?.title || plan.name,
+                  })}
               </Button>
             )
           )}
