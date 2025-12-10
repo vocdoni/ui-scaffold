@@ -10,7 +10,6 @@ import {
   Divider,
   Flex,
   Icon,
-  Link,
   ListIcon,
   ListItem,
   Text,
@@ -22,7 +21,7 @@ import { useRef, type ElementType, type ReactNode } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCircleCheckBig } from 'react-icons/lu'
-import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
 import ContactButton from '~components/shared/ContactLink'
 import { BookerModalButton } from '~components/shared/Dashboard/Booker'
@@ -114,7 +113,7 @@ const PricingCard = ({
         position: 'relative',
       })}
     >
-      <CardHeader>
+      <CardHeader minH='80px'>
         <Text color={isCurrentPlan ? 'card.pricing.current.color' : undefined}>{title}</Text>
         <Text color={isCurrentPlan ? 'card.pricing.current.color' : 'texts.subtle'}>{subtitle}</Text>
       </CardHeader>
