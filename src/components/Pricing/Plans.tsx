@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, Flex, Progress, SimpleGrid, Tab, TabList, Tabs, Tag, Text } from '@chakra-ui/react'
+import { Alert, AlertDescription, Flex, Progress, SimpleGrid, Tab, TabList, Tabs, Tag } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useCallback, useMemo } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -383,7 +383,7 @@ export const SubscriptionPlans = () => {
               </Tab>
             </TabList>
           </Tabs>
-          <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} spacing={6}>
+          <SimpleGrid columns={{ base: 1, lg: 2, xl: 3, '2xl': 4 }} spacing={6}>
             {cards.map((card, idx) => (
               <PricingCard key={idx} plan={plans[idx]} {...card} />
             ))}
