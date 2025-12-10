@@ -81,6 +81,7 @@ const VotingMethod = () => {
   const { election } = useElection()
 
   if (!election) return null
+  if (!(election instanceof PublishedElection)) return null
 
   const name = election.resultsType?.name
   const base =
