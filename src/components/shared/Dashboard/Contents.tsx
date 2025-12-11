@@ -101,3 +101,5 @@ export const SidebarTitle = (props: HeadingProps) => (
 export const SidebarSubtitle = (props: HeadingProps) => (
   <Heading as='h5' fontSize='sm' variant='sidebar-subtitle' {...props} />
 )
+
+export { DashboardCardHeader } from './CardHeader'
