@@ -1,10 +1,12 @@
-import { Box, chakra, Divider, Flex, HStack, Icon, Progress, Text, Tooltip, VStack } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, Box, Button, chakra, Divider, Flex, HStack, Icon, Link, Progress, Text, Tooltip, VStack } from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useTranslation } from 'react-i18next'
 import { LuInfo, LuMail, LuMessageSquare, LuUsers, LuVote } from 'react-icons/lu'
+import { generatePath, Link as ReactRouterLink } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
+import { Routes } from '~routes'
 import { paginatedElectionsQuery } from '~queries/organization'
 import { usePaginatedMembers } from '~queries/members'
 import { DashboardBox, DashboardCardHeader } from '~shared/Dashboard/Contents'
@@ -160,6 +162,11 @@ export const UsageLimits = () => {
     })
   }
 
+  // Check if any hard limit has been exceeded (not counting soft limits like 2FA)
+  const hasExceededLimit = usageMetrics.some(
+    (metric) => !metric.isSoftLimit && metric.max > 0 && metric.current >= metric.max
+  )
+
   return (
     <DashboardBox p={6} height='100%'>
       <VStack align='stretch' spacing={4}>
@@ -169,6 +176,48 @@ export const UsageLimits = () => {
             defaultValue: 'Track your current usage against your plan limits',
           })}
         />
+
+        {hasExceededLimit && (
+          <Alert
+            status='warning'
+            variant='left-accent'
+            borderRadius='lg'
+            py={3}
+            px={4}
+            bg='orange.50'
+            borderColor='orange.400'
+            _dark={{
+              bg: 'orange.900',
+              borderColor: 'orange.500',
+            }}
+          >
+            <AlertIcon color='orange.500' _dark={{ color: 'orange.400' }} />
+            <Flex flex='1' direction={{ base: 'column', md: 'row' }} align={{ base: 'flex-start', md: 'center' }} gap={3}>
+              <AlertDescription
+                fontSize='sm'
+                color='gray.800'
+                _dark={{ color: 'gray.100' }}
+                fontWeight='medium'
+                flex='1'
+              >
+                {t('dashboard.usage.limit_exceeded_message', {
+                  defaultValue: 'Your current plan has reached its limits. Upgrade now to continue working without restrictions.',
+                })}
+              </AlertDescription>
+              <Button
+                as={ReactRouterLink}
+                to={generatePath(Routes.dashboard.settings.subscription)}
+                size='sm'
+                colorScheme='orange'
+                variant='solid'
+                flexShrink={0}
+                fontWeight='semibold'
+              >
+                {t('dashboard.usage.upgrade_plan', { defaultValue: 'Upgrade Plan' })}
+              </Button>
+            </Flex>
+          </Alert>
+        )}
 
         <Divider />
 
