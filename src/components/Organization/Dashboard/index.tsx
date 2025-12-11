@@ -31,13 +31,15 @@ import { WhatsAppButton } from '~components/shared/Layout/WhatsappButton'
 import { PlanId } from '~constants'
 import { Routes } from '~routes'
 import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
-import { DashboardBox, Heading, SubHeading } from '~shared/Dashboard/Contents'
+import { DashboardBox, DashboardCardHeader, Heading, SubHeading } from '~shared/Dashboard/Contents'
 import InvertedAccordionIcon from '~shared/Layout/InvertedAccordionIcon'
 import { useProfile } from '~src/queries/account'
 import { CheckboxTypes, paginatedElectionsQuery, useOrganizationSetup } from '~src/queries/organization'
+import { UsageLimits } from './UsageLimits'
 
 const OrganizationDashboard = () => {
   const { t } = useTranslation()
+  const { organization } = useOrganization()
 
   return (
     <>
@@ -48,6 +50,16 @@ const OrganizationDashboard = () => {
         })}
       </SubHeading>
       <Tutorial />
+      <Flex flexDirection={{ base: 'column', lg: 'row' }} gap={6} mb={6} alignItems='stretch'>
+        <Box flex='1 1 60%'>
+          <UsageLimits />
+        </Box>
+        {organization && (
+          <Box flex='1 1 40%'>
+            <QuickActions />
+          </Box>
+        )}
+      </Flex>
       <OrganizationProcesses />
       <Setup />
     </>
@@ -63,14 +75,14 @@ const Tutorial = () => {
   const videoTutorialSrc = videoTutorials[language] ?? videoTutorials.en
 
   return (
-    <DashboardBox p={6} mb={12} display='flex' gap={10} position='relative' flexDirection='row'>
+    <DashboardBox p={6} mb={6} display='flex' gap={10} position='relative' flexDirection='row'>
       <Box flex='1 1 60%'>
-        <Text fontWeight='bold' mb={2} size='2xl'>
-          {t('dashboard.welcome.hello', {
+        <DashboardCardHeader
+          title={t('dashboard.welcome.hello', {
             name: profile?.firstName,
             defaultValue: 'Welcome to Vocdoni, {{name}}!',
           })}
-        </Text>
+        />
         {loading || isLoading ? (
           <Progress isIndeterminate mb={4} />
         ) : !subscription ? (
@@ -244,27 +256,19 @@ const Setup = () => {
 
 const OrganizationProcesses = () => {
   const { t } = useTranslation()
-  const { organization } = useOrganization()
 
   return (
-    <Flex flexDirection={{ base: 'column', md: 'row' }} gap={4}>
-      <DashboardBox p={6} minH='324px' flex='1 1 66%' display='flex' flexWrap='unset'>
-        <Box mb={4}>
-          <Text fontWeight='bold' mb={1.5} fontSize='2xl'>
-            {t('dashboard.welcome.recent_voting_title', { defaultValue: 'Recent Voting Processes' })}
-          </Text>
-          <Text color='gray.500' fontSize='sm'>
-            {t('dashboard.welcome.recent_voting_description', {
-              defaultValue: "Your organization's latest voting activities",
-            })}
-          </Text>
-        </Box>
-        <Flex flexDirection='column' flex='1'>
-          <Processes />
-        </Flex>
-      </DashboardBox>
-      {organization && <QuickActions />}
-    </Flex>
+    <DashboardBox p={6} minH='324px' mb={6}>
+      <DashboardCardHeader
+        title={t('dashboard.welcome.recent_voting_title', { defaultValue: 'Recent Voting Processes' })}
+        subtitle={t('dashboard.welcome.recent_voting_description', {
+          defaultValue: "Your organization's latest voting activities",
+        })}
+      />
+      <Flex flexDirection='column' flex='1'>
+        <Processes />
+      </Flex>
+    </DashboardBox>
   )
 }
 
@@ -402,17 +406,15 @@ const Processes = () => {
 const QuickActions = () => {
   const { t } = useTranslation()
   return (
-    <DashboardBox p={6} flex='1 1 33%' justifyContent='normal' gap={0}>
-      <Text fontWeight='bold' mb={1.5} size='2xl'>
-        {t('dashboard.welcome.quick_actions', {
+    <DashboardBox p={6} height='100%'>
+      <DashboardCardHeader
+        title={t('dashboard.welcome.quick_actions', {
           defaultValue: 'Quick Actions',
         })}
-      </Text>
-      <Text color='gray.500' size='sm' mb={6}>
-        {t('dashboard.welcome.common_tasks_actions', {
+        subtitle={t('dashboard.welcome.common_tasks_actions', {
           defaultValue: 'Common tasks and actions',
         })}
-      </Text>
+      />
       <Flex flexDirection='column' gap={4}>
         <Button
           as={ReactRouterLink}
