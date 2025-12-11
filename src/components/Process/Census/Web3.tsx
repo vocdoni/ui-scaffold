@@ -74,7 +74,6 @@ export const CensusWeb3Addresses = () => {
       const spreadsheet = new Web3CensusSpreadsheetManager(file, weighted)
       await spreadsheet.read()
 
-      const current = (getValues('addresses') ?? []) as { address: string; weight: number }[]
       spreadsheet.data.forEach((row, idx) => {
         const [raw] = row
         if (!raw) return

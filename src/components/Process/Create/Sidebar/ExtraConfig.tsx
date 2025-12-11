@@ -59,7 +59,7 @@ export const ExtraConfig = () => {
             <Trans i18nKey='process_create.weight.title'>Voting power</Trans>
             <Tooltip
               placement='top'
-              label='Set whether votes are equal for each elegible voter or weighted according to the memberbase "Vote power" field.'
+              label='Set whether votes are equal for each eligible voter or weighted according to the memberbase "Vote power" field.'
               fontSize='sm'
             >
               <Box as='span' display='inline-flex' ml={1} cursor='help' color='texts.subtle'>
