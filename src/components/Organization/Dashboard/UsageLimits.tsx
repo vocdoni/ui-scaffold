@@ -62,7 +62,7 @@ const UsageRow = ({ icon, label, current, max, tooltip, isSoftLimit, color }: Us
         sx={{
           _dark: {
             bg: 'gray.600',
-          }
+          },
         }}
       />
     </Box>
