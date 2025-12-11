@@ -38,6 +38,11 @@ type MemberManagerProps = {
   member?: Partial<Member> | null
 }
 
+const stringifyObjectValues = (obj: Record<string, any>) =>
+  Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => [key, value === undefined || value === null ? '' : value.toString()])
+  )
+
 export const MemberManager = ({ control, member = null }: MemberManagerProps) => {
   const { t } = useTranslation()
   const toast = useToast()
@@ -112,20 +117,14 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
         cleanMember.phone = ''
         setHadPhone(true)
       }
-      const stringifiedMember = Object.fromEntries(
-        Object.entries(cleanMember).map(([key, value]) => [
-          key,
-          value === undefined || value === null ? '' : value.toString(),
-        ])
-      )
-      methods.reset(stringifiedMember)
+      methods.reset(stringifyObjectValues(cleanMember))
     }
   }, [member])
 
   const onSubmit = (data: Partial<Member>) => {
     const { id, memberNumber, name, surname, email, phone, nationalId, birthDate, weight } = data
 
-    const memberPayload: Partial<Member> = {
+    const memberPayload: Partial<Member> = stringifyObjectValues({
       id,
       memberNumber,
       name,
@@ -134,8 +133,8 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
       phone,
       nationalId,
       birthDate,
-      weight: weight ? weight.toString() : undefined,
-    }
+      weight,
+    })
 
     addMember.mutate([memberPayload], {
       onSuccess: () => {
