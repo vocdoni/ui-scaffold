@@ -1,4 +1,20 @@
-import { Alert, AlertDescription, AlertIcon, Box, Button, chakra, Divider, Flex, HStack, Icon, Link, Progress, Text, Tooltip, VStack } from '@chakra-ui/react'
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  Box,
+  Button,
+  chakra,
+  Divider,
+  Flex,
+  HStack,
+  Icon,
+  Link,
+  Progress,
+  Text,
+  Tooltip,
+  VStack,
+} from '@chakra-ui/react'
 import { useQuery } from '@tanstack/react-query'
 import { useClient } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
@@ -192,7 +208,12 @@ export const UsageLimits = () => {
             }}
           >
             <AlertIcon color='orange.500' _dark={{ color: 'orange.400' }} />
-            <Flex flex='1' direction={{ base: 'column', md: 'row' }} align={{ base: 'flex-start', md: 'center' }} gap={3}>
+            <Flex
+              flex='1'
+              direction={{ base: 'column', md: 'row' }}
+              align={{ base: 'flex-start', md: 'center' }}
+              gap={3}
+            >
               <AlertDescription
                 fontSize='sm'
                 color='gray.800'
@@ -201,7 +222,8 @@ export const UsageLimits = () => {
                 flex='1'
               >
                 {t('dashboard.usage.limit_exceeded_message', {
-                  defaultValue: 'Your current plan has reached its limits. Upgrade now to continue working without restrictions.',
+                  defaultValue:
+                    'Your current plan has reached its limits. Upgrade now to continue working without restrictions.',
                 })}
               </AlertDescription>
               <Button
