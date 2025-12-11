@@ -487,10 +487,13 @@ export const ImportMembers = () => {
       onClose()
     } catch (error) {
       console.error(error)
+      const fallbackDescription = t('memberbase.importer.error.description', {
+        defaultValue: 'Unexpected error while importing members',
+      })
       toast({
         status: 'error',
-        title: 'Import failed',
-        description: error?.message ?? 'Unexpected error while importing members',
+        title: t('memberbase.importer.error.title', { defaultValue: 'Import failed' }),
+        description: error instanceof Error && error.message ? error.message : fallbackDescription,
       })
     }
   }

@@ -1024,7 +1024,9 @@
       "data_preview": "Data Preview",
       "download_template_btn": "Download Template",
       "error": {
-        "field_is_required": ""
+        "description": "Unexpected error while importing members.",
+        "field_is_required": "",
+        "title": "Import failed"
       },
       "field_mapper": {
         "empty": "-- Do not import --",
@@ -1326,6 +1328,12 @@
       "limit_reached": {
         "message_one": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
         "message_other": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan."
+      },
+      "publish_limit_reached": {
+        "description_one": "You’ve reached your plan’s limit of {{ count }} voting process per year. Upgrade your plan to create more voting processes.",
+        "description_other": "You’ve reached your plan’s limit of {{ count }} voting processes per year. Upgrade your plan to create more voting processes.",
+        "description_no_count": "You’ve reached your plan’s voting-process limit for the year. Upgrade your plan to create more voting processes.",
+        "title": "Plan limit reached"
       },
       "question": {
         "add": "Add question",

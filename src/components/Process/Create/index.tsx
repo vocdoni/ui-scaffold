@@ -891,9 +891,29 @@ export const ProcessCreate = () => {
     } catch (error) {
       console.error('Error creating election:', error)
 
+      let toastTitle = t('form.process_create.error_title', { defaultValue: 'Error creating process' })
+      let toastDescription = error instanceof Error ? error.message : String(error)
+
+      if (error instanceof Error && /max processes/i.test(error.message)) {
+        const planLimit = permission(SubscriptionPermission.MaxProcesses)
+        const limitCount = typeof planLimit === 'number' ? planLimit : undefined
+
+        toastTitle = t('process.create.publish_limit_reached.title', { defaultValue: 'Plan limit reached' })
+        toastDescription = limitCount
+          ? t('process.create.publish_limit_reached.description', {
+              count: limitCount,
+              defaultValue:
+                "You've reached your plan's limit of {{ count }} voting processes per year. Upgrade your plan to create more voting processes.",
+            })
+          : t('process.create.publish_limit_reached.description_no_count', {
+              defaultValue:
+                "You've reached your plan's voting-process limit for the year. Upgrade your plan to create more voting processes.",
+            })
+      }
+
       toast({
-        title: t('form.process_create.error_title', { defaultValue: 'Error creating process' }),
-        description: error instanceof Error ? error.message : String(error),
+        title: toastTitle,
+        description: toastDescription,
         status: 'error',
         duration: 4000,
       })

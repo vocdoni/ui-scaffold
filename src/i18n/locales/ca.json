@@ -1037,7 +1037,9 @@
       "data_preview": "Vista prèvia de les dades",
       "download_template_btn": "Descarregar plantilla",
       "error": {
-        "field_is_required": ""
+        "description": "S'ha produït un error inesperat en importar els membres.",
+        "field_is_required": "",
+        "title": "La importació ha fallat"
       },
       "field_mapper": {
         "empty": "-- No importar --",
@@ -1349,6 +1351,13 @@
         "message_one": "Has arribat al límit de {{ count }} esborrany. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla.",
         "message_many": "",
         "message_other": "Has arribat al límit de {{ count }} esborranys. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla."
+      },
+      "publish_limit_reached": {
+        "description_one": "Has assolit el límit del teu pla de {{ count }} procés de votació per any. Actualitza el pla per crear més processos de votació.",
+        "description_many": "",
+        "description_other": "Has assolit el límit del teu pla de {{ count }} processos de votació per any. Actualitza el pla per crear més processos de votació.",
+        "description_no_count": "Has assolit el límit de processos de votació del teu pla per a aquest any. Actualitza el pla per crear-ne més.",
+        "title": "Has assolit el límit del teu pla"
       },
       "question": {
         "add": "Afegeix una pregunta",

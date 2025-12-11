@@ -1037,7 +1037,9 @@
       "data_preview": "Vista previa de datos",
       "download_template_btn": "Descargar plantilla",
       "error": {
-        "field_is_required": "Este campo es obligatorio"
+        "description": "Se produjo un error inesperado al importar los miembros.",
+        "field_is_required": "Este campo es obligatorio",
+        "title": "La importación ha fallado"
       },
       "field_mapper": {
         "empty": "-- No importar --",
@@ -1349,6 +1351,13 @@
         "message_one": "Has alcanzado tu límite de {{ count }} borrador. Para guardar este borrador, elimina un borrador existente o actualiza tu plan.",
         "message_many": "",
         "message_other": "Has alcanzado tu límite de {{ count }} borradores. Para guardar este borrador, elimina un borrador existente o actualiza tu plan."
+      },
+      "publish_limit_reached": {
+        "description_one": "Has alcanzado el límite de {{ count }} proceso de votación por año de tu plan. Actualiza tu plan para crear más procesos de votación.",
+        "description_many": "",
+        "description_other": "Has alcanzado el límite de {{ count }} procesos de votación por año de tu plan. Actualiza tu plan para crear más procesos de votación.",
+        "description_no_count": "Has alcanzado el límite de procesos de votación de tu plan para este año. Actualiza tu plan para crear más procesos de votación.",
+        "title": "Has alcanzado el límite de tu plan"
       },
       "question": {
         "add": "Añadir pregunta",
