@@ -50,7 +50,6 @@ const ContactUs = () => {
               fontSize={{ base: '32px', xl: '42px' }}
               lineHeight={{ base: '36px', xl: '46px' }}
               fontWeight='bold'
-              fontFamily='basier'
               textAlign={{ base: 'center', xl: 'left' }}
               marginBottom='10px'
             >
@@ -107,7 +106,7 @@ const ContactUs = () => {
             w={{ base: 'full', sm: 'fit-content', xl: 'full' }}
             mx='auto'
             aria-label={t('home.contactus.btn')}
-            colorScheme='black'
+            variant='primary'
             title={t('home.contactus.btn')}
             height='52px'
             fontSize='20px'

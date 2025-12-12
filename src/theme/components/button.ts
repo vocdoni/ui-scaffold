@@ -99,6 +99,14 @@ const outline = defineStyle((props) => {
   }
 })
 
+const withColorScheme = (variant: any, colorScheme: string) =>
+  defineStyle((props) =>
+    typeof variant === 'function' ? variant({ ...props, colorScheme }) : { ...variant, colorScheme }
+  )
+
+const primary = withColorScheme(theme.components.Button.variants.solid, 'black')
+const secondary = withColorScheme(outline, 'black')
+
 export const Button = defineStyleConfig({
   variants: {
     ...theme.components.Button.variants,
@@ -107,6 +115,8 @@ export const Button = defineStyleConfig({
     listmenu,
     outline,
     profilemenu,
+    primary,
+    secondary,
   },
   baseStyle,
   sizes,

@@ -254,11 +254,11 @@ export const VoterAuthentication = () => {
           />
         </Flex>
       )}
-      <Button isDisabled={!groupId} colorScheme='gray' w='full' onClick={onOpen}>
+      <Button isDisabled={!groupId} variant='primary' w='full' onClick={onOpen}>
         {census ? (
-          <Trans i18nKey='voter_auth.button.edit'>Edit Voter Authentication</Trans>
+          <Trans i18nKey='voter_auth.button.edit'>Edit voter authentication</Trans>
         ) : (
-          <Trans i18nKey='voter_auth.button.configure'>Configure Voter Authentication</Trans>
+          <Trans i18nKey='voter_auth.button.configure'>Configure voter authentication</Trans>
         )}
       </Button>
       {!groupId && (
@@ -318,7 +318,7 @@ export const VoterAuthentication = () => {
             </Button>
             <Button
               onClick={handleNext}
-              colorScheme='black'
+              variant='primary'
               isLoading={isLoading}
               shouldWrapChildren
               isDisabled={activeTabIndex === 2 ? hasNoCredentialsSelected : false}

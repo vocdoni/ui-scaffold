@@ -78,7 +78,7 @@
       "cancel_button": "Cancel·la",
       "cancel_process_button": "Cancel·la el procés",
       "cancel_process_title": "Cancel·la el procés",
-      "confirm": "Confirma Vot",
+      "confirm": "Confirma vot",
       "end_process_button": "Finalitza votació",
       "end_process_title": "Finalitza votació",
       "title": "Confirmar"
@@ -238,7 +238,7 @@
     "title": "Autenticació"
   },
   "current": "Actual",
-  "current_plan": "Pla Actual",
+  "current_plan": "Pla actual",
   "dark": "Fosc",
   "dark_mode": "Mode fosc",
   "dashboard": {
@@ -330,7 +330,7 @@
     "loading_types": "Carregant tipus",
     "missing_data": "El full de càlcul no té dades.",
     "missing_header": "El full de càlcul no té capçalera.",
-    "not_found": "Pàgina No Trobada",
+    "not_found": "Pàgina no trobada",
     "not_found_description": "La pàgina que cerques no existeix o ha estat moguda.",
     "return_to_home": "Torna a l'inici",
     "title": "Error"
@@ -485,7 +485,7 @@
         "census_summary_description_other": "<b>{{count}} adreces</b> tindran dret a vot",
         "census_summary_title": "Resum del cens",
         "csv_format": "El fitxer CSV ha de contenir les adreces de cartera a la primera columna.",
-        "upload_csv": "O PUJA CSV",
+        "upload_csv": "O puja csv",
         "wallet_addresses": "Adreces de cartera"
       }
     },
@@ -566,7 +566,7 @@
       },
       "card_2": {
         "description": "Estalvieu temps i esforç amb els processos optimitzats de Vocdoni, disfrutant de menors costos operatius.",
-        "title": "Redueix Costs"
+        "title": "Redueix costs"
       },
       "card_3": {
         "description": "Augmenta la participació amb una plataforma fàcil d'usar accessible per a tothom, independentment de la competència tècnica.",
@@ -614,8 +614,8 @@
       "btn": "Veure Totes les Demostracions",
       "census_type": {
         "card_1": "Correu electrònic (GMail)",
-        "card_3": "Cens Obert",
-        "radio": "Cens / Autenticació",
+        "card_3": "Cens obert",
+        "radio": "Cens / autenticació",
         "title": "Per Tipus de Cens"
       },
       "description": "Descobreix el poder de Vocdoni a través de demos interactives, on pots explorar diferents escenaris de votació i experimentar de primera mà la transició perfecta a la democràcia digital. Troba el tipus de votació que desitges, prova-ho i vota amb facilitat.",
@@ -624,7 +624,7 @@
       "use_cases": {
         "card_1": "AGMs",
         "card_2": "Eleccions",
-        "card_3": "Pressupostos Participatius",
+        "card_3": "Pressupostos participatius",
         "card_4": "Votació en línia",
         "card_5": "Integració de programari",
         "card_6": "Enquesta en línia recopilada",
@@ -632,12 +632,12 @@
         "title": "Per Cas d'Ús"
       },
       "voting_type": {
-        "card_1": "Elecció Simple",
-        "card_2": "Elecció Múltiple",
+        "card_1": "Elecció simple",
+        "card_2": "Elecció múltiple",
         "card_3": "Vot d'Aprovació",
         "card_4": "Vot de Pressupost",
-        "card_5": "Votació Classificada",
-        "card_6": "Votació Ponderada",
+        "card_5": "Votació classificada",
+        "card_6": "Votació ponderada",
         "radio": "Per Tipus de Votació",
         "title": "Per Tipus de Votació"
       }
@@ -823,10 +823,10 @@
         "description": "Vocdoni utilitza tècniques criptogràfiques avançades, com les proves de coneixement zero (zk-SNARKs), per garantir que ningú pugui vincular un vot amb la identitat d'un votant.",
         "title": "Com es protegeix l'anonimat dels votants?"
       },
-      "show_less": "Mostrar Menys",
-      "show_more": "Mostrar Més",
+      "show_less": "Mostrar menys",
+      "show_more": "Mostrar més",
       "subtitle": "A continuació trobaràs respostes a les preguntes més freqüents dels nostres usuaris. Proporciona claredat i confiança a la teva experiència de votació digital.",
-      "title": "Preguntes Freqüents"
+      "title": "Preguntes freqüents"
     },
     "features": {
       "card_1": {
@@ -851,7 +851,7 @@
       },
       "card_6": {
         "description": "Blockchain especialitzada per garantir anonimat, privadesa i un procés lliure de censura i interferències.",
-        "title": "Protocol Descentralitzat"
+        "title": "Protocol descentralitzat"
       },
       "card_7": {
         "description": "Permet als participants votar en el seu idioma preferit per una experiència inclusiva.",
@@ -1094,7 +1094,7 @@
       "create_group_form_title": "Crear un nou grup",
       "create_group_success": "Grup creat correctament",
       "delete": "Elimina",
-      "delete_all": "Elimina (Tots)",
+      "delete_all": "Elimina (tots)",
       "edit": "Edita",
       "group_description": "Descripció (opcional)",
       "group_description_placeholder": "Introdueix una descripció breu del grup",
@@ -1126,7 +1126,7 @@
     "burger_aria_label": "menú d'usuari",
     "connect": "Connectar",
     "copy_aria_label": "copiar adreça",
-    "create": "Crear Procés",
+    "create": "Crear procés",
     "create_process": "Nou procés",
     "dashboard": "Dashboard",
     "documentation": "Documentació",
@@ -1135,7 +1135,7 @@
     "login": "Iniciar sessió",
     "logout": "Tancar sessió",
     "open": "Obre menú",
-    "organization": "Edita Organització",
+    "organization": "Edita organització",
     "privacy": "Privadesa",
     "terms": "Termes",
     "wallet": "Cartera"
@@ -1319,7 +1319,7 @@
       "csp": "CSP",
       "spreadsheet": "CSV/Full de càlcul",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
-      "web3": "Adreces Web3"
+      "web3": "Adreces web3"
     },
     "create": {
       "action": {
@@ -1328,9 +1328,9 @@
       },
       "change_template": {
         "cancel": "Cancel·la",
-        "change": "Canvia Plantilla",
+        "change": "Canvia plantilla",
         "message": "Tens missatges sense desar. Segur que vols canviar de plantilla?",
-        "title": "Canviar Plantilla"
+        "title": "Canviar plantilla"
       },
       "description": {
         "placeholder": "Afegir una descripció...",
@@ -1460,8 +1460,8 @@
         },
         "q2": {
           "description": "Tria els nous membres del consell d'administració.",
-          "option_1": "Candidat A",
-          "option_2": "Candidat B",
+          "option_1": "Candidat a",
+          "option_2": "Candidat b",
           "title": "Elegir nous membres del consell"
         },
         "title": "Títol de l'assemblea general anual"
@@ -1470,9 +1470,9 @@
         "description": "Defineix una descripció (opcional) per al teu procés electoral.",
         "q1": {
           "description": "Tria el millor candidat per representar els teus interessos.",
-          "option_1": "Candidat A",
-          "option_2": "Candidat B",
-          "option_3": "Candidat C",
+          "option_1": "Candidat a",
+          "option_2": "Candidat b",
+          "option_3": "Candidat c",
           "title": "Qui hauria de ser el proper president?"
         },
         "title": "Títol del procés electoral"

@@ -59,7 +59,7 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
       </HStack>
       <Box>
         <Button
-          colorScheme='black'
+          variant='primary'
           isDisabled={!code || (autoSubmit && isVerifyPending)}
           isLoading={isVerifyPending}
           shouldWrapChildren
@@ -135,7 +135,7 @@ export const VerificationPending = ({ email, code }: { email: string; code?: str
 
       {!code && (
         <Button variant={'outline'} isLoading={isResendPending} shouldWrapChildren onClick={resendMail} mt={6} w='full'>
-          <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend Email</Trans>
+          <Trans i18nKey={'verify.resend_confirmation_mail'}>Resend email</Trans>
         </Button>
       )}
       <FormSubmitMessage

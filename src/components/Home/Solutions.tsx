@@ -20,12 +20,11 @@ const Solutions = () => {
               lineHeight={{ base: '36px', xl: '50px' }}
               fontWeight='bold'
               mb={'30px'}
-              fontFamily='basier'
               textAlign={{ base: 'center', xl: 'start' }}
             >
               {t('home.solutions.title')}
             </Text>
-            <Text textAlign={{ base: 'center', xl: 'start' }} fontFamily='basier' lineHeight='28px' mb={'60px'}>
+            <Text textAlign={{ base: 'center', xl: 'start' }} lineHeight='28px' mb={'60px'}>
               {t('home.solutions.subtitle_1')}
             </Text>
           </Box>

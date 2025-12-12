@@ -1,6 +1,7 @@
 import { Alert, AlertDescription, AlertStatus, CloseButton, HStack } from '@chakra-ui/react'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { useTranslation } from 'react-i18next'
+import LayoutContainer from '~shared/Layout/LayoutContainer'
 
 export type AnnouncementBannerContents = {
   status: AlertStatus
@@ -58,18 +59,19 @@ const AnnouncementBanner = ({ limited = false }: { limited?: boolean }) => {
 
   if (!message) return null
 
-  const limitStyles = {
-    mx: 'auto',
-    maxW: 'navbar',
-    px: { base: 0, md: 6, xl: 10 },
-  }
-
   return (
     <Alert status={Announcement.status}>
-      <HStack {...(limited ? limitStyles : {})} w='full' justifyContent='space-between'>
+      <LayoutContainer
+        as={HStack}
+        variant={limited ? 'page' : 'full'}
+        w='full'
+        justifyContent='space-between'
+        alignItems='center'
+        gap={4}
+      >
         <AlertDescription dangerouslySetInnerHTML={{ __html: message }} />
         <CloseButton onClick={() => setDismissed(true)} />
-      </HStack>
+      </LayoutContainer>
     </Alert>
   )
 }

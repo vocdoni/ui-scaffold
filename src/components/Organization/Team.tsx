@@ -410,7 +410,7 @@ const ChangeRoleForm = ({ user, onClose }: ChangeRoleFormProps) => {
           <Button variant='outline' onClick={onClose}>
             {t('role.update.cancel', { defaultValue: 'Cancel' })}
           </Button>
-          <Button isLoading={updateRole.isPending} shouldWrapChildren type='submit' colorScheme='black'>
+          <Button isLoading={updateRole.isPending} shouldWrapChildren type='submit' variant='primary'>
             {t('role.update.save', {
               defaultValue: 'Update role',
             })}
@@ -689,7 +689,7 @@ const UsersEmpty = () => {
           })}
         </Text>
       </Flex>
-      <InviteToTeamModal leftIcon={<Icon mr={2} as={LuPlus} />} whiteSpace='normal'>
+      <InviteToTeamModal leftIcon={<Icon mr={2} as={LuPlus} />} whiteSpace='normal' variant='primary'>
         {t('team.only_one_member.add_team_member', { defaultValue: 'Add team member' })}
       </InviteToTeamModal>
     </Flex>

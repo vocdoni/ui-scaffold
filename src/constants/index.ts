@@ -13,6 +13,7 @@ export const InnerContentsMaxWidth = {
 }
 export const MaxWindowWidth = '2560px'
 export const MaxNavbarWidth = '1920px'
+export const MaxContentWidth = '1600px'
 
 export enum SubscriptionPermission {
   Name = 'name',

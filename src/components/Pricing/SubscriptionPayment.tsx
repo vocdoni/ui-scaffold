@@ -160,7 +160,7 @@ const CheckoutForm = ({ onComplete, sessionId }: CheckoutFormProps) => {
 
           <Button
             type='submit'
-            colorScheme='black'
+            variant='primary'
             w='full'
             mt={6}
             isLoading={isSubmitting}

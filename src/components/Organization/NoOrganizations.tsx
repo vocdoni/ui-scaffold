@@ -9,7 +9,7 @@ export const NoOrganizations = () => {
   return (
     <Flex flexDirection={'column'}>
       <Button as={ReactRouterLink} to={Routes.plans} alignSelf='end' colorScheme='gray' size='xs'>
-        <Trans i18nKey='view_plans_and_pricing'>View Plans & Pricing</Trans>
+        <Trans i18nKey='view_plans_and_pricing'>View plans & pricing</Trans>
       </Button>
       <Card variant='no-elections' minH='100%' maxW='650' mx='auto'>
         <CardBody>
@@ -35,7 +35,7 @@ export const NoOrganizations = () => {
               </Trans>
             </Text>
           </Box>
-          <Button mt='40px' w='100%' colorScheme='black' as={ReactRouterLink} to={Routes.dashboard.organizationCreate}>
+          <Button mt='40px' w='100%' variant='primary' as={ReactRouterLink} to={Routes.dashboard.organizationCreate}>
             <Trans i18nKey='create_org.create_button'>Create your organization</Trans>
           </Button>
         </CardBody>

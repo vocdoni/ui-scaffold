@@ -95,10 +95,10 @@ const AddMultipleQuestionModal = ({ isOpen, onClose }) => {
             <Button
               as={Link}
               to={Routes.dashboard.settings.support}
-              aria-label={t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact Us' })}
-              colorScheme='black'
+              aria-label={t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact us' })}
+              variant='primary'
             >
-              {t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact Us' })}
+              {t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact us' })}
             </Button>
           </Flex>
         </ModalBody>

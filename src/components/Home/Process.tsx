@@ -18,12 +18,11 @@ const Process = () => {
         lineHeight={{ base: '36px', xl: '50px' }}
         fontWeight='bold'
         mb={'30px'}
-        fontFamily='basier'
         textAlign='center'
       >
         {t('home.process.title')}
       </Text>
-      <Text mb={'60px'} maxW={'90%'} mx='auto' textAlign='center' fontFamily='basier' fontSize='20px' lineHeight='28px'>
+      <Text mb={'60px'} maxW={'90%'} mx='auto' textAlign='center' fontSize='20px' lineHeight='28px'>
         {t('home.process.description_1')}
         {t('home.process.description_2')}
       </Text>

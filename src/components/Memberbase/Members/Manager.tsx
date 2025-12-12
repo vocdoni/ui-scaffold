@@ -201,14 +201,14 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
               })}
             </Stack>
             <Flex justify='flex-end' gap={2} mt={4}>
-              <Button variant='outline' colorScheme='black' onClick={handleClose}>
+              <Button variant='secondary' onClick={handleClose}>
                 {t('memberbase.form.cancel', { defaultValue: 'Cancel' })}
               </Button>
               <Button
                 type='submit'
                 isLoading={addMember.isPending}
                 shouldWrapChildren
-                colorScheme='black'
+                variant='primary'
                 form='member-form'
               >
                 {t('memberbase.form.save', { defaultValue: 'Save Changes' })}

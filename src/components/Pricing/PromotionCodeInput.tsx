@@ -81,13 +81,7 @@ export const PromotionCodeInput = () => {
           placeholder={t('enter_promo_code', { defaultValue: 'Enter code' })}
           isDisabled={isApplying}
         />
-        <Button
-          onClick={handleSubmit(onSubmit)}
-          size='sm'
-          isLoading={isApplying}
-          shouldWrapChildren
-          colorScheme='black'
-        >
+        <Button onClick={handleSubmit(onSubmit)} size='sm' isLoading={isApplying} shouldWrapChildren variant='primary'>
           <Trans i18nKey='apply'>Apply</Trans>
         </Button>
       </Flex>

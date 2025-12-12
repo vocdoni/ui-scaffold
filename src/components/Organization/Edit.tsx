@@ -147,10 +147,11 @@ const EditOrganization = () => {
               type='submit'
               isLoading={isPending}
               shouldWrapChildren
-              aria-label={t('actions.save', { defaultValue: 'Save' })}
+              aria-label={t('actions.save', { defaultValue: 'Save changes' })}
               w='full'
+              variant='primary'
             >
-              {t('actions.save', { defaultValue: 'Save' })}
+              {t('actions.save', { defaultValue: 'Save changes' })}
             </Button>
             <FormSubmitMessage
               isLoading={isPending}

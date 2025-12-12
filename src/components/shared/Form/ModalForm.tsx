@@ -78,11 +78,11 @@ export const ModalForm = ({ isOpen, onClose, title, subtitle, children, submitTe
                 e.stopPropagation()
                 formRef.current?.requestSubmit()
               }}
-              colorScheme='black'
+              variant='primary'
               isLoading={isSubmitting}
               shouldWrapChildren
             >
-              {submitText || t('actions.save', { defaultValue: 'Save' })}
+              {submitText || t('actions.save', { defaultValue: 'Save changes' })}
             </Button>
           </ModalFooter>
         </ModalContent>

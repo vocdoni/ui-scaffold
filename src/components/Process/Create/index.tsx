@@ -442,7 +442,7 @@ const TemplateButtons = () => {
           data-template={TemplateTypes.AnnualGeneralMeeting}
           onClick={handleTemplateClick}
         >
-          {t('process.create.template.annual_general_meeting', 'Annual General Meeting')}
+          {t('process.create.template.annual_general_meeting', 'Annual general meeting')}
         </Button>
         <Button variant='outline' size='sm' data-template={TemplateTypes.Election} onClick={handleTemplateClick}>
           {t('process.create.template.election', 'Election')}
@@ -453,7 +453,7 @@ const TemplateButtons = () => {
           data-template={TemplateTypes.ParticipatoryBudgeting}
           onClick={handleTemplateClick}
         >
-          {t('process.create.template.participatory_budgeting', 'Participatory Budgeting')}
+          {t('process.create.template.participatory_budgeting', 'Participatory budgeting')}
         </Button>
       </HStack>
 
@@ -470,7 +470,7 @@ const TemplateButtons = () => {
             {t('process.create.change_template.cancel', 'Cancel')}
           </Button>
           <Button colorScheme='red' onClick={handleConfirm}>
-            {t('process.create.change_template.change', 'Change Template')}
+            {t('process.create.change_template.change', 'Change template')}
           </Button>
         </Flex>
       </DeleteModal>
@@ -517,7 +517,7 @@ const LeaveConfirmationModal = ({
             <Button colorScheme='red' onClick={onLeave}>
               {t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
             </Button>
-            <Button colorScheme='black' onClick={onSaveAndLeave}>
+            <Button variant='primary' onClick={onSaveAndLeave}>
               {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save and leave' })}
             </Button>
           </>
@@ -962,7 +962,7 @@ export const ProcessCreate = () => {
               />
               <Button
                 type='submit'
-                colorScheme='black'
+                variant='primary'
                 alignSelf='flex-end'
                 isLoading={methods.formState.isSubmitting}
                 shouldWrapChildren
@@ -971,8 +971,7 @@ export const ProcessCreate = () => {
               </Button>
               <Button
                 type='button'
-                colorScheme='black'
-                variant='outline'
+                variant='secondary'
                 onClick={handleManualSave}
                 isLoading={isSaving}
                 shouldWrapChildren

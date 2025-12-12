@@ -24,19 +24,10 @@ const Features = () => {
           fontWeight='bold'
           textAlign='center'
           mb={'30px'}
-          fontFamily='basier'
         >
           {t('home.features.title')}
         </Text>
-        <Text
-          maxW={'90%'}
-          mx='auto'
-          mb={'60px'}
-          textAlign='center'
-          fontFamily='basier'
-          fontSize='20px'
-          lineHeight='28px'
-        >
+        <Text maxW={'90%'} mx='auto' mb={'60px'} textAlign='center' fontSize='20px' lineHeight='28px'>
           {t('home.features.subtitle_1')}
         </Text>
       </Box>

@@ -3,6 +3,7 @@ import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
 import AnnouncementBanner from '~components/shared/Layout/AnnouncementBanner'
 import { Routes } from '~routes'
 import Footer from '~shared/Layout/Footer'
+import LayoutContainer from '~shared/Layout/LayoutContainer'
 import Navbar from '~shared/Navbar'
 
 const Layout = () => {
@@ -10,48 +11,31 @@ const Layout = () => {
 
   return (
     <Flex position='relative' flexDirection='column' minH='100vh' mx='auto'>
-      <HStack
-        as='header'
-        position='sticky'
-        top={0}
-        w='full'
-        backdropFilter='blur(40px)'
-        zIndex={30}
-        px={{ base: 4, md: 6, xl: 10 }}
-        maxW='navbar'
-        mx='auto'
-      >
-        <Navbar />
+      <HStack as='header' position='sticky' top={0} w='full' backdropFilter='blur(40px)' zIndex={30}>
+        <LayoutContainer variant='page'>
+          <Navbar />
+        </LayoutContainer>
       </HStack>
       <ScrollRestoration />
       {[Routes.root, Routes.plans].includes(location.pathname) && <AnnouncementBanner limited />}
-      <Flex
+      <LayoutContainer
+        as={Flex}
         flexDirection='column'
-        as='main'
         flexGrow={1}
         mt={{ base: 4, lg: 6, xl: 10 }}
         mb={{ base: 20, lg: 32 }}
-        maxW='1600px'
-        mx='auto'
-        px={{
-          base: '10px',
-          sm: '20px',
-          md: '80px',
-        }}
-        w='full'
       >
         <Outlet />
-      </Flex>
+      </LayoutContainer>
       <Box
         as='footer'
         bgColor={`${location.pathname.startsWith('/organization') ? 'footer.gray' : 'footer.white'}`}
         w='full'
         backdropFilter='blur(40px)'
-        px={{ base: 4, md: 6, xl: 10 }}
-        maxW={'1920px'}
-        mx={'auto'}
       >
-        <Footer />
+        <LayoutContainer variant='page'>
+          <Footer />
+        </LayoutContainer>
       </Box>
     </Flex>
   )

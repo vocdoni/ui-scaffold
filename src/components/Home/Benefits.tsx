@@ -12,11 +12,10 @@ const Benefits = () => {
         fontWeight='bold'
         textAlign='center'
         mb={'30px'}
-        fontFamily='basier'
       >
         {t('home.benefits.title')}
       </Text>
-      <Text mb={'60px'} maxW={'90%'} mx='auto' textAlign='center' fontFamily='basier' fontSize='20px' lineHeight='28px'>
+      <Text mb={'60px'} maxW={'90%'} mx='auto' textAlign='center' fontSize='20px' lineHeight='28px'>
         {t('home.benefits.subtitle_1')}
       </Text>
 

@@ -22,26 +22,19 @@ const CreateProcess = () => {
           fontSize={{ base: '42px', md: '48px', md2: '50px', lg2: '58px' }}
           lineHeight={{ base: '48px', md: '52px', md2: '58px', lg2: '64px' }}
           fontWeight='600'
-          fontFamily='basier'
           mb={'40px'}
           textAlign={{ base: 'center', lg: 'start' }}
         >
           {t('home.create_process.title')}
         </Text>
-        <Text
-          fontSize='24px'
-          lineHeight='35px'
-          fontFamily='basier'
-          mb={'40px'}
-          textAlign={{ base: 'center', lg: 'start' }}
-        >
+        <Text fontSize='24px' lineHeight='35px' mb={'40px'} textAlign={{ base: 'center', lg: 'start' }}>
           {t('home.create_process.subtitle')}
         </Text>
         <Box maxW={{ lg: '90%' }}>
           <Button
             as={ReactRouterLink}
             to={Routes.auth.signUp}
-            colorScheme='black'
+            variant='primary'
             mb='20px'
             w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
             mx={{ base: 'auto', lg: 'start' }}

@@ -209,7 +209,7 @@ const PricingCard = ({
                 aria-label={isCurrentPlan ? t('current_plan') : t('contact_us')}
               >
                 {isCurrentPlan
-                  ? t('current_plan', { defaultValue: 'Current Plan' })
+                  ? t('current_plan', { defaultValue: 'Current plan' })
                   : t('home.support.btn_watch', { defaultValue: 'Schedule a call' })}
               </BookerModalButton>
             </>
@@ -235,7 +235,7 @@ const PricingCard = ({
                 aria-label={isCurrentPlan ? t('current_plan') : t('subscribe')}
               >
                 {isCurrentPlan
-                  ? t('current_plan', { defaultValue: 'Current Plan' })
+                  ? t('current_plan', { defaultValue: 'Current plan' })
                   : t('upgrade_plan', {
                       defaultValue: 'Upgrade to {{plan}}',
                       plan: translations[plan.id]?.title || plan.name,

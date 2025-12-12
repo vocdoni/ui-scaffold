@@ -120,7 +120,7 @@ const DashboardMenuContent = () => {
         to={generatePath(Routes.processes.create)}
         w='full'
         minW={0}
-        colorScheme='black'
+        variant='primary'
         leftIcon={<Icon as={LuPlus} boxSize={4} />}
         iconSpacing={reduced ? 0 : 2}
         mt={'8px'}

@@ -182,7 +182,7 @@ export const CensusConnectButton = () => {
   return (
     <>
       {!isCSP && !isSpreadsheet && !connected && (
-        <Button colorScheme='black' onClick={openConnectModal} w='full'>
+        <Button variant='primary' onClick={openConnectModal} w='full'>
           {t('menu.connect').toString()}
         </Button>
       )}

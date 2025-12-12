@@ -330,7 +330,7 @@
     "loading_types": "",
     "missing_data": "La hoja de cálculo no contiene datos.",
     "missing_header": "La hoja de cálculo no tiene encabezado.",
-    "not_found": "Página No Encontrada",
+    "not_found": "Página no encontrada",
     "not_found_description": "La página que buscas no existe o ha sido movida.",
     "return_to_home": "Volver al inicio",
     "title": "Error"
@@ -485,8 +485,8 @@
         "census_summary_description_other": "<b>{{count}}</b> direcciones Web3 podrán votar",
         "census_summary_title": "Resumen del censo",
         "csv_format": "El archivo CSV debe contener las direcciones Web3 en la primera columna.",
-        "upload_csv": "O SUBIR CSV",
-        "wallet_addresses": "Direcciones Web3"
+        "upload_csv": "O subir csv",
+        "wallet_addresses": "Direcciones web3"
       }
     },
     "select_language": "Idioma",
@@ -615,16 +615,16 @@
       "census_type": {
         "card_1": "Correo electrónico (GMail)",
         "card_3": "Censo abierto",
-        "radio": "Censo / Autenticación",
+        "radio": "Censo / autenticación",
         "title": "Por tipo de censo"
       },
       "description": "Descubre el potencial de Vocdoni con demos interactivas: explora diferentes escenarios de votación y experimenta de primera mano la transición fluida a la democracia digital. Elige el tipo de votación, pruébalo y vota con facilidad.",
       "header": "Demostración",
       "title": "Prueba nuestra solución",
       "use_cases": {
-        "card_1": "Asambleas Generales",
+        "card_1": "Asambleas generales",
         "card_2": "Elecciones",
-        "card_3": "Presupuestos Participativos",
+        "card_3": "Presupuestos participativos",
         "card_4": "Votación en línea",
         "card_5": "Integración de software",
         "card_6": "Encuestas en línea",
@@ -1094,7 +1094,7 @@
       "create_group_form_title": "Crear nuevo grupo",
       "create_group_success": "Grupo creado correctamente",
       "delete": "Eliminar",
-      "delete_all": "Eliminar (Todos)",
+      "delete_all": "Eliminar (todos)",
       "edit": "Editar",
       "group_description": "Descripción (opcional)",
       "group_description_placeholder": "Introduce una breve descripción del grupo",
@@ -1167,7 +1167,7 @@
   "number_of_members_other": "{{ count }} miembros del equipo",
   "open_in_explorer": "Abrir en el explorador",
   "or_continue_with": "o continuar con",
-  "order_summary": "Order Summary",
+  "order_summary": "Order summary",
   "org_type_selector": {
     "selector_label": "Tipo de organización"
   },
@@ -1319,7 +1319,7 @@
       "csp": "CSP",
       "spreadsheet": "CSV/Hoja de cálculo",
       "token": "Token ({{ token.type, uppercase }}): {{ token.symbol }}",
-      "web3": "Direcciones Web3"
+      "web3": "Direcciones web3"
     },
     "create": {
       "action": {
@@ -1381,7 +1381,7 @@
         "draft": "Borrador"
       },
       "template": {
-        "annual_general_meeting": "Asamblea General Anual",
+        "annual_general_meeting": "Asamblea general anual",
         "election": "Elección",
         "participatory_budgeting": "Presupuestos participativos",
         "title": "Comienza con una plantilla..."
@@ -1460,8 +1460,8 @@
         },
         "q2": {
           "description": "Elige a los nuevos miembros del consejo de administración.",
-          "option_1": "Candidato A",
-          "option_2": "Candidato B",
+          "option_1": "Candidato a",
+          "option_2": "Candidato b",
           "title": "Elegir nuevos consejeros"
         },
         "title": "Título de la Asamblea General Anual"
@@ -1470,9 +1470,9 @@
         "description": "Define una descripción (opcional) para tu proceso electoral.",
         "q1": {
           "description": "Elige al mejor candidato para representar tus intereses.",
-          "option_1": "Candidato A",
-          "option_2": "Candidato B",
-          "option_3": "Candidato C",
+          "option_1": "Candidato a",
+          "option_2": "Candidato b",
+          "option_3": "Candidato c",
           "title": "¿Quién debería ser el próximo presidente?"
         },
         "title": "Título del proceso electoral"

@@ -60,7 +60,6 @@ const Support = () => {
           mb={{ base: '20px', md: '10px' }}
           color='white'
           textAlign='center'
-          fontFamily='basier'
           maxW='550px'
           mx='auto'
         >
@@ -72,7 +71,6 @@ const Support = () => {
           mb={{ base: '30px', md: '50px' }}
           color='white'
           textAlign='center'
-          fontFamily='basier'
           fontWeight='100'
         >
           {t('home.support.subtitle')}
@@ -85,8 +83,7 @@ const Support = () => {
           gap={'15px'}
         >
           <ContactButton
-            variant='outline'
-            colorScheme='black'
+            variant='secondary'
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             height='60px'
@@ -94,7 +91,7 @@ const Support = () => {
             {t('home.support.btn_contact')}
           </ContactButton>
           <BookerModalButton
-            colorScheme='black'
+            variant='primary'
             aria-label={t('home.support.btn_watch')}
             title={t('home.support.btn_watch')}
             height='60px'

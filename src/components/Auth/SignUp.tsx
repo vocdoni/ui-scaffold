@@ -149,7 +149,7 @@ const SignUp = ({ invite }: SignupProps) => {
               <FormErrorMessage>{errors?.terms?.message.toString()}</FormErrorMessage>
             </FormControl>
           </Flex>
-          <Button isLoading={isPending} shouldWrapChildren type='submit' w='100%' colorScheme='black'>
+          <Button isLoading={isPending} shouldWrapChildren type='submit' w='100%' variant='primary'>
             {t('signup_create_account')}
           </Button>
         </Flex>

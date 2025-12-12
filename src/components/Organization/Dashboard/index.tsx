@@ -106,7 +106,7 @@ const Tutorial = () => {
             as={ReactRouterLink}
             to={generatePath(Routes.processes.create)}
             leftIcon={<Icon as={LuPlus} />}
-            colorScheme='black'
+            variant='primary'
           >
             <Trans i18nKey='new_voting'>New vote</Trans>
           </Button>

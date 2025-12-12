@@ -56,7 +56,7 @@ export const ConfirmVoteModal = ({ election, answers }: { election: PublishedEle
           <Button onClick={cancel!} variant='ghost' sx={styles.cancel}>
             {t('cc.confirm.cancel')}
           </Button>
-          <Button colorScheme='black' onClick={proceed!} sx={styles.confirm}>
+          <Button variant='primary' onClick={proceed!} sx={styles.confirm}>
             {t('cc.confirm.confirm')}
           </Button>
         </ModalFooter>

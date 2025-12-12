@@ -110,7 +110,7 @@ const SupportTicketForm = () => {
     <FormProvider {...methods}>
       <Box as='form' p={6} borderWidth='1px' borderRadius='lg' onSubmit={handleSubmit(onSubmit)}>
         <Heading size='md' mb={2}>
-          {t('form.support.open_ticket', { defaultValue: 'Open a Support Ticket' })}
+          {t('form.support.open_ticket', { defaultValue: 'Open a support ticket' })}
         </Heading>
         <Text fontSize='sm' color='gray.500' mb={6}>
           {t('form.support.subtitle', {
@@ -134,8 +134,8 @@ const SupportTicketForm = () => {
               placeholder={t('form.support.description_placeholder', { defaultValue: 'Describe your issue in detail' })}
             />
           </FormControl>
-          <Button type='submit' colorScheme='black' mt={4}>
-            {t('form.support.submit_ticket', { defaultValue: 'Submit Ticket' })}
+          <Button type='submit' variant='primary' mt={4}>
+            {t('form.support.submit_ticket', { defaultValue: 'Submit ticket' })}
           </Button>
           <FormSubmitMessage
             isError={isError}

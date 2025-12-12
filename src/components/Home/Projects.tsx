@@ -28,21 +28,12 @@ const Support = () => {
           mb={{ base: '20px' }}
           color='white'
           textAlign='center'
-          fontFamily='basier'
           maxW='900px'
           mx='auto'
         >
           <Trans i18nKey='home.projects.title'>Do you want to create a vote for your community?</Trans>
         </Text>
-        <Text
-          fontSize='18px'
-          lineHeight='22px'
-          color='white'
-          textAlign='center'
-          fontFamily='basier'
-          fontWeight='100'
-          mx='auto'
-        >
+        <Text fontSize='18px' lineHeight='22px' color='white' textAlign='center' fontWeight='100' mx='auto'>
           <Trans i18nKey='home.projects.description'>
             We help you at every step. We offer turnkey customized projects. We take care of everything.
           </Trans>

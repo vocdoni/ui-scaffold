@@ -73,7 +73,7 @@ export const CspAuthModal = () => {
   return (
     <>
       <Button
-        colorScheme='black'
+        variant='primary'
         onClick={onOpen}
         w='full'
         aria-label={t('cc.spreadsheet.access_button', { defaultValue: 'Login' })}

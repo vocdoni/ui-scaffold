@@ -1,7 +1,7 @@
 {
   "account": {
     "subtitle": "Update your account details and personal information",
-    "title": "Account Information"
+    "title": "Account information"
   },
   "actions": {
     "cancel": "Cancel",
@@ -9,8 +9,8 @@
     "create_new_vote": "Create new vote",
     "manage_team": "Manage team",
     "more": "More options",
-    "save": "Save Changes",
-    "save_changes": "Save Changes",
+    "save": "Save changes",
+    "save_changes": "Save changes",
     "view_active_votes": "View active votes"
   },
   "add_new_org": "Add a new organization",
@@ -47,10 +47,10 @@
     "voting_anonymous_advice": "Please wait while the anonymous magic happens 🪄.\nThis can take up to several minutes; don't close the window."
   },
   "avatar": {
-    "label": "Organization Avatar"
+    "label": "Organization avatar"
   },
   "back": "Back",
-  "billing_details": "Billing Details",
+  "billing_details": "Billing details",
   "calendar": {
     "max_duration_exceeded": "Duration exceeds your plan’s {{ maxDuration }}-day limit. Reduce the voting length, or <a>contact us</a> if you need more days.",
     "title": "Schedule"
@@ -73,11 +73,11 @@
     "confirm": {
       "cancel": "Cancel",
       "cancel_button": "Cancel",
-      "cancel_process_button": "Cancel Vote",
-      "cancel_process_title": "Cancel Vote",
-      "confirm": "Confirm Vote",
-      "end_process_button": "End Vote",
-      "end_process_title": "End Vote",
+      "cancel_process_button": "Cancel vote",
+      "cancel_process_title": "Cancel vote",
+      "confirm": "Confirm vote",
+      "end_process_button": "End vote",
+      "end_process_title": "End vote",
       "title": "Confirm"
     },
     "empty": "Apparently this process has no questions",
@@ -90,7 +90,7 @@
       "total_results": "Showing a total of {{ count }} results"
     },
     "question_types": {
-      "approval_title": "Approval Voting",
+      "approval_title": "Approval voting",
       "approval_tooltip": "Approval voting lets you vote for as many options as you like. The one with the most votes wins. It's a simple way to show your support for all the choices you approve of.",
       "multichoice_cannot_abstain": "Too many options selected",
       "multichoice_desc": "You selected {{selected}} options from a maximum of {{maxcount}}",
@@ -98,7 +98,7 @@
       "multichoice_title": "Multichoice Voting {{ weighted }}",
       "multichoice_tooltip": "Multichoice voting lets you vote for up to {{maxcount}} options (defined by the voting organizer). The one with the most votes wins.",
       "singlechoice_title": "Single Choice {{ weighted }}",
-      "weighted_voting": "Weighted Voting"
+      "weighted_voting": "Weighted voting"
     },
     "results": {
       "date_format": "PPpp",
@@ -148,7 +148,7 @@
   "census_size": "Census size",
   "change_password": {
     "subtitle": "Enter your current password and a new password to update your credentials.",
-    "title": "Change Password"
+    "title": "Change password"
   },
   "close": "Close",
   "code_applied": "Code \"{{appliedCode}}\" applied",
@@ -164,7 +164,7 @@
     "home": "Home",
     "next": "Next"
   },
-  "confirm_password": "Confirm Password",
+  "confirm_password": "Confirm password",
   "confirm_password_placeholder": "Confirm your new password",
   "connection": {
     "error_description": "Unable to reach the server. Please check your connection.",
@@ -180,7 +180,7 @@
     "description": "We use cookies and analytics tools to improve your experience and understand how you interact with our website. You can choose to accept or reject cookies.",
     "learnMore": "Learn more",
     "reject": "Reject",
-    "title": "Cookie Consent"
+    "title": "Cookie consent"
   },
   "copy": {
     "address": "Copy address",
@@ -193,11 +193,11 @@
   "create_org": {
     "already_profile": "If your organization already has a profile, <2>access the dashboard</2> and contact the administrator to invite you",
     "create_button": "Create your organization",
-    "organization_details": "Organization Details",
+    "organization_details": "Organization details",
     "organization_details_description": "Manage your organization's profile and configuration settings.",
-    "private_org": "Other Details",
+    "private_org": "Other details",
     "private_org_description": "Help us tailor your experience with information about your org. We won't share this info",
-    "public_info": "Public Profile",
+    "public_info": "Public profile",
     "public_info_description": "This information is shown in various places including the voting pages.",
     "subtitle": "Cut cost, Save Time: Secure, Private, and GDPR Compliant",
     "title": "Tell us about your organization"
@@ -212,18 +212,18 @@
       "participant_not_found": "The voter is not listed in the census, or the provided credentials are incorrect."
     },
     "fields": {
-      "birthDate": "Birth Date",
+      "birthDate": "Birth date",
       "contact": "Contact",
       "email": "Email",
       "email_or_phone": "Email or Phone",
-      "memberNumber": "Member Number",
+      "memberNumber": "Member number",
       "name": "Name",
       "nationalId": "National ID",
       "phone": "Phone",
       "surname": "Surname"
     },
     "important": "Important",
-    "receive_code": "Receive Code",
+    "receive_code": "Receive code",
     "step1": {
       "helper_text": "If using email, don't forget to check spam folder",
       "validation": {
@@ -235,7 +235,7 @@
     "title": "Authentication"
   },
   "current": "Current",
-  "current_plan": "Current Plan",
+  "current_plan": "Current plan",
   "dark": "Dark",
   "dark_mode": "Dark mode",
   "dashboard": {
@@ -257,9 +257,9 @@
       "how_first_vote": "How to create your first vote",
       "no_organization": "No organization found",
       "no_subscription": "No subscription available. Please create an organization to activate your plan.",
-      "quick_actions": "Quick Actions",
+      "quick_actions": "Quick actions",
       "recent_voting_description": "Your organization's latest voting activities",
-      "recent_voting_title": "Recent Voting Processes",
+      "recent_voting_title": "Recent voting processes",
       "subtitle": "Here's an overview of your organization's voting activities",
       "title": "Here's an overview of your organization's voting activities"
     }
@@ -267,9 +267,9 @@
   "delete": {
     "cancel_button": "Cancel",
     "confirm_description": "To delete your account, please contact our support team.",
-    "confirm_title": "Delete Your Account",
+    "confirm_title": "Delete your account",
     "delete_subtitle": "Permanently delete your account and all associated data",
-    "delete_title": "Delete Account"
+    "delete_title": "Delete account"
   },
   "delete_my_account": "Delete my account",
   "description": "Description",
@@ -278,12 +278,12 @@
   "do_you_need_help": "Do you need help?",
   "draft_processes": "Drafts",
   "drafts": {
-    "clone": "Clone Draft",
+    "clone": "Clone draft",
     "cloned_draft": "Draft cloned successfully",
     "cloned_draft_error": "Error cloning draft",
-    "delete": "Delete Draft",
+    "delete": "Delete draft",
     "deleted_draft": "Draft deleted successfully",
-    "edit": "Edit Draft",
+    "edit": "Edit draft",
     "not_defined": "Not defined yet"
   },
   "drawer": {
@@ -327,7 +327,7 @@
     "loading_types": "",
     "missing_data": "Spreadsheet has no data.",
     "missing_header": "Spreadsheet has no header.",
-    "not_found": "Page Not Found",
+    "not_found": "Page not found",
     "not_found_description": "The page you're looking for does not exist or has been moved.",
     "return_to_home": "Back to home",
     "title": "Error"
@@ -340,13 +340,13 @@
     "approval": "Approval voting",
     "audit": "Audit",
     "audit_blockchain": "100% blockchain-auditable",
-    "basic_analytics": "Basic Analytics",
+    "basic_analytics": "Basic analytics",
     "basic_branding": "Basic branding",
     "basic_sla": "Best-effort",
     "cumulative": "Cumulative voting",
-    "custom_reports": "Custom Reports",
+    "custom_reports": "Custom reports",
     "custom_url": "Custom domain",
-    "dedicated_account_manager": "Dedicated Account Manager",
+    "dedicated_account_manager": "Dedicated account manager",
     "email_notification": "2FA Email",
     "email_notifications": "Email notifications to voters",
     "email_reminder": "Email reminders",
@@ -369,17 +369,17 @@
     "priority_support": "Priority support",
     "ranked": "Ranked voting",
     "section": {
-      "analytics_and_reporting": "Analytics & Reporting",
-      "authentication_security": "Authentication & Security",
-      "compliance_and_security": "Compliance & Security",
+      "analytics_and_reporting": "Analytics & reporting",
+      "authentication_security": "Authentication & security",
+      "compliance_and_security": "Compliance & security",
       "customization": "Customization",
-      "extra_features": "Extra Features",
+      "extra_features": "Extra features",
       "features": "Features",
-      "general_limits": "General Limits",
-      "memberbase_management": "Memberbase Management",
+      "general_limits": "General limits",
+      "memberbase_management": "Memberbase management",
       "organization": "Organization",
       "support": "Support",
-      "voting_types": "Voting Types"
+      "voting_types": "Voting types"
     },
     "single": "Single choice",
     "sms_notification": "2FA SMS",
@@ -408,8 +408,8 @@
   "footer": {
     "company": "Company",
     "contact": "Contact",
-    "developer_portal": "Developer Portal",
-    "footer_subtitle": "The Global Voting Protocol",
+    "developer_portal": "Developer portal",
+    "footer_subtitle": "The global voting protocol",
     "terms_and_privacy": "<link1>Terms of use</link1> & <link2>Privacy Policy</link2>"
   },
   "forgot_password_reset_link": "Email password reset link",
@@ -418,7 +418,7 @@
   "form": {
     "account_create": {
       "description_placeholder": "Provide a brief description of your organization (optional)",
-      "title": "Organization Name",
+      "title": "Organization name",
       "title_placeholder": "Enter your organization's name",
       "website_placeholder": "https://example.com"
     },
@@ -479,10 +479,10 @@
         "census_description": "Add wallet addresses that will be eligible to vote. You can add them individually or upload a CSV file.",
         "census_summary_description_one": "<b>{{count}} address</b> will be eligible to vote",
         "census_summary_description_other": "<b>{{count}} addresses</b> will be eligible to vote",
-        "census_summary_title": "Census Summary",
+        "census_summary_title": "Census summary",
         "csv_format": "CSV file should contain wallet addresses in the first column.",
         "upload_csv": "OR UPLOAD CSV",
-        "wallet_addresses": "Wallet Addresses"
+        "wallet_addresses": "Wallet addresses"
       }
     },
     "select_language": "Language",
@@ -491,10 +491,10 @@
       "custom_request": "Custom request",
       "description": "Description",
       "description_placeholder": "Describe your issue in detail",
-      "open_ticket": "Open a Support Ticket",
+      "open_ticket": "Open a support ticket",
       "other": "Other",
       "selector_label": "Type of Issue",
-      "submit_ticket": "Submit Ticket",
+      "submit_ticket": "Submit ticket",
       "subtitle": "Submit a ticket and our support team will get back to you as soon as possible.",
       "technical_issue": "Technical issue",
       "title": "Title",
@@ -505,7 +505,7 @@
   "free_trial_days_one": "One free day",
   "free_trial_days_other": "{{count}} free days",
   "go_back": "go back",
-  "google_oauth_error": "Google OAuth Error",
+  "google_oauth_error": "Google oauth error",
   "google_oauth_error_description": "Google OAuth error, please try again",
   "group": {
     "actions": {
@@ -513,12 +513,12 @@
       "create_vote": "Create a Vote",
       "delete": "Delete",
       "delete_confirm_description": "Are you sure you want to delete <bold>{{title}}</bold>? This action cannot be undone and will permanently remove the group from your organization.",
-      "delete_confirm_title": "Delete Group",
+      "delete_confirm_title": "Delete group",
       "delete_error": "Error deleting group",
-      "delete_group": "Delete Group",
+      "delete_group": "Delete group",
       "delete_success": "Group deleted successfully",
       "history": "History",
-      "view_members": "View Members"
+      "view_members": "View members"
     },
     "actions_description": "When a new vote is created, the system takes a snapshot of the group's members at that moment. Any changes to the member list afterward will not affect the created census.",
     "actions_title": "Actions",
@@ -528,7 +528,7 @@
     "delete_member": {
       "subtitle_one": "Are you sure you want to delete {{count}} member?",
       "subtitle_other": "Are you sure you want to delete {{count}} members?",
-      "title": "Delete Members"
+      "title": "Delete members"
     },
     "email": "Email",
     "members_one": "{{count}} member",
@@ -545,7 +545,7 @@
     "info": {
       "description": "Groups are collections of members within your memberbase that can be used to create censuses for voting processes.",
       "extra": "When you initiate a vote, a census is created as a time-specific snapshot of the group. Any subsequent changes to the group will not affect existing censuses, but will be reflected in future voting processes.",
-      "title": "About Groups"
+      "title": "About groups"
     },
     "load_more": "Load more",
     "no_groups": "No groups found",
@@ -555,27 +555,27 @@
     "benefits": {
       "card_1": {
         "description": "Our solution is 10x cheaper, enhancing democracy by making voting accessible to all.",
-        "title": "10x Cheaper"
+        "title": "10x cheaper"
       },
       "card_2": {
         "description": "Save time and effort with Vocdoni's streamlined processes and reduced operational costs.",
-        "title": "Reduced Costs"
+        "title": "Reduced costs"
       },
       "card_3": {
         "description": "Increase engagement and participation with a user-friendly platform accessible to all, regardless of technical proficiency.",
-        "title": "More Participation"
+        "title": "More participation"
       },
       "card_4": {
         "description": "Vote from anywhere, on any device. It's that simple.",
-        "title": "Effortless Participation"
+        "title": "Effortless participation"
       },
       "card_5": {
         "description": "Rest assured that advanced cryptographic methods ensure maximum security while maintaining voter anonymity and vote integrity.",
-        "title": "Blockchain Based Security"
+        "title": "Blockchain based security"
       },
       "card_6": {
         "description": "Foster trust and transparency through blockchain technology, offering full visibility into voting integrity.",
-        "title": "Auditable & Open-Source"
+        "title": "Auditable & open-source"
       },
       "subtitle_1": "Clients who choose Vocdoni get benefits designed for their voting needs. Our technology enables the transition to digital democracy for organizations, communities and governments. Discover how Vocdoni adds value:",
       "title": "Advantages"
@@ -593,7 +593,7 @@
       },
       "card_3": {
         "description": "We guide you through the entire process to ensure a flawless voting experience.",
-        "title": "Expert Support"
+        "title": "Expert support"
       },
       "title": "Let's work together to find the best solution"
     },
@@ -601,15 +601,15 @@
       "btn": "Try it for free",
       "helper_1": "Voting processes ready in just 10 minutes for your voters, seamlessly compatible with mobile devices.",
       "subtitle": "Vocdoni APP delivers an affordable, easy-to-use, and GDPR-compliant voting experience that anyone can use from anywhere with their PC, laptop, tablet and mobile. Powered by our own Blockchain.",
-      "title": "Secure, Cost-Effective and Verifiable Voting Solution"
+      "title": "Secure, cost-effective and verifiable voting solution"
     },
     "demo": {
-      "btn": "View All Demos",
+      "btn": "View all demos",
       "census_type": {
-        "card_1": "E-Mail (GMail)",
-        "card_3": "Open Census",
-        "radio": "Census / Authentication",
-        "title": "By Census Type"
+        "card_1": "E-mail (gmail)",
+        "card_3": "Open census",
+        "radio": "Census / authentication",
+        "title": "By census type"
       },
       "description": "Discover the power of Vocdoni through interactive demos, where you can explore different voting scenarios and firsthand experience the seamless transition to digital democracy. Find your desired voting type, test it, and vote with ease.",
       "header": "Demo",
@@ -617,22 +617,22 @@
       "use_cases": {
         "card_1": "AGMs",
         "card_2": "Elections",
-        "card_3": "Participatory Budgeting",
-        "card_4": "Online Voting",
-        "card_5": "Software Integration",
-        "card_6": "Gated Online Survey",
-        "radio": "Use Cases",
-        "title": "By Use Case"
+        "card_3": "Participatory budgeting",
+        "card_4": "Online voting",
+        "card_5": "Software integration",
+        "card_6": "Gated online survey",
+        "radio": "Use cases",
+        "title": "By use case"
       },
       "voting_type": {
-        "card_1": "Single Choice",
-        "card_2": "Multiple Choices",
-        "card_3": "Approval Voting",
-        "card_4": "Budget Voting",
-        "card_5": "Ranked Voting",
-        "card_6": "Weighted Voting",
-        "radio": "Voting Type",
-        "title": "By Voting Type"
+        "card_1": "Single choice",
+        "card_2": "Multiple choices",
+        "card_3": "Approval voting",
+        "card_4": "Budget voting",
+        "card_5": "Ranked voting",
+        "card_6": "Weighted voting",
+        "radio": "Voting type",
+        "title": "By voting type"
       }
     },
     "faqs": {
@@ -816,47 +816,47 @@
         "description": "Vocdoni uses advanced cryptographic techniques, such as zero-knowledge proofs (zk-SNARKs), to ensure that no one can link a vote with a voter's identity.",
         "title": "How is voter anonymity protected?"
       },
-      "show_less": "Show Less",
-      "show_more": "Show More",
+      "show_less": "Show less",
+      "show_more": "Show more",
       "subtitle": "Below you'll find answers to our users' most frequent questions. Provide clarity and confidence to your digital voting experience.",
-      "title": "Frequently Asked Questions"
+      "title": "Frequently asked questions"
     },
     "features": {
       "card_1": {
         "description": "From `yes/no` to more complex voting types like multi-choice, approval or ranked elections, we support a wide range of elections to suit any decision-making process.",
-        "title": "Versatile Voting types"
+        "title": "Versatile voting types"
       },
       "card_2": {
         "description": "Customize every aspect of your voting process, from branding and themes to ballot design, ensuring a seamless integration with your organization's identity.",
-        "title": "Customization Capabilities"
+        "title": "Customization capabilities"
       },
       "card_3": {
         "description": "With intuitive interfaces and a guided onboarding process, Vocdoni ensures that organizers and voters alike can easily navigate the platform from day one.",
-        "title": "User-Friendly Onboarding"
+        "title": "User-friendly onboarding"
       },
       "card_4": {
         "description": "Utilizing robust authentication methods such as two-factor authentication, Vocdoni safeguards against unauthorized access and ensures the integrity of each vote.",
-        "title": "Secure Authentication"
+        "title": "Secure authentication"
       },
       "card_5": {
         "description": "Create custom voter lists (custom census, oAuth, CRMs...), allowing for targeted outreach and voting experiences tailored to different segments of your audience.",
-        "title": "Custom Censuses"
+        "title": "Custom censuses"
       },
       "card_6": {
         "description": "Using our specialized decentralized blockchain for voting safeguards voter anonymity and privacy, ensuring a process free from censorship and interference.",
-        "title": "Decentralized Voting Protocol"
+        "title": "Decentralized voting protocol"
       },
       "card_7": {
         "description": "Reach a diverse audience with multi-language support, allowing participants to select their preferred language for inclusive and accessible voting experiences.",
-        "title": "Multi-language Support"
+        "title": "Multi-language support"
       },
       "card_8": {
         "description": "Monitor voting progress and results in real-time, with instant updates and notifications keeping organizers and participants informed throughout the voting process.",
-        "title": "Real-time Updates"
+        "title": "Real-time updates"
       },
       "card_9": {
         "description": "Enable voters to cast their ballots through various channels, including web browsers, phones, tablets, etc., ensuring accessibility and convenience for all participants.",
-        "title": "Multi-device Support"
+        "title": "Multi-device support"
       },
       "subtitle_1": "Vocdoni's feature-rich platform enables seamless customization of voting processes, ensuring secure & transparent elections while empowering voters with intuitive options. Enhance engagement, efficiency, and trust in every voting endeavor.",
       "title": "Features"
@@ -870,11 +870,11 @@
       },
       "step_2": {
         "description": "You will be guided through the creation process to select your election type, enter the questions & options, select configuration options, & register voters.",
-        "title": "Configure & Publish"
+        "title": "Configure & publish"
       },
       "step_3": {
         "description": "Voters authenticate and submit their votes seamlessly through our user-friendly flow, designed for universal accessibility across all devices.",
-        "title": "Voting Period"
+        "title": "Voting period"
       },
       "step_4": {
         "description": "As easy as that. Once finished, the results will be automatically computed, published, and available to anyone.",
@@ -898,18 +898,18 @@
       },
       "card_3": {
         "description": "Increase voter turnout, reduce electoral costs, and enhance citizen trust with a verifiable, secure voting process.",
-        "title": "Governments and Public Institutions"
+        "title": "Governments and public institutions"
       },
       "img_card_1": "Organizations",
       "img_card_2": "Communities",
-      "img_card_3": "Governments and Public Institutions",
+      "img_card_3": "Governments and public institutions",
       "subtitle_1": "We offer solutions to a wide range of uses-cases, demonstrating the versatility of the Vocdoni App.",
       "title": "Our solution fits your needs"
     },
     "support": {
       "btn_contact": "Contact us",
       "btn_watch": "Schedule a call",
-      "header": "Let's Try It! Get Free Support",
+      "header": "Let's try it! get free support",
       "helper_1": "Free on-call expert support",
       "helper_2": "Reduce costs & working hours",
       "helper_3": "Competitive costs",
@@ -922,12 +922,12 @@
     "completed_with_errors_description": "Your member data has been imported, but some errors occurred, and because of that some users have missing fields.",
     "description": "Your member data is being imported. This may take a few minutes depending on the size of your file.",
     "error_description": "An error occurred while importing your member data. Please try again later.",
-    "error_modal_title": "Import Errors",
-    "error_title": "Import Error",
+    "error_modal_title": "Import errors",
+    "error_title": "Import error",
     "note": "You can safely close this page. An email will be sent to you upon completion.",
     "success_description": "Your member data has been imported successfully.",
     "success_note": "You may now start using your imported members.",
-    "success_title": "Import Completed Successfully",
+    "success_title": "Import completed successfully",
     "title": "Memberbase Import in Progress",
     "view_errors_one": "View {{count}} error",
     "view_errors_other": "View {{count}} errors"
@@ -939,7 +939,7 @@
     "create_account_subtitle": "You need an account first, in order to accept your invite",
     "create_account_title": "Create your account",
     "error": "Error",
-    "go_to_verify": "Verify Account",
+    "go_to_verify": "Verify account",
     "invalid_link": "Invalid invite link received",
     "processing": "Processing your invitation...",
     "subtitle": "Send an invitation to join your organization. They'll receive an email with instructions.",
@@ -967,11 +967,11 @@
   "logout": "Logout",
   "memberbase": {
     "add_member": {
-      "button": "Add Member",
+      "button": "Add member",
       "description": "Fill in the member details below.",
       "error": "Error adding member.",
       "success": "Member added successfully!",
-      "title": "Add Member"
+      "title": "Add member"
     },
     "delete_member": {
       "cancel": "Cancel",
@@ -983,17 +983,17 @@
       "subtitle_other": "Are you sure you want to delete {{count}} members? This action cannot be undone.",
       "success_one": "Member deleted successfully",
       "success_other": "Members deleted successfully",
-      "title": "Delete Members"
+      "title": "Delete members"
     },
     "download_template": {
       "subtitle": "Download the template with your chosen columns, add your member data, and upload the file to set up your memberbase. Once it’s ready, you can start creating votes.",
-      "title": "Download Import Template"
+      "title": "Download import template"
     },
     "edit_member": {
       "description": "Edit the member details below.",
       "error": "Error updating member.",
       "success": "Member updated successfully!",
-      "title": "Edit Member"
+      "title": "Edit member"
     },
     "exporter": {
       "button": "Export",
@@ -1001,28 +1001,28 @@
       "columns": "Columns to Export",
       "export_one": "Export {{count}} columns",
       "export_other": "Export {{count}} columns",
-      "file_format": "File Format",
+      "file_format": "File format",
       "subtitle_one": "Configure your export options. The export will include {{count}} members.",
       "subtitle_other": "Configure your export options. The export will include {{count}} members.",
-      "title": "Export Members"
+      "title": "Export members"
     },
     "form": {
       "cancel": "Cancel",
       "phone_warning": "Phone number hidden. Any changes here will overwrite it.",
-      "save": "Save Changes"
+      "save": "Save changes"
     },
     "groups": {
       "title": "Groups"
     },
     "import_file": {
       "subtitle": "Import your CSV, XLS, or XLSX file containing member data. Ensure column headers match the template for accurate mapping.",
-      "title": "Import File"
+      "title": "Import file"
     },
     "importer": {
       "button": "Import",
       "cancel": "Cancel",
-      "data_preview": "Data Preview",
-      "download_template_btn": "Download Template",
+      "data_preview": "Data preview",
+      "download_template_btn": "Download template",
       "error": {
         "field_is_required": ""
       },
@@ -1033,13 +1033,13 @@
       "included_columns": "Select columns to include:",
       "map_columns": {
         "subtitle": "Map columns from your file to the corresponding fields in our system. Required fields are marked with an asterisk (*).",
-        "title": "Map Columns"
+        "title": "Map columns"
       },
-      "reset": "Reset Import",
+      "reset": "Reset import",
       "select_at_least_one_column": "Select at least one column to download the template.",
-      "submit": "Import Data",
+      "submit": "Import data",
       "subtitle": "Download a template or import your own CSV, XLS, or XLSX file to add members.",
-      "title": "Import Members",
+      "title": "Import members",
       "warning": {
         "subtitle": "The information of columns that are not mapped will not be imported.",
         "title": "Warning"
@@ -1053,13 +1053,13 @@
   },
   "members": {
     "fields": {
-      "birth_date": "Birth Date",
+      "birth_date": "Birth date",
       "email": "Email",
-      "firstname": "First Name",
-      "member_number": "Member Number",
+      "firstname": "First name",
+      "member_number": "Member number",
       "national_id": "National ID",
       "phone": "Phone",
-      "surname": "Last Name"
+      "surname": "Last name"
     },
     "table": {
       "add_to_group": "Add to Group",
@@ -1076,18 +1076,18 @@
       "create_group_all": "Create group (All)",
       "create_group_error": "Error creating group",
       "create_group_form_description": "Create a new group from selected members. This will organize them for future voting processes.",
-      "create_group_form_title": "Create New Group",
+      "create_group_form_title": "Create new group",
       "create_group_success": "Group created successfully",
       "delete": "Delete",
-      "delete_all": "Delete (All)",
+      "delete_all": "Delete (all)",
       "edit": "Edit",
       "group_description": "Description (optional)",
       "group_description_placeholder": "Enter a brief description of the group",
-      "group_members": "Selected Members",
+      "group_members": "Selected members",
       "group_members_count_one": "{{count}} members selected",
       "group_members_count_other": "{{count}} members selected",
       "group_name": "Group name",
-      "manage_columns": "Manage Columns",
+      "manage_columns": "Manage columns",
       "manage_columns_description": "Customize which columns are displayed in the members table.",
       "no_filter_results": "No members matching these attributes",
       "no_results": "No members found",
@@ -1102,13 +1102,13 @@
     }
   },
   "membership_size": {
-    "selector_label": "Membership Size"
+    "selector_label": "Membership size"
   },
   "menu": {
     "burger_aria_label": "user menu",
     "connect": "Connect",
     "copy_aria_label": "copy address",
-    "create": "Create Process",
+    "create": "Create process",
     "create_process": "New process",
     "dashboard": "Dashboard",
     "documentation": "Documentation",
@@ -1116,8 +1116,8 @@
     "languages_list": "Show available languages",
     "login": "Login",
     "logout": "Logout",
-    "open": "Open Menu",
-    "organization": "Edit Organization",
+    "open": "Open menu",
+    "organization": "Edit organization",
     "privacy": "Privacy",
     "terms": "Terms",
     "wallet": "Wallet"
@@ -1126,9 +1126,9 @@
   "monthly": "Monthly",
   "name": "Name",
   "navbar": {
-    "contact": "Contact Us",
+    "contact": "Contact us",
     "pricing": "Pricing",
-    "usecases": "Use Cases"
+    "usecases": "Use cases"
   },
   "need_help": {
     "description": "Do you need some help with your first voting process? Watch this tutorial or schedule a call.",
@@ -1148,7 +1148,7 @@
   "number_of_members_other": "{{ count }} team members",
   "open_in_explorer": "Open in explorer",
   "or_continue_with": "or continue with",
-  "order_summary": "Order Summary",
+  "order_summary": "Order summary",
   "org_type_selector": {
     "selector_label": "Organization type"
   },
@@ -1179,9 +1179,9 @@
       "info": "Please have your organization ID ready when calling.",
       "organization_id": "Your Organization ID",
       "organization_id_description": "Please provide this ID when contacting support",
-      "priority_support_line": "Priority Support Line",
+      "priority_support_line": "Priority support line",
       "priority_support_line_description": "Available Monday-Friday, 9:00-18:00 CET",
-      "title": "Phone Support"
+      "title": "Phone support"
     },
     "subtitle": "Manage your organization, team members and your subscription plan",
     "support": {
@@ -1191,7 +1191,7 @@
     "team": {
       "add_team_member": "Add team member",
       "subtitle": "Manage your organization's team members and their permissions.",
-      "title": "Team Members"
+      "title": "Team members"
     },
     "title": "{{organization}} Settings"
   },
@@ -1204,30 +1204,30 @@
     }
   },
   "organizations": "Organizations ({{ numOrgs }})",
-  "other_details": "other details",
+  "other_details": "Other details",
   "pagination": {
     "page_out_of": "Page {{page}} of {{total}}",
     "rows_per_page": "Rows per page"
   },
   "password": "Password",
   "password_placeholder": "Min 8 characters",
-  "password_placeholder_confirm": "Confirm Password",
+  "password_placeholder_confirm": "Confirm password",
   "password_reset": {
     "subtitle": "If your email corresponds to an existing account, you'll receive an email with a code to reset your password.",
     "title": "Password reset"
   },
   "password_update": {
     "actions": {
-      "save": "Save Password"
+      "save": "Save password"
     },
     "error": "Failed to update password",
     "new": {
-      "label": "New Password",
+      "label": "New password",
       "minLength": "Password must be at least 8 characters",
       "required": "Password is required"
     },
     "old": {
-      "label": "Current Password",
+      "label": "Current password",
       "required": "Current password is required"
     },
     "success": "Password updated successfully"
@@ -1241,7 +1241,7 @@
   },
   "plan_upgrade": {
     "cancel": "Cancel",
-    "see_plans": "See Plans",
+    "see_plans": "See plans",
     "subtitle": "Your current plan allows only {{ memberLimit }} for collaboration. Upgrade your plan to add more team members and unlock advanced features.",
     "title": "Upgrade to add more team members"
   },
@@ -1287,7 +1287,7 @@
     "custom_plan_or": "or",
     "free_trial": "{{ freeDays }}-day free trial",
     "from": "<price>{{ price }}</price><time>/month+VAT</time>",
-    "most_popular_plan": "Most Popular",
+    "most_popular_plan": "Most popular",
     "need_more_members": "Need more members? <2>Contact us</2>"
   },
   "privacy_policy": "Privacy policy",
@@ -1306,13 +1306,13 @@
       },
       "change_template": {
         "cancel": "Cancel",
-        "change": "Change Template",
+        "change": "Change template",
         "message": "You have unsaved changes. Are you sure you want to switch templates?",
-        "title": "Change Template"
+        "title": "Change template"
       },
       "description": {
         "placeholder": "Add a description...",
-        "title": "Voting Process Title"
+        "title": "Voting process title"
       },
       "leave_confirmation": {
         "cancel": "Cancel",
@@ -1321,7 +1321,7 @@
         "reset": "Reset",
         "reset_message": "This will reset the form. Do you want to continue?",
         "save_and_leave": "Save and leave",
-        "title": "Saving Draft"
+        "title": "Saving draft"
       },
       "limit_reached": {
         "message_one": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
@@ -1331,7 +1331,7 @@
         "add": "Add question",
         "add_multiple": {
           "cancel_button": "Cancel",
-          "contact_button": "Contact Us",
+          "contact_button": "Contact us",
           "description": "Creating processes with more than one multiple-choice question is currently not available. If you need this type of process, please contact us.",
           "title": "Multi-question multiple-choice is not available yet"
         },
@@ -1339,7 +1339,7 @@
           "cancel_button": "Cancel",
           "delete_button": "Delete",
           "description": "Are you sure you want to delete this question?",
-          "title": "Delete Question"
+          "title": "Delete question"
         },
         "description": {
           "placeholder": "Add the description of the question here (optional)..."
@@ -1358,9 +1358,9 @@
         "draft": "Draft"
       },
       "template": {
-        "annual_general_meeting": "Annual General Meeting",
+        "annual_general_meeting": "Annual general meeting",
         "election": "Election",
-        "participatory_budgeting": "Participatory Budgeting",
+        "participatory_budgeting": "Participatory budgeting",
         "title": "Get started with a template..."
       }
     },
@@ -1376,7 +1376,7 @@
     "gitcoin": {
       "all_of_them": "(All of them)",
       "gps_score": "Gitcoin Passport Score: Min. score {{score}}",
-      "needed_stamps": "Needed Stamps",
+      "needed_stamps": "Needed stamps",
       "one_of_them": "(At least one of them)"
     },
     "is_anonymous": {
@@ -1395,7 +1395,7 @@
       "description": "This applies to all questions in this voting process",
       "multiple": "Multiple choice",
       "single": "Single choice",
-      "title": "Question Type"
+      "title": "Question type"
     },
     "questions": "Questions",
     "results": "Results",
@@ -1407,7 +1407,7 @@
         "blank_vote": "No choices selected, sending blank vote",
         "description": "Before casting your vote review that everything is correct.",
         "election_title": "Your vote will be recorded for:",
-        "your_selections": "Your Selections:"
+        "your_selections": "Your selections:"
       }
     },
     "state": "STATE",
@@ -1440,7 +1440,7 @@
           "option_2": "Candidate B",
           "title": "Elect new board members"
         },
-        "title": "Annual General Meeting Title"
+        "title": "Annual general meeting title"
       },
       "election": {
         "description": "Define a description (optional) for your election process.",
@@ -1451,11 +1451,11 @@
           "option_3": "Candidate C",
           "title": "Who should be the next president?"
         },
-        "title": "Election Process Title"
+        "title": "Election process title"
       },
       "participatory_budgeting": {
         "description": "Budget allocation decision-making (optional) description",
-        "title": "Participatory Budgeting Title"
+        "title": "Participatory budgeting title"
       }
     },
     "total_census_size": "{{maxCensusSize}} allowed voters of {{censusSize}} total in census",
@@ -1557,7 +1557,7 @@
     "success": "Profile updated successfully",
     "title": "Profile"
   },
-  "promo_code": "Promotion Code",
+  "promo_code": "Promotion code",
   "promo_code_required": "Promotion code is required",
   "questions_and_results": "Questions and results",
   "rainbow": {
@@ -1568,7 +1568,7 @@
   },
   "remove": "Remove",
   "remove_avatar": "Remove avatar",
-  "reset_password_button": "Reset Password",
+  "reset_password_button": "Reset password",
   "result_visibility": "Results visibility",
   "results_state": {
     "enabled": "Enabled",
@@ -1603,7 +1603,7 @@
     },
     "update": {
       "cancel": "Cancel",
-      "current_role": "Current Role",
+      "current_role": "Current role",
       "error": "Error updating role",
       "new_role": "New role",
       "save": "Update role",
@@ -1635,7 +1635,7 @@
     "mail_subject": "Voting platform",
     "modal_title": "Share with friends"
   },
-  "signin": "Log In",
+  "signin": "Log in",
   "signin_google": "Sign in with Google",
   "signin_subtitle": "Continue to acces your account",
   "signin_title": "Welcome",
@@ -1656,7 +1656,7 @@
       "title": "Your current {{ plan }} plan does not include {{ permissionName }}",
       "unlock": "Unlock {{ permissionName }}"
     },
-    "title": "Subscription Plan"
+    "title": "Subscription plan"
   },
   "subscription_plan": {
     "gdpr_compliance": "All plans include GDPR compliance.",
@@ -1664,7 +1664,7 @@
     "need_help": "<0>Need help choosing?</0> <1>Contact our sales team</1>",
     "show_comparison_table": "View all features",
     "subtitle": "With our subscriptions, you get more than a plan. You gain access to the most innovative governance platform. Thanks to this model, we can offer the best price in the market: whether you need 1, 5, or 20 votes per year, you'll always benefit from the most competitive costs and unmatched guarantees. The platform is fully self-service, yet our team is always available to provide assistance or tailor solutions to your specific needs.",
-    "title": "Subscription Plan"
+    "title": "Subscription plan"
   },
   "subtotal": "Subtotal",
   "support": "Support",
@@ -1674,13 +1674,13 @@
   "tax": "Tax ({{percent}}%)",
   "team": {
     "actions": {
-      "cancel_invitation": "Cancel Invitation",
+      "cancel_invitation": "Cancel invitation",
       "cancel_invitation_error": "Error cancelling invitation",
       "cancel_invitation_success": "Invitation cancelled successfully",
-      "change_role": "Change Role",
+      "change_role": "Change role",
       "options": "Options",
       "remove_user": "Remove user",
-      "resend_invitation": "Resend Invitation",
+      "resend_invitation": "Resend invitation",
       "resend_invitation_error": "Error resending invitation",
       "resend_invitation_success": "Invitation resent to {{email}} successfully",
       "title": "Actions"
@@ -1697,7 +1697,7 @@
       "subtitle": "Add team members to collaborate on your organization",
       "title": "You're the only team member of this organization"
     },
-    "pending_invitation": "Invitation Pending",
+    "pending_invitation": "Invitation pending",
     "remove_member": {
       "cancel": "Cancel",
       "confirm": "Remove",
@@ -1711,7 +1711,7 @@
   "terms_of_service": "Terms of Service",
   "testimonials": {
     "bellpuig": {
-      "company": "Bellpuig City Council",
+      "company": "Bellpuig city council",
       "position": "Mayor",
       "text": "We chose Vocdoni because we believe this is the future of what real elections of any kind should be. Electronic voting is open to everyone and makes the voting process easier for citizens."
     },
@@ -1735,7 +1735,7 @@
   "uploaded_image_preview": "Preview of the uploaded image",
   "uploader": {
     "click_or_drag_and_drop": "<click>Click to upload or drag and drop</click><formats>(Allowed formats: {{ formats, list }})</formats>",
-    "click_or_drag_and_drop_image": "Upload Image",
+    "click_or_drag_and_drop_image": "Upload image",
     "drop_here": ""
   },
   "use_read_more": {
@@ -1746,20 +1746,20 @@
     "banner": {
       "chat": "Chat to sales",
       "subtitle": "Join our network of +500 organizations using our secure voting platform",
-      "title": "Use Cases"
+      "title": "Use cases"
     },
     "city_councils": {
       "description": "Improving Participatory Democracy on City Councils with Vocdoni",
       "eyebrow": "Institutions ans Public Sector",
-      "title": "City Councils"
+      "title": "City councils"
     },
     "community_organizations": {
       "description": "Engaging Membership and Maintaining Integrity with Vocdoni",
-      "eyebrow": "Professional Collages",
-      "title": "Community Organizations"
+      "eyebrow": "Professional collages",
+      "title": "Community organizations"
     },
     "description": "Vocdoni helped a wide range of organizations and institutions improve their participatory processes, voting and elections with out cutting-edge software. Know more about our success stories and understand how we can help you, we adapt to all verticals",
-    "eyebrow": "Use Cases",
+    "eyebrow": "Use cases",
     "integrators": {
       "description": "Embedding Digital Voting Software with Vocdoni",
       "eyebrow": "Product",
@@ -1767,24 +1767,24 @@
     },
     "political_parties": {
       "description": "Improving Participatory Democracy in Political Parties with Vocdoni",
-      "eyebrow": "Software Engineering",
-      "title": "Political Parties"
+      "eyebrow": "Software engineering",
+      "title": "Political parties"
     },
     "professional_associations": {
       "description": "Engaging Membership and Lowering Administrative Burden with Vocdoni",
       "eyebrow": "Design",
-      "title": "Professional Associations"
+      "title": "Professional associations"
     },
     "sport_clubs": {
       "description": "Engaging Membership and Lowering Administrative Burden with Vocdoni",
-      "eyebrow": "Software Engineering",
-      "title": "Sport Clubs"
+      "eyebrow": "Software engineering",
+      "title": "Sport clubs"
     },
     "title": "Our success stories"
   },
   "user_menu": "User menu",
   "user_settings": "User settings",
-  "verification_code": "Verification Code",
+  "verification_code": "Verification code",
   "verification_code_placeholder": "Enter the verification code",
   "verification_code_resent": "Verification code resent!",
   "verify": {
@@ -1795,7 +1795,7 @@
     "enter_verification_code": "We've sent you a verification email. Please follow the instructions to activate your account.",
     "invalid_verification": "Invalid verification request",
     "missing_email": "No email address provided for verification",
-    "resend_confirmation_mail": "Resend Email",
+    "resend_confirmation_mail": "Resend email",
     "sent_to_email": "Email sent to {{email}}",
     "verification_email_is_sent": "A verification email has been sent to:",
     "verify_code": "Verify",
@@ -1807,7 +1807,7 @@
     "verifying_title": "Verifying {{ email }}"
   },
   "view_in_explorer": "View in explorer",
-  "view_plans_and_pricing": "View Plans & Pricing",
+  "view_plans_and_pricing": "View plans & pricing",
   "vocdoni logo": "Vocdoni logo",
   "vote_information": "Vote information",
   "vote_overwrite": "Vote overwrite",
@@ -1816,35 +1816,35 @@
     "2fa_description": "Add an extra layer of security by requiring voters to verify their identity",
     "2fa_email": "<email /> Email verification",
     "2fa_email_description": "Voters will receive a verification code via email",
-    "2fa_enable": "Enable Two-Factor Authentication",
+    "2fa_enable": "Enable two-factor authentication",
     "2fa_method_title": "Select verification method",
     "2fa_security_description": "Two-factor authentication significantly increases the security of your voting process by ensuring only authorized members can vote.",
-    "2fa_security_title": "Enhanced Security",
+    "2fa_security_title": "Enhanced security",
     "2fa_sms": "<phone /> SMS verification",
     "2fa_sms_description": "Voters will receive a verification code via SMS",
     "2fa_voter_choice": "<email /> or <phone /> Voter's choice",
     "2fa_voter_choice_description": "Voters can choose their preferred verification method",
     "button": {
-      "configure": "Configure Voter Authentication",
-      "edit": "Edit Voter Authentication"
+      "configure": "Configure voter authentication",
+      "edit": "Edit voter authentication"
     },
-    "configured_auth": "Voter Authentication",
+    "configured_auth": "Voter authentication",
     "credentials": "Credentials",
     "description": "Set up how voters will authenticate to participate in this voting process.",
     "email": "Via email verification",
-    "guarantees": "Authentication Guarantees",
+    "guarantees": "Authentication guarantees",
     "guarantees_mid_description_intro": "Your configuration provides mid-level authentication guarantees with 3 credentials.",
     "guarantees_mid_list_1": "Enable two-factor authentication for strong guarantees",
-    "guarantees_mid_title": "Mid-Level Authentication Guarantees",
+    "guarantees_mid_title": "Mid-level authentication guarantees",
     "guarantees_strong_description": "Your configuration provides strong authentication guarantees with two-factor verification.",
-    "guarantees_strong_title": "Strong Authentication Guarantees",
+    "guarantees_strong_title": "Strong authentication guarantees",
     "guarantees_sub_mid": "Mid-level authentication guarantees with 3 credentials but no two-factor verification.",
     "guarantees_sub_strong": "Strong authentication guarantees with two-factor verification enabled.",
     "guarantees_sub_weak": "Basic authentication guarantees with 1 credential and no two-factor verification.",
     "guarantees_weak_description_intro": "Your current configuration provides minimal authentication guarantees. We strongly recommend:",
     "guarantees_weak_list_1": "Add more credentials (aim for 2) for better identity verification",
     "guarantees_weak_list_2": "Enable two-factor authentication for an additional verification layer",
-    "guarantees_weak_title": "Weak Authentication Guarantees",
+    "guarantees_weak_title": "Weak authentication guarantees",
     "level_mid": "Mid",
     "level_strong": "Strong",
     "level_weak": "Weak",
@@ -1860,15 +1860,15 @@
     "selected_credentials_count_other": "{{ count }}/3 credentials selected",
     "sms": "Via SMS verification",
     "summary": "Summary",
-    "summary_2fa_enable": "Two-Factor Authentication",
+    "summary_2fa_enable": "Two-factor authentication",
     "summary_2fa_enabled": "Enabled",
-    "summary_credentials": "Required Credentials",
-    "summary_title": "Authentication Configuration Summary",
-    "title": "Configure Voter Authentication",
+    "summary_credentials": "Required credentials",
+    "summary_title": "Authentication configuration summary",
+    "title": "Configure voter authentication",
     "two_factor": "Two-Factor",
     "validation_duplicates_one": "{{count}} duplicated users",
     "validation_duplicates_other": "{{count}} duplicated users",
-    "validation_error_title": "Validation Error",
+    "validation_error_title": "Validation error",
     "validation_missing_data_one": "{{count}} users missing required fields",
     "validation_missing_data_other": "{{count}} users missing required fields",
     "validation_summary": "Validation failed for some users.",
@@ -1878,7 +1878,7 @@
   },
   "voting_link": {
     "description": "Share this link with your voters to participate in the voting process",
-    "title": "Voting Link"
+    "title": "Voting link"
   },
   "voting_processes": "Voting processes",
   "voting_processes_description": "Manage and monitor your voting processes",

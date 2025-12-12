@@ -97,7 +97,7 @@ const AcceptInvitation: React.FC<InviteFields> = ({ address, code, email }) => {
             </Trans>
           </Text>
           <Button as={RouterLink} to={generatePath(Routes.auth.verify)}>
-            <Trans i18nKey='invite.go_to_verify'>Verify Account</Trans>
+            <Trans i18nKey='invite.go_to_verify'>Verify account</Trans>
           </Button>
         </Flex>
       )

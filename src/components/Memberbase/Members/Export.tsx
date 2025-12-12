@@ -35,8 +35,7 @@ export const RadioCard = ({ label, value, isSelected, onSelect }: RadioCardProps
       onClick={() => onSelect(value)}
       p={4}
       leftIcon={<Icon as={LuFileSpreadsheet} boxSize={4} />}
-      colorScheme='black'
-      variant={isSelected ? 'solid' : 'outline'}
+      variant={isSelected ? 'primary' : 'secondary'}
     >
       {label}
       <input type='radio' value={value} checked={isSelected} onChange={() => {}} style={{ display: 'none' }} />
@@ -159,7 +158,7 @@ export const ExportMembers = () => {
                 <Button variant='outline' onClick={onClose}>
                   {t('memberbase.exporter.cancel', { defaultValue: 'Cancel' })}
                 </Button>
-                <Button type='submit' colorScheme='black'>
+                <Button type='submit' variant='primary'>
                   {t('memberbase.exporter.export', {
                     defaultValue: 'Export {{count}} columns',
                     count: selectedColumnCount,

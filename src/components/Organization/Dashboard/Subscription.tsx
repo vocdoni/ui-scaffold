@@ -60,7 +60,7 @@ const SubscriptionPageContent = () => {
         </Flex>
         {!isFree && view === 'plans' && (
           <Button onClick={() => handleChangeClick()} isLoading={isPending} shouldWrapChildren>
-            {t('billing_details', { defaultValue: 'Billing Details' })}
+            {t('billing_details', { defaultValue: 'Billing details' })}
           </Button>
         )}
       </Flex>
@@ -68,7 +68,7 @@ const SubscriptionPageContent = () => {
         <>
           <SubscriptionPlans />
           <Flex justifyContent='center'>
-            <Button colorScheme='black' variant='outline' onClick={toggleComparisonTable} mb={6}>
+            <Button variant='secondary' onClick={toggleComparisonTable} mb={6}>
               {showComparisonTable
                 ? t('subscription_plan.hide_comparison_table', { defaultValue: 'Show less features' })
                 : t('subscription_plan.show_comparison_table', { defaultValue: 'View all features' })}

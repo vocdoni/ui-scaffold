@@ -267,7 +267,6 @@ export const Card = defineMultiStyleConfig({
         lineHeight: { base: '26px', sm: '26px' },
         fontWeight: 'bold',
         textAlign: 'left',
-        fontFamily: 'basier',
         paddingTop: '0px',
       },
       body: {
