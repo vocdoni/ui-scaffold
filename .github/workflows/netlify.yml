@@ -46,7 +46,6 @@ jobs:
           STRIPE_PUBLIC_KEY: ${{ secrets.STRIPE_PUBLIC_KEY }}
           CALCOM_EVENT_SLUG: ${{ secrets.CALCOM_EVENT_SLUG }}
           VIDEO_TUTORIAL: '{"en": "https://www.youtube.com/watch?v=OQRF_4-zGSk", "es": "https://www.youtube.com/watch?v=zk6yIq3-SHw"}'
-          PROCESS_IDS: '6be21a5a9dc0a87c45cfef897bf12e113605f8105e0d0581daca030000000000,6be21a5a9dc0a87c45cfef897bf12e113605f8105e0d0581daca030000000001,6be21a5a9dc0a87c45cfef897bf12e113605f8105e0d0581daca030000000002'
 
       - name: Deploy to Netlify (dev)
         uses: nwtgck/actions-netlify@v2.0
