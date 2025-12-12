@@ -1,7 +1,8 @@
 import { Box, Flex, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionTitle } from '@vocdoni/chakra-components'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
-import { InvalidElection } from '@vocdoni/sdk'
+import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { ActionsMenu } from '~components/Process/ActionsMenu'
@@ -33,6 +34,18 @@ const SharedCensusHomeContent = () => {
   const { loading, loaded, election, connected } = useElection()
   const { account, connected: aconnected } = useClient()
 
+  const isAdmin = aconnected && account?.address === (election as PublishedElection)?.organizationId
+  const canViewProcesses = connected || isAdmin
+
+  useEffect(() => {
+    if (loaded && canViewProcesses) {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      })
+    }
+  }, [canViewProcesses, loaded])
+
   if (!election || election instanceof InvalidElection) {
     return null
   }
@@ -40,9 +53,6 @@ const SharedCensusHomeContent = () => {
   if (loading && !loaded) {
     return <Spinner />
   }
-
-  const isAdmin = aconnected && account?.address === election?.organizationId
-  const canViewProcesses = connected || isAdmin
 
   return (
     <Flex
@@ -60,7 +70,7 @@ const SharedCensusHomeContent = () => {
       {canViewProcesses && (
         <Box w='90%'>
           <Text alignSelf='start' mb={10} as='h3' fontWeight='bold' fontSize='22px' style={{ marginTop: '-30px' }}>
-            {t('sharedCensus.sectionTitle', { defaultValue: 'Elections' })}
+            {t('shared_census.section_title', { defaultValue: 'Elections' })}
           </Text>
           <Flex gap={5} flexDirection={{ base: 'column' }}>
             {processIds.map((processId, index) => (
@@ -75,13 +85,16 @@ const SharedCensusHomeContent = () => {
                     flexWrap='wrap'
                     h={{ base: '100px' }}
                     borderRadius='md'
-                    color='black'
+                    color='texts.primary'
                     textDecoration='none'
                     textAlign='center'
                     fontWeight='bold'
-                    boxShadow='0px 0px 10px 2px lightgray'
+                    boxShadow='lg'
+                    _dark={{
+                      boxShadow: '0 10px 15px -3px #343434,0 4px 6px -2px #444',
+                    }}
                     _hover={{
-                      bgColor: 'lightgray',
+                      bgColor: 'gray.500',
                     }}
                     _active={{
                       transform: 'scale(0.9)',
@@ -90,12 +103,12 @@ const SharedCensusHomeContent = () => {
                     isExternal={!isAdmin}
                   >
                     <Box>
-                      <Text fontSize='18px' display='flex' alignItems='center'>
+                      <Box fontSize='18px' display='flex' alignItems='center'>
                         <Box as='span' mr={2}>
                           {index + 1}:
                         </Box>
                         <ElectionTitle fontSize='18px' mb={0} />
-                      </Text>
+                      </Box>
                     </Box>
                   </Link>
                   {isAdmin && <ActionsMenu />}
@@ -108,7 +121,7 @@ const SharedCensusHomeContent = () => {
       <LogoutButton />
       {canViewProcesses && (
         <Text style={{ marginTop: '50px', maxWidth: '800px', textAlign: 'center' }}>
-          {t('sharedCensus.instructions.vote', {
+          {t('shared_census.instructions.vote', {
             defaultValue:
               'Select the election to open a new window with the voting instructions. Once your vote is submitted, close the window to return here.',
           })}
@@ -116,11 +129,11 @@ const SharedCensusHomeContent = () => {
       )}
       {!canViewProcesses && (
         <Text style={{ marginBottom: '50px', textAlign: 'center' }}>
-          {t('sharedCensus.instructions.login', {
+          {t('shared_census.instructions.login', {
             defaultValue: 'To access the election press "Identify".',
           })}
           <br />
-          {t('sharedCensus.instructions.identification', {
+          {t('shared_census.instructions.identification', {
             defaultValue: 'We will ask for your identification. Afterwards, you can cast your vote securely.',
           })}
         </Text>

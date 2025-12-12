@@ -1675,13 +1675,13 @@
     "mail_subject": "Plataforma de votació",
     "modal_title": "Comparteix amb amics"
   },
-  "sharedCensus": {
+  "shared_census": {
     "instructions": {
       "identification": "Et demanarem la teva identificació. Després, podràs emetre el teu vot de forma segura.",
-      "login": "Per accedir a la votació, prem \"Identifica't\".",
+      "login": "Per accedir a la votació, prem \"Identificar-se\".",
       "vote": "Selecciona la votació per obrir una nova finestra amb les instruccions de votació. Un cop hagis enviat el teu vot, tanca la finestra per tornar aquí."
     },
-    "sectionTitle": "Eleccions"
+    "section_title": "Eleccions"
   },
   "signin": "Inicia sessió",
   "signin_google": "Inicia sessió amb Google",

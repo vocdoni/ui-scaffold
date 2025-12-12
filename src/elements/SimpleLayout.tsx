@@ -1,6 +1,8 @@
 import { Box, Flex, HStack } from '@chakra-ui/react'
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
+import { ColorModeSwitcher } from '~components/shared/Layout/ColorModeSwitcher'
 import { VocdoniLogo } from '~components/shared/Layout/Logo'
+import { LanguagesMenu } from '~components/shared/Navbar/LanguagesList'
 import Footer from '~shared/Layout/Footer'
 
 const Layout = () => {
@@ -19,8 +21,13 @@ const Layout = () => {
         py={3}
         maxW='navbar'
         mx='auto'
+        justifyContent='space-between'
       >
         <VocdoniLogo h={10} />
+        <Box display='flex' alignItems='center' gap={4}>
+          <LanguagesMenu />
+          <ColorModeSwitcher />
+        </Box>
       </HStack>
       <ScrollRestoration />
       <Flex
