@@ -88,6 +88,7 @@ describe('useFormToElectionMapper', () => {
       streamUri: '',
       addresses: [],
       spreadsheet: null,
+      weightedVote: false,
     }
 
     // Create a mock SDK Census (PlainCensus is the simplest)

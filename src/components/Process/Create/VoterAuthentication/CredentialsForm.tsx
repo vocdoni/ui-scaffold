@@ -45,6 +45,7 @@ export const CredentialsForm = () => {
                 <CheckboxGroup value={field.value} onChange={(value: string[]) => field.onChange(value)}>
                   {fields.map((column) => {
                     if (column.is2fa) return null // Skip 2FA fields in this selection
+                    if (column.id === 'weight') return null // Skip weight field
                     const isChecked = credentials.includes(column.id)
                     const isAtLimit = credentials.length >= 3 && !isChecked
                     return (

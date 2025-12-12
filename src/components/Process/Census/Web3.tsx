@@ -11,16 +11,21 @@ import {
   Input,
   InputGroup,
   InputRightElement,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Text,
 } from '@chakra-ui/react'
 import { enforceHexPrefix, errorToString, useClient } from '@vocdoni/react-providers'
 import { useEffect, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { useFieldArray, useFormContext } from 'react-hook-form'
+import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCheck, LuPlus, LuTrash2, LuWallet } from 'react-icons/lu'
 import { DashboardSection, SidebarSubtitle } from '~components/shared/Dashboard/Contents'
-import { fieldMapErrorMessage, isInvalidFieldMap } from '~constants'
+import { fieldMapErrorMessage } from '~constants'
 import Uploader from '~shared/Layout/Uploader'
 import { CensusTypes } from './CensusType'
 import { Web3CensusSpreadsheetManager } from './Spreadsheet/Web3CensusSpreadsheetManager'
@@ -42,6 +47,8 @@ export const CensusWeb3Addresses = () => {
     formState: { errors },
     watch,
     setValue,
+    getValues,
+    control,
   } = useFormContext()
 
   const { fields, remove, append } = useFieldArray({
@@ -54,7 +61,7 @@ export const CensusWeb3Addresses = () => {
 
   useEffect(() => {
     if (account?.address && addresses.length === 0) {
-      setValue('addresses', [{ address: enforceHexPrefix(account.address) }])
+      setValue('addresses', [{ address: enforceHexPrefix(account.address), weight: 1 }])
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account?.address, addresses, censusType])
@@ -63,20 +70,23 @@ export const CensusWeb3Addresses = () => {
   const onDrop = async ([file]: File[]) => {
     try {
       setFileErr(null)
-      // weighted set to false for now, since there's no weight management here yet
+
       const spreadsheet = new Web3CensusSpreadsheetManager(file, weighted)
       await spreadsheet.read()
-      const plain = addresses.map(({ address }: { address: string }) => address.toLowerCase())
-      spreadsheet.data.forEach((row, k) => {
-        const [address] = row
-        if (!plain.includes(address.toLowerCase())) {
-          addresses.push({
-            address: spreadsheet.data[k][0],
-            weight: spreadsheet.weights[k],
-          })
-        }
+
+      spreadsheet.data.forEach((row, idx) => {
+        const [raw] = row
+        if (!raw) return
+        const addr = enforceHexPrefix(raw)
+
+        append(
+          {
+            address: addr,
+            weight: weighted ? Number(spreadsheet.weights[idx] ?? 1) : 1,
+          },
+          { shouldFocus: false }
+        )
       })
-      setValue('addresses', addresses)
     } catch (e) {
       setFileErr(errorToString(e))
       console.error('could not load file:', e)
@@ -116,11 +126,14 @@ export const CensusWeb3Addresses = () => {
         </Text>
       </DashboardSection>
       <Flex gap={2} direction='column'>
-        {fields.map((_, index) => {
-          const addressValue = watch(`addresses.${index}.address`)
+        {fields.map((field, index) => {
+          const addrName = `addresses.${index}.address` as const
+          const weightName = `addresses.${index}.weight` as const
+          const addressValue = watch(addrName)
+
           return (
-            <Flex gap={2} key={index}>
-              <FormControl isInvalid={isInvalidFieldMap(errors, `addresses.${index}.address`)}>
+            <Flex gap={2} key={field.id}>
+              <FormControl isInvalid={!!errors.addresses?.[index]?.address}>
                 <InputGroup>
                   <Input
                     {...register(`addresses.${index}.address`, {
@@ -146,16 +159,31 @@ export const CensusWeb3Addresses = () => {
                 </InputGroup>
                 <FormErrorMessage>{fieldMapErrorMessage(errors, `addresses.${index}.address`)}</FormErrorMessage>
               </FormControl>
+
+              <Controller
+                name={weightName}
+                control={control}
+                render={({ field }) => (
+                  <NumberInput
+                    value={field.value ?? 1}
+                    onChange={(_, num) => field.onChange(Number.isNaN(num) ? '' : num)}
+                    min={1}
+                  >
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                )}
+              />
+
               <IconButton
-                disabled={fields.length <= 1}
                 variant='outline'
                 icon={<Icon as={LuTrash2} />}
-                aria-label={t('form.process_create.census.remove_address', {
-                  defaultValue: 'Remove address',
-                })}
-                onClick={() => {
-                  remove(index)
-                }}
+                aria-label={t('form.process_create.census.remove_address', { defaultValue: 'Remove address' })}
+                onClick={() => remove(index)}
+                disabled={fields.length <= 1}
               />
             </Flex>
           )
@@ -167,7 +195,7 @@ export const CensusWeb3Addresses = () => {
         type='button'
         ml='none'
         onClick={() => {
-          append({ address: '' })
+          append({ address: '', weight: 1 })
         }}
       >
         {t('form.process_create.census.add_button')}

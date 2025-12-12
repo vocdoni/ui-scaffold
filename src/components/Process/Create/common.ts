@@ -53,6 +53,7 @@ export type Process = {
   maxNumberOfChoices: number | null
   minNumberOfChoices: number | null
   resultVisibility: 'live' | 'hidden'
+  weightedVote: boolean
   voterPrivacy: 'public' | 'anonymous'
   groupId: string
   census?: Census | null
@@ -90,6 +91,7 @@ export const defaultProcessValues: Process = {
   maxNumberOfChoices: null,
   minNumberOfChoices: null,
   resultVisibility: 'hidden',
+  weightedVote: false,
   voterPrivacy: 'public',
   groupId: '',
   census: null,

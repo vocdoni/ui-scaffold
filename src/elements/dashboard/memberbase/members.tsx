@@ -45,6 +45,11 @@ export const useMemberColumns = () => {
         id: 'birthDate',
         visible: false,
       },
+      {
+        label: t('members.fields.weight', { defaultValue: 'Voting power (Weight)' }),
+        id: 'weight',
+        visible: true,
+      },
     ],
     [t]
   )

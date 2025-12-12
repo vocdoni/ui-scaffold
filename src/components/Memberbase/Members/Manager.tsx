@@ -12,6 +12,11 @@ import {
   FormLabel,
   Heading,
   Input,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Stack,
   Text,
   useDisclosure,
@@ -20,7 +25,7 @@ import {
 import { useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-providers'
 import { cloneElement, useEffect, useMemo, useRef, useState } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { QueryKeys } from '~src/queries/keys'
 import { Member, useAddMembers } from '~src/queries/members'
@@ -32,6 +37,11 @@ type MemberManagerProps = {
   control: React.ReactElement
   member?: Partial<Member> | null
 }
+
+const stringifyObjectValues = (obj: Record<string, any>) =>
+  Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => [key, value === undefined || value === null ? '' : value.toString()])
+  )
 
 export const MemberManager = ({ control, member = null }: MemberManagerProps) => {
   const { t } = useTranslation()
@@ -107,14 +117,14 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
         cleanMember.phone = ''
         setHadPhone(true)
       }
-      methods.reset(cleanMember)
+      methods.reset(stringifyObjectValues(cleanMember))
     }
   }, [member])
 
-  const onSubmit = (data: MemberFormData) => {
-    const { id, memberNumber, name, surname, email, phone, nationalId, birthDate } = data
+  const onSubmit = (data: Partial<Member>) => {
+    const { id, memberNumber, name, surname, email, phone, nationalId, birthDate, weight } = data
 
-    const memberPayload: Partial<Member> = {
+    const memberPayload: Partial<Member> = stringifyObjectValues({
       id,
       memberNumber,
       name,
@@ -123,7 +133,8 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
       phone,
       nationalId,
       birthDate,
-    }
+      weight,
+    })
 
     addMember.mutate([memberPayload], {
       onSuccess: () => {
@@ -174,18 +185,39 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
               {columns.map((col) => {
                 const isPhone = col.id === 'phone'
                 const isBirthdate = col.id === 'birthDate'
+                const isWeighted = col.id === 'weight'
 
                 return (
                   <FormControl key={col.id} isInvalid={!!methods.formState.errors[col.id]}>
                     <FormLabel>{col.label}</FormLabel>
-                    <Input
-                      {...methods.register(col.id, {
-                        ...(fieldValidations[col.id] || {}),
-                      })}
-                      placeholder={hadPhone && isPhone ? '•••••••••••' : ''}
-                      type={isBirthdate ? 'date' : isPhone ? 'tel' : 'text'}
-                      required={false} // we don't want HTML5 validation
-                    />
+                    {isWeighted ? (
+                      <Controller
+                        name={col.id}
+                        control={methods.control}
+                        rules={fieldValidations[col.id]}
+                        render={({ field }) => (
+                          <NumberInput
+                            value={field.value}
+                            onChange={(val) => field.onChange(val === '' ? '' : Number(val))}
+                          >
+                            <NumberInputField />
+                            <NumberInputStepper>
+                              <NumberIncrementStepper />
+                              <NumberDecrementStepper />
+                            </NumberInputStepper>
+                          </NumberInput>
+                        )}
+                      />
+                    ) : (
+                      <Input
+                        {...methods.register(col.id, {
+                          ...(fieldValidations[col.id] || {}),
+                        })}
+                        placeholder={hadPhone && isPhone ? '•••••••••••' : ''}
+                        type={isBirthdate ? 'date' : isPhone ? 'tel' : 'text'}
+                        required={false} // we don't want HTML5 validation
+                      />
+                    )}
                     {isPhone && hadPhone && (
                       <FormHelperText>
                         {t('memberbase.form.phone_warning', {
