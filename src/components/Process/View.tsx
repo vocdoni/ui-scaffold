@@ -31,7 +31,7 @@ import {
 } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionResults, environment } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { CensusType, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { CensusType, ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
@@ -65,6 +65,39 @@ export const ProcessInfoCard = ({ label, description, ...props }: ProcessInfoCar
         description
       )}
     </Box>
+  )
+}
+
+const TYPE_MAP: Record<ElectionResultsTypeNames, string> = {
+  [ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION]: 'process.voting_method.single_choice_multiquestion',
+  [ElectionResultsTypeNames.MULTIPLE_CHOICE]: 'process.voting_method.multiple_choice',
+  [ElectionResultsTypeNames.APPROVAL]: 'process.voting_method.approval',
+  [ElectionResultsTypeNames.BUDGET]: 'process.voting_method.budget',
+  [ElectionResultsTypeNames.QUADRATIC]: 'process.voting_method.quadratic',
+}
+
+const VotingMethod = () => {
+  const { t } = useTranslation()
+  const { election } = useElection()
+
+  if (!election) return null
+  if (!(election instanceof PublishedElection)) return null
+
+  const name = election.resultsType?.name
+  const base =
+    name && TYPE_MAP[name] ? t(TYPE_MAP[name]) : t('process.voting_method.unknown', { defaultValue: 'Unknown' })
+
+  const isWeighted = Number(election?.census.weight) !== election?.census.size
+
+  return (
+    <>
+      {isWeighted
+        ? t('process.voting_method.weighted_format', {
+            base,
+            defaultValue: '{{base}} with weighted voting',
+          })
+        : base}
+    </>
   )
 }
 
@@ -151,6 +184,10 @@ const ProcessInfoPanel = () => {
             </Text>
           )
         }
+      />
+      <ProcessInfoCard
+        label={t('process.voting_type', { defaultValue: 'Voting method' })}
+        description={<VotingMethod />}
       />
       {showOrgInformation && <ProcessInfoCard label={t('process.created_by')} description={<CreatedBy />} />}
       {election?.status === ElectionStatus.PAUSED && election?.organizationId !== account?.address && (
