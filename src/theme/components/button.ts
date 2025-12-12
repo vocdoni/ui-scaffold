@@ -74,7 +74,7 @@ const secondary = defineStyle({
   border: '1px solid',
   borderColor: 'button.secondary.border',
   color: 'button.secondary.color',
-  fontWeight: 'semibold',
+  fontWeight: 'bold',
   _hover: {
     bg: 'button.secondary.hover.bg',
     _disabled: {

@@ -104,6 +104,7 @@ export const InviteToTeamModal = (props: ButtonProps) => {
   return (
     <>
       <Button
+        variant='primary'
         onClick={() => {
           if (canInvite) {
             onOpen()
@@ -118,7 +119,6 @@ export const InviteToTeamModal = (props: ButtonProps) => {
         }}
         {...props}
         isLoading={isLoading}
-        shouldWrapChildren
         loadingText={t('loading')}
       />
       <CallbackProvider success={() => onClose()}>

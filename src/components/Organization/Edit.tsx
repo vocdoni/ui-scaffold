@@ -144,9 +144,9 @@ const EditOrganization = () => {
 
           <Flex align='center' direction='column' alignSelf='end'>
             <Button
+              variant='primary'
               type='submit'
               isLoading={isPending}
-              shouldWrapChildren
               aria-label={t('actions.save', { defaultValue: 'Save' })}
               w='full'
             >
