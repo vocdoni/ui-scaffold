@@ -55,7 +55,7 @@ const LayoutDashboard: React.FC = () => {
             display={{ base: 'none', md: 'flex' }}
           />
 
-          <Flex flex='1 1 0' flexDirection='column' minW={0}>
+          <Flex flex='1 1 0' flexDirection='column' minW={0} pt={6}>
             <AnnouncementBanner />
             <Outlet context={{ setBreadcrumb } satisfies DashboardLayoutContext} />
           </Flex>
