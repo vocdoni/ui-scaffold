@@ -49,13 +49,7 @@ export const PlanUpgradeModal = ({ isOpen, onClose, ...props }: ModalProps & Pla
             <Button variant='secondary' onClick={onClose}>
               <Trans i18nKey='plan_upgrade.cancel'>Cancel</Trans>
             </Button>
-            <Button
-              variant='solid'
-              variant='primary'
-              as={Link}
-              to={Routes.dashboard.settings.subscription}
-              onClick={onClose}
-            >
+            <Button variant='primary' as={Link} to={Routes.dashboard.settings.subscription} onClick={onClose}>
               <Trans i18nKey='plan_upgrade.see_plans'>See Plans</Trans>
             </Button>
           </Flex>

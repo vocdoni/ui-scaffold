@@ -313,7 +313,7 @@ const MemberFilters = ({ onDelete }: MemberFiltersProps) => {
           <CreateGroupButton includeAllMembers members={data?.members ?? []}>
             {t('members.table.create_group_all', { defaultValue: 'Create group (All)' })}
           </CreateGroupButton>
-          <Button leftIcon={<Icon as={LuTrash2} />} variant='outline' variant='danger' onClick={onDelete}>
+          <Button leftIcon={<Icon as={LuTrash2} />} variant='danger' onClick={onDelete}>
             {t('members.table.delete_all', {
               defaultValue: 'Delete (All)',
             })}
@@ -440,7 +440,7 @@ const CreateGroupButton = ({ children, members, includeAllMembers = false, ...re
                       ))}
                       {remainingCount > 0 && (
                         <WrapItem>
-                          <Tag borderRadius='sm' size='sm' variant='outline' variant='primary'>
+                          <Tag borderRadius='sm' size='sm' variant='outline'>
                             <TagLabel>
                               {t('members.table.remaining_members', {
                                 defaultValue: '+{{count}} more',
@@ -496,13 +496,7 @@ const MemberBulkActions = ({ onDelete, onAddToGroup }: MemberBulkActionsProps) =
           <Button leftIcon={<Icon as={LuUserPlus} />} size='sm' variant='outline' onClick={() => onAddToGroup()}>
             {t('members.table.add_to_group', { defaultValue: 'Add to Group' })}
           </Button>
-          <Button
-            leftIcon={<Icon as={LuTrash2} />}
-            size='sm'
-            variant='danger'
-            variant='outline'
-            onClick={() => onDelete()}
-          >
+          <Button leftIcon={<Icon as={LuTrash2} />} size='sm' variant='danger' onClick={() => onDelete()}>
             {t('members.table.bulk_delete', { defaultValue: 'Delete' })}
           </Button>
         </>

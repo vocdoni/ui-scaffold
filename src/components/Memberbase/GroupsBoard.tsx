@@ -167,7 +167,7 @@ const HistoryDrawer = ({ group, isOpen, onClose }: HistoryDrawerProps) => {
         </DrawerHeader>
         <DrawerBody>
           <Flex justify='flex-end'>
-            <Button variant='outline' variant='primary' onClick={onClose}>
+            <Button variant='secondary' onClick={onClose}>
               {t('groups_board.history.close', { defaultValue: 'Close' })}
             </Button>
           </Flex>
@@ -248,7 +248,7 @@ const GroupMembersTable = ({ groupId }: { groupId: string }) => {
                 defaults='Selected: <strong>{{count}} member</strong>'
               />
             </Text>
-            <Button leftIcon={<Icon as={LuTrash} />} onClick={onOpen} size='sm' variant='danger' variant='outline'>
+            <Button leftIcon={<Icon as={LuTrash} />} onClick={onOpen} size='sm' variant='danger'>
               {t('members.table.bulk_delete', { defaultValue: 'Delete' })}
             </Button>
           </>
@@ -612,9 +612,7 @@ const GroupsBoard = () => {
           alignSelf='center'
           onClick={() => fetchNextPage()}
           isLoading={isFetchingNextPage}
-          shouldWrapChildren
-          variant='primary'
-          variant='outline'
+          variant='secondary'
         >
           {t('groups_board.load_more', { defaultValue: 'Load more' })}
         </Button>

@@ -35,7 +35,6 @@ export const RadioCard = ({ label, value, isSelected, onSelect }: RadioCardProps
       onClick={() => onSelect(value)}
       p={4}
       leftIcon={<Icon as={LuFileSpreadsheet} boxSize={4} />}
-      variant='primary'
       variant={isSelected ? 'solid' : 'outline'}
     >
       {label}

@@ -201,7 +201,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
               })}
             </Stack>
             <Flex justify='flex-end' gap={2} mt={4}>
-              <Button variant='outline' variant='primary' onClick={handleClose}>
+              <Button variant='secondary' onClick={handleClose}>
                 {t('memberbase.form.cancel', { defaultValue: 'Cancel' })}
               </Button>
               <Button

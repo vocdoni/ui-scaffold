@@ -85,7 +85,7 @@ export function CookieConsent() {
           </Box>
 
           <HStack justify='end' spacing={2}>
-            <Button variant='outline' variant='primary' size='sm' onClick={handleReject}>
+            <Button variant='secondary' size='sm' onClick={handleReject}>
               {t('cookies.reject', { defaultValue: 'Reject' })}
             </Button>
             <Button variant='primary' size='sm' onClick={handleAccept}>

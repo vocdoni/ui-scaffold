@@ -969,14 +969,7 @@ export const ProcessCreate = () => {
               >
                 <Trans i18nKey='process.create.action.publish'>Publish</Trans>
               </Button>
-              <Button
-                type='button'
-                variant='primary'
-                variant='outline'
-                onClick={handleManualSave}
-                isLoading={isSaving}
-                shouldWrapChildren
-              >
+              <Button type='button' variant='secondary' onClick={handleManualSave} isLoading={isSaving}>
                 <Trans i18nKey='process.create.action.save_draft'>Save</Trans>
               </Button>
             </ButtonGroup>

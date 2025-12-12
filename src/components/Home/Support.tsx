@@ -85,7 +85,6 @@ const Support = () => {
           gap={'15px'}
         >
           <ContactButton
-            variant='outline'
             variant='primary'
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
