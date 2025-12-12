@@ -1,7 +1,14 @@
 import { renderHook } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-const mockParseProcessIds = vi.fn((value?: string) => (value ? value.split(',').map((id) => id.trim()).filter(Boolean) : []))
+const mockParseProcessIds = vi.fn((value?: string) =>
+  value
+    ? value
+        .split(',')
+        .map((id) => id.trim())
+        .filter(Boolean)
+    : []
+)
 
 vi.mock('@vocdoni/react-providers', () => ({
   useClient: () => ({ client: { fetchAccountInfo: vi.fn() } }),
@@ -13,7 +20,9 @@ vi.mock('~components/Home/SharedCensus', () => ({
   parseProcessIds: mockParseProcessIds,
 }))
 vi.mock('~elements/organization/view', () => ({ default: () => <div>OrganizationView</div> }))
-vi.mock('../SuspenseLoader', () => ({ SuspenseLoader: ({ children }: { children: React.ReactNode }) => <>{children}</> }))
+vi.mock('../SuspenseLoader', () => ({
+  SuspenseLoader: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}))
 
 describe('useHomeRoute', () => {
   const originalProcessIds = import.meta.env.PROCESS_IDS
