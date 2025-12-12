@@ -7,6 +7,11 @@ const baseStyle = {
   py: 1,
   bgColor: 'white',
   color: 'black',
+  _dark: {
+    bgColor: 'gray.700',
+    border: '1px solid rgb(71, 71, 71)',
+    color: 'white',
+  },
 }
 
 export const Tooltip = defineStyleConfig({ baseStyle })

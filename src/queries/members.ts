@@ -18,6 +18,7 @@ export type Member = {
   phone: string
   nationalId: string
   birthDate: string
+  weight?: string
 }
 
 export type MembersResponse = {
