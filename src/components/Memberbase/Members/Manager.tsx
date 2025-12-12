@@ -28,7 +28,7 @@ import { cloneElement, useEffect, useMemo, useRef, useState } from 'react'
 import { Controller, FormProvider, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { QueryKeys } from '~src/queries/keys'
-import { Member, useAddMembers } from '~src/queries/members'
+import { Member, useAddMembers, useEditMember } from '~src/queries/members'
 import { useTable } from '../TableProvider'
 
 type MemberFormData = Record<string, string>
@@ -50,6 +50,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
   const btnRef = useRef(null)
   const { columns } = useTable()
   const addMember = useAddMembers()
+  const editMember = useEditMember()
   const { organization } = useOrganization()
   const queryClient = useQueryClient()
   const [hadPhone, setHadPhone] = useState(false)
@@ -59,6 +60,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
   const methods = useForm({ defaultValues })
 
   const isEdit = Boolean(member)
+  const isSubmitting = isEdit ? editMember.isPending : addMember.isPending
 
   const title = isEdit
     ? t('memberbase.edit_member.title', { defaultValue: 'Edit Member' })
@@ -136,30 +138,60 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
       weight,
     })
 
-    addMember.mutate([memberPayload], {
-      onSuccess: () => {
-        toast({
-          title: successToastMessage,
-          status: 'success',
-          duration: 3000,
-          isClosable: true,
-        })
-        methods.reset()
-        queryClient.invalidateQueries({
-          queryKey: QueryKeys.organization.members(organization.address),
-          exact: false,
-        })
-        onClose()
-      },
-      onError: (error) => {
+    const handleSuccess = () => {
+      toast({
+        title: successToastMessage,
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
+      methods.reset()
+      queryClient.invalidateQueries({
+        queryKey: QueryKeys.organization.members(organization.address),
+        exact: false,
+      })
+      onClose()
+    }
+
+    const handleError = (error: Error) => {
+      toast({
+        title: errorToastMessage,
+        description: error.message,
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      })
+    }
+
+    if (isEdit) {
+      const memberId = member?.id || id
+
+      if (!memberId) {
         toast({
           title: errorToastMessage,
-          description: error.message,
+          description: t('memberbase.edit_member.missing_id', { defaultValue: 'Missing member id for update.' }),
           status: 'error',
           duration: 3000,
           isClosable: true,
         })
-      },
+        return
+      }
+
+      const { id: _omitId, ...payload } = memberPayload
+
+      editMember.mutate(
+        { id: memberId, ...payload },
+        {
+          onSuccess: handleSuccess,
+          onError: handleError,
+        }
+      )
+      return
+    }
+
+    addMember.mutate([memberPayload], {
+      onSuccess: handleSuccess,
+      onError: handleError,
     })
   }
 
@@ -238,7 +270,7 @@ export const MemberManager = ({ control, member = null }: MemberManagerProps) =>
               </Button>
               <Button
                 type='submit'
-                isLoading={addMember.isPending}
+                isLoading={isSubmitting}
                 shouldWrapChildren
                 colorScheme='black'
                 form='member-form'
