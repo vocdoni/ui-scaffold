@@ -1464,11 +1464,11 @@
     "voters": "Voters",
     "voting": "We are processing your vote. This process will take a few seconds. Please do not close or refresh this page.",
     "voting_method": {
-      "approval": "Approval voting",
+      "approval": "Approval",
       "budget": "Budget allocation",
       "multiple_choice": "Multiple choice",
-      "quadratic": "Quadratic voting",
-      "single_choice_multiquestion": "Single choice per question",
+      "quadratic": "Quadratic",
+      "single_choice_multiquestion": "Single choice with multiple questions",
       "unknown": "Unknown",
       "weighted_format": "Weighted {{ base, lowercase }}"
     },
@@ -1650,6 +1650,14 @@
     "icon_title": "share link",
     "mail_subject": "Voting platform",
     "modal_title": "Share with friends"
+  },
+  "sharedCensus": {
+    "instructions": {
+      "identification": "We will ask for your identification. Afterwards, you can cast your vote securely.",
+      "login": "To access the election press \"Identify\".",
+      "vote": "Select the election to open a new window with the voting instructions. Once your vote is submitted, close the window to return here."
+    },
+    "sectionTitle": "Elections"
   },
   "signin": "Log In",
   "signin_google": "Sign in with Google",

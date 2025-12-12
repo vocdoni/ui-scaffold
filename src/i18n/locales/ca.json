@@ -1488,11 +1488,11 @@
     "voters": "Votants",
     "voting": "Estem processant el teu vot. Aquest procés trigarà uns segons. Si us plau, no tanquis ni actualitzis aquesta pàgina.",
     "voting_method": {
-      "approval": "Votació d'aprovació",
-      "budget": "Votació pressupostària",
+      "approval": "Aprovació",
+      "budget": "Assignació pressupostària",
       "multiple_choice": "Elecció múltiple",
-      "quadratic": "Votació quadràtica",
-      "single_choice_multiquestion": "Opció única per pregunta",
+      "quadratic": "Quadràtic",
+      "single_choice_multiquestion": "Elecció simple amb diverses preguntes",
       "unknown": "Desconegut",
       "weighted_format": "{{base}} ponderada"
     },
@@ -1674,6 +1674,14 @@
     "icon_title": "compartir enllaç",
     "mail_subject": "Plataforma de votació",
     "modal_title": "Comparteix amb amics"
+  },
+  "sharedCensus": {
+    "instructions": {
+      "identification": "Et demanarem la teva identificació. Després, podràs emetre el teu vot de forma segura.",
+      "login": "Per accedir a la votació, prem \"Identifica't\".",
+      "vote": "Selecciona la votació per obrir una nova finestra amb les instruccions de votació. Un cop hagis enviat el teu vot, tanca la finestra per tornar aquí."
+    },
+    "sectionTitle": "Eleccions"
   },
   "signin": "Inicia sessió",
   "signin_google": "Inicia sessió amb Google",
