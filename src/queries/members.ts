@@ -53,6 +53,8 @@ type MembersData = {
   all?: boolean
 }
 
+type EditMemberPayload = Partial<Member> & { id: string }
+
 export const useUrlPagination = () => {
   const params = useParams()
   const [searchParams] = useSearchParams()
@@ -97,6 +99,19 @@ export const useAddMembers = (isAsync: boolean = false) => {
     onSuccess: () => {
       setStepDone(SetupStepIds.memberbaseUpload)
     },
+  })
+}
+
+export const useEditMember = () => {
+  const { bearedFetch } = useAuth()
+  const { organization } = useOrganization()
+
+  const baseUrl = ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization.address))
+
+  return useMutation<void, Error, EditMemberPayload>({
+    mutationKey: QueryKeys.organization.members(organization?.address),
+    mutationFn: async ({ id, ...member }) =>
+      await bearedFetch<void>(baseUrl, { body: { id, ...member }, method: 'PUT' }),
   })
 }
 

@@ -999,6 +999,7 @@
     "edit_member": {
       "description": "Edita los datos del miembro a continuación.",
       "error": "Error al actualizar miembro.",
+      "missing_id": "Falta el id del miembro para editar.",
       "success": "¡Miembro actualizado correctamente!",
       "title": "Editar miembro"
     },

@@ -988,6 +988,7 @@
     "edit_member": {
       "description": "Edit the member details below.",
       "error": "Error updating member.",
+      "missing_id": "Missing member id for update.",
       "success": "Member updated successfully!",
       "title": "Edit Member"
     },
