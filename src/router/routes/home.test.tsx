@@ -1,0 +1,50 @@
+import { renderHook } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
+vi.mock('@vocdoni/react-providers', () => ({
+  useClient: () => ({ client: { fetchAccountInfo: vi.fn() } }),
+}))
+
+vi.mock('~components/Home', () => ({ default: () => <div>Home</div> }))
+vi.mock('~components/Home/SharedCensus', () => ({
+  default: () => <div>SharedCensus</div>,
+  parseProcessIds: (value?: string) => (value ? value.split(',').map((id) => id.trim()).filter(Boolean) : []),
+}))
+vi.mock('~elements/organization/view', () => ({ default: () => <div>OrganizationView</div> }))
+vi.mock('../SuspenseLoader', () => ({ SuspenseLoader: ({ children }: { children: React.ReactNode }) => <>{children}</> }))
+
+describe('useHomeRoute', () => {
+  const originalProcessIds = import.meta.env.PROCESS_IDS
+  const originalDomains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
+
+  beforeEach(() => {
+    vi.resetModules()
+    import.meta.env.PROCESS_IDS = ''
+    import.meta.env.CUSTOM_ORGANIZATION_DOMAINS = {}
+  })
+
+  afterEach(() => {
+    import.meta.env.PROCESS_IDS = originalProcessIds
+    import.meta.env.CUSTOM_ORGANIZATION_DOMAINS = originalDomains
+  })
+
+  it('uses SimpleLayout when PROCESS_IDS has values', async () => {
+    import.meta.env.PROCESS_IDS = 'id-1'
+    const { default: SimpleLayout } = await import('~elements/SimpleLayout')
+    const { useHomeRoute } = await import('./home')
+
+    const { result } = renderHook(() => useHomeRoute())
+
+    expect(result.current.element?.type).toBe(SimpleLayout)
+  })
+
+  it('uses Layout when PROCESS_IDS is empty', async () => {
+    import.meta.env.PROCESS_IDS = ''
+    const { default: Layout } = await import('~elements/Layout')
+    const { useHomeRoute } = await import('./home')
+
+    const { result } = renderHook(() => useHomeRoute())
+
+    expect(result.current.element?.type).toBe(Layout)
+  })
+})
