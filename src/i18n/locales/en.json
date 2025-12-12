@@ -1464,8 +1464,13 @@
     "voters": "Voters",
     "voting": "We are processing your vote. This process will take a few seconds. Please do not close or refresh this page.",
     "voting_method": {
+      "approval": "Approval voting",
+      "budget": "Budget allocation",
+      "multiple_choice": "Multiple choice",
+      "quadratic": "Quadratic voting",
+      "single_choice_multiquestion": "Single choice per question",
       "unknown": "Unknown",
-      "weighted_format": "{{base}} and weighted voting"
+      "weighted_format": "Weighted {{ base, lowercase }}"
     },
     "voting_type": "Voting method"
   },

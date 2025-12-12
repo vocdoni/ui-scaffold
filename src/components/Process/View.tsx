@@ -76,6 +76,12 @@ const TYPE_MAP: Record<ElectionResultsTypeNames, string> = {
   [ElectionResultsTypeNames.QUADRATIC]: 'process.voting_method.quadratic',
 }
 
+// t('process.voting_method.single_choice_multiquestion', { defaultValue: 'Single choice per question' })
+// t('process.voting_method.multiple_choice', { defaultValue: 'Multiple choice' })
+// t('process.voting_method.approval', { defaultValue: 'Approval voting' })
+// t('process.voting_method.budget', { defaultValue: 'Budget allocation' })
+// t('process.voting_method.quadratic', { defaultValue: 'Quadratic voting' })
+
 const VotingMethod = () => {
   const { t } = useTranslation()
   const { election } = useElection()
