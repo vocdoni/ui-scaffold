@@ -8,7 +8,7 @@ import { ActionsMenu } from '~components/Process/ActionsMenu'
 import { CensusConnectButton } from '~components/Process/Aside'
 import LogoutButton from '~components/Process/LogoutButton'
 
-const parseProcessIds = (value: string | undefined) =>
+export const parseProcessIds = (value: string | undefined) =>
   (value || '')
     .split(',')
     .map((id) => id.trim())
@@ -64,10 +64,9 @@ const SharedCensusHomeContent = () => {
           </Text>
           <Flex gap={5} flexDirection={{ base: 'column' }}>
             {processIds.map((processId, index) => (
-              <ElectionProvider id={processId}>
+              <ElectionProvider id={processId} key={processId}>
                 <Flex>
                   <Link
-                    key={index}
                     as={ReactRouterLink}
                     flexGrow={1}
                     display='flex'

@@ -5,7 +5,7 @@ import { Params } from 'react-router-dom'
 // These aren't lazy loaded since they are main layouts and related components
 import ErrorElement from '~elements/Error'
 import Layout from '~elements/Layout'
-import SharedCensus from '~src/themes/SharedCensus'
+import SharedCensus, { parseProcessIds } from '~src/themes/SharedCensus'
 import { Routes } from '.'
 import { SuspenseLoader } from '../SuspenseLoader'
 
@@ -19,11 +19,6 @@ const UseCases = lazy(() => import('~components/UseCases'))
 const UseCase = lazy(() => import('~components/UseCases/view'))
 
 const domains = import.meta.env.CUSTOM_ORGANIZATION_DOMAINS
-const parseProcessIds = (value: string | undefined) =>
-  (value || '')
-    .split(',')
-    .map((id) => id.trim())
-    .filter(Boolean)
 const sharedCensusProcessIds = parseProcessIds(import.meta.env.PROCESS_IDS)
 const shouldUseSharedCensus = sharedCensusProcessIds.length > 0
 
