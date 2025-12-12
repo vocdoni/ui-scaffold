@@ -15,7 +15,7 @@ const LogoutButton = () => {
   const { disconnect } = useDisconnect()
   const { election, connected, clearClient } = useElection()
   const { isConnected } = useAccount()
-  const { logout } = useAuth()
+  const { isAuthenticated, logout } = useAuth()
   const { clear } = useClient()
 
   if (election instanceof InvalidElection) return null
@@ -45,25 +45,18 @@ const LogoutButton = () => {
             }}
           />
         )}
-        {connected && isCSP && (
+        {(isWeb3 || (connected && isCSP)) && (
           <Button
             variant='link'
             onClick={() => {
-              clearClient()
-            }}
-          >
-            {t('logout')}
-          </Button>
-        )}
-        {isWeb3 && (
-          <Button
-            variant='link'
-            onClick={() => {
-              if (isConnected) {
+              if (!isAuthenticated) {
+                clearClient()
+                // because we determine the connection type from the election, we really don't know
+                // if the session open is web3 or CSP, so we clear both
                 disconnect()
                 clear()
               } else {
-                // If not connected with web3 wallet, but connected we logout from APP
+                // If not connected with web3 wallet, but still connected, we logout from APP
                 logout()
               }
             }}
