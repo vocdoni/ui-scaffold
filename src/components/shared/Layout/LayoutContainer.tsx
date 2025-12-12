@@ -1,5 +1,4 @@
-import { Box, BoxProps } from '@chakra-ui/react'
-import { forwardRef } from 'react'
+import { Box, BoxProps, forwardRef } from '@chakra-ui/react'
 
 export type LayoutContainerProps = BoxProps & {
   variant?: 'page' | 'content' | 'full'
@@ -11,7 +10,7 @@ const variantStyles: Record<NonNullable<LayoutContainerProps['variant']>, BoxPro
   full: { maxW: '100%' },
 }
 
-const LayoutContainer = forwardRef<HTMLDivElement, LayoutContainerProps>(({ variant = 'content', ...props }, ref) => (
+const LayoutContainer = forwardRef<LayoutContainerProps, 'div'>(({ variant = 'content', ...props }, ref) => (
   <Box
     ref={ref}
     w='full'

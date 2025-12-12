@@ -364,36 +364,6 @@ export const Card = defineMultiStyleConfig({
       },
     },
 
-    faqs: {
-      container: {
-        borderRadius: 'none',
-        borderBottom: '1px solid rgb(229, 229, 229)',
-        backgroundColor: 'transparent',
-        py: { base: 6, lg: 8 },
-
-        '&:last-of-type': {
-          border: 'none',
-        },
-        '&:nth-last-of-type(2)': {
-          borderBottom: { base: '1px solid rgb(229, 229, 229)', lg: 'none' },
-        },
-      },
-      header: {
-        p: 0,
-        fontWeight: 'bold',
-        mb: '18px',
-        fontSize: 'xl',
-      },
-      body: {
-        p: 0,
-        color: 'home.description.light',
-        fontSize: 'xl',
-
-        _dark: {
-          color: 'home.description.dark',
-        },
-      },
-    },
     solutions: {
       container: {
         display: 'flex',

@@ -2,7 +2,6 @@ import { Flex } from '@chakra-ui/react'
 import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import Clients from '~components/Home/Clients'
-import Faqs from '~components/Home/Faqs'
 import { ComparisonTable } from '~components/Pricing/ComparisonTable'
 import { SubscriptionPlans, usePlans } from '~components/Pricing/Plans'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
@@ -25,7 +24,6 @@ const PlansPublicPage = () => {
         <SubscriptionPlans />
         <ComparisonTable ref={featuresRef} />
         <Clients mt={14} />
-        <Faqs />
       </Flex>
     </PricingModalProvider>
   )

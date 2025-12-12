@@ -3,7 +3,6 @@ import Benefits from './Benefits'
 import Clients from './Clients'
 import ContactUs from './ContactUs'
 import CreateProcess from './CreateProcess'
-import Faqs from './Faqs'
 import Features from './Features'
 import Process from './Process'
 import Projects from './Projects'
@@ -22,8 +21,7 @@ const Home = () => (
         <Solutions />
         <ContactUs />
         <Process />
-        <Faqs mb={{ base: '100px', lg: '160px' }} />
-        <Support />
+        <Support mb={{ base: '100px', lg: '160px' }} />
       </Box>
     </Box>
   </>
