@@ -13,7 +13,7 @@ import { CensusMeta, CensusTypes } from '~components/Process/Census/CensusType'
 const LogoutButton = () => {
   const { t } = useTranslation()
   const { disconnect } = useDisconnect()
-  const { election, connected, clearClient } = useElection()
+  const { election, connected, clearClient, voted } = useElection()
   const { isConnected } = useAccount()
   const { isAuthenticated, logout } = useAuth()
   const { clear } = useClient()
@@ -25,6 +25,8 @@ const LogoutButton = () => {
   const isCSP = election.census.type === CensusType.CSP
   const isSpreadsheet = census?.type === CensusTypes.Spreadsheet
   const isWeb3 = census?.type === CensusTypes.Web3
+
+  console.log('connected statuses:', connected, isConnected, isAuthenticated, voted)
 
   if (!connected && !isConnected) return null
 
@@ -49,13 +51,11 @@ const LogoutButton = () => {
           <Button
             variant='link'
             onClick={() => {
-              if (!isAuthenticated) {
-                clearClient()
-                // because we determine the connection type from the election, we really don't know
-                // if the session open is web3 or CSP, so we clear both
+              if (isConnected) {
                 disconnect()
                 clear()
               } else {
+                clearClient()
                 // If not connected with web3 wallet, but still connected, we logout from APP
                 logout()
               }
