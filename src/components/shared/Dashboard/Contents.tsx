@@ -73,7 +73,7 @@ export const Sidebar = ({ show, ...props }: SidebarProps) => (
     style={{
       position: 'fixed',
       right: 0,
-      top: 65,
+      top: 0,
       bottom: 0,
       width: null, // to override chakra's default width
       zIndex: 10,

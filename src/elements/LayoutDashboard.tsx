@@ -1,16 +1,14 @@
-import { Box, Button, Flex, Icon, IconButton, Text, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
+import { Flex, IconButton, useBreakpointValue, useDisclosure } from '@chakra-ui/react'
 import { useLocalStorage } from '@uidotdev/usehooks'
 import { OrganizationProvider, useClient } from '@vocdoni/react-providers'
 import React, { createContext, PropsWithChildren, useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { LuCircleHelp, LuPanelLeft, LuPlus } from 'react-icons/lu'
-import { generatePath, Outlet, Link as ReactRouterLink } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { LuPanelLeft } from 'react-icons/lu'
+import { Outlet } from 'react-router-dom'
 import { PricingModalProvider } from '~components/Pricing/PricingModalProvider'
 import AnnouncementBanner from '~components/shared/Layout/AnnouncementBanner'
 import { LocalStorageKeys, MaxWindowWidth } from '~constants'
-import { Routes } from '~routes'
-import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
-import Breadcrumb, { BreadcrumbItem } from '~shared/Dashboard/Breadcrumb'
+import { BreadcrumbItem } from '~shared/Dashboard/Breadcrumb'
 import DashboardMenu from '~shared/Dashboard/Menu'
 
 export type DashboardLayoutContext = {
@@ -42,62 +40,23 @@ const LayoutDashboard: React.FC = () => {
           {/* Sidebar for large screens */}
           <DashboardMenu isOpen={isOpen} onClose={onClose} />
 
+          {/* Sidebar toggle button - positioned next to sidebar */}
+          <IconButton
+            icon={<LuPanelLeft />}
+            aria-label={t('menu.open')}
+            variant='ghost'
+            size='sm'
+            onClick={isMobile ? onOpen : () => setReduced((prev) => !prev)}
+            position='fixed'
+            top={3}
+            left={reduced ? '56px' : '263px'}
+            zIndex={1000}
+            transition='left 0.3s ease'
+            display={{ base: 'none', md: 'flex' }}
+          />
+
           <Flex flex='1 1 0' flexDirection='column' minW={0}>
             <AnnouncementBanner />
-            {/* Top Menu */}
-            <Box
-              position='sticky'
-              borderBottom='1px solid'
-              borderColor='table.border'
-              bgColor='chakra.body.bg'
-              top={0}
-              pr={4}
-              pl={{ base: 4, md: 2 }}
-              gap={4}
-              display='flex'
-              h={16}
-              flexShrink={0}
-              alignItems='center'
-              zIndex={100}
-            >
-              <IconButton
-                icon={<LuPanelLeft />}
-                aria-label={t('menu.open')}
-                colorScheme='gray'
-                size='xs'
-                onClick={isMobile ? onOpen : () => setReduced((prev) => !prev)}
-              />
-
-              <Box borderRight='1px solid' borderRightColor='table.border' h={6} />
-
-              <Breadcrumb breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />
-
-              <Flex gap={2} ml='auto' alignItems='center'>
-                <DashboardBookerModalButton
-                  leftIcon={<Icon as={LuCircleHelp} />}
-                  iconSpacing={{ base: 0, lg: 2 }}
-                  colorScheme='gray'
-                  variant='solid'
-                  size='sm'
-                >
-                  <Text as='span' display={{ base: 'none', lg: 'flex' }} fontSize='sm'>
-                    <Trans i18nKey='do_you_need_help'>Do you need help?</Trans>
-                  </Text>
-                </DashboardBookerModalButton>
-                <Button
-                  as={ReactRouterLink}
-                  to={generatePath(Routes.processes.create)}
-                  leftIcon={<Icon as={LuPlus} />}
-                  iconSpacing={{ base: 0, lg: 2 }}
-                  colorScheme='black'
-                  size='sm'
-                >
-                  <Text as='span' fontSize='sm' display={{ base: 'none', lg: 'flex' }}>
-                    <Trans i18nKey='new_voting'>New vote</Trans>
-                  </Text>
-                </Button>
-              </Flex>
-            </Box>
             <Outlet context={{ setBreadcrumb } satisfies DashboardLayoutContext} />
           </Flex>
         </Flex>
