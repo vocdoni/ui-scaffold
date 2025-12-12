@@ -952,7 +952,15 @@ export const ProcessCreate = () => {
           >
             <HStack spacing={2}>
               {effectiveDraftId && (
-                <Box px={3} py={1} borderRadius='full' bg='gray.100' _dark={{ bg: 'whiteAlpha.200' }} fontSize='sm' fontWeight='medium'>
+                <Box
+                  px={3}
+                  py={1}
+                  borderRadius='full'
+                  bg='gray.100'
+                  _dark={{ bg: 'whiteAlpha.200' }}
+                  fontSize='sm'
+                  fontWeight='medium'
+                >
                   <Trans i18nKey='process.create.status.draft'>Draft</Trans>
                 </Box>
               )}
@@ -987,12 +995,7 @@ export const ProcessCreate = () => {
               >
                 <Trans i18nKey='process.create.action.save_draft'>Save</Trans>
               </Button>
-              <Button
-                type='submit'
-                colorScheme='black'
-                isLoading={methods.formState.isSubmitting}
-                shouldWrapChildren
-              >
+              <Button type='submit' colorScheme='black' isLoading={methods.formState.isSubmitting} shouldWrapChildren>
                 <Trans i18nKey='process.create.action.publish'>Publish</Trans>
               </Button>
             </ButtonGroup>

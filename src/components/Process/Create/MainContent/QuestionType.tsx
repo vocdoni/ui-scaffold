@@ -91,8 +91,14 @@ export const QuestionType = () => {
   const pendingTypeRef = useRef<SelectorTypes | null>(null)
 
   return (
-    <Box display='flex' justifyContent='space-between' flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 4, md: 6 }} alignItems={{ base: 'stretch', md: 'center' }}>
-      <Box flex="1">
+    <Box
+      display='flex'
+      justifyContent='space-between'
+      flexDirection={{ base: 'column', md: 'row' }}
+      gap={{ base: 4, md: 6 }}
+      alignItems={{ base: 'stretch', md: 'center' }}
+    >
+      <Box flex='1'>
         <FormLabel mb={1} fontWeight='bold' fontSize='md'>
           <Trans i18nKey='process.question_type.title'>Question Type</Trans>
         </FormLabel>
@@ -102,7 +108,12 @@ export const QuestionType = () => {
           </Trans>
         </Text>
       </Box>
-      <HStack spacing={4} flexDir={{ base: 'column', sm: 'row' }} alignItems={{ base: 'stretch', sm: 'center' }} flexShrink={0}>
+      <HStack
+        spacing={4}
+        flexDir={{ base: 'column', sm: 'row' }}
+        alignItems={{ base: 'stretch', sm: 'center' }}
+        flexShrink={0}
+      >
         <FormControl display='flex' alignItems='center' gap={2}>
           <FormLabel htmlFor='extended-info' mb='0' fontSize='sm' whiteSpace='nowrap'>
             <Trans i18nKey='process.extended_info'>Extended info</Trans>
