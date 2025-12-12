@@ -91,11 +91,10 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
                 py={1}
                 borderRadius='full'
                 bg='blue.50'
-                _dark={{ bg: 'blue.900' }}
+                _dark={{ bg: 'blue.900', color: 'blue.200' }}
                 fontSize='xs'
                 fontWeight='medium'
                 color='blue.700'
-                _dark={{ color: 'blue.200' }}
                 w='fit-content'
               >
                 {t('process.create.question.question_number', {
