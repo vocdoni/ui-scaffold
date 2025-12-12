@@ -939,14 +939,23 @@ export const ProcessCreate = () => {
           w='full'
         >
           {/* Top bar with draft status and sidebar toggle */}
-          <HStack position='sticky' top='64px' p={2} bg='chakra.body.bg' zIndex='contents'>
-            {effectiveDraftId && (
-              <Box px={3} py={1} borderRadius='full' bg='gray.100' _dark={{ bg: 'whiteAlpha.200' }} fontSize='sm'>
-                <Trans i18nKey='process.create.status.draft'>Draft</Trans>
-              </Box>
-            )}
-            <Spacer />
-            <ButtonGroup size='sm'>
+          <Flex
+            position='sticky'
+            top='64px'
+            p={3}
+            bg='chakra.body.bg'
+            zIndex='sticky'
+            gap={3}
+            flexWrap='wrap'
+            justify='space-between'
+            align='center'
+          >
+            <HStack spacing={2}>
+              {effectiveDraftId && (
+                <Box px={3} py={1} borderRadius='full' bg='gray.100' _dark={{ bg: 'whiteAlpha.200' }} fontSize='sm' fontWeight='medium'>
+                  <Trans i18nKey='process.create.status.draft'>Draft</Trans>
+                </Box>
+              )}
               {isDirty && (
                 <IconButton
                   onClick={openConfirmationModal}
