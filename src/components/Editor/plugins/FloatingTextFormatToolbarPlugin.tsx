@@ -242,7 +242,7 @@ function TextFormatFloatingToolbar({
             icon={<Icon as={LuBold} />}
             aria-label={t('editor.bold', 'Bold')}
             variant={isBold ? 'solid' : 'ghost'}
-            colorScheme='black'
+            variant='primary'
             size='sm'
             onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'bold')}
           />
@@ -250,7 +250,7 @@ function TextFormatFloatingToolbar({
             icon={<Icon as={LuItalic} />}
             aria-label={t('editor.italic', 'Italic')}
             variant={isItalic ? 'solid' : 'ghost'}
-            colorScheme='black'
+            variant='primary'
             size='sm'
             onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'italic')}
           />
@@ -258,7 +258,7 @@ function TextFormatFloatingToolbar({
             icon={<Icon as={LuUnderline} />}
             aria-label={t('editor.underline', 'Underline')}
             variant={isUnderline ? 'solid' : 'ghost'}
-            colorScheme='black'
+            variant='primary'
             size='sm'
             onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'underline')}
           />
@@ -266,7 +266,7 @@ function TextFormatFloatingToolbar({
             icon={<Icon as={LuStrikethrough} />}
             aria-label={t('editor.strikethrough', 'Strikethrough')}
             variant={isStrikethrough ? 'solid' : 'ghost'}
-            colorScheme='black'
+            variant='primary'
             size='sm'
             onClick={() => editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'strikethrough')}
           />
@@ -274,7 +274,7 @@ function TextFormatFloatingToolbar({
             icon={<Icon as={LuLink} />}
             aria-label={t('editor.link.title', 'Link')}
             variant={isLink ? 'solid' : 'ghost'}
-            colorScheme='black'
+            variant='primary'
             size='sm'
             onClick={insertLink}
           />
@@ -292,7 +292,7 @@ function TextFormatFloatingToolbar({
               }
               aria-label={t('editor.paragraph', 'Paragraph')}
               variant='ghost'
-              colorScheme='black'
+              variant='primary'
               size='sm'
             />
             <MenuList minW='unset'>

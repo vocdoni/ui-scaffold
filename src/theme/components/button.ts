@@ -6,6 +6,7 @@ const baseStyle = defineStyle({
   fontWeight: 'bold',
   borderRadius: 'sm',
   fontSize: 'sm',
+  transition: 'all 0.2s',
 })
 
 const listmenu = defineStyle(({ colorMode }) => ({
@@ -46,6 +47,62 @@ const navbar = defineStyle(() => ({
   fontSize: 'md',
   h: 'fit-content',
 }))
+
+// Primary CTA variant (replaces colorScheme='black')
+const primary = defineStyle({
+  bg: 'button.primary.bg',
+  color: 'button.primary.color',
+  fontWeight: 'bold',
+  _hover: {
+    bg: 'button.primary.hover.bg',
+    _disabled: {
+      bg: 'button.primary.bg',
+    },
+  },
+  _active: {
+    bg: 'button.primary.active.bg',
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: 'not-allowed',
+  },
+})
+
+// Secondary outline variant (replaces variant='outline')
+const secondary = defineStyle({
+  bg: 'transparent',
+  border: '1px solid',
+  borderColor: 'button.secondary.border',
+  color: 'button.secondary.color',
+  fontWeight: 'semibold',
+  _hover: {
+    bg: 'button.secondary.hover.bg',
+    _disabled: {
+      bg: 'transparent',
+    },
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: 'not-allowed',
+  },
+})
+
+// Danger variant (replaces colorScheme='red')
+const danger = defineStyle({
+  bg: 'button.danger.bg',
+  color: 'button.danger.color',
+  fontWeight: 'bold',
+  _hover: {
+    bg: 'button.danger.hover.bg',
+    _disabled: {
+      bg: 'button.danger.bg',
+    },
+  },
+  _disabled: {
+    opacity: 0.4,
+    cursor: 'not-allowed',
+  },
+})
 
 const sizes = {
   lg: defineStyle({
@@ -101,7 +158,15 @@ const outline = defineStyle((props) => {
 
 export const Button = defineStyleConfig({
   variants: {
+    // New semantic variants
+    primary,
+    secondary,
+    danger,
+
+    // Existing Chakra variants
     ...theme.components.Button.variants,
+
+    // Custom variants (keep)
     unstyled,
     navbar,
     listmenu,

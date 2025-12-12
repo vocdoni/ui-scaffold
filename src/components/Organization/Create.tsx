@@ -159,11 +159,10 @@ export const OrganizationCreate = ({
         <PublicOrgForm minified={minified} />
         <PrivateOrgForm minified={minified} />
         <Button
+          variant='primary'
           form='process-create-form'
           type='submit'
           isLoading={isPending}
-          shouldWrapChildren
-          colorScheme='black'
           aria-label={t('organization.create_org', { defaultValue: 'Create organization' })}
         >
           {t('organization.create_org')}

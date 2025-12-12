@@ -148,7 +148,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
           )}
 
           <FormControl isRequired>
-            <Checkbox size='sm' variant='inline' colorScheme='black'>
+            <Checkbox size='sm' variant='inline' variant='primary'>
               <Trans i18nKey='csp.terms_acceptance'>
                 I have read and accept the{' '}
                 <Link href={termsOfServiceUrl} isExternal>
@@ -173,7 +173,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
 
           <Button
             type='submit'
-            colorScheme='black'
+            variant='primary'
             w='full'
             isLoading={auth.isPending}
             shouldWrapChildren

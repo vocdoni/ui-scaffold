@@ -86,7 +86,7 @@ const Support = () => {
         >
           <ContactButton
             variant='outline'
-            colorScheme='black'
+            variant='primary'
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             height='60px'
@@ -94,7 +94,7 @@ const Support = () => {
             {t('home.support.btn_contact')}
           </ContactButton>
           <BookerModalButton
-            colorScheme='black'
+            variant='primary'
             aria-label={t('home.support.btn_watch')}
             title={t('home.support.btn_watch')}
             height='60px'

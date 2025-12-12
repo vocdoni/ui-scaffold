@@ -35,7 +35,7 @@ export const RadioCard = ({ label, value, isSelected, onSelect }: RadioCardProps
       onClick={() => onSelect(value)}
       p={4}
       leftIcon={<Icon as={LuFileSpreadsheet} boxSize={4} />}
-      colorScheme='black'
+      variant='primary'
       variant={isSelected ? 'solid' : 'outline'}
     >
       {label}
@@ -144,7 +144,7 @@ export const ExportMembers = () => {
                                     isChecked ? [...field.value, value] : field.value.filter((v) => v !== value)
                                   )
                                 }}
-                                colorScheme='black'
+                                variant='primary'
                               >
                                 {col.label}
                               </Checkbox>
@@ -156,10 +156,10 @@ export const ExportMembers = () => {
                 </Box>
               </ModalBody>
               <ModalFooter>
-                <Button variant='outline' onClick={onClose}>
+                <Button variant='secondary' onClick={onClose}>
                   {t('memberbase.exporter.cancel', { defaultValue: 'Cancel' })}
                 </Button>
-                <Button type='submit' colorScheme='black'>
+                <Button type='submit' variant='primary'>
                   {t('memberbase.exporter.export', {
                     defaultValue: 'Export {{count}} columns',
                     count: selectedColumnCount,

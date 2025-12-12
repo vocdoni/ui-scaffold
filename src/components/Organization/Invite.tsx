@@ -79,10 +79,10 @@ const InviteForm = ({ onClose }: InviteFormProps) => {
         />
         <RoleSelector name='role' required />
         <Flex justifyContent='flex-end' gap={2}>
-          <Button onClick={onClose} colorScheme='gray' variant='outline'>
+          <Button variant='secondary' onClick={onClose}>
             <Trans i18nKey='cancel'>Cancel</Trans>
           </Button>
-          <Button colorScheme='black' type='submit' isLoading={mutation.isPending} shouldWrapChildren>
+          <Button variant='primary' type='submit' isLoading={mutation.isPending}>
             <Trans i18nKey='send_invitation'>Send invitation</Trans>
           </Button>
         </Flex>

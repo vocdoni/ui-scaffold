@@ -167,7 +167,7 @@ const HistoryDrawer = ({ group, isOpen, onClose }: HistoryDrawerProps) => {
         </DrawerHeader>
         <DrawerBody>
           <Flex justify='flex-end'>
-            <Button variant='outline' colorScheme='black' onClick={onClose}>
+            <Button variant='outline' variant='primary' onClick={onClose}>
               {t('groups_board.history.close', { defaultValue: 'Close' })}
             </Button>
           </Flex>
@@ -248,7 +248,7 @@ const GroupMembersTable = ({ groupId }: { groupId: string }) => {
                 defaults='Selected: <strong>{{count}} member</strong>'
               />
             </Text>
-            <Button leftIcon={<Icon as={LuTrash} />} onClick={onOpen} size='sm' colorScheme='red' variant='outline'>
+            <Button leftIcon={<Icon as={LuTrash} />} onClick={onOpen} size='sm' variant='danger' variant='outline'>
               {t('members.table.bulk_delete', { defaultValue: 'Delete' })}
             </Button>
           </>
@@ -317,13 +317,13 @@ const GroupMembersTable = ({ groupId }: { groupId: string }) => {
         onClose={onClose}
       >
         <Flex justifyContent='flex-end' mt={4} gap={2}>
-          <Button variant='outline' onClick={onClose}>
+          <Button variant='secondary' onClick={onClose}>
             {t('memberbase.delete_member.cancel', { defaultValue: 'Cancel' })}
           </Button>
           <Button
             isLoading={deleteGroupMembers.isPending}
             shouldWrapChildren
-            colorScheme='red'
+            variant='danger'
             onClick={() => {
               onDeleteMember(selectedRows.map((row) => row.id))
               onClose()
@@ -390,14 +390,14 @@ const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMemb
           </Flex>
           <Flex justify='space-between' mt={4}>
             <Button
-              colorScheme='black'
+              variant='primary'
               leftIcon={<Icon as={LuVote} boxSize={4} />}
               size='xs'
               onClick={() => navigateToVote(group.id)}
             >
               {t('group.create_vote', { defaultValue: 'Create a Vote' })}
             </Button>
-            <Button leftIcon={<Icon as={LuTrash} boxSize={4} />} onClick={openDeleteModal} colorScheme='red' size='xs'>
+            <Button leftIcon={<Icon as={LuTrash} boxSize={4} />} onClick={openDeleteModal} variant='danger' size='xs'>
               {t('group.delete_group', { defaultValue: 'Delete group' })}
             </Button>
           </Flex>
@@ -485,10 +485,10 @@ const DeleteGroupModal = ({ group, isOpen, onClose }: DeleteGroupModalProps) => 
       onClose={onClose}
     >
       <Flex justifyContent='flex-end' mt={4} gap={2}>
-        <Button variant='outline' onClick={onClose}>
+        <Button variant='secondary' onClick={onClose}>
           {t('group.actions.cancel', { defaultValue: 'Cancel' })}
         </Button>
-        <Button colorScheme='red' onClick={handleDelete}>
+        <Button variant='danger' onClick={handleDelete}>
           {t('group.actions.delete', { defaultValue: 'Delete' })}
         </Button>
       </Flex>
@@ -553,7 +553,7 @@ const GroupCard = ({ group }: GroupCardProps) => {
         </CardBody>
         <CardFooter px={0} pb={0}>
           <Button
-            colorScheme='black'
+            variant='primary'
             w='full'
             size='xs'
             leftIcon={<Icon boxSize={4} as={LuVote} />}
@@ -613,7 +613,7 @@ const GroupsBoard = () => {
           onClick={() => fetchNextPage()}
           isLoading={isFetchingNextPage}
           shouldWrapChildren
-          colorScheme='black'
+          variant='primary'
           variant='outline'
         >
           {t('groups_board.load_more', { defaultValue: 'Load more' })}

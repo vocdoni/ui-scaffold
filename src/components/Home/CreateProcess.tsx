@@ -41,7 +41,7 @@ const CreateProcess = () => {
           <Button
             as={ReactRouterLink}
             to={Routes.auth.signUp}
-            colorScheme='black'
+            variant='primary'
             mb='20px'
             w={{ base: 'full', sm: 'fit-content', lg: 'full' }}
             mx={{ base: 'auto', lg: 'start' }}

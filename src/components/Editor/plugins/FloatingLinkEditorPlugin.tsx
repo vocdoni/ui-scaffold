@@ -264,7 +264,7 @@ function FloatingLinkEditor({
             icon={<Icon as={LuCheck} />}
             aria-label={t('editor.link.confirm', { defaultValue: 'Confirm' })}
             size='xs'
-            colorScheme='black'
+            variant='primary'
             onMouseDown={(e) => e.preventDefault()}
             onClick={handleLinkSubmission}
           />
@@ -288,7 +288,7 @@ function FloatingLinkEditor({
             icon={<Icon as={LuTrash2} />}
             aria-label={t('editor.link.remove', { defaultValue: 'Remove link' })}
             size='xs'
-            colorScheme='red'
+            variant='danger'
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)}
           />

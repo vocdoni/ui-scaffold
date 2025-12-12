@@ -28,7 +28,7 @@ const NoElections = () => {
               <Button
                 mt='40px'
                 w='100%'
-                colorScheme='black'
+                variant='primary'
                 as={ReactRouterLink}
                 to={generatePath(Routes.processes.create)}
               >

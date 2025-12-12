@@ -93,7 +93,7 @@ export const TwoFactorForm = () => {
                       name='use2FAMethod'
                       control={control}
                       render={({ field }) => (
-                        <RadioGroup {...field} colorScheme='black'>
+                        <RadioGroup {...field} variant='primary'>
                           <Stack direction='column' gap={2}>
                             {TwoFactorMethods.map((method) => (
                               <Radio key={method.value} value={method.value} alignItems='flex-start' size='sm'>

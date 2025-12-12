@@ -74,7 +74,7 @@ const MultichoiceWarningModal = ({
             <Button variant='outline' onClick={cancel}>
               <Trans i18nKey='common.cancel'>Cancel</Trans>
             </Button>
-            <Button colorScheme='black' onClick={confirm}>
+            <Button variant='primary' onClick={confirm}>
               <Trans i18nKey='common.confirm'>Confirm</Trans>
             </Button>
           </Flex>

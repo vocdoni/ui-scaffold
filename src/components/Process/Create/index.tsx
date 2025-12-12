@@ -469,7 +469,7 @@ const TemplateButtons = () => {
           <Button variant='outline' onClick={handleCancel}>
             {t('process.create.change_template.cancel', 'Cancel')}
           </Button>
-          <Button colorScheme='red' onClick={handleConfirm}>
+          <Button variant='danger' onClick={handleConfirm}>
             {t('process.create.change_template.change', 'Change Template')}
           </Button>
         </Flex>
@@ -509,15 +509,15 @@ const LeaveConfirmationModal = ({
         </Button>
         <Spacer />
         {isSamePath ? (
-          <Button colorScheme='red' onClick={() => onResetSamePath()}>
+          <Button variant='danger' onClick={() => onResetSamePath()}>
             {t('process.create.leave_confirmation.reset', { defaultValue: 'Reset' })}
           </Button>
         ) : (
           <>
-            <Button colorScheme='red' onClick={onLeave}>
+            <Button variant='danger' onClick={onLeave}>
               {t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
             </Button>
-            <Button colorScheme='black' onClick={onSaveAndLeave}>
+            <Button variant='primary' onClick={onSaveAndLeave}>
               {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save and leave' })}
             </Button>
           </>
@@ -962,7 +962,7 @@ export const ProcessCreate = () => {
               />
               <Button
                 type='submit'
-                colorScheme='black'
+                variant='primary'
                 alignSelf='flex-end'
                 isLoading={methods.formState.isSubmitting}
                 shouldWrapChildren
@@ -971,7 +971,7 @@ export const ProcessCreate = () => {
               </Button>
               <Button
                 type='button'
-                colorScheme='black'
+                variant='primary'
                 variant='outline'
                 onClick={handleManualSave}
                 isLoading={isSaving}

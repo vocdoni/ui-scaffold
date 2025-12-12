@@ -58,7 +58,7 @@ export const CredentialsOverview = ({ credentials, use2FA, use2FAMethod }: Crede
       {use2FA && (
         <Box>
           <HStack mb={1}>
-            <Badge colorScheme='black' fontSize='xs'>
+            <Badge variant='primary' fontSize='xs'>
               2FA
             </Badge>
             <Text fontWeight='semibold'>

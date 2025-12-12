@@ -193,7 +193,7 @@ const AddMembersToGroupDrawer = ({ isOpen, onClose }: AddMembersToGroupDrawerPro
             onClick={handleAddToGroup}
             mt={2}
             width='100%'
-            colorScheme='black'
+            variant='primary'
             isDisabled={!selectedGroup || selectedRows.length === 0}
           >
             {t('members.table.add_to_group_button', {
@@ -313,7 +313,7 @@ const MemberFilters = ({ onDelete }: MemberFiltersProps) => {
           <CreateGroupButton includeAllMembers members={data?.members ?? []}>
             {t('members.table.create_group_all', { defaultValue: 'Create group (All)' })}
           </CreateGroupButton>
-          <Button leftIcon={<Icon as={LuTrash2} />} variant='outline' colorScheme='red' onClick={onDelete}>
+          <Button leftIcon={<Icon as={LuTrash2} />} variant='outline' variant='danger' onClick={onDelete}>
             {t('members.table.delete_all', {
               defaultValue: 'Delete (All)',
             })}
@@ -440,7 +440,7 @@ const CreateGroupButton = ({ children, members, includeAllMembers = false, ...re
                       ))}
                       {remainingCount > 0 && (
                         <WrapItem>
-                          <Tag borderRadius='sm' size='sm' variant='outline' colorScheme='black'>
+                          <Tag borderRadius='sm' size='sm' variant='outline' variant='primary'>
                             <TagLabel>
                               {t('members.table.remaining_members', {
                                 defaultValue: '+{{count}} more',
@@ -455,10 +455,10 @@ const CreateGroupButton = ({ children, members, includeAllMembers = false, ...re
                 </Box>
               </DrawerBody>
               <Flex justifyContent='flex-end' p={4}>
-                <Button variant='outline' onClick={onClose}>
+                <Button variant='secondary' onClick={onClose}>
                   {t('members.table.cancel', { defaultValue: 'Cancel' })}
                 </Button>
-                <Button disabled={!selectedMembers.length} colorScheme='black' ml={2} type='submit'>
+                <Button disabled={!selectedMembers.length} variant='primary' ml={2} type='submit'>
                   {t('members.table.create_group', { defaultValue: 'Create group' })}
                 </Button>
               </Flex>
@@ -499,7 +499,7 @@ const MemberBulkActions = ({ onDelete, onAddToGroup }: MemberBulkActionsProps) =
           <Button
             leftIcon={<Icon as={LuTrash2} />}
             size='sm'
-            colorScheme='red'
+            variant='danger'
             variant='outline'
             onClick={() => onDelete()}
           >
@@ -651,13 +651,13 @@ const DeleteMemberModal = ({ isOpen, onClose, mode, ...props }: DeleteMemberModa
       {...props}
     >
       <Flex justifyContent='flex-end' mt={4} gap={2}>
-        <Button variant='outline' onClick={onClose}>
+        <Button variant='secondary' onClick={onClose}>
           {t('memberbase.delete_member.cancel', { defaultValue: 'Cancel' })}
         </Button>
         <Button
           isLoading={deleteMutation.isPending || isFetchingAll}
           shouldWrapChildren
-          colorScheme='red'
+          variant='danger'
           onClick={handleDelete}
           disabled={isFetchingAll || selectedMembers.length === 0}
         >
@@ -712,7 +712,7 @@ const MembersTable = () => {
             <ImportMembers />
             <MemberManager
               control={
-                <Button colorScheme='black' leftIcon={<Icon as={LuPlus} />}>
+                <Button variant='primary' leftIcon={<Icon as={LuPlus} />}>
                   {t('memberbase.add_member.button', { defaultValue: 'Add Member' })}
                 </Button>
               }

@@ -46,12 +46,12 @@ export const PlanUpgradeModal = ({ isOpen, onClose, ...props }: ModalProps & Pla
         </ModalHeader>
         <ModalBody p={0}>
           <Flex justifyContent='flex-end' mt={4} gap={2}>
-            <Button variant='outline' onClick={onClose}>
+            <Button variant='secondary' onClick={onClose}>
               <Trans i18nKey='plan_upgrade.cancel'>Cancel</Trans>
             </Button>
             <Button
               variant='solid'
-              colorScheme='black'
+              variant='primary'
               as={Link}
               to={Routes.dashboard.settings.subscription}
               onClick={onClose}

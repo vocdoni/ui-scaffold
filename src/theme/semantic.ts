@@ -119,6 +119,67 @@ export const colors = {
     },
   },
   texts,
+  button: {
+    primary: {
+      bg: {
+        _light: 'black.500',
+        _dark: 'white',
+      },
+      color: {
+        _light: 'white',
+        _dark: 'black.500',
+      },
+      hover: {
+        bg: {
+          _light: 'black.600',
+          _dark: 'gray.100',
+        },
+      },
+      active: {
+        bg: {
+          _light: 'black.700',
+          _dark: 'gray.200',
+        },
+      },
+    },
+    secondary: {
+      border: {
+        _light: 'gray.300',
+        _dark: 'gray.600',
+      },
+      color: {
+        _light: 'black',
+        _dark: 'white',
+      },
+      hover: {
+        bg: {
+          _light: 'gray.50',
+          _dark: 'gray.700',
+        },
+      },
+    },
+    danger: {
+      bg: {
+        _light: 'red.500',
+        _dark: 'red.600',
+      },
+      color: 'white',
+      hover: {
+        bg: {
+          _light: 'red.600',
+          _dark: 'red.700',
+        },
+      },
+    },
+    ghost: {
+      hover: {
+        bg: {
+          _light: 'gray.100',
+          _dark: 'gray.700',
+        },
+      },
+    },
+  },
 }
 
 const semanticTokens = {

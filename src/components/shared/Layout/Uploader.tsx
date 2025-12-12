@@ -113,7 +113,7 @@ export const AvatarUploader = (props: FormControlProps) => {
                 aria-label={t('remove_avatar', { defaultValue: 'Remove avatar' })}
                 onClick={() => setValue('avatar', '')}
                 size='sm'
-                colorScheme='red'
+                variant='danger'
               />
             </Flex>
           </Box>

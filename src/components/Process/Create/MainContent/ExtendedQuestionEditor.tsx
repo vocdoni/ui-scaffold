@@ -114,7 +114,7 @@ const SortableExtendedOption = ({
             icon={<Icon as={LuTrash2} />}
             aria-label={t('process_create.remove_option', { defaultValue: 'Remove option' })}
             size='sm'
-            colorScheme='red'
+            variant='danger'
             onClick={onRemove}
             position='absolute'
             top={2}

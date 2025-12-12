@@ -24,7 +24,7 @@ export const AccountEdit = () => {
         <Text size='sm' color='texts.subtle'>
           {t('delete.delete_subtitle', { defaultValue: 'Permanently delete your account and all associated data' })}
         </Text>
-        <Button colorScheme='red' alignSelf={'flex-start'} onClick={onOpen}>
+        <Button variant='danger' alignSelf={'flex-start'} onClick={onOpen}>
           <Trans i18nKey='delete_my_account'>Delete Account</Trans>
         </Button>
       </DashboardBox>
@@ -44,10 +44,10 @@ export const AccountEdit = () => {
         }
       >
         <Flex justifyContent='flex-end' gap={3}>
-          <Button variant='outline' alignSelf='flex-end' onClick={onClose}>
+          <Button variant='secondary' alignSelf='flex-end' onClick={onClose}>
             {t('delete.cancel_button', { defaultValue: 'Cancel' })}
           </Button>
-          <Button as={Link} to={Routes.dashboard.settings.support} colorScheme='black'>
+          <Button variant='primary' as={Link} to={Routes.dashboard.settings.support}>
             <Trans i18nKey='contact_us'>Contact us</Trans>
           </Button>
         </Flex>

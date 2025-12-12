@@ -50,10 +50,10 @@ const DeleteQuestionModal = ({ isOpen, onClose, removeQuestion }) => {
       onClose={onClose}
     >
       <Flex justifyContent='flex-end' mt={4} gap={2}>
-        <Button variant='outline' onClick={onClose}>
+        <Button variant='secondary' onClick={onClose}>
           {t('process.create.question.delete.cancel_button', { defaultValue: 'Cancel' })}
         </Button>
-        <Button colorScheme='red' onClick={removeQuestion}>
+        <Button variant='danger' onClick={removeQuestion}>
           {t('process.create.question.delete.delete_button', { defaultValue: 'Delete' })}
         </Button>
       </Flex>
@@ -96,7 +96,7 @@ const AddMultipleQuestionModal = ({ isOpen, onClose }) => {
               as={Link}
               to={Routes.dashboard.settings.support}
               aria-label={t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact Us' })}
-              colorScheme='black'
+              variant='primary'
             >
               {t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact Us' })}
             </Button>

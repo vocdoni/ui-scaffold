@@ -103,7 +103,7 @@ const ProcessRow = () => {
         {ElectionStatus.RESULTS === election.status ||
         ([ElectionStatus.ENDED, ElectionStatus.ONGOING].includes(election.status) &&
           !election.electionType.secretUntilTheEnd) ? (
-          <Tag colorScheme='black' variant='solid' size='sm'>
+          <Tag variant='primary' variant='solid' size='sm'>
             <Trans i18nKey='process_list.results_live'>Live</Trans>
           </Tag>
         ) : (

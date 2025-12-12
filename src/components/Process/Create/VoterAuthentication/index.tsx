@@ -242,7 +242,7 @@ export const VoterAuthentication = () => {
               })}
             </Text>
             {census?.use2FA && (
-              <Badge colorScheme='black' fontSize='xs'>
+              <Badge variant='primary' fontSize='xs'>
                 <Trans i18nKey='voter_auth.2fa_badge'>2FA</Trans>
               </Badge>
             )}
@@ -318,7 +318,7 @@ export const VoterAuthentication = () => {
             </Button>
             <Button
               onClick={handleNext}
-              colorScheme='black'
+              variant='primary'
               isLoading={isLoading}
               shouldWrapChildren
               isDisabled={activeTabIndex === 2 ? hasNoCredentialsSelected : false}

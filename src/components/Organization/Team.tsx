@@ -407,10 +407,10 @@ const ChangeRoleForm = ({ user, onClose }: ChangeRoleFormProps) => {
         </Box>
         <RoleRadioGroup currentRole={currentRole} />
         <Flex gap={2} justifyContent='flex-end' mt={4}>
-          <Button variant='outline' onClick={onClose}>
+          <Button variant='secondary' onClick={onClose}>
             {t('role.update.cancel', { defaultValue: 'Cancel' })}
           </Button>
-          <Button isLoading={updateRole.isPending} shouldWrapChildren type='submit' colorScheme='black'>
+          <Button variant='primary' type='submit' isLoading={updateRole.isPending}>
             {t('role.update.save', {
               defaultValue: 'Update role',
             })}
@@ -487,10 +487,10 @@ const RemoveUserModal = ({ isOpen, onClose, user, ...props }: ActiveUserModalPro
       {...props}
     >
       <Flex justifyContent='flex-end' mt={4} gap={2}>
-        <Button variant='outline' onClick={onClose}>
+        <Button variant='secondary' onClick={onClose}>
           {t('team.remove_member.cancel', { defaultValue: 'Cancel' })}
         </Button>
-        <Button isLoading={removeUser.isPending} shouldWrapChildren colorScheme='red' onClick={removeUserHandler}>
+        <Button variant='danger' isLoading={removeUser.isPending} onClick={removeUserHandler}>
           {t('team.remove_member.confirm', { defaultValue: 'Remove' })}
         </Button>
       </Flex>
@@ -535,15 +535,10 @@ const CancelInvitationModal = ({ isOpen, onClose, user, ...props }: PendingUserM
       onClose={onClose}
     >
       <Flex justifyContent='flex-end' mt={4} gap={2}>
-        <Button variant='outline' onClick={onClose}>
+        <Button variant='secondary' onClick={onClose}>
           {t('team.cancel_invitation.cancel', { defaultValue: 'Cancel' })}
         </Button>
-        <Button
-          isLoading={cancelInvitation.isPending}
-          shouldWrapChildren
-          colorScheme='red'
-          onClick={cancelInvitationHandler}
-        >
+        <Button variant='danger' isLoading={cancelInvitation.isPending} onClick={cancelInvitationHandler}>
           {t('team.cancel_invitation.confirm', { defaultValue: 'Cancel invitation' })}
         </Button>
       </Flex>

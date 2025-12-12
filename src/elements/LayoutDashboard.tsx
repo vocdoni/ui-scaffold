@@ -89,7 +89,7 @@ const LayoutDashboard: React.FC = () => {
                   to={generatePath(Routes.processes.create)}
                   leftIcon={<Icon as={LuPlus} />}
                   iconSpacing={{ base: 0, lg: 2 }}
-                  colorScheme='black'
+                  variant='primary'
                   size='sm'
                 >
                   <Text as='span' fontSize='sm' display={{ base: 'none', lg: 'flex' }}>
