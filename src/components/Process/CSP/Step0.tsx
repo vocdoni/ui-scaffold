@@ -178,11 +178,11 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
             isLoading={auth.isPending}
             shouldWrapChildren
             mt={2}
-              aria-label={
-                is2Factor
-                  ? t('csp.receive_code', { defaultValue: 'Receive code' })
-                  : t('csp.authenticate', { defaultValue: 'Authenticate' })
-              }
+            aria-label={
+              is2Factor
+                ? t('csp.receive_code', { defaultValue: 'Receive code' })
+                : t('csp.authenticate', { defaultValue: 'Authenticate' })
+            }
           >
             {is2Factor ? t('csp.receive_code', 'Receive code') : t('csp.authenticate', 'Authenticate')}
           </Button>

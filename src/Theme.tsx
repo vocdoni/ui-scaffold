@@ -5,11 +5,7 @@ import { PropsWithChildren } from 'react'
 import { rainbowStyles, theme } from '~theme'
 
 export const Theme = ({ children }: PropsWithChildren) => {
-  return (
-    <ChakraProvider theme={extendTheme(theme)}>
-      {children}
-    </ChakraProvider>
-  )
+  return <ChakraProvider theme={extendTheme(theme)}>{children}</ChakraProvider>
 }
 
 export const RainbowKitTheme = ({ children }: PropsWithChildren) => {
