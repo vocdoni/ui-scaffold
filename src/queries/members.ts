@@ -111,7 +111,7 @@ export const useEditMember = () => {
   return useMutation<void, Error, EditMemberPayload>({
     mutationKey: QueryKeys.organization.members(organization?.address),
     mutationFn: async ({ id, ...member }) =>
-      await bearedFetch<void>(`${baseUrl}/${id}`, { body: member, method: 'PUT' }),
+      await bearedFetch<void>(`${baseUrl}`, { body: {"id":id,...member}, method: 'PUT' }),
   })
 }
 
