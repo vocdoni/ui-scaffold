@@ -1,4 +1,5 @@
-import { Box, BoxProps, forwardRef } from '@chakra-ui/react'
+import { Box, BoxProps } from '@chakra-ui/react'
+import { forwardRef } from 'react'
 
 export type LayoutContainerProps = BoxProps & {
   variant?: 'page' | 'content' | 'full'
