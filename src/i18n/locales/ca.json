@@ -1488,8 +1488,13 @@
     "voters": "Votants",
     "voting": "Estem processant el teu vot. Aquest procés trigarà uns segons. Si us plau, no tanquis ni actualitzis aquesta pàgina.",
     "voting_method": {
+      "approval": "Votació d'aprovació",
+      "budget": "Votació pressupostària",
+      "multiple_choice": "Elecció múltiple",
+      "quadratic": "Votació quadràtica",
+      "single_choice_multiquestion": "Opció única per pregunta",
       "unknown": "Desconegut",
-      "weighted_format": "{{base}} i votació ponderada"
+      "weighted_format": "{{base}} ponderada"
     },
     "voting_type": "Mètode de votació"
   },
