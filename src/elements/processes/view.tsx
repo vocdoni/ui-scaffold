@@ -1,4 +1,3 @@
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { ElectionProvider, OrganizationProvider, useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useLoaderData } from 'react-router-dom'
@@ -20,13 +19,7 @@ const Process = () => {
 
   return (
     <OrganizationProvider id={election.organizationId}>
-      <ElectionProvider
-        election={election}
-        ConnectButton={ConnectButton}
-        fetchCensus
-        autoUpdate
-        autoUpdateInterval={15000}
-      >
+      <ElectionProvider election={election} fetchCensus autoUpdate autoUpdateInterval={15000}>
         <ProcessView />
       </ElectionProvider>
     </OrganizationProvider>
