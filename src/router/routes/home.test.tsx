@@ -1,6 +1,8 @@
 import { renderHook } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+const mockParseProcessIds = vi.fn((value?: string) => (value ? value.split(',').map((id) => id.trim()).filter(Boolean) : []))
+
 vi.mock('@vocdoni/react-providers', () => ({
   useClient: () => ({ client: { fetchAccountInfo: vi.fn() } }),
 }))
@@ -8,7 +10,7 @@ vi.mock('@vocdoni/react-providers', () => ({
 vi.mock('~components/Home', () => ({ default: () => <div>Home</div> }))
 vi.mock('~components/Home/SharedCensus', () => ({
   default: () => <div>SharedCensus</div>,
-  parseProcessIds: (value?: string) => (value ? value.split(',').map((id) => id.trim()).filter(Boolean) : []),
+  parseProcessIds: mockParseProcessIds,
 }))
 vi.mock('~elements/organization/view', () => ({ default: () => <div>OrganizationView</div> }))
 vi.mock('../SuspenseLoader', () => ({ SuspenseLoader: ({ children }: { children: React.ReactNode }) => <>{children}</> }))
@@ -21,6 +23,7 @@ describe('useHomeRoute', () => {
     vi.resetModules()
     import.meta.env.PROCESS_IDS = ''
     import.meta.env.CUSTOM_ORGANIZATION_DOMAINS = {}
+    mockParseProcessIds.mockClear()
   })
 
   afterEach(() => {
@@ -46,5 +49,14 @@ describe('useHomeRoute', () => {
     const { result } = renderHook(() => useHomeRoute())
 
     expect(result.current.element?.type).toBe(Layout)
+  })
+
+  it('reads PROCESS_IDS only once even if multiple consumers need it', async () => {
+    import.meta.env.PROCESS_IDS = 'id-1'
+    const { useHomeRoute } = await import('./home')
+
+    renderHook(() => useHomeRoute())
+
+    expect(mockParseProcessIds).toHaveBeenCalledTimes(1)
   })
 })

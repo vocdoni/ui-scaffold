@@ -96,6 +96,7 @@ Where `SaasProviders` wraps: `AuthProvider → SubscriptionProvider → SaasAcco
 - For complex text with formatting and/or interpolation, use `<Trans />` component
 - Define translatable strings in locale files
 - Use descriptive keys for translation strings
+- Translation keys should be snake_cased
 
 ### Web3/Wagmi Integration
 - Use Wagmi hooks for wallet operations
