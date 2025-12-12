@@ -65,8 +65,8 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
   return (
     <div ref={setNodeRef} style={style}>
       <DashboardBox>
-        {/* Question title and description */}
-        <HStack align='stretch' spacing={4}>
+        {/* Question header with drag and remove */}
+        <HStack align='flex-start' spacing={3} mb={4}>
           {/* Drag handle */}
           {questions.length > 1 && (
             <Box
@@ -74,23 +74,48 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
               {...listeners}
               cursor={isDragging ? 'grabbing' : 'grab'}
               display='flex'
-              alignItems='flex-start'
-              pt={2}
+              alignItems='center'
+              pt={1}
               color='gray.400'
               _hover={{ color: 'gray.600' }}
             >
-              <Icon as={LuGripVertical} />
+              <Icon as={LuGripVertical} boxSize={5} />
             </Box>
           )}
 
-          <VStack flex='1' align='stretch' spacing={2} mb={6}>
-            <Text fontSize='sm' color='texts.subtle'>
-              {t('process.create.question.question_number', {
-                defaultValue: 'Question {{index}} of {{total}}',
-                index: index + 1,
-                total: questions.length,
-              })}
-            </Text>
+          <VStack flex='1' align='stretch' spacing={4}>
+            {/* Question number badge */}
+            <HStack justify='space-between'>
+              <Box
+                px={3}
+                py={1}
+                borderRadius='full'
+                bg='blue.50'
+                _dark={{ bg: 'blue.900' }}
+                fontSize='xs'
+                fontWeight='medium'
+                color='blue.700'
+                _dark={{ color: 'blue.200' }}
+                w='fit-content'
+              >
+                {t('process.create.question.question_number', {
+                  defaultValue: 'Question {{index}} of {{total}}',
+                  index: index + 1,
+                  total: questions.length,
+                })}
+              </Box>
+              {questions.length > 1 && (
+                <IconButton
+                  icon={<Icon as={LuX} />}
+                  aria-label={t('process_create.question.remove', 'Remove question')}
+                  size='sm'
+                  variant='ghost'
+                  onClick={() => onRemove(index)}
+                />
+              )}
+            </HStack>
+
+            {/* Question title */}
             <FormControl isInvalid={!!errors.questions?.[index]?.title}>
               <Input
                 px={0}
@@ -99,14 +124,16 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
                   placeholders[activeTemplate]?.questions?.[index]?.title ??
                   t('process_create.question.title.placeholder', 'Add a title to the question')
                 }
-                fontSize='lg'
-                fontWeight='bold'
+                fontSize='xl'
+                fontWeight='semibold'
                 {...register(`questions.${index}.title`, {
                   required: t('form.error.required', 'This field is required'),
                 })}
               />
               <FormErrorMessage>{errors.questions?.[index]?.title?.message?.toString()}</FormErrorMessage>
             </FormControl>
+
+            {/* Question description */}
             <Controller
               name={`questions.${index}.description`}
               control={control}
@@ -124,20 +151,11 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
                 />
               )}
             />
-          </VStack>
-          {questions.length > 1 && (
-            <IconButton
-              icon={<Icon as={LuX} />}
-              aria-label={t('process_create.question.remove', 'Remove question')}
-              size='sm'
-              variant='ghost'
-              onClick={() => onRemove(index)}
-            />
-          )}
-        </HStack>
 
-        {/* Selection limits */}
-        {questionType === SelectorTypes.Multiple && <SelectionLimits index={index} />}
+            {/* Selection limits */}
+            {questionType === SelectorTypes.Multiple && <SelectionLimits index={index} />}
+          </VStack>
+        </HStack>
 
         {/* Options */}
         <DndContext

@@ -40,7 +40,7 @@ const SimpleQuestionEditor = ({
   const questionType = watch('questionType')
 
   return (
-    <VStack align='stretch' spacing={2}>
+    <VStack align='stretch' spacing={3} pt={4} borderTop='1px' borderColor='gray.200' _dark={{ borderColor: 'whiteAlpha.200' }}>
       {questionOptions.map((field, optionIndex) => (
         <SortableOption
           key={field.id}
@@ -59,11 +59,12 @@ const SimpleQuestionEditor = ({
       ))}
       <Button
         leftIcon={<Icon as={LuPlus} />}
-        variant='ghost'
+        variant='outline'
         size='sm'
         aria-label={t('process_create.new_option', { defaultValue: 'Add option' })}
         onClick={() => append({ option: '' })}
         alignSelf='flex-start'
+        borderStyle='dashed'
       >
         <Trans i18nKey='process_create.new_option'>Add option</Trans>
       </Button>

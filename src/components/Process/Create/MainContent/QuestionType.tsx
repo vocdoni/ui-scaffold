@@ -91,20 +91,20 @@ export const QuestionType = () => {
   const pendingTypeRef = useRef<SelectorTypes | null>(null)
 
   return (
-    <Box display='flex' justifyContent='space-between' flexDirection={{ base: 'column', md: 'row' }}>
-      <Box>
-        <FormLabel mb={0} fontWeight='extrabold'>
+    <Box display='flex' justifyContent='space-between' flexDirection={{ base: 'column', md: 'row' }} gap={{ base: 4, md: 6 }} alignItems={{ base: 'stretch', md: 'center' }}>
+      <Box flex="1">
+        <FormLabel mb={1} fontWeight='bold' fontSize='md'>
           <Trans i18nKey='process.question_type.title'>Question Type</Trans>
         </FormLabel>
-        <Text fontSize='xs' color='texts.subtle'>
+        <Text fontSize='sm' color='texts.subtle'>
           <Trans i18nKey='process.question_type.description'>
             This applies to all questions in this voting process
           </Trans>
         </Text>
       </Box>
-      <HStack spacing={4} flexDir={{ base: 'column', sm: 'row' }} alignItems={{ base: 'start', sm: 'center' }}>
-        <FormControl display='flex' alignItems='center'>
-          <FormLabel htmlFor='extended-info' mb='0'>
+      <HStack spacing={4} flexDir={{ base: 'column', sm: 'row' }} alignItems={{ base: 'stretch', sm: 'center' }} flexShrink={0}>
+        <FormControl display='flex' alignItems='center' gap={2}>
+          <FormLabel htmlFor='extended-info' mb='0' fontSize='sm' whiteSpace='nowrap'>
             <Trans i18nKey='process.extended_info'>Extended info</Trans>
           </FormLabel>
           <Controller
@@ -115,7 +115,7 @@ export const QuestionType = () => {
             )}
           />
         </FormControl>
-        <Box>
+        <Box minW={{ base: 'full', sm: '200px' }}>
           <Controller
             control={control}
             name='questionType'
@@ -154,7 +154,7 @@ export const QuestionType = () => {
                     options={options}
                     placeholder={t('process.question_type.single', 'Single choice')}
                     menuPortalTarget={document.body}
-                    chakraStyles={{ container: (p) => ({ ...p, width: 'max-content', maxWidth: '100%' }) }}
+                    chakraStyles={{ container: (p) => ({ ...p, width: '100%' }) }}
                   />
                   <MultichoiceWarningModal
                     isOpen={isOpen}

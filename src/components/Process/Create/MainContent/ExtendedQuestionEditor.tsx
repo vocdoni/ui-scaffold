@@ -29,38 +29,43 @@ const ExtendedQuestionEditor = ({
   } = useFormContext()
 
   return (
-    <SimpleGrid columns={{ base: 1, lg: 2, xl: 3, '2xl': 4 }} spacing={4}>
-      {questionOptions.map((field, optionIndex) => (
-        <SortableExtendedOption
-          key={field.id}
-          field={field}
-          optionIndex={optionIndex}
-          questionIndex={index}
-          fieldsLength={questionOptions.length}
-          onRemove={() => remove(optionIndex)}
-          placeholders={placeholders}
-          activeTemplate={activeTemplate}
-          register={register}
-          errors={errors}
-          control={control}
-          t={t}
-        />
-      ))}
+    <VStack align='stretch' spacing={4} pt={4} borderTop='1px' borderColor='gray.200' _dark={{ borderColor: 'whiteAlpha.200' }}>
+      <SimpleGrid columns={{ base: 1, lg: 2, xl: 3, '2xl': 4 }} spacing={4}>
+        {questionOptions.map((field, optionIndex) => (
+          <SortableExtendedOption
+            key={field.id}
+            field={field}
+            optionIndex={optionIndex}
+            questionIndex={index}
+            fieldsLength={questionOptions.length}
+            onRemove={() => remove(optionIndex)}
+            placeholders={placeholders}
+            activeTemplate={activeTemplate}
+            register={register}
+            errors={errors}
+            control={control}
+            t={t}
+          />
+        ))}
 
-      {/* Add new option card */}
-      <DashboardBox
-        onClick={() => append({ option: '', description: '' })}
-        borderStyle='dashed'
-        cursor='pointer'
-        minH='350px'
-        _hover={{ bg: 'gray.100', _dark: { bg: 'gray.800' } }}
-      >
-        <VStack justify='center' align='center' height='100%'>
-          <Icon as={LuPlus} boxSize={6} />
-          <Text>{t('process_create.new_option', { defaultValue: 'Add option' })}</Text>
-        </VStack>
-      </DashboardBox>
-    </SimpleGrid>
+        {/* Add new option card */}
+        <DashboardBox
+          onClick={() => append({ option: '', description: '' })}
+          borderStyle='dashed'
+          cursor='pointer'
+          minH='350px'
+          _hover={{ bg: 'gray.50', _dark: { bg: 'whiteAlpha.50' } }}
+          transition='all 0.2s'
+        >
+          <VStack justify='center' align='center' height='100%'>
+            <Icon as={LuPlus} boxSize={8} color='gray.400' />
+            <Text fontWeight='medium' color='gray.600' _dark={{ color: 'gray.400' }}>
+              {t('process_create.new_option', { defaultValue: 'Add option' })}
+            </Text>
+          </VStack>
+        </DashboardBox>
+      </SimpleGrid>
+    </VStack>
   )
 }
 

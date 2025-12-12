@@ -432,30 +432,32 @@ const TemplateButtons = () => {
 
   return (
     <>
-      <Text fontSize='sm' color='texts.subtle'>
-        {t('process.create.template.title', { defaultValue: 'Get started with a template...' })}
-      </Text>
-      <HStack spacing={2} flexWrap='wrap'>
-        <Button
-          variant='outline'
-          size='sm'
-          data-template={TemplateTypes.AnnualGeneralMeeting}
-          onClick={handleTemplateClick}
-        >
-          {t('process.create.template.annual_general_meeting', 'Annual General Meeting')}
-        </Button>
-        <Button variant='outline' size='sm' data-template={TemplateTypes.Election} onClick={handleTemplateClick}>
-          {t('process.create.template.election', 'Election')}
-        </Button>
-        <Button
-          variant='outline'
-          size='sm'
-          data-template={TemplateTypes.ParticipatoryBudgeting}
-          onClick={handleTemplateClick}
-        >
-          {t('process.create.template.participatory_budgeting', 'Participatory Budgeting')}
-        </Button>
-      </HStack>
+      <VStack align='stretch' spacing={3} p={4} borderRadius='md' bg='gray.50' _dark={{ bg: 'whiteAlpha.50' }}>
+        <Text fontSize='sm' fontWeight='medium' color='texts.primary'>
+          {t('process.create.template.title', { defaultValue: 'Get started with a template...' })}
+        </Text>
+        <HStack spacing={2} flexWrap='wrap'>
+          <Button
+            variant='outline'
+            size='sm'
+            data-template={TemplateTypes.AnnualGeneralMeeting}
+            onClick={handleTemplateClick}
+          >
+            {t('process.create.template.annual_general_meeting', 'Annual General Meeting')}
+          </Button>
+          <Button variant='outline' size='sm' data-template={TemplateTypes.Election} onClick={handleTemplateClick}>
+            {t('process.create.template.election', 'Election')}
+          </Button>
+          <Button
+            variant='outline'
+            size='sm'
+            data-template={TemplateTypes.ParticipatoryBudgeting}
+            onClick={handleTemplateClick}
+          >
+            {t('process.create.template.participatory_budgeting', 'Participatory Budgeting')}
+          </Button>
+        </HStack>
+      </VStack>
 
       <DeleteModal
         title={t('process.create.change_template.title', 'Change Template')}
@@ -932,21 +934,37 @@ export const ProcessCreate = () => {
           gap={8}
           paddingRight={4}
           paddingBottom={4}
+          maxW='900px'
+          mx='auto'
+          w='full'
         >
           {/* Top bar with draft status and sidebar toggle */}
-          <HStack position='sticky' top='64px' p={2} bg='chakra.body.bg' zIndex='contents'>
-            {effectiveDraftId && (
-              <Box px={3} py={1} borderRadius='full' bg='gray.100' _dark={{ bg: 'whiteAlpha.200' }} fontSize='sm'>
-                <Trans i18nKey='process.create.status.draft'>Draft</Trans>
-              </Box>
-            )}
-            <Spacer />
-            <ButtonGroup size='sm'>
+          <Flex
+            position='sticky'
+            top='64px'
+            p={3}
+            bg='chakra.body.bg'
+            zIndex='contents'
+            borderBottom='1px'
+            borderColor='gray.200'
+            _dark={{ borderColor: 'whiteAlpha.200' }}
+            gap={3}
+            flexWrap='wrap'
+            justify='space-between'
+            align='center'
+          >
+            <HStack spacing={2}>
+              {effectiveDraftId && (
+                <Box px={3} py={1} borderRadius='full' bg='gray.100' _dark={{ bg: 'whiteAlpha.200' }} fontSize='sm' fontWeight='medium'>
+                  <Trans i18nKey='process.create.status.draft'>Draft</Trans>
+                </Box>
+              )}
               {isDirty && (
                 <IconButton
                   onClick={openConfirmationModal}
                   icon={<Icon as={LuRotateCcw} />}
-                  variant='outline'
+                  variant='ghost'
+                  size='sm'
                   aria-label={t('dashboard.actions.reset_form', {
                     defaultValue: 'Reset form',
                   })}
@@ -957,21 +975,14 @@ export const ProcessCreate = () => {
                   defaultValue: 'Toggle sidebar',
                 })}
                 icon={<Icon as={LuSettings} />}
-                variant='outline'
+                variant='ghost'
+                size='sm'
                 onClick={() => setShowSidebar((prev) => !prev)}
               />
-              <Button
-                type='submit'
-                colorScheme='black'
-                alignSelf='flex-end'
-                isLoading={methods.formState.isSubmitting}
-                shouldWrapChildren
-              >
-                <Trans i18nKey='process.create.action.publish'>Publish</Trans>
-              </Button>
+            </HStack>
+            <ButtonGroup size='sm' spacing={2}>
               <Button
                 type='button'
-                colorScheme='black'
                 variant='outline'
                 onClick={handleManualSave}
                 isLoading={isSaving}
@@ -979,51 +990,64 @@ export const ProcessCreate = () => {
               >
                 <Trans i18nKey='process.create.action.save_draft'>Save</Trans>
               </Button>
+              <Button
+                type='submit'
+                colorScheme='black'
+                isLoading={methods.formState.isSubmitting}
+                shouldWrapChildren
+              >
+                <Trans i18nKey='process.create.action.publish'>Publish</Trans>
+              </Button>
             </ButtonGroup>
-          </HStack>
+          </Flex>
 
           {/* Title, Video, and Description */}
-          <VStack as='header' align='stretch' spacing={4}>
+          <VStack as='header' align='stretch' spacing={6}>
             <TemplateButtons />
-            <FormControl isInvalid={!!methods.formState.errors.title}>
-              <Input
-                px={0}
-                variant='unstyled'
-                placeholder={
-                  placeholders[activeTemplate]?.title ??
-                  t('process.create.description.title', {
-                    defaultValue: 'Voting Process Title',
-                  })
-                }
-                size='2xl'
-                fontWeight='bold'
-                {...methods.register('title', {
-                  required: t('form.error.required', 'This field is required'),
-                })}
-              />
-              <FormErrorMessage>{methods.formState.errors.title?.message?.toString()}</FormErrorMessage>
-            </FormControl>
 
-            {/* Live streaming video URL */}
-            <LiveStreamingInput />
-            <Controller
-              name='description'
-              control={methods.control}
-              render={({ field }) => (
-                <Editor
-                  key={nextId}
-                  onChange={field.onChange}
+            <VStack align='stretch' spacing={4} pt={4}>
+              <FormControl isInvalid={!!methods.formState.errors.title}>
+                <Input
+                  px={0}
+                  variant='unstyled'
                   placeholder={
-                    placeholders[activeTemplate]?.description ??
-                    t('process.create.description.placeholder', 'Add a description...')
+                    placeholders[activeTemplate]?.title ??
+                    t('process.create.description.title', {
+                      defaultValue: 'Voting Process Title',
+                    })
                   }
-                  defaultValue={field.value}
+                  size='2xl'
+                  fontWeight='bold'
+                  {...methods.register('title', {
+                    required: t('form.error.required', 'This field is required'),
+                  })}
                 />
-              )}
-            />
+                <FormErrorMessage>{methods.formState.errors.title?.message?.toString()}</FormErrorMessage>
+              </FormControl>
+
+              {/* Live streaming video URL */}
+              <LiveStreamingInput />
+              <Controller
+                name='description'
+                control={methods.control}
+                render={({ field }) => (
+                  <Editor
+                    key={nextId}
+                    onChange={field.onChange}
+                    placeholder={
+                      placeholders[activeTemplate]?.description ??
+                      t('process.create.description.placeholder', 'Add a description...')
+                    }
+                    defaultValue={field.value}
+                  />
+                )}
+              />
+            </VStack>
           </VStack>
 
-          <Questions />
+          <Box borderTop='2px' borderColor='gray.200' _dark={{ borderColor: 'whiteAlpha.200' }} pt={6}>
+            <Questions />
+          </Box>
         </Box>
 
         <CreateSidebar show={showSidebar} onClose={() => setShowSidebar(false)} />

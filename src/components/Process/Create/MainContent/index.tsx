@@ -189,7 +189,7 @@ export const Questions = () => {
         removeQuestion={() => removeQuestion(pendingDeleteIndex)}
       />
 
-      <Button leftIcon={<Icon as={LuPlus} />} variant='outline' onClick={addQuestion}>
+      <Button leftIcon={<Icon as={LuPlus} />} variant='outline' onClick={addQuestion} size='md' borderStyle='dashed'>
         <Trans i18nKey='process.create.question.add'>Add question</Trans>
       </Button>
       <AddMultipleQuestionModal isOpen={isAddMultipleQuestionsOpen} onClose={onAddMultipleQuestionsClose} />
