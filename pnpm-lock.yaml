@@ -126,16 +126,16 @@ importers:
         version: 0.1.4(@types/react@18.3.26)(react@18.3.1)
       '@vocdoni/chakra-components':
         specifier: ^1.0.0-beta.1
-        version: 1.0.0-beta.5(@chakra-ui/react@2.10.9(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(react-markdown@8.0.7(@types/react@18.3.26)(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)(remark-gfm@3.0.1)
+        version: 1.0.0-beta.5(@chakra-ui/react@2.10.9(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-markdown@8.0.7(@types/react@18.3.26)(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)(remark-gfm@3.0.1)
       '@vocdoni/rainbowkit-wallets':
         specifier: ^1.0.0-beta.1
         version: 1.0.0-beta.1(96b377a8f476d4016f3699391f59b943)
       '@vocdoni/react-providers':
-        specifier: 1.0.0-beta.3
-        version: 1.0.0-beta.3(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
+        specifier: ^1.0.0-beta.4
+        version: 1.0.0-beta.4(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
       '@vocdoni/sdk':
         specifier: ~0.9.1
-        version: 0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10)
+        version: 0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10)
       '@wagmi/core':
         specifier: ^2.22.1
         version: 2.22.1(@tanstack/query-core@5.90.5)(@types/react@18.3.26)(react@18.3.1)(typescript@5.9.3)(use-sync-external-store@1.4.0(react@18.3.1))(viem@2.38.5(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@4.1.12))
@@ -2065,8 +2065,8 @@ packages:
       react-router-dom: '>= 6.0.0'
       remark-gfm: '>= 2.0.0'
 
-  '@vocdoni/proto@1.15.9':
-    resolution: {integrity: sha512-ud0UrkJJwMmJ5+7wCgaiV2x9UhLLDg52dpBG5dYaf4ZB4dTeXDipgANjl/AFFJWcfJGlEQkAVc92gEJKwd3JGA==}
+  '@vocdoni/proto@1.15.12':
+    resolution: {integrity: sha512-VXgxJQN8eq8As9T5bN8uW+PVLahLQu2tjQMGbVnVvKIP2Hm3wPsqFj7rndgIDNbRHl3YJawjASdPo4VBLjEcNQ==}
 
   '@vocdoni/rainbowkit-wallets@1.0.0-beta.1':
     resolution: {integrity: sha512-R7x7mh9AoEeNbkrAMqiRsurL7DnhM9ihIRx0VZ1bQmH5ag4ZQywKm49DKxVmGPd1zSRQLniBtZ+G5EYZ+kQ+eQ==}
@@ -2076,18 +2076,19 @@ packages:
       viem: 2.x
       wagmi: '2'
 
-  '@vocdoni/react-providers@1.0.0-beta.3':
-    resolution: {integrity: sha512-yVuaklhzflgH6P1BwA0nw0sUqqCae1axxGtUcICdwl7bqUOLPCTJYnGRTUUteYXWxnTOffWNpYEH0hTHBK8hmQ==}
+  '@vocdoni/react-providers@1.0.0-beta.4':
+    resolution: {integrity: sha512-viQEpQIuyUnu/hwHi2bIVyzyDY3z0MxHcbibsTvLkab17yNosfQ51hVpZCM3VfXYL4IPQ9R83yBw+ARkS/H/YA==}
     peerDependencies:
       '@ethersproject/abstract-signer': ^5.7.0
       '@ethersproject/wallet': ^5.7.0
       '@vocdoni/sdk': ~0.9.1
+      date-fns: ^4.1.0
       react: '>= 16.8.0 <19.0.0'
       react-router: '>= 6.0.0'
       react-router-dom: '>= 6.0.0'
 
-  '@vocdoni/sdk@0.9.2':
-    resolution: {integrity: sha512-jssec34EoC9nM5gaFRS+GZnc0KVd2YYnj6NR8BvSpH09eVXmQKgDmBSztUzqkZQeIHLhmU+itKHyeLsE4N7mlw==}
+  '@vocdoni/sdk@0.9.3':
+    resolution: {integrity: sha512-j1M/+MOiKRinFGmN0H8ZzfefyCq9I/DYO3EVSyROWyejJTZ/P+XGliKFnkhicc4iI8Fvi/bYBIhGSN1M/r3Whw==}
     engines: {node: '>=14'}
 
   '@wagmi/connectors@6.1.2':
@@ -3384,8 +3385,8 @@ packages:
     resolution: {integrity: sha512-fqZVj22LtFJkHODT+M4N1RJQ3TjnnQhfE9GwZI8qXscYarnhpip70poMldRnP8ipQ/w0B621kOhfc53/J9bd/A==}
     engines: {node: '>=10.13.0'}
 
-  glob@10.4.5:
-    resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+  glob@10.5.0:
+    resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
     hasBin: true
 
   glob@7.2.3:
@@ -3561,8 +3562,8 @@ packages:
   inline-style-parser@0.1.1:
     resolution: {integrity: sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==}
 
-  ip-address@10.0.1:
-    resolution: {integrity: sha512-NWv9YLW4PoW2B7xtzaS3NCot75m6nK7Icdv0o3lfMceJVRfSoQwqD4wEH5rLwoKJwUiZ/rfpiVBhnaF0FK4HoA==}
+  ip-address@10.1.0:
+    resolution: {integrity: sha512-XXADHxXmvT9+CRxhXg56LJovE+bmWnEWB78LB83VZTprKTmaC5QfruXocxzTZ2Kl0DNwKuBdlIhjL8LeY8Sf8Q==}
     engines: {node: '>= 12'}
 
   iron-webcrypto@1.2.1:
@@ -4491,8 +4492,8 @@ packages:
   preact@10.24.2:
     resolution: {integrity: sha512-1cSoF0aCC8uaARATfrlz4VCBqE8LwZwRfLgkxJOQwAlQt6ayTmi0D9OF7nXid1POI5SZidFuG9CnlXbDfLqY/Q==}
 
-  preact@10.27.2:
-    resolution: {integrity: sha512-5SYSgFKSyhCbk6SrXyMpqjb5+MQBgfvEKE/OC+PujcY34sOpqtr+0AZQtPYx5IA6VxynQ7rUPCtKzyovpj9Bpg==}
+  preact@10.28.0:
+    resolution: {integrity: sha512-rytDAoiXr3+t6OIP3WGlDd0ouCUG1iCWzkcY3++Nreuoi17y6T5i/zRhe6uYfoVcxq6YU+sBtJouuRDsq8vvqA==}
 
   prelude-ls@1.1.2:
     resolution: {integrity: sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==}
@@ -6164,7 +6165,7 @@ snapshots:
       eth-json-rpc-filters: 6.0.1
       eventemitter3: 5.0.1
       keccak: 3.0.4
-      preact: 10.27.2
+      preact: 10.28.0
       sha.js: 2.4.12
     transitivePeerDependencies:
       - supports-color
@@ -8507,20 +8508,22 @@ snapshots:
       '@vitest/pretty-format': 4.0.14
       tinyrainbow: 3.0.3
 
-  '@vocdoni/chakra-components@1.0.0-beta.5(@chakra-ui/react@2.10.9(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(react-markdown@8.0.7(@types/react@18.3.26)(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)(remark-gfm@3.0.1)':
+  '@vocdoni/chakra-components@1.0.0-beta.5(@chakra-ui/react@2.10.9(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-markdown@8.0.7(@types/react@18.3.26)(react@18.3.1))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)(remark-gfm@3.0.1)':
     dependencies:
       '@chakra-ui/react': 2.10.9(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ethersproject/abstract-signer': 5.8.0
       '@ethersproject/wallet': 5.8.0
-      '@vocdoni/react-providers': 1.0.0-beta.3(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
-      '@vocdoni/sdk': 0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10)
+      '@vocdoni/react-providers': 1.0.0-beta.4(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
+      '@vocdoni/sdk': 0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10)
       react: 18.3.1
       react-markdown: 8.0.7(@types/react@18.3.26)(react@18.3.1)
       react-router: 6.30.1(react@18.3.1)
       react-router-dom: 6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       remark-gfm: 3.0.1
+    transitivePeerDependencies:
+      - date-fns
 
-  '@vocdoni/proto@1.15.9':
+  '@vocdoni/proto@1.15.12':
     dependencies:
       long: 5.3.2
       protobufjs: 7.5.4
@@ -8533,17 +8536,18 @@ snapshots:
       viem: 2.38.5(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@4.1.12)
       wagmi: 2.19.1(@tanstack/query-core@5.90.5)(@tanstack/react-query@5.90.5(react@18.3.1))(@types/react@18.3.26)(bufferutil@4.0.9)(encoding@0.1.13)(fastestsmallesttextencoderdecoder@1.0.22)(react@18.3.1)(typescript@5.9.3)(utf-8-validate@5.0.10)(viem@2.38.5(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@4.1.12))(ws@8.18.3(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@4.1.12)
 
-  '@vocdoni/react-providers@1.0.0-beta.3(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)':
+  '@vocdoni/react-providers@1.0.0-beta.4(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@ethersproject/abstract-signer': 5.8.0
       '@ethersproject/wallet': 5.8.0
-      '@vocdoni/sdk': 0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10)
+      '@vocdoni/sdk': 0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10)
+      date-fns: 4.1.0
       react: 18.3.1
       react-router: 6.30.1(react@18.3.1)
       react-router-dom: 6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       up-fetch: 2.5.0
 
-  '@vocdoni/sdk@0.9.2(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10)':
+  '@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10)':
     dependencies:
       '@ethersproject/abstract-signer': 5.8.0
       '@ethersproject/address': 5.8.0
@@ -8556,7 +8560,7 @@ snapshots:
       '@ethersproject/units': 5.8.0
       '@ethersproject/wallet': 5.8.0
       '@size-limit/file': 8.2.6(size-limit@8.2.6)
-      '@vocdoni/proto': 1.15.9
+      '@vocdoni/proto': 1.15.12
       axios: 1.13.1
       blake2b: 2.1.4
       blakejs: 1.2.1
@@ -9500,7 +9504,7 @@ snapshots:
     dependencies:
       '@npmcli/fs': 3.1.1
       fs-minipass: 3.0.3
-      glob: 10.4.5
+      glob: 10.5.0
       lru-cache: 10.4.3
       minipass: 7.1.2
       minipass-collect: 2.0.1
@@ -10446,7 +10450,7 @@ snapshots:
       - bare-abort-controller
       - react-native-b4a
 
-  glob@10.4.5:
+  glob@10.5.0:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 3.4.3
@@ -10672,7 +10676,7 @@ snapshots:
 
   inline-style-parser@0.1.1: {}
 
-  ip-address@10.0.1: {}
+  ip-address@10.1.0: {}
 
   iron-webcrypto@1.2.1: {}
 
@@ -11521,7 +11525,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       exponential-backoff: 3.1.3
-      glob: 10.4.5
+      glob: 10.5.0
       graceful-fs: 4.2.11
       make-fetch-happen: 13.0.1
       nopt: 7.2.1
@@ -11828,7 +11832,7 @@ snapshots:
 
   preact@10.24.2: {}
 
-  preact@10.27.2: {}
+  preact@10.28.0: {}
 
   prelude-ls@1.1.2: {}
 
@@ -12381,7 +12385,7 @@ snapshots:
 
   socks@2.8.7:
     dependencies:
-      ip-address: 10.0.1
+      ip-address: 10.1.0
       smart-buffer: 4.2.0
 
   sonic-boom@2.8.0:
