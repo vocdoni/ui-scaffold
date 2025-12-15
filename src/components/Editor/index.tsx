@@ -15,7 +15,6 @@ import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPl
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
 import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
-import { $getRoot } from 'lexical'
 import { useState } from 'react'
 
 import { FloatingLinkEditorPlugin, FloatingTextFormatToolbarPlugin } from './plugins'
@@ -80,7 +79,7 @@ const MarkdownEditor = (props: EditorProps) => {
           }
           aria-placeholder={props.placeholder}
           placeholder={
-            <Text position='absolute' top={0} padding={props.padding ?? 0} color='texts.dark' pointerEvents='none'>
+            <Text position='absolute' top={0} padding={props.padding ?? 0} color='texts.subtle' pointerEvents='none'>
               {props.placeholder}
             </Text>
           }
@@ -135,7 +134,6 @@ const Editor = (props: EditorProps) => {
     editorState(editor: any) {
       editor.update(() => {
         $convertFromMarkdownString(initialMarkdown, TRANSFORMERS)
-        $getRoot().selectEnd()
       })
     },
   }

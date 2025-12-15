@@ -22,6 +22,15 @@ const xxl = definePartsStyle({
   },
 })
 
+const xxxl = definePartsStyle({
+  field: {
+    fontSize: '3xl',
+    _placeholder: {
+      fontSize: '3xl',
+    },
+  },
+})
+
 const sm = definePartsStyle({
   field: {
     paddingY: 2,
@@ -44,5 +53,6 @@ export const Input = defineMultiStyleConfig({
     sm,
     md,
     '2xl': xxl,
+    '3xl': xxxl,
   },
 })

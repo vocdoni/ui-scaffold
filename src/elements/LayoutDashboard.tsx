@@ -49,10 +49,9 @@ const LayoutDashboard: React.FC = () => {
             onClick={isMobile ? onOpen : () => setReduced((prev) => !prev)}
             position='fixed'
             top={3}
-            left={reduced ? '56px' : '263px'}
+            left={{ base: 3, md: reduced ? '56px' : '263px' }}
             zIndex={1000}
             transition='left 0.3s ease'
-            display={{ base: 'none', md: 'flex' }}
           />
 
           <Flex flex='1 1 0' flexDirection='column' minW={0} pt={6}>

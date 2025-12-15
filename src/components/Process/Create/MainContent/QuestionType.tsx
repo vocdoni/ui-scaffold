@@ -122,7 +122,17 @@ export const QuestionType = () => {
             name='extendedInfo'
             control={control}
             render={({ field }) => (
-              <Switch id='extended-info' isChecked={!!field.value} onChange={(e) => field.onChange(e.target.checked)} />
+              <Switch
+                id='extended-info'
+                isChecked={!!field.value}
+                onChange={(e) => {
+                  const scrollY = window.scrollY
+                  field.onChange(e.target.checked)
+                  requestAnimationFrame(() => {
+                    window.scrollTo(0, scrollY)
+                  })
+                }}
+              />
             )}
           />
         </FormControl>

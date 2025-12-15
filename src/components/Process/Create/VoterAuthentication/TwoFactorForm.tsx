@@ -1,58 +1,52 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Box,
-  FormControl,
-  FormLabel,
-  HStack,
-  Icon,
-  Radio,
-  RadioGroup,
-  Stack,
-  Switch,
-  TabPanel,
-  Text,
-  VStack,
-} from '@chakra-ui/react'
+import { Box, FormControl, HStack, Icon, Switch, TabPanel, Text, Tooltip, VStack } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { Trans, useTranslation } from 'react-i18next'
-import { LuLock, LuMail, LuPhone } from 'react-icons/lu'
+import { useTranslation } from 'react-i18next'
+import { LuInfo, LuMail, LuPhone } from 'react-icons/lu'
+import { TwoFAMethod } from './utils'
+
+type MethodConfig = {
+  value: TwoFAMethod
+  icon: typeof LuMail
+  iconColor: string
+  label: string
+  description: string
+  tooltip?: string
+}
 
 export const TwoFactorForm = () => {
   const { t } = useTranslation()
   const { control, watch } = useFormContext()
   const use2FA = watch('use2FA')
-  const email = <Icon as={LuMail} />
-  const phone = <Icon as={LuPhone} />
 
-  const TwoFactorMethods = [
+  const TwoFactorMethods: MethodConfig[] = [
     {
       value: 'email',
-      label: <Trans i18nKey='voter_auth.2fa_email' defaults='<email /> Email verification' components={{ email }} />,
+      icon: LuMail,
+      iconColor: 'blue.500',
+      label: t('voter_auth.2fa_email', { defaultValue: 'Email verification' }),
       description: t('voter_auth.2fa_email_description', {
         defaultValue: 'Voters will receive a verification code via email',
       }),
     },
     {
       value: 'sms',
-      label: <Trans i18nKey='voter_auth.2fa_sms' defaults='<phone /> SMS verification' components={{ phone }} />,
+      icon: LuPhone,
+      iconColor: 'green.500',
+      label: t('voter_auth.2fa_sms', { defaultValue: 'SMS verification' }),
       description: t('voter_auth.2fa_sms_description', {
         defaultValue: 'Voters will receive a verification code via SMS',
       }),
     },
     {
       value: 'voter_choice',
-      label: (
-        <Trans
-          i18nKey='voter_auth.2fa_voter_choice'
-          defaults="<email /> or <phone /> Voter's choice"
-          components={{ email, phone }}
-        />
-      ),
+      icon: LuMail,
+      iconColor: 'purple.500',
+      label: t('voter_auth.2fa_voter_choice', { defaultValue: "Voter's choice" }),
       description: t('voter_auth.2fa_voter_choice_description', {
-        defaultValue: 'Voters can choose their preferred verification method',
+        defaultValue: 'Voters can choose between email or SMS verification',
+      }),
+      tooltip: t('voter_auth.2fa_voter_choice_requirement_tooltip', {
+        defaultValue: 'Both email and phone must be present in your memberbase for this option to work',
       }),
     },
   ]
@@ -60,18 +54,32 @@ export const TwoFactorForm = () => {
   return (
     <TabPanel>
       <Box>
-        <VStack spacing={4} border='1px solid' borderColor='table.border' p={4} borderRadius='md'>
-          <FormControl as={HStack}>
-            <Box>
-              <FormLabel fontWeight='extrabold' m={0}>
-                {t('voter_auth.2fa_enable', { defaultValue: 'Enable Two-Factor Authentication' })}
-              </FormLabel>
+        <VStack spacing={4} border='1px solid' borderColor='table.border' p={4} borderRadius='md' align='start'>
+          <FormControl as={HStack} w='full'>
+            <VStack align='start' spacing={0} flex={1}>
+              <HStack spacing={2}>
+                <Text fontSize='sm' fontWeight='extrabold'>
+                  {t('voter_auth.2fa_enable', { defaultValue: 'Enable Two-Factor Authentication' })}
+                </Text>
+                <Tooltip
+                  label={t('voter_auth.2fa_info_tooltip', {
+                    defaultValue:
+                      'Two-Factor Authentication (2FA) sends a verification code to voters via email or SMS, providing an extra security layer beyond identity fields.',
+                  })}
+                  fontSize='sm'
+                  placement='top'
+                >
+                  <Box as='span' cursor='help' color='texts.subtle'>
+                    <LuInfo size={16} />
+                  </Box>
+                </Tooltip>
+              </HStack>
               <Text fontSize='sm' color='texts.subtle'>
                 {t('voter_auth.2fa_description', {
                   defaultValue: 'Add an extra layer of security by requiring voters to verify their identity',
                 })}
               </Text>
-            </Box>
+            </VStack>
             <Controller
               name='use2FA'
               control={control}
@@ -82,49 +90,74 @@ export const TwoFactorForm = () => {
           </FormControl>
 
           {use2FA && (
-            <VStack align='start' spacing={6}>
-              <Box>
-                <Text fontWeight='bold'>
-                  {t('voter_auth.2fa_method_title', { defaultValue: 'Select verification method' })}
-                </Text>
-                <VStack align='start' spacing={3} mt={3}>
-                  <FormControl>
-                    <Controller
-                      name='use2FAMethod'
-                      control={control}
-                      render={({ field }) => (
-                        <RadioGroup {...field} colorScheme='black'>
-                          <Stack direction='column' gap={2}>
-                            {TwoFactorMethods.map((method) => (
-                              <Radio key={method.value} value={method.value} alignItems='flex-start' size='sm'>
-                                <Text fontWeight='bold'>{method.label}</Text>
-                                <Text fontSize='sm' color='texts.subtle'>
+            <VStack align='start' spacing={4} w='full'>
+              <Text fontSize='sm' fontWeight='extrabold'>
+                {t('voter_auth.2fa_method_title', { defaultValue: 'Select verification method' })}
+              </Text>
+              <FormControl>
+                <Controller
+                  name='use2FAMethod'
+                  control={control}
+                  render={({ field }) => (
+                    <VStack spacing={3} w='full'>
+                      {TwoFactorMethods.map((method) => {
+                        const isSelected = field.value === method.value
+                        return (
+                          <Box
+                            key={method.value}
+                            w='full'
+                            minH='100px'
+                            p={4}
+                            border='2px solid'
+                            borderColor={isSelected ? 'black' : 'gray.200'}
+                            borderRadius='md'
+                            bg={isSelected ? 'gray.50' : 'white'}
+                            cursor='pointer'
+                            onClick={() => field.onChange(method.value)}
+                            _hover={{
+                              borderColor: isSelected ? 'black' : 'gray.300',
+                              boxShadow: 'sm',
+                            }}
+                            transition='all 0.2s'
+                            role='radio'
+                            aria-checked={isSelected}
+                            aria-labelledby={`method-${method.value}-label`}
+                            aria-describedby={`method-${method.value}-desc`}
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault()
+                                field.onChange(method.value)
+                              }
+                            }}
+                          >
+                            <HStack align='start' spacing={3}>
+                              <Icon as={method.icon} boxSize={5} color={method.iconColor} mt={0.5} />
+                              <VStack align='start' spacing={1} flex={1}>
+                                <HStack spacing={2}>
+                                  <Text id={`method-${method.value}-label`} fontSize='sm' fontWeight='semibold'>
+                                    {method.label}
+                                  </Text>
+                                  {method.tooltip && (
+                                    <Tooltip label={method.tooltip} fontSize='sm' placement='top'>
+                                      <Box as='span' cursor='help' color='texts.subtle'>
+                                        <LuInfo size={16} />
+                                      </Box>
+                                    </Tooltip>
+                                  )}
+                                </HStack>
+                                <Text id={`method-${method.value}-desc`} fontSize='sm' color='texts.subtle'>
                                   {method.description}
                                 </Text>
-                              </Radio>
-                            ))}
-                          </Stack>
-                        </RadioGroup>
-                      )}
-                    />
-                  </FormControl>
-                </VStack>
-              </Box>
-
-              <Alert status='success' variant='subtle' borderRadius='md' alignItems='start' py={3} px={4}>
-                <AlertIcon as={LuLock} />
-                <Box>
-                  <AlertTitle fontWeight='bold'>
-                    {t('voter_auth.2fa_security_title', { defaultValue: 'Enhanced Security' })}
-                  </AlertTitle>
-                  <AlertDescription fontSize='sm'>
-                    {t('voter_auth.2fa_security_description', {
-                      defaultValue:
-                        'Two-factor authentication significantly increases the security of your voting process by ensuring only authorized members can vote.',
-                    })}
-                  </AlertDescription>
-                </Box>
-              </Alert>
+                              </VStack>
+                            </HStack>
+                          </Box>
+                        )
+                      })}
+                    </VStack>
+                  )}
+                />
+              </FormControl>
             </VStack>
           )}
         </VStack>

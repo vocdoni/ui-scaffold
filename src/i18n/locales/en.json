@@ -432,7 +432,6 @@
     "error": {
       "address_already_in_use": "Address already in use",
       "address_pattern": "Only hex addresses are allowed (e.g 0x031101A...)",
-      "census_config_required": "Please configure the census authentication settings.",
       "email_invalid": "Invalid email address",
       "field_is_required": "This field is required",
       "generic": "Error performing the operation",
@@ -1314,13 +1313,17 @@
         "title": "Voting Process Title"
       },
       "leave_confirmation": {
-        "cancel": "Cancel",
-        "leave": "Discard and leave",
-        "message": "You have unsaved changes. Are you sure you want to leave?",
+        "leave_saved": "Leave",
+        "leave_unsaved": "Leave without saving",
+        "message_saved": "Your changes were auto-saved {{time}}. You can safely leave this page.",
+        "message_unsaved": "Your changes haven't been saved yet. Do you want to save before leaving?",
         "reset": "Reset",
         "reset_message": "This will reset the form. Do you want to continue?",
         "save_and_leave": "Save and leave",
-        "title": "Saving Draft"
+        "stay": "Stay",
+        "title": "Saving Draft",
+        "title_saved": "Leave this page?",
+        "title_unsaved": "You have unsaved changes"
       },
       "limit_reached": {
         "message_one": "You’ve reached your limit of {{ count }} drafts. To save this draft, delete an existing draft or upgrade your plan.",
@@ -1349,6 +1352,12 @@
         "title": "Error saving draft"
       },
       "save_draft_success": "Draft saved",
+      "save_status": {
+        "error": "Auto-save failed",
+        "retry": "Retry",
+        "saved": "Saved {{time}}",
+        "saving": "Saving draft..."
+      },
       "selectionLimits": {
         "full": "Voters must select at least  <min />  and at most  <max />  options.",
         "title": "Selection limits:"
@@ -1358,9 +1367,12 @@
       },
       "template": {
         "annual_general_meeting": "Annual General Meeting",
+        "browse": "Browse templates",
+        "dismiss": "Dismiss templates",
         "election": "Election",
         "participatory_budgeting": "Participatory Budgeting",
-        "title": "Get started with a template..."
+        "quick_start": "Quick Start Templates",
+        "subtitle": "Choose a template to get started faster"
       }
     },
     "created_by": "Created by",
@@ -1479,24 +1491,27 @@
     "auto_start": "Start immediately",
     "basic_configuration": "Basic configuration",
     "census": {
+      "error": {
+        "auth_required": "Please configure voter authentication by clicking \"Configure Authentication\" above",
+        "group_required": "Please select a member group"
+      },
       "extra_methods": {
         "disable_description": "Do you want to disable extra census methods? This will hide the Spreadsheet and Web3 options and show only the Group method.",
         "enable_description": "Do you want to enable extra census methods? This will show additional options like Spreadsheet and Web3 census creation.",
         "modal_title": "Extra census methods"
       },
       "group": {
-        "label": "Group",
-        "no_groups": "To start a vote, you first need to create a group of eligible voters from your memberbase. <1>Create one here</1>."
-      },
-      "memberbase": {
-        "label": "Select a group of members to create the census"
+        "no_groups": "To start a vote, you first need to create a group of eligible voters from your memberbase. <1>Create one here</1>.",
+        "placeholder": "e.g., Board Members",
+        "select_label": "Select a member group",
+        "tab_label": "Member Group"
       },
       "settings": "Census settings",
       "spreadsheet": {
-        "label": "Spreadsheet"
+        "tab_label": "Spreadsheet"
       },
       "web3": {
-        "label": "Web3"
+        "tab_label": "Web3"
       }
     },
     "census_creation": "Census creation",
@@ -1504,9 +1519,6 @@
     "census_type_not_allowed": "Census type {{type}} not allowed",
     "end_datetime": "End date and time",
     "extra_configuration": "Extra configuration",
-    "group": {
-      "select": "Select group"
-    },
     "groups": {
       "scroll_to_load": "Scroll to load more..."
     },
@@ -1813,24 +1825,28 @@
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Add an extra layer of security by requiring voters to verify their identity",
-    "2fa_email": "<email /> Email verification",
+    "2fa_email": "Email verification",
     "2fa_email_description": "Voters will receive a verification code via email",
     "2fa_enable": "Enable Two-Factor Authentication",
+    "2fa_info_tooltip": "Two-Factor Authentication (2FA) sends a verification code to voters via email or SMS, providing an extra security layer beyond identity fields.",
     "2fa_method_title": "Select verification method",
-    "2fa_security_description": "Two-factor authentication significantly increases the security of your voting process by ensuring only authorized members can vote.",
-    "2fa_security_title": "Enhanced Security",
-    "2fa_sms": "<phone /> SMS verification",
+    "2fa_sms": "SMS verification",
     "2fa_sms_description": "Voters will receive a verification code via SMS",
-    "2fa_voter_choice": "<email /> or <phone /> Voter's choice",
-    "2fa_voter_choice_description": "Voters can choose their preferred verification method",
+    "2fa_sms_warning": "May incur SMS costs",
+    "2fa_voter_choice": "Voter's choice",
+    "2fa_voter_choice_description": "Voters can choose between email or SMS verification",
+    "2fa_voter_choice_requirement": "Requires: Email + Phone fields",
+    "2fa_voter_choice_requirement_tooltip": "Both email and phone must be present in your memberbase for this option to work",
     "button": {
       "configure": "Configure Voter Authentication",
       "edit": "Edit Voter Authentication"
     },
     "configured_auth": "Voter Authentication",
     "credentials": "Credentials",
+    "credentials_info_tooltip": "Identity fields that voters must provide to verify who they are. More fields increase security but may reduce ease of use.",
     "description": "Set up how voters will authenticate to participate in this voting process.",
     "email": "Via email verification",
+    "extra_security": "Extra Security",
     "guarantees": "Authentication Guarantees",
     "guarantees_mid_description_intro": "Your configuration provides mid-level authentication guarantees with 3 credentials.",
     "guarantees_mid_list_1": "Enable two-factor authentication for strong guarantees",
@@ -1864,7 +1880,6 @@
     "summary_credentials": "Required Credentials",
     "summary_title": "Authentication Configuration Summary",
     "title": "Configure Voter Authentication",
-    "two_factor": "Two-Factor",
     "validation_duplicates_one": "{{count}} duplicated users",
     "validation_duplicates_other": "{{count}} duplicated users",
     "validation_error_title": "Validation Error",

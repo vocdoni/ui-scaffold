@@ -13,11 +13,11 @@ import {
 export const DashboardBox = (props: BoxProps) => (
   <Box
     borderRadius='md'
-    boxShadow='sm'
+    boxShadow='0 1px 3px rgba(0, 0, 0, 0.1)'
+    _dark={{ boxShadow: '0 1px 3px rgba(0, 0, 0, 0.3)' }}
     border='1px solid'
-    _dark={{ borderColor: 'black.700' }}
-    _light={{ borderColor: 'gray.200' }}
-    p={4}
+    borderColor='borders.default'
+    p={6}
     display='flex'
     flexDirection='column'
     flexWrap='wrap'
@@ -32,7 +32,7 @@ export const DashboardContents = (props: BoxProps) => (
 )
 
 export const DashboardSection = (props: BoxProps) => (
-  <Box _light={{ bg: 'gray.50' }} _dark={{ bg: 'whiteAlpha.50' }} p={4} borderRadius='sm' {...props} />
+  <Box _light={{ bg: 'gray.100' }} _dark={{ bg: 'whiteAlpha.100' }} p={4} borderRadius='md' {...props} />
 )
 
 export const Heading = forwardRef<HeadingProps, 'h2'>((props, ref) => (
@@ -75,8 +75,8 @@ export const Sidebar = ({ show, ...props }: SidebarProps) => (
       right: 0,
       top: 0,
       bottom: 0,
-      width: null, // to override chakra's default width
-      zIndex: 10,
+      width: null,
+      zIndex: 1200,
     }}
   >
     <Box
@@ -84,7 +84,7 @@ export const Sidebar = ({ show, ...props }: SidebarProps) => (
       width={{ base: '100vw', md: 'sidebar' }}
       bg='chakra.body.bg'
       borderLeft='1px solid'
-      borderColor='table.border'
+      borderColor='borders.default'
       as='aside'
       display='flex'
       flexDirection='column'

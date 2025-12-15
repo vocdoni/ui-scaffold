@@ -29,14 +29,7 @@ const ExtendedQuestionEditor = ({
   } = useFormContext()
 
   return (
-    <VStack
-      align='stretch'
-      spacing={4}
-      pt={4}
-      borderTop='1px'
-      borderColor='gray.200'
-      _dark={{ borderColor: 'whiteAlpha.200' }}
-    >
+    <VStack align='stretch' spacing={4} pt={4} borderTop='1px' borderColor='borders.subtle'>
       <SimpleGrid columns={{ base: 1, lg: 2, xl: 3, '2xl': 4 }} spacing={4}>
         {questionOptions.map((field, optionIndex) => (
           <SortableExtendedOption

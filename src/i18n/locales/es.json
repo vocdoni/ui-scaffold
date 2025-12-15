@@ -435,7 +435,6 @@
     "error": {
       "address_already_in_use": "Dirección ya en uso",
       "address_pattern": "Solo se permiten direcciones hexadecimales (ej. 0x031101A...)",
-      "census_config_required": "Configura los ajustes de autenticación del censo.",
       "email_invalid": "Dirección de correo electrónico no válida",
       "field_is_required": "Este campo es obligatorio",
       "generic": "Error al realizar la operación",
@@ -1336,13 +1335,17 @@
         "title": "Título del proceso de votación"
       },
       "leave_confirmation": {
-        "cancel": "Cancelar",
-        "leave": "Descartar y salir",
-        "message": "Tienes cambios sin guardar. ¿Seguro que quieres salir?",
+        "leave_saved": "Leave",
+        "leave_unsaved": "Leave without saving",
+        "message_saved": "Your changes were auto-saved {{time}}. You can safely leave this page.",
+        "message_unsaved": "Your changes haven't been saved yet. Do you want to save before leaving?",
         "reset": "Restablecer",
         "reset_message": "Esto reiniciará el formulario. ¿Quieres continuar?",
         "save_and_leave": "Guardar y salir",
-        "title": "Guardando borrador"
+        "stay": "Stay",
+        "title": "Guardando borrador",
+        "title_saved": "Leave this page?",
+        "title_unsaved": "You have unsaved changes"
       },
       "limit_reached": {
         "message_one": "Has alcanzado tu límite de {{ count }} borrador. Para guardar este borrador, elimina un borrador existente o actualiza tu plan.",
@@ -1372,6 +1375,12 @@
         "title": "Error al guardar el borrador"
       },
       "save_draft_success": "Borrador guardado",
+      "save_status": {
+        "error": "Auto-save failed",
+        "retry": "Retry",
+        "saved": "Saved {{time}}",
+        "saving": "Saving draft..."
+      },
       "selectionLimits": {
         "full": "Los votantes deben seleccionar al menos <min /> y como máximo <max /> opciones.",
         "title": "Límites de selección:"
@@ -1381,9 +1390,12 @@
       },
       "template": {
         "annual_general_meeting": "Asamblea General Anual",
+        "browse": "Browse templates",
+        "dismiss": "Dismiss templates",
         "election": "Elección",
         "participatory_budgeting": "Presupuestos participativos",
-        "title": "Comienza con una plantilla..."
+        "quick_start": "Quick Start Templates",
+        "subtitle": "Choose a template to get started faster"
       }
     },
     "created_by": "Creado por",
@@ -1503,24 +1515,27 @@
     "auto_start": "Iniciar de inmediato",
     "basic_configuration": "Configuración básica",
     "census": {
+      "error": {
+        "auth_required": "Please configure voter authentication by clicking \"Configure Authentication\" above",
+        "group_required": "Please select a member group"
+      },
       "extra_methods": {
         "disable_description": "¿Quieres desactivar los métodos de censo adicionales? Esto ocultará las opciones de Hoja de cálculo y Web3 y mostrará solo el método de Grupo.",
         "enable_description": "¿Quieres activar los métodos de censo adicionales? Esto mostrará opciones adicionales como Hoja de cálculo y creación de censo Web3.",
         "modal_title": "Métodos de censo adicionales"
       },
       "group": {
-        "label": "Grupo",
-        "no_groups": "Para iniciar una votación, primero necesitas crear un grupo de votantes con derecho a voto a partir de tu base de miembros. <1>Créalo aquí</1>."
-      },
-      "memberbase": {
-        "label": "Selecciona un grupo de miembros para crear el censo"
+        "no_groups": "Para iniciar una votación, primero necesitas crear un grupo de votantes con derecho a voto a partir de tu base de miembros. <1>Créalo aquí</1>.",
+        "placeholder": "e.g., Board Members",
+        "select_label": "Select a member group",
+        "tab_label": "Member Group"
       },
       "settings": "Configuración del censo",
       "spreadsheet": {
-        "label": "Hoja de cálculo"
+        "tab_label": "Spreadsheet"
       },
       "web3": {
-        "label": "Web3"
+        "tab_label": "Web3"
       }
     },
     "census_creation": "Creación de censo",
@@ -1528,9 +1543,6 @@
     "census_type_not_allowed": "Tipo de censo {{type}} no permitido",
     "end_datetime": "Fecha y hora de finalización",
     "extra_configuration": "Configuración avanzada",
-    "group": {
-      "select": "Seleccionar grupo"
-    },
     "groups": {
       "scroll_to_load": "Desplázate para cargar más..."
     },
@@ -1837,24 +1849,28 @@
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Añade una capa adicional de seguridad exigiendo a los votantes que verifiquen su identidad",
-    "2fa_email": "<email /> Verificación por correo electrónico",
+    "2fa_email": "Verificación por correo electrónico",
     "2fa_email_description": "Los votantes recibirán un código de verificación por correo electrónico",
     "2fa_enable": "Habilitar la autenticación en dos pasos",
+    "2fa_info_tooltip": "La autenticación en dos pasos (2FA) envía un código de verificación a los votantes por correo electrónico o SMS, proporcionando una capa de seguridad adicional más allá de los campos de identidad.",
     "2fa_method_title": "Seleccionar método de verificación",
-    "2fa_security_description": "La autenticación en dos pasos incrementa significativamente la seguridad del proceso de votación, garantizando que solo los miembros autorizados puedan votar.",
-    "2fa_security_title": "Seguridad reforzada",
-    "2fa_sms": "<phone /> Verificación por SMS",
+    "2fa_sms": "Verificación por SMS",
     "2fa_sms_description": "Los votantes recibirán un código de verificación por SMS",
-    "2fa_voter_choice": "<email /> o <phone /> Elección del votante",
-    "2fa_voter_choice_description": "Los votantes pueden elegir su método de verificación preferido",
+    "2fa_sms_warning": "Puede incurrir en costes de SMS",
+    "2fa_voter_choice": "Elección del votante",
+    "2fa_voter_choice_description": "Los votantes pueden elegir entre verificación por correo electrónico o SMS",
+    "2fa_voter_choice_requirement": "Requiere: Campos de correo electrónico + teléfono",
+    "2fa_voter_choice_requirement_tooltip": "Tanto el correo electrónico como el teléfono deben estar presentes en tu base de miembros para que esta opción funcione",
     "button": {
       "configure": "Configurar autenticación de votantes",
       "edit": "Editar autenticación de votantes"
     },
     "configured_auth": "Autenticación de votantes",
     "credentials": "Credenciales",
+    "credentials_info_tooltip": "Campos de identidad que los votantes deben proporcionar para verificar quiénes son. Más campos aumentan la seguridad pero pueden reducir la facilidad de uso.",
     "description": "Configura cómo se autenticarán los votantes para participar en este proceso de votación.",
     "email": "Por verificación de correo electrónico",
+    "extra_security": "Seguridad Extra",
     "guarantees": "Garantías de autenticación",
     "guarantees_mid_description_intro": "Tu configuración proporciona garantías de autenticación medias con 3 credenciales.",
     "guarantees_mid_list_1": "Habilita la autenticación en dos pasos para reforzar las garantías",
@@ -1878,7 +1894,7 @@
     "security_recommendation_2_many": "",
     "security_recommendation_2_other": "Has seleccionado {{ count }} credenciales, lo que proporciona una buena seguridad para tus votantes.",
     "security_recommendation_title": "Recomendación de seguridad",
-    "select_credentials": "Seleccionar credenciales requeridas para la autenticación de votantes",
+    "select_credentials": "Seleccionar credenciales para la autenticación de votantes",
     "select_credentials_description": "Elige los campos que los votantes deberán proporcionar para autenticarse. Selecciona hasta 3 para lograr el mejor equilibrio entre seguridad y facilidad de uso. Si planeas usar solo correo electrónico o teléfono para 2FA, omite este paso y haz clic en Siguiente para configurarlo.",
     "selected_credentials_count_one": "{{ count }}/3 credenciales seleccionadas",
     "selected_credentials_count_many": "",
@@ -1890,7 +1906,6 @@
     "summary_credentials": "Credenciales requeridas",
     "summary_title": "Resumen de la configuración de autenticación",
     "title": "Configurar autenticación de votantes",
-    "two_factor": "Dos pasos",
     "validation_duplicates_one": "{{count}} usuarios duplicados",
     "validation_duplicates_many": "",
     "validation_duplicates_other": "{{count}} usuarios duplicados",

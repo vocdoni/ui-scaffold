@@ -4,6 +4,7 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Badge,
   Box,
   Button,
   ButtonGroup,
@@ -17,6 +18,7 @@ import {
   Input,
   Progress,
   Spacer,
+  Spinner,
   Text,
   useBreakpointValue,
   useDisclosure,
@@ -40,11 +42,12 @@ import {
   PlainCensus,
   UnpublishedElection,
 } from '@vocdoni/sdk'
-import { addDays, parse } from 'date-fns'
+import { addDays, formatDistanceToNow, parse } from 'date-fns'
+import { ca as caLocale, enUS as enLocale, es as esLocale } from 'date-fns/locale'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Controller, FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { LuRotateCcw, LuSettings } from 'react-icons/lu'
+import { LuCheck, LuInfo, LuRotateCcw, LuSettings, LuSparkles, LuX } from 'react-icons/lu'
 import ReactPlayer from 'react-player'
 import {
   createPath,
@@ -79,6 +82,8 @@ type ConfirmOnNavigateOptions = {
   isDirty: boolean
   isSubmitting?: boolean
   isSubmitSuccessful?: boolean
+  saveStatus?: 'saving' | 'saved' | 'error' | 'idle'
+  lastSaveTime?: Date | null
   onOpen: () => void
   onClose: () => void
 }
@@ -90,6 +95,8 @@ type LeaveConfirmationModalProps = {
   onLeave: () => void
   onResetSamePath: () => void
   isSamePath: boolean
+  saveStatus: 'saving' | 'saved' | 'error' | 'idle'
+  lastSaveTime: Date | null
 }
 
 type CreateProcessRequest = {
@@ -111,13 +118,23 @@ export const useConfirmOnNavigate = ({
   isDirty,
   isSubmitting,
   isSubmitSuccessful,
+  saveStatus,
+  lastSaveTime,
   onOpen,
   onClose,
 }: ConfirmOnNavigateOptions) => {
   const [snoozeUntil, setSnoozeUntil] = useState<number | null>(null)
   const isSnoozed = snoozeUntil !== null && Date.now() < snoozeUntil
 
-  const shouldBlock = isDirty && !isSubmitting && !isSubmitSuccessful && !isSnoozed
+  // Don't block if auto-saved within last 5 seconds
+  const isRecentlySaved = saveStatus === 'saved' && lastSaveTime && Date.now() - lastSaveTime.getTime() < 5000
+
+  const shouldBlock = useCallback(() => {
+    if (!isDirty || isSubmitting || isSubmitSuccessful || isSnoozed) return false
+    if (saveStatus === 'saved' && lastSaveTime && Date.now() - lastSaveTime.getTime() < 5000) return false
+    return true
+  }, [isDirty, isSubmitting, isSubmitSuccessful, isSnoozed, saveStatus, lastSaveTime])
+
   const blocker = useBlocker(shouldBlock)
 
   const isOpenRef = useRef(false)
@@ -209,11 +226,17 @@ export const useSafeReset = (externalReset?) => {
 
       if (!resetFn) return
 
-      resetFn({
-        ...defaultProcessValues,
-        ...overrides,
-        groupId: groupId ?? '',
-      })
+      resetFn(
+        {
+          ...defaultProcessValues,
+          ...overrides,
+          groupId: groupId ?? '',
+        },
+        {
+          keepDefaultValues: false,
+          keepErrors: false,
+        }
+      )
     },
     [externalReset, contextReset, groupId]
   )
@@ -224,13 +247,21 @@ export const useFormDraftSaver = (
   getValues: () => any,
   draftId: string | null,
   storeDraftId: (id: string | null) => void,
-  saveCooldown?: (ms: number) => void
+  saveCooldown?: (ms: number) => void,
+  setSaveStatus?: (status: 'saving' | 'saved' | 'error' | 'idle') => void,
+  setLastSaveTime?: (time: Date | null) => void
 ) => {
   const { account } = useClient()
   const createProcess = useCreateProcess()
   const updateProcess = useUpdateProcess()
   const skipNextSaveRef = useRef(false)
   const [draftLimitReached, setDraftLimitReached] = useState(false)
+  const [internalLastSaveTime, setInternalLastSaveTime] = useState<Date | null>(null)
+  const [internalSaveStatus, setInternalSaveStatus] = useState<'saving' | 'saved' | 'error' | 'idle'>('idle')
+
+  // Use external state setters if provided, otherwise use internal state
+  const updateSaveStatus = setSaveStatus || setInternalSaveStatus
+  const updateLastSaveTime = setLastSaveTime || setInternalLastSaveTime
 
   const isCreating = createProcess.isPending
   const isUpdating = updateProcess.isPending
@@ -247,6 +278,7 @@ export const useFormDraftSaver = (
       if (isAutoSave && draftLimitReached) return 'limit-reached'
 
       try {
+        updateSaveStatus('saving')
         const form = getValues()
         if (draftId) {
           await updateProcess.mutateAsync({
@@ -262,11 +294,14 @@ export const useFormDraftSaver = (
         }
         saveCooldown?.(saveTimeoutMs)
         setDraftLimitReached(false)
+        updateLastSaveTime(new Date())
+        updateSaveStatus('saved')
         return 'saved'
       } catch (e) {
         // Check if it's a draft limit error
         if (e instanceof ApiError && e.apiError?.code === ErrorCode.DraftLimitReached) {
           setDraftLimitReached(true)
+          updateSaveStatus('error')
           // Silently fail for auto-save, throw for manual save
           if (isAutoSave) {
             return 'limit-reached'
@@ -276,8 +311,10 @@ export const useFormDraftSaver = (
         // For other errors, only log in auto-save mode
         if (isAutoSave) {
           console.error('Failed to save draft:', e)
+          updateSaveStatus('error')
           return 'error'
         }
+        updateSaveStatus('error')
         throw e
       }
     },
@@ -291,6 +328,8 @@ export const useFormDraftSaver = (
       createProcess,
       storeDraftId,
       saveCooldown,
+      updateSaveStatus,
+      updateLastSaveTime,
     ]
   )
 
@@ -320,7 +359,14 @@ export const useFormDraftSaver = (
     return () => clearInterval(id)
   }, [saveDraft])
 
-  return { saveDraft, isSaving, skipSave, draftLimitReached }
+  return {
+    saveDraft,
+    isSaving,
+    skipSave,
+    draftLimitReached,
+    saveStatus: internalSaveStatus,
+    lastSaveTime: internalLastSaveTime,
+  }
 }
 
 const LiveStreamingInput = () => {
@@ -390,13 +436,31 @@ const TemplateButtons = () => {
   const reset = useSafeReset()
   const pendingTemplateRef = useRef<TemplateTypes | null>(null)
 
+  // Collapsible state - start collapsed, user can expand
+  const [showTemplates, setShowTemplates] = useState(false)
+
   const applyTemplate = (templateId: TemplateTypes) => {
     const config = TemplateConfigs[templateId]
     const previousFormValues = methods.getValues()
-    setActiveTemplate(templateId)
-    reset({
-      ...previousFormValues,
-      ...config,
+
+    // Save current scroll position
+    const scrollY = window.scrollY
+
+    // Collapse templates before applying to prevent scroll issues
+    setShowTemplates(false)
+
+    // Use requestAnimationFrame to ensure the collapse happens before form updates
+    requestAnimationFrame(() => {
+      setActiveTemplate(templateId)
+      reset({
+        ...previousFormValues,
+        ...config,
+      })
+
+      // Restore scroll position immediately after reset to prevent jump
+      requestAnimationFrame(() => {
+        window.scrollTo(0, scrollY)
+      })
     })
   }
 
@@ -430,34 +494,71 @@ const TemplateButtons = () => {
     onClose()
   }
 
+  const getTemplateLabel = (template: TemplateTypes) => {
+    switch (template) {
+      case TemplateTypes.AnnualGeneralMeeting:
+        return t('process.create.template.annual_general_meeting', 'Annual General Meeting')
+      case TemplateTypes.Election:
+        return t('process.create.template.election', 'Election')
+      case TemplateTypes.ParticipatoryBudgeting:
+        return t('process.create.template.participatory_budgeting', 'Participatory Budgeting')
+      default:
+        return template
+    }
+  }
+
   return (
     <>
-      <VStack align='stretch' spacing={3} p={4} borderRadius='md' bg='gray.50' _dark={{ bg: 'whiteAlpha.50' }}>
-        <Text fontSize='sm' fontWeight='medium' color='texts.primary'>
-          {t('process.create.template.title', { defaultValue: 'Get started with a template...' })}
-        </Text>
-        <HStack spacing={2} flexWrap='wrap'>
-          <Button
-            variant='outline'
-            size='sm'
-            data-template={TemplateTypes.AnnualGeneralMeeting}
-            onClick={handleTemplateClick}
-          >
-            {t('process.create.template.annual_general_meeting', 'Annual General Meeting')}
-          </Button>
-          <Button variant='outline' size='sm' data-template={TemplateTypes.Election} onClick={handleTemplateClick}>
-            {t('process.create.template.election', 'Election')}
-          </Button>
-          <Button
-            variant='outline'
-            size='sm'
-            data-template={TemplateTypes.ParticipatoryBudgeting}
-            onClick={handleTemplateClick}
-          >
-            {t('process.create.template.participatory_budgeting', 'Participatory Budgeting')}
-          </Button>
-        </HStack>
-      </VStack>
+      {showTemplates ? (
+        <VStack
+          align='stretch'
+          spacing={4}
+          p={4}
+          borderWidth='1px'
+          borderColor='blue.200'
+          borderRadius='md'
+          bg='blue.50'
+          _dark={{ bg: 'blue.900', borderColor: 'blue.700' }}
+          boxShadow='0 1px 3px rgba(0, 0, 0, 0.05)'
+        >
+          <HStack justify='space-between'>
+            <VStack align='start' spacing={1}>
+              <Text fontSize='sm' fontWeight='semibold' color='blue.900' _dark={{ color: 'blue.100' }}>
+                {t('process.create.template.quick_start', 'Quick Start Templates')}
+              </Text>
+              <Text fontSize='xs' color='blue.700' _dark={{ color: 'blue.300' }}>
+                {t('process.create.template.subtitle', 'Choose a template to get started faster')}
+              </Text>
+            </VStack>
+            <IconButton
+              icon={<Icon as={LuX} />}
+              size='xs'
+              variant='ghost'
+              aria-label={t('process.create.template.dismiss', 'Dismiss templates')}
+              onClick={() => setShowTemplates(false)}
+            />
+          </HStack>
+          <HStack spacing={3} flexWrap='wrap'>
+            {Object.values(TemplateTypes).map((template) => (
+              <Button
+                key={template}
+                variant={activeTemplate === template ? 'solid' : 'outline'}
+                colorScheme='blue'
+                size='sm'
+                data-template={template}
+                onClick={handleTemplateClick}
+                leftIcon={activeTemplate === template ? <Icon as={LuCheck} /> : undefined}
+              >
+                {getTemplateLabel(template)}
+              </Button>
+            ))}
+          </HStack>
+        </VStack>
+      ) : (
+        <Button variant='link' size='sm' leftIcon={<Icon as={LuSparkles} />} onClick={() => setShowTemplates(true)}>
+          {t('process.create.template.browse', 'Browse templates')}
+        </Button>
+      )}
 
       <DeleteModal
         title={t('process.create.change_template.title', 'Change Template')}
@@ -487,27 +588,58 @@ const LeaveConfirmationModal = ({
   onResetSamePath,
   onSaveAndLeave,
   isSamePath,
+  saveStatus,
+  lastSaveTime,
 }: LeaveConfirmationModalProps) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
+  const getDateFnsLocale = () => {
+    switch (i18n.language) {
+      case 'ca':
+        return caLocale
+      case 'es':
+        return esLocale
+      case 'en':
+      default:
+        return enLocale
+    }
+  }
+
+  const isSaved = saveStatus === 'saved'
+
+  const getTitle = () => {
+    if (isSamePath) {
+      return t('process.create.leave_confirmation.title', { defaultValue: 'Unsaved Changes' })
+    }
+    return isSaved
+      ? t('process.create.leave_confirmation.title_saved', { defaultValue: 'Leave this page?' })
+      : t('process.create.leave_confirmation.title_unsaved', { defaultValue: 'You have unsaved changes' })
+  }
+
+  const getSubtitle = () => {
+    if (isSamePath) {
+      return t('process.create.leave_confirmation.reset_message', {
+        defaultValue: 'This will reset the form. Do you want to continue?',
+      })
+    }
+
+    if (isSaved && lastSaveTime) {
+      return t('process.create.leave_confirmation.message_saved', {
+        defaultValue: 'Your changes were auto-saved {{time}}. You can safely leave this page.',
+        time: formatDistanceToNow(lastSaveTime, { addSuffix: true, locale: getDateFnsLocale() }),
+      })
+    }
+
+    return t('process.create.leave_confirmation.message_unsaved', {
+      defaultValue: "Your changes haven't been saved yet. Do you want to save before leaving?",
+    })
+  }
 
   return (
-    <DeleteModal
-      title={t('process.create.leave_confirmation.title', { defaultValue: 'Unsaved Changes' })}
-      subtitle={
-        isSamePath
-          ? t('process.create.leave_confirmation.reset_message', {
-              defaultValue: 'This will reset the form. Do you want to continue?',
-            })
-          : t('process.create.leave_confirmation.message', {
-              defaultValue: 'You have unsaved changes. Are you sure you want to leave?',
-            })
-      }
-      isOpen={isOpen}
-      onClose={onCancel}
-    >
+    <DeleteModal title={getTitle()} subtitle={getSubtitle()} isOpen={isOpen} onClose={onCancel}>
       <Flex justifyContent='flex-end' mt={4} gap={2}>
         <Button variant='outline' onClick={onCancel}>
-          {t('process.create.leave_confirmation.cancel', { defaultValue: 'Cancel' })}
+          {t('process.create.leave_confirmation.stay', { defaultValue: 'Stay' })}
         </Button>
         <Spacer />
         {isSamePath ? (
@@ -516,11 +648,15 @@ const LeaveConfirmationModal = ({
           </Button>
         ) : (
           <>
-            <Button colorScheme='red' onClick={onLeave}>
-              {t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
-            </Button>
-            <Button colorScheme='black' onClick={onSaveAndLeave}>
-              {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save and leave' })}
+            {!isSaved && (
+              <Button colorScheme='black' onClick={onSaveAndLeave}>
+                {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save & Leave' })}
+              </Button>
+            )}
+            <Button variant={isSaved ? 'solid' : 'outline'} colorScheme={isSaved ? 'black' : 'red'} onClick={onLeave}>
+              {isSaved
+                ? t('process.create.leave_confirmation.leave_saved', { defaultValue: 'Leave' })
+                : t('process.create.leave_confirmation.leave_unsaved', { defaultValue: 'Leave without saving' })}
             </Button>
           </>
         )}
@@ -661,6 +797,62 @@ export const useDraft = (draftId?: string | null) => {
   })
 }
 
+type SaveStatusProps = {
+  saveStatus: 'saving' | 'saved' | 'error' | 'idle'
+  lastSaveTime: Date | null
+  onRetry: () => void
+}
+
+const SaveStatus = ({ saveStatus, lastSaveTime, onRetry }: SaveStatusProps) => {
+  const { t, i18n } = useTranslation()
+
+  if (saveStatus === 'idle') return null
+
+  // Get the appropriate date-fns locale based on the current language
+  const getDateFnsLocale = () => {
+    switch (i18n.language) {
+      case 'ca':
+        return caLocale
+      case 'es':
+        return esLocale
+      case 'en':
+      default:
+        return enLocale
+    }
+  }
+
+  return (
+    <HStack spacing={2} fontSize='xs' color='gray.700' _dark={{ color: 'gray.300' }}>
+      {saveStatus === 'saving' && (
+        <>
+          <Spinner size='xs' color='blue.500' />
+          <Text>{t('process.create.save_status.saving', { defaultValue: 'Saving draft...' })}</Text>
+        </>
+      )}
+      {saveStatus === 'saved' && lastSaveTime && (
+        <>
+          <Icon as={LuCheck} color='green.500' _dark={{ color: 'green.400' }} />
+          <Text>
+            {t('process.create.save_status.saved', {
+              defaultValue: 'Saved {{time}}',
+              time: formatDistanceToNow(lastSaveTime, { addSuffix: true, locale: getDateFnsLocale() }),
+            })}
+          </Text>
+        </>
+      )}
+      {saveStatus === 'error' && (
+        <>
+          <Icon as={LuInfo} color='red.500' _dark={{ color: 'red.400' }} />
+          <Text>{t('process.create.save_status.error', { defaultValue: 'Auto-save failed' })}</Text>
+          <Button size='xs' variant='link' onClick={onRetry} colorScheme='red'>
+            {t('process.create.save_status.retry', { defaultValue: 'Retry' })}
+          </Button>
+        </>
+      )}
+    </HStack>
+  )
+}
+
 export const ProcessCreate = () => {
   const { t } = useTranslation()
   const toast = useToast()
@@ -692,20 +884,30 @@ export const ProcessCreate = () => {
   const { trackPlausibleEvent } = useAnalytics()
   const formToElectionMapper = useFormToElectionMapper()
   const effectiveDraftId = draftId ?? storedDraftId
+
+  const [saveStatus, setSaveStatus] = useState<'saving' | 'saved' | 'error' | 'idle'>('idle')
+  const [lastSaveTime, setLastSaveTime] = useState<Date | null>(null)
+
   // Confirm navigation if form is dirty
   const { isSamePath, cancel, proceed, resetSamePath, saveCooldown } = useConfirmOnNavigate({
     isDirty,
     isSubmitting,
     isSubmitSuccessful,
+    saveStatus,
+    lastSaveTime,
     onOpen: openConfirmationModal,
     onClose,
   })
+
+  // useFormDraftSaver will be modified to use the state setters
   const { saveDraft, isSaving, skipSave } = useFormDraftSaver(
     isDirty,
     methods.getValues,
     effectiveDraftId,
     storeDraftId,
-    saveCooldown
+    saveCooldown,
+    setSaveStatus,
+    setLastSaveTime
   )
   const { permission } = useSubscription()
   const { data: formDraft } = useDraft(effectiveDraftId)
@@ -912,6 +1114,12 @@ export const ProcessCreate = () => {
     }
   }
 
+  // Detect sidebar errors for visual indicators
+  const sidebarFieldKeys = ['groupId', 'census', 'resultVisibility', 'endDate', 'endTime', 'startDate', 'startTime']
+  const sidebarErrors = sidebarFieldKeys.filter((key) => key in methods.formState.errors)
+  const hasSidebarErrors = sidebarErrors.length > 0
+  const sidebarErrorCount = sidebarErrors.length
+
   if (!formDraftLoaded) return <Progress size='xs' isIndeterminate />
 
   return (
@@ -931,33 +1139,46 @@ export const ProcessCreate = () => {
           transition='margin-right 0.3s'
           display='flex'
           flexDirection='column'
-          gap={8}
+          gap={6}
           paddingRight={4}
           paddingBottom={4}
           maxW='900px'
           mx='auto'
           w='full'
+          _before={{
+            content: '""',
+            position: 'sticky',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 0,
+            bg: 'chakra.body.bg',
+            zIndex: 'sticky',
+            display: 'block',
+          }}
         >
           {/* Top bar with draft status and sidebar toggle */}
           <Flex
             position='sticky'
-            top='64px'
-            p={3}
+            top={0}
+            p={4}
+            pb={6}
             bg='chakra.body.bg'
             zIndex='sticky'
-            gap={3}
+            gap={4}
             flexWrap='wrap'
             justify='space-between'
             align='center'
           >
-            <HStack spacing={2}>
+            <HStack spacing={3}>
               {effectiveDraftId && (
                 <Box
                   px={3}
                   py={1}
                   borderRadius='full'
-                  bg='gray.100'
-                  _dark={{ bg: 'whiteAlpha.200' }}
+                  bg='gray.200'
+                  color='gray.800'
+                  _dark={{ bg: 'gray.700', color: 'gray.100' }}
                   fontSize='sm'
                   fontWeight='medium'
                 >
@@ -980,25 +1201,51 @@ export const ProcessCreate = () => {
                   defaultValue: 'Toggle sidebar',
                 })}
                 icon={<Icon as={LuSettings} />}
-                variant='ghost'
+                variant={hasSidebarErrors ? 'solid' : 'ghost'}
+                colorScheme={hasSidebarErrors ? 'red' : 'gray'}
                 size='sm'
                 onClick={() => setShowSidebar((prev) => !prev)}
-              />
+                position='relative'
+              >
+                {hasSidebarErrors && (
+                  <Badge
+                    position='absolute'
+                    top='-1'
+                    right='-1'
+                    colorScheme='red'
+                    borderRadius='full'
+                    px={2}
+                    fontSize='xs'
+                  >
+                    {sidebarErrorCount}
+                  </Badge>
+                )}
+              </IconButton>
             </HStack>
-            <ButtonGroup size='sm' spacing={2}>
+            <HStack spacing={3}>
+              <SaveStatus saveStatus={saveStatus} lastSaveTime={lastSaveTime} onRetry={handleManualSave} />
+              {(saveStatus === 'error' || saveStatus === 'idle') && (
+                <Button
+                  type='button'
+                  variant='outline'
+                  size='sm'
+                  onClick={handleManualSave}
+                  isLoading={isSaving}
+                  shouldWrapChildren
+                >
+                  <Trans i18nKey='process.create.action.save_draft'>Save</Trans>
+                </Button>
+              )}
               <Button
-                type='button'
-                variant='outline'
-                onClick={handleManualSave}
-                isLoading={isSaving}
+                type='submit'
+                colorScheme='black'
+                size='sm'
+                isLoading={methods.formState.isSubmitting}
                 shouldWrapChildren
               >
-                <Trans i18nKey='process.create.action.save_draft'>Save</Trans>
-              </Button>
-              <Button type='submit' colorScheme='black' isLoading={methods.formState.isSubmitting} shouldWrapChildren>
                 <Trans i18nKey='process.create.action.publish'>Publish</Trans>
               </Button>
-            </ButtonGroup>
+            </HStack>
           </Flex>
 
           {/* Title, Video, and Description */}
@@ -1045,7 +1292,7 @@ export const ProcessCreate = () => {
             </VStack>
           </VStack>
 
-          <Box borderTop='2px' borderColor='gray.200' _dark={{ borderColor: 'whiteAlpha.200' }} pt={6}>
+          <Box borderTop='1px' borderColor='borders.default' pt={6}>
             <Questions />
           </Box>
         </Box>
@@ -1059,6 +1306,8 @@ export const ProcessCreate = () => {
         onSaveAndLeave={handleSaveAndLeave}
         onResetSamePath={() => resetSamePath(() => resetForm())}
         isSamePath={isSamePath}
+        saveStatus={saveStatus}
+        lastSaveTime={lastSaveTime}
       />
     </FormProvider>
   )

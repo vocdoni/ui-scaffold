@@ -27,8 +27,40 @@ const texts = {
   },
 }
 
+const borders = {
+  subtle: {
+    _light: 'gray.200',
+    _dark: 'whiteAlpha.300',
+  },
+  default: {
+    _light: 'gray.300',
+    _dark: 'whiteAlpha.400',
+  },
+  strong: {
+    _light: 'gray.400',
+    _dark: 'whiteAlpha.500',
+  },
+}
+
+const backgrounds = {
+  canvas: {
+    _light: 'white',
+    _dark: 'gray.900',
+  },
+  surface: {
+    _light: 'gray.50',
+    _dark: 'gray.800',
+  },
+  overlay: {
+    _light: 'gray.100',
+    _dark: 'gray.700',
+  },
+}
+
 export const colors = {
   chakra,
+  borders,
+  backgrounds,
   auth: {
     bg: {
       _dark: 'black.550',

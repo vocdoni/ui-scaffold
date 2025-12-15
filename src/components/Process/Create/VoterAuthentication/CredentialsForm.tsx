@@ -7,8 +7,11 @@ import {
   Checkbox,
   CheckboxGroup,
   Flex,
+  HStack,
   TabPanel,
   Text,
+  Tooltip,
+  VStack,
 } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
@@ -25,17 +28,33 @@ export const CredentialsForm = () => {
     <TabPanel px={0} pb={0}>
       <Box>
         <Flex direction='column' border='1px solid' borderColor='table.border' p={4} borderRadius='md' gap={4}>
-          <Text fontSize='sm' fontWeight='extrabold'>
-            {t('voter_auth.select_credentials', {
-              defaultValue: 'Select required credentials for voter authentication',
-            })}
-          </Text>
-          <Text fontSize='sm' color='texts.subtle'>
-            {t('voter_auth.select_credentials_description', {
-              defaultValue:
-                'Choose the fields voters must provide to authenticate. Select up to 3 for the best balance of security and ease of use. If you plan to use only email or phone for 2FA, skip this step and click Next to set it up',
-            })}
-          </Text>
+          <VStack align='start' spacing={0}>
+            <HStack spacing={2}>
+              <Text fontSize='sm' fontWeight='extrabold'>
+                {t('voter_auth.select_credentials', {
+                  defaultValue: 'Select required credentials for voter authentication',
+                })}
+              </Text>
+              <Tooltip
+                label={t('voter_auth.credentials_info_tooltip', {
+                  defaultValue:
+                    'Identity fields that voters must provide to verify who they are. More fields increase security but may reduce ease of use.',
+                })}
+                fontSize='sm'
+                placement='top'
+              >
+                <Box as='span' cursor='help' color='texts.subtle'>
+                  <LuInfo size={16} />
+                </Box>
+              </Tooltip>
+            </HStack>
+            <Text fontSize='sm' color='texts.subtle'>
+              {t('voter_auth.select_credentials_description', {
+                defaultValue:
+                  'Choose the fields voters must provide to authenticate. Select up to 3 for the best balance of security and ease of use. If you plan to use only email or phone for 2FA, skip this step and click Next to set it up',
+              })}
+            </Text>
+          </VStack>
           <Flex direction='column' gap={2}>
             <Controller
               name='credentials'
@@ -44,7 +63,7 @@ export const CredentialsForm = () => {
               render={({ field }) => (
                 <CheckboxGroup value={field.value} onChange={(value: string[]) => field.onChange(value)}>
                   {fields.map((column) => {
-                    if (column.is2fa) return null // Skip 2FA fields in this selection
+                    if (column.is2fa) return null
                     const isChecked = credentials.includes(column.id)
                     const isAtLimit = credentials.length >= 3 && !isChecked
                     return (
@@ -90,7 +109,7 @@ export const CredentialsForm = () => {
               </Box>
             </Alert>
           )}
-          <Text>
+          <Text fontSize='sm' color='texts.subtle'>
             {t('voter_auth.selected_credentials_count', {
               defaultValue: '{{ count }}/3 credentials selected',
               count: credentials?.length,

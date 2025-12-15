@@ -164,7 +164,7 @@ export const Questions = () => {
   }
 
   return (
-    <VStack align='stretch' spacing={4}>
+    <VStack align='stretch' spacing={6}>
       <DashboardSection>
         <QuestionType />
       </DashboardSection>

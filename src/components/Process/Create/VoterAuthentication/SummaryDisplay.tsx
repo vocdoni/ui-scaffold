@@ -38,9 +38,9 @@ export const CredentialsOverview = ({ credentials, use2FA, use2FAMethod }: Crede
     <>
       {credentials && credentials.length > 0 && (
         <Box>
-          <HStack mb={1}>
-            <Icon as={LuShield} />
-            <Text fontWeight='semibold'>
+          <HStack spacing={2} mb={2}>
+            <Icon as={LuShield} boxSize={4} />
+            <Text fontSize='sm' fontWeight='semibold'>
               {t('voter_auth.summary_credentials', { defaultValue: 'Required Credentials' })}
             </Text>
           </HStack>
@@ -48,8 +48,8 @@ export const CredentialsOverview = ({ credentials, use2FA, use2FAMethod }: Crede
           <Stack pl={6} spacing={2}>
             {credentials.map((cred) => (
               <HStack key={cred}>
-                <Icon as={LuCheck} color='green.500' />
-                <Text>{cred}</Text>
+                <Icon as={LuCheck} color='green.500' boxSize={4} />
+                <Text fontSize='sm'>{cred}</Text>
               </HStack>
             ))}
           </Stack>
@@ -57,22 +57,22 @@ export const CredentialsOverview = ({ credentials, use2FA, use2FAMethod }: Crede
       )}
       {use2FA && (
         <Box>
-          <HStack mb={1}>
+          <HStack spacing={2} mb={2}>
             <Badge colorScheme='black' fontSize='xs'>
               2FA
             </Badge>
-            <Text fontWeight='semibold'>
+            <Text fontSize='sm' fontWeight='semibold'>
               {t('voter_auth.summary_2fa_enable', { defaultValue: 'Two-Factor Authentication' })}
             </Text>
           </HStack>
-          <Stack pl={6}>
+          <Stack pl={6} spacing={2}>
             <HStack>
-              <Icon as={LuCheck} color='green.500' />
-              <Text>{t('voter_auth.summary_2fa_enabled', { defaultValue: 'Enabled' })}</Text>
+              <Icon as={LuCheck} color='green.500' boxSize={4} />
+              <Text fontSize='sm'>{t('voter_auth.summary_2fa_enabled', { defaultValue: 'Enabled' })}</Text>
             </HStack>
             <HStack>
-              <Icon as={LuMail} />
-              <Text>{get2FAMethodLabel(use2FAMethod)}</Text>
+              <Icon as={LuMail} boxSize={4} />
+              <Text fontSize='sm'>{get2FAMethodLabel(use2FAMethod)}</Text>
             </HStack>
           </Stack>
         </Box>
@@ -92,15 +92,15 @@ export const SummaryDisplay = () => {
     <TabPanel>
       <Box border='1px solid' borderColor='table.border' borderRadius='md' p={5} bg='background.raised'>
         <Stack spacing={4}>
-          <Text fontWeight='bold'>
+          <Text fontSize='md' fontWeight='bold'>
             {t('voter_auth.summary_title', { defaultValue: 'Authentication Configuration Summary' })}
           </Text>
           <CredentialsOverview credentials={credentials} use2FA={use2FA} use2FAMethod={use2FAMethod} />
           <Divider />
           <Box>
-            <HStack mb={3}>
-              <Icon as={LuShield} />
-              <Text fontWeight='semibold'>
+            <HStack spacing={2} mb={2}>
+              <Icon as={LuShield} boxSize={4} />
+              <Text fontSize='sm' fontWeight='semibold'>
                 {t('voter_auth.guarantees', { defaultValue: 'Authentication Guarantees' })}
               </Text>
             </HStack>

@@ -298,7 +298,7 @@ export const VoterAuthentication = () => {
                     <Trans i18nKey='voter_auth.credentials'>Credentials</Trans>
                   </Tab>
                   <Tab isDisabled={!stepCompletion.step1Completed}>
-                    <Trans i18nKey='voter_auth.two_factor'>Two-Factor</Trans>
+                    <Trans i18nKey='voter_auth.extra_security'>Extra Security</Trans>
                   </Tab>
                   <Tab isDisabled={!stepCompletion.step2Completed || hasNoCredentialsSelected}>
                     <Trans i18nKey='voter_auth.summary'>Summary</Trans>

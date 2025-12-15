@@ -64,9 +64,14 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
 
   return (
     <div ref={setNodeRef} style={style}>
-      <DashboardBox>
+      <DashboardBox
+        borderLeftWidth='4px'
+        borderLeftColor='blue.400'
+        boxShadow='0 1px 3px rgba(0, 0, 0, 0.1)'
+        _dark={{ boxShadow: '0 1px 3px rgba(0, 0, 0, 0.3)' }}
+      >
         {/* Question header with drag and remove */}
-        <HStack align='flex-start' spacing={3} mb={4}>
+        <HStack align='flex-start' spacing={4} mb={4}>
           {/* Drag handle */}
           {questions.length > 1 && (
             <Box
@@ -124,7 +129,9 @@ export const QuestionForm = ({ index, onRemove, questionId }: QuestionFormProps)
                   t('process_create.question.title.placeholder', 'Add a title to the question')
                 }
                 fontSize='xl'
-                fontWeight='semibold'
+                _placeholder={{
+                  fontSize: 'xl',
+                }}
                 {...register(`questions.${index}.title`, {
                   required: t('form.error.required', 'This field is required'),
                 })}

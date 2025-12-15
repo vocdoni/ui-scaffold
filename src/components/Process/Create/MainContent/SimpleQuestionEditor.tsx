@@ -40,14 +40,7 @@ const SimpleQuestionEditor = ({
   const questionType = watch('questionType')
 
   return (
-    <VStack
-      align='stretch'
-      spacing={3}
-      pt={4}
-      borderTop='1px'
-      borderColor='gray.200'
-      _dark={{ borderColor: 'whiteAlpha.200' }}
-    >
+    <VStack align='stretch' spacing={3} pt={4} borderTop='1px' borderColor='borders.subtle'>
       {questionOptions.map((field, optionIndex) => (
         <SortableOption
           key={field.id}

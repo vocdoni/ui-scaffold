@@ -65,7 +65,7 @@ export const GroupSelect = ({ groups, fetchNextPage, hasNextPage, isFetching }: 
   return (
     <FormControl isInvalid={!!errors.groupId}>
       <FormLabel>
-        <Trans i18nKey='process_create.census.memberbase.label'>Select a group of members to create the census</Trans>
+        <Trans i18nKey='process_create.census.group.select_label'>Select a member group</Trans>
       </FormLabel>
       <Controller
         control={control}
@@ -73,7 +73,7 @@ export const GroupSelect = ({ groups, fetchNextPage, hasNextPage, isFetching }: 
         rules={{
           required: {
             value: censusType === CensusTypes.CSP,
-            message: t('form.error.required', 'This field is required'),
+            message: t('process_create.census.error.group_required', 'Please select a member group'),
           },
         }}
         render={({ field }) => {
@@ -84,7 +84,7 @@ export const GroupSelect = ({ groups, fetchNextPage, hasNextPage, isFetching }: 
               value={selected}
               getOptionLabel={(option) => option.title}
               getOptionValue={(option) => option.id}
-              placeholder={t('process_create.group.select', 'Select group')}
+              placeholder={t('process_create.census.group.placeholder', 'e.g., Board Members')}
               isLoading={isFetching}
               onChange={(option) => field.onChange(option?.id ?? '')}
               onMenuScrollToBottom={async () => {
@@ -149,7 +149,10 @@ const GroupCensusCreation = () => {
           {...register('census', {
             required: {
               value: censusType === CensusTypes.CSP,
-              message: t('form.error.census_config_required', 'Please configure the census authentication settings.'),
+              message: t(
+                'process_create.census.error.auth_required',
+                'Please configure voter authentication by clicking "Configure Authentication" above'
+              ),
             },
           })}
         />
@@ -203,9 +206,9 @@ const CensusCreation = ({ showExtraMethods }: { showExtraMethods: boolean }) => 
   return (
     <Tabs index={currentIndex} onChange={handleTabChange} isFitted>
       <TabList w='full'>
-        <Tab>{t('process_create.census.group.label', { defaultValue: 'Group' })}</Tab>
-        <Tab>{t('process_create.census.spreadsheet.label', { defaultValue: 'Spreadsheet' })}</Tab>
-        <Tab>{t('process_create.census.web3.label', { defaultValue: 'Web3' })}</Tab>
+        <Tab>{t('process_create.census.group.tab_label', { defaultValue: 'Member Group' })}</Tab>
+        <Tab>{t('process_create.census.spreadsheet.tab_label', { defaultValue: 'Spreadsheet' })}</Tab>
+        <Tab>{t('process_create.census.web3.tab_label', { defaultValue: 'Web3' })}</Tab>
       </TabList>
       <TabPanels>
         <TabPanel px={0}>

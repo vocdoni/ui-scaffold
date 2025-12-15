@@ -435,7 +435,6 @@
     "error": {
       "address_already_in_use": "Aquesta adreça ja és al cens",
       "address_pattern": "Només s'admeten adreces hexadecimals (p. ex. 0x031101A...)",
-      "census_config_required": "Si us plau, configura com s'autenticaran els votants",
       "email_invalid": "Adreça de correu electrònic no vàlida",
       "field_is_required": "Aquest camp és obligatori",
       "generic": "Error en realitzar l'operació",
@@ -1336,13 +1335,17 @@
         "title": "Títol del Procés de Votació"
       },
       "leave_confirmation": {
-        "cancel": "Cancel·la",
-        "leave": "Descarta i surt",
-        "message": "Tens canvis sense desar. Segur que vols sortir?",
+        "leave_saved": "Leave",
+        "leave_unsaved": "Leave without saving",
+        "message_saved": "Your changes were auto-saved {{time}}. You can safely leave this page.",
+        "message_unsaved": "Your changes haven't been saved yet. Do you want to save before leaving?",
         "reset": "Restableix",
         "reset_message": "Això restablirà el formulari. Vols continuar?",
         "save_and_leave": "Desa i surt",
-        "title": "Desant esborrany"
+        "stay": "Stay",
+        "title": "Desant esborrany",
+        "title_saved": "Leave this page?",
+        "title_unsaved": "You have unsaved changes"
       },
       "limit_reached": {
         "message_one": "Has arribat al límit de {{ count }} esborrany. Per desar aquest esborrany, elimina un esborrany existent o actualitza el teu pla.",
@@ -1372,6 +1375,12 @@
         "title": "Error al desar l'esborrany"
       },
       "save_draft_success": "Esborrany desat",
+      "save_status": {
+        "error": "Auto-save failed",
+        "retry": "Retry",
+        "saved": "Saved {{time}}",
+        "saving": "Saving draft..."
+      },
       "selectionLimits": {
         "full": "Els votants han de seleccionar com a mínim <min /> i com a màxim <max /> opcions.",
         "title": "Límits de selecció:"
@@ -1381,9 +1390,12 @@
       },
       "template": {
         "annual_general_meeting": "Assemblea general anual",
+        "browse": "Browse templates",
+        "dismiss": "Dismiss templates",
         "election": "Elecció",
         "participatory_budgeting": "Pressupost participatiu",
-        "title": "Comença amb una plantilla..."
+        "quick_start": "Quick Start Templates",
+        "subtitle": "Choose a template to get started faster"
       }
     },
     "created_by": "Creat per",
@@ -1503,24 +1515,27 @@
     "auto_start": "Comença immediatament",
     "basic_configuration": "Configuració bàsica",
     "census": {
+      "error": {
+        "auth_required": "Please configure voter authentication by clicking \"Configure Authentication\" above",
+        "group_required": "Please select a member group"
+      },
       "extra_methods": {
         "disable_description": "Vols desactivar els mètodes de cens addicionals? Això ocultarà les opcions de Full de càlcul i Web3 i només mostrarà el mètode de Grup.",
         "enable_description": "Vols activar els mètodes de cens addicionals? Això mostrarà opcions addicionals com la creació de cens amb Full de càlcul i Web3.",
         "modal_title": "Mètodes de cens addicionals"
       },
       "group": {
-        "label": "Grup",
-        "no_groups": "Per començar una votació, primer has de crear un grup de votants elegibles a partir de la teva base de membres. <1>Crea'n un aquí</1>."
-      },
-      "memberbase": {
-        "label": "Selecciona un grup de membres per crear el cens"
+        "no_groups": "Per començar una votació, primer has de crear un grup de votants elegibles a partir de la teva base de membres. <1>Crea'n un aquí</1>.",
+        "placeholder": "e.g., Board Members",
+        "select_label": "Select a member group",
+        "tab_label": "Member Group"
       },
       "settings": "Configuració del cens",
       "spreadsheet": {
-        "label": "Full de càlcul"
+        "tab_label": "Spreadsheet"
       },
       "web3": {
-        "label": "Web3"
+        "tab_label": "Web3"
       }
     },
     "census_creation": "Creació del cens",
@@ -1528,9 +1543,6 @@
     "census_type_not_allowed": "El tipus de cens {{type}} no està permès",
     "end_datetime": "Data i hora de finalització",
     "extra_configuration": "Configuració addicional",
-    "group": {
-      "select": "Selecciona un grup"
-    },
     "groups": {
       "scroll_to_load": "Desplaça't per carregar-ne més..."
     },
@@ -1837,24 +1849,28 @@
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Afegeix una capa extra de seguretat requerint que els votants verifiquin la seva identitat",
-    "2fa_email": "<email /> Verificació per correu electrònic",
+    "2fa_email": "Verificació per correu electrònic",
     "2fa_email_description": "Els votants rebran un codi de verificació per correu electrònic",
     "2fa_enable": "Habilita l'autenticació en dos passos",
+    "2fa_info_tooltip": "L'autenticació en dos passos (2FA) envia un codi de verificació als votants per correu electrònic o SMS, proporcionant una capa de seguretat addicional més enllà dels camps d'identitat.",
     "2fa_method_title": "Selecciona el mètode de verificació",
-    "2fa_security_description": "L'autenticació en dos passos augmenta significativament la seguretat del teu procés de votació assegurant que només els membres autoritzats puguin votar.",
-    "2fa_security_title": "Seguretat millorada",
-    "2fa_sms": "<phone /> Verificació per SMS",
+    "2fa_sms": "Verificació per SMS",
     "2fa_sms_description": "Els votants rebran un codi de verificació per SMS",
-    "2fa_voter_choice": "<email /> o <phone /> Elecció del votant",
-    "2fa_voter_choice_description": "Els votants poden escollir el mètode de verificació que prefereixin",
+    "2fa_sms_warning": "Pot incórrer en costos de SMS",
+    "2fa_voter_choice": "Elecció del votant",
+    "2fa_voter_choice_description": "Els votants poden escollir entre verificació per correu electrònic o SMS",
+    "2fa_voter_choice_requirement": "Requereix: Camps de correu electrònic + telèfon",
+    "2fa_voter_choice_requirement_tooltip": "Tant el correu electrònic com el telèfon han d'estar presents a la teva base de membres perquè aquesta opció funcioni",
     "button": {
       "configure": "Configura l'autenticació dels votants",
       "edit": "Edita l'autenticació dels votants"
     },
     "configured_auth": "Autenticació configurada",
     "credentials": "Credencials",
+    "credentials_info_tooltip": "Camps d'identitat que els votants han de proporcionar per verificar qui són. Més camps augmenten la seguretat però poden reduir la facilitat d'ús.",
     "description": "Configura com s'autenticaran els votants per participar en aquest procés de votació.",
     "email": "Via verificació per correu electrònic",
+    "extra_security": "Seguretat Extra",
     "guarantees": "Garanties d'autenticació",
     "guarantees_mid_description_intro": "La teva configuració proporciona garanties d'autenticació mitjanes amb 3 credencials.",
     "guarantees_mid_list_1": "Habilita l'autenticació en dos passos per tenir garanties fortes",
@@ -1878,7 +1894,7 @@
     "security_recommendation_2_many": "",
     "security_recommendation_2_other": "Has seleccionat {{ count }} credencials, cosa que proporciona bona seguretat als teus votants.",
     "security_recommendation_title": "Recomanació de seguretat",
-    "select_credentials": "Selecciona les credencials requerides per a l'autenticació dels votants",
+    "select_credentials": "Seleccions credencials per a l'autenticació dels votants",
     "select_credentials_description": "Escull els camps que els votants han de proporcionar per autenticar-se. Selecciona fins a 3 per al millor equilibri entre seguretat i facilitat d'ús. Si només vols utilitzar correu electrònic o telèfon per al 2FA, salta aquest pas i fes clic a Següent per configurar-ho",
     "selected_credentials_count_one": "{{ count }}/3 credencials seleccionades",
     "selected_credentials_count_many": "",
@@ -1890,7 +1906,6 @@
     "summary_credentials": "Credencials requerides",
     "summary_title": "Resum de configuració d'autenticació",
     "title": "Configura l'autenticació dels votants",
-    "two_factor": "Doble factor",
     "validation_duplicates_one": "{{count}} usuaris duplicats",
     "validation_duplicates_many": "",
     "validation_duplicates_other": "{{count}} usuaris duplicats",
