@@ -47,7 +47,6 @@ export const CensusWeb3Addresses = () => {
     formState: { errors },
     watch,
     setValue,
-    getValues,
     control,
   } = useFormContext()
 
@@ -160,23 +159,25 @@ export const CensusWeb3Addresses = () => {
                 <FormErrorMessage>{fieldMapErrorMessage(errors, `addresses.${index}.address`)}</FormErrorMessage>
               </FormControl>
 
-              <Controller
-                name={weightName}
-                control={control}
-                render={({ field }) => (
-                  <NumberInput
-                    value={field.value ?? 1}
-                    onChange={(_, num) => field.onChange(Number.isNaN(num) ? '' : num)}
-                    min={1}
-                  >
-                    <NumberInputField />
-                    <NumberInputStepper>
-                      <NumberIncrementStepper />
-                      <NumberDecrementStepper />
-                    </NumberInputStepper>
-                  </NumberInput>
-                )}
-              />
+              {weighted && (
+                <Controller
+                  name={weightName}
+                  control={control}
+                  render={({ field }) => (
+                    <NumberInput
+                      value={field.value ?? 1}
+                      onChange={(_, num) => field.onChange(Number.isNaN(num) ? '' : num)}
+                      min={1}
+                    >
+                      <NumberInputField />
+                      <NumberInputStepper>
+                        <NumberIncrementStepper />
+                        <NumberDecrementStepper />
+                      </NumberInputStepper>
+                    </NumberInput>
+                  )}
+                />
+              )}
 
               <IconButton
                 variant='outline'
@@ -213,9 +214,14 @@ export const CensusWeb3Addresses = () => {
         <FormErrorMessage>{fileErr}</FormErrorMessage>
       </FormControl>
       <Text color='texts.subtle' fontSize='xs'>
-        {t('form.process_create.web3.csv_format', {
-          defaultValue: 'CSV file should contain wallet addresses in the first column.',
-        })}
+        {weighted
+          ? t('form.process_create.web3.csv_format_weighted', {
+              defaultValue:
+                'CSV file should contain weights in the first column and wallet addresses in the second column.',
+            })
+          : t('form.process_create.web3.csv_format', {
+              defaultValue: 'CSV file should contain wallet addresses in the first column.',
+            })}
       </Text>
     </Flex>
   )

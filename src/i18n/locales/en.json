@@ -481,6 +481,7 @@
         "census_summary_description_other": "<b>{{count}} addresses</b> will be eligible to vote",
         "census_summary_title": "Census Summary",
         "csv_format": "CSV file should contain wallet addresses in the first column.",
+        "csv_format_weighted": "CSV file should contain weights in the first column and wallet addresses in the second column.",
         "upload_csv": "OR UPLOAD CSV",
         "wallet_addresses": "Wallet Addresses"
       }
