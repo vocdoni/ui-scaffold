@@ -10,11 +10,13 @@ export const LanguagesSlice = {
   en: 'English',
   es: 'Spanish',
   ca: 'Catalan',
+  it: 'Italiano',
 }
 
 // t('language.english', 'English')
 // t('language.spanish', 'Spanish')
 // t('language.catalan', 'Catalan')
+// t('language.italian', 'Italiano')
 
 const languages = Object.keys(LanguagesSlice)
 
