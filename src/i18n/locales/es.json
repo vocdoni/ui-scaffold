@@ -485,6 +485,7 @@
         "census_summary_description_other": "<b>{{count}}</b> direcciones Web3 podrán votar",
         "census_summary_title": "Resumen del censo",
         "csv_format": "El archivo CSV debe contener las direcciones Web3 en la primera columna.",
+        "csv_format_weighted": " El archivo CSV debe contener los pesos en la primera columna y las direcciones Web3 en la segunda columna.",
         "upload_csv": "O SUBIR CSV",
         "wallet_addresses": "Direcciones Web3"
       }

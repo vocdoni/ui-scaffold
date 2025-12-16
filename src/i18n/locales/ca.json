@@ -484,9 +484,10 @@
         "census_summary_description_many": "",
         "census_summary_description_other": "<b>{{count}} adreces</b> tindran dret a vot",
         "census_summary_title": "Resum del cens",
-        "csv_format": "El fitxer CSV ha de contenir les adreces de cartera a la primera columna.",
+        "csv_format": "El fitxer CSV ha de contenir les adreces Web3 a la primera columna.",
+        "csv_format_weighted": "El fitxer CSV ha de contenir els pesos a la primera columna i les adreces Web3 a la segona columna.",
         "upload_csv": "O PUJA CSV",
-        "wallet_addresses": "Adreces de cartera"
+        "wallet_addresses": "Adreces Web3"
       }
     },
     "select_language": "Idioma",
