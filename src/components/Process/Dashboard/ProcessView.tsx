@@ -35,7 +35,7 @@ import {
 import { useElection } from '@vocdoni/react-providers'
 import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { format as formatDate } from 'date-fns'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import {
   LuCalendar,
@@ -63,15 +63,11 @@ import {
   Heading,
   Sidebar,
   SidebarContents,
-  SidebarProps,
   SidebarSubtitle,
   SidebarTitle,
 } from '~shared/Dashboard/Contents'
+import { SidebarVisibilityProvider, useSidebarVisibility } from '~shared/Dashboard/SidebarContext'
 import { Routes } from '~src/router/routes'
-
-type ProcessViewSidebarProps = {
-  onClose: () => void
-} & SidebarProps
 
 export const ElectionVideo = forwardRef<BoxProps, 'div'>((props, ref) => {
   const { election } = useElection()
@@ -92,18 +88,19 @@ export const ElectionVideo = forwardRef<BoxProps, 'div'>((props, ref) => {
   )
 })
 
-export const ProcessView = () => {
+export const ProcessView = () => (
+  <SidebarVisibilityProvider>
+    <ProcessViewContent />
+  </SidebarVisibilityProvider>
+)
+
+const ProcessViewContent = () => {
   const { t } = useTranslation()
-  const isDesktop = useBreakpointValue({ base: false, md: true })
-  const [showSidebar, setShowSidebar] = useState(false)
+  const { showSidebar, toggleSidebar } = useSidebarVisibility()
   const { id, election } = useElection()
 
   const votingLink = `${document.location.origin}${generatePath(Routes.processes.view, { id })}`
   const { onCopy } = useClipboard(votingLink)
-
-  useEffect(() => {
-    setShowSidebar(isDesktop)
-  }, [isDesktop])
 
   return (
     <DashboardContents display='flex' flexDirection='row' position='relative'>
@@ -125,7 +122,7 @@ export const ProcessView = () => {
             aria-label={t('dashboard.actions.toggle_sidebar', { defaultValue: 'Toggle sidebar' })}
             icon={<Icon as={LuSettings} />}
             variant='outline'
-            onClick={() => setShowSidebar((prev) => !prev)}
+            onClick={toggleSidebar}
           />
         </HStack>
 
@@ -225,7 +222,7 @@ export const ProcessView = () => {
         </DashboardBox>
       </Box>
 
-      <ProcessViewSidebar show={showSidebar} onClose={() => setShowSidebar(false)} />
+      <ProcessViewSidebar />
     </DashboardContents>
   )
 }
@@ -269,10 +266,11 @@ const ResultsStateBadge = (props: BadgeProps) => {
   return null
 }
 
-const ProcessViewSidebar = (props: ProcessViewSidebarProps) => {
+const ProcessViewSidebar = () => {
   const { election, participation, client } = useElection()
   const { t } = useTranslation()
   const isMobile = useBreakpointValue({ base: true, md: false })
+  const { showSidebar, closeSidebar } = useSidebarVisibility()
 
   const resultTypesNames = {
     [ElectionResultsTypeNames.BUDGET]: t('results_type.budget', 'Budget allocation'),
@@ -287,7 +285,7 @@ const ProcessViewSidebar = (props: ProcessViewSidebarProps) => {
   }
 
   return (
-    <Sidebar {...props}>
+    <Sidebar show={showSidebar}>
       <SidebarContents borderBottom='1px solid' borderColor='table.border'>
         <SidebarTitle>
           <Trans i18nKey='vote_information'>Vote information</Trans>
@@ -301,7 +299,7 @@ const ProcessViewSidebar = (props: ProcessViewSidebarProps) => {
             position='absolute'
             top={2}
             right={2}
-            onClick={() => props.onClose?.()}
+            onClick={closeSidebar}
           />
         )}
       </SidebarContents>

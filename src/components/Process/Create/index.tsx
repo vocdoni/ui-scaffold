@@ -18,7 +18,6 @@ import {
   Progress,
   Spacer,
   Text,
-  useBreakpointValue,
   useDisclosure,
   useToast,
   VStack,
@@ -63,6 +62,7 @@ import { useAuth } from '~components/Auth/useAuth'
 import Editor from '~components/Editor'
 import { Web3Address } from '~components/Process/Census/Web3'
 import { DashboardContents } from '~components/shared/Dashboard/Contents'
+import { SidebarVisibilityProvider, useSidebarVisibility } from '~components/shared/Dashboard/SidebarContext'
 import { SubscriptionLockedContent } from '~components/shared/Layout/SubscriptionLockedContent'
 import DeleteModal from '~components/shared/Modal/DeleteModal'
 import { SubscriptionPermission } from '~constants'
@@ -660,7 +660,7 @@ export const useDraft = (draftId?: string | null) => {
   })
 }
 
-export const ProcessCreate = () => {
+const ProcessCreateView = () => {
   const { t } = useTranslation()
   const toast = useToast()
   const [formDraftLoaded, setFormDraftLoaded] = useState(false)
@@ -669,11 +669,10 @@ export const ProcessCreate = () => {
   const [searchParams] = useSearchParams()
   const draftId = searchParams.get('draftId')
   const [storedDraftId, storeDraftId] = useLocalStorage('draft-id', null)
-  const isDesktop = useBreakpointValue({ base: false, md: true })
   const deleteDraft = useDeleteDraft()
   const navigate = useNavigate()
   const location = useLocation()
-  const [showSidebar, setShowSidebar] = useState(isDesktop || false)
+  const { showSidebar, toggleSidebar, openSidebar } = useSidebarVisibility()
   const methods = useForm<Process>({
     defaultValues: {
       ...defaultProcessValues,
@@ -708,11 +707,6 @@ export const ProcessCreate = () => {
   )
   const { permission } = useSubscription()
   const { data: formDraft } = useDraft(effectiveDraftId)
-
-  // Show sidebar by default on desktop
-  useEffect(() => {
-    setShowSidebar(isDesktop)
-  }, [isDesktop])
 
   // Apply form draft if it exists
   useEffect(() => {
@@ -924,7 +918,7 @@ export const ProcessCreate = () => {
     const hasSidebarErrors = sidebarFieldKeys.some((key) => key in errors)
 
     if (hasSidebarErrors) {
-      setShowSidebar(true)
+      openSidebar()
     }
   }
 
@@ -976,7 +970,7 @@ export const ProcessCreate = () => {
                 })}
                 icon={<Icon as={LuSettings} />}
                 variant='outline'
-                onClick={() => setShowSidebar((prev) => !prev)}
+                onClick={toggleSidebar}
               />
               <Button
                 type='submit'
@@ -1044,7 +1038,7 @@ export const ProcessCreate = () => {
           <Questions />
         </Box>
 
-        <CreateSidebar show={showSidebar} onClose={() => setShowSidebar(false)} />
+        <CreateSidebar />
       </DashboardContents>
       <LeaveConfirmationModal
         isOpen={isOpen}
@@ -1057,5 +1051,11 @@ export const ProcessCreate = () => {
     </FormProvider>
   )
 }
+
+export const ProcessCreate = () => (
+  <SidebarVisibilityProvider>
+    <ProcessCreateView />
+  </SidebarVisibilityProvider>
+)
 
 export default ProcessCreate
