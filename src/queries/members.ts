@@ -73,7 +73,7 @@ export const usePaginatedMembers = ({ search = '', showAll = false }: PaginatedM
   const effectiveLimit = showAll ? 0 : limit
 
   const baseUrl = ApiEndpoints.OrganizationMembers.replace('{address}', enforceHexPrefix(organization?.address))
-  const fetchUrl = `${baseUrl}?page=${effectivePage}&pageSize=${effectiveLimit}&search=${search}`
+  const fetchUrl = `${baseUrl}?page=${effectivePage}&limit=${effectiveLimit}&search=${search}`
 
   return useQuery<MembersResponse, Error, PaginatedMembers>({
     queryKey: [...QueryKeys.organization.members(organization?.address), effectivePage, effectiveLimit, search],
