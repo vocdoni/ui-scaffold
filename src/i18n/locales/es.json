@@ -959,12 +959,6 @@
     "unexpected_error": "",
     "user_invited": "Correo enviado a {{email}}"
   },
-  "language": {
-    "catalan": "Català",
-    "english": "English",
-    "italian": "Italiano",
-    "spanish": "Castellano"
-  },
   "languages": "Idiomas",
   "lastname": "Apellidos",
   "light": "Claro",

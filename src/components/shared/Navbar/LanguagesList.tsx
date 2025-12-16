@@ -22,18 +22,18 @@ import { Trans, useTranslation } from 'react-i18next'
 import { FaGlobeAmericas } from 'react-icons/fa'
 import { LuCheck } from 'react-icons/lu'
 import i18n from '~i18n'
-import { LanguagesSlice } from '~i18n/languages.mjs'
 import { Select } from '~shared/Form/Select'
 import { languagesListSelectStyles } from '~theme/selectStyles'
 
 export const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => {
   const { i18n } = useTranslation()
 
-  const languages = LanguagesSlice as { [key: string]: string }
+  const languages = import.meta.env.LANGUAGES as Record<string, string>
+  const languageEntries = Object.entries(languages).sort(([, a], [, b]) => a.localeCompare(b))
 
   return (
     <>
-      {Object.keys(languages).map((k: string) => (
+      {languageEntries.map(([k]) => (
         <MenuItem
           key={k}
           onClick={() => {
@@ -55,6 +55,12 @@ export const LanguagesList = ({ closeOnSelect }: { closeOnSelect: boolean }) => 
 
 export const LanguagesMenu = ({ ...props }) => {
   const { t } = useTranslation()
+
+  const languages = import.meta.env.LANGUAGES as Record<string, string>
+  const hasMultipleLanguages = Object.keys(languages).length > 1
+  if (!hasMultipleLanguages) {
+    return null
+  }
 
   return (
     <Menu>
@@ -102,10 +108,13 @@ const LanguageOptionLabel = ({ value, label }, { context }) => {
 export const LanguageListDashboard = ({ ...props }) => {
   const { t, i18n } = useTranslation()
 
-  const languageOptions: LanguageOption[] = Object.entries(LanguagesSlice).map(([key, label]) => ({
-    value: key,
-    label: t(`language.${label.toLowerCase()}`, label),
-  }))
+  const languages = import.meta.env.LANGUAGES as Record<string, string>
+  const languageOptions: LanguageOption[] = Object.entries(languages)
+    .map(([key, label]) => ({
+      value: key,
+      label,
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label))
 
   const selectedLanguage = languageOptions.find((opt) => opt.value === i18n.language)
 
@@ -138,7 +147,16 @@ export const LanguageListDashboard = ({ ...props }) => {
 export const LanguagesListAccordion = () => {
   const { i18n } = useTranslation()
 
-  const languages = LanguagesSlice as { [key: string]: string }
+  const languages = import.meta.env.LANGUAGES as Record<string, string>
+  const languageEntries = Object.entries(languages).sort(([, a], [, b]) => a.localeCompare(b))
+
+  // Check if there's only one language
+  const hasMultipleLanguages = Object.keys(languages).length > 1
+
+  // Only render if there are multiple languages
+  if (!hasMultipleLanguages) {
+    return null
+  }
 
   return (
     <Accordion allowMultiple m={0} p={0} borderColor='transparent'>
@@ -160,7 +178,7 @@ export const LanguagesListAccordion = () => {
         </AccordionButton>
         <AccordionPanel pb={0}>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={2} mt={2}>
-            {Object.entries(languages).map(([k, lang]: [string, string]) => (
+            {languageEntries.map(([k, lang]) => (
               <Button
                 key={k}
                 onClick={() => {

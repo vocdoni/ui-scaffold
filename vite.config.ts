@@ -4,6 +4,7 @@ import { defineConfig, loadEnv } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import svgr from 'vite-plugin-svgr'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { resolveLanguagesSlice } from './vite/language-env'
 
 // https://vitejs.dev/config/
 const viteconfig = ({ mode }) => {
@@ -70,6 +71,8 @@ const viteconfig = ({ mode }) => {
     }
   }
 
+  const languagesSlice = resolveLanguagesSlice(process.env.LANGUAGES)
+
   return defineConfig({
     base,
     build: {
@@ -99,6 +102,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.PRIVACY_POLICY_URL': JSON.stringify(privacyPolicyUrl),
       'import.meta.env.TERMS_OF_SERVICE_URL': JSON.stringify(termsOfServiceUrl),
       'import.meta.env.WHATSAPP_PHONE_NUMBER': JSON.stringify(process.env.WHATSAPP_PHONE_NUMBER || '+34 621 501 155'),
+      'import.meta.env.LANGUAGES': JSON.stringify(languagesSlice),
     },
     plugins: [
       tsconfigPaths(),
