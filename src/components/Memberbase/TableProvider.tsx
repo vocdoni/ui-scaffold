@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
 export type TableColumn = {
   id: string
@@ -48,6 +48,17 @@ const useTableProvider = ({
       }))
     }
   })
+
+  // Sync stored columns when the source definitions (e.g., translations) change while keeping visibility.
+  useEffect(() => {
+    setColumnsState((prevColumns) => {
+      const visibilityMap = new Map(prevColumns.map((column) => [column.id, column.visible]))
+      return initialColumns.map((column) => ({
+        ...column,
+        visible: visibilityMap.has(column.id) ? visibilityMap.get(column.id) : column.visible !== false,
+      }))
+    })
+  }, [initialColumns])
 
   const setColumns = (updatedColumns: TableColumn[]) => {
     const visibleIds = updatedColumns.filter((column) => column.visible).map((column) => column.id)
