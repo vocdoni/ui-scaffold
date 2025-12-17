@@ -38,7 +38,7 @@ export type GroupData = {
   memberIDs: string[]
 }
 
-export const useGroups = (pageSize: number = 6) => {
+export const useGroups = (limit: number = 6) => {
   const { bearedFetch } = useAuth()
   const { organization } = useOrganization()
 
@@ -50,7 +50,7 @@ export const useGroups = (pageSize: number = 6) => {
     queryFn: ({ pageParam = 1 }) =>
       bearedFetch<GroupsResponse>(
         ApiEndpoints.OrganizationGroups.replace('{address}', enforceHexPrefix(organization?.address)) +
-          `?page=${pageParam}&pageSize=${pageSize}`
+          `?page=${pageParam}&limit=${limit}`
       ),
     getNextPageParam: (lastPage) => {
       if (lastPage.currentPage < lastPage.totalPages) return lastPage.currentPage + 1
