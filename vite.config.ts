@@ -72,6 +72,58 @@ const viteconfig = ({ mode }) => {
   }
 
   const languagesSlice = resolveLanguagesSlice(process.env.LANGUAGES)
+  const defaultLanguage = Object.keys(languagesSlice)[0]
+
+  const resolveSharedCensusText = (rawValue: string | undefined, variableName: string) => {
+    if (!rawValue) {
+      return undefined
+    }
+
+    let parsed: unknown
+    try {
+      parsed = JSON.parse(rawValue)
+    } catch (error: any) {
+      throw new Error(`${variableName} must be valid JSON. ${error.message}`)
+    }
+
+    if (typeof parsed !== 'object' || parsed === null || Array.isArray(parsed)) {
+      throw new Error(`${variableName} must be a JSON object mapping language codes to markdown strings.`)
+    }
+
+    const hasDefaultLanguage = Object.prototype.hasOwnProperty.call(parsed, defaultLanguage)
+    if (!hasDefaultLanguage) {
+      throw new Error(`${variableName} must include the default language "${defaultLanguage}".`)
+    }
+
+    for (const [lang, value] of Object.entries(parsed as Record<string, unknown>)) {
+      if (typeof value !== 'string') {
+        throw new Error(`${variableName} values must be strings. Invalid value for "${lang}".`)
+      }
+    }
+
+    return parsed as Record<string, string>
+  }
+
+  const sharedCensusAlways = resolveSharedCensusText(process.env.SHARED_CENSUS_ALWAYS_VISIBLE_TEXT, 'SHARED_CENSUS_ALWAYS_VISIBLE_TEXT')
+  const sharedCensusDisconnected = resolveSharedCensusText(process.env.SHARED_CENSUS_DISCONNECTED_TEXT, 'SHARED_CENSUS_DISCONNECTED_TEXT')
+  const sharedCensusConnected = resolveSharedCensusText(process.env.SHARED_CENSUS_CONNECTED_TEXT, 'SHARED_CENSUS_CONNECTED_TEXT')
+  const resolveStreamUrl = (value: string | undefined) => {
+    if (!value) {
+      return undefined
+    }
+
+    try {
+      const url = new URL(value)
+      if (!['http:', 'https:'].includes(url.protocol)) {
+        throw new Error('STREAM_URL must use http or https.')
+      }
+      return url.toString()
+    } catch (error: any) {
+      throw new Error(`Invalid STREAM_URL: ${error.message}`)
+    }
+  }
+
+  const streamUrl = resolveStreamUrl(process.env.STREAM_URL)
 
   return defineConfig({
     base,
@@ -103,6 +155,18 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.TERMS_OF_SERVICE_URL': JSON.stringify(termsOfServiceUrl),
       'import.meta.env.WHATSAPP_PHONE_NUMBER': JSON.stringify(process.env.WHATSAPP_PHONE_NUMBER || '+34 621 501 155'),
       'import.meta.env.LANGUAGES': JSON.stringify(languagesSlice),
+      ...(typeof sharedCensusAlways !== 'undefined' && {
+        'import.meta.env.SHARED_CENSUS_ALWAYS_VISIBLE_TEXT': JSON.stringify(sharedCensusAlways),
+      }),
+      ...(typeof sharedCensusDisconnected !== 'undefined' && {
+        'import.meta.env.SHARED_CENSUS_DISCONNECTED_TEXT': JSON.stringify(sharedCensusDisconnected),
+      }),
+      ...(typeof sharedCensusConnected !== 'undefined' && {
+        'import.meta.env.SHARED_CENSUS_CONNECTED_TEXT': JSON.stringify(sharedCensusConnected),
+      }),
+      ...(typeof streamUrl !== 'undefined' && {
+        'import.meta.env.STREAM_URL': JSON.stringify(streamUrl),
+      }),
     },
     plugins: [
       tsconfigPaths(),

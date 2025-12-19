@@ -51,6 +51,7 @@ It is built with [Vite](https://vitejs.dev/guide/) and is deployed at https://ap
 - [Preview](#preview)
 - [Contributing](#contributing)
 - [License](#license)
+- [SharedCensus configuration](#sharedcensus-configuration)
 
 
 ## Getting Started
@@ -87,6 +88,18 @@ CUSTOM_ORGANIZATION_DOMAINS='{"deadcorp.com":"0x00000000000000000000000000000000
 
 With the example above, accessing the app via the `deadcorp.com` domain would render the profile of the organization
 with id `0x000000000000000000000000000000000000dead` as the homepage of the app.
+
+## SharedCensus configuration
+
+The SharedCensus page uses the following env vars to drive its UI:
+
+- `PROCESS_IDS`: comma-separated election IDs to display.
+- `SHARED_CENSUS_ALWAYS_VISIBLE_TEXT`: JSON object mapping language codes to markdown (e.g. `{"en":"...", "es":"..."}`) rendered via the read-only Editor. Must include the default language (first entry from `LANGUAGES`, default `en`), otherwise the build fails. Always shown at the top of the SharedCensus page.
+- `SHARED_CENSUS_DISCONNECTED_TEXT`: JSON object mapping language codes to markdown, shown only when the user is not connected/admin. Must include the default language if set, or the build fails.
+- `SHARED_CENSUS_CONNECTED_TEXT`: JSON object mapping language codes to markdown, shown only when the user is connected or an admin. Must include the default language if set, or the build fails.
+- `STREAM_URL`: single `http(s)` URL for an embeddable stream (e.g. YouTube). Validated at build time. When the session starts (connected or admin), it renders in a 16:9 player floated right so text flows around it. If only the stream is provided, it renders alone.
+
+When neither pretext nor stream is configured, no top content is shown. When only pretext exists, it remains single-column. After sign-in, the stream (if set) appears as the second column, displacing the pretext to the left.
 
 ### Available Scripts
 

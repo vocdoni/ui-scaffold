@@ -1,10 +1,12 @@
-import { Box, Flex, Link, Spinner, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionTitle } from '@vocdoni/chakra-components'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import ReactPlayer from 'react-player'
 import { Link as ReactRouterLink } from 'react-router-dom'
+import Editor from '~components/Editor'
 import { ActionsMenu } from '~components/Process/ActionsMenu'
 import { CensusConnectButton } from '~components/Process/Aside'
 import LogoutButton from '~components/Process/LogoutButton'
@@ -30,12 +32,67 @@ const SharedCensus = () => {
 }
 
 const SharedCensusHomeContent = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { loading, loaded, election, connected } = useElection()
   const { account, connected: aconnected } = useClient()
 
   const isAdmin = aconnected && account?.address === (election as PublishedElection)?.organizationId
   const canViewProcesses = connected || isAdmin
+  const parseLanguageSlice = (value: Record<string, string> | string) => {
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value) as Record<string, string>
+      } catch {
+        return {}
+      }
+    }
+    return value
+  }
+
+  const languagesSlice = parseLanguageSlice(import.meta.env.LANGUAGES as Record<string, string> | string)
+  const defaultLanguage = Object.keys(languagesSlice)[0] || 'en'
+
+  const getLocalizedMarkdown = (content?: Record<string, string>) => {
+    if (!content) {
+      return ''
+    }
+
+    const resolvedLanguage = i18n.resolvedLanguage || i18n.language
+    const baseLanguage = resolvedLanguage.split('-')[0]
+
+    return content[resolvedLanguage] ?? content[baseLanguage] ?? content[defaultLanguage] ?? ''
+  }
+
+  const parseSharedCensusCopy = (value?: Record<string, string> | string) => {
+    if (typeof value === 'string') {
+      try {
+        return JSON.parse(value) as Record<string, string>
+      } catch {
+        return undefined
+      }
+    }
+    return value
+  }
+
+  const sharedCensusAlways = parseSharedCensusCopy(import.meta.env.SHARED_CENSUS_ALWAYS_VISIBLE_TEXT)
+  const sharedCensusDisconnected = parseSharedCensusCopy(import.meta.env.SHARED_CENSUS_DISCONNECTED_TEXT)
+  const sharedCensusConnected = parseSharedCensusCopy(import.meta.env.SHARED_CENSUS_CONNECTED_TEXT)
+  const alwaysMarkdown = getLocalizedMarkdown(sharedCensusAlways)
+  const disconnectedMarkdown = getLocalizedMarkdown(sharedCensusDisconnected)
+  const connectedMarkdown = getLocalizedMarkdown(sharedCensusConnected)
+  const streamUrl = typeof import.meta.env.STREAM_URL === 'string' ? import.meta.env.STREAM_URL : undefined
+  const showStream = canViewProcesses && !!streamUrl
+  const showAlways = !!alwaysMarkdown
+  const showDisconnected = !!disconnectedMarkdown && !canViewProcesses
+  const showConnected = !!connectedMarkdown && canViewProcesses
+  const showTopContent = showAlways || showDisconnected || showConnected || showStream
+  const pretextContent = [
+    alwaysMarkdown,
+    showDisconnected ? disconnectedMarkdown : '',
+    showConnected ? connectedMarkdown : '',
+  ]
+    .filter(Boolean)
+    .join('\n\n')
 
   useEffect(() => {
     if (loaded && canViewProcesses) {
@@ -68,6 +125,22 @@ const SharedCensusHomeContent = () => {
       minH='100vh'
       alignItems='center'
     >
+      {showTopContent && (
+        <Box w='90%' display='flex' flexDirection='column' gap={4}>
+          {(showAlways || showDisconnected || showConnected) && (
+            <Box data-testid='shared-census-pretext'>
+              <Editor key={pretextContent} isDisabled defaultValue={pretextContent} />
+            </Box>
+          )}
+          {showStream && (
+            <Box data-testid='shared-census-stream' maxW='600px' alignSelf='center' w='100%'>
+              <AspectRatio ratio={16 / 9}>
+                <ReactPlayer src={streamUrl} width='100%' height='100%' controls={true} />
+              </AspectRatio>
+            </Box>
+          )}
+        </Box>
+      )}
       <Box>{election && !isAdmin && <CensusConnectButton />}</Box>
       {canViewProcesses && (
         <Box w='90%'>
