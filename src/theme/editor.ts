@@ -47,6 +47,9 @@ const editor = {
     letterSpacing: '-2%',
     mb: '30px',
   },
+  '.lexical-h1 + p': {
+    mt: '-30px',
+  },
   '.lexical-h2': {
     fontWeight: 600,
     fontSize: '30px',
