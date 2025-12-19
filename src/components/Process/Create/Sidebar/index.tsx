@@ -121,7 +121,7 @@ export const CreateSidebar = () => {
                 <Button variant='ghost' onClick={onClose}>
                   {t('common.cancel', 'Cancel')}
                 </Button>
-                <Button colorScheme='black' onClick={handleToggleExtraMethods}>
+                <Button onClick={handleToggleExtraMethods}>
                   {showExtraCensusMethods ? t('common.disable', 'Disable') : t('common.enable', 'Enable')}
                 </Button>
               </Flex>

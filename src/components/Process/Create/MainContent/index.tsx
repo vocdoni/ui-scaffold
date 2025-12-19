@@ -96,7 +96,6 @@ const AddMultipleQuestionModal = ({ isOpen, onClose }) => {
               as={Link}
               to={Routes.dashboard.settings.support}
               aria-label={t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact Us' })}
-              colorScheme='black'
             >
               {t('process.create.question.add_multiple.contact_button', { defaultValue: 'Contact Us' })}
             </Button>

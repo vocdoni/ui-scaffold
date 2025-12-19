@@ -91,7 +91,6 @@ export const SubscriptionLockedContent = ({ children, permissionType }: Subscrip
           as={ReactRouterLink}
           to={generatePath(Routes.dashboard.settings.subscription)}
           leftIcon={<Icon as={LuSparkles} />}
-          colorScheme='black'
         >
           {t(`subscription.locked_content.unlock`, {
             defaultValue: 'Unlock {{ permissionName }}',

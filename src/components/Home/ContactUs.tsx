@@ -107,7 +107,6 @@ const ContactUs = () => {
             w={{ base: 'full', sm: 'fit-content', xl: 'full' }}
             mx='auto'
             aria-label={t('home.contactus.btn')}
-            colorScheme='black'
             title={t('home.contactus.btn')}
             height='52px'
             fontSize='20px'

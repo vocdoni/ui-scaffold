@@ -25,13 +25,7 @@ const NoElections = () => {
               </Text>
               <Text>{t('organization.elections_list_empty.description')}</Text>
 
-              <Button
-                mt='40px'
-                w='100%'
-                colorScheme='black'
-                as={ReactRouterLink}
-                to={generatePath(Routes.processes.create)}
-              >
+              <Button mt='40px' w='100%' as={ReactRouterLink} to={generatePath(Routes.processes.create)}>
                 {t('menu.create')}
               </Button>
             </>

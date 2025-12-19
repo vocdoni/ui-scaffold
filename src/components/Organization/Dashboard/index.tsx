@@ -102,12 +102,7 @@ const Tutorial = () => {
           })}
         </Text>
         <Flex gap={3} flexDirection={{ base: 'column', sm: 'row' }}>
-          <Button
-            as={ReactRouterLink}
-            to={generatePath(Routes.processes.create)}
-            leftIcon={<Icon as={LuPlus} />}
-            colorScheme='black'
-          >
+          <Button as={ReactRouterLink} to={generatePath(Routes.processes.create)} leftIcon={<Icon as={LuPlus} />}>
             <Trans i18nKey='new_voting'>New vote</Trans>
           </Button>
           <WhatsAppButton />

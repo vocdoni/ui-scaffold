@@ -109,7 +109,6 @@ const AccountForm = ({ profile }: { profile: User }) => {
             isLoading={isSubmitting || updateProfile.isPending}
             shouldWrapChildren
             alignSelf={'start'}
-            colorScheme='black'
           >
             {t('actions.save_changes', { defaultValue: 'Save Changes' })}
           </Button>

@@ -518,7 +518,7 @@ const LeaveConfirmationModal = ({
             <Button colorScheme='red' onClick={onLeave}>
               {t('process.create.leave_confirmation.leave', { defaultValue: 'Leave without saving' })}
             </Button>
-            <Button colorScheme='black' onClick={onSaveAndLeave}>
+            <Button onClick={onSaveAndLeave}>
               {t('process.create.leave_confirmation.save_and_leave', { defaultValue: 'Save and leave' })}
             </Button>
           </>
@@ -972,18 +972,11 @@ const ProcessCreateView = () => {
                 variant='outline'
                 onClick={toggleSidebar}
               />
-              <Button
-                type='submit'
-                colorScheme='black'
-                alignSelf='flex-end'
-                isLoading={methods.formState.isSubmitting}
-                shouldWrapChildren
-              >
+              <Button type='submit' alignSelf='flex-end' isLoading={methods.formState.isSubmitting} shouldWrapChildren>
                 <Trans i18nKey='process.create.action.publish'>Publish</Trans>
               </Button>
               <Button
                 type='button'
-                colorScheme='black'
                 variant='outline'
                 onClick={handleManualSave}
                 isLoading={isSaving}

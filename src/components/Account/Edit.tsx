@@ -47,7 +47,7 @@ export const AccountEdit = () => {
           <Button variant='outline' alignSelf='flex-end' onClick={onClose}>
             {t('delete.cancel_button', { defaultValue: 'Cancel' })}
           </Button>
-          <Button as={Link} to={Routes.dashboard.settings.support} colorScheme='black'>
+          <Button as={Link} to={Routes.dashboard.settings.support}>
             <Trans i18nKey='contact_us'>Contact us</Trans>
           </Button>
         </Flex>

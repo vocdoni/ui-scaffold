@@ -35,7 +35,7 @@ export const NoOrganizations = () => {
               </Trans>
             </Text>
           </Box>
-          <Button mt='40px' w='100%' colorScheme='black' as={ReactRouterLink} to={Routes.dashboard.organizationCreate}>
+          <Button mt='40px' w='100%' as={ReactRouterLink} to={Routes.dashboard.organizationCreate}>
             <Trans i18nKey='create_org.create_button'>Create your organization</Trans>
           </Button>
         </CardBody>

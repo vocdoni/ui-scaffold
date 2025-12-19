@@ -86,19 +86,13 @@ const Support = () => {
         >
           <ContactButton
             variant='outline'
-            colorScheme='black'
             aria-label={t('home.support.btn_contact')}
             title={t('home.support.btn_contact')}
             height='60px'
           >
             {t('home.support.btn_contact')}
           </ContactButton>
-          <BookerModalButton
-            colorScheme='black'
-            aria-label={t('home.support.btn_watch')}
-            title={t('home.support.btn_watch')}
-            height='60px'
-          >
+          <BookerModalButton aria-label={t('home.support.btn_watch')} title={t('home.support.btn_watch')} height='60px'>
             <Text as='span' ml='10px'>
               {t('home.support.btn_watch')}
             </Text>

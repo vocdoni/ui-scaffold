@@ -318,7 +318,6 @@ export const VoterAuthentication = () => {
             </Button>
             <Button
               onClick={handleNext}
-              colorScheme='black'
               isLoading={isLoading}
               shouldWrapChildren
               isDisabled={activeTabIndex === 2 ? hasNoCredentialsSelected : false}

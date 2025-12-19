@@ -163,7 +163,6 @@ export const OrganizationCreate = ({
           type='submit'
           isLoading={isPending}
           shouldWrapChildren
-          colorScheme='black'
           aria-label={t('organization.create_org', { defaultValue: 'Create organization' })}
         >
           {t('organization.create_org')}

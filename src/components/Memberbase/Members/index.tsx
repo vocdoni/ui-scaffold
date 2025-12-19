@@ -193,7 +193,6 @@ const AddMembersToGroupDrawer = ({ isOpen, onClose }: AddMembersToGroupDrawerPro
             onClick={handleAddToGroup}
             mt={2}
             width='100%'
-            colorScheme='black'
             isDisabled={!selectedGroup || selectedRows.length === 0}
           >
             {t('members.table.add_to_group_button', {
@@ -458,7 +457,7 @@ const CreateGroupButton = ({ children, members, includeAllMembers = false, ...re
                 <Button variant='outline' onClick={onClose}>
                   {t('members.table.cancel', { defaultValue: 'Cancel' })}
                 </Button>
-                <Button disabled={!selectedMembers.length} colorScheme='black' ml={2} type='submit'>
+                <Button disabled={!selectedMembers.length} ml={2} type='submit'>
                   {t('members.table.create_group', { defaultValue: 'Create group' })}
                 </Button>
               </Flex>
@@ -712,7 +711,7 @@ const MembersTable = () => {
             <ImportMembers />
             <MemberManager
               control={
-                <Button colorScheme='black' leftIcon={<Icon as={LuPlus} />}>
+                <Button leftIcon={<Icon as={LuPlus} />}>
                   {t('memberbase.add_member.button', { defaultValue: 'Add Member' })}
                 </Button>
               }

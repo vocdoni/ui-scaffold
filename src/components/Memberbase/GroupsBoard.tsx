@@ -167,7 +167,7 @@ const HistoryDrawer = ({ group, isOpen, onClose }: HistoryDrawerProps) => {
         </DrawerHeader>
         <DrawerBody>
           <Flex justify='flex-end'>
-            <Button variant='outline' colorScheme='black' onClick={onClose}>
+            <Button variant='outline' onClick={onClose}>
               {t('groups_board.history.close', { defaultValue: 'Close' })}
             </Button>
           </Flex>
@@ -389,12 +389,7 @@ const ViewMembersDrawer = ({ group, isOpen, onClose, openDeleteModal }: ViewMemb
             </Text>
           </Flex>
           <Flex justify='space-between' mt={4}>
-            <Button
-              colorScheme='black'
-              leftIcon={<Icon as={LuVote} boxSize={4} />}
-              size='xs'
-              onClick={() => navigateToVote(group.id)}
-            >
+            <Button leftIcon={<Icon as={LuVote} boxSize={4} />} size='xs' onClick={() => navigateToVote(group.id)}>
               {t('group.create_vote', { defaultValue: 'Create a Vote' })}
             </Button>
             <Button leftIcon={<Icon as={LuTrash} boxSize={4} />} onClick={openDeleteModal} colorScheme='red' size='xs'>
@@ -553,7 +548,6 @@ const GroupCard = ({ group }: GroupCardProps) => {
         </CardBody>
         <CardFooter px={0} pb={0}>
           <Button
-            colorScheme='black'
             w='full'
             size='xs'
             leftIcon={<Icon boxSize={4} as={LuVote} />}
@@ -613,7 +607,6 @@ const GroupsBoard = () => {
           onClick={() => fetchNextPage()}
           isLoading={isFetchingNextPage}
           shouldWrapChildren
-          colorScheme='black'
           variant='outline'
         >
           {t('groups_board.load_more', { defaultValue: 'Load more' })}

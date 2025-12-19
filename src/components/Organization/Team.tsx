@@ -410,7 +410,7 @@ const ChangeRoleForm = ({ user, onClose }: ChangeRoleFormProps) => {
           <Button variant='outline' onClick={onClose}>
             {t('role.update.cancel', { defaultValue: 'Cancel' })}
           </Button>
-          <Button isLoading={updateRole.isPending} shouldWrapChildren type='submit' colorScheme='black'>
+          <Button isLoading={updateRole.isPending} shouldWrapChildren type='submit'>
             {t('role.update.save', {
               defaultValue: 'Update role',
             })}

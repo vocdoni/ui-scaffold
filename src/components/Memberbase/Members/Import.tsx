@@ -436,16 +436,10 @@ const ImportDataPreview = ({ columnMapping, setColumnMapping }: ImportDataPrevie
       </Text>
       <FieldsMapper manager={spreadsheet} columnMapping={columnMapping} setColumnMapping={setColumnMapping} />
       <Flex justify='space-between' gap={2} mt={4}>
-        <Button type='button' variant='outline' colorScheme='black' onClick={resetImport}>
+        <Button type='button' variant='outline' onClick={resetImport}>
           {t('memberbase.importer.reset', { defaultValue: 'Reset Import' })}
         </Button>
-        <Button
-          type='submit'
-          colorScheme='black'
-          form='import-members'
-          isLoading={methods.formState.isSubmitting}
-          shouldWrapChildren
-        >
+        <Button type='submit' form='import-members' isLoading={methods.formState.isSubmitting} shouldWrapChildren>
           {t('memberbase.importer.submit', { defaultValue: 'Import Data' })}
         </Button>
       </Flex>
@@ -533,7 +527,7 @@ export const ImportMembers = () => {
               </Box>
             </FormProvider>
             <Flex justify='flex-end' gap={4}>
-              <Button type='button' variant='outline' colorScheme='black' onClick={onClose}>
+              <Button type='button' variant='outline' onClick={onClose}>
                 {t('memberbase.importer.cancel', { defaultValue: 'Cancel' })}
               </Button>
             </Flex>

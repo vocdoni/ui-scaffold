@@ -85,10 +85,10 @@ export function CookieConsent() {
           </Box>
 
           <HStack justify='end' spacing={2}>
-            <Button variant='outline' colorScheme='black' size='sm' onClick={handleReject}>
+            <Button variant='outline' size='sm' onClick={handleReject}>
               {t('cookies.reject', { defaultValue: 'Reject' })}
             </Button>
-            <Button colorScheme='black' size='sm' onClick={handleAccept}>
+            <Button size='sm' onClick={handleAccept}>
               {t('cookies.accept', { defaultValue: 'Accept' })}
             </Button>
           </HStack>

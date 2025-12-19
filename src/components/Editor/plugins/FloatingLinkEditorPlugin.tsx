@@ -264,7 +264,6 @@ function FloatingLinkEditor({
             icon={<Icon as={LuCheck} />}
             aria-label={t('editor.link.confirm', { defaultValue: 'Confirm' })}
             size='xs'
-            colorScheme='black'
             onMouseDown={(e) => e.preventDefault()}
             onClick={handleLinkSubmission}
           />

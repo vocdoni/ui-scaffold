@@ -59,7 +59,6 @@ const VerifyForm = ({ email, initialCode = '', autoSubmit = false }: VerifyFormP
       </HStack>
       <Box>
         <Button
-          colorScheme='black'
           isDisabled={!code || (autoSubmit && isVerifyPending)}
           isLoading={isVerifyPending}
           shouldWrapChildren

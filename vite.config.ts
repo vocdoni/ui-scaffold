@@ -104,9 +104,18 @@ const viteconfig = ({ mode }) => {
     return parsed as Record<string, string>
   }
 
-  const sharedCensusAlways = resolveSharedCensusText(process.env.SHARED_CENSUS_ALWAYS_VISIBLE_TEXT, 'SHARED_CENSUS_ALWAYS_VISIBLE_TEXT')
-  const sharedCensusDisconnected = resolveSharedCensusText(process.env.SHARED_CENSUS_DISCONNECTED_TEXT, 'SHARED_CENSUS_DISCONNECTED_TEXT')
-  const sharedCensusConnected = resolveSharedCensusText(process.env.SHARED_CENSUS_CONNECTED_TEXT, 'SHARED_CENSUS_CONNECTED_TEXT')
+  const sharedCensusAlways = resolveSharedCensusText(
+    process.env.SHARED_CENSUS_ALWAYS_VISIBLE_TEXT,
+    'SHARED_CENSUS_ALWAYS_VISIBLE_TEXT'
+  )
+  const sharedCensusDisconnected = resolveSharedCensusText(
+    process.env.SHARED_CENSUS_DISCONNECTED_TEXT,
+    'SHARED_CENSUS_DISCONNECTED_TEXT'
+  )
+  const sharedCensusConnected = resolveSharedCensusText(
+    process.env.SHARED_CENSUS_CONNECTED_TEXT,
+    'SHARED_CENSUS_CONNECTED_TEXT'
+  )
   const resolveStreamUrl = (value: string | undefined) => {
     if (!value) {
       return undefined
@@ -153,6 +162,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.ANNOUNCEMENT': JSON.stringify(process.env.ANNOUNCEMENT),
       'import.meta.env.PRIVACY_POLICY_URL': JSON.stringify(privacyPolicyUrl),
       'import.meta.env.TERMS_OF_SERVICE_URL': JSON.stringify(termsOfServiceUrl),
+      'import.meta.env.BUTTON_COLOR_SCHEME': JSON.stringify(process.env.BUTTON_COLOR_SCHEME || 'black'),
       'import.meta.env.WHATSAPP_PHONE_NUMBER': JSON.stringify(process.env.WHATSAPP_PHONE_NUMBER || '+34 621 501 155'),
       'import.meta.env.LANGUAGES': JSON.stringify(languagesSlice),
       ...(typeof sharedCensusAlways !== 'undefined' && {

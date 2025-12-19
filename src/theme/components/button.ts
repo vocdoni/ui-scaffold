@@ -111,6 +111,7 @@ export const Button = defineStyleConfig({
   baseStyle,
   sizes,
   defaultProps: {
+    colorScheme: import.meta.env.BUTTON_COLOR_SCHEME,
     size: 'sm',
   },
 })
