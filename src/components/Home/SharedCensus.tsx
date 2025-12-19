@@ -1,14 +1,22 @@
-import { AspectRatio, Box, Flex, Link, Spinner, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, Image, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionTitle } from '@vocdoni/chakra-components'
-import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
+import {
+  ElectionProvider,
+  OrganizationProvider,
+  useClient,
+  useElection,
+  useOrganization,
+} from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
+import { ReactNode, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
-import { Link as ReactRouterLink } from 'react-router-dom'
+import { Link as ReactRouterLink, useOutletContext } from 'react-router-dom'
 import Editor from '~components/Editor'
 import { ActionsMenu } from '~components/Process/ActionsMenu'
 import { CensusConnectButton } from '~components/Process/Aside'
 import LogoutButton from '~components/Process/LogoutButton'
+import { SimpleLayoutOutletContext } from '~elements/SimpleLayout'
 
 export const parseProcessIds = (value: string | undefined) =>
   (value || '')
@@ -25,9 +33,48 @@ const SharedCensus = () => {
 
   return (
     <ElectionProvider id={processIds[0]}>
-      <SharedCensusHomeContent />
+      <SharedCensusOrganizationBoundary>
+        <SharedCensusHomeContent />
+      </SharedCensusOrganizationBoundary>
     </ElectionProvider>
   )
+}
+
+const SharedCensusOrganizationBoundary = ({ children }: { children: ReactNode }) => {
+  const { election } = useElection()
+  const organizationId = (election as PublishedElection | undefined)?.organizationId
+
+  if (!organizationId) {
+    return <>{children}</>
+  }
+
+  return (
+    <OrganizationProvider id={organizationId}>
+      <SharedCensusLogo />
+      {children}
+    </OrganizationProvider>
+  )
+}
+
+const SharedCensusLogo = () => {
+  const { organization } = useOrganization()
+  const { setLogo } = useOutletContext<SimpleLayoutOutletContext>()
+
+  useEffect(() => {
+    const logoUrl = organization?.account?.avatar
+
+    if (logoUrl) {
+      const name = organization?.account?.name?.default || organization?.address || 'Organization'
+      setLogo(<Image src={logoUrl} alt={`${name} logo`} h={14} />)
+      return () => setLogo(undefined)
+    }
+
+    setLogo(undefined)
+
+    return () => setLogo(undefined)
+  }, [organization, setLogo])
+
+  return null
 }
 
 const SharedCensusHomeContent = () => {

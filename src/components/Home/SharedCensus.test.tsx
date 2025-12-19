@@ -1,8 +1,17 @@
 import '@testing-library/jest-dom'
 import { act, render } from '@testing-library/react'
 import React from 'react'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import SimpleLayout from '~elements/SimpleLayout'
+
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom')
+  return {
+    ...actual,
+    ScrollRestoration: () => null,
+  }
+})
 
 const getDefaultElectionState = () => ({
   loading: false,
@@ -16,19 +25,31 @@ const getDefaultClientState = () => ({
   connected: false,
 })
 
+const getDefaultOrganizationState = () => ({
+  organization: {
+    account: { name: { default: 'Org name' }, avatar: '' },
+    address: 'org-1',
+  },
+})
+
 const states = {
   election: getDefaultElectionState(),
   client: getDefaultClientState(),
+  organization: getDefaultOrganizationState().organization,
 }
 
 vi.mock('@vocdoni/react-providers', () => ({
   ElectionProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  OrganizationProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
   useElection: () => states.election,
   useClient: () => states.client,
+  useOrganization: () => ({ organization: states.organization }),
   __setElectionState: (next: Partial<typeof states.election>) =>
     Object.assign(states.election, getDefaultElectionState(), next),
   __setClientState: (next: Partial<typeof states.client>) =>
     Object.assign(states.client, getDefaultClientState(), next),
+  __setOrganizationState: (next: Partial<typeof states.organization>) =>
+    Object.assign(states.organization, getDefaultOrganizationState(), next),
 }))
 
 vi.mock('@vocdoni/sdk', () => ({
@@ -60,6 +81,19 @@ vi.mock('~components/Process/LogoutButton', () => ({
   default: () => <button>Logout</button>,
 }))
 
+vi.mock('~components/shared/Layout/ColorModeSwitcher', () => ({
+  ColorModeSwitcher: () => <div>ColorModeSwitcher</div>,
+}))
+
+vi.mock('~components/shared/Navbar/LanguagesList', () => ({
+  LanguagesMenu: () => <div>LanguagesMenu</div>,
+}))
+
+vi.mock('~shared/Layout/Footer', () => ({
+  __esModule: true,
+  default: () => <div>Footer</div>,
+}))
+
 const editorValues: Array<{ value: unknown; type: string }> = []
 
 vi.mock('~components/Editor', () => ({
@@ -73,6 +107,35 @@ vi.mock('~components/Editor', () => ({
     )
   },
 }))
+
+const renderSharedCensus = async (ui: React.ReactElement) => {
+  let rendered: ReturnType<typeof render>
+  await act(async () => {
+    rendered = render(
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <Routes>
+          <Route element={<SimpleLayout />}>
+            <Route path='/' element={ui} />
+          </Route>
+        </Routes>
+      </MemoryRouter>
+    )
+  })
+
+  return {
+    ...rendered!,
+    rerender: (nextUi: React.ReactElement) =>
+      rendered!.rerender(
+        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <Routes>
+            <Route element={<SimpleLayout />}>
+              <Route path='/' element={nextUi} />
+            </Route>
+          </Routes>
+        </MemoryRouter>
+      ),
+  }
+}
 
 describe('SharedCensus', () => {
   const originalProcessIds = import.meta.env.PROCESS_IDS
@@ -96,6 +159,7 @@ describe('SharedCensus', () => {
     delete import.meta.env.STREAM_URL
     states.election = getDefaultElectionState()
     states.client = getDefaultClientState()
+    states.organization = getDefaultOrganizationState().organization
     i18nState.resolvedLanguage = 'en'
     i18nState.language = 'en'
     rafSpy.mockClear()
@@ -126,13 +190,7 @@ describe('SharedCensus', () => {
     states.client.account = { address: 'user-1' }
 
     const { default: SharedCensus } = await import('./SharedCensus')
-    const { getByTestId, getByText } = await act(async () =>
-      render(
-        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <SharedCensus />
-        </MemoryRouter>
-      )
-    )
+    const { getByTestId, getByText } = await renderSharedCensus(<SharedCensus />)
 
     expect(editorValues[0]).toEqual({ value: 'Siempre ES\n\nSolo ES', type: 'string' })
     expect(getByTestId('shared-census-pretext')).toBeInTheDocument()
@@ -154,13 +212,7 @@ describe('SharedCensus', () => {
     states.client.account = { address: 'org-1' }
 
     const { default: SharedCensus } = await import('./SharedCensus')
-    const { getByTestId, queryByText } = await act(async () =>
-      render(
-        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <SharedCensus />
-        </MemoryRouter>
-      )
-    )
+    const { getByTestId, queryByText } = await renderSharedCensus(<SharedCensus />)
 
     expect(editorValues[0]).toEqual({ value: 'Always EN\n\nOnly when in EN', type: 'string' })
     expect(getByTestId('shared-census-pretext')).toBeInTheDocument()
@@ -185,11 +237,7 @@ describe('SharedCensus', () => {
     states.client.account = { address: 'user-1' }
 
     const { default: SharedCensus } = await import('./SharedCensus')
-    const { rerender } = render(
-      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <SharedCensus />
-      </MemoryRouter>
-    )
+    const { rerender } = await renderSharedCensus(<SharedCensus />)
 
     expect(editorValues.at(-1)).toEqual({ value: 'Always EN\n\nDisconnected EN', type: 'string' })
 
@@ -197,11 +245,7 @@ describe('SharedCensus', () => {
     states.client.connected = true
     states.client.account = { address: 'org-1' }
 
-    rerender(
-      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <SharedCensus />
-      </MemoryRouter>
-    )
+    rerender(<SharedCensus />)
 
     expect(editorValues.at(-1)).toEqual({ value: 'Always EN\n\nConnected EN', type: 'string' })
   })
@@ -217,13 +261,7 @@ describe('SharedCensus', () => {
     editorValues.length = 0
 
     const { default: SharedCensus } = await import('./SharedCensus')
-    const { getByTestId } = await act(async () =>
-      render(
-        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <SharedCensus />
-        </MemoryRouter>
-      )
-    )
+    const { getByTestId } = await renderSharedCensus(<SharedCensus />)
 
     expect(editorValues[0]).toEqual({ value: 'Siempre', type: 'string' })
     expect(getByTestId('shared-census-pretext')).toBeInTheDocument()
@@ -231,13 +269,7 @@ describe('SharedCensus', () => {
 
   it('renders nothing for pretext when no shared census text is provided', async () => {
     const { default: SharedCensus } = await import('./SharedCensus')
-    const { queryByTestId } = await act(async () =>
-      render(
-        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <SharedCensus />
-        </MemoryRouter>
-      )
-    )
+    const { queryByTestId } = await renderSharedCensus(<SharedCensus />)
 
     expect(queryByTestId('shared-census-pretext')).toBeNull()
   })
@@ -252,13 +284,7 @@ describe('SharedCensus', () => {
     editorValues.length = 0
 
     const { default: SharedCensus } = await import('./SharedCensus')
-    const { getByTestId } = await act(async () =>
-      render(
-        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <SharedCensus />
-        </MemoryRouter>
-      )
-    )
+    const { getByTestId } = await renderSharedCensus(<SharedCensus />)
 
     expect(getByTestId('shared-census-pretext')).toBeInTheDocument()
     expect(getByTestId('shared-census-stream')).toBeInTheDocument()
@@ -272,15 +298,31 @@ describe('SharedCensus', () => {
     editorValues.length = 0
 
     const { default: SharedCensus } = await import('./SharedCensus')
-    const { queryByTestId, getByTestId } = await act(async () =>
-      render(
-        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <SharedCensus />
-        </MemoryRouter>
-      )
-    )
+    const { queryByTestId, getByTestId } = await renderSharedCensus(<SharedCensus />)
 
     expect(queryByTestId('shared-census-pretext')).toBeNull()
     expect(getByTestId('shared-census-stream')).toBeInTheDocument()
+  })
+
+  it('renders the organization avatar in the layout when available', async () => {
+    const logoUrl = 'https://example.com/logo.png'
+    states.organization.account.avatar = logoUrl
+    states.organization.account.name = { default: 'Shared Org' }
+
+    const { default: SharedCensus } = await import('./SharedCensus')
+    const { findByAltText } = await renderSharedCensus(<SharedCensus />)
+
+    const orgLogo = await findByAltText('Shared Org logo')
+    expect(orgLogo).toHaveAttribute('src', logoUrl)
+  })
+
+  it('falls back to the Vocdoni logo when no organization avatar is present', async () => {
+    states.organization.account.avatar = ''
+
+    const { default: SharedCensus } = await import('./SharedCensus')
+    const { container, queryByAltText } = await renderSharedCensus(<SharedCensus />)
+
+    expect(queryByAltText(/logo/i)).toBeNull()
+    expect(container.querySelector('#path-logo-lower')).not.toBeNull()
   })
 })
