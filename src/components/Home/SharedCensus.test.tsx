@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom'
-import { act, render, waitFor } from '@testing-library/react'
+import { act, render } from '@testing-library/react'
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -81,7 +81,6 @@ describe('SharedCensus', () => {
   const originalDisconnected = import.meta.env.SHARED_CENSUS_DISCONNECTED_TEXT
   const originalConnected = import.meta.env.SHARED_CENSUS_CONNECTED_TEXT
   const originalStream = import.meta.env.STREAM_URL
-  const scrollSpy = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
   const rafSpy = vi.spyOn(window, 'requestAnimationFrame').mockImplementation((cb: FrameRequestCallback) => {
     cb(0)
     return 0
@@ -99,7 +98,6 @@ describe('SharedCensus', () => {
     states.client = getDefaultClientState()
     i18nState.resolvedLanguage = 'en'
     i18nState.language = 'en'
-    scrollSpy.mockClear()
     rafSpy.mockClear()
   })
 
@@ -110,40 +108,6 @@ describe('SharedCensus', () => {
     import.meta.env.SHARED_CENSUS_DISCONNECTED_TEXT = originalDisconnected
     import.meta.env.SHARED_CENSUS_CONNECTED_TEXT = originalConnected
     import.meta.env.STREAM_URL = originalStream
-  })
-
-  it('scrolls to top after login completes', async () => {
-    states.election.loading = true
-    states.election.loaded = false
-
-    const { default: SharedCensus } = await import('./SharedCensus')
-    const { rerender } = await act(async () =>
-      render(
-        <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-          <SharedCensus />
-        </MemoryRouter>
-      )
-    )
-
-    expect(scrollSpy).not.toHaveBeenCalled()
-
-    // @ts-expect-error access to mocked methods (not in the original types)
-    const { __setElectionState } = await import('@vocdoni/react-providers')
-    __setElectionState({ loading: false, loaded: true, connected: true })
-
-    await waitFor(() =>
-      act(() =>
-        rerender(
-          <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-            <SharedCensus />
-          </MemoryRouter>
-        )
-      )
-    )
-
-    await waitFor(() => {
-      expect(scrollSpy).toHaveBeenCalledTimes(1)
-    })
   })
 
   it('renders always-visible and disconnected text when not connected', async () => {

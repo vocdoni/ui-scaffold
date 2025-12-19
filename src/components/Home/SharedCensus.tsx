@@ -2,7 +2,6 @@ import { AspectRatio, Box, Flex, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionTitle } from '@vocdoni/chakra-components'
 import { ElectionProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
 import { Link as ReactRouterLink } from 'react-router-dom'
@@ -93,17 +92,6 @@ const SharedCensusHomeContent = () => {
   ]
     .filter(Boolean)
     .join('\n\n')
-
-  useEffect(() => {
-    if (loaded && canViewProcesses) {
-      requestAnimationFrame(() => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        })
-      })
-    }
-  }, [loaded, canViewProcesses])
 
   if (!election || election instanceof InvalidElection) {
     return null
