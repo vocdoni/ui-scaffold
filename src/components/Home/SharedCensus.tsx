@@ -39,12 +39,14 @@ const SharedCensusHomeContent = () => {
 
   useEffect(() => {
     if (loaded && canViewProcesses) {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
+      requestAnimationFrame(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        })
       })
     }
-  }, [canViewProcesses, loaded])
+  }, [loaded, canViewProcesses])
 
   if (!election || election instanceof InvalidElection) {
     return null
