@@ -62,14 +62,17 @@ const SharedCensusLogo = () => {
 
   useEffect(() => {
     const logoUrl = organization?.account?.avatar
+    const resetLogo = () => {
+      setLogo(undefined)
+    }
 
     if (logoUrl) {
       const name = organization?.account?.name?.default || organization?.address || 'Organization'
-      setLogo(<Image src={logoUrl} alt={`${name} logo`} h={14} />)
-      return () => setLogo(undefined)
+      setLogo(<Image src={logoUrl} alt={`${name} logo`} h={14} onError={resetLogo} />)
+      return () => resetLogo()
     }
 
-    return () => setLogo(undefined)
+    return () => resetLogo()
   }, [organization, setLogo])
 
   return null
