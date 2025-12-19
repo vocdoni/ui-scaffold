@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react'
+import { render, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -58,6 +58,10 @@ vi.mock('~components/Process/LogoutButton', () => ({
 describe('SharedCensus', () => {
   const originalProcessIds = import.meta.env.PROCESS_IDS
   const scrollSpy = vi.spyOn(window, 'scrollTo').mockImplementation(() => {})
+  const rafSpy = vi.spyOn(window, 'requestAnimationFrame').mockImplementation((cb: FrameRequestCallback) => {
+    cb(0)
+    return 0
+  })
 
   beforeEach(() => {
     vi.resetModules()
@@ -65,6 +69,7 @@ describe('SharedCensus', () => {
     states.election = getDefaultElectionState()
     states.client = getDefaultClientState()
     scrollSpy.mockClear()
+    rafSpy.mockClear()
   })
 
   afterEach(() => {
@@ -85,7 +90,7 @@ describe('SharedCensus', () => {
     expect(scrollSpy).not.toHaveBeenCalled()
 
     // @ts-expect-error access to mocked methods (not in the original types)
-    const { __setElectionState, __setClientState } = await import('@vocdoni/react-providers')
+    const { __setElectionState } = await import('@vocdoni/react-providers')
     __setElectionState({ loading: false, loaded: true, connected: true })
 
     rerender(
@@ -94,6 +99,8 @@ describe('SharedCensus', () => {
       </MemoryRouter>
     )
 
-    expect(scrollSpy).toHaveBeenCalledTimes(1)
+    await waitFor(() => {
+      expect(scrollSpy).toHaveBeenCalledTimes(1)
+    })
   })
 })
