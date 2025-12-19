@@ -69,8 +69,6 @@ const SharedCensusLogo = () => {
       return () => setLogo(undefined)
     }
 
-    setLogo(undefined)
-
     return () => setLogo(undefined)
   }, [organization, setLogo])
 
