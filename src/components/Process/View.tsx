@@ -269,7 +269,7 @@ export const ProcessView = () => {
   return (
     <Grid
       templateColumns={{ base: '1fr', xl: 'minmax(0,1fr) 360px' }}
-      gap={6}
+      gap={10}
       alignItems='start'
       mx='auto'
       maxW='voting-page'
