@@ -25,8 +25,20 @@ const ProcessHeader = () => {
       <Flex direction={{ base: 'column', xl2: 'row' }} gap={{ base: 6, lg: 10, xl: 20 }}>
         <Box flex={{ xl2: '0 0 75%' }}>
           <ElectionTitle fontSize='4xl' textAlign='left' mb={5} />
-          <Flex flexDirection={{ base: 'column', xl: 'row' }} mb={4} justifyContent='space-between'>
-            <Flex gap={2} flexDirection={{ base: 'column', xl: 'row' }} alignItems={{ base: 'start', xl: 'center' }}>
+          <Flex
+            flexDirection={{ base: 'column', xl: 'row' }}
+            flexWrap={{ base: 'nowrap', xl: 'wrap' }}
+            mb={4}
+            justifyContent='space-between'
+            columnGap={4}
+            rowGap={3}
+          >
+            <Flex
+              gap={2}
+              flexDirection={{ base: 'column', xl: 'row' }}
+              alignItems={{ base: 'start', xl: 'center' }}
+              flex='1'
+            >
               <Flex gap={3} justifyContent={'space-between'} w={{ base: '100%', xl: 'fit-content' }}>
                 <Flex gap={2} alignItems='center'>
                   <Text as='span' color='process.label.light' _dark={{ color: 'process.label.dark' }}>
@@ -42,18 +54,26 @@ const ProcessHeader = () => {
                   />
                 </Box>
               </Flex>
-              <Flex flexDirection='row' alignItems='center' gap={1} flexWrap='wrap'>
-                <Text as='span' color='process.label.light' _dark={{ color: 'process.label.dark' }}>
+              <Flex flexDirection='row' alignItems='center' gap={1} flexWrap='nowrap' flex='1'>
+                <Text as='span' color='process.label.light' _dark={{ color: 'process.label.dark' }} whiteSpace='nowrap'>
                   {t('process.schedule')}
                 </Text>
-                <ElectionSchedule
-                  textAlign='left'
-                  color='process.info_title.light'
-                  _dark={{ color: 'process.info_title.dark' }}
-                />
+                <Box flex='1'>
+                  <ElectionSchedule
+                    textAlign='left'
+                    color='process.info_title.light'
+                    _dark={{ color: 'process.info_title.dark' }}
+                    whiteSpace='nowrap'
+                    overflow='hidden'
+                    textOverflow='ellipsis'
+                    display='block'
+                    fontSize='sm'
+                    lineHeight='short'
+                  />
+                </Box>
               </Flex>
             </Flex>
-            <Box display={{ base: 'none', xl: 'flex' }}>
+            <Box display={{ base: 'none', xl: 'flex' }} flexShrink={0}>
               <ShareModalButton
                 caption={t('share.election_share_text')}
                 text={t('share.election_share_btn_text')}
