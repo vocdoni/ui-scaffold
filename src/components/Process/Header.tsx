@@ -54,7 +54,7 @@ const ProcessHeader = () => {
                   />
                 </Box>
               </Flex>
-              <Flex flexDirection='row' alignItems='center' gap={1} flexWrap='nowrap' flex='1'>
+              <Flex flexDirection='row' alignItems='center' gap={1} flexWrap='wrap' flex='1'>
                 <Text as='span' color='process.label.light' _dark={{ color: 'process.label.dark' }} whiteSpace='nowrap'>
                   {t('process.schedule')}
                 </Text>
@@ -63,9 +63,6 @@ const ProcessHeader = () => {
                     textAlign='left'
                     color='process.info_title.light'
                     _dark={{ color: 'process.info_title.dark' }}
-                    whiteSpace='nowrap'
-                    overflow='hidden'
-                    textOverflow='ellipsis'
                     display='block'
                     fontSize='sm'
                     lineHeight='short'
