@@ -43,7 +43,12 @@ export const trackPlausibleEvent = (event: AnalyticsEvent): void => {
   try {
     if (!plausibleInitialized) return
 
-    track(event.name, { props: event.props })
+    const props = event.props || {}
+    if (import.meta.env.PLAUSIBLE_CLIENT_ID) {
+      props['client'] = import.meta.env.PLAUSIBLE_CLIENT_ID
+    }
+
+    track(event.name, { props })
   } catch (error) {
     console.error('Failed to track Plausible event:', error)
   }
