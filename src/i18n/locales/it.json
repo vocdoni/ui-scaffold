@@ -251,18 +251,18 @@
       "time_format": "p"
     },
     "usage": {
-      "2fa_email": "2FA Email Codes",
-      "2fa_email_tooltip": "Email verification codes sent. Exceeding the limit costs €0.015 per code.",
-      "2fa_sms": "2FA SMS Codes",
-      "2fa_sms_tooltip": "SMS verification codes sent. Exceeding the limit costs €0.015 per code.",
-      "limit_exceeded_message": "Your current plan has reached its limits. Upgrade now to continue working without restrictions.",
-      "memberbase_size": "Memberbase Size",
-      "memberbase_tooltip": "Maximum number of members allowed per voting process.",
-      "plan_usage": "Plan Usage",
-      "plan_usage_description": "Track your current usage against your plan limits",
-      "upgrade_plan": "Upgrade Plan",
-      "voting_processes": "Voting Processes",
-      "voting_processes_tooltip": "Number of voting processes created this year. Votes with 10 members or fewer are not counted towards the limits."
+      "2fa_email": "Codici Email 2FA",
+      "2fa_email_tooltip": "Codici di verifica email inviati. Il superamento del limite costa €0,015 per codice.",
+      "2fa_sms": "Codici SMS 2FA",
+      "2fa_sms_tooltip": "Codici di verifica SMS inviati. Il superamento del limite costa €0,015 per codice.",
+      "limit_exceeded_message": "Il tuo piano attuale ha raggiunto i suoi limiti. Aggiorna ora per continuare a lavorare senza restrizioni.",
+      "memberbase_size": "Dimensione della Base Membri",
+      "memberbase_tooltip": "Numero massimo di membri consentiti per processo di voto.",
+      "plan_usage": "Utilizzo del Piano",
+      "plan_usage_description": "Monitora il tuo utilizzo attuale rispetto ai limiti del piano",
+      "upgrade_plan": "Aggiorna Piano",
+      "voting_processes": "Processi di Voto",
+      "voting_processes_tooltip": "Numero di processi di voto creati quest'anno. Le votazioni con 10 membri o meno non vengono conteggiate nei limiti."
     },
     "welcome": {
       "common_tasks_actions": "Attività e azioni comuni",
