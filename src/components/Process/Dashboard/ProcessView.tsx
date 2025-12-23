@@ -274,10 +274,7 @@ const ProcessViewSidebar = () => {
 
   const resultTypesNames = {
     [ElectionResultsTypeNames.BUDGET]: t('results_type.budget', 'Budget allocation'),
-    [ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION]: t(
-      'results_type.single_choice',
-      'Single choice'
-    ),
+    [ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION]: t('results_type.single_choice', 'Single choice'),
     [ElectionResultsTypeNames.QUADRATIC]: t('results_type.quadratic', 'Quadratic voting'),
     // Yeah we name approval and multiple choice the same, they're also unified during creation
     [ElectionResultsTypeNames.APPROVAL]: t('results_type.multiple_choice', 'Multiple choice'),
