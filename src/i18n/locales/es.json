@@ -1487,9 +1487,9 @@
       "budget": "Asignación presupuestaria",
       "multiple_choice": "Elección múltiple",
       "quadratic": "Cuadrática",
-      "single_choice_multiquestion": "Elección simple con múltiples preguntas",
+      "single_choice": "Elección simple",
       "unknown": "Desconocido",
-      "weighted_format": "{{base}} ponderada"
+      "weighted_format": "{{base}} con voto ponderado"
     },
     "voting_type": "Método de votación"
   },
@@ -1619,7 +1619,7 @@
     "budget": "Asignación presupuestaria",
     "multiple_choice": "Opción múltiple",
     "quadratic": "Votación cuadrática",
-    "single_choice_multiquestion": "Opción única",
+    "single_choice": "Opción única",
     "title": "Tipo de votación"
   },
   "resume_vote": "Reanudar",

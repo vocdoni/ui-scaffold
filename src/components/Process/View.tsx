@@ -69,14 +69,14 @@ export const ProcessInfoCard = ({ label, description, ...props }: ProcessInfoCar
 }
 
 const TYPE_MAP: Record<ElectionResultsTypeNames, string> = {
-  [ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION]: 'process.voting_method.single_choice_multiquestion',
+  [ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION]: 'process.voting_method.single_choice',
   [ElectionResultsTypeNames.MULTIPLE_CHOICE]: 'process.voting_method.multiple_choice',
   [ElectionResultsTypeNames.APPROVAL]: 'process.voting_method.approval',
   [ElectionResultsTypeNames.BUDGET]: 'process.voting_method.budget',
   [ElectionResultsTypeNames.QUADRATIC]: 'process.voting_method.quadratic',
 }
 
-// t('process.voting_method.single_choice_multiquestion', { defaultValue: 'Single choice per question' })
+// t('process.voting_method.single_choice', { defaultValue: 'Single choice' })
 // t('process.voting_method.multiple_choice', { defaultValue: 'Multiple choice' })
 // t('process.voting_method.approval', { defaultValue: 'Approval voting' })
 // t('process.voting_method.budget', { defaultValue: 'Budget allocation' })

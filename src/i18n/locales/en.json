@@ -1463,7 +1463,7 @@
       "budget": "Budget allocation",
       "multiple_choice": "Multiple choice",
       "quadratic": "Quadratic",
-      "single_choice_multiquestion": "Single choice with multiple questions",
+      "single_choice": "Single choice",
       "unknown": "Unknown",
       "weighted_format": "Weighted {{ base, lowercase }}"
     },
@@ -1595,7 +1595,7 @@
     "budget": "Budget allocation",
     "multiple_choice": "Multiple choice",
     "quadratic": "Quadratic voting",
-    "single_choice_multiquestion": "Single choice",
+    "single_choice": "Single choice",
     "title": "Voting type"
   },
   "resume_vote": "Resume",
