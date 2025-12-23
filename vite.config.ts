@@ -101,7 +101,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.BUTTON_COLOR_SCHEME': JSON.stringify(process.env.BUTTON_COLOR_SCHEME || 'black'),
       'import.meta.env.WHATSAPP_PHONE_NUMBER': JSON.stringify(process.env.WHATSAPP_PHONE_NUMBER || '+34 621 501 155'),
       'import.meta.env.LANGUAGES': JSON.stringify(languagesSlice),
-      'import.meta.env.PLAUSIBLE_CLIENT_ID': JSON.stringify(process.env.PLAUSIBLE_CLIENT_ID || ''),
+      'import.meta.env.ANALYTICS_CLIENT_ID': JSON.stringify(process.env.ANALYTICS_CLIENT_ID || ''),
     },
     plugins: [
       tsconfigPaths(),

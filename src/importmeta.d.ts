@@ -31,7 +31,7 @@ interface ImportMeta {
     TERMS_OF_SERVICE_URL: string
     WHATSAPP_PHONE_NUMBER: string
     LANGUAGES: Record<string, string>
-    PLAUSIBLE_CLIENT_ID: string
+    ANALYTICS_CLIENT_ID: string
     SHARED_CENSUS_ALWAYS_VISIBLE_TEXT?: Record<string, string>
     SHARED_CENSUS_DISCONNECTED_TEXT?: Record<string, string>
     SHARED_CENSUS_CONNECTED_TEXT?: Record<string, string>
