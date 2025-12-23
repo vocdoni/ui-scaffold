@@ -1463,7 +1463,7 @@
       "budget": "Budget allocation",
       "multiple_choice": "Multiple choice",
       "quadratic": "Quadratic",
-      "single_choice_multiquestion": "Single choice with multiple questions",
+      "single_choice": "Single choice",
       "unknown": "Unknown",
       "weighted_format": "Weighted {{ base, lowercase }}"
     },
@@ -1592,10 +1592,6 @@
     "secret_until_end_tooltip": "Results are hidden and will only be available once voting ends"
   },
   "results_type": {
-    "budget": "Budget allocation",
-    "multiple_choice": "Multiple choice",
-    "quadratic": "Quadratic voting",
-    "single_choice_multiquestion": "Single choice",
     "title": "Voting type"
   },
   "resume_vote": "Resume",
