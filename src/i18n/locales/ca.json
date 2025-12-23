@@ -1488,9 +1488,9 @@
       "budget": "Assignació pressupostària",
       "multiple_choice": "Elecció múltiple",
       "quadratic": "Quadràtic",
-      "single_choice_multiquestion": "Elecció simple amb diverses preguntes",
+      "single_choice": "Elecció simple",
       "unknown": "Desconegut",
-      "weighted_format": "{{base}} ponderada"
+      "weighted_format": "{{base}} amb vot ponderat"
     },
     "voting_type": "Mètode de votació"
   },
@@ -1620,7 +1620,7 @@
     "budget": "Assignació pressupostària",
     "multiple_choice": "Elecció múltiple",
     "quadratic": "Quadràtica",
-    "single_choice_multiquestion": "Elecció simple",
+    "single_choice": "Elecció simple",
     "title": "Tipus de votació"
   },
   "resume_vote": "Reprèn",

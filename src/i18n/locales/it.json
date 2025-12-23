@@ -1488,7 +1488,7 @@
       "budget": "Bilancio partecipativo",
       "multiple_choice": "Scelta multipla",
       "quadratic": "Voto quadratico",
-      "single_choice_multiquestion": "Scelta singola",
+      "single_choice": "Scelta singola",
       "unknown": "Sconosciuto",
       "weighted_format": "{{base}} con voto ponderato"
     },
@@ -1620,7 +1620,7 @@
     "budget": "Allocazione del budget",
     "multiple_choice": "Scelta multipla",
     "quadratic": "Voto quadratico",
-    "single_choice_multiquestion": "Scelta singola",
+    "single_choice": "Scelta singola",
     "title": "Tipo di voto"
   },
   "resume_vote": "Riprendi",
