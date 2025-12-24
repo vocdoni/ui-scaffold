@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
 
 export type TableColumn = {
   id: string
@@ -23,6 +23,36 @@ export type SelectedRow = {
 
 const STORAGE_KEY = 'table_columns_visibility'
 
+const getStoredVisibleIds = (): Set<string> | null => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (!saved) return null
+    return new Set<string>(JSON.parse(saved))
+  } catch (e) {
+    console.warn('Error reading column visibility from localStorage:', e)
+    return null
+  }
+}
+
+const computeColumns = (params: {
+  initialColumns: TableColumn[]
+  prevColumns?: TableColumn[]
+  storedVisibleIds?: Set<string> | null
+}): TableColumn[] => {
+  const { initialColumns, prevColumns, storedVisibleIds } = params
+
+  const prevVisibility = prevColumns ? new Map(prevColumns.map((c) => [c.id, c.visible])) : null
+
+  return initialColumns.map((column) => {
+    const visible =
+      (prevVisibility?.has(column.id) ? prevVisibility.get(column.id) : undefined) ??
+      (storedVisibleIds ? storedVisibleIds.has(column.id)! : undefined) ??
+      column.visible !== false
+
+    return { ...column, visible }
+  })
+}
+
 const useTableProvider = ({
   data = [],
   error = null,
@@ -32,22 +62,14 @@ const useTableProvider = ({
 }: Omit<TableProviderProps, 'children'>) => {
   const [selectedRows, setSelectedRows] = useState<SelectedRow[]>([])
   const [columns, setColumnsState] = useState<TableColumn[]>(() => {
-    try {
-      const savedVisibleColumns = localStorage.getItem(STORAGE_KEY)
-      const visibleIds = savedVisibleColumns ? new Set<string>(JSON.parse(savedVisibleColumns)) : null
-
-      return initialColumns.map((column) => ({
-        ...column,
-        visible: visibleIds !== null ? visibleIds.has(column.id) : column.visible !== false,
-      }))
-    } catch (e) {
-      console.warn('Error reading column visibility from localStorage:', e)
-      return initialColumns.map((column) => ({
-        ...column,
-        visible: column.visible !== false,
-      }))
-    }
+    const storedVisibleIds = getStoredVisibleIds()
+    return computeColumns({ initialColumns, storedVisibleIds })
   })
+
+  // Sync stored columns when the source definitions (e.g., translations) change while keeping visibility.
+  useEffect(() => {
+    setColumnsState((prev) => computeColumns({ initialColumns, prevColumns: prev }))
+  }, [initialColumns])
 
   const setColumns = (updatedColumns: TableColumn[]) => {
     const visibleIds = updatedColumns.filter((column) => column.visible).map((column) => column.id)
