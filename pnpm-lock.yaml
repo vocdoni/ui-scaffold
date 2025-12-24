@@ -128,8 +128,8 @@ importers:
         specifier: ^1.0.0-beta.1
         version: 1.0.0-beta.1(96b377a8f476d4016f3699391f59b943)
       '@vocdoni/react-providers':
-        specifier: ^1.0.0-beta.4
-        version: 1.0.0-beta.4(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
+        specifier: 1.0.0-beta.5
+        version: 1.0.0-beta.5(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
       '@vocdoni/sdk':
         specifier: ~0.9.1
         version: 0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10)
@@ -2069,8 +2069,8 @@ packages:
       viem: 2.x
       wagmi: '2'
 
-  '@vocdoni/react-providers@1.0.0-beta.4':
-    resolution: {integrity: sha512-viQEpQIuyUnu/hwHi2bIVyzyDY3z0MxHcbibsTvLkab17yNosfQ51hVpZCM3VfXYL4IPQ9R83yBw+ARkS/H/YA==}
+  '@vocdoni/react-providers@1.0.0-beta.5':
+    resolution: {integrity: sha512-MI8s3IXKb1gk/m5axMpLFG8LyaOw1i+UDGGgCEfRsLJjp2yQltt5zyJwuoaiG4bM5j6neCCax7+l6orM3Zxhmg==}
     peerDependencies:
       '@ethersproject/abstract-signer': ^5.7.0
       '@ethersproject/wallet': ^5.7.0
@@ -3819,8 +3819,8 @@ packages:
   lexical@0.34.0:
     resolution: {integrity: sha512-oqQ87i49oGRt8u9qIXow+fWeqN6luRMtYAa1GAx1l9AaR3A8Tfrgnmj2+13ej6CMPK6JunKaUXbd+7FDy+s8XQ==}
 
-  lib0@0.2.114:
-    resolution: {integrity: sha512-gcxmNFzA4hv8UYi8j43uPlQ7CGcyMJ2KQb5kZASw6SnAKAf10hK12i2fjrS3Cl/ugZa5Ui6WwIu1/6MIXiHttQ==}
+  lib0@0.2.116:
+    resolution: {integrity: sha512-4zsosjzmt33rx5XjmFVYUAeLNh+BTeDTiwGdLt4muxiir2btsc60Nal0EvkvDRizg+pnlK1q+BtYi7M+d4eStw==}
     engines: {node: '>=16'}
     hasBin: true
 
@@ -4485,8 +4485,8 @@ packages:
   preact@10.24.2:
     resolution: {integrity: sha512-1cSoF0aCC8uaARATfrlz4VCBqE8LwZwRfLgkxJOQwAlQt6ayTmi0D9OF7nXid1POI5SZidFuG9CnlXbDfLqY/Q==}
 
-  preact@10.28.0:
-    resolution: {integrity: sha512-rytDAoiXr3+t6OIP3WGlDd0ouCUG1iCWzkcY3++Nreuoi17y6T5i/zRhe6uYfoVcxq6YU+sBtJouuRDsq8vvqA==}
+  preact@10.28.1:
+    resolution: {integrity: sha512-u1/ixq/lVQI0CakKNvLDEcW5zfCjUQfZdK9qqWuIJtsezuyG6pk9TWj75GMuI/EzRSZB/VAE43sNWWZfiy8psw==}
 
   prelude-ls@1.1.2:
     resolution: {integrity: sha512-ESF23V4SKG6lVSGZgYNpbsiaAkdab6ZgOxe52p7+Kid3W3u3bxR4Vfd/o21dmN7jSt0IwgZ4v5MUd26FEtXE9w==}
@@ -6158,7 +6158,7 @@ snapshots:
       eth-json-rpc-filters: 6.0.1
       eventemitter3: 5.0.1
       keccak: 3.0.4
-      preact: 10.28.0
+      preact: 10.28.1
       sha.js: 2.4.12
     transitivePeerDependencies:
       - supports-color
@@ -8504,7 +8504,7 @@ snapshots:
       '@chakra-ui/react': 2.10.9(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(react@18.3.1))(@types/react@18.3.26)(framer-motion@10.18.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ethersproject/abstract-signer': 5.8.0
       '@ethersproject/wallet': 5.8.0
-      '@vocdoni/react-providers': 1.0.0-beta.4(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
+      '@vocdoni/react-providers': 1.0.0-beta.5(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)
       '@vocdoni/sdk': 0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10)
       react: 18.3.1
       react-markdown: 8.0.7(@types/react@18.3.26)(react@18.3.1)
@@ -8527,7 +8527,7 @@ snapshots:
       viem: 2.38.5(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@4.1.12)
       wagmi: 2.19.1(@tanstack/query-core@5.90.5)(@tanstack/react-query@5.90.5(react@18.3.1))(@types/react@18.3.26)(bufferutil@4.0.9)(encoding@0.1.13)(fastestsmallesttextencoderdecoder@1.0.22)(react@18.3.1)(typescript@5.9.3)(utf-8-validate@5.0.10)(viem@2.38.5(bufferutil@4.0.9)(typescript@5.9.3)(utf-8-validate@5.0.10)(zod@4.1.12))(ws@8.18.3(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@4.1.12)
 
-  '@vocdoni/react-providers@1.0.0-beta.4(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)':
+  '@vocdoni/react-providers@1.0.0-beta.5(@ethersproject/abstract-signer@5.8.0)(@ethersproject/wallet@5.8.0)(@vocdoni/sdk@0.9.3(bufferutil@4.0.9)(size-limit@8.2.6)(utf-8-validate@5.0.10))(date-fns@4.1.0)(react-router-dom@6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-router@6.30.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@ethersproject/abstract-signer': 5.8.0
       '@ethersproject/wallet': 5.8.0
@@ -10949,7 +10949,7 @@ snapshots:
 
   lexical@0.34.0: {}
 
-  lib0@0.2.114:
+  lib0@0.2.116:
     dependencies:
       isomorphic.js: 0.2.5
 
@@ -11823,7 +11823,7 @@ snapshots:
 
   preact@10.24.2: {}
 
-  preact@10.28.0: {}
+  preact@10.28.1: {}
 
   prelude-ls@1.1.2: {}
 
@@ -13227,7 +13227,7 @@ snapshots:
 
   yjs@13.6.27:
     dependencies:
-      lib0: 0.2.114
+      lib0: 0.2.116
 
   youtube-video-element@1.6.2: {}
 
