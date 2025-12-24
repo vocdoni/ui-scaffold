@@ -4,6 +4,7 @@ import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
 import { ColorModeSwitcher } from '~components/shared/Layout/ColorModeSwitcher'
 import { VocdoniLogo } from '~components/shared/Layout/Logo'
 import { LanguagesMenu } from '~components/shared/Navbar/LanguagesList'
+import { MaxNavbarWidth } from '~constants'
 import Footer from '~shared/Layout/Footer'
 
 export type SimpleLayoutOutletContext = {
@@ -53,16 +54,8 @@ const Layout = () => {
       >
         <Outlet context={{ setLogo }} />
       </Flex>
-      <Box
-        as='footer'
-        bgColor={`${location.pathname.startsWith('/organization') ? 'footer.gray' : 'footer.white'}`}
-        w='full'
-        backdropFilter='blur(40px)'
-        px={{ base: 4, md: 6, xl: 10 }}
-        maxW={'1920px'}
-        mx={'auto'}
-      >
-        <Footer />
+      <Box as='footer' w='full' px={{ base: 4, md: 6, xl: 10 }} maxW={MaxNavbarWidth} mx='auto'>
+        <Footer simplified />
       </Box>
     </Flex>
   )

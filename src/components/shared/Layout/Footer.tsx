@@ -4,7 +4,7 @@ import { FaDiscord, FaGithub } from 'react-icons/fa'
 import { FaXTwitter } from 'react-icons/fa6'
 import vcdLogo from '/assets/logo-classic.svg'
 
-const Footer = () => {
+const Footer = ({ simplified }: { simplified?: boolean }) => {
   const { t } = useTranslation()
   const invert = useColorModeValue('invert(0%)', 'invert(100%)')
   const privacyPolicyUrl = import.meta.env.PRIVACY_POLICY_URL
@@ -27,41 +27,49 @@ const Footer = () => {
             {t('footer.footer_subtitle')}
           </Text>
         </Box>
-        <Flex
-          flex='1 1 67%'
-          flexDirection={{ base: 'column', sm: 'row' }}
-          justifyContent={{ sm: 'space-between', lg: 'space-between' }}
-          gap={{ base: '30px', sm: 0 }}
-          mt={1}
-          ml={{ xl: 10 }}
-          w='full'
-        >
+        {!simplified && (
           <Flex
+            flex='1 1 67%'
             flexDirection={{ base: 'column', sm: 'row' }}
-            justifyContent='space-between'
-            gap={{ base: '0px', xl: '90px' }}
+            justifyContent={{ sm: 'space-between', lg: 'space-between' }}
+            gap={{ base: '30px', sm: 0 }}
+            mt={1}
+            ml={{ xl: 10 }}
             w='full'
           >
-            <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>
-              {t('footer.company')}
-            </Text>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io' isExternal>
-              Vocdoni
-            </Link>
-            <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/contact' isExternal>
-              {t('footer.contact')}
-            </Link>
-            <Link fontWeight='bold' variant='footer' href='https://developer.vocdoni.io/sdk' isExternal>
-              SDK
-            </Link>
-            <Link fontWeight='bold' variant='footer' href='https://developer.vocdoni.io' whiteSpace='nowrap' isExternal>
-              {t('footer.developer_portal')}
-            </Link>
-            <Link fontWeight='bold' variant='footer' href='https://blog.vocdoni.io' isExternal>
-              Blog
-            </Link>
+            <Flex
+              flexDirection={{ base: 'column', sm: 'row' }}
+              justifyContent='space-between'
+              gap={{ base: '0px', xl: '90px' }}
+              w='full'
+            >
+              <Text fontWeight='bold' fontSize='18px' lineHeight='21px' mb='16px' display='none'>
+                {t('footer.company')}
+              </Text>
+              <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io' isExternal>
+                Vocdoni
+              </Link>
+              <Link fontWeight='bold' variant='footer' href='https://www.vocdoni.io/contact' isExternal>
+                {t('footer.contact')}
+              </Link>
+              <Link fontWeight='bold' variant='footer' href='https://developer.vocdoni.io/sdk' isExternal>
+                SDK
+              </Link>
+              <Link
+                fontWeight='bold'
+                variant='footer'
+                href='https://developer.vocdoni.io'
+                whiteSpace='nowrap'
+                isExternal
+              >
+                {t('footer.developer_portal')}
+              </Link>
+              <Link fontWeight='bold' variant='footer' href='https://blog.vocdoni.io' isExternal>
+                Blog
+              </Link>
+            </Flex>
           </Flex>
-        </Flex>
+        )}
       </Flex>
       <Flex
         width='full'
