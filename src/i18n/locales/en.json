@@ -1397,7 +1397,6 @@
     },
     "questions": "Questions",
     "results": "Results",
-    "schedule": "SCHEDULE",
     "share_caption": "I've just cast my vote in {{ title }}!!",
     "share_title": "Share on {{ network }}",
     "spreadsheet": {
@@ -1408,7 +1407,6 @@
         "your_selections": "Your Selections:"
       }
     },
-    "state": "STATE",
     "status": {
       "active": "Voting in progress",
       "canceled": "Process canceled",

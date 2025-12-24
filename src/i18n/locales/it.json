@@ -1420,7 +1420,6 @@
     },
     "questions": "Domande",
     "results": "Risultati",
-    "schedule": "PROGRAMMA",
     "share_caption": "Ho appena votato in {{ title }}!!",
     "share_title": "Condividi su {{ network }}",
     "spreadsheet": {
@@ -1431,7 +1430,6 @@
         "your_selections": "Le tue selezioni:"
       }
     },
-    "state": "STATO",
     "status": {
       "active": "Votazione in corso",
       "canceled": "Processo annullato",

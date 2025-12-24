@@ -40,12 +40,7 @@ const ProcessHeader = () => {
               flex='1'
             >
               <Flex gap={3} justifyContent={'space-between'} w={{ base: '100%', xl: 'fit-content' }}>
-                <Flex gap={2} alignItems='center'>
-                  <Text as='span' color='process.label.light' _dark={{ color: 'process.label.dark' }}>
-                    {t('process.state')}
-                  </Text>
-                  <ElectionStatusBadge whiteSpace='nowrap' />
-                </Flex>
+                <ElectionStatusBadge whiteSpace='nowrap' />
                 <Box display={{ base: 'flex', xl: 'none' }}>
                   <ShareModalButton
                     caption={t('share.election_share_text')}
@@ -54,21 +49,14 @@ const ProcessHeader = () => {
                   />
                 </Box>
               </Flex>
-              <Flex flexDirection='row' alignItems='center' gap={1} flexWrap='wrap' flex='1'>
-                <Text as='span' color='process.label.light' _dark={{ color: 'process.label.dark' }} whiteSpace='nowrap'>
-                  {t('process.schedule')}
-                </Text>
-                <Box flex='1'>
-                  <ElectionSchedule
-                    textAlign='left'
-                    color='process.info_title.light'
-                    _dark={{ color: 'process.info_title.dark' }}
-                    display='block'
-                    fontSize='sm'
-                    lineHeight='short'
-                  />
-                </Box>
-              </Flex>
+              <ElectionSchedule
+                textAlign='left'
+                color='process.info_title.light'
+                _dark={{ color: 'process.info_title.dark' }}
+                display='block'
+                fontSize='sm'
+                lineHeight='short'
+              />
             </Flex>
             <Box display={{ base: 'none', xl: 'flex' }} flexShrink={0}>
               <ShareModalButton
