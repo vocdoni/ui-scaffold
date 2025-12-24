@@ -58,6 +58,7 @@ vi.mock('@vocdoni/sdk', () => ({
 
 vi.mock('@vocdoni/chakra-components', () => ({
   ElectionTitle: () => <div>ElectionTitle</div>,
+  ElectionStatusBadge: () => <div>ElectionStatusBadge</div>,
 }))
 
 const i18nState = { resolvedLanguage: 'en', language: 'en' }

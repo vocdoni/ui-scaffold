@@ -1,5 +1,5 @@
 import { AspectRatio, Box, Flex, Image, Link, Spinner, Text } from '@chakra-ui/react'
-import { ElectionTitle } from '@vocdoni/chakra-components'
+import { ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import {
   ElectionProvider,
   OrganizationProvider,
@@ -185,7 +185,7 @@ const SharedCensusHomeContent = () => {
           </Text>
           <Flex gap={5} flexDirection={{ base: 'column' }}>
             {processIds.map((processId, index) => (
-              <ElectionProvider id={processId} key={processId}>
+              <ElectionProvider id={processId} key={processId} autoUpdate>
                 <Flex>
                   <Link
                     as={ReactRouterLink}
@@ -212,14 +212,14 @@ const SharedCensusHomeContent = () => {
                     }}
                     to={`/processes/${processId}/${window.location.hash}`}
                     isExternal={!isAdmin}
+                    position='relative'
                   >
-                    <Box>
-                      <Box fontSize='18px' display='flex' alignItems='center'>
-                        <Box as='span' mr={2}>
-                          {index + 1}:
-                        </Box>
-                        <ElectionTitle fontSize='18px' mb={0} />
+                    <Box fontSize='18px' display='flex' alignItems='center'>
+                      <Box as='span' mr={2}>
+                        {index + 1}:
                       </Box>
+                      <ElectionTitle fontSize='18px' mb={0} />
+                      <ElectionStatusBadge position='absolute' top={1} right={1} />
                     </Box>
                   </Link>
                   {isAdmin && <ActionsMenu />}
