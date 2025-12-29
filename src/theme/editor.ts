@@ -1,4 +1,6 @@
-const editor = {
+import { SystemStyleObject } from '@chakra-ui/styled-system'
+
+const editor: SystemStyleObject = {
   '.lexical-bold': {
     fontWeight: 'extrabold',
   },
@@ -47,7 +49,11 @@ const editor = {
     letterSpacing: '-2%',
     mb: '30px',
   },
-  '.lexical-h1 + p': {
+  '.shared-census .lexical-h1': {
+    textAlign: 'center',
+  },
+  '.shared-census .lexical-h1 + p': {
+    textAlign: 'center',
     mt: '-30px',
   },
   '.lexical-h2': {

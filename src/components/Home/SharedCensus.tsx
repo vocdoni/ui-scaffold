@@ -16,6 +16,7 @@ import Editor from '~components/Editor'
 import { ActionsMenu } from '~components/Process/ActionsMenu'
 import { CensusConnectButton } from '~components/Process/Aside'
 import LogoutButton from '~components/Process/LogoutButton'
+import { MaxContentsWidth } from '~constants'
 import { SimpleLayoutOutletContext } from '~elements/SimpleLayout'
 
 export const parseProcessIds = (value: string | undefined) =>
@@ -150,21 +151,11 @@ const SharedCensusHomeContent = () => {
   }
 
   return (
-    <Flex
-      position='sticky'
-      top={0}
-      flexDirection='column'
-      gap={10}
-      maxW='1200px'
-      mx='auto'
-      p={5}
-      minH='100vh'
-      alignItems='center'
-    >
+    <Flex flexDirection='column' gap={10} maxW={MaxContentsWidth} mx='auto' p={5} alignItems='center'>
       {showTopContent && (
         <Box w='90%' display='flex' flexDirection='column' gap={4}>
           {(showAlways || showDisconnected || showConnected) && (
-            <Box data-testid='shared-census-pretext'>
+            <Box className='shared-census' data-testid='shared-census-pretext'>
               <Editor key={pretextContent} isDisabled defaultValue={pretextContent} />
             </Box>
           )}
