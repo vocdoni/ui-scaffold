@@ -237,7 +237,7 @@ const ElectionItemList = ({ isAdmin, index }: { isAdmin: boolean; index: number 
           transform: 'scale(0.9)',
         }}
         {...disabled}
-        to={`/processes/${election.id}/${window.location.hash}`}
+        to={`/processes/${election?.id}/${window.location.hash}`}
         isExternal={!isAdmin}
         position='relative'
       >
