@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Flex, Image, Link, Spinner, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, Image, Link, Spinner, StyleProps, Text } from '@chakra-ui/react'
 import { ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
 import {
   ElectionProvider,
@@ -176,45 +176,8 @@ const SharedCensusHomeContent = () => {
           </Text>
           <Flex gap={5} flexDirection={{ base: 'column' }}>
             {processIds.map((processId, index) => (
-              <ElectionProvider id={processId} key={processId} autoUpdate>
-                <Flex>
-                  <Link
-                    as={ReactRouterLink}
-                    flexGrow={1}
-                    display='flex'
-                    justifyContent='center'
-                    alignItems='center'
-                    flexWrap='wrap'
-                    h={{ base: '100px' }}
-                    borderRadius='md'
-                    color='texts.primary'
-                    textDecoration='none'
-                    textAlign='center'
-                    fontWeight='bold'
-                    boxShadow='lg'
-                    _dark={{
-                      boxShadow: '0 10px 15px -3px #343434,0 4px 6px -2px #444',
-                    }}
-                    _hover={{
-                      bgColor: 'gray.500',
-                    }}
-                    _active={{
-                      transform: 'scale(0.9)',
-                    }}
-                    to={`/processes/${processId}/${window.location.hash}`}
-                    isExternal={!isAdmin}
-                    position='relative'
-                  >
-                    <Box fontSize='18px' display='flex' alignItems='center'>
-                      <Box as='span' mr={2}>
-                        {index + 1}:
-                      </Box>
-                      <ElectionTitle fontSize='18px' mb={0} />
-                      <ElectionStatusBadge position='absolute' top={1} right={1} />
-                    </Box>
-                  </Link>
-                  {isAdmin && <ActionsMenu />}
-                </Flex>
+              <ElectionProvider id={processId} key={processId} autoUpdate autoUpdateInterval={15_000} fetchCensus>
+                <ElectionItemList isAdmin={isAdmin} index={index} />
               </ElectionProvider>
             ))}
           </Flex>
@@ -240,6 +203,53 @@ const SharedCensusHomeContent = () => {
           })}
         </Text>
       )}
+    </Flex>
+  )
+}
+
+const ElectionItemList = ({ isAdmin, index }: { isAdmin: boolean; index: number }) => {
+  const { election, isAbleToVote } = useElection()
+  const disabled: StyleProps = !isAbleToVote ? { pointerEvents: 'none', opacity: 0.6 } : {}
+
+  return (
+    <Flex>
+      <Link
+        as={ReactRouterLink}
+        flexGrow={1}
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        flexWrap='wrap'
+        h={{ base: '100px' }}
+        borderRadius='md'
+        color='texts.primary'
+        textDecoration='none'
+        textAlign='center'
+        fontWeight='bold'
+        boxShadow='lg'
+        _dark={{
+          boxShadow: '0 10px 15px -3px #343434,0 4px 6px -2px #444',
+        }}
+        _hover={{
+          bgColor: 'gray.500',
+        }}
+        _active={{
+          transform: 'scale(0.9)',
+        }}
+        {...disabled}
+        to={`/processes/${election.id}/${window.location.hash}`}
+        isExternal={!isAdmin}
+        position='relative'
+      >
+        <Box fontSize='18px' display='flex' alignItems='center' p={4}>
+          <Box as='span' mr={2} position='absolute' left={2} top={2} color='gray.400'>
+            {index + 1}
+          </Box>
+          <ElectionTitle fontSize='18px' mb={0} />
+          <ElectionStatusBadge position='absolute' top={1} right={1} />
+        </Box>
+      </Link>
+      {isAdmin && <ActionsMenu />}
     </Flex>
   )
 }
