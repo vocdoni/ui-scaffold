@@ -37,13 +37,6 @@ type ValidateGroupArgs = {
   twoFaFields?: string[]
 }
 
-type PublishCensusArgs = {
-  censusId: string
-  groupId: string
-  authFields: string[]
-  twoFaFields: string[]
-}
-
 const useValidateGroup = () => {
   const { organization } = useOrganization()
   const { bearedFetch } = useAuth()
@@ -83,24 +76,40 @@ const useCreateCensus = () => {
   })
 }
 
+type PublishGroupCensusResponse = {
+  root: string
+  size: number
+  uri: string
+}
+
+type PublishCensusRequest = {
+  authFields: string[]
+  twoFaFields: string[]
+  weighted?: boolean
+}
+
+type PublishCensusArgs = PublishCensusRequest & {
+  censusId: string
+  groupId: string
+}
+
 const usePublishCensus = () => {
   const { bearedFetch } = useAuth()
 
   return useMutation({
-    mutationFn: async ({ censusId, groupId, authFields, twoFaFields }: PublishCensusArgs) => {
-      const body: Record<string, any> = {}
-
-      if (authFields?.length) {
-        body.authFields = authFields
+    mutationFn: async ({ censusId, groupId, authFields, twoFaFields, weighted }: PublishCensusArgs) => {
+      const body: PublishCensusRequest = {
+        authFields,
+        twoFaFields,
+        weighted,
       }
-      body.twoFaFields = twoFaFields
 
       const endpoint = ApiEndpoints.OrganizationCensusPublish.replace('{censusId}', censusId).replace(
         '{groupId}',
         groupId
       )
 
-      return await bearedFetch<{ size: number }>(endpoint, {
+      return await bearedFetch<PublishGroupCensusResponse>(endpoint, {
         method: 'POST',
         body,
       })
@@ -133,6 +142,7 @@ export const VoterAuthentication = () => {
 
   const groupId = mainForm.watch('groupId')
   const census = mainForm.watch('census')
+  const weighted = mainForm.watch('weightedVote')
   const formData = voterAuthForm.watch()
   const hasNoCredentialsSelected = !formData?.credentials?.length && !formData?.use2FA
 
@@ -181,6 +191,7 @@ export const VoterAuthentication = () => {
           groupId,
           authFields: currentFormData.credentials,
           twoFaFields,
+          weighted,
         })
 
         mainForm.setValue('census', {
