@@ -1,23 +1,16 @@
-import { AspectRatio, Box, Flex, Image, Link, Spinner, StyleProps, Text } from '@chakra-ui/react'
-import { ElectionStatusBadge, ElectionTitle } from '@vocdoni/chakra-components'
-import {
-  ElectionProvider,
-  OrganizationProvider,
-  useClient,
-  useElection,
-  useOrganization,
-} from '@vocdoni/react-providers'
+import { AspectRatio, Box, Flex, Link, Spinner, StyleProps, Text } from '@chakra-ui/react'
+import { ElectionStatusBadge, ElectionTitle, OrganizationImage } from '@vocdoni/chakra-components'
+import { ElectionProvider, OrganizationProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
-import { ReactNode, useEffect } from 'react'
+import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import ReactPlayer from 'react-player'
-import { Link as ReactRouterLink, useOutletContext } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import Editor from '~components/Editor'
 import { ActionsMenu } from '~components/Process/ActionsMenu'
 import { CensusConnectButton } from '~components/Process/Aside'
 import LogoutButton from '~components/Process/LogoutButton'
 import { MaxContentsWidth } from '~constants'
-import { SimpleLayoutOutletContext } from '~elements/SimpleLayout'
 
 export const parseProcessIds = (value: string | undefined) =>
   (value || '')
@@ -49,34 +42,7 @@ const SharedCensusOrganizationBoundary = ({ children }: { children: ReactNode })
     return <>{children}</>
   }
 
-  return (
-    <OrganizationProvider id={organizationId}>
-      <SharedCensusLogo />
-      {children}
-    </OrganizationProvider>
-  )
-}
-
-const SharedCensusLogo = () => {
-  const { organization } = useOrganization()
-  const { setLogo } = useOutletContext<SimpleLayoutOutletContext>()
-
-  useEffect(() => {
-    const logoUrl = organization?.account?.avatar
-    const resetLogo = () => {
-      setLogo(undefined)
-    }
-
-    if (logoUrl) {
-      const name = organization?.account?.name?.default || organization?.address || 'Organization'
-      setLogo(<Image src={logoUrl} alt={`${name} logo`} h={14} onError={resetLogo} />)
-      return () => resetLogo()
-    }
-
-    return () => resetLogo()
-  }, [organization, setLogo])
-
-  return null
+  return <OrganizationProvider id={organizationId}>{children}</OrganizationProvider>
 }
 
 const SharedCensusHomeContent = () => {
@@ -151,7 +117,8 @@ const SharedCensusHomeContent = () => {
   }
 
   return (
-    <Flex flexDirection='column' gap={10} maxW={MaxContentsWidth} mx='auto' p={5} alignItems='center'>
+    <Flex flexDirection='column' gap={10} maxW={MaxContentsWidth} mx='auto' px={5} alignItems='center'>
+      <OrganizationImage h='100px' />
       {showTopContent && (
         <Box w='90%' display='flex' flexDirection='column' gap={4}>
           {(showAlways || showDisconnected || showConnected) && (

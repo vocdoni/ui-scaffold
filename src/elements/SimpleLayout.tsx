@@ -1,6 +1,6 @@
 import { Box, Flex, HStack } from '@chakra-ui/react'
 import { ReactNode, useState } from 'react'
-import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
+import { Outlet, ScrollRestoration } from 'react-router-dom'
 import { ColorModeSwitcher } from '~components/shared/Layout/ColorModeSwitcher'
 import { VocdoniLogo } from '~components/shared/Layout/Logo'
 import { LanguagesMenu } from '~components/shared/Navbar/LanguagesList'
@@ -12,7 +12,6 @@ export type SimpleLayoutOutletContext = {
 }
 
 const Layout = () => {
-  const location = useLocation()
   const [logo, setLogo] = useState<React.ReactNode>()
 
   return (
@@ -30,7 +29,7 @@ const Layout = () => {
         mx='auto'
         justifyContent='space-between'
       >
-        {logo ?? <VocdoniLogo h={10} />}
+        {logo ?? <VocdoniLogo h={6} />}
         <Box display='flex' alignItems='center' gap={4}>
           <LanguagesMenu />
           <ColorModeSwitcher />
@@ -41,7 +40,6 @@ const Layout = () => {
         flexDirection='column'
         as='main'
         flexGrow={1}
-        mt={{ base: 4, lg: 6, xl: 10 }}
         mb={{ base: 20, lg: 32 }}
         maxW='1600px'
         mx='auto'

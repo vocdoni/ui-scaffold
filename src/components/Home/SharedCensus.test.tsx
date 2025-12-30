@@ -59,6 +59,7 @@ vi.mock('@vocdoni/sdk', () => ({
 vi.mock('@vocdoni/chakra-components', () => ({
   ElectionTitle: () => <div>ElectionTitle</div>,
   ElectionStatusBadge: () => <div>ElectionStatusBadge</div>,
+  OrganizationImage: ({ alt }: { alt?: string }) => <img src='' alt={alt || 'OrganizationImage'} />,
 }))
 
 const i18nState = { resolvedLanguage: 'en', language: 'en' }
@@ -303,27 +304,5 @@ describe('SharedCensus', () => {
 
     expect(queryByTestId('shared-census-pretext')).toBeNull()
     expect(getByTestId('shared-census-stream')).toBeInTheDocument()
-  })
-
-  it('renders the organization avatar in the layout when available', async () => {
-    const logoUrl = 'https://example.com/logo.png'
-    states.organization.account.avatar = logoUrl
-    states.organization.account.name = { default: 'Shared Org' }
-
-    const { default: SharedCensus } = await import('./SharedCensus')
-    const { findByAltText } = await renderSharedCensus(<SharedCensus />)
-
-    const orgLogo = await findByAltText('Shared Org logo')
-    expect(orgLogo).toHaveAttribute('src', logoUrl)
-  })
-
-  it('falls back to the Vocdoni logo when no organization avatar is present', async () => {
-    states.organization.account.avatar = ''
-
-    const { default: SharedCensus } = await import('./SharedCensus')
-    const { container, queryByAltText } = await renderSharedCensus(<SharedCensus />)
-
-    expect(queryByAltText(/logo/i)).toBeNull()
-    expect(container.querySelector('#path-logo-lower')).not.toBeNull()
   })
 })
