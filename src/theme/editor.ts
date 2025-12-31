@@ -42,6 +42,18 @@ const editor: SystemStyleObject = {
     paddingLeft: '16px',
     marginBottom: '20px',
   },
+  '.lexical-image': {
+    maxWidth: '100%',
+    borderRadius: '16px',
+    '&:first-of-type': {
+      maxW: { base: '100%', sm: '90%', sm2: '300px', lg: '450px' },
+      float: { sm2: 'right' },
+      borderRadius: '16px',
+      'margin-bottom': '10px',
+      'margin-left': { base: '0px', sm2: '20px' },
+      mx: 'auto',
+    },
+  },
   '.lexical-h1': {
     fontWeight: 600,
     fontSize: '36px',
@@ -88,12 +100,18 @@ const editor: SystemStyleObject = {
   '.lexical-paragraph': {
     fontSize: '16px',
     lineHeight: '24px',
+    '&:has(img:only-child)': {
+      mb: 0,
+    },
   },
 
   '[contenteditable="false"] .lexical-paragraph': {
     mb: '20px',
     '&:not(:has(+ p, + ul, + ol, + blockquote, + li))': {
       mb: '60px',
+    },
+    '&:has(img:only-child)': {
+      mb: 0,
     },
   },
 }

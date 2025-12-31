@@ -18,6 +18,7 @@ import { TableCellNode, TableNode, TableRowNode } from '@lexical/table'
 import { $getRoot } from 'lexical'
 import { useState } from 'react'
 
+import { IMAGE, ImageNode } from './ImageNode'
 import { FloatingLinkEditorPlugin, FloatingTextFormatToolbarPlugin } from './plugins'
 import OnChangeMarkdown from './plugins/OnChangeMarkdown'
 import ReadOnlyPlugin from './plugins/ReadOnlyPlugin'
@@ -33,7 +34,7 @@ type EditorProps = {
   padding?: ChakraProps['padding']
 }
 
-const TRANSFORMERS = DEFAULT_TRANSFORMERS
+const TRANSFORMERS = [IMAGE, ...DEFAULT_TRANSFORMERS]
 
 const ChakraContentEditable = chakra(ContentEditable, {
   baseStyle: {
@@ -131,6 +132,7 @@ const Editor = (props: EditorProps) => {
       AutoLinkNode,
       LinkNode,
       OverflowNode,
+      ImageNode,
     ],
     editorState(editor: any) {
       editor.update(() => {
