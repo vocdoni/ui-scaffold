@@ -102,6 +102,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.WHATSAPP_PHONE_NUMBER': JSON.stringify(process.env.WHATSAPP_PHONE_NUMBER || '+34 621 501 155'),
       'import.meta.env.LANGUAGES': JSON.stringify(languagesSlice),
       'import.meta.env.ANALYTICS_CLIENT_ID': JSON.stringify(process.env.ANALYTICS_CLIENT_ID || ''),
+      'import.meta.env.CRISP_WEBSITE_ID': JSON.stringify(process.env.CRISP_WEBSITE_ID || ''),
     },
     plugins: [
       tsconfigPaths(),

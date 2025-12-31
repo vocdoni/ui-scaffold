@@ -142,6 +142,9 @@ importers:
       country-flag-emoji-json:
         specifier: ^2.0.0
         version: 2.0.0
+      crisp-sdk-web:
+        specifier: ^1.0.26
+        version: 1.0.26
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -2738,6 +2741,9 @@ packages:
     resolution: {integrity: sha512-ROmzCKrTnOwybPcJApAA6WBWij23HVfGVNKqqrZpuyZOHqK2CwHSvpGuyt/UNNvaIjEd8X5IFGp4Mh+Ie1IHJQ==}
     engines: {node: '>=0.8'}
     hasBin: true
+
+  crisp-sdk-web@1.0.26:
+    resolution: {integrity: sha512-MBK/+tCNJmt/l9ZYHb0cUUaaF02rCKeqLw1cruY/HU48tPOOnhUM0JdvuPaeq1d5VB2DCILY4rGYE4NeJbXvzg==}
 
   cross-fetch@3.2.0:
     resolution: {integrity: sha512-Q+xVJLoGOeIMXZmbUK4HYk+69cQH6LudR0Vu/pRm2YlU/hDV9CiS0gKUMaWY5f2NeUH9C1nV3bsTlCo0FsTV1Q==}
@@ -9720,6 +9726,8 @@ snapshots:
   country-flag-emoji-json@2.0.0: {}
 
   crc-32@1.2.2: {}
+
+  crisp-sdk-web@1.0.26: {}
 
   cross-fetch@3.2.0(encoding@0.1.13):
     dependencies:

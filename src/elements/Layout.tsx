@@ -1,6 +1,7 @@
 import { Box, Flex, HStack } from '@chakra-ui/react'
 import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
 import AnnouncementBanner from '~components/shared/Layout/AnnouncementBanner'
+import CrispChat from '~components/shared/Layout/CrispChat'
 import { Routes } from '~routes'
 import Footer from '~shared/Layout/Footer'
 import Navbar from '~shared/Navbar'
@@ -24,6 +25,7 @@ const Layout = () => {
         <Navbar />
       </HStack>
       <ScrollRestoration />
+      <CrispChat />
       {[Routes.root, Routes.plans].includes(location.pathname) && <AnnouncementBanner limited />}
       <Flex
         flexDirection='column'

@@ -32,6 +32,7 @@ interface ImportMeta {
     WHATSAPP_PHONE_NUMBER: string
     LANGUAGES: Record<string, string>
     ANALYTICS_CLIENT_ID: string
+    CRISP_WEBSITE_ID: string
     SHARED_CENSUS_ALWAYS_VISIBLE_TEXT?: Record<string, string>
     SHARED_CENSUS_DISCONNECTED_TEXT?: Record<string, string>
     SHARED_CENSUS_CONNECTED_TEXT?: Record<string, string>

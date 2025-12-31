@@ -2,6 +2,7 @@ import { Box, Flex, HStack } from '@chakra-ui/react'
 import { ReactNode, useState } from 'react'
 import { Outlet, ScrollRestoration } from 'react-router-dom'
 import { ColorModeSwitcher } from '~components/shared/Layout/ColorModeSwitcher'
+import CrispChat from '~components/shared/Layout/CrispChat'
 import { VocdoniLogo } from '~components/shared/Layout/Logo'
 import { LanguagesMenu } from '~components/shared/Navbar/LanguagesList'
 import { MaxNavbarWidth } from '~constants'
@@ -36,6 +37,7 @@ const Layout = () => {
         </Box>
       </HStack>
       <ScrollRestoration />
+      <CrispChat />
       <Flex
         flexDirection='column'
         as='main'
