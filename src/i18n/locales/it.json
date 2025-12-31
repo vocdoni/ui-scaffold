@@ -1616,10 +1616,6 @@
     "secret_until_end_tooltip": "I risultati sono nascosti e saranno disponibili solo al termine della votazione"
   },
   "results_type": {
-    "budget": "Allocazione del budget",
-    "multiple_choice": "Scelta multipla",
-    "quadratic": "Voto quadratico",
-    "single_choice": "Scelta singola",
     "title": "Tipo di voto"
   },
   "resume_vote": "Riprendi",

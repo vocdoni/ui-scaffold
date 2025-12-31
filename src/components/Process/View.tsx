@@ -31,7 +31,7 @@ import {
 } from '@chakra-ui/react'
 import { ElectionQuestions, ElectionResults, environment } from '@vocdoni/chakra-components'
 import { useClient, useElection, useOrganization } from '@vocdoni/react-providers'
-import { CensusType, ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { CensusType, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { FacebookShare, RedditShare, TelegramShare, TwitterShare } from '~components/Share'
@@ -42,6 +42,7 @@ import { CreatedBy } from './CreatedBy'
 import { ElectionVideo } from './Dashboard/ProcessView'
 import { ProcessDate } from './Date'
 import Header from './Header'
+import { useVotingMethodLabel } from './resultTypeLabels'
 import successImg from '/assets/spreadsheet-success-modal.jpg'
 
 type CensusInfo = { size: number; weight: bigint; type: CensusType }
@@ -68,20 +69,6 @@ export const ProcessInfoCard = ({ label, description, ...props }: ProcessInfoCar
   )
 }
 
-const TYPE_MAP: Record<ElectionResultsTypeNames, string> = {
-  [ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION]: 'process.voting_method.single_choice',
-  [ElectionResultsTypeNames.MULTIPLE_CHOICE]: 'process.voting_method.multiple_choice',
-  [ElectionResultsTypeNames.APPROVAL]: 'process.voting_method.approval',
-  [ElectionResultsTypeNames.BUDGET]: 'process.voting_method.budget',
-  [ElectionResultsTypeNames.QUADRATIC]: 'process.voting_method.quadratic',
-}
-
-// t('process.voting_method.single_choice', { defaultValue: 'Single choice' })
-// t('process.voting_method.multiple_choice', { defaultValue: 'Multiple choice' })
-// t('process.voting_method.approval', { defaultValue: 'Approval voting' })
-// t('process.voting_method.budget', { defaultValue: 'Budget allocation' })
-// t('process.voting_method.quadratic', { defaultValue: 'Quadratic voting' })
-
 const VotingMethod = () => {
   const { t } = useTranslation()
   const { election } = useElection()
@@ -89,22 +76,13 @@ const VotingMethod = () => {
   if (!election) return null
   if (!(election instanceof PublishedElection)) return null
 
-  const name = election.resultsType?.name
-  const base =
-    name && TYPE_MAP[name] ? t(TYPE_MAP[name]) : t('process.voting_method.unknown', { defaultValue: 'Unknown' })
-
   const isWeighted = Number(election?.census.weight) !== election?.census.size
+  const votingMethod = useVotingMethodLabel(election.resultsType?.name, {
+    weighted: isWeighted,
+    defaultValue: t('process.voting_method.unknown', { defaultValue: 'Unknown' }),
+  })
 
-  return (
-    <>
-      {isWeighted
-        ? t('process.voting_method.weighted_format', {
-            base,
-            defaultValue: '{{base}} with weighted voting',
-          })
-        : base}
-    </>
-  )
+  return <>{votingMethod}</>
 }
 
 const ProcessInfoPanel = () => {

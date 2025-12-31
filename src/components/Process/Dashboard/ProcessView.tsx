@@ -33,7 +33,7 @@ import {
   ElectionTitle,
 } from '@vocdoni/chakra-components'
 import { useElection } from '@vocdoni/react-providers'
-import { ElectionResultsTypeNames, ElectionStatus, PublishedElection } from '@vocdoni/sdk'
+import { ElectionStatus, PublishedElection } from '@vocdoni/sdk'
 import { format as formatDate } from 'date-fns'
 import { ReactNode } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -68,6 +68,7 @@ import {
 } from '~shared/Dashboard/Contents'
 import { SidebarVisibilityProvider, useSidebarVisibility } from '~shared/Dashboard/SidebarContext'
 import { Routes } from '~src/router/routes'
+import { useResultTypeLabel } from '../resultTypeLabels'
 
 export const ElectionVideo = forwardRef<BoxProps, 'div'>((props, ref) => {
   const { election } = useElection()
@@ -271,15 +272,10 @@ const ProcessViewSidebar = () => {
   const { t } = useTranslation()
   const isMobile = useBreakpointValue({ base: true, md: false })
   const { showSidebar, closeSidebar } = useSidebarVisibility()
-
-  const resultTypesNames = {
-    [ElectionResultsTypeNames.BUDGET]: t('results_type.budget', 'Budget allocation'),
-    [ElectionResultsTypeNames.SINGLE_CHOICE_MULTIQUESTION]: t('results_type.single_choice', 'Single choice'),
-    [ElectionResultsTypeNames.QUADRATIC]: t('results_type.quadratic', 'Quadratic voting'),
-    // Yeah we name approval and multiple choice the same, they're also unified during creation
-    [ElectionResultsTypeNames.APPROVAL]: t('results_type.multiple_choice', 'Multiple choice'),
-    [ElectionResultsTypeNames.MULTIPLE_CHOICE]: t('results_type.multiple_choice', 'Multiple choice'),
-  }
+  const resultTypeLabel = useResultTypeLabel(
+    election instanceof PublishedElection ? election.resultsType?.name : undefined,
+    ''
+  )
 
   return (
     <Sidebar show={showSidebar}>
@@ -379,10 +375,7 @@ const ProcessViewSidebar = () => {
           <SettingsField
             icon={LuVote}
             text={t('results_type.title', 'Results type')}
-            subtext={
-              election instanceof PublishedElection &&
-              resultTypesNames[election.resultsType.name as ElectionResultsTypeNames]
-            }
+            subtext={election instanceof PublishedElection && resultTypeLabel}
           />
           <SettingsField
             icon={LuEye}

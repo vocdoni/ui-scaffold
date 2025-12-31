@@ -1616,10 +1616,6 @@
     "secret_until_end_tooltip": "Els resultats estan ocults i només estaran disponibles un cop acabi la votació"
   },
   "results_type": {
-    "budget": "Assignació pressupostària",
-    "multiple_choice": "Elecció múltiple",
-    "quadratic": "Quadràtica",
-    "single_choice": "Elecció simple",
     "title": "Tipus de votació"
   },
   "resume_vote": "Reprèn",

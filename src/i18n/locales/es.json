@@ -1616,10 +1616,6 @@
     "secret_until_end_tooltip": "Los resultados permanecen ocultos y solo estarán disponibles una vez que concluya la votación"
   },
   "results_type": {
-    "budget": "Asignación presupuestaria",
-    "multiple_choice": "Opción múltiple",
-    "quadratic": "Votación cuadrática",
-    "single_choice": "Opción única",
     "title": "Tipo de votación"
   },
   "resume_vote": "Reanudar",
