@@ -1,4 +1,4 @@
-import { AspectRatio, Box, Flex, Link, Spinner, StyleProps, Text } from '@chakra-ui/react'
+import { AspectRatio, Box, Flex, Link, Spinner, Text } from '@chakra-ui/react'
 import { ElectionStatusBadge, ElectionTitle, OrganizationImage } from '@vocdoni/chakra-components'
 import { ElectionProvider, OrganizationProvider, useClient, useElection } from '@vocdoni/react-providers'
 import { InvalidElection, PublishedElection } from '@vocdoni/sdk'
@@ -175,8 +175,8 @@ const SharedCensusHomeContent = () => {
 }
 
 const ElectionItemList = ({ isAdmin, index }: { isAdmin: boolean; index: number }) => {
-  const { election, isAbleToVote } = useElection()
-  const disabled: StyleProps = !isAbleToVote ? { pointerEvents: 'none', opacity: 0.6 } : {}
+  const { election, voted } = useElection()
+  const { t } = useTranslation()
 
   return (
     <Flex>
@@ -203,7 +203,6 @@ const ElectionItemList = ({ isAdmin, index }: { isAdmin: boolean; index: number 
         _active={{
           transform: 'scale(0.9)',
         }}
-        {...disabled}
         to={`/processes/${election?.id}/${window.location.hash}`}
         isExternal={!isAdmin}
         position='relative'
@@ -214,6 +213,11 @@ const ElectionItemList = ({ isAdmin, index }: { isAdmin: boolean; index: number 
           </Box>
           <ElectionTitle fontSize='18px' mb={0} />
           <ElectionStatusBadge position='absolute' top={1} right={1} />
+          {voted && (
+            <Text fontSize='14px' color='green.400' position='absolute' bottom={0} right={1}>
+              {t('shared_census.voted', { defaultValue: 'You already voted' })}
+            </Text>
+          )}
         </Box>
       </Link>
       {isAdmin && <ActionsMenu />}

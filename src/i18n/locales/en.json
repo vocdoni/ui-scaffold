@@ -1648,7 +1648,8 @@
       "login": "To access the election press \"Identify\".",
       "vote": "Select the election to open a new window with the voting instructions. Once your vote is submitted, close the window to return here."
     },
-    "section_title": "Elections"
+    "section_title": "Elections",
+    "voted": "You already voted"
   },
   "signin": "Log In",
   "signin_google": "Sign in with Google",

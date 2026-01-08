@@ -1672,7 +1672,8 @@
       "login": "Premi \"Identifica\" per accedere all'elezione.",
       "vote": "Seleziona l'elezione per aprire una nuova finestra con le istruzioni di voto. Una volta inviato il voto, chiudi la finestra per tornare qui."
     },
-    "section_title": "Elezioni"
+    "section_title": "Elezioni",
+    "voted": "Hai già votato"
   },
   "signin": "Accedi",
   "signin_google": "Accedi con Google",
