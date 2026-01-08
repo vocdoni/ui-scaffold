@@ -79,6 +79,8 @@ export const usePlans = () => {
   })
 }
 
+import { MemberStepper } from './MemberStepper'
+
 export const usePlanTranslations = (plans?: Plan[]) => {
   const { t } = useTranslation()
 
@@ -117,38 +119,48 @@ export const usePlanTranslations = (plans?: Plan[]) => {
       features: [
         {
           icon: LuUsers,
-          text: t('pricing.core_voting', {
-            defaultValue: 'Up to {{ count }} members',
-            count: getMembers(PlanId.Free, 100),
-          }),
+          content: (
+            <Flex h='32px' alignItems='center'>
+              {t('pricing.core_voting', {
+                defaultValue: 'Up to {{ count }} members',
+                count: getMembers(PlanId.Free, 100),
+              })}
+            </Flex>
+          ),
         },
         {
           icon: LuVote,
-          text: t('pricing.yearly_processes', {
+          content: t('pricing.yearly_processes', {
             defaultValue: '{{ count }} votes per year¹',
             count: getProcesses(PlanId.Free, 10),
           }),
         },
         {
           icon: LuUserCheck,
-          text: t('pricing.up_to_admins', {
+          content: t('pricing.up_to_admins', {
             defaultValue: '{{ count }} admins',
             count: getTeamMembers(PlanId.Free, 1),
           }),
         },
         {
           icon: LuCircleCheckBig,
-          text: t('pricing.different_voting_methods', { defaultValue: 'Different voting methods' }),
+          content: t('pricing.different_voting_methods', { defaultValue: 'Different voting methods' }),
         },
         {
           icon: LuShield,
-          text: t('pricing.2fa', {
+          content: t('pricing.2fa', {
             suffix: get2FA(PlanId.Free),
             defaultValue: '2FA authentication² ({{suffix}})',
           }),
         },
-        { icon: LuChartColumn, text: t('pricing.basic_analytics', { defaultValue: 'Basic analytics' }) },
-        { icon: LuMail, text: t('pricing.ticket_support_72', { defaultValue: 'Email support (72h)' }) },
+        {
+          icon: LuChartColumn,
+          content: t('pricing.basic_analytics', { defaultValue: 'Basic analytics' }),
+        },
+        {
+          icon: LuMail,
+          content: t('pricing.ticket_support_72', { defaultValue: 'Email support (72h)' }),
+        },
       ],
     },
     [PlanId.Essential]: {
@@ -159,31 +171,47 @@ export const usePlanTranslations = (plans?: Plan[]) => {
       features: [
         {
           icon: LuUsers,
-          text: t('pricing.core_voting', {
-            count: getMembers(PlanId.Essential, 500),
-          }),
+          content: (
+            <MemberStepper
+              min={1000}
+              max={5000}
+              step={500}
+              defaultValue={1000}
+              label={(count) =>
+                t('pricing.core_voting', {
+                  count,
+                })
+              }
+            />
+          ),
         },
         {
           icon: LuVote,
-          text: t('pricing.yearly_processes', {
+          content: t('pricing.yearly_processes', {
             count: getProcesses(PlanId.Essential, 20),
           }),
         },
         {
           icon: LuUserCheck,
-          text: t('pricing.up_to_admins', {
+          content: t('pricing.up_to_admins', {
             count: getTeamMembers(PlanId.Essential, 1),
           }),
         },
-        { icon: LuCircleCheckBig, text: t('pricing.different_voting_methods') },
+        { icon: LuCircleCheckBig, content: t('pricing.different_voting_methods') },
         {
           icon: LuShield,
-          text: t('pricing.2fa', {
+          content: t('pricing.2fa', {
             suffix: get2FA(PlanId.Essential),
           }),
         },
-        { icon: LuChartColumn, text: t('pricing.basic_analytics', { defaultValue: 'Basic analytics' }) },
-        { icon: LuMail, text: t('pricing.ticket_support_48', { defaultValue: 'Email support (48h)' }) },
+        {
+          icon: LuChartColumn,
+          content: t('pricing.basic_analytics', { defaultValue: 'Basic analytics' }),
+        },
+        {
+          icon: LuMail,
+          content: t('pricing.ticket_support_48', { defaultValue: 'Email support (48h)' }),
+        },
       ],
     },
     [PlanId.Premium]: {
@@ -194,31 +222,49 @@ export const usePlanTranslations = (plans?: Plan[]) => {
       features: [
         {
           icon: LuUsers,
-          text: t('pricing.core_voting', {
-            count: getMembers(PlanId.Premium, 2000),
-          }),
+          content: (
+            <MemberStepper
+              min={5000}
+              max={15000}
+              step={500}
+              defaultValue={5000}
+              label={(count) =>
+                t('pricing.core_voting', {
+                  count,
+                })
+              }
+            />
+          ),
         },
         {
           icon: LuVote,
-          text: t('pricing.yearly_processes', {
+          content: t('pricing.yearly_processes', {
             count: getProcesses(PlanId.Premium, 50),
           }),
         },
         {
           icon: LuUserCheck,
-          text: t('pricing.up_to_admins', {
+          content: t('pricing.up_to_admins', {
             count: getTeamMembers(PlanId.Premium, 5),
           }),
         },
-        { icon: LuCircleCheckBig, text: t('pricing.different_voting_methods') },
+        { icon: LuCircleCheckBig, content: t('pricing.different_voting_methods') },
         {
           icon: LuShield,
-          text: t('pricing.2fa', {
+          content: t('pricing.2fa', {
             suffix: get2FA(PlanId.Premium),
           }),
         },
-        { icon: LuPalette, text: t('pricing.custom_branding', { defaultValue: 'Custom branding*' }) },
-        { icon: LuMail, text: t('pricing.priority_support', { defaultValue: 'Priority email support (24h)' }) },
+        {
+          icon: LuPalette,
+          content: t('pricing.custom_branding', { defaultValue: 'Custom branding*' }),
+        },
+        {
+          icon: LuMail,
+          content: t('pricing.priority_support', {
+            defaultValue: 'Priority email support (24h)',
+          }),
+        },
       ],
     },
     [PlanId.Custom]: {
@@ -337,7 +383,7 @@ export const SubscriptionPlans = () => {
               </Tab>
             </TabList>
           </Tabs>
-          <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} spacing={6}>
+          <SimpleGrid columns={{ base: 1, lg: 2, xl: 3, '2xl': 4 }} spacing={6}>
             {cards.map((card, idx) => (
               <PricingCard key={idx} plan={plans[idx]} {...card} />
             ))}

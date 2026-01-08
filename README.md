@@ -47,12 +47,12 @@ Vocdoni's UI Scaffold is a React application that uses the [Vocdoni SDK](https:/
 It is built with [Vite](https://vitejs.dev/guide/) and is deployed at https://app.vocdoni.io/.
 
 ### Table of Contents
+
 - [Getting Started](#getting-started)
 - [Preview](#preview)
 - [Contributing](#contributing)
 - [License](#license)
 - [SharedCensus configuration](#sharedcensus-configuration)
-
 
 ## Getting Started
 
@@ -82,9 +82,9 @@ BUILD_PATH=build/dev BASE_URL=/ui-scaffold/dev VOCDONI_ENVIRONMENT=dev pnpm buil
 The custom domain names environment variable allows to map custom domains to organization ids, so that the homepage
 rendered will be the mapped organization profile.
 
-~~~bash
+```bash
 CUSTOM_ORGANIZATION_DOMAINS='{"deadcorp.com":"0x000000000000000000000000000000000000dead"}' pnpm build
-~~~
+```
 
 With the example above, accessing the app via the `deadcorp.com` domain would render the profile of the organization
 with id `0x000000000000000000000000000000000000dead` as the homepage of the app.
@@ -159,13 +159,11 @@ This repository is licensed under the [Business Source License 1.1](./LICENSE).
 
 Copyright © 2025 Vocdoni.
 
-
 [app-dev.vocdoni.io]: https://app-dev.vocdoni.io
 [app-stg.vocdoni.io]: https://app-stg.vocdoni.io
 [app.vocdoni.io]: https://app.vocdoni.io
 [netlify dev]: https://vocdoni-app-dev.netlify.app/
 [netlify stg]: https://vocdoni-app-stg.netlify.app/
-
 [vocdoni logo]: https://docs.vocdoni.io/Logotype.svg
 [commit activity badge]: https://img.shields.io/github/commit-activity/m/vocdoni/ui-scaffold
 [discord badge]: https://img.shields.io/badge/discord-join%20chat-blue.svg
@@ -174,11 +172,9 @@ Copyright © 2025 Vocdoni.
 [build badge develop]: https://img.shields.io/github/actions/workflow/status/vocdoni/ui-scaffold/netlify.yml?branch=develop&label=develop
 [build badge stage]: https://img.shields.io/github/actions/workflow/status/vocdoni/ui-scaffold/netlify.yml?branch=stage&label=stage
 [build badge main]: https://img.shields.io/github/actions/workflow/status/vocdoni/ui-scaffold/netlify.yml?branch=main&label=main
-
 [discord invite]: https://chat.vocdoni.io
 [twitter follow]: https://twitter.com/intent/user?screen_name=vocdoni
 [github issues]: https://github.com/vocdoni/ui-scaffold/issues
 [github commits]: https://github.com/vocdoni/ui-scaffold/commits/main
-
 [SDK]: https://developer.vocdoni.io/sdk
 [related react packages]: https://github.com/vocdoni/ui-components#vocdonis-ui-components

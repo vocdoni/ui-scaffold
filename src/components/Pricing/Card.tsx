@@ -10,7 +10,6 @@ import {
   Divider,
   Flex,
   Icon,
-  Link,
   ListIcon,
   ListItem,
   Text,
@@ -18,11 +17,11 @@ import {
 } from '@chakra-ui/react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
-import { useRef } from 'react'
+import { useRef, type ElementType, type ReactNode } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCircleCheckBig } from 'react-icons/lu'
-import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useSubscription } from '~components/Auth/Subscription'
 import ContactButton from '~components/shared/ContactLink'
 import { BookerModalButton } from '~components/shared/Dashboard/Booker'
@@ -40,7 +39,7 @@ type PricingCardProps = {
   title: string
   subtitle: string
   price: number
-  features: { icon: React.ElementType; text: string }[]
+  features: { icon: ElementType; content: ReactNode }[]
   isDisabled?: boolean
   isCurrentPlan: boolean
   width?: string
@@ -104,10 +103,19 @@ const PricingCard = ({
   )
 
   return (
-    <Card ref={container} variant={isCustomPlan ? 'custom-pricing-card' : 'pricing-card'}>
-      <CardHeader>
-        <Text>{title}</Text>
-        <Text color='texts.subtle'>{subtitle}</Text>
+    <Card
+      ref={container}
+      variant={isCustomPlan ? 'custom-pricing-card' : 'pricing-card'}
+      {...(isCurrentPlan && {
+        bg: 'card.pricing.current.bg',
+        border: '2px solid',
+        borderColor: 'brand.500',
+        position: 'relative',
+      })}
+    >
+      <CardHeader minH='80px'>
+        <Text color={isCurrentPlan ? 'card.pricing.current.color' : undefined}>{title}</Text>
+        <Text color={isCurrentPlan ? 'card.pricing.current.color' : 'texts.subtle'}>{subtitle}</Text>
       </CardHeader>
       <CardBody>
         <Flex direction='column' h='full' gap={4}>
@@ -122,7 +130,7 @@ const PricingCard = ({
                 values={{ price: currency(price) }}
                 components={{
                   price: <Text fontSize='3xl' fontWeight='extrabold' className='pricing-card-price' />,
-                  time: <Text size='sm' color='texts.subtle' />,
+                  time: <Text size='sm' color={isCurrentPlan ? 'card.pricing.current.color' : 'texts.subtle'} />,
                 }}
                 defaults='<price>{{ price }}</price>/<time>month</time>'
               />
@@ -130,22 +138,27 @@ const PricingCard = ({
           </Flex>
           <Box>
             {!isCustomPlan &&
-              price > 0 &&
-              (period === 'month' ? (
-                <Text fontSize='sm'>
-                  <Trans
-                    i18nKey='pricing_card.annual_savings'
-                    defaultValue='Save {{ savings }}/year with annual'
-                    values={{ savings: currency(plan.monthlyPrice * 12 - plan.yearlyPrice) }}
-                  />
-                </Text>
+              (price > 0 ? (
+                period === 'month' ? (
+                  <Text fontSize='sm'>
+                    <Trans
+                      i18nKey='pricing_card.annual_savings'
+                      defaultValue='Save {{ savings }}/year with annual'
+                      values={{ savings: currency(plan.monthlyPrice * 12 - plan.yearlyPrice) }}
+                    />
+                  </Text>
+                ) : (
+                  <Text fontSize='sm' color={isCurrentPlan ? 'card.pricing.current.color' : 'texts.subtle'}>
+                    <Trans
+                      i18nKey='pricing_card.annual_total_cost'
+                      defaults='{{ price }} billed annually'
+                      values={{ price: currency(plan.yearlyPrice) }}
+                    />
+                  </Text>
+                )
               ) : (
-                <Text fontSize='sm' color='texts.subtle'>
-                  <Trans
-                    i18nKey='pricing_card.annual_total_cost'
-                    defaults='{{ price }} billed annually'
-                    values={{ price: currency(plan.yearlyPrice) }}
-                  />
+                <Text fontSize='sm' color={isCurrentPlan ? 'card.pricing.current.color' : 'texts.subtle'}>
+                  <Trans i18nKey='pricing_card.annual_free_plan'>Free forever</Trans>
                 </Text>
               ))}
             <Divider />
@@ -170,9 +183,9 @@ const PricingCard = ({
           ) : (
             <UnorderedList spacing={3}>
               {features.map((feature, idx) => (
-                <ListItem key={idx}>
+                <ListItem key={idx} display='flex' alignItems='center'>
                   <ListIcon as={feature.icon} />
-                  {feature.text}
+                  {feature.content}
                 </ListItem>
               ))}
             </UnorderedList>
@@ -181,11 +194,8 @@ const PricingCard = ({
       </CardBody>
       {(plan.id === PlanId.Premium || plan.id === PlanId.Essential) && (
         <Text size='xs' fontStyle='italic' textAlign='center'>
-          <Trans i18nKey='pricing_card.need_more_members'>
-            Need more members?{' '}
-            <Link to={Routes.dashboard.settings.support} as={RouterLink}>
-              Contact us
-            </Link>
+          <Trans i18nKey='pricing_card.free_trial' values={{ freeDays: plan.freeTrialDays || 14 }}>
+            14-day free trial
           </Trans>
         </Text>
       )}
@@ -196,10 +206,16 @@ const PricingCard = ({
             <>
               <Flex gap={1} flexWrap='wrap' flexDir='column' w='full'>
                 <Trans i18nKey='pricing_card.contact_sales'>
-                  <ContactButton variant='link' fontWeight='extrabold' whiteSpace='unset' textAlign='center'>
+                  <ContactButton
+                    variant='link'
+                    fontWeight='extrabold'
+                    whiteSpace='unset'
+                    textAlign='center'
+                    color='#9CA3AF'
+                  >
                     Contact our sales team
                   </ContactButton>
-                  <Text as='span' fontSize='sm' color='texts.subtle' textAlign='center'>
+                  <Text as='span' fontSize='sm' color='#9CA3AF' textAlign='center'>
                     or
                   </Text>
                 </Trans>
@@ -207,6 +223,9 @@ const PricingCard = ({
               <BookerModalButton
                 {...commonButtonProps}
                 aria-label={isCurrentPlan ? t('current_plan') : t('contact_us')}
+                bg='white'
+                color='gray.900'
+                _hover={{ bg: '#F3F4F6' }}
               >
                 {isCurrentPlan
                   ? t('current_plan', { defaultValue: 'Current Plan' })
@@ -217,6 +236,10 @@ const PricingCard = ({
             isDashboard && (
               <Button
                 {...commonButtonProps}
+                {...(isCurrentPlan && {
+                  border: 'none',
+                  leftIcon: <Icon as={LuCircleCheckBig} />,
+                })}
                 onClick={async () => {
                   if (hasActiveSubscription) {
                     try {

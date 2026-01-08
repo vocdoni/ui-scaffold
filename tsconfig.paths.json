@@ -11,7 +11,7 @@
       "~routes": ["router/routes/index.ts"],
       "~shared/*": ["components/shared/*"],
       "~theme": ["theme/index.ts"],
-      "~theme/*" : ["theme/*"],
+      "~theme/*": ["theme/*"],
       "~queries/*": ["queries/*"],
       "~utils/*": ["utils/*"],
       "~src/*": ["./*"]
