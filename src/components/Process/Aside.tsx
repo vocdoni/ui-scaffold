@@ -216,6 +216,7 @@ export const VoteButton = ({ setQuestionsTab, ...props }: { setQuestionsTab: () 
       background='transparent'
       py={3}
       px={{ base: 3, lg2: 0 }}
+      gap={3}
       {...props}
     >
       <CensusConnectButton />
