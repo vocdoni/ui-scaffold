@@ -21,6 +21,7 @@ export type SelectCustomProps = {
   label?: string
   required?: boolean
   controller?: Omit<ControllerProps, 'render' | 'name'>
+  valueMode?: 'option' | 'value'
 } & SelectProps
 
 export const SelectCustom = ({
@@ -29,6 +30,7 @@ export const SelectCustom = ({
   placeholder,
   required = false,
   controller,
+  valueMode = 'option',
   ...rest
 }: SelectCustomProps) => {
   const { t } = useTranslation()
@@ -75,7 +77,16 @@ export const SelectCustom = ({
             isRequired={false} // we don't want HTML5 validation
             {...field}
             {...rest}
+            value={
+              valueMode === 'value'
+                ? ((rest.options as SelectOptionType[] | undefined)?.find((opt) => opt?.value === field.value) ?? null)
+                : field.value
+            }
             onChange={(selectedOption) => {
+              if (valueMode === 'value') {
+                setValue(name, selectedOption?.value ?? '')
+                return
+              }
               setValue(name, selectedOption)
             }}
           />
@@ -108,6 +119,7 @@ export const OrganizationTypeSelector = ({ ...props }: Omit<SelectCustomProps, '
       isLoading={isLoading}
       options={orgTypes}
       label={t('org_type_selector.selector_label', { defaultValue: 'Organization Type' })}
+      valueMode='value'
       {...props}
     />
   )
@@ -126,6 +138,7 @@ export const MembershipSizeSelector = ({ defaultValue, ...props }: Omit<SelectCu
     <SelectCustom
       options={listSizes}
       label={t('membership_size.selector_label', { defaultValue: 'Membership Size' })}
+      valueMode='value'
       {...props}
     />
   )

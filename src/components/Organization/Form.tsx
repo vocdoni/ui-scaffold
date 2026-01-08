@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import Editor from '~components/Editor'
 import { CountrySelector } from '~shared/Form/CountrySelector'
 import InputBasic from '~shared/Form/InputBasic'
-import { MembershipSizeSelector, OrganizationTypeSelector, SelectOptionType } from '~shared/Layout/SaasSelector'
+import { MembershipSizeSelector, OrganizationTypeSelector } from '~shared/Layout/SaasSelector'
 
 export const PublicOrgForm = ({ minified }: { minified?: boolean }) => {
   const { t } = useTranslation()
@@ -51,9 +51,9 @@ export const PublicOrgForm = ({ minified }: { minified?: boolean }) => {
 }
 
 export type PrivateOrgFormData = {
-  size: SelectOptionType
-  type: SelectOptionType
-  country: SelectOptionType
+  size: string
+  type: string
+  country: string
 }
 
 export const PrivateOrgForm = ({ minified }: { minified?: boolean }) => {

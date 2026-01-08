@@ -70,7 +70,7 @@ export const CountrySelector = ({ ...props }: Omit<SelectProps, 'options'>) => {
             value={data.find((opt) => opt.value === field.value)}
             getOptionLabel={(option) => `${(option as CountryOptionType).flag} ${option.label}`}
             onChange={(selectedOption) => {
-              setValue('country', selectedOption)
+              setValue('country', selectedOption?.value ?? '')
             }}
             isClearable={false}
             {...props}

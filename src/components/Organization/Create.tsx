@@ -19,7 +19,7 @@ import { Routes } from '~src/router/routes'
 import { AnalyticsEvent } from '~utils/analytics'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 
-type FormData = PrivateOrgFormData & CreateOrgParams
+type FormData = PrivateOrgFormData & Omit<CreateOrgParams, 'size' | 'type' | 'country'>
 
 type OrganizationCreateResponse = {
   address: string
@@ -44,9 +44,9 @@ const useOrganizationCreate = (
           name: values.name,
           website: values.website,
           description: values.description,
-          size: values.size?.value,
-          country: values.country?.value,
-          type: values.type?.value,
+          size: values.size,
+          country: values.country,
+          type: values.type,
         },
         method: 'POST',
       })

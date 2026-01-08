@@ -17,7 +17,7 @@ import { QueryKeys } from '~src/queries/keys'
 import { SetupStepIds, useOrganizationSetup } from '~src/queries/organization'
 import { PrivateOrgForm, PrivateOrgFormData, PublicOrgForm } from './Form'
 
-type FormData = PrivateOrgFormData & CreateOrgParams
+type FormData = PrivateOrgFormData & Omit<CreateOrgParams, 'size' | 'type' | 'country'>
 
 const useOrganizationEdit = (options?: Omit<UseMutationOptions<void, Error, CreateOrgParams>, 'mutationFn'>) => {
   const { bearedFetch } = useAuth()
@@ -55,12 +55,8 @@ const EditOrganization = () => {
       name: organization?.account.name.default || '',
       website: organization?.website || '',
       description: organization?.account.description.default || '',
-      size: organization?.size && {
-        value: organization.size,
-      },
-      type: organization?.type && {
-        value: organization.type,
-      },
+      size: organization?.size ?? '',
+      type: organization?.type ?? '',
       country: organization?.country,
       avatar: organization?.account.avatar || '',
       header: organization?.account.header || '',
@@ -73,9 +69,9 @@ const EditOrganization = () => {
     setPending(true)
     const newInfo: CreateOrgParams = {
       website: values.website,
-      size: values.size?.value,
-      type: values.type?.value,
-      country: values.country?.value,
+      size: values.size,
+      type: values.type,
+      country: values.country,
     }
 
     try {
