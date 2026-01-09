@@ -946,7 +946,15 @@ const ProcessCreateView = () => {
           paddingBottom={4}
         >
           {/* Top bar with draft status and sidebar toggle */}
-          <HStack position='sticky' top='64px' p={2} bg='chakra.body.bg' zIndex='contents'>
+          <HStack
+            position='sticky'
+            top={0}
+            p={2}
+            bg='rgba(255, 255, 255, 0.8)'
+            _dark={{ bg: 'rgba(0, 0, 0, 0.8)' }}
+            backdropFilter='blur(10px)'
+            zIndex={99}
+          >
             {effectiveDraftId && (
               <Box px={3} py={1} borderRadius='full' bg='gray.100' _dark={{ bg: 'whiteAlpha.200' }} fontSize='sm'>
                 <Trans i18nKey='process.create.status.draft'>Draft</Trans>

@@ -28,7 +28,7 @@ export const DashboardBox = (props: BoxProps) => (
 )
 
 export const DashboardContents = (props: BoxProps) => (
-  <Flex flexDirection={'column'} maxW='1536px' w='full' mx='auto' p={6} {...props} />
+  <Flex flexDirection={'column'} maxW='1536px' w='full' mx='auto' px={6} pt={20} pb={6} {...props} />
 )
 
 export const DashboardSection = (props: BoxProps) => (
@@ -73,7 +73,7 @@ export const Sidebar = ({ show, ...props }: SidebarProps) => (
     style={{
       position: 'fixed',
       right: 0,
-      top: 65,
+      top: 0,
       bottom: 0,
       width: null, // to override chakra's default width
       zIndex: 10,

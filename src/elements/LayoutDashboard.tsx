@@ -42,24 +42,10 @@ const LayoutDashboard: React.FC = () => {
           {/* Sidebar for large screens */}
           <DashboardMenu isOpen={isOpen} onClose={onClose} />
 
-          <Flex flex='1 1 0' flexDirection='column' minW={0}>
+          <Flex flex='1 1 0' flexDirection='column' minW={0} position='relative'>
             <AnnouncementBanner />
-            {/* Top Menu */}
-            <Box
-              position='sticky'
-              borderBottom='1px solid'
-              borderColor='table.border'
-              bgColor='chakra.body.bg'
-              top={0}
-              pr={4}
-              pl={{ base: 4, md: 2 }}
-              gap={4}
-              display='flex'
-              h={16}
-              flexShrink={0}
-              alignItems='center'
-              zIndex={100}
-            >
+            {/* Sidebar Toggle Button - Relocated */}
+            <Box position='absolute' top={4} left={{ base: 4, md: 2 }} zIndex={100}>
               <IconButton
                 icon={<LuPanelLeft />}
                 aria-label={t('menu.open')}
@@ -67,36 +53,8 @@ const LayoutDashboard: React.FC = () => {
                 size='xs'
                 onClick={isMobile ? onOpen : () => setReduced((prev) => !prev)}
               />
-
-              <Box borderRight='1px solid' borderRightColor='table.border' h={6} />
-
-              <Breadcrumb breadcrumb={breadcrumb} setBreadcrumb={setBreadcrumb} />
-
-              <Flex gap={2} ml='auto' alignItems='center'>
-                <DashboardBookerModalButton
-                  leftIcon={<Icon as={LuCircleHelp} />}
-                  iconSpacing={{ base: 0, lg: 2 }}
-                  colorScheme='gray'
-                  variant='solid'
-                  size='sm'
-                >
-                  <Text as='span' display={{ base: 'none', lg: 'flex' }} fontSize='sm'>
-                    <Trans i18nKey='do_you_need_help'>Do you need help?</Trans>
-                  </Text>
-                </DashboardBookerModalButton>
-                <Button
-                  as={ReactRouterLink}
-                  to={generatePath(Routes.processes.create)}
-                  leftIcon={<Icon as={LuPlus} />}
-                  iconSpacing={{ base: 0, lg: 2 }}
-                  size='sm'
-                >
-                  <Text as='span' fontSize='sm' display={{ base: 'none', lg: 'flex' }}>
-                    <Trans i18nKey='new_voting'>New vote</Trans>
-                  </Text>
-                </Button>
-              </Flex>
             </Box>
+
             <Outlet context={{ setBreadcrumb } satisfies DashboardLayoutContext} />
           </Flex>
         </Flex>
