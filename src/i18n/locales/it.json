@@ -212,7 +212,9 @@
     "contact_match_help": "Deve corrispondere a quello registrato nel sistema",
     "data_usage_info": "I dati verranno utilizzati solo per verificare l'identità. Vocdoni non conserva i dati personali.",
     "errors": {
-      "participant_not_found": "Il votante non è presente nel censimento o le credenziali fornite non sono corrette."
+      "participant_not_found": "Il votante non è presente nel censimento o le credenziali fornite non sono corrette.",
+      "requests_on_cooldown": "Troppe richieste. Attendi un momento prima di riprovare.",
+      "zero_voting_weight": "Non hai abbastanza potere di voto per accedere alla votazione."
     },
     "fields": {
       "birthDate": "Data di nascita",

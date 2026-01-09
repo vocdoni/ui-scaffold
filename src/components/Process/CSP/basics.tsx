@@ -48,12 +48,24 @@ export const useTwoFactorAuth = <T extends number>(process: PublishedElection, s
       if (!response.ok) {
         const { code, error } = await response.json()
 
-        const translatedMessage =
-          code === 40001
-            ? t('csp.errors.participant_not_found', {
+        const translatedMessage = (() => {
+          switch (code) {
+            case 40029:
+              return t('csp.errors.participant_not_found', {
                 defaultValue: 'The voter is not listed in the census, or the provided credentials are incorrect.',
               })
-            : error
+            case 40103:
+              return t('csp.errors.requests_on_cooldown', {
+                defaultValue: 'Too many requests. Please wait a moment before trying again.',
+              })
+            case 40801:
+              return t('csp.errors.zero_voting_weight', {
+                defaultValue: "You don't have enough voting power to access the election.",
+              })
+            default:
+              return error
+          }
+        })()
 
         throw new Error(translatedMessage)
       }
