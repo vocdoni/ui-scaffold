@@ -91,6 +91,7 @@ const SharedCensusHomeContent = () => {
   const sharedCensusAlways = parseSharedCensusCopy(import.meta.env.SHARED_CENSUS_ALWAYS_VISIBLE_TEXT)
   const sharedCensusDisconnected = parseSharedCensusCopy(import.meta.env.SHARED_CENSUS_DISCONNECTED_TEXT)
   const sharedCensusConnected = parseSharedCensusCopy(import.meta.env.SHARED_CENSUS_CONNECTED_TEXT)
+  const postText = parseSharedCensusCopy(import.meta.env.SHARED_CENSUS_POST_TEXT)
   const alwaysMarkdown = getLocalizedMarkdown(sharedCensusAlways)
   const disconnectedMarkdown = getLocalizedMarkdown(sharedCensusDisconnected)
   const connectedMarkdown = getLocalizedMarkdown(sharedCensusConnected)
@@ -160,7 +161,7 @@ const SharedCensusHomeContent = () => {
         </Text>
       )}
       {!canViewProcesses && (
-        <Text style={{ marginBottom: '50px', textAlign: 'center' }}>
+        <Text style={{ textAlign: 'center' }}>
           {t('shared_census.instructions.login', {
             defaultValue: 'To access the election press "Identify".',
           })}
@@ -168,6 +169,11 @@ const SharedCensusHomeContent = () => {
           {t('shared_census.instructions.identification', {
             defaultValue: 'We will ask for your identification. Afterwards, you can cast your vote securely.',
           })}
+        </Text>
+      )}
+      {postText && (
+        <Text display='flex' flexDirection='column' gap={4} maxW='90%' mt={10}>
+          {getLocalizedMarkdown(postText)}
         </Text>
       )}
     </Flex>

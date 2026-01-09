@@ -70,6 +70,11 @@ export const sharedCensusPlugin = ({ defaultLanguage }: SharedCensusPluginOption
     'SHARED_CENSUS_CONNECTED_TEXT',
     defaultLanguage
   )
+  const sharedCensusPostText = resolveSharedCensusText(
+    process.env.SHARED_CENSUS_POST_TEXT,
+    'SHARED_CENSUS_POST_TEXT',
+    defaultLanguage
+  )
   const streamUrl = resolveStreamUrl(process.env.STREAM_URL)
 
   const define: Record<string, string> = {}
@@ -88,6 +93,10 @@ export const sharedCensusPlugin = ({ defaultLanguage }: SharedCensusPluginOption
 
   if (typeof streamUrl !== 'undefined') {
     define['import.meta.env.STREAM_URL'] = JSON.stringify(streamUrl)
+  }
+
+  if (typeof sharedCensusPostText !== 'undefined') {
+    define['import.meta.env.SHARED_CENSUS_POST_TEXT'] = JSON.stringify(sharedCensusPostText)
   }
 
   return {
