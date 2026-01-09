@@ -103,6 +103,7 @@ const viteconfig = ({ mode }) => {
       'import.meta.env.LANGUAGES': JSON.stringify(languagesSlice),
       'import.meta.env.ANALYTICS_CLIENT_ID': JSON.stringify(process.env.ANALYTICS_CLIENT_ID || ''),
       'import.meta.env.CRISP_WEBSITE_ID': JSON.stringify(process.env.CRISP_WEBSITE_ID || ''),
+      'import.meta.env.HIDE_VOTER_COUNT': JSON.stringify(process.env.HIDE_VOTER_COUNT === 'true'),
     },
     plugins: [
       tsconfigPaths(),

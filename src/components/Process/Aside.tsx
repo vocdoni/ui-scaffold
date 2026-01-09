@@ -38,8 +38,12 @@ const ProcessAside = () => {
   const showVoters =
     election?.status !== ElectionStatus.CANCELED &&
     election?.status !== ElectionStatus.UPCOMING &&
-    !(election?.electionType.anonymous && voting)
-  const showVotes = !election?.electionType.secretUntilTheEnd && election?.status !== ElectionStatus.UPCOMING
+    !(election?.electionType.anonymous && voting) &&
+    !import.meta.env.HIDE_VOTER_COUNT
+  const showVotes =
+    !election?.electionType.secretUntilTheEnd &&
+    election?.status !== ElectionStatus.UPCOMING &&
+    !import.meta.env.HIDE_VOTER_COUNT
 
   let votes = 0
   if (election && showVotes && election?.questions.length) {
