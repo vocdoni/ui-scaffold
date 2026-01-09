@@ -950,9 +950,8 @@ const ProcessCreateView = () => {
             position='sticky'
             top={0}
             p={2}
-            bg='rgba(255, 255, 255, 0.8)'
-            _dark={{ bg: 'rgba(0, 0, 0, 0.8)' }}
-            backdropFilter='blur(10px)'
+            bg='white'
+            _dark={{ bg: 'gray.800' }}
             zIndex={99}
           >
             {effectiveDraftId && (
