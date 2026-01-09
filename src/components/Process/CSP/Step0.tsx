@@ -17,8 +17,8 @@ import { useElection } from '@vocdoni/react-providers'
 import { PublishedElection } from '@vocdoni/sdk'
 import { useForm } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
-import { useCspAuthContext } from './CSPStepsProvider'
 import { CSPStep0FormData, CSPStep0RequestData, useTwoFactorAuth } from './basics'
+import { useCspAuthContext } from './CSPStepsProvider'
 
 export const Step0Base = ({ election }: { election: PublishedElection }) => {
   const { t } = useTranslation()
@@ -36,6 +36,7 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
 
   const privacyPolicyUrl = import.meta.env.PRIVACY_POLICY_URL
   const termsOfServiceUrl = import.meta.env.TERMS_OF_SERVICE_URL
+  const crispWebsiteId = import.meta.env.CRISP_WEBSITE_ID
 
   const onSubmit = async (values: CSPStep0FormData) => {
     const trimmed: CSPStep0FormData = Object.fromEntries(
@@ -66,11 +67,30 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
       }
     }
 
+    const pushCrispUserFields = (fields: Record<string, string | undefined>) => {
+      if (!crispWebsiteId || typeof window === 'undefined') {
+        return
+      }
+
+      const w = window as Window & { $crisp?: CrispQueue }
+      if (!w.$crisp || typeof w.$crisp.push !== 'function') {
+        return
+      }
+
+      Object.entries(fields).forEach(([key, value]) => {
+        if (typeof value === 'string' && value.length > 0) {
+          w.$crisp.push(['set', `user:${key}`, value])
+        }
+      })
+    }
+
     try {
       const { authToken } = await auth.mutateAsync(form)
 
       // Store auth token in global context
       setAuthData((prev) => ({ ...prev, authToken }))
+
+      pushCrispUserFields(form)
 
       // Check if 2FA is required
       if (is2Factor) {
