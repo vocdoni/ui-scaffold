@@ -10,10 +10,8 @@ const DashBoardCreateOrg = () => {
   const { t } = useTranslation()
   const [onSuccessRoute, setOnSuccessRoute] = useState<To>(Routes.dashboard.base)
 
-
   // Set layout title and subtitle and back button
   useEffect(() => {
-
     if (window.history.state.idx) {
       setOnSuccessRoute(-1 as unknown)
     }

@@ -21,7 +21,6 @@ const DashboardProcessViewElement = () => {
     if (organization.address !== election.organizationId) {
       return navigate(generatePath(Routes.processes.view, { id: election.id }))
     }
-
   }, [organization, election])
 
   return (

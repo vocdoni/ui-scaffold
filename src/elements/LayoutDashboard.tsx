@@ -13,8 +13,6 @@ import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
 
 import DashboardMenu from '~shared/Dashboard/Menu'
 
-
-
 export type DashboardLayoutContextType = {
   reduced: boolean
 }
@@ -22,7 +20,6 @@ export type DashboardLayoutContextType = {
 export const DashboardLayoutContext = createContext<DashboardLayoutContextType | undefined>(undefined)
 
 const LayoutDashboard: React.FC = () => {
-
   const { isOpen, onOpen, onClose } = useDisclosure()
   const isMobile = useBreakpointValue({ base: true, md: false })
   const [reduced, setReduced] = useLocalStorage(LocalStorageKeys.DashboardMenuReduced, false)

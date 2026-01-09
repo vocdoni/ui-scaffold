@@ -5,8 +5,6 @@ import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { DashboardContents } from '~shared/Dashboard/Contents'
 
 const Dashboard = () => {
-
-
   return (
     <DashboardContents>
       <OrganizationDashboard />

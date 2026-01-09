@@ -9,7 +9,6 @@ import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 const ProcessCreatePage = () => {
   const { t } = useTranslation()
 
-
   return (
     <PricingModalProvider>
       <TemplateProvider>

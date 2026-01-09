@@ -19,7 +19,6 @@ const Settings = () => {
   const { t } = useTranslation()
   const { isLoading, isError, error, organization } = useSaasAccount()
 
-
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -48,7 +47,6 @@ const Settings = () => {
   )
 
   // Set layout variables
-
 
   return (
     <DashboardContents>

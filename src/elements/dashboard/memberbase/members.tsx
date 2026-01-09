@@ -70,8 +70,6 @@ const Members = () => {
     nextPage: null,
   }
 
-
-
   return (
     <TableProvider data={members} initialColumns={columns} isLoading={isLoading} isFetching={isFetching} error={error}>
       <RoutedPaginationProvider path={Routes.dashboard.memberbase.members} initialPage={1} pagination={pagination}>

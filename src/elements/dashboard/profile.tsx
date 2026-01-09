@@ -8,7 +8,6 @@ import { DashboardContents } from '~shared/Dashboard/Contents'
 const Profile = () => {
   const { t } = useTranslation()
 
-
   return (
     <DashboardContents>
       <AccountEdit />

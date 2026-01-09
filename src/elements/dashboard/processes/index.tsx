@@ -33,7 +33,6 @@ const OrganizationVotings = () => {
 
   // Set page title
 
-
   return (
     <DashboardContents>
       <Heading textTransform='capitalize'>{t('voting_processes')}</Heading>
