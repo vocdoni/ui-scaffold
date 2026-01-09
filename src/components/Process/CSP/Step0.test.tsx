@@ -88,9 +88,9 @@ describe('Step0Base crisp integration', () => {
     await fillAndSubmit()
 
     await waitFor(() => {
-      expect(push).toHaveBeenCalledWith(['set', 'user:memberNumber', '123'])
-      expect(push).toHaveBeenCalledWith(['set', 'user:name', 'Alice'])
-      expect(push).toHaveBeenCalledWith(['set', 'user:email', 'alice@example.com'])
+      expect(push).toHaveBeenCalledWith(['set', 'session:memberNumber', '123'])
+      expect(push).toHaveBeenCalledWith(['set', 'session:name', 'Alice'])
+      expect(push).toHaveBeenCalledWith(['set', 'session:email', 'alice@example.com'])
     })
   })
 
@@ -127,5 +127,28 @@ describe('Step0Base crisp integration', () => {
     })
 
     expect(push).not.toHaveBeenCalled()
+  })
+
+  it('does not block step progression when crisp push fails', async () => {
+    import.meta.env.CRISP_WEBSITE_ID = 'test-id'
+    const push = vi.fn(() => {
+      throw new Error('invalid')
+    })
+    setupCrisp(push)
+    mockMutateAsync.mockResolvedValue({ authToken: 'token-1' })
+
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined)
+
+    render(<Step0Base election={{} as any} />)
+
+    await fillAndSubmit()
+
+    await waitFor(() => {
+      expect(mockSetCurrentStep).toHaveBeenCalledWith(1)
+    })
+
+    expect(push).toHaveBeenCalled()
+    expect(consoleSpy).toHaveBeenCalled()
+    consoleSpy.mockRestore()
   })
 })

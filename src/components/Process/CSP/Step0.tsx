@@ -72,16 +72,24 @@ export const Step0Base = ({ election }: { election: PublishedElection }) => {
         return
       }
 
-      const w = window as Window & { $crisp?: CrispQueue }
+      const w = window as Window
       if (!w.$crisp || typeof w.$crisp.push !== 'function') {
         return
       }
 
-      Object.entries(fields).forEach(([key, value]) => {
-        if (typeof value === 'string' && value.length > 0) {
-          w.$crisp.push(['set', `user:${key}`, value])
-        }
-      })
+      try {
+        Object.entries(fields).forEach(([key, value]) => {
+          if (typeof value === 'string' && value.length > 0) {
+            try {
+              w.$crisp.push(['set', `session:${key}`, value])
+            } catch (error) {
+              console.error('Crisp push failed:', error)
+            }
+          }
+        })
+      } catch (error) {
+        console.error('Crisp push failed:', error)
+      }
     }
 
     try {
