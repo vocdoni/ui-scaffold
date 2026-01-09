@@ -205,7 +205,6 @@
     "subtitle": "Reduce costes, ahorra tiempo: seguro, privado y conforme al RGPD",
     "title": "Cuéntanos sobre tu organización"
   },
-  "create_process": "Crear proceso",
   "csp": {
     "authenticate": "Identificarse",
     "code_info": "Recibirás un código único en el medio seleccionado para verificar tu identidad y completar la autenticación.",
@@ -280,7 +279,6 @@
   "description": "Descripción",
   "discount": "Descuento",
   "do_it_later": "Hacerlo más tarde",
-  "do_you_need_help": "¿Necesitas ayuda?",
   "draft_processes": "Borradores",
   "drafts": {
     "clone": "Clonar borrador",
@@ -1591,8 +1589,7 @@
   },
   "profile": {
     "error": "Error al actualizar el perfil",
-    "success": "Perfil actualizado correctamente",
-    "title": "Perfil"
+    "success": "Perfil actualizado correctamente"
   },
   "promo_code": "Código promocional",
   "promo_code_required": "El código es obligatorio",

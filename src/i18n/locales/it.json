@@ -205,7 +205,6 @@
     "subtitle": "Taglia i costi, risparmia tempo: sicuro, privato e conforme al GDPR",
     "title": "Parlaci della tua organizzazione"
   },
-  "create_process": "Crea processo",
   "csp": {
     "authenticate": "Identifica",
     "code_info": "Si riceverà un codice univoco sul mezzo selezionato per verificare l'identità e completare l'autenticazione",
@@ -280,7 +279,6 @@
   "description": "Descrizione",
   "discount": "Sconto",
   "do_it_later": "Fallo più tardi",
-  "do_you_need_help": "Ti serve aiuto?",
   "draft_processes": "Bozze",
   "drafts": {
     "clone": "Clona bozza",
@@ -1591,8 +1589,7 @@
   },
   "profile": {
     "error": "Errore durante l'aggiornamento del profilo",
-    "success": "Profilo aggiornato con successo",
-    "title": "Profilo"
+    "success": "Profilo aggiornato con successo"
   },
   "promo_code": "Codice Promozione",
   "promo_code_required": "Il codice promozione è obbligatorio",

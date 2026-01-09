@@ -5,14 +5,14 @@ import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, useLoaderData, useNavigate, useOutletContext } from 'react-router-dom'
 import { ProcessView } from '~components/Process/Dashboard/ProcessView'
-import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+
 import { Routes } from '~src/router/routes'
 
 const DashboardProcessViewElement = () => {
   const { organization } = useOrganization()
   const { t } = useTranslation()
   const election = useLoaderData() as PublishedElection
-  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
+
   const navigate = useNavigate()
 
   // redirect to public view if not an owner (may need changes when org roles are in effect)
@@ -21,15 +21,6 @@ const DashboardProcessViewElement = () => {
     if (organization.address !== election.organizationId) {
       return navigate(generatePath(Routes.processes.view, { id: election.id }))
     }
-    setBreadcrumb([
-      {
-        title: t('voting_processes', { defaultValue: 'Voting processes' }),
-        route: Routes.dashboard.processes.base,
-      },
-      {
-        title: election.title.default,
-      },
-    ])
   }, [organization, election])
 
   return (

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { Heading, SubHeading } from '~components/shared/Dashboard/Contents'
-import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+
 import { Routes } from '~routes'
 
 export type MemberbaseTabsContext = {
@@ -13,7 +13,7 @@ export type MemberbaseTabsContext = {
   setSearch: (search: string) => void
   debouncedSearch: string
   submitSearch: () => void
-} & DashboardLayoutContext
+}
 
 export type JobId = string | null
 
@@ -21,7 +21,7 @@ export const MemberbaseTabs = () => {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const location = useLocation()
-  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
+
   const [jobId, setJobIdState] = useState<JobId>(() => localStorage.getItem('memberbaseImportJobId'))
   const [search, setSearch] = useState('')
   const [debouncedSearch, setDebouncedSearch] = useState(search)
@@ -81,7 +81,7 @@ export const MemberbaseTabs = () => {
             <Tab key={index}>{item.label}</Tab>
           ))}
         </TabList>
-        <Outlet context={{ setBreadcrumb, setJobId, jobId, search, setSearch, debouncedSearch, submitSearch }} />
+        <Outlet context={{ setJobId, jobId, search, setSearch, debouncedSearch, submitSearch }} />
       </Tabs>
     </>
   )

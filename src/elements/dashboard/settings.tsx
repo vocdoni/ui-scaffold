@@ -3,7 +3,7 @@ import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
 import { useSaasAccount } from '~components/Account/SaasAccountProvider'
-import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+
 import { DashboardContents, Heading, SubHeading } from '~shared/Dashboard/Contents'
 import QueryDataLayout from '~shared/Layout/QueryDataLayout'
 import { Routes } from '~src/router/routes'
@@ -18,7 +18,6 @@ type MenuItem = {
 const Settings = () => {
   const { t } = useTranslation()
   const { isLoading, isError, error, organization } = useSaasAccount()
-  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -48,15 +47,6 @@ const Settings = () => {
   )
 
   // Set layout variables
-  useEffect(() => {
-    const currentTab = menuItems[currentTabIndex] || menuItems[0]
-    setBreadcrumb([
-      { title: t('settings', { defaultValue: 'Settings' }), route: Routes.dashboard.settings.base },
-      {
-        title: currentTab.label,
-      },
-    ])
-  }, [setBreadcrumb, currentTabIndex])
 
   return (
     <DashboardContents>
