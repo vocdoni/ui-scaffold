@@ -5,11 +5,7 @@ import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 import { DashboardContents } from '~shared/Dashboard/Contents'
 
 const Dashboard = () => {
-  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
-  useEffect(() => {
-    setBreadcrumb([])
-  }, [setBreadcrumb])
 
   return (
     <DashboardContents>

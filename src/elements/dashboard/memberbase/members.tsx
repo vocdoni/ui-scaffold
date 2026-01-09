@@ -58,7 +58,7 @@ export const useMemberColumns = () => {
 const Members = () => {
   const { t } = useTranslation()
   const columns = useMemberColumns()
-  const { setBreadcrumb, debouncedSearch } = useOutletContext<MemberbaseTabsContext>()
+  const { debouncedSearch } = useOutletContext<MemberbaseTabsContext>()
   const { data, isLoading, isFetching, error } = usePaginatedMembers({ search: debouncedSearch })
 
   const members = data?.members || []
@@ -70,12 +70,7 @@ const Members = () => {
     nextPage: null,
   }
 
-  useEffect(() => {
-    setBreadcrumb([
-      { title: t('memberbase.title', { defaultValue: 'Memberbase' }), route: Routes.dashboard.memberbase.base },
-      { title: t('memberbase.members.title', { defaultValue: 'Members' }) },
-    ])
-  }, [setBreadcrumb])
+
 
   return (
     <TableProvider data={members} initialColumns={columns} isLoading={isLoading} isFetching={isFetching} error={error}>

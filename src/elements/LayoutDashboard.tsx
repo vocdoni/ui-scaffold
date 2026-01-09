@@ -10,12 +10,10 @@ import AnnouncementBanner from '~components/shared/Layout/AnnouncementBanner'
 import { LocalStorageKeys, MaxWindowWidth } from '~constants'
 import { Routes } from '~routes'
 import { DashboardBookerModalButton } from '~shared/Dashboard/Booker'
-import Breadcrumb, { BreadcrumbItem } from '~shared/Dashboard/Breadcrumb'
+
 import DashboardMenu from '~shared/Dashboard/Menu'
 
-export type DashboardLayoutContext = {
-  setBreadcrumb: (items: BreadcrumbItem[]) => void
-}
+
 
 export type DashboardLayoutContextType = {
   reduced: boolean
@@ -24,7 +22,7 @@ export type DashboardLayoutContextType = {
 export const DashboardLayoutContext = createContext<DashboardLayoutContextType | undefined>(undefined)
 
 const LayoutDashboard: React.FC = () => {
-  const [breadcrumb, setBreadcrumb] = useState<BreadcrumbItem[]>([])
+
   const { isOpen, onOpen, onClose } = useDisclosure()
   const isMobile = useBreakpointValue({ base: true, md: false })
   const [reduced, setReduced] = useLocalStorage(LocalStorageKeys.DashboardMenuReduced, false)
@@ -55,7 +53,7 @@ const LayoutDashboard: React.FC = () => {
               />
             </Box>
 
-            <Outlet context={{ setBreadcrumb } satisfies DashboardLayoutContext} />
+            <Outlet />
           </Flex>
         </Flex>
       </DashboardLayoutProviders>

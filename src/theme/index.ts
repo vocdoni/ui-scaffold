@@ -55,6 +55,7 @@ export const theme = extendTheme(vtheme, {
     background: 0,
     contents: 1,
     sidebar: 2,
+    sticky: 100,
     modal: 1400,
     hovering: 1500,
   },

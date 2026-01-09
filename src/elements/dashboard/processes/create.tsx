@@ -8,15 +8,7 @@ import { DashboardLayoutContext } from '~elements/LayoutDashboard'
 
 const ProcessCreatePage = () => {
   const { t } = useTranslation()
-  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
 
-  useEffect(() => {
-    setBreadcrumb([
-      {
-        title: t('create_process', { defaultValue: 'Create process' }),
-      },
-    ])
-  }, [setBreadcrumb])
 
   return (
     <PricingModalProvider>

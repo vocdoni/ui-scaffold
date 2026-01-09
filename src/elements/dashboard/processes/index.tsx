@@ -3,13 +3,13 @@ import { ElectionStatus } from '@vocdoni/sdk'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { generatePath, matchPath, Outlet, useLocation, useNavigate, useOutletContext } from 'react-router-dom'
-import { DashboardLayoutContext } from '~elements/LayoutDashboard'
+
 import { Routes } from '~routes'
 import { DashboardContents, Heading, SubHeading } from '~shared/Dashboard/Contents'
 
 const OrganizationVotings = () => {
   const { t } = useTranslation()
-  const { setBreadcrumb } = useOutletContext<DashboardLayoutContext>()
+
   const navigate = useNavigate()
   const location = useLocation()
   const menuItems = [
@@ -32,13 +32,7 @@ const OrganizationVotings = () => {
   const currentTabIndex = isDrafts ? 2 : isEnded ? 1 : 0
 
   // Set page title
-  useEffect(() => {
-    setBreadcrumb([
-      {
-        title: t('voting_processes', { defaultValue: 'Voting processes' }),
-      },
-    ])
-  }, [setBreadcrumb])
+
 
   return (
     <DashboardContents>
@@ -58,7 +52,7 @@ const OrganizationVotings = () => {
             <Tab key={index}>{item.label}</Tab>
           ))}
         </TabList>
-        <Outlet context={{ setBreadcrumb }} />
+        <Outlet />
       </Tabs>
     </DashboardContents>
   )
