@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { mockUseElection, render, screen, waitFor } from '~src/test-utils'
 import { setReactProvidersMock } from '~src/test-utils-react-providers-mock'
-import { ProcessInfoCard, VotingVoteModal } from './View'
+import { ProcessInfoCard, SuccessVoteModal, VotingVoteModal } from './View'
 
 vi.mock('@vocdoni/react-components', async (importOriginal) => {
   const actual = (await importOriginal()) as typeof import('@vocdoni/react-components')
@@ -84,5 +84,47 @@ describe('VotingVoteModal', () => {
     await waitFor(() => {
       expect(screen.queryByText('Your vote could not be cast')).not.toBeInTheDocument()
     })
+  })
+})
+
+describe('SuccessVoteModal', () => {
+  const setElection = (election: Record<string, unknown>, overrides: Record<string, unknown> = {}) =>
+    setReactProvidersMock({
+      useElection: () =>
+        mockUseElection({
+          election: { id: 'p1', questions: [{ id: 'q1' }], ...election },
+          hasVoted: true,
+          ...overrides,
+        }),
+    })
+
+  // The dialog opens from an effect and renders through a portal, so every
+  // assertion here waits for it rather than reading the first paint.
+  it('warns that an anonymous receipt will not come back', async () => {
+    setElection({ census: { anonymous: true } }, { voteId: '0xdeadbeef' })
+
+    render(<SuccessVoteModal />)
+
+    expect(await screen.findByText(/cannot show it again/)).toBeInTheDocument()
+  })
+
+  it('says nothing about anonymity on a private ballot', async () => {
+    setElection({ census: {} }, { voteId: '0xdeadbeef' })
+
+    render(<SuccessVoteModal />)
+
+    expect(await screen.findByTestId('vote-success-modal')).toBeInTheDocument()
+    expect(screen.queryByText(/cannot show it again/)).not.toBeInTheDocument()
+  })
+
+  it('does not offer a bare explorer link when there is no vote id to verify', async () => {
+    // An anonymous voter returning after a reload: the id was never recorded
+    // server-side, so a link to the explorer root would answer nothing.
+    setElection({ census: { anonymous: true } }, { voteId: null })
+
+    render(<SuccessVoteModal />)
+
+    expect(await screen.findByText(/cast successfully/)).toBeInTheDocument()
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
   })
 })

@@ -46,6 +46,7 @@
   "annual": "Annuel<1>40 % d'économie</1>",
   "apply": "Appliquer",
   "aside": {
+    "anonymous_receipt_gone": "",
     "has_already_voted": "Votre vote a bien été enregistré",
     "is_not_in_census": "Vous ne figurez pas sur la liste électorale",
     "votes_one": "<span>1</span> <text>votant</text>",
@@ -352,7 +353,7 @@
   },
   "error_removing_code": "Erreur lors de la suppression du code",
   "features": {
-    "anonymous_voting": "Vote anonyme",
+    "anonymous": "Vote anonyme",
     "approval": "Vote par approbation",
     "audit": "Audit",
     "audit_blockchain": "100 % auditable sur la blockchain",
@@ -1285,6 +1286,18 @@
   },
   "privacy_policy": "Politique de confidentialité",
   "process": {
+    "anonymity": {
+      "anonymous": {
+        "description": "",
+        "short": "",
+        "title": ""
+      },
+      "private": {
+        "description": "",
+        "short": "",
+        "title": ""
+      }
+    },
     "census": "Liste électorale",
     "create": {
       "action": {
@@ -1384,8 +1397,10 @@
       "upcoming": "À venir"
     },
     "success_modal": {
+      "anonymous_receipt": "",
       "btn": "Fermer",
       "text": "<p>Votre vote a été émis et stocké de manière sécurisée grâce à la technologie de Vocdoni. Vous pouvez le vérifier <verify>ici</verify>.</p>",
+      "text_no_id": "",
       "title": "Vote envoyé !"
     },
     "summary": {
@@ -1403,6 +1418,7 @@
       "tech_description": "Cette consultation utilise le système de vote numérique de Vocdoni, une technologie open source qui offre aux syndicats, associations et autres organisations les plus hautes garanties démocratiques dans les processus de vote.",
       "tech_integrity": "<b>Intégrité :</b> le système garantit qu'aucun vote ne peut être modifié, supprimé ou manipulé une fois émis.",
       "tech_privacy": "<b>Confidentialité :</b> le vote est totalement secret et il est impossible de relier un vote émis à l'identité de l'électeur.",
+      "tech_pseudonymity": "",
       "tech_title": "Garanties du vote",
       "tech_verifiability": "<b>Vérifiabilité :</b> chaque participant peut vérifier que son vote a été correctement enregistré et comptabilisé, sans compromettre le secret du vote.",
       "time_remaining": "Temps restant pour voter",
@@ -1480,6 +1496,10 @@
     "public_voting_page": "Page de vote publique"
   },
   "process_create": {
+    "anonymity": {
+      "title": "",
+      "tooltip": ""
+    },
     "auto_start": "Démarrer immédiatement",
     "basic_configuration": "Configuration de base",
     "census": {
@@ -1525,6 +1545,7 @@
     "weight": {
       "equal": "Une personne, une voix",
       "title": "Poids du vote",
+      "tooltip": "",
       "weighted": "Pondéré par poids du vote"
     },
     "youtube": {
@@ -2007,10 +2028,12 @@
   "view_plans_and_pricing": "Voir les forfaits et tarifs",
   "vocdoni_logo": "Logo de Vocdoni",
   "vote": {
+    "anonymous_receipt": "",
     "voted_title": "Votre vote a été enregistré avec succès !"
   },
   "vote_information": "Informations sur le vote",
   "vote_overwrite": "Modification du vote",
+  "voter_anonymity": "",
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Ajoutez une couche de sécurité supplémentaire en exigeant des électeurs qu'ils vérifient leur identité",
@@ -2024,6 +2047,7 @@
     "2fa_sms_description": "Les électeurs recevront un code de vérification par SMS",
     "2fa_voter_choice": "<email /> ou <phone /> Choix de l'électeur",
     "2fa_voter_choice_description": "Les électeurs peuvent choisir leur méthode de vérification préférée",
+    "anonymity": "",
     "button": {
       "configure": "Configurer l'authentification des électeurs",
       "edit": "Modifier l'authentification des électeurs"

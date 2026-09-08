@@ -99,6 +99,17 @@ const ProcessAside = () => {
           >
             {t('aside.has_already_voted').toString()}
           </Text>
+          {/* The vote id was only ever shown at cast time: an anonymous census
+              keeps no link between the voter and the vote, so there is nothing
+              to look up on a later visit. Say that instead of leaving the
+              voter hunting for a receipt that cannot come back. */}
+          {election.census?.anonymous && (
+            <Text fontSize='xs' color='texts.subtle' textAlign='center'>
+              {t('aside.anonymous_receipt_gone', {
+                defaultValue: 'Your receipt was shown when you voted and cannot be retrieved.',
+              })}
+            </Text>
+          )}
         </Flex>
       )}
     </Flex>

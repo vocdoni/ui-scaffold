@@ -27,6 +27,7 @@ Tone: professional yet approachable. Strings are user-facing UI text (buttons, l
 | approval voting | votación por aprobación | |
 | anonymous voting | votación anónima | "anonymous"/"anonymity" → "anónimo"/"anonimato" (noun) |
 | ballot secrecy / secret vote | secreto del voto | **Distinct concept — do not conflate with anonymity.** English "secret"/"secrecy" → "secreto" ("el voto es completamente secreto", "el secreto del voto"). Anonymity means a vote can't be linked to a voter; secrecy means the ballot content stays hidden. Translate each English term with its matching Spanish term — never use "secreto" for the anonymous-voting feature, nor "anónimo" for ballot secrecy |
+| private ballot / pseudonymous | voto privado / seudónimo | The default mode, opposite the anonymous one: the ballot carries a one-time code instead of a name, but platform records could still connect it to a member. Translate "private ballot" as "voto privado" and "pseudonymous" as "seudónimo" — never as "anónimo" (that is the other mode) nor "secreto" (that is ballot secrecy) |
 | explorer | Explorer | Keep in English — common in blockchain UIs |
 | overwrite vote / correct vote | modificar el voto / corregir el voto | Prefer "modificar" for buttons, "corregir" for descriptions |
 | abstain | abstenerse / abstención | Use "abstenerse" for actions, "abstención" for the noun form |

@@ -301,7 +301,9 @@ export const isFeatureAvailable = (
 // t('features.email_notification', { defaultValue: '2FA Email' })
 // t('features.white_label', { defaultValue: 'White-label (no vocdoni branding)' })
 // t('features.live_streaming', { defaultValue: 'Live streaming integration' })
-// t('features.anonymous_voting', { defaultValue: 'Anonymous voting' })
+// The key must match PlanFeaturesTranslationKeys[SubscriptionPermission.Anonymous]
+// above, which is what SubscriptionLockedContent and the comparison table render.
+// t('features.anonymous', { defaultValue: 'Anonymous voting' })
 // t('features.overwrite', { defaultValue: 'Vote overwrite' })
 // t('features.live_results', { defaultValue: 'Live results' })
 // t('features.phone_support', { defaultValue: 'Phone' })

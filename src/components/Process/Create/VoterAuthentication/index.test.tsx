@@ -37,7 +37,13 @@ const defaultCensus: Census = {
   use2FAMethod: 'email',
 }
 
-const TestForm = ({ initialCensus = defaultCensus }: { initialCensus?: Census | null }) => {
+const TestForm = ({
+  initialCensus = defaultCensus,
+  anonymousVoting = false,
+}: {
+  initialCensus?: Census | null
+  anonymousVoting?: boolean
+}) => {
   const methods = useForm<Process>({
     defaultValues: {
       title: '',
@@ -50,7 +56,7 @@ const TestForm = ({ initialCensus = defaultCensus }: { initialCensus?: Census | 
       questions: [defaultQuestion],
       resultVisibility: 'hidden',
       weightedVote: false,
-      voterPrivacy: 'public',
+      anonymousVoting,
       groupId: 'group-1',
       census: initialCensus,
       censusType: CensusTypes.CSP,
@@ -121,6 +127,25 @@ describe('VoterAuthentication', () => {
 
     // Confirm does NOT make any additional API calls
     expect(mockValidateCensus).toHaveBeenCalledTimes(1)
+  })
+
+  it('validates the census with the anonymity chosen in the settings sidebar', async () => {
+    // The control lives outside this modal, but anonymity is part of the census
+    // spec the backend will receive, so the pre-flight has to carry it.
+    mockValidateCensus.mockResolvedValue({ valid: true })
+
+    const user = userEvent.setup()
+    render(<TestForm anonymousVoting />)
+
+    await user.click(screen.getByRole('button', { name: /voter authentication/i }))
+    await user.click(await screen.findByRole('button', { name: /next/i }))
+    await user.click(screen.getByRole('button', { name: /next/i }))
+
+    await waitFor(() => expect(mockValidateCensus).toHaveBeenCalledTimes(1))
+    expect(mockValidateCensus).toHaveBeenCalledWith({
+      orgAddress: '0x1',
+      census: { groupId: 'group-1', authFields: ['email'], twoFaFields: [], anonymous: true },
+    })
   })
 
   it('reports census_configured once when the auth configuration changes', async () => {

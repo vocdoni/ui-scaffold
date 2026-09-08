@@ -26,6 +26,7 @@ Tone: professional yet approachable. Strings are user-facing UI text (buttons, l
 | weighted voting | votação ponderada | |
 | approval voting | votação por aprovação | |
 | anonymous voting | votação anônima | Prefer the natural Brazilian term — note "anônimo" (not "anónimo" as in pt-PT) |
+| private ballot / pseudonymous | voto privado / pseudônimo | The default mode, opposite the anonymous one: the ballot carries a one-time code instead of a name, but platform records could still connect it to a member. Never use "anônimo" (that is the other mode) nor "secreto" (that is ballot secrecy) |
 | explorer | Explorer | Keep in English — common in blockchain UIs |
 | overwrite vote / correct vote | alterar voto / corrigir voto | Prefer "alterar" for buttons, "corrigir" for descriptions |
 | abstain | abster-se | |

@@ -3,7 +3,7 @@ import type { CreateVotingProcessRequest } from '@vocdoni/api-types'
 import { setReactProvidersMock } from '~src/test-utils-react-providers-mock'
 import { CensusTypes } from '../Census/CensusType'
 import { defaultQuestion, Process, SelectorTypes } from './common'
-import { useFormToVotingProcessRequest } from './index'
+import { buildCensusSpec, useFormToVotingProcessRequest } from './index'
 
 const mockPermission = vi.fn()
 
@@ -41,6 +41,19 @@ vi.mock('~src/providers/ApiClientProvider', () => ({
   useApiClient: vi.fn(),
 }))
 
+describe('buildCensusSpec', () => {
+  const form = (overrides: Partial<Process> = {}): Process =>
+    ({ groupId: 'g1', weightedVote: false, anonymousVoting: false, census: null, ...overrides }) as Process
+
+  it('marks the census anonymous when anonymous ballots are chosen', () => {
+    expect(buildCensusSpec(form({ anonymousVoting: true })).anonymous).toBe(true)
+  })
+
+  it('omits the flag for a private ballot rather than sending false', () => {
+    expect(buildCensusSpec(form()).anonymous).toBeUndefined()
+  })
+})
+
 describe('useFormToVotingProcessRequest', () => {
   let mockForm: Process
 
@@ -69,7 +82,7 @@ describe('useFormToVotingProcessRequest', () => {
         },
       ],
       resultVisibility: 'hidden',
-      voterPrivacy: 'public',
+      anonymousVoting: false,
       groupId: 'test-group-id',
       census: null,
       censusType: CensusTypes.CSP,
@@ -78,30 +91,33 @@ describe('useFormToVotingProcessRequest', () => {
     }
   })
 
-  const buildCensusSpec = (censusType = CensusTypes.CSP) => ({ groupId: 'test-group-id', weighted: undefined })
+  // A minimal stand-in for the real spec builder: these cases are about the
+  // request mapper, which takes the spec as an argument. `buildCensusSpec`
+  // itself is covered in its own describe below.
+  const censusSpec = () => ({ groupId: 'test-group-id', weighted: undefined })
 
   describe('basic field mapping', () => {
     it('maps title to { default } language map', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current({ ...mockForm, title: 'My Custom Title' }, buildCensusSpec())
+      const req = result.current({ ...mockForm, title: 'My Custom Title' }, censusSpec())
       expect(req.title).toEqual({ default: 'My Custom Title' })
     })
 
     it('maps description to { default } language map', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current({ ...mockForm, description: 'A description' }, buildCensusSpec())
+      const req = result.current({ ...mockForm, description: 'A description' }, censusSpec())
       expect(req.description).toEqual({ default: 'A description' })
     })
 
     it('omits description when empty', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current({ ...mockForm, description: '' }, buildCensusSpec())
+      const req = result.current({ ...mockForm, description: '' }, censusSpec())
       expect(req.description).toBeUndefined()
     })
 
     it('uses organization address as orgAddress', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current(mockForm, buildCensusSpec())
+      const req = result.current(mockForm, censusSpec())
       expect(req.orgAddress).toBe('0xorgaddr')
     })
 
@@ -114,13 +130,13 @@ describe('useFormToVotingProcessRequest', () => {
 
     it('sets secretUntilTheEnd true when resultVisibility is hidden', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current({ ...mockForm, resultVisibility: 'hidden' }, buildCensusSpec())
+      const req = result.current({ ...mockForm, resultVisibility: 'hidden' }, censusSpec())
       expect(req.questions[0].secretUntilTheEnd).toBe(true)
     })
 
     it('sets secretUntilTheEnd false when resultVisibility is live', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current({ ...mockForm, resultVisibility: 'live' }, buildCensusSpec())
+      const req = result.current({ ...mockForm, resultVisibility: 'live' }, censusSpec())
       expect(req.questions[0].secretUntilTheEnd).toBe(false)
     })
   })
@@ -128,7 +144,7 @@ describe('useFormToVotingProcessRequest', () => {
   describe('date mapping', () => {
     it('omits startDate when autoStart is true', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current({ ...mockForm, autoStart: true }, buildCensusSpec())
+      const req = result.current({ ...mockForm, autoStart: true }, censusSpec())
       expect(req.startDate).toBeUndefined()
     })
 
@@ -136,7 +152,7 @@ describe('useFormToVotingProcessRequest', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
       const req = result.current(
         { ...mockForm, autoStart: false, startDate: '2025-06-15', startTime: '14:30' },
-        buildCensusSpec()
+        censusSpec()
       )
       expect(req.startDate).toBeDefined()
       const d = new Date(req.startDate!)
@@ -149,7 +165,7 @@ describe('useFormToVotingProcessRequest', () => {
 
     it('parses endDate/endTime as ISO string', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current({ ...mockForm, endDate: '2025-06-20', endTime: '18:00' }, buildCensusSpec())
+      const req = result.current({ ...mockForm, endDate: '2025-06-20', endTime: '18:00' }, censusSpec())
       const d = new Date(req.endDate!)
       expect(d.getFullYear()).toBe(2025)
       expect(d.getMonth()).toBe(5)
@@ -160,7 +176,7 @@ describe('useFormToVotingProcessRequest', () => {
     it('falls back to start + 1 day when endDate is missing', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
       const before = new Date()
-      const req = result.current({ ...mockForm, endDate: '', endTime: '' }, buildCensusSpec())
+      const req = result.current({ ...mockForm, endDate: '', endTime: '' }, censusSpec())
       const end = new Date(req.endDate!)
       expect(end.getTime()).toBeGreaterThan(before.getTime() + 23 * 60 * 60 * 1000)
       expect(end.getTime()).toBeLessThan(before.getTime() + 25 * 60 * 60 * 1000)
@@ -170,7 +186,7 @@ describe('useFormToVotingProcessRequest', () => {
   describe('question mapping', () => {
     it('maps questions with { default } titles and choices', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current(mockForm, buildCensusSpec())
+      const req = result.current(mockForm, censusSpec())
       expect(req.questions).toHaveLength(1)
       expect(req.questions[0].title).toEqual({ default: 'Test Question' })
       expect(req.questions[0].description).toEqual({ default: 'Question description' })
@@ -189,7 +205,7 @@ describe('useFormToVotingProcessRequest', () => {
             { ...defaultQuestion, title: 'Q2', description: 'D2', options: [{ option: 'C' }, { option: 'D' }] },
           ],
         },
-        buildCensusSpec()
+        censusSpec()
       )
       expect(req.questions).toHaveLength(2)
       expect(req.questions[0].title).toEqual({ default: 'Q1' })
@@ -200,14 +216,14 @@ describe('useFormToVotingProcessRequest', () => {
   describe('single-choice question', () => {
     it('sets type to singlechoice', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current(mockForm, buildCensusSpec())
+      const req = result.current(mockForm, censusSpec())
       expect(req.questions[0].type).toBe('singlechoice')
       expect(req.questions[0].typeSetup).toBeUndefined()
     })
 
     it('does not send a ballotProtocol, letting the backend derive it from type', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current(mockForm, buildCensusSpec())
+      const req = result.current(mockForm, censusSpec())
       expect(req.questions[0].ballotProtocol).toBeUndefined()
     })
   })
@@ -225,7 +241,7 @@ describe('useFormToVotingProcessRequest', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
       const req = result.current(
         { ...mockForm, questions: [multiChoice({ maxNumberOfChoices: 2, minNumberOfChoices: 1 })] },
-        buildCensusSpec()
+        censusSpec()
       )
       expect(req.questions[0].type).toBe('multichoice')
       expect(req.questions[0].typeSetup).toEqual({ maxChoices: 2, minChoices: 1, uniqueChoices: false })
@@ -244,7 +260,7 @@ describe('useFormToVotingProcessRequest', () => {
             }),
           ],
         },
-        buildCensusSpec()
+        censusSpec()
       )
       expect(req.questions[0].typeSetup!.maxChoices).toBe(4)
     })
@@ -253,7 +269,7 @@ describe('useFormToVotingProcessRequest', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
       const req = result.current(
         { ...mockForm, questions: [multiChoice({ maxNumberOfChoices: 2, minNumberOfChoices: 0 })] },
-        buildCensusSpec()
+        censusSpec()
       )
       expect(req.questions[0].ballotProtocol).toBeUndefined()
     })
@@ -268,7 +284,7 @@ describe('useFormToVotingProcessRequest', () => {
             multiChoice({ title: 'Q2', maxNumberOfChoices: 2, minNumberOfChoices: 1 }),
           ],
         },
-        buildCensusSpec()
+        censusSpec()
       )
 
       expect(req.questions.map((question) => question.type)).toEqual(['singlechoice', 'multichoice'])
@@ -293,7 +309,7 @@ describe('useFormToVotingProcessRequest', () => {
             },
           ],
         },
-        buildCensusSpec()
+        censusSpec()
       )
       expect(req.questions[0].metadata).toBeDefined()
       expect((req.questions[0].metadata as any).choices[0].description).toBe('Opt desc')
@@ -302,7 +318,7 @@ describe('useFormToVotingProcessRequest', () => {
 
     it('omits metadata when extendedInfo is false', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req = result.current(mockForm, buildCensusSpec())
+      const req = result.current(mockForm, censusSpec())
       expect(req.questions[0].metadata).toBeUndefined()
     })
 
@@ -316,7 +332,7 @@ describe('useFormToVotingProcessRequest', () => {
             { ...defaultQuestion, title: 'Q2', options: [{ option: 'B' }] },
           ],
         },
-        buildCensusSpec()
+        censusSpec()
       )
 
       expect(req.questions[0].metadata).toBeDefined()
@@ -328,21 +344,21 @@ describe('useFormToVotingProcessRequest', () => {
     it('includes streamUri when LiveStreaming permission is granted', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
       mockPermission.mockReturnValue(true)
-      const req = result.current({ ...mockForm, streamUri: 'https://stream.example.com/live' }, buildCensusSpec())
+      const req = result.current({ ...mockForm, streamUri: 'https://stream.example.com/live' }, censusSpec())
       expect(req.streamUri).toBe('https://stream.example.com/live')
     })
 
     it('excludes streamUri when LiveStreaming permission is denied', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
       mockPermission.mockReturnValue(false)
-      const req = result.current({ ...mockForm, streamUri: 'https://stream.example.com/live' }, buildCensusSpec())
+      const req = result.current({ ...mockForm, streamUri: 'https://stream.example.com/live' }, censusSpec())
       expect(req.streamUri).toBeUndefined()
     })
 
     it('coerces empty streamUri to undefined even with permission', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
       mockPermission.mockReturnValue(true)
-      const req = result.current({ ...mockForm, streamUri: '' }, buildCensusSpec())
+      const req = result.current({ ...mockForm, streamUri: '' }, censusSpec())
       expect(req.streamUri).toBeUndefined()
     })
   })
@@ -350,7 +366,7 @@ describe('useFormToVotingProcessRequest', () => {
   describe('return type', () => {
     it('returns a plain object matching CreateVotingProcessRequest', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())
-      const req: CreateVotingProcessRequest = result.current(mockForm, buildCensusSpec())
+      const req: CreateVotingProcessRequest = result.current(mockForm, censusSpec())
       expect(req).toHaveProperty('orgAddress')
       expect(req).toHaveProperty('title')
       expect(req).toHaveProperty('questions')

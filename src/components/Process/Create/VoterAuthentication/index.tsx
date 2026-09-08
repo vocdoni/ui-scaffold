@@ -1,4 +1,17 @@
-import { Badge, Button, CloseButton, Dialog, Flex, Heading, Portal, Tabs, Text, useDisclosure } from '@chakra-ui/react'
+import {
+  Badge,
+  Button,
+  CloseButton,
+  Dialog,
+  Flex,
+  Heading,
+  HStack,
+  Icon,
+  Portal,
+  Tabs,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react'
 import { useMutation } from '@tanstack/react-query'
 import { VocdoniApiError } from '@vocdoni/api-client'
 import type { OrgMemberAuthField, OrgMemberTwoFaField } from '@vocdoni/api-types'
@@ -6,6 +19,8 @@ import { useOrganization } from '@vocdoni/react-components'
 import { useCallback, useEffect, useState } from 'react'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
+import { LuUnlink } from 'react-icons/lu'
+import { useAnonymityLabel } from '~components/Process/anonymityLabels'
 import { getApiErrorMessage } from '~components/Auth/api'
 import { useApiClient } from '~src/providers/ApiClientProvider'
 import { useToast } from '~components/Toast'
@@ -21,6 +36,7 @@ type ValidateCensusArgs = {
   groupId: string
   authFields?: string[]
   twoFaFields?: string[]
+  anonymous?: boolean
 }
 
 // Pre-flight check of the census the process will be created with: the chosen
@@ -31,13 +47,16 @@ const useValidateCensus = () => {
   const { client } = useApiClient()
 
   return useMutation({
-    mutationFn: ({ groupId, authFields, twoFaFields }: ValidateCensusArgs) =>
+    mutationFn: ({ groupId, authFields, twoFaFields, anonymous }: ValidateCensusArgs) =>
       client.elections.validateCensus({
         orgAddress: organization?.address ?? '',
         census: {
           groupId: groupId || undefined,
           authFields: authFields as OrgMemberAuthField[],
           twoFaFields: twoFaFields as OrgMemberTwoFaField[],
+          // The anonymity choice lives in the settings sidebar, but it is part
+          // of the census spec the backend will receive, so validate it too.
+          anonymous: anonymous || undefined,
         },
       }),
   })
@@ -72,6 +91,8 @@ export const VoterAuthentication = () => {
 
   const groupId = mainForm.watch('groupId')
   const census = mainForm.watch('census')
+  const anonymousVoting = mainForm.watch('anonymousVoting')
+  const anonymityLabel = useAnonymityLabel(anonymousVoting)
   const formData = voterAuthForm.watch()
   const hasNoCredentialsSelected = !formData?.credentials?.length && !formData?.use2FA
   const tabValues = ['credentials', 'twoFactor', 'summary'] as const
@@ -111,6 +132,7 @@ export const VoterAuthentication = () => {
           groupId,
           authFields: currentFormData.credentials,
           twoFaFields,
+          anonymous: anonymousVoting,
         })
 
         setActiveTabIndex(2)
@@ -203,6 +225,19 @@ export const VoterAuthentication = () => {
             use2FA={census?.use2FA}
             use2FAMethod={census?.use2FAMethod}
           />
+          {/* Neutral, and deliberately outside the credentials list and the
+              guarantees framing: anonymity is a different axis from how strongly
+              a voter is identified, not a further rung of it. Set in the
+              settings sidebar, echoed here so the census reads whole. */}
+          <HStack gap={2}>
+            <Icon as={LuUnlink} color='texts.subtle' />
+            <Text fontSize='sm' color='texts.subtle'>
+              {t('voter_auth.anonymity', {
+                defaultValue: 'Ballot anonymity: {{ mode }}',
+                mode: anonymityLabel,
+              })}
+            </Text>
+          </HStack>
         </Flex>
       )}
       <Dialog.Root

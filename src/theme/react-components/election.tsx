@@ -30,6 +30,7 @@ import {
   type ComponentsPartialDefinition,
   defineComponent,
   getElectionTitle,
+  useElection,
   useReactComponentsLocalize,
 } from '@vocdoni/react-components'
 import { ChangeEvent, useEffect, useRef, useState } from 'react'
@@ -409,6 +410,11 @@ export const electionComponents: ComponentsPartialDefinition = {
     const localize = useReactComponentsLocalize()
     const { VOCDONI_ENVIRONMENT } = useAppEnv()
     const explorerUrl = getVocdoniClientConfig(VOCDONI_ENVIRONMENT).explorerUrl ?? 'https://explorer.vote'
+    const { election } = useElection()
+    // An anonymous census has no server-side record tying a vote id to its
+    // voter, so this notice is the only place the id will ever appear: say so
+    // while it is still on screen.
+    const anonymous = !!election?.census?.anonymous
 
     // The SDK-joined `description` runs every vote line together inline and
     // linkifies the bare nullifier as the href, so rebuild the lines from
@@ -463,6 +469,13 @@ export const electionComponents: ComponentsPartialDefinition = {
 
             return <Text key={vote.questionId || index}>{linkifyToExplorer(line, vote.voteId)}</Text>
           })}
+          {anonymous && (
+            <Text fontSize='sm' fontWeight='bold'>
+              {t('vote.anonymous_receipt', {
+                defaultValue: 'Anonymous vote: save this receipt now, the platform cannot show it to you again.',
+              })}
+            </Text>
+          )}
         </Alert.Description>
       </Alert.Root>
     )

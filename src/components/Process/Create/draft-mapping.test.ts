@@ -258,6 +258,14 @@ describe('votingProcessToForm', () => {
       expect(votingProcessToForm(process()).census).toBeNull()
     })
 
+    it('restores anonymous voting', () => {
+      expect(votingProcessToForm(process({ census: { anonymous: true } })).anonymousVoting).toBe(true)
+    })
+
+    it('defaults to a private ballot when the census carries no anonymity flag', () => {
+      expect(votingProcessToForm(process()).anonymousVoting).toBe(false)
+    })
+
     it('restores the member group the census targeted', () => {
       expect(votingProcessToForm(process({ census: { groupId: 'group-1' } })).groupId).toBe('group-1')
     })
@@ -291,6 +299,12 @@ describe('votingProcessToCreateRequest', () => {
     const request = votingProcessToCreateRequest(process({ census: { groupId: 'group-1' } }), '0xorg')
 
     expect(request.census?.groupId).toBe('group-1')
+  })
+
+  it('keeps the census anonymity so the copy blind-signs too', () => {
+    const request = votingProcessToCreateRequest(process({ census: { anonymous: true } }), '0xorg')
+
+    expect(request.census?.anonymous).toBe(true)
   })
 
   it('keeps the named question type and sanitizes uniqueChoices on multichoice', () => {
