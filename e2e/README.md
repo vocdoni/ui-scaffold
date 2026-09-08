@@ -76,6 +76,13 @@ Check the stack is actually alive before debugging the suite —
 responding (a submit that never navigates), not as an obvious connection error,
 because the failing request is made by the page.
 
+If a vote is relayed but never lands (the success modal opens with no vote id,
+the public count stays at 0, and `curl localhost:8080/jobs/<jobId>` reports
+`census origin not compatible`), the cached `vocdoni-node:main` image is older
+than the feature under test. `docker compose -f integration/docker-compose.ci.yml pull`
+and boot again: `up` reuses whatever `:main` docker already has, and only CI
+pulls fresh every run.
+
 ## What it covers
 
 | Spec                              | Journey                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -83,6 +90,7 @@ because the failing request is made by the page.
 | `signup-otp.e2e.ts`               | Register → read the verification code out of the emailed message (and check its link points back at this app) → verify → create an organization → land in `/admin`. Plus the negative case: a wrong code is rejected.                                                                                                                                                                    |
 | `csp-2fa-voting.e2e.ts`           | The whole organizer→voter chain: signup → organization → CSV memberbase import → create a process with `memberNumber` credentials and an **email 2FA** census → publish on-chain → then, in a separate browser context, identify as a voter, receive the OTP, submit it and cast a ballot. Plus: a non-member gets no OTP mailed to them.                                                |
 | `weighted-question-matrix.e2e.ts` | The manual QA "creating processes matrix", folded into one journey: a **weighted** census (memberbase weight column → voting power) and one process mixing single+extended, multi+plain and multi+extended questions — each question its own on-chain election, voted in one batch. Asserts the voter sees their weight and that public tallies count it (7, not 1) per selected choice. |
+| `anonymous-voting.e2e.ts`         | The CSP + 2FA journey again, with **anonymous ballots** switched on in the wizard: the CSP blind-signs a ballot it never sees (a `blindPoint` → `blindSign` proof) instead of signing the voter's address. Asserts the public page announces the anonymity promise, the one-time receipt notice after casting, and that a never-authenticated observer sees the ballot counted on-chain. |
 
 Everything runs through the UI. Nothing is provisioned behind the app's back, so
 a break anywhere along that chain fails here.

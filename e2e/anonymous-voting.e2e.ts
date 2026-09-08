@@ -10,7 +10,7 @@ import { expect, prepareContext, test } from './helpers/fixtures'
 import { MailSubjects, waitForEmail } from './helpers/mailhog'
 
 /**
- * Flow 3 — voting on an anonymous (blind CSP) census.
+ * Flow 4 — voting on an anonymous (blind CSP) census.
  *
  * Same journey as the CSP + 2FA flow, with one difference that changes the
  * whole cryptographic path: the organizer picks anonymous ballots, so the CSP
