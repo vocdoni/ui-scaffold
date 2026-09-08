@@ -20,6 +20,8 @@ export type TestMember = {
   surname: string
   email: string
   memberNumber: string
+  /** Voting power for weighted processes. Optional: omitted, the CSV has no weight column. */
+  weight?: number
 }
 
 /**
@@ -35,7 +37,7 @@ export type TestMember = {
  * `Date.now()`, which repeats roughly every 16 minutes. A repeat would leave a
  * previous run's OTP sitting in the inbox under the same address.
  */
-export const makeMembers = (count: number, seed: string): TestMember[] => {
+export const makeMembers = (count: number, seed: string, weights?: number[]): TestMember[] => {
   const runToken = `${Date.now().toString(36)}${Math.floor(Math.random() * 1e6).toString(36)}`
 
   return Array.from({ length: count }, (_, index) => ({
@@ -43,12 +45,22 @@ export const makeMembers = (count: number, seed: string): TestMember[] => {
     surname: 'Test',
     email: `member-${runToken}-${index + 1}@test.local`,
     memberNumber: `${seed}${index + 1}`,
+    // Weighted processes reject a census whose members lack a voting power, so
+    // when weights are requested every member must get one.
+    ...(weights ? { weight: weights[index] } : {}),
   }))
 }
 
-/** The members as a CSV buffer, matching the importer's expected header names. */
+/**
+ * The members as a CSV buffer, matching the importer's expected header names.
+ * The weight column only exists when the members carry weights — the mapper in
+ * `importMembers` mirrors this, so both derive from the same data.
+ */
 export const membersCsv = (members: TestMember[]): Buffer => {
-  const header = 'name,surname,email,memberNumber'
-  const rows = members.map((m) => `${m.name},${m.surname},${m.email},${m.memberNumber}`)
+  const weighted = members.some((m) => m.weight !== undefined)
+  const header = `name,surname,email,memberNumber${weighted ? ',weight' : ''}`
+  const rows = members.map(
+    (m) => `${m.name},${m.surname},${m.email},${m.memberNumber}${weighted ? `,${m.weight}` : ''}`
+  )
   return Buffer.from([header, ...rows].join('\n'), 'utf8')
 }

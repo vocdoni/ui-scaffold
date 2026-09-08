@@ -103,8 +103,11 @@ export const importMembers = async (page: Page, members: TestMember[]): Promise<
 
   // The mapper starts empty — nothing is auto-detected — so every column the
   // census will need must be mapped explicitly. The option labels are the CSV's
-  // own header names.
-  for (const column of ['name', 'surname', 'email', 'memberNumber']) {
+  // own header names. `weight` (the voting power a weighted process reads) only
+  // exists when the members carry one, matching what `membersCsv` emitted.
+  const columns = ['name', 'surname', 'email', 'memberNumber']
+  if (members.some((member) => member.weight !== undefined)) columns.push('weight')
+  for (const column of columns) {
     await selectComboboxOption(page, page.locator(`#${column}`), column)
   }
 
@@ -116,10 +119,69 @@ export const importMembers = async (page: Page, members: TestMember[]): Promise<
   await expect(page.getByText(first.email, { exact: false })).toBeVisible({ timeout: 120_000 })
 }
 
+export type ChoiceSpec = {
+  label: string
+  /** Filled through the extended-info editor; requires `extendedInfo` on the question. */
+  description?: string
+}
+
+/**
+ * One wizard question. Type and presentation are per-question settings — every
+ * question is published as its own on-chain election, which is exactly what
+ * lets one process cover the whole single/multi × plain/extended matrix.
+ */
+export type QuestionSpec = {
+  title: string
+  /** The wizard default is single choice. */
+  type?: 'single' | 'multiple'
+  /** Switches the question to extended choice cards (per-choice description/image). */
+  extendedInfo?: boolean
+  /** Exactly two: the wizard starts every question with two empty options. */
+  choices: [ChoiceSpec, ChoiceSpec]
+}
+
 export type ProcessSpec = {
   title: string
-  question: string
-  choices: [string, string]
+  questions: QuestionSpec[]
+  /** Weighted by the memberbase voting-power column ("One person, one vote" otherwise). */
+  weighted?: boolean
+}
+
+/**
+ * Fills one question card of the create wizard. Field names come from
+ * react-hook-form (`questions.N....`), so nothing here depends on translated
+ * copy except the question-type option labels, which the Select renders from
+ * i18n defaults.
+ */
+const fillQuestion = async (page: Page, index: number, question: QuestionSpec): Promise<void> => {
+  await page.fill(`input[name="questions.${index}.title"]`, question.title)
+
+  if (question.type === 'multiple') {
+    // One type Select per question, in question order. It has no stable id —
+    // only its aria-label, which chakra-react-select puts on the focusable
+    // input.
+    await selectComboboxOption(page, page.getByLabel('Question type').nth(index), /Multiple choice/i)
+  }
+
+  if (question.extendedInfo) {
+    // Switch.Root's `id` prop becomes the zag machine id, and the DOM root
+    // renders as `switch:<id>` — hence the attribute selector instead of `#`.
+    const extendedSwitch = page.locator(`[id="switch:extended-info-${index}"]`)
+    await toggleSwitch(extendedSwitch)
+  }
+
+  for (const [optionIndex, choice] of question.choices.entries()) {
+    const optionInput = page.locator(`input[name="questions.${index}.options.${optionIndex}.option"]`)
+    await optionInput.fill(choice.label)
+
+    if (choice.description) {
+      // The per-choice description is a Lexical editor (a contenteditable), not
+      // an input, and only exists on extended cards. Scope it through the card
+      // that holds this option's title input.
+      const card = page.locator('[data-choice-card]').filter({ has: optionInput })
+      await card.locator('[contenteditable="true"]').fill(choice.description)
+    }
+  }
 }
 
 /**
@@ -156,19 +218,30 @@ export const createAndPublishTwoFactorProcess = async (page: Page, spec: Process
   await page.reload()
   await expect(page.locator('input[name="title"]')).toHaveValue(spec.title)
 
-  await page.fill('input[name="questions.0.title"]', spec.question)
-  await page.fill('input[name="questions.0.options.0.option"]', spec.choices[0])
-  await page.fill('input[name="questions.0.options.1.option"]', spec.choices[1])
+  for (const [index, question] of spec.questions.entries()) {
+    // The restored draft holds one default question; the rest are appended.
+    if (index > 0) {
+      await page.getByRole('button', { name: /Add question/i }).click()
+      await expect(page.locator(`input[name="questions.${index}.title"]`)).toBeVisible()
+    }
+    await fillQuestion(page, index, question)
+  }
 
-  // Guard the race above: if it ever changes shape, fail here with an obvious
-  // message instead of at the publish step's validation errors.
-  await expect(page.locator('input[name="questions.0.title"]')).toHaveValue(spec.question)
+  // Guard the draft race above: if it ever changes shape, fail here with an
+  // obvious message instead of at the publish step's validation errors.
+  await expect(page.locator('input[name="questions.0.title"]')).toHaveValue(spec.questions[0].title)
 
   // Live results, not the "hidden until the end" default: a secret process
   // seals ballots with per-question encryption keys the keykeepers only publish
   // after publication, which is a different feature with its own timing. This
   // suite is about the email/OTP journey, so keep the ballot path plain.
   await selectComboboxOption(page, page.locator('#resultVisibility'), /Live results/i)
+
+  if (spec.weighted) {
+    // Votes weighted by the memberbase voting-power column — the members must
+    // have been imported with weights or the census validation below rejects.
+    await selectComboboxOption(page, page.locator('#weightedVote'), /Weighted by voting power/i)
+  }
 
   // The census is the group; voter authentication cannot be configured until
   // one is chosen (the modal button reports as much).
@@ -285,25 +358,75 @@ export const authenticateVoterWithOtp = async (page: Page, member: TestMember): 
 }
 
 /**
- * Casts a vote for the choice at `choiceIndex` on the (single) question and
- * waits for the process to record it.
- *
- * The choice radios carry the ballot value as their `value` ("0", "1", …), so
- * the selection does not depend on the option's label. The confirm button does
- * — it is rendered by `@vocdoni/react-components`, outside this repo, so there
- * is no test-id to add to it.
+ * One question's selections on the voting form. `choices` holds ballot values
+ * ("0", "1", … as rendered on the inputs), so nothing depends on option labels.
  */
-export const castVote = async (page: Page, choiceIndex: number): Promise<void> => {
-  await page.locator(`input[type="radio"][value="${choiceIndex}"]`).check({ force: true })
+export type BallotSelection = {
+  /** Question position in the form — matches the wizard's question order. */
+  question: number
+  /** Must match the published question type: it decides radio vs checkbox. */
+  type: 'single' | 'multiple'
+  choices: number[]
+}
 
+/**
+ * The container of the question at `index` on the voting form. The form id is
+ * `election-questions-<processId>` but a prefix match is enough — one process
+ * renders one questions form — and its direct children are the question cards
+ * in process order (the "voted" notice only mounts after voting).
+ */
+const questionContainer = (page: Page, index: number): Locator =>
+  page.locator('form[id^="election-questions-"] > div').nth(index)
+
+/**
+ * Fills ballot selections across the questions form.
+ *
+ * Single-choice questions render hidden radios carrying the ballot value, so
+ * they need `check({ force })` (the visible control intercepts the click).
+ * Multiple-choice questions render Chakra checkboxes whose parts carry
+ * deterministic ids (`question-<q>-choice-<value>-control`) — the visible
+ * control is the click target there.
+ */
+export const fillBallot = async (page: Page, selections: BallotSelection[]): Promise<void> => {
+  for (const selection of selections) {
+    const container = questionContainer(page, selection.question)
+    for (const value of selection.choices) {
+      if (selection.type === 'single') {
+        await container.locator(`input[type="radio"][value="${value}"]`).check({ force: true })
+      } else {
+        await container.locator(`[id="question-${selection.question}-choice-${value}-control"]`).click()
+      }
+    }
+  }
+}
+
+/**
+ * Submits the filled ballot and waits for the whole batch to be recorded.
+ *
+ * The confirm button is rendered by `@vocdoni/react-components`, outside this
+ * repo, so there is no test-id to add to it.
+ *
+ * Waits for the success modal, NOT for the Vote button to disappear: the button
+ * goes as soon as submission starts, so that would pass while the vote is still
+ * being relayed (and would keep passing if it then failed). The modal renders
+ * only once EVERY question of the process reports the voter as having voted —
+ * each question is its own on-chain election, so this is also the multi-question
+ * completion check.
+ */
+export const submitBallot = async (page: Page): Promise<void> => {
   await page.getByRole('button', { name: /^Vote$/ }).click()
 
   const confirmation = page.getByRole('dialog')
   await confirmation.getByRole('button', { name: /confirm/i }).click()
 
-  // Wait for the success modal, NOT for the Vote button to disappear: the
-  // button goes as soon as submission starts, so that would pass while the vote
-  // is still being relayed (and would keep passing if it then failed). The
-  // modal renders only once the process reports the voter as having voted.
   await expect(page.getByTestId('vote-success-modal')).toBeVisible({ timeout: 180_000 })
+}
+
+/**
+ * Casts a vote for the choice at `choiceIndex` on the (single) question and
+ * waits for the process to record it.
+ */
+export const castVote = async (page: Page, choiceIndex: number): Promise<void> => {
+  await fillBallot(page, [{ question: 0, type: 'single', choices: [choiceIndex] }])
+  await submitBallot(page)
 }

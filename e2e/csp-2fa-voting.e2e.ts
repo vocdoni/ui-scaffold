@@ -31,8 +31,7 @@ test.describe('voting with a CSP + email 2FA census', () => {
 
     const processId = await createAndPublishTwoFactorProcess(page, {
       title: `E2E vote ${seed}`,
-      question: 'Do you approve?',
-      choices: ['Yes', 'No'],
+      questions: [{ title: 'Do you approve?', choices: [{ label: 'Yes' }, { label: 'No' }] }],
     })
     expect(processId).toBeTruthy()
 
@@ -99,8 +98,7 @@ test.describe('voting with a CSP + email 2FA census', () => {
     await importMembers(page, members)
     const processId = await createAndPublishTwoFactorProcess(page, {
       title: `E2E guard ${seed}`,
-      question: 'Do you approve?',
-      choices: ['Yes', 'No'],
+      questions: [{ title: 'Do you approve?', choices: [{ label: 'Yes' }, { label: 'No' }] }],
     })
 
     const voterContext = await browser.newContext()

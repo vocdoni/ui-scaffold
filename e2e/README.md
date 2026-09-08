@@ -78,10 +78,11 @@ because the failing request is made by the page.
 
 ## What it covers
 
-| Spec                    | Journey                                                                                                                                                                                                                                                                                                                                   |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `signup-otp.e2e.ts`     | Register → read the verification code out of the emailed message (and check its link points back at this app) → verify → create an organization → land in `/admin`. Plus the negative case: a wrong code is rejected.                                                                                                                     |
-| `csp-2fa-voting.e2e.ts` | The whole organizer→voter chain: signup → organization → CSV memberbase import → create a process with `memberNumber` credentials and an **email 2FA** census → publish on-chain → then, in a separate browser context, identify as a voter, receive the OTP, submit it and cast a ballot. Plus: a non-member gets no OTP mailed to them. |
+| Spec                              | Journey                                                                                                                                                                                                                                                                                                                                                                                  |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `signup-otp.e2e.ts`               | Register → read the verification code out of the emailed message (and check its link points back at this app) → verify → create an organization → land in `/admin`. Plus the negative case: a wrong code is rejected.                                                                                                                                                                    |
+| `csp-2fa-voting.e2e.ts`           | The whole organizer→voter chain: signup → organization → CSV memberbase import → create a process with `memberNumber` credentials and an **email 2FA** census → publish on-chain → then, in a separate browser context, identify as a voter, receive the OTP, submit it and cast a ballot. Plus: a non-member gets no OTP mailed to them.                                                |
+| `weighted-question-matrix.e2e.ts` | The manual QA "creating processes matrix", folded into one journey: a **weighted** census (memberbase weight column → voting power) and one process mixing single+extended, multi+plain and multi+extended questions — each question its own on-chain election, voted in one batch. Asserts the voter sees their weight and that public tallies count it (7, not 1) per selected choice. |
 
 Everything runs through the UI. Nothing is provisioned behind the app's back, so
 a break anywhere along that chain fails here.
@@ -93,7 +94,7 @@ a break anywhere along that chain fails here.
   sends.
 - `helpers/flows.ts` — reusable journeys (`registerAndVerify`,
   `createOrganization`, `importMembers`, `createAndPublishTwoFactorProcess`,
-  `authenticateVoterWithOtp`, `castVote`).
+  `authenticateVoterWithOtp`, `fillBallot`/`submitBallot`, `castVote`).
 - `helpers/fixtures.ts` — the `test` export to use instead of
   `@playwright/test` (it suppresses the cookie banner, which otherwise blocks
   clicks), plus helpers for Chakra's checkbox / switch / pin-input / combobox.
