@@ -363,6 +363,27 @@ describe('useFormToVotingProcessRequest', () => {
     })
   })
 
+  describe('anonymous census gating', () => {
+    const anonymousSpec = () => ({ ...censusSpec(), anonymous: true })
+
+    it('keeps the anonymous flag when the plan has the feature', () => {
+      const { result } = renderHook(() => useFormToVotingProcessRequest())
+      mockPermission.mockReturnValue(true)
+      const req = result.current(mockForm, anonymousSpec())
+      expect(req.census?.anonymous).toBe(true)
+    })
+
+    it('strips the anonymous flag when the plan lacks the feature', () => {
+      // The backend refuses to publish a blind-CSP census on such a plan, but
+      // only inside the publish job; the draft itself would save fine.
+      const { result } = renderHook(() => useFormToVotingProcessRequest())
+      mockPermission.mockReturnValue(false)
+      const req = result.current(mockForm, anonymousSpec())
+      expect(req.census?.anonymous).toBeUndefined()
+      expect(req.census?.groupId).toBe('test-group-id')
+    })
+  })
+
   describe('return type', () => {
     it('returns a plain object matching CreateVotingProcessRequest', () => {
       const { result } = renderHook(() => useFormToVotingProcessRequest())

@@ -1397,7 +1397,6 @@
       "upcoming": "À venir"
     },
     "success_modal": {
-      "anonymous_receipt": "",
       "btn": "Fermer",
       "text": "<p>Votre vote a été émis et stocké de manière sécurisée grâce à la technologie de Vocdoni. Vous pouvez le vérifier <verify>ici</verify>.</p>",
       "text_no_id": "",
@@ -1418,7 +1417,7 @@
       "tech_description": "Cette consultation utilise le système de vote numérique de Vocdoni, une technologie open source qui offre aux syndicats, associations et autres organisations les plus hautes garanties démocratiques dans les processus de vote.",
       "tech_integrity": "<b>Intégrité :</b> le système garantit qu'aucun vote ne peut être modifié, supprimé ou manipulé une fois émis.",
       "tech_privacy": "<b>Confidentialité :</b> le vote est totalement secret et il est impossible de relier un vote émis à l'identité de l'électeur.",
-      "tech_pseudonymity": "",
+      "tech_pseudonymity": "<b>Confidentialité :</b> les votes sont privés. Ils sont enregistrés sous un code à usage unique et l’organisation ne peut pas voir ce que chacun a voté.",
       "tech_title": "Garanties du vote",
       "tech_verifiability": "<b>Vérifiabilité :</b> chaque participant peut vérifier que son vote a été correctement enregistré et comptabilisé, sans compromettre le secret du vote.",
       "time_remaining": "Temps restant pour voter",

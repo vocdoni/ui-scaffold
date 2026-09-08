@@ -105,7 +105,7 @@ describe('SuccessVoteModal', () => {
 
     render(<SuccessVoteModal />)
 
-    expect(await screen.findByText(/cannot show it again/)).toBeInTheDocument()
+    expect(await screen.findByText(/cannot show it to you again/)).toBeInTheDocument()
   })
 
   it('says nothing about anonymity on a private ballot', async () => {
@@ -114,17 +114,19 @@ describe('SuccessVoteModal', () => {
     render(<SuccessVoteModal />)
 
     expect(await screen.findByTestId('vote-success-modal')).toBeInTheDocument()
-    expect(screen.queryByText(/cannot show it again/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/cannot show it to you again/)).not.toBeInTheDocument()
   })
 
-  it('does not offer a bare explorer link when there is no vote id to verify', async () => {
+  it('does not offer a bare explorer link, nor a receipt to save, when there is no vote id', async () => {
     // An anonymous voter returning after a reload: the id was never recorded
-    // server-side, so a link to the explorer root would answer nothing.
+    // server-side, so a link to the explorer root would answer nothing — and
+    // there is no receipt on screen to tell them to save.
     setElection({ census: { anonymous: true } }, { voteId: null })
 
     render(<SuccessVoteModal />)
 
     expect(await screen.findByText(/cast successfully/)).toBeInTheDocument()
     expect(screen.queryByRole('link')).not.toBeInTheDocument()
+    expect(screen.queryByText(/save this receipt now/)).not.toBeInTheDocument()
   })
 })

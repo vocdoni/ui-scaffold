@@ -4,6 +4,10 @@ import { render, screen } from '~src/test-utils'
 import { defaultProcessValues, Process } from '../common'
 import { ExtraConfig } from './ExtraConfig'
 
+vi.mock('~components/Layout/SubscriptionLockedContent', () => ({
+  SubscriptionLockedContent: ({ children }) => <>{children({ isLocked: false })}</>,
+}))
+
 const AnonymityWatcher = () => {
   const { watch } = useFormContext<Process>()
 

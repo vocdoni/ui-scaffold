@@ -1397,7 +1397,6 @@
       "upcoming": "Previst"
     },
     "success_modal": {
-      "anonymous_receipt": "Aquest és un vot anònim: res no vincula aquest comprovant amb tu, així que la plataforma no el pot tornar a mostrar. Desa’l ara si el vols conservar.",
       "btn": "Finalitzar",
       "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura amb la tecnologia de Vocdoni. Pots comprovar-ho <verify>aquí</verify>.</p>",
       "text_no_id": "<p>El teu vot s’ha emès correctament.</p>",

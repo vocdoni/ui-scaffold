@@ -1397,7 +1397,6 @@
       "upcoming": "Próximo"
     },
     "success_modal": {
-      "anonymous_receipt": "Este es un voto anónimo: nada vincula este comprobante contigo, así que la plataforma no puede volver a mostrarlo. Guárdalo ahora si quieres conservarlo.",
       "btn": "Cerrar",
       "text": "<p>Tu voto ha sido emitido y almacenado de forma segura con la tecnología de Vocdoni. Puedes comprobarlo <verify>aquí</verify>.</p>",
       "text_no_id": "<p>Tu voto se ha emitido correctamente.</p>",

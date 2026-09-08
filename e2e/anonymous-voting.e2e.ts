@@ -52,7 +52,7 @@ test.describe('voting on an anonymous census', () => {
 
       // The public page states which kind of ballot this is — the promise the
       // voter is being asked to trust.
-      await expect(voter.getByText(/No record on the platform links your ballot to you/i)).toBeVisible()
+      await expect(voter.getByText(/no vote can be traced back to a voter/i)).toBeVisible()
 
       const requestedAt = new Date()
       await authenticateVoterWithOtp(voter, member)
@@ -71,7 +71,7 @@ test.describe('voting on an anonymous census', () => {
 
       // The receipt is a one-time thing on an anonymous census, and the modal
       // says so — this is the only moment the voter can save it.
-      await expect(voter.getByTestId('vote-success-modal')).toContainText(/cannot show it again/i)
+      await expect(voter.getByTestId('vote-success-modal')).toContainText(/cannot show it to you again/i)
 
       // The envelope carried a valid blind signature and the chain accepted it:
       // read the count back in a session that never authenticated.

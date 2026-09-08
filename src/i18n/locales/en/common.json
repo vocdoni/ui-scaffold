@@ -1374,7 +1374,6 @@
       "upcoming": "Upcoming"
     },
     "success_modal": {
-      "anonymous_receipt": "This is an anonymous vote: nothing links this receipt to you, so the platform cannot show it again. Save it now if you want to keep it.",
       "btn": "Close",
       "text": "<p>Your vote has been securely cast and stored using Vocdoni's technology. You can verify it <verify>here</verify>.</p>",
       "text_no_id": "<p>Your vote has been cast successfully.</p>",

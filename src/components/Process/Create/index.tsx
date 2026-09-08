@@ -620,7 +620,10 @@ export const useFormToVotingProcessRequest = () => {
       startDate: parsedStart,
       endDate,
       streamUri: permission(SubscriptionPermission.LiveStreaming) ? form.streamUri || undefined : undefined,
-      census: censusSpec,
+      // Same treatment as streamUri: the plan gates blind-CSP censuses, and the
+      // backend rejects the publish (opaquely, inside the job) rather than the
+      // draft, so never let the flag through on a plan without the feature.
+      census: permission(SubscriptionPermission.Anonymous) ? censusSpec : { ...censusSpec, anonymous: undefined },
       questions,
     }
   }

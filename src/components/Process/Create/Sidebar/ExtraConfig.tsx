@@ -12,8 +12,10 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCircleHelp } from 'react-icons/lu'
 import { Select } from '~components/Form/Select'
-import { useAnonymityDescription } from '~components/Process/anonymityLabels'
+import { SubscriptionLockedContent } from '~components/Layout/SubscriptionLockedContent'
+import { useAnonymityLabels } from '~components/Process/anonymityLabels'
 import { Tooltip } from '~components/ui/Tooltip'
+import { SubscriptionPermission } from '~constants'
 import { useValidations } from '~utils/validation'
 import { Process } from '../common'
 
@@ -24,7 +26,18 @@ type SelectOption<T = string> = {
 
 const LabelTooltip = ({ children }: { children: React.ReactNode }) => (
   <Tooltip content={children} positioning={{ placement: 'top' }} contentProps={{ fontSize: 'sm', maxW: 'xs' }}>
-    <Box as='span' display='inline-flex' ml={1} cursor='help' color='texts.subtle' tabIndex={0}>
+    <Box
+      as='span'
+      display='inline-flex'
+      ml={1}
+      cursor='help'
+      color='texts.subtle'
+      tabIndex={0}
+      // This sits inside a <label>: without cancelling the click, tapping the
+      // icon to read the tooltip would activate the label's control (and flip
+      // the switch below). The tooltip trigger ignores a prevented click.
+      onClick={(event) => event.preventDefault()}
+    >
       <Icon as={LuCircleHelp} />
     </Box>
   </Tooltip>
@@ -34,48 +47,57 @@ const LabelTooltip = ({ children }: { children: React.ReactNode }) => (
  * Voter anonymity as an on/off setting, in the same shape as "Start immediately"
  * in the block above. Off is the ordinary vote and needs no explaining; on adds
  * the blind-signature layer, and that is the only state that gets a sentence.
+ *
+ * A plan feature: the backend refuses to publish a blind-CSP census on a plan
+ * without it, so the switch is locked the same way live streaming is.
  */
 const VoterAnonymity = () => {
   const { t } = useTranslation()
-  const { control, watch } = useFormContext<Process>()
-  const anonymousVoting = watch('anonymousVoting')
-  const description = useAnonymityDescription(true)
+  const { control } = useFormContext<Process>()
+  const { description } = useAnonymityLabels(true)
 
   return (
-    <Box>
-      <Controller
-        control={control}
-        name='anonymousVoting'
-        render={({ field }) => (
-          <Switch.Root
-            // `name` lands on the hidden input, which is the structural handle
-            // the e2e suite toggles this with — no test id needed.
-            name={field.name}
-            checked={field.value}
-            onCheckedChange={({ checked }) => field.onChange(checked)}
-          >
-            <Switch.HiddenInput onBlur={field.onBlur} />
-            <Switch.Control>
-              <Switch.Thumb />
-            </Switch.Control>
-            <Switch.Label display='flex' alignItems='center'>
-              <Trans i18nKey='process_create.anonymity.title'>Anonymous voting</Trans>
-              <LabelTooltip>
-                {t('process_create.anonymity.tooltip', {
-                  defaultValue:
-                    "Either way, your organization can't see how anyone voted. Voter anonymity adds a cryptographic layer that makes it impossible to link a vote to a person.",
-                })}
-              </LabelTooltip>
-            </Switch.Label>
-          </Switch.Root>
-        )}
-      />
-      {anonymousVoting && (
-        <Text fontSize='xs' color='texts.subtle' mt={1}>
-          {description}
-        </Text>
+    <SubscriptionLockedContent permissionType={SubscriptionPermission.Anonymous}>
+      {({ isLocked }) => (
+        <Box>
+          <Controller
+            control={control}
+            name='anonymousVoting'
+            render={({ field }) => (
+              <>
+                <Switch.Root
+                  // `name` lands on the hidden input, which is the structural handle
+                  // the e2e suite toggles this with — no test id needed.
+                  name={field.name}
+                  checked={field.value}
+                  disabled={isLocked}
+                  onCheckedChange={({ checked }) => field.onChange(checked)}
+                >
+                  <Switch.HiddenInput onBlur={field.onBlur} />
+                  <Switch.Control>
+                    <Switch.Thumb />
+                  </Switch.Control>
+                  <Switch.Label display='flex' alignItems='center'>
+                    <Trans i18nKey='process_create.anonymity.title'>Anonymous voting</Trans>
+                    <LabelTooltip>
+                      {t('process_create.anonymity.tooltip', {
+                        defaultValue:
+                          "Either way, your organization can't see how anyone voted. Voter anonymity adds a cryptographic layer that makes it impossible to link a vote to a person.",
+                      })}
+                    </LabelTooltip>
+                  </Switch.Label>
+                </Switch.Root>
+                {field.value && (
+                  <Text fontSize='xs' color='texts.subtle' mt={1}>
+                    {description}
+                  </Text>
+                )}
+              </>
+            )}
+          />
+        </Box>
       )}
-    </Box>
+    </SubscriptionLockedContent>
   )
 }
 

@@ -20,7 +20,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuUnlink } from 'react-icons/lu'
-import { useAnonymityLabel } from '~components/Process/anonymityLabels'
+import { useAnonymityLabels } from '~components/Process/anonymityLabels'
 import { getApiErrorMessage } from '~components/Auth/api'
 import { useApiClient } from '~src/providers/ApiClientProvider'
 import { useToast } from '~components/Toast'
@@ -92,7 +92,7 @@ export const VoterAuthentication = () => {
   const groupId = mainForm.watch('groupId')
   const census = mainForm.watch('census')
   const anonymousVoting = mainForm.watch('anonymousVoting')
-  const anonymityLabel = useAnonymityLabel(anonymousVoting)
+  const anonymityLabel = useAnonymityLabels(anonymousVoting).title
   const formData = voterAuthForm.watch()
   const hasNoCredentialsSelected = !formData?.credentials?.length && !formData?.use2FA
   const tabValues = ['credentials', 'twoFactor', 'summary'] as const

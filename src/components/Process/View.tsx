@@ -38,7 +38,7 @@ import { CreatedBy } from './CreatedBy'
 import { ElectionVideo } from './Dashboard/ProcessView'
 import { ProcessDate } from './Date'
 import Header from './Header'
-import { useAnonymityDescription, useAnonymityLabel } from './anonymityLabels'
+import { useAnonymityLabels } from './anonymityLabels'
 import { useVotingMethodLabel } from './resultTypeLabels'
 
 type ProcessInfoCardProps = {
@@ -68,19 +68,9 @@ export const ProcessInfoCard = ({ label, description, ...props }: ProcessInfoCar
  * builder — a voter and their organizer read the same promise.
  */
 const AnonymityInfoCard = ({ anonymous }: { anonymous?: boolean }) => {
-  const label = useAnonymityLabel(anonymous)
-  const description = useAnonymityDescription(anonymous)
+  const { title, description } = useAnonymityLabels(anonymous)
 
-  return (
-    <ProcessInfoCard
-      label={label}
-      description={
-        <Text color='texts.subtle' fontSize='sm'>
-          {description}
-        </Text>
-      }
-    />
-  )
+  return <ProcessInfoCard label={title} description={description} />
 }
 
 const VotingMethod = () => {
@@ -321,7 +311,6 @@ export const SuccessVoteModal = () => {
   if (!election || !hasVoted) return null
 
   const anonymous = !!election.census?.anonymous
-  const verify = voteId ? `${explorerUrl}/verify/${voteId}` : explorerUrl
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={({ open }) => setOpen(open)}>
@@ -342,7 +331,7 @@ export const SuccessVoteModal = () => {
                 <Trans
                   i18nKey='process.success_modal.text'
                   components={{
-                    verify: <Link href={verify} target='_blank' />,
+                    verify: <Link href={`${explorerUrl}/verify/${voteId}`} target='_blank' />,
                     p: <Text mb={2} />,
                   }}
                 />
@@ -357,11 +346,13 @@ export const SuccessVoteModal = () => {
                   components={{ p: <Text mb={2} /> }}
                 />
               )}
-              {anonymous && (
+              {/* The same one-line warning the Voted notice prints under the
+                  id, and only while there is an id on screen to save: on a
+                  return visit the receipt is already gone (the aside says so). */}
+              {anonymous && voteId && (
                 <Text fontSize='sm' color='texts.subtle'>
-                  {t('process.success_modal.anonymous_receipt', {
-                    defaultValue:
-                      'This is an anonymous vote: nothing links this receipt to you, so the platform cannot show it again. Save it now if you want to keep it.',
+                  {t('vote.anonymous_receipt', {
+                    defaultValue: 'Anonymous vote: save this receipt now, the platform cannot show it to you again.',
                   })}
                 </Text>
               )}

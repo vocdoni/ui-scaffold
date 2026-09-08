@@ -81,7 +81,7 @@ import { useCensusSize } from '~queries/census'
 import { Routes } from '~src/router/routes'
 import { getPublicProcessPath } from '~src/ssr/public-pages'
 import { AnalyticsEvents, trackAnalyticsEvent } from '~utils/analytics'
-import { useAnonymityShortLabel } from '../anonymityLabels'
+import { useAnonymityLabels } from '../anonymityLabels'
 import { useResultTypeLabel } from '../resultTypeLabels'
 import { VotingReportPdfButton } from '../VotingReportPdf/VotingReportPdfButton'
 import { CensusSearch } from './CensusSearch'
@@ -393,7 +393,7 @@ const ProcessViewSidebar = () => {
   const { showSidebar, closeSidebar } = useSidebarVisibility()
   const firstQuestion = election?.questions[0]
   const resultTypeLabel = useResultTypeLabel(firstQuestion ? inferQuestionBallotType(firstQuestion) : undefined, '')
-  const anonymityLabel = useAnonymityShortLabel(election?.census?.anonymous)
+  const anonymityLabel = useAnonymityLabels(election?.census?.anonymous).short
   // The explorer only knows on-chain (Vochain) ids; each question is its own on-chain election
   const explorerProcessId = firstQuestion?.upstreamId
 
