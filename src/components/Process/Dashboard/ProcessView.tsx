@@ -244,34 +244,25 @@ const ProcessViewContent = () => {
                 text={t('start_time', 'Start time')}
                 subtext={election && formatDate(election.startDate, t('dashboard.process_view.time_format', 'p'))}
               />
+              {/* One end, not two: a process stopped ahead of schedule keeps its configured `endDate`,
+                  so showing that would state a moment voting did not actually stop at. `earlyEndDate`
+                  is null whenever the process ran its course, which falls back to the configured one.
+                  The PDF certifies both dates instead — there the schedule is part of the record. */}
               <SettingsField
                 icon={LuCalendar}
                 text={t('end_date', 'End date')}
                 subtext={
-                  election && formatDate(election.endDate, t('dashboard.process_view.date_format', 'MMMM do, y'))
+                  election &&
+                  formatDate(earlyEndDate ?? election.endDate, t('dashboard.process_view.date_format', 'MMMM do, y'))
                 }
               />
               <SettingsField
                 icon={LuClock}
                 text={t('end_time', 'End time')}
-                subtext={election && formatDate(election.endDate, t('dashboard.process_view.time_format', 'p'))}
+                subtext={
+                  election && formatDate(earlyEndDate ?? election.endDate, t('dashboard.process_view.time_format', 'p'))
+                }
               />
-              {/* Only when the process was stopped ahead of schedule: the configured end above stays,
-                  since it is still what was announced to voters. */}
-              {earlyEndDate && (
-                <>
-                  <SettingsField
-                    icon={LuCalendar}
-                    text={t('actual_end_date', 'Actual end date')}
-                    subtext={formatDate(earlyEndDate, t('dashboard.process_view.date_format', 'MMMM do, y'))}
-                  />
-                  <SettingsField
-                    icon={LuClock}
-                    text={t('actual_end_time', 'Actual end time')}
-                    subtext={formatDate(earlyEndDate, t('dashboard.process_view.time_format', 'p'))}
-                  />
-                </>
-              )}
             </SimpleGrid>
           </DashboardBox>
 

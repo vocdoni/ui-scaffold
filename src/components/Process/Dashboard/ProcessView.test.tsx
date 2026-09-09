@@ -43,6 +43,13 @@ vi.mock('react-player', () => ({
   default: () => null,
 }))
 
+let earlyEndDate: Date | null = null
+
+vi.mock('~queries/process-end-date', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('~queries/process-end-date')>()),
+  useProcessEarlyEndDate: () => ({ data: earlyEndDate }),
+}))
+
 vi.mock('~components/Actions', () => ({
   ActionsProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
   ActionPause: ({ children }: { children: ReactNode }) => <button>{children}</button>,
@@ -226,6 +233,63 @@ describe('ProcessView navigation', () => {
     await waitFor(() => {
       expect(navigateSpy).toHaveBeenCalledWith('/admin/process/0xdef/results', { replace: true })
     })
+  })
+})
+
+describe('ProcessView schedule', () => {
+  const renderSchedule = () => {
+    setReactProvidersMock({
+      ElectionProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
+      useElection: () => ({
+        id: '0xabc',
+        election: createProcess('0xabc', 'RESULTS'),
+        status: 'RESULTS',
+        results: null,
+        loading: false,
+        client: { explorerUrl: 'https://example.test' },
+      }),
+    })
+
+    return render(
+      <TestMemoryRouter initialEntries={['/admin/process/0xabc']}>
+        <ProcessView />
+      </TestMemoryRouter>
+    )
+  }
+
+  afterEach(() => {
+    earlyEndDate = null
+  })
+
+  it('shows the configured end for a process that ran its course', async () => {
+    earlyEndDate = null
+
+    renderSchedule()
+
+    expect(await screen.findByText('End date')).toBeInTheDocument()
+    expect(screen.getByText('January 2nd, 2026')).toBeInTheDocument()
+  })
+
+  it('shows when voting actually stopped for a process ended ahead of schedule', async () => {
+    // The configured end (Jan 2) never happened, so the dashboard must not show it as the end.
+    earlyEndDate = new Date('2026-01-01T15:42:00Z')
+
+    renderSchedule()
+
+    expect(await screen.findByText('End date')).toBeInTheDocument()
+    // The process started Jan 1 and was stopped the same day, so both date fields read Jan 1 —
+    // the load-bearing assertion is that the configured Jan 2 end is gone.
+    expect(screen.getAllByText('January 1st, 2026')).toHaveLength(2)
+    expect(screen.queryByText('January 2nd, 2026')).toBeNull()
+  })
+
+  it('keeps one end field rather than a second "actual end" row', async () => {
+    earlyEndDate = new Date('2026-01-01T15:42:00Z')
+
+    renderSchedule()
+
+    expect(await screen.findByText('End date')).toBeInTheDocument()
+    expect(screen.queryByText(/actual end/i)).toBeNull()
   })
 })
 
