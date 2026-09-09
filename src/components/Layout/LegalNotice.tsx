@@ -1,6 +1,8 @@
 import { Box, Link, Text } from '@chakra-ui/react'
 import { useOrganization } from '@vocdoni/react-components'
 import { Trans } from 'react-i18next'
+import { useLocalizedText } from '~src/legacy/use-localized-text'
+import { getOrganizationName } from '~utils/organization'
 
 /**
  * Legal notice that never reads the organization context — for pages rendered without an
@@ -44,8 +46,11 @@ export const StaticLegalNotice = ({ orgName }: { orgName?: string }) => {
  */
 const LegalNotice = () => {
   const { organization } = useOrganization()
+  const localize = useLocalizedText()
 
-  return <StaticLegalNotice orgName={organization?.name?.default || organization?.address} />
+  // Deliberately no address fallback: "…, 0xe303c19b… uses the Vocdoni platform" reads as a bug
+  // to a voter, so an organization with no name renders no notice at all.
+  return <StaticLegalNotice orgName={localize(getOrganizationName(organization))} />
 }
 
 export default LegalNotice

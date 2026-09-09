@@ -26,9 +26,9 @@ const PublicProcessPage = ({
   const localize = useLocalizedText()
 
   if (legacyElection) {
-    // No OrganizationProvider in the archive era: feed the legal notice directly.
-    const orgName =
-      localize(legacyOrganization?.account?.name) || legacyOrganization?.address || legacyElection.organizationId
+    // No OrganizationProvider in the archive era: feed the legal notice directly. No address
+    // fallback — a hex address in that sentence reads as a bug, so it renders no notice instead.
+    const orgName = localize(legacyOrganization?.account?.name)
 
     return (
       <>

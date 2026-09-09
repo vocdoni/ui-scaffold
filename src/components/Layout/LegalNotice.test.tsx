@@ -32,18 +32,66 @@ describe('LegalNotice', () => {
     expect(screen.getByRole('link', { name: 'vocdoni.io' })).toHaveAttribute('href', 'https://vocdoni.io/')
   })
 
-  it('falls back to the organization address when the account name is missing', () => {
+  // The SaaS API stores the name under `meta.name`; the top-level `name` shorthand is only
+  // mirrored by newer backends, so both slots have to resolve to the same notice.
+  it('reads the name from meta.name when the top-level shorthand is missing', () => {
     setReactProvidersMock({
       useOrganization: () => ({
         organization: {
           address: '0xabc',
+          meta: { name: { default: 'Full Anon Org' } },
         },
       }),
     })
 
     render(<LegalNotice />)
 
-    expect(screen.getByText('0xabc')).toBeInTheDocument()
+    expect(screen.getByText('Full Anon Org')).toBeInTheDocument()
+    expect(screen.queryByText('0xabc')).not.toBeInTheDocument()
+  })
+
+  it('accepts the plain-string form of the name', () => {
+    setReactProvidersMock({
+      useOrganization: () => ({
+        organization: {
+          address: '0xabc',
+          meta: { name: 'Plain string org' },
+        },
+      }),
+    })
+
+    render(<LegalNotice />)
+
+    expect(screen.getByText('Plain string org')).toBeInTheDocument()
+  })
+
+  it('resolves a locale map that has no default entry', () => {
+    setReactProvidersMock({
+      useOrganization: () => ({
+        organization: {
+          address: '0xabc',
+          name: { ca: 'Esquerra republicana' },
+        },
+      }),
+    })
+
+    render(<LegalNotice />)
+
+    expect(screen.getByText('Esquerra republicana')).toBeInTheDocument()
+  })
+
+  it('renders nothing — never the address — when the organization has no name', () => {
+    setReactProvidersMock({
+      useOrganization: () => ({
+        organization: {
+          address: '0xe303c19bf5313dd3d0ea7533700a6e0b308f20c6',
+        },
+      }),
+    })
+
+    render(<LegalNotice />)
+
+    expect(screen.queryByTestId('layout-legal-notice')).not.toBeInTheDocument()
   })
 
   describe('StaticLegalNotice', () => {

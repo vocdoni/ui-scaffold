@@ -61,6 +61,69 @@ describe('Process view', () => {
     expect(screen.getByRole('link', { name: 'vocdoni.io' })).toHaveAttribute('href', 'https://vocdoni.io/')
   })
 
+  // Regression: the SaaS API returns the name under `meta.name` only (the top-level `name`
+  // shorthand is mirrored by newer backends), which used to fall through to the hex address.
+  it('renders the organization name from meta.name, not the address', async () => {
+    setReactProvidersMock({
+      useOrganization: () => ({
+        organization: {
+          address: '0xe303c19bf5313dd3d0ea7533700a6e0b308f20c6',
+          meta: { name: { default: 'Full Anon Org' } },
+        },
+      }),
+      useElection: () => ({ election: null }),
+    })
+
+    const router = createTestMemoryRouter(
+      [
+        {
+          path: '/processes/:id',
+          id: 'process-view',
+          loader: async () => ({ era: 'saas', election: { id: '123', orgAddress: 'abc' } }),
+          element: <Process />,
+        },
+      ],
+      {
+        initialEntries: ['/processes/123'],
+      }
+    )
+
+    render(<TestRouterProvider router={router} />)
+
+    expect(await screen.findByTestId('layout-legal-notice')).toHaveTextContent(
+      'To ensure a secure, verifiable and transparent vote, Full Anon Org uses the Vocdoni platform'
+    )
+    expect(screen.queryByText('0xe303c19bf5313dd3d0ea7533700a6e0b308f20c6')).not.toBeInTheDocument()
+  })
+
+  it('renders no legal notice at all when the organization has no name', async () => {
+    setReactProvidersMock({
+      useOrganization: () => ({
+        organization: { address: '0xe303c19bf5313dd3d0ea7533700a6e0b308f20c6' },
+      }),
+      useElection: () => ({ election: null }),
+    })
+
+    const router = createTestMemoryRouter(
+      [
+        {
+          path: '/processes/:id',
+          id: 'process-view',
+          loader: async () => ({ era: 'saas', election: { id: '123', orgAddress: 'abc' } }),
+          element: <Process />,
+        },
+      ],
+      {
+        initialEntries: ['/processes/123'],
+      }
+    )
+
+    render(<TestRouterProvider router={router} />)
+
+    expect(await screen.findByText('Process view content')).toBeInTheDocument()
+    expect(screen.queryByTestId('layout-legal-notice')).not.toBeInTheDocument()
+  })
+
   it('renders the archive-era legal notice without an OrganizationProvider', async () => {
     // The real hook throws outside its provider; the archive path must never reach it.
     setReactProvidersMock({
