@@ -29,17 +29,18 @@ describe('VotingVoteModal', () => {
       useElection: () => mockUseElection({ election: { id: 'p1', questions: questions(questionCount) }, ...overrides }),
     })
 
-  it('reports how many questions are confirmed while a multi-question vote lands', () => {
-    // Each question is its own on-chain election, so they confirm one by one.
+  it('tells the voter the vote is being processed while it lands', () => {
     setElection({ voting: true, voteStatus: { q1: 'confirmed', q2: 'confirming', q3: 'confirming' } })
 
     render(<VotingVoteModal />)
 
-    expect(screen.getByText('1 of 3 questions confirmed')).toBeInTheDocument()
+    expect(screen.getByText('process.voting')).toBeInTheDocument()
   })
 
-  it('omits the count for a single-question process', () => {
-    setElection({ voting: true, voteStatus: { q1: 'confirming' } }, 1)
+  it('keeps the per-question breakdown out of the voter view', () => {
+    // Each question is its own on-chain election and confirms separately, but that
+    // is an implementation detail the voter should never be shown.
+    setElection({ voting: true, voteStatus: { q1: 'confirmed', q2: 'confirming', q3: 'confirming' } })
 
     render(<VotingVoteModal />)
 

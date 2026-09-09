@@ -371,10 +371,7 @@ export const SuccessVoteModal = () => {
 }
 
 /**
- * Overlay covering the whole vote submission. Every question of the process is
- * its own on-chain election, so a multi-question vote confirms one question at a
- * time even though the envelopes are relayed as a single batch — show that
- * progress rather than an opaque spinner.
+ * Overlay covering the whole vote submission.
  *
  * It also owns the failure state: the vote is submitted by the SDK's question
  * form, so a failure would otherwise surface nowhere at all. The batch is
@@ -384,11 +381,10 @@ export const SuccessVoteModal = () => {
  */
 export const VotingVoteModal = () => {
   const { t } = useTranslation()
-  const { election, voting, voteStatus } = useElection()
+  const { voting, voteStatus } = useElection()
   const [dismissedFailure, setDismissedFailure] = useState(false)
 
   const statuses = Object.values(voteStatus)
-  const total = election?.questions.length ?? 0
   const confirmed = statuses.filter((questionStatus) => questionStatus === 'confirmed').length
   const failed = statuses.some((questionStatus) => questionStatus === 'failed')
   const showFailure = !voting && failed && !dismissedFailure
@@ -410,7 +406,8 @@ export const VotingVoteModal = () => {
       <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content>
-          <Dialog.Body>
+          {/* This dialog has no header, so the body has to supply the top padding it would provide. */}
+          <Dialog.Body pt={6}>
             {showFailure ? (
               <>
                 <Text textAlign='center' fontWeight='bold' mb={2}>
@@ -432,16 +429,6 @@ export const VotingVoteModal = () => {
                   <Spinner color='process.spinner' mb={5} w={10} h={10} />
                 </VStack>
                 <Text textAlign='center'>{t('process.voting')}</Text>
-                {/* A single-question process would only ever read "0 of 1". */}
-                {total > 1 && (
-                  <Text textAlign='center' fontSize='sm' color='texts.subtle' mt={2}>
-                    {t('process.voting_progress', {
-                      defaultValue: '{{confirmed}} of {{total}} questions confirmed',
-                      confirmed,
-                      total,
-                    })}
-                  </Text>
-                )}
               </>
             )}
           </Dialog.Body>
