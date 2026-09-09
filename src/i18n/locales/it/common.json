@@ -1478,7 +1478,6 @@
       "unknown": "Sconosciuto",
       "weighted_format": "{{base}} con voto ponderato"
     },
-    "voting_progress": "{{confirmed}} di {{total}} domande confermate",
     "voting_type": "Metodo di voto"
   },
   "process_actions": {

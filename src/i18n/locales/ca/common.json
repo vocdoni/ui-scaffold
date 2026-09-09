@@ -1478,7 +1478,6 @@
       "unknown": "Desconegut",
       "weighted_format": "{{base}} amb vot ponderat"
     },
-    "voting_progress": "{{confirmed}} de {{total}} preguntes confirmades",
     "voting_type": "Mètode de votació"
   },
   "process_actions": {

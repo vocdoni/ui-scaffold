@@ -1454,7 +1454,6 @@
       "unknown": "Unknown",
       "weighted_format": "Weighted {{ base, lowercase }}"
     },
-    "voting_progress": "{{confirmed}} of {{total}} questions confirmed",
     "voting_type": "Voting method"
   },
   "process_actions": {

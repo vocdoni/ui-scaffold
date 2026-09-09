@@ -1454,7 +1454,6 @@
       "unknown": "Ezezaguna",
       "weighted_format": "{{base}} haztatua"
     },
-    "voting_progress": "{{total}} galderatik {{confirmed}} berretsita",
     "voting_type": "Bozketa-metodoa"
   },
   "process_actions": {

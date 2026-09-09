@@ -1454,7 +1454,6 @@
       "unknown": "Άγνωστο",
       "weighted_format": "Σταθμισμένη {{ base, lowercase }}"
     },
-    "voting_progress": "{{confirmed}} από {{total}} ερωτήσεις επιβεβαιώθηκαν",
     "voting_type": "Μέθοδος ψηφοφορίας"
   },
   "process_actions": {
