@@ -676,15 +676,17 @@ export const fetchProcessResults = async (
 }
 
 /**
- * List reads omit `census.totalWeight` (only `GET /processes/{id}` carries it), so a report
- * triggered from a list row would lose the weighted eligible-power values — re-fetch the
- * detail read for weighted censuses missing it. Falls back to the given election on failure.
+ * Re-read `GET /processes/{id}` at download time. The report certifies a point in time, so it must
+ * not be built from whatever happens to sit in the election cache: the dashboard `ElectionProvider`
+ * is mounted without a `refetchInterval`, so its cached process can be minutes old by the time the
+ * button is clicked. It also recovers `census.totalWeight`, which list reads omit (only the detail
+ * read carries it) — without it a report started from a list row loses the weighted eligible-power
+ * values. Falls back to the given election when the read fails or is no longer downloadable.
  */
 export const resolveReportElection = async (
   client: ReportClientLike,
   election: PublishedVotingProcessResponse
 ): Promise<PublishedVotingProcessResponse> => {
-  if (!election.census?.weighted || typeof election.census.totalWeight === 'number') return election
   try {
     const fresh = await client?.elections?.get?.(election.id)
     return fresh && canDownloadVotingReport(fresh) ? fresh : election
@@ -712,8 +714,8 @@ export const getReportContext = (
 
   return {
     election,
-    // Reuse the results the election context already fetched; without a context
-    // (e.g. list rows) they are fetched at download time instead.
+    // Only a last-resort fallback for the download: the tallies are always re-read at click time
+    // (see `useVotingReportPdfDownload`), and this cached copy is used solely when that read fails.
     results: (contextElection && electionContext?.results) || null,
   }
 }

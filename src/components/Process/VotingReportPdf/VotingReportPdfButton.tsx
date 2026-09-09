@@ -1,11 +1,13 @@
 import { Button, HStack, Icon, Link, Text } from '@chakra-ui/react'
 import * as ReactPDF from '@react-pdf/renderer'
+import { useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-components'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { LuFileDown } from 'react-icons/lu'
 
 import { useToast } from '~components/Toast'
+import { QueryKeys } from '~queries/keys'
 import { useAppEnv } from '~src/app-env'
 import { getVocdoniClientConfig } from '~src/providers/vocdoni-client-config'
 import { useApiClient } from '~src/providers/ApiClientProvider'
@@ -42,6 +44,7 @@ export const useVotingReportPdfDownload = (election?: ElectionLike) => {
   const toast = useToast()
   const { organization } = useOrganization()
   const { client } = useApiClient()
+  const queryClient = useQueryClient()
   const { VOCDONI_ENVIRONMENT } = useAppEnv()
   const explorerUrl = getVocdoniClientConfig(VOCDONI_ENVIRONMENT).explorerUrl ?? 'https://explorer.vote'
   const electionContext = useOptionalElectionContext()
@@ -53,8 +56,19 @@ export const useVotingReportPdfDownload = (election?: ElectionLike) => {
 
     setIsGenerating(true)
     try {
+      // Always re-read the process and its tallies here instead of certifying the election
+      // context's cached copies: the dashboard mounts its ElectionProvider without a
+      // `refetchInterval` and the app disables `refetchOnWindowFocus`, so those entries are only
+      // ever fetched on mount — a report downloaded from a long-open tab would otherwise certify
+      // whatever the tally was when the page loaded. The cached results stay as the fallback for
+      // when the read fails.
       const election = await resolveReportElection(client, report.election)
-      const results = report.results ?? (await fetchProcessResults(client, election.id))
+      const results = (await fetchProcessResults(client, election.id)) ?? report.results
+
+      // Push both back into the queries the ElectionProvider observes so the dashboard shows the
+      // same numbers the report just certified, instead of the stale ones it mounted with.
+      if (election !== report.election) queryClient.setQueryData(QueryKeys.election.process(election.id), election)
+      if (results) queryClient.setQueryData(QueryKeys.election.results(election.id), results)
       const data = buildCertificateData({
         election,
         results,

@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from '~src/test-utils'
 import { setReactProvidersMock } from '~src/test-utils-react-providers-mock'
 import { VotingReportPdfButton } from './VotingReportPdfButton'
-import { PROCESS_ID, createElection, createQuestion, createResults } from './__fixtures__'
+import { PROCESS_ID, createElection, createQuestion, createQuestionResults, createResults } from './__fixtures__'
 
 const mockModule = vi.hoisted(() => ({
   pdfToBlob: vi.fn(),
@@ -101,6 +101,46 @@ describe('VotingReportPdfButton', () => {
     await waitFor(() => {
       expect(pdfSpy).toHaveBeenCalled()
       expect(clickSpy).toHaveBeenCalled()
+    })
+
+    createElementSpy.mockRestore()
+    createObjectUrlSpy.mockRestore()
+    revokeObjectUrlSpy.mockRestore()
+    clickSpy.mockRestore()
+  })
+
+  it('re-reads the process and its tallies instead of certifying the election context copies', async () => {
+    pdfToBlob.mockResolvedValue(new Blob(['pdf']))
+    const election = createElection()
+    // What the ElectionProvider fetched when the dashboard mounted: it never polls, so by
+    // download time these tallies can be arbitrarily old.
+    const staleResults = createResults({ questions: [createQuestionResults({ voteCount: 2, results: [['2', '0']] })] })
+    const freshResults = createResults()
+    const get = vi.fn().mockResolvedValue(election)
+    const getResults = vi.fn().mockResolvedValue(freshResults)
+    setReactProvidersMock({
+      useClient: () => ({ client: { elections: { get, getResults } } }),
+      useElection: () => ({ election, results: staleResults, connected: false, loading: {}, errors: {} }),
+    })
+    const anchor = realCreateElement('a')
+    const clickSpy = vi.spyOn(anchor, 'click').mockImplementation(() => undefined)
+    const createObjectUrlSpy = vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:report')
+    const revokeObjectUrlSpy = vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => undefined)
+    const createElementSpy = vi
+      .spyOn(document, 'createElement')
+      .mockImplementation((tagName) => (tagName === 'a' ? anchor : realCreateElement(tagName)))
+
+    render(<VotingReportPdfButton />)
+
+    fireEvent.click(screen.getByRole('button', { name: /election report \(pdf\)/i }))
+
+    await waitFor(() => expect(clickSpy).toHaveBeenCalled())
+    expect(get).toHaveBeenCalledWith(PROCESS_ID)
+    expect(getResults).toHaveBeenCalledWith(PROCESS_ID)
+    // The certificate reports the freshly read tallies (7 + 3), not the context's stale 2.
+    expect(pdfSpy.mock.calls[0][0].props.data.votingProcessQuestions[0]).toMatchObject({
+      submittedBallots: '10',
+      choices: [expect.objectContaining({ votes: '7' }), expect.objectContaining({ votes: '3' })],
     })
 
     createElementSpy.mockRestore()

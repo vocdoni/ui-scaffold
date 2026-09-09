@@ -568,14 +568,13 @@ describe('resolveReportElection', () => {
     expect(get).toHaveBeenCalledWith(listElection.id)
   })
 
-  it('skips the fetch when totalWeight is present or the census is not weighted', async () => {
-    const get = vi.fn()
-    const weighted = createElection({ census: { size: 3, weighted: true, totalWeight: 20 } })
-    const plain = createElection()
+  it('re-reads the process even when nothing is missing, so the report never certifies a cached copy', async () => {
+    const cached = createElection()
+    const fresh = createElection({ questions: [createQuestion({ status: 'RESULTS' })] })
+    const get = vi.fn().mockResolvedValue(fresh)
 
-    await expect(resolveReportElection({ elections: { get } }, weighted)).resolves.toBe(weighted)
-    await expect(resolveReportElection({ elections: { get } }, plain)).resolves.toBe(plain)
-    expect(get).not.toHaveBeenCalled()
+    await expect(resolveReportElection({ elections: { get } }, cached)).resolves.toBe(fresh)
+    expect(get).toHaveBeenCalledWith(cached.id)
   })
 
   it('falls back to the given election when the fetch fails', async () => {
@@ -583,5 +582,12 @@ describe('resolveReportElection', () => {
     const get = vi.fn().mockRejectedValue(new Error('offline'))
 
     await expect(resolveReportElection({ elections: { get } }, listElection)).resolves.toBe(listElection)
+  })
+
+  it('falls back to the given election when the fresh read is no longer downloadable', async () => {
+    const cached = createElection()
+    const get = vi.fn().mockResolvedValue({ ...createElection(), published: false })
+
+    await expect(resolveReportElection({ elections: { get } }, cached)).resolves.toBe(cached)
   })
 })
