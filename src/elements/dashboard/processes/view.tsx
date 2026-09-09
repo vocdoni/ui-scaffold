@@ -21,8 +21,17 @@ const DashboardProcessViewElement = () => {
 
   // The route loader pre-seeds the ['election', id] query, so the provider renders
   // straight from cache instead of re-fetching the process.
+  //
+  // Poll both reads on the same 30s cadence the public process page uses: the sidebar's
+  // turnout is `processVoteCount(results)` over `election.census.size`, so a stale results
+  // read froze the vote count and a stale election read froze the census size while an
+  // admin watched their vote come in.
   return (
-    <ElectionProvider id={election.id}>
+    <ElectionProvider
+      id={election.id}
+      queryOptions={{ refetchInterval: 30_000 }}
+      resultsQueryOptions={{ refetchInterval: 30_000 }}
+    >
       <ProcessView />
     </ElectionProvider>
   )
