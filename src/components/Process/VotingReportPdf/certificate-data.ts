@@ -677,9 +677,9 @@ export const fetchProcessResults = async (
 
 /**
  * Re-read `GET /processes/{id}` at download time. The report certifies a point in time, so it must
- * not be built from whatever happens to sit in the election cache: the dashboard `ElectionProvider`
- * is mounted without a `refetchInterval`, so its cached process can be minutes old by the time the
- * button is clicked. It also recovers `census.totalWeight`, which list reads omit (only the detail
+ * not be built from whatever happens to sit in the election cache: the process views poll on a 30s
+ * cadence and list rows never poll at all, so the cached process can be a full interval — or a
+ * whole session — behind. It also recovers `census.totalWeight`, which list reads omit (only the detail
  * read carries it) — without it a report started from a list row loses the weighted eligible-power
  * values. Falls back to the given election when the read fails or is no longer downloadable.
  */

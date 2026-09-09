@@ -57,16 +57,15 @@ export const useVotingReportPdfDownload = (election?: ElectionLike) => {
     setIsGenerating(true)
     try {
       // Always re-read the process and its tallies here instead of certifying the election
-      // context's cached copies: the dashboard mounts its ElectionProvider without a
-      // `refetchInterval` and the app disables `refetchOnWindowFocus`, so those entries are only
-      // ever fetched on mount — a report downloaded from a long-open tab would otherwise certify
-      // whatever the tally was when the page loaded. The cached results stay as the fallback for
+      // context's cached copies: the process views poll only every 30s, list rows never poll, and
+      // the app disables `refetchOnWindowFocus` — so a report built from cache can certify a tally
+      // a full poll interval or more out of date. The cached results stay as the fallback for
       // when the read fails.
       const election = await resolveReportElection(client, report.election)
       const results = (await fetchProcessResults(client, election.id)) ?? report.results
 
       // Push both back into the queries the ElectionProvider observes so the dashboard shows the
-      // same numbers the report just certified, instead of the stale ones it mounted with.
+      // same numbers the report just certified, instead of waiting out the rest of the poll interval.
       if (election !== report.election) queryClient.setQueryData(QueryKeys.election.process(election.id), election)
       if (results) queryClient.setQueryData(QueryKeys.election.results(election.id), results)
       const data = buildCertificateData({
