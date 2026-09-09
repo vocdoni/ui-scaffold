@@ -24,8 +24,8 @@
     "view_active_votes": "Ver votaciones activas",
     "waiting_title": "Esperando confirmación de la transacción..."
   },
-  "actual_end_date": "",
-  "actual_end_time": "",
+  "actual_end_date": "Fecha de finalización real",
+  "actual_end_time": "Hora de finalización real",
   "add_new_org": "Añadir una nueva organización",
   "additional_actions": "Acciones adicionales",
   "all_processes": "Todos",
@@ -1623,8 +1623,8 @@
     "download_error": "No se ha podido generar el informe PDF",
     "downloading": "Generando PDF",
     "general": {
-      "actual_end": "",
-      "actual_end_helper": "",
+      "actual_end": "Finalización real",
+      "actual_end_helper": "Este proceso de votación se finalizó antes de la fecha configurada, por lo que no se aceptó ningún voto después de esta hora.",
       "event_name": "Nombre del evento",
       "network": "Infraestructura",
       "organization": "Organización",
@@ -1644,7 +1644,7 @@
       "provider": "Vocdoni"
     },
     "not_available": "No disponible",
-    "pending_results": "",
+    "pending_results": "El informe estará disponible cuando el proceso de votación haya calculado todos sus resultados.",
     "results": {
       "hidden_field": "Oculto hasta los resultados finales"
     },

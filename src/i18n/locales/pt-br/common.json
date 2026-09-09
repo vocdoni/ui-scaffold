@@ -24,8 +24,8 @@
     "view_active_votes": "Ver votações ativas",
     "waiting_title": "Aguardando confirmação da transação..."
   },
-  "actual_end_date": "",
-  "actual_end_time": "",
+  "actual_end_date": "Data de encerramento real",
+  "actual_end_time": "Horário de encerramento real",
   "add_new_org": "Adicionar uma nova organização",
   "additional_actions": "Ações adicionais",
   "all_processes": "Todos",
@@ -1623,8 +1623,8 @@
     "download_error": "Não foi possível gerar o relatório em PDF",
     "downloading": "Gerando PDF",
     "general": {
-      "actual_end": "",
-      "actual_end_helper": "",
+      "actual_end": "Encerramento real",
+      "actual_end_helper": "Este processo de votação foi encerrado antes da data configurada, portanto nenhum voto foi aceito após este horário.",
       "event_name": "Nome do evento",
       "network": "Infraestrutura",
       "organization": "Organização",
@@ -1644,7 +1644,7 @@
       "provider": "Provedor"
     },
     "not_available": "Não disponível",
-    "pending_results": "",
+    "pending_results": "O relatório estará disponível assim que o processo de votação tiver calculado todos os resultados.",
     "results": {
       "hidden_field": "Oculto até os resultados finais"
     },

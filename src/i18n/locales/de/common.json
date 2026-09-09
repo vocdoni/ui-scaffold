@@ -24,8 +24,8 @@
     "view_active_votes": "Aktive Abstimmungen anzeigen",
     "waiting_title": "Warte auf Transaktionsbestätigung..."
   },
-  "actual_end_date": "",
-  "actual_end_time": "",
+  "actual_end_date": "Tatsächliches Enddatum",
+  "actual_end_time": "Tatsächliche Endzeit",
   "add_new_org": "Neue Organisation hinzufügen",
   "additional_actions": "Weitere Aktionen",
   "all_processes": "Alle",
@@ -1599,8 +1599,8 @@
     "download_error": "PDF-Bericht konnte nicht erstellt werden",
     "downloading": "PDF wird erstellt",
     "general": {
-      "actual_end": "",
-      "actual_end_helper": "",
+      "actual_end": "Tatsächliches Ende",
+      "actual_end_helper": "Dieser Abstimmungsprozess wurde vor dem konfigurierten Ende beendet, daher wurde nach diesem Zeitpunkt keine Stimme mehr angenommen.",
       "event_name": "Veranstaltungsname",
       "network": "Netzwerk",
       "organization": "Organisation",
@@ -1620,7 +1620,7 @@
       "provider": "Anbieter"
     },
     "not_available": "Nicht verfügbar",
-    "pending_results": "",
+    "pending_results": "Der Bericht ist verfügbar, sobald der Abstimmungsprozess alle Ergebnisse berechnet hat.",
     "results": {
       "hidden_field": "Verborgen bis zur Veröffentlichung der Endergebnisse"
     },

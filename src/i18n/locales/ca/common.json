@@ -24,8 +24,8 @@
     "view_active_votes": "Mostra les votacions actives",
     "waiting_title": "Esperant la confirmació de la transacció..."
   },
-  "actual_end_date": "",
-  "actual_end_time": "",
+  "actual_end_date": "Data de finalització real",
+  "actual_end_time": "Hora de finalització real",
   "add_new_org": "Afegeix una nova organització",
   "additional_actions": "Accions addicionals",
   "all_processes": "Tots",
@@ -1623,8 +1623,8 @@
     "download_error": "No s'ha pogut generar l'informe PDF",
     "downloading": "S'està generant el PDF",
     "general": {
-      "actual_end": "",
-      "actual_end_helper": "",
+      "actual_end": "Finalització real",
+      "actual_end_helper": "Aquest procés de votació es va finalitzar abans de la data configurada, de manera que no es va acceptar cap vot després d'aquesta hora.",
       "event_name": "Nom de l'esdeveniment",
       "network": "Infraestructura",
       "organization": "Organització",
@@ -1644,7 +1644,7 @@
       "provider": "Vocdoni"
     },
     "not_available": "No disponible",
-    "pending_results": "",
+    "pending_results": "L'informe estarà disponible quan el procés de votació hagi calculat tots els resultats.",
     "results": {
       "hidden_field": "Ocult fins als resultats finals"
     },

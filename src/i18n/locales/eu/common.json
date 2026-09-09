@@ -24,8 +24,8 @@
     "view_active_votes": "Ikusi bozketa aktiboak",
     "waiting_title": "Transakzioa berresteko zain..."
   },
-  "actual_end_date": "",
-  "actual_end_time": "",
+  "actual_end_date": "Benetako amaiera-data",
+  "actual_end_time": "Benetako amaiera-ordua",
   "add_new_org": "Gehitu erakunde berri bat",
   "additional_actions": "Ekintza osagarriak",
   "all_processes": "Guztiak",
@@ -1599,8 +1599,8 @@
     "download_error": "Ezin izan da PDF txostena sortu",
     "downloading": "PDFa sortzen",
     "general": {
-      "actual_end": "",
-      "actual_end_helper": "",
+      "actual_end": "Benetako amaiera",
+      "actual_end_helper": "Boto-ematearen prozesu hau konfiguratutako amaiera baino lehen gelditu zen; beraz, ez zen botorik onartu ordu horren ondoren.",
       "event_name": "Gertaeraren izena",
       "network": "Azpiegitura",
       "organization": "Erakundea",
@@ -1620,7 +1620,7 @@
       "provider": "Vocdoni"
     },
     "not_available": "Ez dago eskuragarri",
-    "pending_results": "",
+    "pending_results": "Txostena eskuragarri egongo da boto-ematearen prozesuak emaitza guztiak kalkulatu ondoren.",
     "results": {
       "hidden_field": "Ezkutuan emaitzak iritsi arte"
     },

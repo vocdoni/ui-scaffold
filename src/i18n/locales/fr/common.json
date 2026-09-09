@@ -24,8 +24,8 @@
     "view_active_votes": "Voir les votes actifs",
     "waiting_title": "En attente de la confirmation de la transaction…"
   },
-  "actual_end_date": "",
-  "actual_end_time": "",
+  "actual_end_date": "Date de fin réelle",
+  "actual_end_time": "Heure de fin réelle",
   "add_new_org": "Ajouter une nouvelle organisation",
   "additional_actions": "Actions supplémentaires",
   "all_processes": "Tous",
@@ -1623,8 +1623,8 @@
     "download_error": "Impossible de générer le rapport PDF",
     "downloading": "Génération du PDF en cours",
     "general": {
-      "actual_end": "",
-      "actual_end_helper": "",
+      "actual_end": "Fin réelle",
+      "actual_end_helper": "Ce processus de vote a été arrêté avant sa date de fin configurée ; aucun vote n'a donc été accepté après cette heure.",
       "event_name": "Nom de l'événement",
       "network": "Infrastructure",
       "organization": "Organisation",
@@ -1644,7 +1644,7 @@
       "provider": "Fournisseur"
     },
     "not_available": "Non disponible",
-    "pending_results": "",
+    "pending_results": "Le rapport sera disponible une fois que le processus de vote aura calculé tous ses résultats.",
     "results": {
       "hidden_field": "Masqué jusqu'aux résultats finaux"
     },
