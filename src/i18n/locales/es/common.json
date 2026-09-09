@@ -1644,6 +1644,7 @@
       "provider": "Vocdoni"
     },
     "not_available": "No disponible",
+    "pending_results": "",
     "results": {
       "hidden_field": "Oculto hasta los resultados finales"
     },

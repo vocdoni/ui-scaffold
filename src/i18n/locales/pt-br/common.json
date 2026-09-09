@@ -1644,6 +1644,7 @@
       "provider": "Provedor"
     },
     "not_available": "Não disponível",
+    "pending_results": "",
     "results": {
       "hidden_field": "Oculto até os resultados finais"
     },

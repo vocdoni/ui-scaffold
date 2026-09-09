@@ -103,15 +103,25 @@ export const isVotingProcess = (value: unknown): value is VotingProcessResponse 
   Array.isArray(value.questions)
 
 /**
- * The report certifies a tally, so it is only offered once every question's results are final
+ * The report certifies a tally, so it can only be generated once every question's results are final
  * (`RESULTS`).
  *
  * `ENDED` is not enough: `computeProcessStatus` collapses a mix of `ENDED` and `RESULTS` questions
  * to `ENDED`, so an ended process may still be computing its tallies — a report generated then
- * would certify partial or empty results. `CANCELED` never produces a tally at all.
+ * would certify partial or empty results. See {@link isVotingReportPending} for that window.
  */
 export const canDownloadVotingReport = (election?: ElectionLike): election is PublishedVotingProcessResponse =>
   isVotingProcess(election) && election.published && hasResults(election)
+
+/**
+ * The process stopped accepting votes but its tallies are still being computed, so the report is
+ * announced (disabled) rather than hidden — it will become available on its own.
+ *
+ * `CANCELED` is deliberately excluded: a canceled process never produces a tally, so promising one
+ * would be a lie. Its report stays hidden.
+ */
+export const isVotingReportPending = (election?: ElectionLike): boolean =>
+  isVotingProcess(election) && election.published && computeProcessStatus(election.questions) === 'ENDED'
 
 /** SaaS multilingual strings key by locale with `default` as the fallback; older data may miss it. */
 export const getDefaultText = (value?: MultiLangString | string | null): string => {
@@ -723,12 +733,22 @@ export const useOptionalElectionContext = () => {
   }
 }
 
+/** The process the report is about: the election context's, else the one passed in. */
+export const getReportElection = (
+  electionContext: ReturnType<typeof useOptionalElectionContext>,
+  fallbackElection?: ElectionLike
+): VotingProcessResponse | undefined => {
+  const contextElection = isVotingProcess(electionContext?.election) ? electionContext.election : undefined
+
+  return contextElection ?? (isVotingProcess(fallbackElection) ? fallbackElection : undefined)
+}
+
 export const getReportContext = (
   electionContext: ReturnType<typeof useOptionalElectionContext>,
   fallbackElection?: ElectionLike
 ): ElectionReportContext | null => {
   const contextElection = isVotingProcess(electionContext?.election) ? electionContext.election : undefined
-  const election = contextElection ?? (isVotingProcess(fallbackElection) ? fallbackElection : undefined)
+  const election = getReportElection(electionContext, fallbackElection)
 
   if (!canDownloadVotingReport(election)) return null
 

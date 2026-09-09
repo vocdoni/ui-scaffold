@@ -1620,6 +1620,7 @@
       "provider": "Provider"
     },
     "not_available": "Not available",
+    "pending_results": "The report will be available once the voting process has computed all its results.",
     "results": {
       "hidden_field": "Hidden until final results"
     },

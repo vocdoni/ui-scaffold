@@ -1620,6 +1620,7 @@
       "provider": "Vocdoni"
     },
     "not_available": "Ez dago eskuragarri",
+    "pending_results": "",
     "results": {
       "hidden_field": "Ezkutuan emaitzak iritsi arte"
     },

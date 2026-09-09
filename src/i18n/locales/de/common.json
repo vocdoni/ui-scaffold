@@ -1620,6 +1620,7 @@
       "provider": "Anbieter"
     },
     "not_available": "Nicht verfügbar",
+    "pending_results": "",
     "results": {
       "hidden_field": "Verborgen bis zur Veröffentlichung der Endergebnisse"
     },

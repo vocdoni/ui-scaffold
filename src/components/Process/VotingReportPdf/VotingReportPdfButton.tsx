@@ -1,12 +1,14 @@
-import { Button, HStack, Icon, Link, Text } from '@chakra-ui/react'
+import { Box, Button, HStack, Icon, Link, Text } from '@chakra-ui/react'
 import * as ReactPDF from '@react-pdf/renderer'
 import { useQueryClient } from '@tanstack/react-query'
 import { useOrganization } from '@vocdoni/react-components'
 import { useState } from 'react'
+import type { TFunction } from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { LuFileDown } from 'react-icons/lu'
 
 import { useToast } from '~components/Toast'
+import { Tooltip } from '~components/ui/Tooltip'
 import { QueryKeys } from '~queries/keys'
 import { fetchOnChainEndDate, getEarlyEndDate } from '~queries/process-end-date'
 import { useAppEnv } from '~src/app-env'
@@ -19,6 +21,8 @@ import {
   fetchProcessResults,
   getDefaultText,
   getReportContext,
+  getReportElection,
+  isVotingReportPending,
   resolveReportElection,
   useOptionalElectionContext,
   type ElectionLike,
@@ -28,6 +32,12 @@ import { VotingCertificateDocument } from './pdf-document'
 export { canDownloadVotingReport, type ElectionLike } from './certificate-data'
 
 const { pdf } = ReactPDF
+
+/** Shared by the button and the menu item so the disabled state explains itself the same way. */
+export const pendingResultsHint = (t: TFunction) =>
+  t('process_pdf.pending_results', {
+    defaultValue: 'The report will be available once the voting process has computed all its results.',
+  })
 
 export type VotingReportPdfProps = {
   election?: ElectionLike
@@ -49,6 +59,9 @@ export const useVotingReportPdfDownload = (election?: ElectionLike) => {
   const { VOCDONI_ENVIRONMENT } = useAppEnv()
   const explorerUrl = getVocdoniClientConfig(VOCDONI_ENVIRONMENT).explorerUrl ?? 'https://explorer.vote'
   const electionContext = useOptionalElectionContext()
+  // Announced while the tallies are still being computed: the control shows, disabled, instead of
+  // appearing out of nowhere once the results land.
+  const isPendingResults = isVotingReportPending(getReportElection(electionContext, election))
   const report = getReportContext(electionContext, election)
   const [isGenerating, setIsGenerating] = useState(false)
 
@@ -118,14 +131,30 @@ export const useVotingReportPdfDownload = (election?: ElectionLike) => {
     }
   }
 
-  return { download, isGenerating, report }
+  return { download, isGenerating, report, isPendingResults }
 }
 
 export const VotingReportPdfButton = ({ election }: VotingReportPdfProps) => {
   const { t } = useTranslation()
-  const { download, isGenerating, report } = useVotingReportPdfDownload(election)
+  const { download, isGenerating, report, isPendingResults } = useVotingReportPdfDownload(election)
 
-  if (!report) return null
+  if (!report) {
+    if (!isPendingResults) return null
+
+    return (
+      <Tooltip content={pendingResultsHint(t)} showArrow>
+        {/* The wrapper carries the hover: a disabled button fires no pointer events of its own. */}
+        <Box w='full'>
+          <Button disabled variant='outline' colorPalette='gray' w='full' size='sm' justifyContent='start'>
+            <HStack gap={2}>
+              <Icon as={LuFileDown} />
+              <Text as='span'>{t('process_pdf.download', { defaultValue: 'Election report (PDF)' })}</Text>
+            </HStack>
+          </Button>
+        </Box>
+      </Tooltip>
+    )
+  }
 
   return (
     <Button

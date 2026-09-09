@@ -52,4 +52,17 @@ describe('VotingReportPdfMenuItem', () => {
 
     expect(screen.queryByRole('button', { name: /election report \(pdf\)/i })).toBeNull()
   })
+
+  it('shows the action disabled while an ended process computes its results', () => {
+    const endedElection = createElection({ questions: [createQuestion({ status: 'ENDED' })] })
+
+    render(<VotingReportPdfMenuItem election={endedElection} />)
+
+    const item = screen.getByRole('button', { name: /election report \(pdf\)/i })
+
+    expect(item).toBeDisabled()
+    // The tooltip must hang off a wrapper, not the disabled item: a disabled element fires no
+    // pointer events, so a trigger on it would never open the explanation.
+    expect(item).not.toHaveAttribute('data-part', 'trigger')
+  })
 })

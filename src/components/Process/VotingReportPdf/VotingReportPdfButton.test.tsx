@@ -157,12 +157,25 @@ describe('VotingReportPdfButton', () => {
     expect(screen.queryByRole('button', { name: /election report \(pdf\)/i })).toBeNull()
   })
 
-  it('renders nothing for an ended process whose results are not published yet', () => {
-    // The sidebar renders this button unconditionally, so hiding it is the component's own job:
-    // an ended process may still be computing its tallies and has nothing to certify yet.
+  it('announces the report as disabled while an ended process computes its results', () => {
+    // The report is not generatable yet, but it will be — so it is shown disabled rather than
+    // appearing out of nowhere once the tallies land.
     const endedElection = createElection({ questions: [createQuestion({ status: 'ENDED' })] })
 
     render(<VotingReportPdfButton election={endedElection} />)
+
+    const button = screen.getByRole('button', { name: /election report \(pdf\)/i })
+
+    expect(button).toBeDisabled()
+    // The tooltip must hang off a wrapper, not the disabled button: a disabled element fires no
+    // pointer events, so a trigger on it would never open the explanation.
+    expect(button).not.toHaveAttribute('data-part', 'trigger')
+  })
+
+  it('renders nothing for a canceled process, which never produces a tally', () => {
+    const canceledElection = createElection({ questions: [createQuestion({ status: 'CANCELED' })] })
+
+    render(<VotingReportPdfButton election={canceledElection} />)
 
     expect(screen.queryByRole('button', { name: /election report \(pdf\)/i })).toBeNull()
   })

@@ -1,8 +1,10 @@
-import { Icon, Menu, Spinner } from '@chakra-ui/react'
+import { Box, Icon, Menu, Spinner } from '@chakra-ui/react'
 import { useTranslation } from 'react-i18next'
 import { LuFileDown } from 'react-icons/lu'
 
-import { type ElectionLike, useVotingReportPdfDownload } from './VotingReportPdfButton'
+import { Tooltip } from '~components/ui/Tooltip'
+
+import { type ElectionLike, pendingResultsHint, useVotingReportPdfDownload } from './VotingReportPdfButton'
 
 type VotingReportPdfProps = {
   election?: ElectionLike
@@ -10,9 +12,24 @@ type VotingReportPdfProps = {
 
 export const VotingReportPdfMenuItem = ({ election }: VotingReportPdfProps) => {
   const { t } = useTranslation()
-  const { download, isGenerating, report } = useVotingReportPdfDownload(election)
+  const { download, isGenerating, report, isPendingResults } = useVotingReportPdfDownload(election)
 
-  if (!report) return null
+  if (!report) {
+    if (!isPendingResults) return null
+
+    return (
+      <Tooltip content={pendingResultsHint(t)} showArrow>
+        {/* The wrapper carries the hover: a disabled item fires no pointer events of its own, so a
+            tooltip attached straight to it would never open. */}
+        <Box>
+          <Menu.Item value='download-pdf' disabled closeOnSelect={false}>
+            <Icon as={LuFileDown} boxSize={4} />
+            {t('process_pdf.download', { defaultValue: 'Election report (PDF)' })}
+          </Menu.Item>
+        </Box>
+      </Tooltip>
+    )
+  }
 
   return (
     <Menu.Item value='download-pdf' onClick={download} disabled={isGenerating}>

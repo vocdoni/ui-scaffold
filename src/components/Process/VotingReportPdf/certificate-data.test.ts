@@ -6,7 +6,12 @@ import {
   createResults,
   translate,
 } from './__fixtures__'
-import { buildCertificateData, canDownloadVotingReport, resolveReportElection } from './certificate-data'
+import {
+  buildCertificateData,
+  canDownloadVotingReport,
+  isVotingReportPending,
+  resolveReportElection,
+} from './certificate-data'
 
 const plainT = ((key: string, options?: { defaultValue?: string }) => options?.defaultValue ?? key) as never
 
@@ -46,6 +51,29 @@ describe('canDownloadVotingReport', () => {
     expect(canDownloadVotingReport({ ...createElection(), published: false })).toBe(false)
     expect(canDownloadVotingReport({ some: 'record' })).toBe(false)
     expect(canDownloadVotingReport(null)).toBe(false)
+  })
+})
+
+describe('isVotingReportPending', () => {
+  it('is true only while an ended process is still computing its tallies', () => {
+    expect(isVotingReportPending(createElection({ questions: [createQuestion({ status: 'ENDED' })] }))).toBe(true)
+    // Mixed ENDED/RESULTS collapses to ENDED — some questions have no tally yet.
+    expect(
+      isVotingReportPending(
+        createElection({
+          questions: [createQuestion({ id: 'q1', status: 'RESULTS' }), createQuestion({ id: 'q2', status: 'ENDED' })],
+        })
+      )
+    ).toBe(true)
+  })
+
+  it('is false once results are in, and for processes that will never have any', () => {
+    expect(isVotingReportPending(createElection())).toBe(false)
+    // A canceled process never produces a tally, so promising a report would be a lie.
+    expect(isVotingReportPending(createElection({ questions: [createQuestion({ status: 'CANCELED' })] }))).toBe(false)
+    expect(isVotingReportPending(createElection({ questions: [createQuestion({ status: 'ONGOING' })] }))).toBe(false)
+    expect(isVotingReportPending({ ...createElection(), published: false })).toBe(false)
+    expect(isVotingReportPending(null)).toBe(false)
   })
 })
 
