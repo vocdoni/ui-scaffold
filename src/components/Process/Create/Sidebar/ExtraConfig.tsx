@@ -4,30 +4,109 @@ import {
   FieldErrorText as FormErrorMessage,
   FieldLabel as FormLabel,
   Icon,
-  TooltipContent,
-  TooltipPositioner,
-  TooltipRoot,
-  TooltipTrigger,
+  Switch,
+  Text,
   VStack,
 } from '@chakra-ui/react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { Trans, useTranslation } from 'react-i18next'
 import { LuCircleHelp } from 'react-icons/lu'
 import { Select } from '~components/Form/Select'
+import { SubscriptionLockedContent } from '~components/Layout/SubscriptionLockedContent'
+import { useAnonymityLabels } from '~components/Process/anonymityLabels'
+import { Tooltip } from '~components/ui/Tooltip'
+import { SubscriptionPermission } from '~constants'
 import { useValidations } from '~utils/validation'
+import { Process } from '../common'
 
 type SelectOption<T = string> = {
   value: T
   label: string
 }
 
+const LabelTooltip = ({ children }: { children: React.ReactNode }) => (
+  <Tooltip content={children} positioning={{ placement: 'top' }} contentProps={{ fontSize: 'sm', maxW: 'xs' }}>
+    <Box
+      as='span'
+      display='inline-flex'
+      ml={1}
+      cursor='help'
+      color='texts.subtle'
+      tabIndex={0}
+      // This sits inside a <label>: without cancelling the click, tapping the
+      // icon to read the tooltip would activate the label's control (and flip
+      // the switch below). The tooltip trigger ignores a prevented click.
+      onClick={(event) => event.preventDefault()}
+    >
+      <Icon as={LuCircleHelp} />
+    </Box>
+  </Tooltip>
+)
+
+/**
+ * Voter anonymity as an on/off setting, in the same shape as "Start immediately"
+ * in the block above. Off is the ordinary vote and needs no explaining; on adds
+ * the blind-signature layer, and that is the only state that gets a sentence.
+ *
+ * A plan feature: the backend refuses to publish a blind-CSP census on a plan
+ * without it, so the switch is locked the same way live streaming is.
+ */
+const VoterAnonymity = () => {
+  const { t } = useTranslation()
+  const { control } = useFormContext<Process>()
+  const { description } = useAnonymityLabels(true)
+
+  return (
+    <SubscriptionLockedContent permissionType={SubscriptionPermission.Anonymous}>
+      {({ isLocked }) => (
+        <Box>
+          <Controller
+            control={control}
+            name='anonymousVoting'
+            render={({ field }) => (
+              <>
+                <Switch.Root
+                  // `name` lands on the hidden input, which is the structural handle
+                  // the e2e suite toggles this with — no test id needed.
+                  name={field.name}
+                  checked={field.value}
+                  disabled={isLocked}
+                  onCheckedChange={({ checked }) => field.onChange(checked)}
+                >
+                  <Switch.HiddenInput onBlur={field.onBlur} />
+                  <Switch.Control>
+                    <Switch.Thumb />
+                  </Switch.Control>
+                  <Switch.Label display='flex' alignItems='center'>
+                    <Trans i18nKey='process_create.anonymity.title'>Anonymous voting</Trans>
+                    <LabelTooltip>
+                      {t('process_create.anonymity.tooltip', {
+                        defaultValue:
+                          "Either way, your organization can't see how anyone voted. Voter anonymity adds a cryptographic layer that makes it impossible to link a vote to a person.",
+                      })}
+                    </LabelTooltip>
+                  </Switch.Label>
+                </Switch.Root>
+                {field.value && (
+                  <Text fontSize='xs' color='texts.subtle' mt={1}>
+                    {description}
+                  </Text>
+                )}
+              </>
+            )}
+          />
+        </Box>
+      )}
+    </SubscriptionLockedContent>
+  )
+}
+
 export const ExtraConfig = () => {
   const { t } = useTranslation()
   const {
     control,
-    watch,
     formState: { errors },
-  } = useFormContext()
+  } = useFormContext<Process>()
   const { required } = useValidations()
 
   const resultVisibilityOptions: SelectOption[] = [
@@ -69,19 +148,12 @@ export const ExtraConfig = () => {
         <FormControl invalid={!!errors.weightedVote}>
           <FormLabel htmlFor='weightedVote' display='flex' alignItems='center'>
             <Trans i18nKey='process_create.weight.title'>Voting power</Trans>
-            <TooltipRoot positioning={{ placement: 'top' }}>
-              <TooltipTrigger asChild>
-                <Box as='span' display='inline-flex' ml={1} cursor='help' color='texts.subtle'>
-                  <Icon as={LuCircleHelp} />
-                </Box>
-              </TooltipTrigger>
-              <TooltipPositioner>
-                <TooltipContent fontSize='sm'>
-                  Set whether votes are equal for each eligible voter or weighted according to the memberbase "Vote
-                  power" field.
-                </TooltipContent>
-              </TooltipPositioner>
-            </TooltipRoot>
+            <LabelTooltip>
+              <Trans i18nKey='process_create.weight.tooltip'>
+                Set whether votes are equal for each eligible voter or weighted according to the memberbase "Vote power"
+                field.
+              </Trans>
+            </LabelTooltip>
           </FormLabel>
           <Controller
             control={control}
@@ -99,6 +171,7 @@ export const ExtraConfig = () => {
           <FormErrorMessage>{errors.weightedVote?.message?.toString()}</FormErrorMessage>
         </FormControl>
       </Box>
+      <VoterAnonymity />
     </VStack>
   )
 }

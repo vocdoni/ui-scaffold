@@ -123,12 +123,12 @@ export const BasicConfig = () => {
     <VStack align='stretch' gap={4}>
       <Switch.Root checked={autoStart} onCheckedChange={(details) => handleAutoStartChange(details.checked)}>
         <Switch.HiddenInput {...register('autoStart')} />
-        <Switch.Label>
-          <Trans i18nKey='process_create.auto_start'>Start immediately</Trans>
-        </Switch.Label>
         <Switch.Control>
           <Switch.Thumb />
         </Switch.Control>
+        <Switch.Label>
+          <Trans i18nKey='process_create.auto_start'>Start immediately</Trans>
+        </Switch.Label>
       </Switch.Root>
 
       {!autoStart && (

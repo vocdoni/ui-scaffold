@@ -52,7 +52,7 @@ export type Process = {
   questions: Question[]
   resultVisibility: 'live' | 'hidden'
   weightedVote: boolean
-  voterPrivacy: 'public' | 'anonymous'
+  anonymousVoting: boolean
   groupId: string
   census?: Census | null
   censusType: CensusTypes
@@ -81,7 +81,7 @@ export const defaultProcessValues: Process = {
   questions: [defaultQuestion],
   resultVisibility: 'hidden',
   weightedVote: false,
-  voterPrivacy: 'public',
+  anonymousVoting: false,
   groupId: '',
   census: null,
   censusType: CensusTypes.CSP,

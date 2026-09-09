@@ -46,6 +46,7 @@
   "annual": "Urtekoa<1>% 40ko aurrezkia</1>",
   "apply": "Aplikatu",
   "aside": {
+    "anonymous_receipt_gone": "",
     "has_already_voted": "Zure botoa behar bezala eman da",
     "is_not_in_census": "Ez zaude erroldan",
     "votes_one": "<span>1</span> <text>boto-emaile</text>",
@@ -350,7 +351,7 @@
   },
   "error_removing_code": "Errorea kodea kentzean",
   "features": {
-    "anonymous_voting": "Boto sekretua",
+    "anonymous": "Boto sekretua",
     "approval": "Onarpen-bozketa",
     "audit": "Auditoria",
     "audit_blockchain": "% 100 auditagarria blockchainean",
@@ -1264,6 +1265,18 @@
   },
   "privacy_policy": "Pribatutasun-politika",
   "process": {
+    "anonymity": {
+      "anonymous": {
+        "description": "",
+        "short": "",
+        "title": ""
+      },
+      "private": {
+        "description": "",
+        "short": "",
+        "title": ""
+      }
+    },
     "census": "Errolda",
     "create": {
       "action": {
@@ -1363,6 +1376,7 @@
     "success_modal": {
       "btn": "Itxi",
       "text": "<p>Zure botoa eman da eta modu seguruan gorde da Vocdoniren teknologiarekin. <verify>Hemen egiazta dezakezu</verify>.</p>",
+      "text_no_id": "",
       "title": "Botoa bidalita!"
     },
     "summary": {
@@ -1380,6 +1394,7 @@
       "tech_description": "Kontsulta honek Vocdoni-ren boto-sistema digitala erabiltzen du, iturburu irekiko teknologia bat, sindikatuei, elkarteei eta beste erakunde batzuei boto-prozesuetan berme demokratiko handienak eskaintzen dizkiena.",
       "tech_integrity": "<b>Osotasuna:</b> sistemak bermatzen du emandako botoa ezin dela aldatu, ezabatu edo manipulatu, behin emanda.",
       "tech_privacy": "<b>Pribatutasuna:</b> botoa guztiz sekretua da eta ezinezkoa da emandako edozein boto botogilearen identitatearekin lotzea.",
+      "tech_pseudonymity": "<b>Pribatutasuna:</b> botoak pribatuak dira. Erabilera bakarreko kode batekin erregistratzen dira, eta erakundeak ezin du ikusi norbaitek zer bozkatu duen.",
       "tech_title": "Boto-bermeak",
       "tech_verifiability": "<b>Egiaztagarritasuna:</b> edozein parte-hartzailek egiazta dezake bere botoa behar bezala erregistratu eta zenbatu dela, boto-sekretua arriskuan jarri gabe.",
       "time_remaining": "Bozkatzeko geratzen den denbora",
@@ -1456,6 +1471,10 @@
     "public_voting_page": "Bozketa-orrialde publikoa"
   },
   "process_create": {
+    "anonymity": {
+      "title": "",
+      "tooltip": ""
+    },
     "auto_start": "Hasi berehala",
     "basic_configuration": "Oinarrizko konfigurazioa",
     "census": {
@@ -1501,6 +1520,7 @@
     "weight": {
       "equal": "Pertsona bat, boto bat",
       "title": "Boto-pisua",
+      "tooltip": "",
       "weighted": "Boto-pisuan oinarritutako haztatzea"
     },
     "youtube": {
@@ -1981,10 +2001,12 @@
   "view_plans_and_pricing": "Ikusi planak eta prezioak",
   "vocdoni_logo": "Vocdoniren logotipoa",
   "vote": {
+    "anonymous_receipt": "",
     "voted_title": "Zure botoa behar bezala eman da!"
   },
   "vote_information": "Botoaren informazioa",
   "vote_overwrite": "Botoa berridaztea",
+  "voter_anonymity": "",
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Gehitu segurtasun-geruza osagarri bat hautesleei nortasuna egiaztatzeko eskatuz",
@@ -1998,6 +2020,7 @@
     "2fa_sms_description": "Hautesleek egiaztapen-kode bat jasoko dute SMS bidez",
     "2fa_voter_choice": "<email /> edo <phone /> Boto-emailearen aukera",
     "2fa_voter_choice_description": "Hautesleek beren egiaztapen-metodo gogokoena hauta dezakete",
+    "anonymity": "",
     "button": {
       "configure": "Konfiguratu hautesleen autentifikazioa",
       "edit": "Editatu hautesleen autentifikazioa"

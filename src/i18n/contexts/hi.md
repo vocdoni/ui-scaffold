@@ -41,6 +41,7 @@ Tone: professional yet approachable. Strings are user-facing UI text (buttons, l
 | anonymous voting | गुमनाम मतदान | "anonymous" → "गुमनाम", "anonymity" → "गुमनामी" |
 | ballot | मतपत्र | When the English "ballot" is the thing cast, counted or trusted |
 | ballot secrecy / secret vote | मतपत्र की गोपनीयता | **Distinct concept — do not conflate with anonymity.** English "secret"/"secrecy" → "गुप्त"/"गोपनीयता"; "anonymous"/"anonymity" → "गुमनाम"/"गुमनामी". Anonymity means a vote can't be linked to a voter; secrecy means the ballot content stays hidden. Never use "गुप्त" for the anonymous-voting feature, nor "गुमनाम" for ballot secrecy |
+| private ballot / pseudonymous | निजी मतदान / छद्मनाम | The default mode, opposite the anonymous one: the ballot carries a one-time code instead of a name, but platform records could still connect it to a member. Never use "गुमनाम" (that is the other mode) nor "गुप्त" (that is ballot secrecy) |
 | secret ballot | गुप्त मतदान | Fixed collocation — use it as-is for the badge/feature label |
 | turnout | मतदान प्रतिशत | The **rate**. Absolute → "ऊँचा मतदान प्रतिशत"; comparative → "ज़्यादा मतदान प्रतिशत" |
 | participation | भागीदारी | The **body of people taking part**, not the rate. Do not use it to render "turnout" |

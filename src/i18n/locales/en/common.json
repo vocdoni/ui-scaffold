@@ -46,6 +46,7 @@
   "annual": "Annual<1>Save 40%</1>",
   "apply": "Apply",
   "aside": {
+    "anonymous_receipt_gone": "Your receipt was shown when you voted and cannot be retrieved.",
     "has_already_voted": "Your vote is properly cast",
     "is_not_in_census": "You are not in the census",
     "votes_one": "<span>1</span> <text>voter</text>",
@@ -350,7 +351,7 @@
   },
   "error_removing_code": "Error removing code",
   "features": {
-    "anonymous_voting": "Anonymous voting",
+    "anonymous": "Anonymous voting",
     "approval": "Approval voting",
     "audit": "Audit",
     "audit_blockchain": "100% blockchain-auditable",
@@ -1264,6 +1265,18 @@
   },
   "privacy_policy": "Privacy policy",
   "process": {
+    "anonymity": {
+      "anonymous": {
+        "description": "Nobody sees who voted what, and no vote can be traced back to a voter.",
+        "short": "Anonymous",
+        "title": "Anonymous vote"
+      },
+      "private": {
+        "description": "Nobody sees who voted what, but a vote could still be traced back to a voter.",
+        "short": "Private",
+        "title": "Private vote"
+      }
+    },
     "census": "Census",
     "create": {
       "action": {
@@ -1363,6 +1376,7 @@
     "success_modal": {
       "btn": "Close",
       "text": "<p>Your vote has been securely cast and stored using Vocdoni's technology. You can verify it <verify>here</verify>.</p>",
+      "text_no_id": "<p>Your vote has been cast successfully.</p>",
       "title": "Vote submitted!"
     },
     "summary": {
@@ -1379,7 +1393,8 @@
       "stat_votes_received": "Votes received",
       "tech_description": "This consultation uses Vocdoni's digital voting system, an open-source technology that provides unions, associations and other organizations with the highest democratic guarantees in voting processes.",
       "tech_integrity": "<b>Integrity:</b> the system guarantees that no vote can be altered, deleted or manipulated once cast.",
-      "tech_privacy": "<b>Privacy:</b> the vote is completely secret and it is not possible to link any cast vote with the voter's identity.",
+      "tech_privacy": "<b>Privacy:</b> ballots are anonymous. No record on the platform links a ballot to the voter who cast it.",
+      "tech_pseudonymity": "<b>Privacy:</b> ballots are private. They are recorded under a one-time code, and the organization cannot see how anyone voted.",
       "tech_title": "Voting guarantees",
       "tech_verifiability": "<b>Verifiability:</b> any participant can check that their vote was correctly recorded and counted, without compromising vote secrecy.",
       "time_remaining": "Time remaining to vote",
@@ -1456,6 +1471,10 @@
     "public_voting_page": "Public voting page"
   },
   "process_create": {
+    "anonymity": {
+      "title": "Anonymous voting",
+      "tooltip": "Either way, your organization can't see how anyone voted. Voter anonymity adds a cryptographic layer that makes it impossible to link a vote to a person."
+    },
     "auto_start": "Start immediately",
     "basic_configuration": "Basic configuration",
     "census": {
@@ -1501,6 +1520,7 @@
     "weight": {
       "equal": "One person, one vote",
       "title": "Voting power",
+      "tooltip": "Set whether votes are equal for each eligible voter or weighted according to the memberbase \"Vote power\" field.",
       "weighted": "Weighted by voting power"
     },
     "youtube": {
@@ -1981,10 +2001,12 @@
   "view_plans_and_pricing": "View Plans & Pricing",
   "vocdoni_logo": "Vocdoni logo",
   "vote": {
+    "anonymous_receipt": "Anonymous vote: save this receipt now, the platform cannot show it to you again.",
     "voted_title": "Your vote was successfully cast!"
   },
   "vote_information": "Vote information",
   "vote_overwrite": "Vote overwrite",
+  "voter_anonymity": "Voter anonymity",
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Add an extra layer of security by requiring voters to verify their identity",
@@ -1998,6 +2020,7 @@
     "2fa_sms_description": "Voters will receive a verification code via SMS",
     "2fa_voter_choice": "<email /> or <phone /> Voter's choice",
     "2fa_voter_choice_description": "Voters can choose their preferred verification method",
+    "anonymity": "Ballot anonymity: {{ mode }}",
     "button": {
       "configure": "Configure Voter Authentication",
       "edit": "Edit Voter Authentication"

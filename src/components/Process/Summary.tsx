@@ -272,17 +272,21 @@ const ResultsNotice = () => {
 
 // Rendered through a dynamic i18nKey below, so the extractor can't see them statically.
 // The comment hints keep the keys registered (and preserved) on `pnpm translations`:
-// t('process.summary.tech_privacy', { defaultValue: "<b>Privacy:</b> the vote is completely secret and it is not possible to link any cast vote with the voter's identity." })
+// t('process.summary.tech_privacy', { defaultValue: '<b>Privacy:</b> ballots are anonymous. No record on the platform links a ballot to the voter who cast it.' })
+// t('process.summary.tech_pseudonymity', { defaultValue: '<b>Privacy:</b> ballots are private. They are recorded under a one-time code, and the organization cannot see how anyone voted.' })
 // t('process.summary.tech_integrity', { defaultValue: '<b>Integrity:</b> the system guarantees that no vote can be altered, deleted or manipulated once cast.' })
 // t('process.summary.tech_verifiability', { defaultValue: '<b>Verifiability:</b> any participant can check that their vote was correctly recorded and counted, without compromising vote secrecy.' })
-const techItems = [
-  { key: 'process.summary.tech_privacy', icon: RiLock2Line },
+// The privacy claim has to match what the process actually does: only a
+// blind-CSP census can promise nothing links a ballot to its voter.
+const techItems = (anonymous?: boolean) => [
+  { key: anonymous ? 'process.summary.tech_privacy' : 'process.summary.tech_pseudonymity', icon: RiLock2Line },
   { key: 'process.summary.tech_integrity', icon: RiShieldCheckLine },
   { key: 'process.summary.tech_verifiability', icon: RiSearchEyeLine },
-] as const
+]
 
 const CertifiedTech = () => {
   const { t } = useTranslation()
+  const { election } = useElection()
 
   return (
     <Card.Root bg='gray.800' color='white' size='lg' borderWidth='0'>
@@ -296,7 +300,7 @@ const CertifiedTech = () => {
               {t('process.summary.tech_description')}
             </Text>
             <List.Root variant='plain' gap={3}>
-              {techItems.map(({ key, icon }) => (
+              {techItems(election?.census?.anonymous).map(({ key, icon }) => (
                 <List.Item key={key} alignItems='start' gap={2}>
                   <List.Indicator asChild color='blue.400' mt={1}>
                     <Box as={icon} />

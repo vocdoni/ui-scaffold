@@ -53,7 +53,7 @@ vi.mock('~components/Actions', () => ({
 
 // New-model process: the per-question status drives both the derived process status and
 // hasResults(), which is what triggers the default redirect to the results tab.
-const createProcess = (id: string, status: QuestionStatus): VotingProcessResponse => ({
+const createProcess = (id: string, status: QuestionStatus, anonymous = false): VotingProcessResponse => ({
   id,
   orgAddress: '0xorg',
   title: { default: 'Test election' },
@@ -61,7 +61,7 @@ const createProcess = (id: string, status: QuestionStatus): VotingProcessRespons
   startDate: '2026-01-01T10:00:00Z',
   endDate: '2026-01-02T10:00:00Z',
   published: true,
-  census: {},
+  census: anonymous ? { anonymous: true } : {},
   questions: [
     {
       id: `${id}-q1`,
@@ -226,5 +226,41 @@ describe('ProcessView navigation', () => {
     await waitFor(() => {
       expect(navigateSpy).toHaveBeenCalledWith('/admin/process/0xdef/results', { replace: true })
     })
+  })
+})
+
+describe('ProcessView voting settings', () => {
+  const renderWithCensus = (anonymous: boolean) => {
+    setReactProvidersMock({
+      ElectionProvider: ({ children }: { children: ReactNode }) => <>{children}</>,
+      useElection: () => ({
+        id: '0xabc',
+        election: createProcess('0xabc', 'ONGOING', anonymous),
+        status: 'ONGOING',
+        results: null,
+        loading: false,
+        client: { explorerUrl: 'https://example.test' },
+      }),
+    })
+
+    return render(
+      <TestMemoryRouter initialEntries={['/admin/process/0xabc']}>
+        <ProcessView />
+      </TestMemoryRouter>
+    )
+  }
+
+  it('reports an anonymous census in the voting settings', async () => {
+    renderWithCensus(true)
+
+    expect(await screen.findByText('Voter anonymity')).toBeInTheDocument()
+    expect(screen.getByText('Anonymous')).toBeInTheDocument()
+  })
+
+  it('reports a private ballot when the census is not anonymous', async () => {
+    renderWithCensus(false)
+
+    expect(await screen.findByText('Voter anonymity')).toBeInTheDocument()
+    expect(screen.getByText('Private')).toBeInTheDocument()
   })
 })

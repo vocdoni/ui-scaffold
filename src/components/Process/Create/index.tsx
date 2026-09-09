@@ -533,7 +533,13 @@ const useUpdateProcess = () => {
 }
 
 export const buildCensusSpec = (form: Process): CensusSpec => {
-  const spec: CensusSpec = { groupId: form.groupId || undefined, weighted: form.weightedVote || undefined }
+  const spec: CensusSpec = {
+    groupId: form.groupId || undefined,
+    weighted: form.weightedVote || undefined,
+    // Blind-CSP census: omitted rather than sent as `false`, matching how the
+    // other optional flags are built here.
+    anonymous: form.anonymousVoting || undefined,
+  }
   if (form.census?.credentials?.length) {
     spec.authFields = form.census.credentials as OrgMemberAuthField[]
   }
@@ -614,7 +620,10 @@ export const useFormToVotingProcessRequest = () => {
       startDate: parsedStart,
       endDate,
       streamUri: permission(SubscriptionPermission.LiveStreaming) ? form.streamUri || undefined : undefined,
-      census: censusSpec,
+      // Same treatment as streamUri: the plan gates blind-CSP censuses, and the
+      // backend rejects the publish (opaquely, inside the job) rather than the
+      // draft, so never let the flag through on a plan without the feature.
+      census: permission(SubscriptionPermission.Anonymous) ? censusSpec : { ...censusSpec, anonymous: undefined },
       questions,
     }
   }
@@ -806,6 +815,7 @@ const ProcessCreateView = () => {
         props: {
           census_type: form.censusType,
           weighted: !!form.weightedVote,
+          anonymous: !!form.anonymousVoting,
           question_count: form.questions?.length ?? 0,
           template: activeTemplate || 'none',
           from_draft: !!effectiveDraftId,

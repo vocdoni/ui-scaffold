@@ -26,6 +26,7 @@ Tone: professional yet approachable. Strings are user-facing UI text (buttons, l
 | weighted voting | ponderatutako botazioa | |
 | approval voting | onarpenzko botazioa | |
 | anonymous voting | boto sekretua | Prefer the natural Basque term |
+| private ballot / pseudonymous | boto pribatua / sasizena | The default mode, opposite the anonymous one: the ballot carries a one-time code instead of a name, but platform records could still connect it to a member. Never translate it with the term used for anonymous voting, nor with one for ballot secrecy |
 | explorer | Explorer | Keep in English — common in blockchain UIs |
 | overwrite vote / correct vote | botoa aldatu / botoa zuzendu | Prefer "aldatu" for buttons, "zuzendu" for descriptions |
 | abstain | abstenitu | |

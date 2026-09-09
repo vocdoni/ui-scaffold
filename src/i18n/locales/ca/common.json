@@ -46,6 +46,7 @@
   "annual": "Anual<1>40% d'estalvi</1>",
   "apply": "Aplica",
   "aside": {
+    "anonymous_receipt_gone": "El teu comprovant es va mostrar en votar i no es pot recuperar.",
     "has_already_voted": "El teu vot s'ha registrat correctament",
     "is_not_in_census": "No estàs en el cens",
     "votes_one": "<span>1</span> <text>votant</text>",
@@ -352,7 +353,7 @@
   },
   "error_removing_code": "Hi ha hagut un error eliminant el codi",
   "features": {
-    "anonymous_voting": "Votació anònima",
+    "anonymous": "Votació anònima",
     "approval": "Per aprovació",
     "audit": "Auditoria",
     "audit_blockchain": "100% auditable a la blockchain",
@@ -1285,6 +1286,18 @@
   },
   "privacy_policy": "Política de Privacitat",
   "process": {
+    "anonymity": {
+      "anonymous": {
+        "description": "Ningú veu qui ha votat què, i cap vot es pot rastrejar fins a un votant.",
+        "short": "Anònim",
+        "title": "Vot anònim"
+      },
+      "private": {
+        "description": "Ningú veu qui ha votat què, però un vot encara es podria rastrejar fins a un votant.",
+        "short": "Privat",
+        "title": "Vot privat"
+      }
+    },
     "census": "Cens",
     "create": {
       "action": {
@@ -1386,6 +1399,7 @@
     "success_modal": {
       "btn": "Finalitzar",
       "text": "<p>El teu vot ha estat emès i emmagatzemat de forma segura amb la tecnologia de Vocdoni. Pots comprovar-ho <verify>aquí</verify>.</p>",
+      "text_no_id": "<p>El teu vot s’ha emès correctament.</p>",
       "title": "Vot emès correctament!"
     },
     "summary": {
@@ -1402,7 +1416,8 @@
       "stat_votes_received": "Vots rebuts",
       "tech_description": "Aquesta consulta utilitza el sistema de votació digital de Vocdoni, una tecnologia de codi obert que ofereix a sindicats, associacions i altres entitats les màximes garanties democràtiques en els processos de votació.",
       "tech_integrity": "<b>Integritat:</b> el sistema garanteix que cap vot no pot ser alterat, eliminat ni manipulat un cop emès.",
-      "tech_privacy": "<b>Privacitat:</b> el vot és completament secret i no és possible vincular cap vot emès amb la identitat de la persona votant.",
+      "tech_privacy": "<b>Privacitat:</b> els vots són anònims. Cap registre de la plataforma vincula un vot amb la persona que el va emetre.",
+      "tech_pseudonymity": "<b>Privacitat:</b> els vots són privats. Es registren amb un codi d’un sol ús i l’organització no pot veure què ha votat cada persona.",
       "tech_title": "Garanties de la votació",
       "tech_verifiability": "<b>Verificabilitat:</b> qualsevol participant pot comprovar que el seu vot ha estat correctament registrat i comptabilitzat, sense comprometre el secret del vot.",
       "time_remaining": "Temps restant per votar",
@@ -1480,6 +1495,10 @@
     "public_voting_page": "Pàgina pública de votació"
   },
   "process_create": {
+    "anonymity": {
+      "title": "Votació anònima",
+      "tooltip": "En tots dos casos la teva organització no pot veure què ha votat cada persona. L’anonimat del votant hi afegeix una capa criptogràfica que fa impossible vincular un vot amb una persona."
+    },
     "auto_start": "Comença immediatament",
     "basic_configuration": "Configuració bàsica",
     "census": {
@@ -1525,6 +1544,7 @@
     "weight": {
       "equal": "Una persona, un vot",
       "title": "Poder de votació",
+      "tooltip": "Defineix si tots els votants tenen el mateix vot o si es pondera segons el camp \"Pes del vot\" de la teva base de membres.",
       "weighted": "Ponderat pel poder de votació"
     },
     "youtube": {
@@ -2007,10 +2027,12 @@
   "view_plans_and_pricing": "Veure plans i preus",
   "vocdoni_logo": "Logotip de Vocdoni",
   "vote": {
+    "anonymous_receipt": "Vot anònim: desa ara aquest comprovant, la plataforma no te’l podrà tornar a mostrar.",
     "voted_title": "El teu vot s'ha registrat amb èxit!"
   },
   "vote_information": "Informació de la votació",
   "vote_overwrite": "Sobreescriptura de la votació",
+  "voter_anonymity": "Anonimat del votant",
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Afegeix una capa extra de seguretat requerint que els votants verifiquin la seva identitat",
@@ -2024,6 +2046,7 @@
     "2fa_sms_description": "Els votants rebran un codi de verificació per SMS",
     "2fa_voter_choice": "<email /> o <phone /> Elecció del votant",
     "2fa_voter_choice_description": "Els votants poden escollir el mètode de verificació que prefereixin",
+    "anonymity": "Anonimat del vot: {{ mode }}",
     "button": {
       "configure": "Configura l'autenticació dels votants",
       "edit": "Edita l'autenticació dels votants"

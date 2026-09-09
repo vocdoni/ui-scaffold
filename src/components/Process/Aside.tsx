@@ -10,7 +10,7 @@ import LogoutButton from './LogoutButton'
 
 const ProcessAside = () => {
   const { t } = useTranslation()
-  const { election, status, results, connected, isInCensus, hasVoted } = useElection()
+  const { election, status, results, connected, isInCensus, hasVoted, voteId } = useElection()
   const appEnv = useAppEnv()
 
   if (!election) return null
@@ -99,6 +99,19 @@ const ProcessAside = () => {
           >
             {t('aside.has_already_voted').toString()}
           </Text>
+          {/* The vote id was only ever shown at cast time: an anonymous census
+              keeps no link between the voter and the vote, so there is nothing
+              to look up on a later visit. Say that instead of leaving the
+              voter hunting for a receipt that cannot come back — but only once
+              the id is actually gone: right after casting it is still on
+              screen, in the Voted notice. */}
+          {election.census?.anonymous && !voteId && (
+            <Text fontSize='xs' color='texts.subtle' textAlign='center'>
+              {t('aside.anonymous_receipt_gone', {
+                defaultValue: 'Your receipt was shown when you voted and cannot be retrieved.',
+              })}
+            </Text>
+          )}
         </Flex>
       )}
     </Flex>

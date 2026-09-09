@@ -145,6 +145,8 @@ export type ProcessSpec = {
   questions: QuestionSpec[]
   /** Weighted by the memberbase voting-power column ("One person, one vote" otherwise). */
   weighted?: boolean
+  /** Blind-CSP census: the CSP signs a ballot it cannot read. Defaults to off. */
+  anonymous?: boolean
 }
 
 /**
@@ -241,6 +243,15 @@ export const createAndPublishTwoFactorProcess = async (page: Page, spec: Process
     // Votes weighted by the memberbase voting-power column — the members must
     // have been imported with weights or the census validation below rejects.
     await selectComboboxOption(page, page.locator('#weightedVote'), /Weighted by voting power/i)
+  }
+
+  if (spec.anonymous) {
+    // The switch's hidden input carries the form field name, so this does not
+    // depend on the translated label. Clicking the visible control, as a user
+    // would, is what flips it — the input itself is hidden.
+    const anonymous = page.locator('input[name="anonymousVoting"]')
+    await toggleSwitch(page.locator('[data-scope="switch"]').filter({ has: anonymous }))
+    await expect(anonymous).toBeChecked()
   }
 
   // The census is the group; voter authentication cannot be configured until

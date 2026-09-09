@@ -38,6 +38,7 @@ import { CreatedBy } from './CreatedBy'
 import { ElectionVideo } from './Dashboard/ProcessView'
 import { ProcessDate } from './Date'
 import Header from './Header'
+import { useAnonymityLabels } from './anonymityLabels'
 import { useVotingMethodLabel } from './resultTypeLabels'
 
 type ProcessInfoCardProps = {
@@ -60,6 +61,16 @@ export const ProcessInfoCard = ({ label, description, ...props }: ProcessInfoCar
       )}
     </Box>
   )
+}
+
+/**
+ * The same two words and the same one sentence the organizer chose from in the
+ * builder — a voter and their organizer read the same promise.
+ */
+const AnonymityInfoCard = ({ anonymous }: { anonymous?: boolean }) => {
+  const { title, description } = useAnonymityLabels(anonymous)
+
+  return <ProcessInfoCard label={title} description={description} />
 }
 
 const VotingMethod = () => {
@@ -111,8 +122,7 @@ const ProcessInfoPanel = () => {
         )}
         <ManageProcessLink />
       </Box>
-      {/* The v2 process model carries no anonymous/electionType flag, so the
-          "anonymous process" info card is gone with the legacy model. */}
+      <AnonymityInfoCard anonymous={election.census?.anonymous} />
       <ProcessInfoCard
         label={t('process.census')}
         description={
@@ -283,7 +293,7 @@ export const ProcessView = () => {
   )
 }
 
-const SuccessVoteModal = () => {
+export const SuccessVoteModal = () => {
   const { t } = useTranslation()
   const [isOpen, setOpen] = useState(false)
   const { election, hasVoted, voteId } = useElection()
@@ -300,7 +310,7 @@ const SuccessVoteModal = () => {
 
   if (!election || !hasVoted) return null
 
-  const verify = voteId ? `${explorerUrl}/verify/${voteId}` : explorerUrl
+  const anonymous = !!election.census?.anonymous
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={({ open }) => setOpen(open)}>
@@ -317,13 +327,35 @@ const SuccessVoteModal = () => {
               <BallotBoxAnimated alignSelf='center' />
             </Dialog.Header>
             <Dialog.Body>
-              <Trans
-                i18nKey='process.success_modal.text'
-                components={{
-                  verify: <Link href={verify} target='_blank' />,
-                  p: <Text mb={2} />,
-                }}
-              />
+              {voteId ? (
+                <Trans
+                  i18nKey='process.success_modal.text'
+                  components={{
+                    verify: <Link href={`${explorerUrl}/verify/${voteId}`} target='_blank' />,
+                    p: <Text mb={2} />,
+                  }}
+                />
+              ) : (
+                // Without a vote id there is nothing to verify, and linking the
+                // explorer root would send the voter somewhere that cannot
+                // answer their question. An anonymous census has no server-side
+                // way to recover the id, so this is its normal return state.
+                <Trans
+                  i18nKey='process.success_modal.text_no_id'
+                  defaults='<p>Your vote has been cast successfully.</p>'
+                  components={{ p: <Text mb={2} /> }}
+                />
+              )}
+              {/* The same one-line warning the Voted notice prints under the
+                  id, and only while there is an id on screen to save: on a
+                  return visit the receipt is already gone (the aside says so). */}
+              {anonymous && voteId && (
+                <Text fontSize='sm' color='texts.subtle'>
+                  {t('vote.anonymous_receipt', {
+                    defaultValue: 'Anonymous vote: save this receipt now, the platform cannot show it to you again.',
+                  })}
+                </Text>
+              )}
             </Dialog.Body>
 
             <Dialog.Footer>

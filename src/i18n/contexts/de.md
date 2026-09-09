@@ -26,6 +26,7 @@ Tone: professional yet approachable. Strings are user-facing UI text (buttons, l
 | weighted voting | Gewichtete Abstimmung | |
 | approval voting | Zustimmungsabstimmung | |
 | anonymous voting | Geheime Abstimmung | Prefer the natural German term over the Latin-derived "anonym" | |
+| private ballot / pseudonymous | private Stimmabgabe / pseudonym | The default mode, opposite the anonymous one: the ballot carries a one-time code instead of a name, but platform records could still connect it to a member. Never translate it with the term used for anonymous voting, nor with one for ballot secrecy |
 | explorer | Explorer | Keep in English — common in blockchain UIs |
 | open source | Open Source | Keep in English, capitalized as a German noun — do not translate (not "quelloffen") |
 | overwrite vote / correct vote | Stimme ändern / Stimme korrigieren | Prefer "ändern" for buttons, "korrigieren" for descriptions |

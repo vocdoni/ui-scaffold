@@ -41,9 +41,9 @@ const twoFaMethodOf = (fields: readonly string[]): TwoFAMethod | undefined => {
  * Rehydrates the create-wizard form from a stored process (a draft, or a
  * published process being cloned).
  *
- * Lossy by design: `censusType` and `voterPrivacy` are wizard-only leftovers
- * with no v2 counterpart. The census `groupId` does round-trip (saas-backend#606)
- * and is absent, rather than a zero id, for an organization-wide census.
+ * Lossy by design: `censusType` is a wizard-only leftover with no v2
+ * counterpart. The census `groupId` does round-trip (saas-backend#606) and is
+ * absent, rather than a zero id, for an organization-wide census.
  */
 export const votingProcessToForm = (process: VotingProcessResponse): Process => {
   const questions = process.questions ?? []
@@ -67,6 +67,7 @@ export const votingProcessToForm = (process: VotingProcessResponse): Process => 
     streamUri: process.streamUri ?? '',
     resultVisibility: isSecretUntilTheEnd(process) ? 'hidden' : 'live',
     weightedVote: process.census?.weighted ?? false,
+    anonymousVoting: process.census?.anonymous ?? false,
     groupId: process.census?.groupId ?? defaultProcessValues.groupId,
     census: authFields.length
       ? {
@@ -155,6 +156,7 @@ export const votingProcessToCreateRequest = (
   streamUri: process.streamUri,
   census: {
     weighted: process.census?.weighted,
+    anonymous: process.census?.anonymous,
     authFields: process.census?.authFields,
     twoFaFields: process.census?.twoFaFields,
     // Absent for an organization-wide census, which is exactly what we want to

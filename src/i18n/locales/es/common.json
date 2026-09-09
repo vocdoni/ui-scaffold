@@ -46,6 +46,7 @@
   "annual": "Anual<1>40% de ahorro</1>",
   "apply": "Aplicar",
   "aside": {
+    "anonymous_receipt_gone": "Tu comprobante se mostró al votar y no se puede recuperar.",
     "has_already_voted": "Tu voto se ha emitido correctamente",
     "is_not_in_census": "No figuras en el censo",
     "votes_one": "<span>1</span> <text>votante</text>",
@@ -352,7 +353,7 @@
   },
   "error_removing_code": "Error eliminando el código",
   "features": {
-    "anonymous_voting": "Votación anónima",
+    "anonymous": "Votación anónima",
     "approval": "Votación aprobatoria",
     "audit": "Auditoría",
     "audit_blockchain": "100% auditable en la blockchain",
@@ -1285,6 +1286,18 @@
   },
   "privacy_policy": "Política de privacidad",
   "process": {
+    "anonymity": {
+      "anonymous": {
+        "description": "Nadie ve quién ha votado qué, y ningún voto puede rastrearse hasta un votante.",
+        "short": "Anónimo",
+        "title": "Voto anónimo"
+      },
+      "private": {
+        "description": "Nadie ve quién ha votado qué, pero un voto aún podría rastrearse hasta un votante.",
+        "short": "Privado",
+        "title": "Voto privado"
+      }
+    },
     "census": "Censo",
     "create": {
       "action": {
@@ -1386,6 +1399,7 @@
     "success_modal": {
       "btn": "Cerrar",
       "text": "<p>Tu voto ha sido emitido y almacenado de forma segura con la tecnología de Vocdoni. Puedes comprobarlo <verify>aquí</verify>.</p>",
+      "text_no_id": "<p>Tu voto se ha emitido correctamente.</p>",
       "title": "¡Voto enviado!"
     },
     "summary": {
@@ -1402,7 +1416,8 @@
       "stat_votes_received": "Votos recibidos",
       "tech_description": "Esta consulta utiliza el sistema de votación digital de Vocdoni, una tecnología de código abierto que ofrece a sindicatos, asociaciones y otras entidades las máximas garantías democráticas en los procesos de votación.",
       "tech_integrity": "<b>Integridad:</b> el sistema garantiza que ningún voto puede ser alterado, eliminado ni manipulado una vez emitido.",
-      "tech_privacy": "<b>Privacidad:</b> el voto es completamente secreto y no es posible vincular ningún voto emitido con la identidad de la persona votante.",
+      "tech_privacy": "<b>Privacidad:</b> los votos son anónimos. Ningún registro de la plataforma vincula un voto con la persona que lo emitió.",
+      "tech_pseudonymity": "<b>Privacidad:</b> los votos son privados. Se registran con un código de un solo uso y la organización no puede ver qué ha votado cada persona.",
       "tech_title": "Garantías de la votación",
       "tech_verifiability": "<b>Verificabilidad:</b> cualquier participante puede comprobar que su voto ha sido correctamente registrado y contabilizado, sin comprometer el secreto del voto.",
       "time_remaining": "Tiempo restante para votar",
@@ -1480,6 +1495,10 @@
     "public_voting_page": "Página pública de votación"
   },
   "process_create": {
+    "anonymity": {
+      "title": "Votación anónima",
+      "tooltip": "En ambos casos tu organización no puede ver qué ha votado cada persona. El anonimato del votante añade una capa criptográfica que hace imposible vincular un voto con una persona."
+    },
     "auto_start": "Iniciar de inmediato",
     "basic_configuration": "Configuración básica",
     "census": {
@@ -1525,6 +1544,7 @@
     "weight": {
       "equal": "Una persona, un voto",
       "title": "Poder de voto",
+      "tooltip": "Define si todos los votantes tienen el mismo voto o si se pondera según el campo \"Peso del voto\" de tu base de miembros.",
       "weighted": "Ponderado por poder de voto"
     },
     "youtube": {
@@ -2007,10 +2027,12 @@
   "view_plans_and_pricing": "Ver planes y precios",
   "vocdoni_logo": "Logotipo de Vocdoni",
   "vote": {
+    "anonymous_receipt": "Voto anónimo: guarda ahora este comprobante, la plataforma no podrá volver a mostrártelo.",
     "voted_title": "¡Tu voto se ha emitido correctamente!"
   },
   "vote_information": "Información del voto",
   "vote_overwrite": "Sobrescritura del voto",
+  "voter_anonymity": "Anonimato del votante",
   "voter_auth": {
     "2fa_badge": "2FA",
     "2fa_description": "Añade una capa adicional de seguridad exigiendo a los votantes que verifiquen su identidad",
@@ -2024,6 +2046,7 @@
     "2fa_sms_description": "Los votantes recibirán un código de verificación por SMS",
     "2fa_voter_choice": "<email /> o <phone /> Elección del votante",
     "2fa_voter_choice_description": "Los votantes pueden elegir su método de verificación preferido",
+    "anonymity": "Anonimato del voto: {{ mode }}",
     "button": {
       "configure": "Configurar autenticación de votantes",
       "edit": "Editar autenticación de votantes"
