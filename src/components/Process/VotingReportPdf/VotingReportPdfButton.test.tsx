@@ -156,4 +156,14 @@ describe('VotingReportPdfButton', () => {
 
     expect(screen.queryByRole('button', { name: /election report \(pdf\)/i })).toBeNull()
   })
+
+  it('renders nothing for an ended process whose results are not published yet', () => {
+    // The sidebar renders this button unconditionally, so hiding it is the component's own job:
+    // an ended process may still be computing its tallies and has nothing to certify yet.
+    const endedElection = createElection({ questions: [createQuestion({ status: 'ENDED' })] })
+
+    render(<VotingReportPdfButton election={endedElection} />)
+
+    expect(screen.queryByRole('button', { name: /election report \(pdf\)/i })).toBeNull()
+  })
 })

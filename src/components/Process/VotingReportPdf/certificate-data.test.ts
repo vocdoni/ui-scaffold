@@ -11,14 +11,38 @@ import { buildCertificateData, canDownloadVotingReport, resolveReportElection } 
 const plainT = ((key: string, options?: { defaultValue?: string }) => options?.defaultValue ?? key) as never
 
 describe('canDownloadVotingReport', () => {
-  it('allows published processes whose questions are all past voting', () => {
+  it('allows a published process whose questions all published their results', () => {
     expect(canDownloadVotingReport(createElection())).toBe(true)
-    expect(canDownloadVotingReport(createElection({ questions: [createQuestion({ status: 'ENDED' })] }))).toBe(true)
-    expect(canDownloadVotingReport(createElection({ questions: [createQuestion({ status: 'CANCELED' })] }))).toBe(true)
+    expect(
+      canDownloadVotingReport(
+        createElection({
+          questions: [createQuestion({ id: 'q1' }), createQuestion({ id: 'q2' })],
+        })
+      )
+    ).toBe(true)
   })
 
-  it('rejects ongoing, draft, and non-process values', () => {
+  it('rejects a process that stopped voting but has no tally to certify', () => {
+    // An ended process may still be computing its results, and a canceled one never has any.
+    expect(canDownloadVotingReport(createElection({ questions: [createQuestion({ status: 'ENDED' })] }))).toBe(false)
+    expect(canDownloadVotingReport(createElection({ questions: [createQuestion({ status: 'CANCELED' })] }))).toBe(false)
+  })
+
+  it('rejects a process whose results are only partially computed', () => {
+    // `computeProcessStatus` collapses a mix of ENDED and RESULTS to ENDED, so this is exactly
+    // the case where a report would certify some questions with no tally at all.
+    expect(
+      canDownloadVotingReport(
+        createElection({
+          questions: [createQuestion({ id: 'q1', status: 'RESULTS' }), createQuestion({ id: 'q2', status: 'ENDED' })],
+        })
+      )
+    ).toBe(false)
+  })
+
+  it('rejects ongoing, paused, draft, and non-process values', () => {
     expect(canDownloadVotingReport(createElection({ questions: [createQuestion({ status: 'ONGOING' })] }))).toBe(false)
+    expect(canDownloadVotingReport(createElection({ questions: [createQuestion({ status: 'PAUSED' })] }))).toBe(false)
     expect(canDownloadVotingReport({ ...createElection(), published: false })).toBe(false)
     expect(canDownloadVotingReport({ some: 'record' })).toBe(false)
     expect(canDownloadVotingReport(null)).toBe(false)

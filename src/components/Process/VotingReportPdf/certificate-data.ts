@@ -1,8 +1,7 @@
-import { computeProcessStatus, isSecretUntilTheEnd, processVoteCount } from '@vocdoni/api-client'
+import { computeProcessStatus, hasResults, isSecretUntilTheEnd, processVoteCount } from '@vocdoni/api-client'
 import type {
   MultiLangString,
   PublishedVotingProcessResponse,
-  QuestionStatus,
   VotingProcessQuestion,
   VotingProcessResponse,
   VotingProcessResultsResponse,
@@ -103,13 +102,16 @@ export const isVotingProcess = (value: unknown): value is VotingProcessResponse 
   typeof value.published === 'boolean' &&
   Array.isArray(value.questions)
 
-const downloadableProcessStatuses = new Set<QuestionStatus>(['ENDED', 'CANCELED', 'RESULTS'])
-
-/** The report only makes sense once the process is published and no longer accepting votes. */
+/**
+ * The report certifies a tally, so it is only offered once every question's results are final
+ * (`RESULTS`).
+ *
+ * `ENDED` is not enough: `computeProcessStatus` collapses a mix of `ENDED` and `RESULTS` questions
+ * to `ENDED`, so an ended process may still be computing its tallies — a report generated then
+ * would certify partial or empty results. `CANCELED` never produces a tally at all.
+ */
 export const canDownloadVotingReport = (election?: ElectionLike): election is PublishedVotingProcessResponse =>
-  isVotingProcess(election) &&
-  election.published &&
-  downloadableProcessStatuses.has(computeProcessStatus(election.questions))
+  isVotingProcess(election) && election.published && hasResults(election)
 
 /** SaaS multilingual strings key by locale with `default` as the fallback; older data may miss it. */
 export const getDefaultText = (value?: MultiLangString | string | null): string => {
