@@ -14,6 +14,8 @@ import {
   type DecodedQuestionResults,
 } from '@vocdoni/ballot'
 import { useElection } from '@vocdoni/react-components'
+
+import { getAnonymityLabels } from '~components/Process/anonymityLabels'
 import { type TFunction } from 'i18next'
 
 /** Anything callers may hand us as an election: a typed process response or an untyped record. */
@@ -312,6 +314,7 @@ export const buildCertificateData = ({
           defaultValue: 'Disabled: no additional identity check has been configured in this voting process',
         })
   const blockchainNetwork = election.chainId || notAvailableLabel
+  const anonymity = getAnonymityLabels(t, election.census?.anonymous)
   const resultsVisibility = isSecretUntilTheEnd(election)
     ? t('results_state.hidden_until_end', { defaultValue: 'Hidden until the end' })
     : t('results_state.live_results', { defaultValue: 'Live results' })
@@ -354,6 +357,13 @@ export const buildCertificateData = ({
     {
       label: t('process_pdf.authentication.method', { defaultValue: 'Authentication method' }),
       value: authenticationMethod,
+    },
+    {
+      // Section 3 is about how the voter proved who they were, which is exactly what the blind
+      // signature changes: the CSP authorizes a ballot it cannot read.
+      label: t('voter_anonymity', { defaultValue: 'Voter anonymity' }),
+      value: anonymity.mechanismTitle ? `${anonymity.title} · ${anonymity.mechanismTitle}` : anonymity.title,
+      helperText: [anonymity.description, anonymity.mechanismDescription].filter(Boolean).join(' '),
     },
     {
       label: t('process_pdf.authentication.identity_source', { defaultValue: 'Required voter credentials' }),
@@ -678,9 +688,15 @@ export const buildCertificateData = ({
       t('process_pdf.disclaimer.bullet_3', {
         defaultValue: 'All data originates from cryptographic and blockchain-based logs.',
       }),
-      t('process_pdf.disclaimer.bullet_4', {
-        defaultValue: 'Ballot secrecy and voter anonymity are preserved by design.',
-      }),
+      // Stated per mode: claiming voter anonymity for a private (pseudonymous) process would be
+      // false, and this document is issued as a formal technical certification.
+      anonymity.mechanism
+        ? t('process_pdf.disclaimer.bullet_4', {
+            defaultValue: 'Ballot secrecy and voter anonymity are preserved by design.',
+          })
+        : t('process_pdf.disclaimer.bullet_4_private', {
+            defaultValue: 'Ballot secrecy is preserved by design; votes remain linkable to a voter identifier.',
+          }),
       t('process_pdf.disclaimer.paragraph_2', {
         defaultValue:
           'The technical service provider assumes no responsibility for organizer-provided input data, including census composition, voter weights, legal interpretation of results, or compliance with applicable legal or regulatory frameworks.',

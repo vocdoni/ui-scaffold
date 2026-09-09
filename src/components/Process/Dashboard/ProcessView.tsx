@@ -411,7 +411,9 @@ const ProcessViewSidebar = () => {
   const { showSidebar, closeSidebar } = useSidebarVisibility()
   const firstQuestion = election?.questions[0]
   const resultTypeLabel = useResultTypeLabel(firstQuestion ? inferQuestionBallotType(firstQuestion) : undefined, '')
-  const anonymityLabel = useAnonymityLabels(election?.census?.anonymous).short
+  const { short: anonymityLabel, mechanismDescription: anonymityMechanism } = useAnonymityLabels(
+    election?.census?.anonymous
+  )
   // The explorer only knows on-chain (Vochain) ids; each question is its own on-chain election
   const explorerProcessId = firstQuestion?.upstreamId
 
@@ -536,6 +538,7 @@ const ProcessViewSidebar = () => {
             icon={LuUnlink}
             text={t('voter_anonymity', 'Voter anonymity')}
             subtext={election ? anonymityLabel : undefined}
+            tooltip={election ? anonymityMechanism : undefined}
           />
           <SettingsField
             icon={LuRotateCw}
@@ -572,30 +575,57 @@ const ProcessViewSidebar = () => {
   )
 }
 
-const SettingsField = ({ subtext, icon, text }: { subtext?: string; icon: typeof LuCalendar; text: ReactNode }) => (
-  <Box display='flex' gap={2} flex='1 1 0' minW={0} alignItems='center'>
-    <Box
-      color='fg.muted'
-      bg='bg.muted'
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
-      h='full'
-      p={2}
-      borderRadius='md'
-    >
-      <Icon as={icon} boxSize={5} />
+const SettingsField = ({
+  subtext,
+  icon,
+  text,
+  tooltip,
+}: {
+  subtext?: string
+  icon: typeof LuCalendar
+  text: ReactNode
+  /** Explains the value in more words than `subtext` has room for — it is `nowrap`. */
+  tooltip?: string
+}) => {
+  const label = (
+    <Text fontSize='sm' fontWeight='bold' textTransform='capitalize'>
+      {text}
+      {tooltip && <Icon as={LuInfo} ms={1} />}
+    </Text>
+  )
+
+  return (
+    <Box display='flex' gap={2} flex='1 1 0' minW={0} alignItems='center'>
+      <Box
+        color='fg.muted'
+        bg='bg.muted'
+        display='flex'
+        alignItems='center'
+        justifyContent='center'
+        h='full'
+        p={2}
+        borderRadius='md'
+      >
+        <Icon as={icon} boxSize={5} />
+      </Box>
+      <Box flex='1 1 0' minW={0} display='flex' flexDirection='column'>
+        {tooltip ? (
+          <TooltipRoot positioning={{ placement: 'top' }}>
+            <TooltipTrigger asChild>{label}</TooltipTrigger>
+            <TooltipPositioner>
+              <TooltipContent>{tooltip}</TooltipContent>
+            </TooltipPositioner>
+          </TooltipRoot>
+        ) : (
+          label
+        )}
+        <Text whiteSpace='nowrap' color='texts.subtle' fontSize='sm'>
+          {subtext}
+        </Text>
+      </Box>
     </Box>
-    <Box flex='1 1 0' minW={0} display='flex' flexDirection='column'>
-      <Text fontSize='sm' fontWeight='bold' textTransform='capitalize'>
-        {text}
-      </Text>
-      <Text whiteSpace='nowrap' color='texts.subtle' fontSize='sm'>
-        {subtext}
-      </Text>
-    </Box>
-  </Box>
-)
+  )
+}
 
 const ControlIcon = forwardRef<SVGSVGElement, IconProps>((props, ref) => (
   <Icon mr={3} boxSize={4} ref={ref} {...props} />

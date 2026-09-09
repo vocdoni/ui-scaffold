@@ -1269,14 +1269,20 @@
   "process": {
     "anonymity": {
       "anonymous": {
-        "description": "",
-        "short": "",
-        "title": ""
+        "description": "Inork ez du ikusten nork zer bozkatu duen, eta ezin da botorik boto-emaile batekin lotu.",
+        "short": "Anonimoa",
+        "title": "Boto anonimoa"
+      },
+      "mechanism": {
+        "blind_csp": {
+          "description": "Kredentzial-zerbitzuaren hornitzaileak sinadura itsu baten bidez baimendu zuen boto bakoitza: ez zuen ikusi ez botoa ez hura eman zuen helbidea, eta, beraz, ez du gordetzen boto-emailea eta haren botoa lotzen dituen erregistrorik.",
+          "title": "Sinadura itsua"
+        }
       },
       "private": {
-        "description": "",
-        "short": "",
-        "title": ""
+        "description": "Inork ez du ikusten nork zer bozkatu duen, baina boto bat boto-emaile batekin lotu ahal izango litzateke.",
+        "short": "Pribatua",
+        "title": "Boto pribatua"
       }
     },
     "census": "Errolda",
@@ -1566,6 +1572,7 @@
       "bullet_2": "Ez ditu ordezkatzen erregistro ofizialak, aktak edo arau-emaileen aurkezpenak.",
       "bullet_3": "Datu guztiak kriptografikoko eta blockchaineko erregistroetatik datoz.",
       "bullet_4": "Botoaren sekretua eta boto-emailearen anonimotasuna diseinuz babestuta daude.",
+      "bullet_4_private": "Botoaren sekretua diseinuz babestuta dago; botoak boto-emailearen identifikatzaile batekin lotu daitezke oraindik.",
       "paragraph_1": "Dokumentu hau Vocdoni Protokoloaren sistemak sortutako erregistroetatik eratorritako ziurtagiri tekniko bat da.",
       "paragraph_2": "Hornitzaile teknikoak ez du erantzukizunik hartzen sarrera-datuen zehaztasunari (esate baterako, erroldaren osaerari), boto-pisuei, emaitzen interpretazio juridikoari edo aplikatu beharreko esparru juridiko edo arau-emaileen betetzeari buruz.",
       "paragraph_3": "Ziurtagiri honen interpretazio juridikoaren eta erabileraren erantzukizuna, esklusiboki, eskatzaile den erakundearena da.",

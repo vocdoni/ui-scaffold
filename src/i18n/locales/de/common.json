@@ -1269,14 +1269,20 @@
   "process": {
     "anonymity": {
       "anonymous": {
-        "description": "",
-        "short": "",
-        "title": ""
+        "description": "Niemand sieht, wer was gewählt hat, und keine Stimme lässt sich zu einer wählenden Person zurückverfolgen.",
+        "short": "Anonym",
+        "title": "Anonyme Stimmabgabe"
+      },
+      "mechanism": {
+        "blind_csp": {
+          "description": "Der Anbieter des Credential-Dienstes hat jede Stimme mit einer blinden Signatur autorisiert: Er hat weder die Stimme noch die Adresse gesehen, die sie abgegeben hat, und speichert daher keine Verknüpfung zwischen einer wählenden Person und ihrer Stimme.",
+          "title": "Blinde Signatur"
+        }
       },
       "private": {
-        "description": "",
-        "short": "",
-        "title": ""
+        "description": "Niemand sieht, wer was gewählt hat, aber eine Stimme könnte sich zu einer wählenden Person zurückverfolgen lassen.",
+        "short": "Privat",
+        "title": "Private Stimmabgabe"
       }
     },
     "census": "Teilnehmerliste",
@@ -1566,6 +1572,7 @@
       "bullet_2": "Es ersetzt keine offiziellen Aufzeichnungen, Protokolle oder behördlichen Meldungen.",
       "bullet_3": "Alle Daten stammen aus kryptografischen und blockchain-basierten Protokollen.",
       "bullet_4": "Stimmgeheimniswahrung und Anonymität der Wählenden sind systembedingt gewährleistet.",
+      "bullet_4_private": "Die Wahrung des Stimmgeheimnisses ist systembedingt gewährleistet; Stimmen bleiben einer Wählerkennung zuordenbar.",
       "paragraph_1": "Dieses Dokument stellt eine technische Zertifizierung dar, die aus systemgenerierten Aufzeichnungen des Vocdoni-Protokolls abgeleitet wurde.",
       "paragraph_2": "Der technische Dienstleister übernimmt keine Verantwortung für die Richtigkeit der Eingabedaten (z. B. Zusammensetzung der Teilnehmerliste), die rechtliche Auslegung der Ergebnisse oder die Einhaltung geltender gesetzlicher oder regulatorischer Rahmenbedingungen.",
       "paragraph_3": "Die Verantwortung für die rechtliche Auslegung und Verwendung dieser Zertifizierung liegt ausschließlich bei der anfragenden Organisation.",

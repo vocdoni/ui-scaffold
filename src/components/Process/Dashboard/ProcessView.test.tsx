@@ -263,4 +263,22 @@ describe('ProcessView voting settings', () => {
     expect(await screen.findByText('Voter anonymity')).toBeInTheDocument()
     expect(screen.getByText('Private')).toBeInTheDocument()
   })
+
+  it('offers the mechanism behind an anonymous census as a tooltip', async () => {
+    // The subtext is `nowrap` and has room for one word, so the technology is explained in a
+    // tooltip on the label rather than inline.
+    renderWithCensus(true)
+
+    const label = await screen.findByText('Voter anonymity')
+
+    expect(label.closest('[data-part="trigger"]')).not.toBeNull()
+  })
+
+  it('offers no tooltip for a private census, which has no mechanism to explain', async () => {
+    renderWithCensus(false)
+
+    const label = await screen.findByText('Voter anonymity')
+
+    expect(label.closest('[data-part="trigger"]')).toBeNull()
+  })
 })

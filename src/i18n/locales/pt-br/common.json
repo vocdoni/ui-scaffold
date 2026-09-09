@@ -1290,14 +1290,20 @@
   "process": {
     "anonymity": {
       "anonymous": {
-        "description": "",
-        "short": "",
-        "title": ""
+        "description": "Ninguém vê quem votou o quê, e nenhum voto pode ser rastreado até um eleitor.",
+        "short": "Anônimo",
+        "title": "Voto anônimo"
+      },
+      "mechanism": {
+        "blind_csp": {
+          "description": "O provedor do serviço de credenciais autorizou cada voto com uma assinatura cega: nunca viu o voto nem o endereço que o enviou, portanto não mantém nenhum vínculo entre um eleitor e seu voto.",
+          "title": "Assinatura cega"
+        }
       },
       "private": {
-        "description": "",
-        "short": "",
-        "title": ""
+        "description": "Ninguém vê quem votou o quê, mas um voto ainda poderia ser rastreado até um eleitor.",
+        "short": "Privado",
+        "title": "Voto privado"
       }
     },
     "census": "Lista de participantes",
@@ -1590,6 +1596,7 @@
       "bullet_2": "Não substitui registros oficiais, atas ou arquivamentos regulatórios.",
       "bullet_3": "Todos os dados são provenientes de registros criptográficos e baseados em blockchain.",
       "bullet_4": "O sigilo do voto e o anonimato do eleitor são preservados por design.",
+      "bullet_4_private": "O sigilo do voto é preservado por design; os votos continuam vinculáveis a um identificador de eleitor.",
       "paragraph_1": "Este documento constitui uma certificação técnica derivada de dados registrados na infraestrutura da Vocdoni.",
       "paragraph_2": "O provedor técnico não assume qualquer responsabilidade pelos dados de entrada fornecidos pelo organizador, incluindo a composição da lista de participantes, os pesos dos eleitores, a interpretação legal dos resultados ou o cumprimento das normas legais ou regulatórias aplicáveis.",
       "paragraph_3": "A responsabilidade pela interpretação legal e pelo uso desta certificação é exclusivamente da organização solicitante.",

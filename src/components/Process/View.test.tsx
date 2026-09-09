@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { mockUseElection, render, screen, waitFor } from '~src/test-utils'
 import { setReactProvidersMock } from '~src/test-utils-react-providers-mock'
-import { ProcessInfoCard, SuccessVoteModal, VotingVoteModal } from './View'
+import { AnonymityInfoCard, ProcessInfoCard, SuccessVoteModal, VotingVoteModal } from './View'
 
 vi.mock('@vocdoni/react-components', async (importOriginal) => {
   const actual = (await importOriginal()) as typeof import('@vocdoni/react-components')
@@ -10,6 +10,34 @@ vi.mock('@vocdoni/react-components', async (importOriginal) => {
     ...actual,
     ...getReactProvidersMock(),
   }
+})
+
+describe('AnonymityInfoCard', () => {
+  const TRACKED = /no vote can be traced back to a voter/i
+
+  it('explains the mode and the mechanism behind an anonymous process', () => {
+    render(<AnonymityInfoCard anonymous />)
+
+    expect(screen.getByText('Anonymous vote')).toBeInTheDocument()
+    expect(screen.getByText(/blind signature/i)).toBeInTheDocument()
+  })
+
+  it('states the mode exactly once', () => {
+    // `e2e/anonymous-voting.e2e.ts` matches this sentence on the public page with Playwright's
+    // strict single-match `getByText`. Rendering it twice fails that run with a strict-mode
+    // violation, which is expensive to discover — so it is pinned here instead.
+    render(<AnonymityInfoCard anonymous />)
+
+    expect(screen.getAllByText(TRACKED)).toHaveLength(1)
+  })
+
+  it('names no mechanism for a private process', () => {
+    render(<AnonymityInfoCard anonymous={false} />)
+
+    expect(screen.getByText('Private vote')).toBeInTheDocument()
+    expect(screen.queryByText(/blind signature/i)).toBeNull()
+    expect(screen.queryByText(TRACKED)).toBeNull()
+  })
 })
 
 describe('ProcessInfoCard', () => {

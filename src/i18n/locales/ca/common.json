@@ -1294,6 +1294,12 @@
         "short": "Anònim",
         "title": "Vot anònim"
       },
+      "mechanism": {
+        "blind_csp": {
+          "description": "El proveïdor del servei de credencials va autoritzar cada vot amb una signatura cega: mai no va veure el vot ni l'adreça que el va emetre, de manera que no guarda cap vincle entre un votant i el seu vot.",
+          "title": "Signatura cega"
+        }
+      },
       "private": {
         "description": "Ningú veu qui ha votat què, però un vot encara es podria rastrejar fins a un votant.",
         "short": "Privat",
@@ -1590,6 +1596,7 @@
       "bullet_2": "No substitueix els registres oficials, les actes o les presentacions reguladores.",
       "bullet_3": "Totes les dades provenen de registres criptogràfics i basats en blockchain.",
       "bullet_4": "El secret del vot i l'anonimat del votant es preserven per disseny.",
+      "bullet_4_private": "El secret del vot es preserva per disseny; els vots continuen sent vinculables a un identificador de votant.",
       "paragraph_1": "Aquest document constitueix una certificació tècnica derivada de dades registrades a la infraestructura de Vocdoni.",
       "paragraph_2": "El proveïdor tècnic no assumeix responsabilitat per les dades proporcionades per l'organització, inclosa la composició del cens, els pesos de vot, la interpretació legal dels resultats o el compliment dels marcs legals o reguladors aplicables.",
       "paragraph_3": "La responsabilitat sobre la interpretació legal i l'ús d'aquesta certificació recau exclusivament en l'organització sol·licitant.",

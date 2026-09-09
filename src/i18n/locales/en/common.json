@@ -1273,6 +1273,12 @@
         "short": "Anonymous",
         "title": "Anonymous vote"
       },
+      "mechanism": {
+        "blind_csp": {
+          "description": "The credential service provider authorized each ballot with a blind signature: it never saw the ballot or the address that cast it, so it keeps no record linking a voter to their vote.",
+          "title": "Blind signature"
+        }
+      },
       "private": {
         "description": "Nobody sees who voted what, but a vote could still be traced back to a voter.",
         "short": "Private",
@@ -1566,6 +1572,7 @@
       "bullet_2": "It does not replace official records, minutes, or regulatory filings.",
       "bullet_3": "All data originates from cryptographic and blockchain-based logs.",
       "bullet_4": "Ballot secrecy and voter anonymity are preserved by design.",
+      "bullet_4_private": "Ballot secrecy is preserved by design; votes remain linkable to a voter identifier.",
       "paragraph_1": "This document constitutes a technical certification derived from data recorded on the Vocdoni infrastructure.",
       "paragraph_2": "The technical service provider assumes no responsibility for organizer-provided input data, including census composition, voter weights, legal interpretation of results, or compliance with applicable legal or regulatory frameworks.",
       "paragraph_3": "Responsibility for legal interpretation and use of this certification rests solely with the requesting organization.",

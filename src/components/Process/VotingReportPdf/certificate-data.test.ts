@@ -365,6 +365,41 @@ describe('buildCertificateData', () => {
     )
   })
 
+  it('certifies the anonymity mode and names the mechanism for an anonymous process', () => {
+    const data = buildCertificateData({
+      election: createElection({ census: { size: 100, authFields: ['memberNumber'], anonymous: true } }),
+      results: createResults(),
+      t: plainT,
+      now: new Date('2026-01-03T10:00:00Z'),
+    })
+
+    const row = data.authentication.find((field) => field.label === 'Voter anonymity')
+
+    expect(row?.value).toBe('Anonymous vote · Blind signature')
+    expect(row?.helperText).toContain('no vote can be traced back to a voter')
+    expect(row?.helperText).toContain('blind signature')
+    // The disclaimer may only claim anonymity when anonymity is actually in force.
+    expect(data.disclaimerBullets).toContain('Ballot secrecy and voter anonymity are preserved by design.')
+  })
+
+  it('does not claim anonymity for a private process', () => {
+    const data = buildCertificateData({
+      election: createElection(),
+      results: createResults(),
+      t: plainT,
+      now: new Date('2026-01-03T10:00:00Z'),
+    })
+
+    const row = data.authentication.find((field) => field.label === 'Voter anonymity')
+
+    expect(row?.value).toBe('Private vote')
+    expect(row?.helperText).toContain('could still be traced back to a voter')
+    expect(data.disclaimerBullets).not.toContain('Ballot secrecy and voter anonymity are preserved by design.')
+    expect(data.disclaimerBullets).toContain(
+      'Ballot secrecy is preserved by design; votes remain linkable to a voter identifier.'
+    )
+  })
+
   it('reports 2FA as disabled when the census configures none', () => {
     const data = buildCertificateData({
       election: createElection(),

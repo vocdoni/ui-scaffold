@@ -1294,6 +1294,12 @@
         "short": "Anonimo",
         "title": "Voto anonimo"
       },
+      "mechanism": {
+        "blind_csp": {
+          "description": "Il fornitore del servizio di credenziali ha autorizzato ogni voto con una firma cieca: non ha mai visto il voto né l'indirizzo che lo ha espresso, quindi non conserva alcun collegamento tra un votante e il suo voto.",
+          "title": "Firma cieca"
+        }
+      },
       "private": {
         "description": "Nessuno vede chi ha votato cosa, ma un voto potrebbe comunque essere ricondotto a un votante.",
         "short": "Privato",
@@ -1590,6 +1596,7 @@
       "bullet_2": "Non sostituisce i registri ufficiali, i verbali o i depositi regolatori.",
       "bullet_3": "Tutti i dati provengono da registri crittografici e basati su blockchain.",
       "bullet_4": "La segretezza del voto e l'anonimato del votante sono preservati per progettazione.",
+      "bullet_4_private": "La segretezza del voto è preservata per progettazione; i voti restano collegabili a un identificatore di votante.",
       "paragraph_1": "Questo documento costituisce una certificazione tecnica derivata da dati registrati sull'infrastruttura Vocdoni.",
       "paragraph_2": "Il fornitore tecnico non assume alcuna responsabilità per i dati forniti dall'organizzazione, inclusi composizione del censimento, pesi di voto, interpretazione legale dei risultati o conformità ai quadri legali o normativi applicabili.",
       "paragraph_3": "La responsabilità per l'interpretazione legale e l'uso di questa certificazione ricade esclusivamente sull'organizzazione richiedente.",

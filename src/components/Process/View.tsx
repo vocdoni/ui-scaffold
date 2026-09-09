@@ -67,10 +67,28 @@ export const ProcessInfoCard = ({ label, description, ...props }: ProcessInfoCar
  * The same two words and the same one sentence the organizer chose from in the
  * builder — a voter and their organizer read the same promise.
  */
-const AnonymityInfoCard = ({ anonymous }: { anonymous?: boolean }) => {
-  const { title, description } = useAnonymityLabels(anonymous)
+export const AnonymityInfoCard = ({ anonymous }: { anonymous?: boolean }) => {
+  const { title, description, mechanismDescription } = useAnonymityLabels(anonymous)
 
-  return <ProcessInfoCard label={title} description={description} />
+  // `description` is rendered exactly once on this page on purpose: the e2e suite matches that
+  // sentence with a strict single-match `getByText`, and repeating it would fail the run.
+  if (!mechanismDescription) return <ProcessInfoCard label={title} description={description} />
+
+  return (
+    <ProcessInfoCard
+      label={title}
+      description={
+        <>
+          <Text color='texts.subtle' fontSize='sm'>
+            {description}
+          </Text>
+          <Text color='texts.subtle' fontSize='sm' mt={1}>
+            {mechanismDescription}
+          </Text>
+        </>
+      }
+    />
+  )
 }
 
 const VotingMethod = () => {

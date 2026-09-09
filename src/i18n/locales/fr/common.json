@@ -1290,14 +1290,20 @@
   "process": {
     "anonymity": {
       "anonymous": {
-        "description": "",
-        "short": "",
-        "title": ""
+        "description": "Personne ne voit qui a voté quoi, et aucun vote ne peut être relié à un électeur.",
+        "short": "Anonyme",
+        "title": "Vote anonyme"
+      },
+      "mechanism": {
+        "blind_csp": {
+          "description": "Le fournisseur du service de justificatifs a autorisé chaque bulletin par une signature aveugle : il n'a jamais vu le bulletin ni l'adresse qui l'a émis, et ne conserve donc aucun lien entre un électeur et son vote.",
+          "title": "Signature aveugle"
+        }
       },
       "private": {
-        "description": "",
-        "short": "",
-        "title": ""
+        "description": "Personne ne voit qui a voté quoi, mais un vote pourrait encore être relié à un électeur.",
+        "short": "Privé",
+        "title": "Vote privé"
       }
     },
     "census": "Liste électorale",
@@ -1590,6 +1596,7 @@
       "bullet_2": "Elle ne remplace pas les registres officiels, procès-verbaux ou dépôts réglementaires.",
       "bullet_3": "Toutes les données proviennent de journaux cryptographiques et basés sur la blockchain.",
       "bullet_4": "Le secret du vote et l'anonymat des électeurs sont préservés par conception.",
+      "bullet_4_private": "Le secret du vote est préservé par conception ; les votes restent reliables à un identifiant d'électeur.",
       "paragraph_1": "Ce document constitue une certification technique issue des journaux générés par le système du protocole Vocdoni.",
       "paragraph_2": "Le prestataire technique n'assume aucune responsabilité quant à l'exactitude des données d'entrée (par exemple la composition de la liste électorale), à l'interprétation juridique des résultats ou au respect des cadres légaux ou réglementaires applicables.",
       "paragraph_3": "La responsabilité de l'interprétation juridique et de l'utilisation de cette certification incombe exclusivement à l'organisation demandeuse.",
