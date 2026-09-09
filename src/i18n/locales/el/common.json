@@ -24,6 +24,8 @@
     "view_active_votes": "Προβολή ενεργών ψηφοφοριών",
     "waiting_title": "Αναμονή για επιβεβαίωση της συναλλαγής..."
   },
+  "actual_end_date": "",
+  "actual_end_time": "",
   "add_new_org": "Προσθήκη νέου οργανισμού",
   "additional_actions": "Πρόσθετες ενέργειες",
   "all_processes": "Όλες",
@@ -1597,6 +1599,8 @@
     "download_error": "Δεν ήταν δυνατή η δημιουργία της έκθεσης PDF",
     "downloading": "Δημιουργία PDF",
     "general": {
+      "actual_end": "",
+      "actual_end_helper": "",
       "event_name": "Όνομα εκδήλωσης",
       "network": "Υποδομή",
       "organization": "Οργανισμός",

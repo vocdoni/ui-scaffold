@@ -24,6 +24,8 @@
     "view_active_votes": "Ikusi bozketa aktiboak",
     "waiting_title": "Transakzioa berresteko zain..."
   },
+  "actual_end_date": "",
+  "actual_end_time": "",
   "add_new_org": "Gehitu erakunde berri bat",
   "additional_actions": "Ekintza osagarriak",
   "all_processes": "Guztiak",
@@ -1597,6 +1599,8 @@
     "download_error": "Ezin izan da PDF txostena sortu",
     "downloading": "PDFa sortzen",
     "general": {
+      "actual_end": "",
+      "actual_end_helper": "",
       "event_name": "Gertaeraren izena",
       "network": "Azpiegitura",
       "organization": "Erakundea",

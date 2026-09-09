@@ -24,6 +24,8 @@
     "view_active_votes": "Aktive Abstimmungen anzeigen",
     "waiting_title": "Warte auf Transaktionsbestätigung..."
   },
+  "actual_end_date": "",
+  "actual_end_time": "",
   "add_new_org": "Neue Organisation hinzufügen",
   "additional_actions": "Weitere Aktionen",
   "all_processes": "Alle",
@@ -1597,6 +1599,8 @@
     "download_error": "PDF-Bericht konnte nicht erstellt werden",
     "downloading": "PDF wird erstellt",
     "general": {
+      "actual_end": "",
+      "actual_end_helper": "",
       "event_name": "Veranstaltungsname",
       "network": "Netzwerk",
       "organization": "Organisation",

@@ -39,6 +39,7 @@ export const QueryKeys = {
   process: {
     participants: (processId?: string, field?: string, value?: string) =>
       ['process', 'participants', processId, field, value].filter(Boolean),
+    endDate: (processId?: string) => ['process', 'end-date', processId].filter(Boolean),
   },
   integrator: {
     info: (address?: string) => ['integrator', 'info', address].filter(Boolean),

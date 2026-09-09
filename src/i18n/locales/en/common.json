@@ -24,6 +24,8 @@
     "view_active_votes": "View active votes",
     "waiting_title": "Waiting for transaction confirmation..."
   },
+  "actual_end_date": "Actual end date",
+  "actual_end_time": "Actual end time",
   "add_new_org": "Add a new organization",
   "additional_actions": "Additional actions",
   "all_processes": "All",
@@ -1597,6 +1599,8 @@
     "download_error": "Could not generate the PDF report",
     "downloading": "Generating PDF",
     "general": {
+      "actual_end": "Actual end",
+      "actual_end_helper": "This voting process was stopped before its configured end, so no vote was accepted after this time.",
       "event_name": "Event name",
       "network": "Infrastructure",
       "organization": "Organization",

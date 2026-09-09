@@ -24,6 +24,8 @@
     "view_active_votes": "Mostra les votacions actives",
     "waiting_title": "Esperant la confirmació de la transacció..."
   },
+  "actual_end_date": "",
+  "actual_end_time": "",
   "add_new_org": "Afegeix una nova organització",
   "additional_actions": "Accions addicionals",
   "all_processes": "Tots",
@@ -1621,6 +1623,8 @@
     "download_error": "No s'ha pogut generar l'informe PDF",
     "downloading": "S'està generant el PDF",
     "general": {
+      "actual_end": "",
+      "actual_end_helper": "",
       "event_name": "Nom de l'esdeveniment",
       "network": "Infraestructura",
       "organization": "Organització",

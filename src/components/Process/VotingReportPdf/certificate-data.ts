@@ -246,6 +246,7 @@ export const buildCertificateData = ({
   organizationName,
   explorerUrl,
   now,
+  earlyEndDate,
 }: {
   election: PublishedVotingProcessResponse
   results: VotingProcessResultsResponse | null
@@ -253,6 +254,8 @@ export const buildCertificateData = ({
   organizationName?: string
   explorerUrl?: string
   now: Date
+  /** When voting really stopped, set only if the process was stopped early — see `getEarlyEndDate`. */
+  earlyEndDate?: Date | null
 }): CertificateData => {
   const notAvailableLabel = notAvailable(t)
   const eventReference = getDefaultText(election.title).trim() || election.id
@@ -260,6 +263,9 @@ export const buildCertificateData = ({
   const issueTime = formatUtcTime(now) ?? notAvailableLabel
   const startDatetime = formatUtcDateTime(parseDate(election.startDate)) ?? notAvailableLabel
   const endDatetime = formatUtcDateTime(parseDate(election.endDate)) ?? notAvailableLabel
+  // Reported alongside the configured end rather than replacing it: the certificate attests both
+  // what was scheduled and when voting actually closed. Null unless the process was stopped early.
+  const earlyEndDatetime = formatUtcDateTime(earlyEndDate)
 
   // Ballots cast: per-question counts from the results endpoint; the process-level
   // figure is the max across questions (every voter votes every question).
@@ -407,6 +413,18 @@ export const buildCertificateData = ({
         label: t('process_pdf.general.voting_period_end', { defaultValue: 'Voting period (end)' }),
         value: endDatetime,
       },
+      ...(earlyEndDatetime
+        ? [
+            {
+              label: t('process_pdf.general.actual_end', { defaultValue: 'Actual end' }),
+              value: earlyEndDatetime,
+              helperText: t('process_pdf.general.actual_end_helper', {
+                defaultValue:
+                  'This voting process was stopped before its configured end, so no vote was accepted after this time.',
+              }),
+            },
+          ]
+        : []),
       {
         label: t('process_pdf.general.results_visibility', { defaultValue: 'Results visibility' }),
         value: resultsVisibility,

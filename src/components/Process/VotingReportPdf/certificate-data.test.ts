@@ -68,6 +68,43 @@ describe('buildCertificateData', () => {
     expect(values).toEqual(['2026-01-01 10:00 UTC', '2026-01-02 10:00 UTC'])
   })
 
+  it('reports the actual end alongside the configured one when stopped early', () => {
+    // Stopped ahead of its 2026-01-02 schedule; the configured period still has to be certified.
+    const data = buildCertificateData({
+      election: createElection(),
+      results: createResults(),
+      t: plainT,
+      now: new Date('2026-01-03T10:00:00Z'),
+      earlyEndDate: new Date('2026-01-01T15:42:00Z'),
+    })
+
+    const period = data.generalInformation
+      .filter((field) => field.label.includes('Voting period'))
+      .map((field) => field.value)
+    const actualEnd = data.generalInformation.find((field) => field.label === 'Actual end')
+
+    expect(period).toEqual(['2026-01-01 10:00 UTC', '2026-01-02 10:00 UTC'])
+    expect(actualEnd?.value).toBe('2026-01-01 15:42 UTC')
+    expect(actualEnd?.helperText).toContain('stopped before its configured end')
+  })
+
+  it('omits the actual end row for a process that ran to its configured end', () => {
+    const data = buildCertificateData({
+      election: createElection(),
+      results: createResults(),
+      t: plainT,
+      now: new Date('2026-01-03T10:00:00Z'),
+      earlyEndDate: null,
+    })
+
+    const values = data.generalInformation
+      .filter((field) => field.label.includes('Voting period'))
+      .map((field) => field.value)
+
+    expect(values).toEqual(['2026-01-01 10:00 UTC', '2026-01-02 10:00 UTC'])
+    expect(data.generalInformation.some((field) => field.label === 'Actual end')).toBe(false)
+  })
+
   it('includes visibility, infrastructure, and public identifiers in general information', () => {
     const data = buildCertificateData({
       election: createElection(),

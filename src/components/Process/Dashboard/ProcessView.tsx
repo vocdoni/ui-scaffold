@@ -78,6 +78,7 @@ import {
 import { SidebarVisibilityProvider, useSidebarVisibility } from '~components/Dashboard/SidebarContext'
 import { usePublicLanguage } from '~i18n/usePublicLanguage'
 import { useCensusSize } from '~queries/census'
+import { useProcessEarlyEndDate } from '~queries/process-end-date'
 import { Routes } from '~src/router/routes'
 import { getPublicProcessPath } from '~src/ssr/public-pages'
 import { AnalyticsEvents, trackAnalyticsEvent } from '~utils/analytics'
@@ -129,6 +130,7 @@ const ProcessViewContent = () => {
   const { showSidebar, toggleSidebar } = useSidebarVisibility()
   const { election, results, status } = useElection()
   const { size: censusSize } = useCensusSize()
+  const { data: earlyEndDate } = useProcessEarlyEndDate(election)
   const id = election?.id ?? ''
   const location = useLocation()
   const navigate = useNavigate()
@@ -254,6 +256,22 @@ const ProcessViewContent = () => {
                 text={t('end_time', 'End time')}
                 subtext={election && formatDate(election.endDate, t('dashboard.process_view.time_format', 'p'))}
               />
+              {/* Only when the process was stopped ahead of schedule: the configured end above stays,
+                  since it is still what was announced to voters. */}
+              {earlyEndDate && (
+                <>
+                  <SettingsField
+                    icon={LuCalendar}
+                    text={t('actual_end_date', 'Actual end date')}
+                    subtext={formatDate(earlyEndDate, t('dashboard.process_view.date_format', 'MMMM do, y'))}
+                  />
+                  <SettingsField
+                    icon={LuClock}
+                    text={t('actual_end_time', 'Actual end time')}
+                    subtext={formatDate(earlyEndDate, t('dashboard.process_view.time_format', 'p'))}
+                  />
+                </>
+              )}
             </SimpleGrid>
           </DashboardBox>
 

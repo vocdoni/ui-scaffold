@@ -24,6 +24,8 @@
     "view_active_votes": "Voir les votes actifs",
     "waiting_title": "En attente de la confirmation de la transaction…"
   },
+  "actual_end_date": "",
+  "actual_end_time": "",
   "add_new_org": "Ajouter une nouvelle organisation",
   "additional_actions": "Actions supplémentaires",
   "all_processes": "Tous",
@@ -1621,6 +1623,8 @@
     "download_error": "Impossible de générer le rapport PDF",
     "downloading": "Génération du PDF en cours",
     "general": {
+      "actual_end": "",
+      "actual_end_helper": "",
       "event_name": "Nom de l'événement",
       "network": "Infrastructure",
       "organization": "Organisation",
